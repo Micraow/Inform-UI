@@ -3,7 +3,13 @@
 The supplied gallery groups 52 **observable capabilities**. Those entries are
 product requirements, not 52 private renderer tags and not a coverage score for
 an OpenAI API. This document maps every catalog ID to this project's portable
-implementation or a specific missing dependency.
+implementation or a specific missing capability.
+
+The core library is independently usable and vendor-neutral. Here “host” means
+the application embedding this library, which can be any website or local app.
+Optional data and action integrations may use local data or any suitable
+provider; they do not require OpenAI and are not needed to run the renderer.
+This matrix does not describe multiple product editions.
 
 ## Reading the status column
 
@@ -107,6 +113,7 @@ new renderer passes those checks.
 Rendering a component is separate from obtaining its data or invoking a tool.
 Before integrating an external capability, a host must define its input data,
 source, permissions, allowed actions, error behavior, and fallback. This release
-does not silently detect or call a native ChatGPT runtime. Prefer a supported
-portable composition; if it cannot express the task, report the missing
+does not detect or call a ChatGPT runtime. Private site-runtime adapters are
+outside the product roadmap. Prefer a supported independent composition;
+if it cannot express the task, report the missing
 capability rather than executing generated code.

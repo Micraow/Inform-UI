@@ -8,6 +8,11 @@ portable scientific explanations with constrained interaction. It is not an
 official OpenAI component package, a ChatGPT client, or a copy of a private
 model-output protocol.
 
+It is one public, vendor-neutral library. It requires no OpenAI account, API,
+service, or runtime. The current backend's `portable` identifier is not a
+separate edition or a transition toward proprietary-runtime dependence.
+Historical bridge experiments are design evidence, not a product roadmap.
+
 The public implementation uses project-owned source and explicitly declared
 open-source dependencies. The schema generator, semantic checks, expression
 handling, DOM/SVG rendering, styles, compiler/CLI integration, and example
@@ -92,7 +97,9 @@ in the package manifest. Review the package's third-party notices and lockfile
 when distributing a build; project licensing is not a substitute for those
 notices. No proprietary ChatGPT runtime or font bundle is required.
 
-The package is marked private for this development delivery. No npm publication
+The package.json `private: true` flag prevents accidental npm publication; it
+does not make the source private or restrict use of the MIT-licensed library.
+No npm publication
 is implied or performed by the fixtures or these documents. A future release
 or publish operation needs its own version, license, dependency, and artifact
 review.

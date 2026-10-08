@@ -1,12 +1,20 @@
 # Intelligent-UI
 
-Original, portable scientific explanations from compact **`iui/1` JSON**. The model chooses content and relationships; this JS/TS library owns safe rendering, typography, state, equations, diagrams, charts, and responsive layout.
+An open, vendor-neutral JS/TS library for original scientific explanations from compact **`iui/1` JSON**. Any model, application, or person can supply the JSON; this library owns safe rendering, typography, state, equations, diagrams, charts, and responsive layout.
 
 This is an independent project, not an official OpenAI implementation. No captured runtime, private component bundle, or original reference screenshot is distributed.
 
+## One independent library
+
+Intelligent-UI runs without an OpenAI account, API, service, or runtime. Independent operation is the product's long-term foundation.
+
+There is one core library. `portable` is the existing backend's technical name in the API, not a separate edition, reduced-access tier, or temporary bridge to a future OpenAI-dependent product. Standalone HTML and embedding in another webpage are two delivery methods for the same library. Future components should extend the independent public implementation; historical private-runtime bridge experiments are outside this product's roadmap.
+
+中文：Intelligent-UI 是一套面向所有人、可独立运行的公开库，不依赖 OpenAI。`portable` 只是现有 API 中的渲染方式名称；离线 HTML 和嵌入网页是同一套库的两种用法，不是多个产品版本。
+
 ## Start locally
 
-Node.js 22 or newer is required. This package is **not published to npm**; use this checkout. `private: true` prevents accidental publication.
+Node.js 22 or newer is required for building and the CLI. This package is **not published to npm**; use this checkout. The package.json flag `private: true` only prevents accidental npm publication; it does not restrict access to this public MIT-licensed source. Generated inline HTML can be used without Node.js.
 
 ```sh
 npm ci --ignore-scripts
@@ -78,7 +86,7 @@ See the generated [TypeScript document types](src/schema/document.d.ts), [JSON S
 - KaTeX-to-MathML equations, original SVG topology, scoped light/dark styles, narrow-screen layout
 - Inline/shared HTML compilation and `validate`, `build`, `inspect`, `doctor` commands
 
-[The node matrix](docs/support-matrix.md) and [52-capability assessment](docs/gallery-capabilities.md) state exactly what is limited, rejected, or requires a host service. A catalog entry is not a passing test. Scatter/pie charts, a general-purpose app sandbox, private native adapters, React-specific bindings, maps, live search, and media services are not implemented.
+[The node matrix](docs/support-matrix.md) and [52-capability assessment](docs/gallery-capabilities.md) state exactly what is limited, rejected, or requires optional application-provided data/actions. A catalog entry is not a passing test. Scatter/pie charts, a general-purpose app sandbox, React-specific bindings, maps, live search, and media services are not implemented. Optional integrations may use any suitable provider or local data; none require OpenAI. The rejected historical `native` node is a diagnostic compatibility boundary, not another edition or a promised private adapter.
 
 ## Development and verification
 

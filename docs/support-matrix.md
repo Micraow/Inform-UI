@@ -1,9 +1,15 @@
-# Portable `iui/1` support
+# Independent library: `iui/1` support
 
 `iui/1` is the Intelligent-UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
 ChatGPT services. The schema recognizes the 34 historical node names so that
 unsupported input can be diagnosed explicitly.
+
+This is the support matrix for one independent, public library. The API's
+`portable` backend is its main renderer, not a separate edition or an interim
+OpenAI integration. No OpenAI account, service, API, or private runtime is
+required. In the table below, “native” browser controls means standard HTML
+controls; it is unrelated to the rejected historical `native` schema node.
 
 This matrix describes the implementation contract, not a claim that browser,
 accessibility, security, or cross-platform tests have passed. Use the actual test
@@ -54,7 +60,7 @@ results from the current revision for those claims.
 | `topology` | Rendered | Original SVG node/edge diagram with optional maximum-load highlighting and a textual summary. Layout is deterministic, not a general graph-layout engine. |
 | `chart` | Rendered | Line or grouped-bar chart, up to six series, reader-controlled series visibility, units, notes, and a data-table disclosure. Null samples produce gaps, not zeroes or interpolation. No scatter, pie, brush, zoom, export, or chart-kind switch. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
-| `native` | Rejected | Historical bridge-shaped input is recognized but unsupported. The public package contains no ChatGPT private runtime. Use the portable nodes instead. |
+| `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 
 ## State and calculations
 
