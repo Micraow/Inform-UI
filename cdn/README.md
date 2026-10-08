@@ -17,6 +17,6 @@
 
 CDN 只分发脚本、样式和协议。HTML 页面应保存为本地 `.html` 或放在你的站点；jsDelivr 出于安全原因将 HTML 按纯文本提供。初次 CDN 加载需要联网，通常会向 CDN 发送 IP 等常规 HTTP 请求；文档 JSON 不会由本库上传给 CDN。
 
-官方规则：[jsDelivr GitHub 用法与缓存](https://github.com/jsdelivr/jsdelivr#github)。可直接复制的固定链接和 HTML 示例见浏览器使用文档；HTTP 可访问与实际浏览器渲染是分别验证的。
+官方规则：[jsDelivr GitHub 用法与缓存](https://github.com/jsdelivr/jsdelivr#github)。可直接复制的固定链接和 HTML 示例见 [浏览器使用文档](../docs/cdn.md)；HTTP 可访问与实际浏览器渲染是分别验证的。
 
 维护者：`npm run build:cdn` 重新生成，CI 检查源码与公开构建未发生漂移。不要手改生成文件。

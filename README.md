@@ -50,6 +50,14 @@ Intelligent-UI 是一套 **独立、开源的 JavaScript / TypeScript 界面库*
 
 ## 快速开始
 
+### 网页聊天与浏览器：无需安装
+
+把自包含的 Skill 和 `iui/1` 协议交给网页聊天模型，让它填写 JSON 和固定 HTML 壳。公开预构建库通过固定提交的 CDN 链接加载，页面不需要 Node 或构建工具。
+
+→ [固定 CDN 链接、最小 HTML 壳与错误处理](docs/cdn.md)
+
+### 源码与本地 agent
+
 需要 **Node.js 22+** 构建和使用 CLI。生成后的单文件 HTML 不需要 Node.js。
 
 > 当前是源码开发预览，尚未发布 npm 包。以下命令使用已有实现的开发分支，不需要寻找同名 npm 包。
@@ -137,6 +145,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 ## 文档
 
+- [无需安装的 CDN 使用](docs/cdn.md)
 - [API 与 CLI 使用](docs/api.md)
 - [JSON Schema](src/schema/iui.schema.json) · [TypeScript 文档类型](src/schema/document.d.ts)
 - [节点支持表](docs/support-matrix.md) · [能力评估](docs/gallery-capabilities.md)

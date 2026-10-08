@@ -1,5 +1,7 @@
 # API 与 CLI 使用
 
+无需安装的网页聊天/浏览器方式请看 [CDN 使用](cdn.md)。浏览器只调用 `mount` 与 `validateDocument`，`compileHtml` 属于 Node 入口。
+
 以下示例面向当前源码构建。先运行 `npm ci --ignore-scripts` 和 `npm run build`。
 
 ## 校验文档
