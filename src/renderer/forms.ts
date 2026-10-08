@@ -119,6 +119,7 @@ export function createForms(c: RendererContext) {
       }
       const input = inputs[0];
       const raw = input.value;
+      if (!(n.type === 'input' && n.kind === 'number') && raw !== String(current)) return l.inputMismatch;
       if (draftInvalid) return !raw && !input.validity.badInput && n.required ? l.required : l.invalidNumber;
       if (n.required && !raw.trim()) return l.required;
       if (n.type === 'input' && n.kind === 'number') {

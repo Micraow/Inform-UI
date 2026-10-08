@@ -4,24 +4,24 @@
   "fonts": "KaTeX 0.18.2: official MIT WOFF2 assets, relative to this CSS. HTML visual output and accessible MathML.",
   "files": {
     "iui.min.js": {
-      "bytes": 1051693,
-      "sha256": "2fb31e990f1acdf41232311ad58c56fb4da5d95fb711a2b558d60dd4955a8bfb",
-      "integrity": "sha384-PJH3xH7cTJAgQEmi8A3snOx50oo10N06j5KIX9+NLybWYCIOTMt+jsM1TwN16bQz"
+      "bytes": 1052354,
+      "sha256": "c17f4fa2d40a8ba90912fd0ad8352214e034a4fa7b2f6d36520734c2cef95399",
+      "integrity": "sha384-9ICDX91YhgPP2VdY4AybxengmU+U9dL+eUFRJ3a6FAbQpCfPWh1mvjT2rtm99ZP5"
     },
     "iui.min.js.map": {
-      "bytes": 753676,
-      "sha256": "77ae95baf2599a3fb698bdd561d82c1ad49195e79431f282bc0ebc44b280d82d",
-      "integrity": "sha384-BjPoSXlF7clcEXqqcuGsuVpuIdFLFiv92v8cb34j5FN9k6QuHHECPX+1V5t7A12b"
+      "bytes": 754191,
+      "sha256": "e06531afe1c63dbb9e13680b4a087895a95032966e22c77524482c4b8f956968",
+      "integrity": "sha384-FN0drgZJ5LGIyPwUcQXYtHUzQmU+nrkECLpsrGwzV4ZIK/XFCAmxDtug/jl2iHnf"
     },
     "iui.global.min.js": {
-      "bytes": 1051855,
-      "sha256": "442140324d2a1b566248c066e747d896c7b1dd2dd8bf3650aa6bc1107082e03e",
-      "integrity": "sha384-GEUykaeRox235iYpI8ZhGwcBeCIQE9hQoNkmdCsURGiZ9jfqHYwI9zx3Y2dgSZDn"
+      "bytes": 1052516,
+      "sha256": "ec0ba94448dfbc5fb3150d471d93e1485063416f41fe3fead88174acee81ce08",
+      "integrity": "sha384-aCgRqdVDj8wl8C9Rz3p8JuyEkc606WMjP8ykO1kwjrvUVa/EQ9oH5Ne1ocHzA/CD"
     },
     "iui.global.min.js.map": {
-      "bytes": 753923,
-      "sha256": "4b0faed713951de6814e6e77f3faa72b52c8b058403db0aef027e4f633c69c52",
-      "integrity": "sha384-7vuF/braDVaCYuIaevC5jV2x1hTQsL05eGUEdR/r0f8KXOOgarvlvI2HjO69WvBr"
+      "bytes": 754438,
+      "sha256": "335a70006a23d735dd48b282d659696ccdbd7e6f4af4db51e9da27a9e5308000",
+      "integrity": "sha384-lXLTk9MTUCgCDdXt5pYSIJw3wgfeZ8LLyRlzCyoz+rIyf5e2qJln8XJvr/F6cjag"
     },
     "iui.css": {
       "bytes": 50527,
