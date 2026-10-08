@@ -4,24 +4,24 @@
   "fonts": "No font assets required; MathML uses the browser/system math font.",
   "files": {
     "iui.min.js": {
-      "bytes": 534802,
-      "sha256": "e5869f4fb8c1e5b5522cf7916ce4a94137db486eab62cc64be906cba35c71b95",
-      "integrity": "sha384-X4Rt35yAO/19WxkNANBRLE+p3Sfmru705nAoSia/o8ce63uB7EJomAboXXZen0NT"
+      "bytes": 536811,
+      "sha256": "31432329312abf7c6744ba0f49cdf118aab7702487efc8aa4ba6326a03981bcc",
+      "integrity": "sha384-lS5hlvisSoTFUi4ZOpCrLgbeXi77PYVla7ZHtmMrJr/yU/sVo9AAWlXy5+opTzab"
     },
     "iui.min.js.map": {
-      "bytes": 614596,
-      "sha256": "112df1df31db65f8157cd5ae44b654ea754b96b9559120524c0a19dd561dfc5a",
-      "integrity": "sha384-gR0iOQxgpIRaOQIukZ49ohHxV8oSHFKfPLuNv61QmUMoemofavsRwfcoi/jzTCZn"
+      "bytes": 616603,
+      "sha256": "d05c843896dbb1ccf013393d492289c354dfdcd884206a06d44dcbd381a0e9cf",
+      "integrity": "sha384-FJZd/ydLBgENLsJGMPpb3cks4ECzqj20X8ZI8CZcT4/F4RVjWTMzwQuOsuW9stC+"
     },
     "iui.global.min.js": {
-      "bytes": 534964,
-      "sha256": "d29b546d99b0e95ca1885bf1704d4fc8076a7483d241d099743b395ec4a1567d",
-      "integrity": "sha384-hw7bFmIIdxB9id+Ts+z0mP330ATKgZXHdtzmQZfvVLz/9VZ1EiobK4lyahBWq2B9"
+      "bytes": 536973,
+      "sha256": "0922637cfc654c197715e66d0ad050bd556f419cd512cab62fabc3844357af3e",
+      "integrity": "sha384-827a7wCX0YwSwGRfwWtbkfO7uIJeangVNsSrqHZ6PnW04Rce4izMJmky08L3xYsP"
     },
     "iui.global.min.js.map": {
-      "bytes": 614843,
-      "sha256": "9fa26c6b913f849a9730fa51e0d133166c344a4c1dac1988cf5d06ecdd3fd997",
-      "integrity": "sha384-wmupneZN1X18pvj7YXJKdGZ90VnaZmJK5YQ7PjvkgKxk5869pyM0b0jKo6icbmB0"
+      "bytes": 616850,
+      "sha256": "aff07a2a585e2c5553ff756d23c352c0f6dd491a3cd6ca6da20fefc90fac843b",
+      "integrity": "sha384-6R5FtZ0sMqQXYyTaxqLP52WlvbVlez7ByaUzqAC4fZAhe1AHQU2p3smkTkI3yHYv"
     },
     "iui.css": {
       "bytes": 8513,

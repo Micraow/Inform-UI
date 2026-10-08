@@ -59,3 +59,15 @@ test('controller rejects accessor patches before invoking getters and preserves 
   const d=dom(),h=host(d),c=mount(h,{version:'iui/1',state:{x:1,y:2},body:[{type:'text',value:{$:'x'}}]});let calls=0;
   const patch=Object.defineProperty({},'x',{enumerable:true,get(){calls++;return 3;}});assert.throws(()=>c.setState(patch));assert.equal(calls,0);c.setState({x:3});c.setState({y:4});assert.deepEqual(c.getState(),{x:3,y:4});c.dispose();
 });
+test('number presentation removes epsilon-scale tails without changing values or hiding genuine precision',()=>{
+  const d=dom(),h=host(d);const numbers=[0.1+0.2,24.999999999999996,1.234567890123456,1e-15,24.9999999999,-0];
+  const c=mount(h,{version:'iui/1',state:{x:0.1+0.2},body:[{type:'table',columns:['Value'],rows:numbers.map(v=>[v])},{type:'metric',label:'Default display',value:{$:'x'}}]});
+  const cells=[...h.querySelectorAll('td')];assert.deepEqual(cells.map(e=>e.textContent),['0.3','25','1.234567890123456','1e-15','24.9999999999','0']);assert.equal(cells[1].dataset.rawValue,'24.999999999999996');assert.match(cells[1].title,/24\.999999999999996/);assert.equal(h.querySelector('.iui-metric-value').textContent,'0.3');assert.equal(c.getState().x,0.1+0.2);c.dispose();
+});
+test('Chinese chart labels follow document language, preserve exact data, and hide internal x keys',()=>{
+  const d=dom(),h=host(d);d.window.document.documentElement.lang='zh-CN';const c=mount(h,{version:'iui/1',body:[{type:'chart',kind:'bar',xKey:'scenario',data:[{scenario:'缓存',value:24.999999999999996},{scenario:'缺测行',value:null}],series:[{key:'value',label:'平均耗时'}],unit:' ms'}]});
+  assert.equal(h.querySelector('.iui-chart summary').textContent,'查看图表数据');assert.equal(h.querySelector('th').textContent,'类别');assert.equal(h.querySelectorAll('th')[1].textContent,'平均耗时 (ms)');assert.equal(h.querySelector('input').getAttribute('aria-label'),'显示 平均耗时');assert.equal(h.querySelector('table').getAttribute('aria-label'),'图表数据');assert.match(h.textContent,/缺测/);assert.doesNotMatch(h.textContent,/scenario|View chart data|24\.999999999999996/);assert.equal(h.querySelectorAll('td')[1].textContent,'25');assert.equal(h.querySelectorAll('td')[1].dataset.rawValue,'24.999999999999996');c.dispose();
+});
+test('nearest host language overrides document language; English labels remain available',()=>{
+  const d=dom(),h=host(d);d.window.document.documentElement.lang='zh-CN';h.lang='en';const c=mount(h,{version:'iui/1',body:[{type:'chart',kind:'line',xKey:'internal_key',data:[{internal_key:'A',v:1}],series:[{key:'v',label:'Value'}]}]});assert.equal(h.querySelector('summary').textContent,'View chart data');assert.equal(h.querySelector('th').textContent,'X-axis value');c.dispose();
+});

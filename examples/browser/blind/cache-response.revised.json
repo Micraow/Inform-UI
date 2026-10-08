@@ -1,0 +1,7 @@
+{
+  "artifact": "cache-response.revised.html",
+  "sha256": "d9dd795c6780751771f98451a5503fe846f7221dc72a96a82d536ace7e90f461",
+  "sourceFirstSha256": "1ce5200d24d259a29af160ead40059d96fb2ae5db35145533c6a78e6912e67eb",
+  "change": "The original author replaced the single raw JSON less-than sign with its Unicode escape. Parsed JSON and the rest of the HTML are unchanged.",
+  "cdnCommit": "d15a47f691f231d763b29e0c0a6403a11229611e"
+}

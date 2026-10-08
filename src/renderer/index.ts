@@ -2,6 +2,7 @@ import katex from 'katex';
 import { evaluateState, evaluateValue, validateDocument } from '../core/index.js';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
+import { formatNumber, presentationLabels } from './presentation.js';
 const styles: string = stylesheet;
 
 export interface Controller {
@@ -26,6 +27,7 @@ const shorten = (s: string, limit: number) => Array.from(s).length > limit ? Arr
 export function mount(container: HTMLElement, input: unknown, options: MountOptions = {}): Controller {
   if (!container?.ownerDocument) throw new TypeError('mount requires a DOM element');
   const doc = container.ownerDocument;
+  let labels = presentationLabels(container);
   const prefix = `iui-${++instance}-`;
   let disposed = false;
   let hasHeading = false;
@@ -37,6 +39,16 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   let refreshers: (() => void)[] = [];
   let removers: (() => void)[] = [];
   const text = (value: unknown) => value == null ? '' : String(value);
+  const display = (value: unknown) => typeof value === 'number' ? formatNumber(value) : text(value);
+  const showValue = (target: HTMLElement, value: unknown) => {
+    target.textContent = display(value);
+    if (typeof value === 'number') {
+      const raw = Object.is(value, -0) ? '-0' : String(value);
+      target.dataset.rawValue = raw;
+      if (display(value) !== raw) target.title = `${labels.rawValue}: ${raw}`;
+      else target.removeAttribute('title');
+    } else { delete target.dataset.rawValue; target.removeAttribute('title'); }
+  };
   const element = <K extends keyof HTMLElementTagNameMap>(tag: K, cls = '', value?: unknown) => {
     const result = doc.createElement(tag); if (cls) result.className = cls;
     if (value !== undefined) result.textContent = text(value); return result;
@@ -69,7 +81,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   function formula(latex: string, block = true) {
     const target = element(block ? 'div' : 'span', 'iui-math');
     try { target.innerHTML = katex.renderToString(latex, {output:'mathml', displayMode:block, throwOnError:true, trust:false, strict:'error', maxExpand:200, maxSize:20}); }
-    catch { target.textContent = latex; target.classList.add('iui-math-error'); target.setAttribute('aria-label', 'Formula source (unsupported syntax)'); }
+    catch { target.textContent = latex; target.classList.add('iui-math-error'); target.setAttribute('aria-label', labels.formulaSource); }
     return target;
   }
   function render(n: Node): HTMLElement | SVGElement {
@@ -79,14 +91,14 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         const tag = n.type === 'title' ? (`h${n.level ?? (hasHeading ? 2 : 1)}` as 'h1'|'h2'|'h3') : n.type === 'badge' ? 'span' : 'p';
         if(n.type==='title')hasHeading=true;
         out = element(tag, `iui-${n.type}`); const target = out;
-        bind(() => target.textContent = text(value(n.value)));
+        bind(() => showValue(target, value(n.value)));
         if ('color' in n && n.color) out.dataset.color = n.color;
         if ('weight' in n && n.weight) out.style.fontWeight = ({normal:'400',medium:'500',semibold:'600',bold:'700'})[n.weight];
         if ('align' in n && n.align) out.style.textAlign = n.align;
         break;
       }
-      case 'markdown': out = element('div'); out.dataset.fallback = 'plain-text'; out.append(element('p','iui-caption','Plain-text fallback'),element('p','iui-markdown',n.value)); break;
-      case 'code': { out = element('pre','iui-code'); out.append(element('code','',n.value)); if (n.language) out.setAttribute('aria-label',`${n.language} code`); break; }
+      case 'markdown': out = element('div'); out.dataset.fallback = 'plain-text'; out.append(element('p','iui-caption',labels.plainText),element('p','iui-markdown',n.value)); break;
+      case 'code': { out = element('pre','iui-code'); out.append(element('code','',n.value)); if (n.language) out.setAttribute('aria-label',`${n.language} ${labels.code}`); break; }
       case 'math': out = formula(n.latex,n.block ?? true); break;
       case 'divider': out = element('hr'); break;
       case 'spacer': out = element('div'); out.style.height = `${n.height ?? 16}px`; out.setAttribute('aria-hidden','true'); break;
@@ -101,9 +113,9 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
           if(n.aspectRatio) img.style.aspectRatio=n.aspectRatio.replace(':','/'); img.style.objectFit=n.fit ?? 'contain';
           target.replaceChildren(img); };
         if (n.src.startsWith('data:')) load();
-        else { const consent=element('div','iui-image-consent'); consent.append(element('p','',n.alt||'External image'));
-          consent.append(element('p','iui-caption',`Loading shares your IP address with ${new URL(n.src).hostname}.`));
-          const button=element('button','','Load external image'); button.type='button'; on(button,'click',load); consent.append(button); target.append(consent); }
+        else { const consent=element('div','iui-image-consent'); consent.append(element('p','',n.alt||labels.externalImage));
+          consent.append(element('p','iui-caption',labels.imageDisclosure(new URL(n.src).hostname)));
+          const button=element('button','',labels.loadImage); button.type='button'; on(button,'click',load); consent.append(button); target.append(consent); }
         break;
       }
       case 'box': case 'card': case 'row': case 'col': case 'grid': {
@@ -121,27 +133,27 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'section': out=element('section','iui-layout'); if(n.heading)out.append(element('h2','',n.heading)); children(out,n.children); break;
       case 'figure': out=element('figure','iui-layout'); children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
-      case 'carousel': out=element('div','iui-carousel'); out.tabIndex=0;out.setAttribute('role','region');out.setAttribute('aria-label','Scrollable collection');children(out,n.children);break;
-      case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>li.textContent=text(value(item as Value)));out.append(li);}break;
-      case 'table': {out=element('div','iui-table-wrap');const table=element('table');if(n.caption)table.append(element('caption','',n.caption));const head=element('thead'),tr=element('tr');for(const c of n.columns){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);const body=element('tbody');for(const row of n.rows){const r=element('tr');for(const cell of row){const td=element('td');bind(()=>td.textContent=text(value(cell)));r.append(td);}body.append(r);}table.append(body);out.append(table);break;}
-      case 'metric': {out=element('div','iui-metric');out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):text(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}
+      case 'carousel': out=element('div','iui-carousel'); out.tabIndex=0;out.setAttribute('role','region');out.setAttribute('aria-label',labels.collection);children(out,n.children);break;
+      case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>showValue(li,value(item as Value)));out.append(li);}break;
+      case 'table': {out=element('div','iui-table-wrap');const table=element('table');if(n.caption)table.append(element('caption','',n.caption));const head=element('thead'),tr=element('tr');for(const c of n.columns){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);const body=element('tbody');for(const row of n.rows){const r=element('tr');for(const cell of row){const td=element('td');bind(()=>showValue(td,value(cell)));r.append(td);}body.append(r);}table.append(body);out.append(table);break;}
+      case 'metric': {out=element('div','iui-metric');out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):display(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}
       case 'metric-grid': out=element('div','iui-layout iui-metric-grid');out.style.setProperty('--iui-columns',String(n.columns??2));out.style.setProperty('--iui-mobile-columns',String(Math.min(2,n.columns??2)));children(out,n.children);break;
       case 'steps': out=element('ol','iui-steps');for(const item of n.items){const li=element('li');li.append(element('strong','',item.title));if(item.detail)li.append(element('p','',item.detail));if(item.latex)li.append(formula(item.latex));out.append(li);}break;
       case 'callout': out=element('aside','iui-callout',n.value);out.dataset.tone=n.tone??'neutral';break;
-      case 'slider': {out=element('div','iui-control');const id=prefix+`control-${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${text(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
+      case 'slider': {out=element('div','iui-control');const id=prefix+`control-${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;bind(()=>input.checked=state[n.bind]===true);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
       case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state});else fromControl({[n.action.bind!]:n.action.value!});});break;}
       case 'topology': out=topology(n);break;
       case 'chart': out=chart(n);break;
-      case 'svg': {out=svg('svg',{viewBox:n.viewBox,role:'img','aria-label':n.label??'Diagram'});out.classList.add('iui-svg');for(const shape of n.shapes){const s=svg(shape.tag,shape.attrs);if(shape.text)s.textContent=shape.text;out.append(s);}break;}
+      case 'svg': {out=svg('svg',{viewBox:n.viewBox,role:'img','aria-label':n.label??labels.diagram});out.classList.add('iui-svg');for(const shape of n.shapes){const s=svg(shape.tag,shape.attrs);if(shape.text)s.textContent=shape.text;out.append(s);}break;}
       case 'native': throw new Error('Native runtime is not supported');
       default: {const impossible: never=n;throw new Error(`Unsupported node: ${JSON.stringify(impossible)}`);}
     }
     out.dataset.iui=n.type;if(n.id)out.id=prefix+n.id;return out;
   }
   function topology(n: Extract<Node,{type:'topology'}>) {
-    const figure=element('figure','iui-topology'),graphic=svg('svg',{role:'img','aria-label':n.caption??'Network topology'});figure.append(graphic);
+    const figure=element('figure','iui-topology'),graphic=svg('svg',{role:'img','aria-label':n.caption??labels.topology});figure.append(graphic);
     const summary=element('figcaption','iui-caption');figure.append(summary);
     bind(()=>{graphic.replaceChildren();const width=Math.max(290,figure.clientWidth-24||640);const vertical=n.nodes.length>4||width<360;const step=vertical?90:width/n.nodes.length;const height=vertical?n.nodes.length*step:150;
       graphic.setAttribute('viewBox',`0 0 ${width} ${height}`);
@@ -150,39 +162,40 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       for(const [i,link]of n.links.entries()){const a=positions.get(link.from)!,b=positions.get(link.to)!;const high=n.highlight==='max-load'&&loads[i]===maximum;const color=high?'var(--iui-red)':'var(--iui-blue)';const group=svg('g',{'data-bottleneck':String(high),'data-link-index':i});
         const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,ux=dx/len,uy=dy/len;const sx=a.x+ux*36,sy=a.y+uy*25,ex=b.x-ux*39,ey=b.y-uy*27;
         group.append(svg('line',{x1:sx,y1:sy,x2:ex,y2:ey,stroke:color,'stroke-width':high?4:3}));group.append(svg('path',{d:`M ${ex-ux*9-uy*6} ${ey-uy*9+ux*6} L ${ex} ${ey} L ${ex-ux*9+uy*6} ${ey-uy*9-ux*6}`,fill:'none',stroke:color,'stroke-width':3}));
-        const label=svg('text',{x:vertical?width/2+24:(a.x+b.x)/2,y:vertical?(a.y+b.y)/2:100,'text-anchor':vertical?'start':'middle','font-size':12});label.textContent=typeof loads[i]==='number'?`U${i+1} = ${(loads[i] as number).toFixed(2)}`:shorten(link.label??'',12);const tip=svg('title');tip.textContent=link.label??`${link.from} to ${link.to}`;group.append(tip,label);graphic.append(group);}
+        const label=svg('text',{x:vertical?width/2+24:(a.x+b.x)/2,y:vertical?(a.y+b.y)/2:100,'text-anchor':vertical?'start':'middle','font-size':12});label.textContent=typeof loads[i]==='number'?`U${i+1} = ${(loads[i] as number).toFixed(2)}`:shorten(link.label??'',12);const tip=svg('title');tip.textContent=link.label??`${link.from} ${labels.to} ${link.to}`;group.append(tip,label);graphic.append(group);}
       for(const node of n.nodes){const p=positions.get(node.id)!;graphic.append(svg('rect',{x:p.x-35,y:p.y-24,width:70,height:48,rx:10,fill:'var(--iui-surface)',stroke:'var(--iui-line)','stroke-width':2}));const label=svg('text',{x:p.x,y:p.y+(node.subtitle?0:5),'text-anchor':'middle','font-size':13,'font-weight':600});label.textContent=shorten(node.label,7);const tip=svg('title');tip.textContent=[node.label,node.subtitle].filter(Boolean).join(': ');label.append(tip);graphic.append(label);if(node.subtitle){const sub=svg('text',{x:p.x,y:p.y+15,'text-anchor':'middle','font-size':10});sub.textContent=shorten(node.subtitle,10);graphic.append(sub);}}
-      graphic.setAttribute('aria-label',[n.caption,...n.nodes.map(node=>[node.label,node.subtitle].filter(Boolean).join(': ')),...n.links.map((link,i)=>`${link.from} to ${link.to}: ${link.label??''} ${loads[i]??''}`)].filter(Boolean).join('; '));
-      summary.textContent=[n.caption,finite.length?`Maximum load: ${maximum.toFixed(2)}.`:''].filter(Boolean).join(' ');
+      graphic.setAttribute('aria-label',[n.caption,...n.nodes.map(node=>[node.label,node.subtitle].filter(Boolean).join(': ')),...n.links.map((link,i)=>`${link.from} ${labels.to} ${link.to}: ${link.label??''} ${loads[i]===null?'':display(loads[i])}`)].filter(Boolean).join('; '));
+      summary.textContent=[n.caption,finite.length?`${labels.maximumLoad}: ${maximum.toFixed(2)}.`:''].filter(Boolean).join(' ');
     });return figure;
   }
   function chart(n: Extract<Node,{type:'chart'}>) {
     const figure=element('figure','iui-chart');if(n.title)figure.append(element('figcaption','iui-chart-title',n.title));
     const controls=element('div','iui-chart-controls'),visible=n.series.map(()=>true);figure.append(controls);
-    const graphic=svg('svg',{role:'img','aria-label':n.title??`${n.kind} chart`});figure.append(graphic);
-    const details=element('details'),tableHost=element('div');details.append(element('summary','','View chart data'),tableHost);figure.append(details);if(n.note)figure.append(element('p','iui-caption',n.note));
+    const graphic=svg('svg',{role:'img','aria-label':n.title??labels.chartData});figure.append(graphic);
+    const details=element('details'),tableHost=element('div');details.append(element('summary','',labels.viewChartData),tableHost);figure.append(details);if(n.note)figure.append(element('p','iui-caption',n.note));
     const paint=()=>{graphic.replaceChildren();const width=Math.max(290,figure.clientWidth||640),height=240,pad={l:48,r:16,t:16,b:34},plotW=width-pad.l-pad.r,plotH=height-pad.t-pad.b;
       graphic.setAttribute('viewBox',`0 0 ${width} ${height}`);
       const resolved=n.data.map(row=>n.series.map(s=>row[s.key]==null?null:value(row[s.key] as Value)));
       const nums=resolved.flat().filter((v):v is number=>typeof v==='number');const min=n.yMin??Math.min(0,...nums),max=n.yMax??Math.max(1,...nums);const span=max-min||1;
       const x=(i:number)=>pad.l+(n.kind==='bar'?plotW*(i+.5)/n.data.length:n.data.length===1?plotW/2:i/(n.data.length-1)*plotW),y=(v:number)=>pad.t+(1-(v-min)/span)*plotH;
       for(let tick=0;tick<=4;tick++){const v=min+(span*(tick/4)),yy=y(v);graphic.append(svg('line',{x1:pad.l,x2:width-pad.r,y1:yy,y2:yy,stroke:'var(--iui-line)'}));const label=svg('text',{x:pad.l-8,y:yy+4,'text-anchor':'end','font-size':11});label.textContent=Number(v.toFixed(2)).toString();graphic.append(label);}
-      const labelStep=Math.max(1,Math.ceil(n.data.length/(width<400?4:7)));for(let i=0;i<n.data.length;i++){if(i%labelStep!==0&&i!==n.data.length-1)continue;const label=svg('text',{x:x(i),y:height-8,'text-anchor':i===0?'start':i===n.data.length-1?'end':'middle','font-size':11});const full=text(value(n.data[i][n.xKey] as Value));label.textContent=shorten(full,10);const tip=svg('title');tip.textContent=full;label.append(tip);graphic.append(label);}
+      const labelStep=Math.max(1,Math.ceil(n.data.length/(width<400?4:7)));for(let i=0;i<n.data.length;i++){if(i%labelStep!==0&&i!==n.data.length-1)continue;const label=svg('text',{x:x(i),y:height-8,'text-anchor':i===0?'start':i===n.data.length-1?'end':'middle','font-size':11});const full=display(value(n.data[i][n.xKey] as Value));label.textContent=shorten(full,10);const tip=svg('title');tip.textContent=full;label.append(tip);graphic.append(label);}
       for(const [s,series]of n.series.entries()){if(!visible[s])continue;const group=svg('g',{'data-series':series.key});const color=palette[series.color??(['blue','green','orange','red','purple','gray'] as const)[s]];let segment='';const flush=()=>{if(segment)group.append(svg('path',{d:segment,fill:'none',stroke:color,'stroke-width':2.25}));segment='';};
         for(let i=0;i<n.data.length;i++){const v=resolved[i][s];if(typeof v!=='number'){flush();continue;}if(n.kind==='line'){segment+=`${segment?'L':'M'} ${x(i)} ${y(v)} `;group.append(svg('circle',{cx:x(i),cy:y(v),r:3,fill:color}));}else {const count=n.data.length,groupWidth=plotW/count*.72,bw=groupWidth/n.series.length,cx=pad.l+plotW*(i+.5)/count;const baseline=y(Math.max(min,Math.min(max,0)));group.append(svg('rect',{x:cx-groupWidth/2+s*bw,y:Math.min(baseline,y(v)),width:Math.max(1,bw-2),height:Math.abs(y(v)-baseline),fill:color,rx:2}));}}
         flush();graphic.append(group);}
       const wrap=element('div','iui-table-wrap'),table=element('table'),head=element('thead'),tr=element('tr');
-      for(const c of [n.xKey,...n.series.map(s=>s.label+(n.unit??''))]){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);
-      const tbody=element('tbody');for(const [i,row]of n.data.entries()){const tr=element('tr');for(const v of [value(row[n.xKey] as Value),...resolved[i]])tr.append(element('td','',v===null?'Missing':v));tbody.append(tr);}table.append(tbody);wrap.append(table);tableHost.replaceChildren(wrap);
+      table.setAttribute('aria-label',n.title?`${labels.chartData}: ${n.title}`:labels.chartData);
+      for(const c of [n.kind==='bar'?labels.category:labels.axisValue,...n.series.map(s=>s.label+(n.unit?.trim()?` (${n.unit.trim()})`:''))]){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);
+      const tbody=element('tbody');for(const [i,row]of n.data.entries()){const tr=element('tr');for(const v of [value(row[n.xKey] as Value),...resolved[i]]){const cell=element('td');showValue(cell,v===null?labels.missing:v);tr.append(cell);}tbody.append(tr);}table.append(tbody);wrap.append(table);tableHost.replaceChildren(wrap);
     };
-    for(const [i,series]of n.series.entries()){const label=element('label'),checkbox=element('input');checkbox.type='checkbox';checkbox.checked=true;checkbox.setAttribute('aria-label',`Show ${series.label}`);label.append(checkbox,doc.createTextNode(series.label));on(checkbox,'change',()=>{visible[i]=checkbox.checked;paint();});controls.append(label);}
+    for(const [i,series]of n.series.entries()){const label=element('label'),checkbox=element('input');checkbox.type='checkbox';checkbox.checked=true;checkbox.setAttribute('aria-label',`${labels.show} ${series.label}`);label.append(checkbox,doc.createTextNode(series.label));on(checkbox,'change',()=>{visible[i]=checkbox.checked;paint();});controls.append(label);}
     // Chart table values are resolved scalars; render it without accumulating bindings.
     bind(paint);return figure;
   }
   function replace(next: unknown) {
     ensureLive(); const validation=validateDocument(next);if(!validation.ok)throw new InvalidDocumentError(validation.issues);
     const evaluated=evaluateState(validation.document);if(!evaluated.ok)throw new InvalidDocumentError(evaluated.issues);
-    clear();hasHeading=false;current=validation.document;state={...evaluated.state};computed={...evaluated.computed};
+    clear();labels=presentationLabels(container);hasHeading=false;current=validation.document;state={...evaluated.state};computed={...evaluated.computed};
     root=element('article','iui-root');root.dataset.theme=current.theme??'auto';root.dir='auto';
     if(options.styles!==false){const style=element('style');style.textContent=styles;root.append(style);}
     if(current.title)root.setAttribute('aria-label',current.title);
