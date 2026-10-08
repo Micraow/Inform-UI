@@ -1,5 +1,7 @@
 import type {Node} from '../schema/document.js';
 import type {Issue,Scalar} from './index.js';
+export type FieldNode = Extract<Node, { type: 'input'|'textarea'|'radio'|'segmented' }>;
+export const isField = (node: Node): node is FieldNode => ['input','textarea','radio','segmented'].includes(node.type);
 export function validDate(date: string): boolean { return /^\d{4}-\d{2}-\d{2}$/.test(date) && Number.isFinite(Date.parse(date)) && new Date(date).toISOString().slice(0,10) === date; }
 export function timestamp(value: unknown): number {
   if (typeof value === 'number') return Math.abs(value) <= 8.64e15 ? value : NaN;
@@ -13,6 +15,28 @@ export function dateInZone(value: string|number, zone: string): string {
   return `${get('year')}-${get('month')}-${get('day')}`;
 }
 export function inspectExtension(node:Node,path:string,state:Record<string,Scalar>,add:(issue:Issue)=>void){const error=(code:string,sub:string,message:string)=>add({code,path:path+sub,message});
+  if(isField(node)) {
+    if(!Object.hasOwn(state,node.bind)) error('UNKNOWN_BIND','/bind','Field binding must name initial state.');
+    if(node.type==='input'||node.type==='textarea') {
+      if(node.minLength!==undefined&&node.maxLength!==undefined&&node.minLength>node.maxLength) error('FIELD_CONSTRAINT','','minLength must not exceed maxLength.');
+      if(node.type==='input') {
+        if(node.kind==='number') {
+          if(node.min!==undefined&&node.max!==undefined&&(node.min>node.max||!Number.isFinite(node.max-node.min))) error('FIELD_CONSTRAINT','','Numeric bounds must be ordered with a finite span.');
+          if(node.minLength!==undefined||node.maxLength!==undefined) error('FIELD_CONSTRAINT','','Numeric inputs use min/max/step rather than text lengths.');
+        } else if(node.min!==undefined||node.max!==undefined||node.step!==undefined) error('FIELD_CONSTRAINT','','Only numeric inputs use min/max/step.');
+      }
+    } else {
+      const seen=new Set<Scalar>();
+      for(const [i,option] of node.options.entries()) {
+        if(seen.has(option.value)) error('DUPLICATE_OPTION',`/options/${i}/value`,'Option values must be unique.');seen.add(option.value);
+        if(typeof option.value!==typeof state[node.bind]) error('INPUT_TYPE',`/options/${i}/value`,'Options must preserve the binding type.');
+      }
+    }
+  }
+  if(node.type==='form') {
+    const visit=(n:Node)=>{if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
+    node.children.forEach(visit);
+  }
   if(node.type==='chart') {
     const scale=node.xScale??'category';
     if(node.xMin!==undefined&&node.xMax!==undefined&&(!(node.xMin<node.xMax)||!Number.isFinite(node.xMax-node.xMin))) error('CHART_BOUNDS','','xMin must be smaller than xMax with a finite span.');
@@ -44,4 +68,10 @@ export function chartXDomain(values:readonly number[],min?:number,max?:number,ti
   if(low===high){const offset=time?3_600_000:Math.max(1,Math.abs(low)*.05),limit=time?8.64e15:Number.MAX_VALUE;
     if(min===undefined)low=Math.max(-limit,low-offset);if(max===undefined)high=Math.min(limit,high+offset);
   }return[low,high];
+}
+
+export function fieldTypeIssue(node: FieldNode, value: Scalar|undefined, path:string):Issue|undefined {
+  const expected=node.type==='input'&&node.kind==='number'?'number':node.type==='radio'||node.type==='segmented'?typeof node.options[0].value:'string';
+  if(typeof value!==expected) return {code:'INPUT_TYPE',path,message:`Field binding must be ${expected}.`};
+  if((node.type==='radio'||node.type==='segmented')&&value!==''&&!node.options.some(o=>o.value===value)) return {code:'INPUT_OPTION',path,message:'Choice binding must match an option or an empty string.'};
 }

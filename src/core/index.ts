@@ -1,4 +1,4 @@
-import {inspectExtension,timestamp,chartXDomain} from './extensions.js';
+import {inspectExtension,timestamp,chartXDomain,isField,fieldTypeIssue} from './extensions.js';
 import validateSchema from '../schema/validator.cjs';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
 export type { IUIDocument, Node, Value } from '../schema/document.js';
@@ -94,8 +94,7 @@ function createEvaluator(state: Readonly<Record<string, Scalar>>, computed: Read
       if (!own(computed, key)) fail('UNKNOWN_REFERENCE', pointer(path, '$'), `Unknown reference: ${key}.`);
       if (active.has(key)) fail('COMPUTED_CYCLE', pointer(path, '$'), `Computed dependency cycle at ${key}.`);
       active.add(key);
-      const result = valueOf(computed[key], pointer('/computed', key), depth + 1);
-      active.delete(key); cache[key] = result; return result;
+      try { const result = valueOf(computed[key], pointer('/computed', key), depth + 1); cache[key] = result; return result; } finally { active.delete(key); }
     }
     const { op, args } = expression(object, path);
     const at = (i: number) => valueOf(args[i], pointer(pointer(path, 'args'), i), depth + 1);
@@ -190,6 +189,7 @@ function walkNodes(document: IUIDocument, visit: (node: Node, path: string) => v
 }
 function nodeValues(node: Node, path: string): [Value, string][] {
   const values: [Value, string][] = [];
+  for (const key of ['disabled', 'error'] as const) if (key in node) { const v=(node as unknown as Record<string,Value>)[key]; if(v!==undefined)values.push([v,`${path}/${key}`]); }
   if ('value' in node) values.push([node.value, `${path}/value`]);
   if (node.type === 'list') node.items.forEach((item, i) => { if (!record(item) || !('type' in item)) values.push([item as Value, `${path}/items/${i}`]); });
   if (node.type === 'table') node.rows.forEach((row, i) => row.forEach((value, j) => values.push([value, `${path}/rows/${i}/${j}`])));
@@ -276,6 +276,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
 }
 
 function controlIssue(node: Node, value: Scalar | undefined, path: string): Issue | undefined {
+  if (isField(node)) return fieldTypeIssue(node, value, path);
   if (node.type === 'slider') {
     if (typeof value !== 'number') return issue('INPUT_TYPE', path, 'Slider bindings must be numeric.');
     if (value < node.min || value > node.max) return issue('INPUT_RANGE', path, 'Slider value is outside its bounds.');
@@ -295,8 +296,8 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
   for (const key of Object.keys(document.computed ?? {})) capture(() => { computed[key] = evaluate({ $: key }, pointer('/computed', key)); });
   const controls: [Node, string][] = [];
   walkNodes(document, (node, path) => {
-    for (const [value, at] of nodeValues(node, path)) capture(() => { evaluate(value, at); });
-    if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select') {
+    for (const [value, at] of nodeValues(node, path)) capture(() => { const resolved=evaluate(value, at); if(at===`${path}/disabled`&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
+    if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select' || isField(node)) {
       controls.push([node, path]);
       const e = controlIssue(node, state[node.bind], pointer('/state', node.bind)); if (e) add(e);
       if (node.type === 'select') node.options.forEach((option, i) => { if (typeof option.value !== typeof state[node.bind]) add(issue('INPUT_TYPE', `${path}/options/${i}/value`, 'All select options must preserve the initial state type.')); });

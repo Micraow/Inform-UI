@@ -15,6 +15,7 @@ This matrix does not describe multiple product editions.
 
 - **Implemented:** the stated portable subset exists. The limitation column is
   part of the claim; it does not imply full parity with every gallery interaction.
+- **Partial:** a related implemented variant exists; the stated missing variant remains unsupported.
 - **Extension:** additional project-owned component or interaction work is needed.
   An existing approximate presentation is identified where useful.
 - **Host service:** the useful feature depends on external data, authorization,
@@ -51,14 +52,14 @@ license grants, guarantees of host integration, or promises of future delivery.
 | cap-022 | Tables | Implemented | `table` has headers, caption, rectangular rows, and local scrolling. Grouped headers, merged cells, and interactive sorting are absent. |
 | cap-023 | Buttons | Implemented | `button` supports state reset/set only; catalog disable/copy/action variants are not a general command API. |
 | cap-024 | Independent boolean choices | Implemented | Multiple `toggle` nodes provide native labeled checkboxes with independent state. |
-| cap-025 | Radio groups | Extension | `select` can express a single choice, but a radio-group presentation is not implemented. |
-| cap-026 | Segmented controls | Extension | A `select` is a possible fallback; segmented presentation needs an extension. |
+| cap-025 | Radio groups | Implemented | `radio` provides native keyboard navigation, typed options, disabled choices and required validation. |
+| cap-026 | Segmented controls | Implemented | `segmented` has the same typed/native-radio behavior with segmented presentation. |
 | cap-027 | Dropdown selection | Implemented | `select` supports a finite declared option set. |
-| cap-028 | Text/number/email entry | Extension | Free-form input nodes and their input-validation contract are absent. A numeric slider is not equivalent. |
-| cap-029 | Multiline editing | Extension | Text-area input and editing state are absent. |
+| cap-028 | Text/number/email entry | Implemented | `input` supports text/number/email, label/hint/error/constraints, disabled state and typed numeric drafts. |
+| cap-029 | Multiline editing | Implemented | `textarea` supports native editing, length constraints, hint/error and typed state. No rich-text editor. |
 | cap-030 | Date selection | Extension | No date picker, calendar, time-zone, or range-validation contract. |
 | cap-031 | Sliders | Implemented | `slider` binds bounded numeric state with a step and live output. |
-| cap-032 | Forms and submission | Extension | Individual controls exist; grouped validation, submission, and network actions do not. |
+| cap-032 | Forms and submission | Implemented | `field`/`form` provide grouped validation, local submit, cancel/retry, busy protection and explicit host action adapters. No implicit network or storage. |
 | cap-033 | Line charts | Implemented | `chart.kind="line"` or `area`; category/linear/time coordinates, null gaps, series switches, keyboard inspection and data disclosure. |
 | cap-034 | Bar charts | Implemented | `chart.kind="bar"`; grouped series with a zero-aware baseline. No stacking or chart-kind switch. |
 | cap-035 | Scatter plots | Implemented | `chart.kind="scatter"` with explicit linear/time X; unordered points, negative coordinates and null gaps. |
@@ -117,3 +118,7 @@ does not detect or call a ChatGPT runtime. Private site-runtime adapters are
 outside the product roadmap. Prefer a supported independent composition;
 if it cannot express the task, report the missing
 capability rather than executing generated code.
+
+## Domain packages beyond this 52-entry catalog
+
+Weather now has its own supplied-data contract, provenance and timezone-aware controls; see [weather](weather.md). Sports schedules/standings, quiz/flashcards, finance histories/heatmaps, and other domain systems remain pending. This catalog is not an inventory of every private product component and is not a completeness claim.

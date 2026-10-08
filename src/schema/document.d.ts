@@ -60,6 +60,12 @@ export type Node =
   | SliderNode
   | ToggleNode
   | SelectNode
+  | InputNode
+  | TextareaNode
+  | RadioNode
+  | SegmentedNode
+  | FieldNode
+  | FormNode
   | ButtonNode
   | TopologyNode
   | ChartNode
@@ -403,6 +409,117 @@ export interface SelectNode {
       label: string;
     }[]
   ];
+}
+export interface InputNode {
+  type: "input";
+  id?: string;
+  label: string;
+  bind: string;
+  hint?: string;
+  error?: Value;
+  required?: boolean;
+  disabled?: Value;
+  kind: "text" | "number" | "email";
+  placeholder?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  minLength?: number;
+  maxLength?: number;
+}
+export interface TextareaNode {
+  type: "textarea";
+  id?: string;
+  label: string;
+  bind: string;
+  hint?: string;
+  error?: Value;
+  required?: boolean;
+  disabled?: Value;
+  placeholder?: string;
+  rows?: number;
+  minLength?: number;
+  maxLength?: number;
+}
+export interface RadioNode {
+  type: "radio";
+  id?: string;
+  label: string;
+  bind: string;
+  hint?: string;
+  error?: Value;
+  required?: boolean;
+  disabled?: Value;
+  /**
+   * @minItems 1
+   * @maxItems 40
+   */
+  options: [
+    {
+      value: string | number;
+      label: string;
+      disabled?: boolean;
+    },
+    ...{
+      value: string | number;
+      label: string;
+      disabled?: boolean;
+    }[]
+  ];
+}
+export interface SegmentedNode {
+  type: "segmented";
+  id?: string;
+  label: string;
+  bind: string;
+  hint?: string;
+  error?: Value;
+  required?: boolean;
+  disabled?: Value;
+  /**
+   * @minItems 1
+   * @maxItems 40
+   */
+  options: [
+    {
+      value: string | number;
+      label: string;
+      disabled?: boolean;
+    },
+    ...{
+      value: string | number;
+      label: string;
+      disabled?: boolean;
+    }[]
+  ];
+}
+export interface FieldNode {
+  type: "field";
+  id?: string;
+  label: string;
+  hint?: string;
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  children: [Node, ...Node[]];
+  disabled?: Value;
+}
+export interface FormNode {
+  type: "form";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 500
+   */
+  children: Node[];
+  submitLabel?: string;
+  cancelLabel?: string;
+  action?: string;
+  disabled?: Value;
+  successMessage?: string;
+  errorMessage?: string;
 }
 export interface ButtonNode {
   type: "button";

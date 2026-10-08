@@ -1,0 +1,42 @@
+# 本地表单与受控提交
+
+完整示例：[forms.json](../examples/forms.json)。它使用合成点数展示姓名类文本、邮箱、数字、长文本、单选、分段选择，以及联动计算；不包含真实个人数据或外部提交地址。
+
+| 节点 | 行为 |
+| --- | --- |
+| `input` | `kind: text / number / email`；`label`、`bind` 必填 |
+| `textarea` | 长文本，`rows` 控制初始高度 |
+| `radio` / `segmented` | 原生单选行为，键盘切换；`options` 值为同一类型的字符串或数字 |
+| `field` | 带 `label`、可选 `hint` 的原生 fieldset 分组，可以整体禁用 |
+| `form` | 本地校验、提交/取消、忙碌防重、错误/重试；不能嵌套 |
+
+字段可用 `hint`、`error`、`required`、`disabled`。`error` 为解析后字符串，`disabled` 为解析后布尔值；都可引用 state/computed。文本支持 `minLength/maxLength`，按原生 HTML 的 UTF-16 单元计数；数值支持 `min/max/step`。初始为空或不符合字段约束的值可以构成有效文档，错误在失焦/提交时显示。
+
+状态仍为 `string | number | boolean`，同名类型不可改变。空/未完成的数字输入暂存为 DOM 草稿，不写入 `NaN` 或空字符串；提交前必须改为有效数字，或取消恢复。开关继续使用已有 `toggle`。禁用字段不阻止提交，也不进入提交快照。
+
+## 纯 JSON 默认行为
+
+没有 `form.action` 时，提交只进行本地校验、显示完成状态，并派发 `iui:submit` 事件；事件包含 `{ id, values }`。没有持久存储或网络提交，刷新后不会保留数据。`values` 只包含当前 form 未禁用的绑定字段，含已有 slider/toggle/select；无关全局 state 不被夹带。
+
+取消会终止正在进行的操作，恢复本表单初值。若其它全局计算条件已改变，使恢复值不再有效，取消仍会终止任务，但显示恢复错误并保留当前有效状态。
+
+## 宿主显式提供的操作
+
+JSON 只能引用白名单中的标识符，不接受 URL 或函数代码：
+
+```js
+const controller = mount(host, document, {
+  actions: {
+    'example.confirm': async ({ values, signal }) => {
+      // values 是只读快照；signal 在取消、update 或 dispose 时中止。
+      // 宿主决定如何处理数据；库不会自行调用外部服务。
+    }
+  }
+});
+```
+
+对应表单写 `"action":"example.confirm"`。如果宿主没有配置它，界面显示明确错误。返回 Promise 时进入忙碌状态，重复提交被忽略；取消后迟到的成功或失败不会覆盖新状态。外部副作用是否能够撤回，由宿主操作实现决定。
+
+可复用状态文档：[forms/states.json](../examples/forms/states.json)。[actions.mjs](../examples/forms/actions.mjs) 是原创离线演示适配器，提供显式完成的 pending 与首次失败后重试，没有计时器、fetch 或存储。loading/error 通过真实提交产生，不虚构未实现的 JSON status 字段。
+
+当前不支持文件上传、日期选择器、富文本编辑或任意正则约束。网页聊天只生成 JSON 时应使用默认本地表单；宿主操作示例供已有网页应用选择使用。

@@ -69,7 +69,7 @@ body.iui-page{background:#fff}body.iui-page[data-theme=dark]{background:#191b1f}
 @container(max-width:400px){.iui-weather-current-temperature{font-size:2.3rem}.iui-weather-current{gap:12px}.iui-weather-current-description{min-width:145px}.iui-weather-facts{flex-basis:100%;gap:8px 22px}.iui-weather-toolbar{align-items:start}.iui-root .iui-weather-segment button{font-size:.77rem;min-height:40px;padding:7px 8px}.iui-weather-header{gap:8px}.iui-weather-source{display:block}.iui-weather-source time{display:block;margin-block-start:4px}}
 /* Semantic token baseline: public MIT Apps SDK UI values; interaction shades are original.
    Explicit JSON gap/padding values still take precedence over relationship defaults. */
-.iui-root{--iui-bg:#fff;--iui-surface-primary:#fff;--iui-surface-secondary:#f9f9f9;--iui-surface-tertiary:#f3f3f3;--iui-surface:var(--iui-surface-secondary);--iui-ink:#0d0d0d;--iui-muted:#5d5d5d;--iui-tertiary:#8f8f8f;--iui-line:#e3e3e3;--iui-focus:#0169cc;--iui-hover:#f3f3f3;--iui-active:#e8e8e8;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+.iui-root{--iui-bg:#fff;--iui-surface-primary:#fff;--iui-surface-secondary:#f9f9f9;--iui-surface-tertiary:#f3f3f3;--iui-surface:var(--iui-surface-secondary);--iui-ink:#0d0d0d;--iui-muted:#5d5d5d;--iui-tertiary:#767676;--iui-line:#e3e3e3;--iui-focus:#0169cc;--iui-hover:#f3f3f3;--iui-active:#e8e8e8;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
 .iui-root[data-theme=dark]{--iui-bg:#212121;--iui-surface-primary:#212121;--iui-surface-secondary:#181818;--iui-surface-tertiary:#131313;--iui-ink:#fff;--iui-muted:#afafaf;--iui-tertiary:#8a8a8a;--iui-line:#414141;--iui-focus:#0285ff;--iui-hover:#303030;--iui-active:#3a3a3a}
 @media(prefers-color-scheme:dark){.iui-root[data-theme=auto]{--iui-bg:#212121;--iui-surface-primary:#212121;--iui-surface-secondary:#181818;--iui-surface-tertiary:#131313;--iui-ink:#fff;--iui-muted:#afafaf;--iui-tertiary:#8a8a8a;--iui-line:#414141;--iui-focus:#0285ff;--iui-hover:#303030;--iui-active:#3a3a3a}}
 .iui-root [data-color=tertiary]{color:var(--iui-tertiary)}.iui-layout[data-background=surface]{background:var(--iui-surface-primary)}.iui-layout[data-background=surface-secondary]{background:var(--iui-surface-secondary)}.iui-layout[data-background=surface-tertiary]{background:var(--iui-surface-tertiary)}
@@ -87,6 +87,115 @@ body.iui-page{background:#fff}body.iui-page[data-theme=dark]{background:#191b1f}
 body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:dark){body.iui-page[data-theme=auto]{background:#212121}}
 
 .iui-weather-area{fill:var(--iui-orange);fill-opacity:.12;stroke:none}
+
+/* Original form styling. Uses the host's semantic tokens; does not redefine global colors.
+   Spacing follows the audited 4px rhythm, 2px label/control, 4px hint, 6px actions.
+   Public MIT Apps SDK UI informed the 8px corners and 14/20px secondary type. */
+.iui-root .iui-form,
+.iui-root .iui-field,
+.iui-root .iui-field-group { min-width: 0; max-width: 100%; }
+.iui-root :is(.iui-form-fields, .iui-field-group, .iui-choices) {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.iui-root .iui-form-fields > :not(legend) + :not(legend),
+.iui-root .iui-field-group > :not(legend) + :not(legend) { margin-block-start: 12px; }
+.iui-root :is(.iui-form-title, .iui-field-label) {
+  max-width: 100%;
+  padding: 0;
+  color: var(--iui-ink);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.iui-root .iui-form-title { margin-block-end: 16px; font-size: 1rem; }
+.iui-root .iui-field-label { display: block; margin-block-end: 2px; }
+.iui-root .iui-field-group > legend { margin-block-end: 8px; }
+.iui-root .iui-field-required { color: var(--iui-red); }
+.iui-root .iui-field > :is(input, textarea) {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--iui-line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: var(--iui-ink);
+  background: var(--iui-bg);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.iui-root .iui-field > textarea { resize: vertical; min-height: 100px; }
+.iui-root .iui-field > :is(input, textarea)::placeholder { color: var(--iui-muted); opacity: 1; }
+.iui-root .iui-field > :is(input, textarea):hover:enabled { border-color: var(--iui-muted); }
+.iui-root :is(.iui-field input, .iui-field textarea, .iui-form-actions button):focus-visible {
+  outline: 2px solid var(--iui-focus, var(--iui-blue));
+  outline-offset: 3px;
+}
+.iui-root .iui-field > :is(input, textarea)[aria-invalid=true] { border-color: var(--iui-red); }
+.iui-root :is(.iui-field-hint, .iui-field-error) { margin-block-start: 4px; font-size: .875rem; line-height: 1.45; }
+.iui-root :is(.iui-field-error, .iui-form-status[data-error=true]) { color: var(--iui-red); }
+.iui-root :is(.iui-field-error, .iui-field-hint)[hidden] { display: none; }
+.iui-root .iui-field-group-hint { margin-block-end: 8px; }
+.iui-root .iui-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 0;
+  font-size: .875rem;
+  line-height: 1.45;
+  cursor: pointer;
+}
+.iui-root .iui-choice input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--iui-blue);
+}
+.iui-root .iui-choice-text { min-width: 0; overflow-wrap: anywhere; }
+.iui-root .iui-choice:has(input:disabled) { color: var(--iui-muted); cursor: not-allowed; }
+.iui-root .iui-segmented { display: flex; flex-wrap: wrap; gap: 6px; }
+.iui-root .iui-segmented > legend { width: 100%; margin-block-end: 4px; }
+.iui-root .iui-segmented .iui-choice {
+  position: relative;
+  flex: 1 1 100px;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid var(--iui-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--iui-bg);
+}
+.iui-root .iui-segmented .iui-choice:has(input:checked) {
+  border-color: var(--iui-blue);
+  background: color-mix(in srgb, var(--iui-blue) 8%, var(--iui-bg));
+}
+.iui-root .iui-segmented .iui-choice:has(input:focus-visible) { outline: 2px solid var(--iui-focus, var(--iui-blue)); outline-offset: 3px; }
+.iui-root .iui-segmented input:focus-visible { outline: none; }
+.iui-root :is(.iui-field input, .iui-field textarea):disabled {
+  color: var(--iui-muted);
+  background: var(--iui-surface-secondary, var(--iui-surface));
+  cursor: not-allowed;
+  opacity: .75;
+}
+.iui-root .iui-form-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-block-start: 16px; }
+.iui-root .iui-form-actions button { min-height: 44px; font-weight: 500; }
+.iui-root .iui-form-actions .iui-button-primary { color: var(--iui-bg); background: var(--iui-ink); border-color: var(--iui-ink); }
+.iui-root .iui-form-actions .iui-button-primary:hover:enabled { opacity: .86; }
+.iui-root .iui-form-actions button:active:enabled { filter: brightness(.92); }
+.iui-root .iui-form-actions button:disabled { cursor: not-allowed; opacity: .55; }
+.iui-root .iui-form-status { margin-block-start: 8px; font-size: .875rem; line-height: 1.45; }
+.iui-root .iui-form-status:empty { display: none; }
+.iui-root .iui-form[data-status=success] .iui-form-status { color: var(--iui-green); }
+@media (forced-colors: active) {
+  .iui-root .iui-segmented .iui-choice:has(input:checked) { outline: 2px solid Highlight; }
+  .iui-root .iui-field > :is(input, textarea)[aria-invalid=true] { outline: 2px dashed CanvasText; }
+}
 
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).

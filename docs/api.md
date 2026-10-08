@@ -94,3 +94,7 @@ node bin/iui.mjs doctor
 内置阅读控件在挂载或替换文档时读取最近宿主元素的 `lang`，再回退到页面 `<html lang>`。`zh`/`zh-CN` 等中文标记使用中文，其他语言当前回退为英文；模型提供的正文不会被自动翻译。图表数据表使用“类别”或“横轴值”等可读表头，不直接展示内部 `xKey` 字段名。
 
 默认数值显示只压平浮点舍入产生的极小尾数：与12位有效数字简写的差异不超过 `4 × Number.EPSILON × |value|` 时使用简写；其他高精度数和极小数保留。计算状态和图表坐标仍使用原始值。表格数字保留 `data-raw-value`，简写发生时悬停标题提供原值。`metric.precision` 仍按作者显式选择的位数显示。
+
+## 表单操作
+
+`MountOptions.actions` 可显式提供以标识符索引的宿主函数。`FormActionContext` 包含只读 `values` 与 `AbortSignal`，返回 `void | Promise<void>`。JSON 没有函数或URL执行能力；未配置action时默认本地校验与事件。完整约束与取消/重试行为见[表单契约](forms.md)。

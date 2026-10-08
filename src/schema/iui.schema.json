@@ -1491,6 +1491,391 @@
       ],
       "additionalProperties": false
     },
+    "InputNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "input"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "error": {
+          "$ref": "#/$defs/Value"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "kind": {
+          "enum": [
+            "text",
+            "number",
+            "email"
+          ]
+        },
+        "placeholder": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "minLength": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12000
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "bind",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "TextareaNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "textarea"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "error": {
+          "$ref": "#/$defs/Value"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "placeholder": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 20
+        },
+        "minLength": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12000
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "bind"
+      ],
+      "additionalProperties": false
+    },
+    "RadioNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "radio"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "error": {
+          "$ref": "#/$defs/Value"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 12000
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "bind",
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "SegmentedNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "segmented"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "error": {
+          "$ref": "#/$defs/Value"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 12000
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "bind",
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "FieldNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "field"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "FormNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "form"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 500
+        },
+        "submitLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "action": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "successMessage": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "errorMessage": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "children"
+      ],
+      "additionalProperties": false
+    },
     "ButtonNode": {
       "type": "object",
       "properties": {
@@ -2407,6 +2792,24 @@
         },
         {
           "$ref": "#/$defs/SelectNode"
+        },
+        {
+          "$ref": "#/$defs/InputNode"
+        },
+        {
+          "$ref": "#/$defs/TextareaNode"
+        },
+        {
+          "$ref": "#/$defs/RadioNode"
+        },
+        {
+          "$ref": "#/$defs/SegmentedNode"
+        },
+        {
+          "$ref": "#/$defs/FieldNode"
+        },
+        {
+          "$ref": "#/$defs/FormNode"
         },
         {
           "$ref": "#/$defs/ButtonNode"

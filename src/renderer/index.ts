@@ -1,6 +1,7 @@
+import {createForms} from './forms.js';
 import {renderWeather} from './weather.js';
 import {renderChart} from './charts.js';
-import type {RendererContext} from './context.js';
+import type {RendererContext,FormAction} from './context.js';
 import katex from 'katex';
 import { evaluateState, evaluateValue, validateDocument } from '../core/index.js';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
@@ -15,7 +16,7 @@ export interface Controller {
   getState(): Readonly<Record<string, string | number | boolean>>;
   setState(patch: Record<string, string | number | boolean>): void;
 }
-export interface MountOptions { styles?: boolean }
+export interface MountOptions { styles?: boolean; actions?: Readonly<Record<string,FormAction>> }
 export class InvalidDocumentError extends Error {
   readonly issues: readonly {code: string; path: string; message: string}[];
   constructor(issues: readonly {code: string; path: string; message: string}[]) {
@@ -81,7 +82,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
     try { change(patch); } catch(e) { notify(); fail(e); }
   }
   function ensureLive() { if (disposed) throw new Error('This UI controller has been disposed'); }
-  const context:RendererContext={doc,prefix,labels:()=>labels,element,svg,on,bind,cleanup:fn=>removers.push(fn),value,display,showValue,getState:()=>state,change,fromControl,render,actions:{}};
+  const context:RendererContext={doc,prefix,labels:()=>labels,element,svg,on,bind,cleanup:fn=>removers.push(fn),value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{}};
+  const forms=createForms(context);
   const children = (parent: HTMLElement, nodes: readonly Node[]) => { for (const node of nodes) parent.append(render(node)); };
   function formula(latex: string, block = true) {
     const target = element(block ? 'div' : 'span', 'iui-math');
@@ -149,6 +151,9 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;bind(()=>input.checked=state[n.bind]===true);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
       case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state});else fromControl({[n.action.bind!]:n.action.value!});});break;}
+      case 'input': case 'textarea': case 'radio': case 'segmented': out=forms.field(n);break;
+      case 'field': out=forms.group(n);break;
+      case 'form': out=forms.form(n);break;
       case 'topology': out=topology(n);break;
       case 'chart': out=renderChart(context,n);break;
       case 'weather': out=renderWeather(context,n);break;
