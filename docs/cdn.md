@@ -6,13 +6,13 @@
 
 ## 已固定的公开入口
 
-以下链接固定到包含预构建产物的完整 Git commit `d15a47f691f231d763b29e0c0a6403a11229611e`，不随分支变化。
+以下链接固定到包含预构建产物的完整 Git commit `b46f974d10d6a344fe5fc615e4aa5b895e4567f7`，不随分支变化。
 
-- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/iui.global.min.js)，导出 `window.IUI`
-- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
-- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/iui.css)
-- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/iui.schema.json)
-- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/integrity.json)
+- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.global.min.js)，导出 `window.IUI`
+- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
+- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.css)
+- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.schema.json)
+- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/integrity.json)
 
 数学公式使用 MathML 和浏览器/系统字体，**没有额外字体下载**。两个脚本格式任选其一，不要同时加载。
 
@@ -29,7 +29,7 @@
   <meta name="referrer" content="no-referrer">
   <title>Intelligent-UI 示例</title>
   <link id="iui-style" rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/iui.css"
+    href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.css"
     integrity="sha384-yO4iUqoqAWFZqWp58yjTOukFYTtnWxdU6wD2Njgfr4RQfKFVu11IPBGtFceh0usS"
     crossorigin="anonymous">
 </head>
@@ -49,8 +49,8 @@
   }
   </script>
   <script
-    src="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@d15a47f691f231d763b29e0c0a6403a11229611e/cdn/iui.global.min.js"
-    integrity="sha384-hw7bFmIIdxB9id+Ts+z0mP330ATKgZXHdtzmQZfvVLz/9VZ1EiobK4lyahBWq2B9"
+    src="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.global.min.js"
+    integrity="sha384-827a7wCX0YwSwGRfwWtbkfO7uIJeangVNsSrqHZ6PnW04Rce4izMJmky08L3xYsP"
     crossorigin="anonymous"></script>
   <script>
     const status = document.getElementById('status');
