@@ -1,0 +1,68 @@
+{
+  "version": "iui/1",
+  "title": "无线链路读数示例",
+  "description": "原创虚构快照，不访问 Wi-Fi 接口，也不代表用户当前设备。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "把链路读数与实际体验分开"
+    },
+    {
+      "type": "badge",
+      "value": "原创示意数据 · 非实测",
+      "color": "info"
+    },
+    {
+      "type": "caption",
+      "value": "示例快照 A · 手工设定的数值 · 没有采样时间或设备来源"
+    },
+    {
+      "type": "metric-grid",
+      "columns": 2,
+      "children": [
+        {
+          "type": "metric",
+          "label": "信道",
+          "value": 44,
+          "hint": "示意频段 5 GHz · 80 MHz 带宽"
+        },
+        {
+          "type": "metric",
+          "label": "接收信号",
+          "value": -57,
+          "unit": "dBm",
+          "hint": "这是示例读数，不是质量评级"
+        },
+        {
+          "type": "metric",
+          "label": "接收 PHY 速率",
+          "value": 600,
+          "unit": "Mbps"
+        },
+        {
+          "type": "metric",
+          "label": "发送 PHY 速率",
+          "value": 432,
+          "unit": "Mbps"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "value": "PHY 速率描述物理链路的传输档位。应用可用吞吐量还受协议开销、竞争和其他链路限制，不能直接用这两个数代替。"
+    },
+    {
+      "type": "list",
+      "items": [
+        "需要真实诊断时，同时保留测量时间、接口名称与数据来源。",
+        "对比时固定单位，并记录信道占用、重传和往返时延。"
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "neutral",
+      "value": "本组件只呈现调用方提供的数据；它不会读取系统网络状态。"
+    }
+  ]
+}

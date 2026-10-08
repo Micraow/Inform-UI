@@ -1,0 +1,433 @@
+{
+  "version": "iui/1",
+  "title": "合成传感实验：组件样例",
+  "description": "原创合成科学界面，覆盖全部 33 个可接受节点；Markdown 有意显示为纯文本。没有实测数据、外部服务或任意脚本。",
+  "theme": "auto",
+  "state": {
+    "gain": 2,
+    "enabled": true,
+    "sensor": "A"
+  },
+  "computed": {
+    "reading": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "gain"
+        },
+        12
+      ]
+    },
+    "status": {
+      "op": "if",
+      "args": [
+        {
+          "$": "enabled"
+        },
+        "显示演示状态：开",
+        "显示演示状态：关"
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "一份可以读懂的合成实验"
+    },
+    {
+      "type": "badge",
+      "value": "原创示意数据 · 非实测",
+      "color": "info"
+    },
+    {
+      "type": "caption",
+      "value": "所有值均由固定常数和声明式算式产生。"
+    },
+    {
+      "type": "section",
+      "heading": "1. 改变参数",
+      "children": [
+        {
+          "type": "text",
+          "value": "示意读数等于增益乘以 12。传感器选项仅用于演示选择状态，不改变公式。"
+        },
+        {
+          "type": "row",
+          "gap": 3,
+          "children": [
+            {
+              "type": "col",
+              "children": [
+                {
+                  "type": "slider",
+                  "label": "合成增益",
+                  "bind": "gain",
+                  "min": 1,
+                  "max": 4,
+                  "step": 0.5
+                },
+                {
+                  "type": "toggle",
+                  "label": "演示开关",
+                  "bind": "enabled"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "children": [
+                {
+                  "type": "select",
+                  "label": "虚构传感器",
+                  "bind": "sensor",
+                  "options": [
+                    {
+                      "value": "A",
+                      "label": "样本 A"
+                    },
+                    {
+                      "value": "B",
+                      "label": "样本 B"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "value": {
+                    "$": "sensor"
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": {
+                    "$": "status"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "metric-grid",
+          "columns": 2,
+          "children": [
+            {
+              "type": "metric",
+              "label": "合成读数",
+              "value": {
+                "$": "reading"
+              },
+              "unit": "示意单位"
+            },
+            {
+              "type": "metric",
+              "label": "增益",
+              "value": {
+                "$": "gain"
+              },
+              "precision": 1
+            }
+          ]
+        },
+        {
+          "type": "math",
+          "latex": "r=12g",
+          "block": true
+        },
+        {
+          "type": "row",
+          "children": [
+            {
+              "type": "button",
+              "label": "设为增益 3",
+              "action": {
+                "kind": "set",
+                "bind": "gain",
+                "value": 3
+              }
+            },
+            {
+              "type": "button",
+              "label": "重置所有参数",
+              "action": {
+                "kind": "reset"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "section",
+      "heading": "2. 图形与读数",
+      "children": [
+        {
+          "type": "grid",
+          "columns": 2,
+          "children": [
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "figure",
+                  "caption": "原创图形：输入、处理、输出。",
+                  "children": [
+                    {
+                      "type": "svg",
+                      "viewBox": "0 0 300 90",
+                      "label": "三个相连的实验阶段",
+                      "shapes": [
+                        {
+                          "tag": "line",
+                          "attrs": {
+                            "x1": 40,
+                            "y1": 45,
+                            "x2": 260,
+                            "y2": 45,
+                            "stroke": "#48768c",
+                            "stroke-width": 3
+                          }
+                        },
+                        {
+                          "tag": "circle",
+                          "attrs": {
+                            "cx": 40,
+                            "cy": 45,
+                            "r": 20,
+                            "fill": "#cde4ee"
+                          }
+                        },
+                        {
+                          "tag": "rect",
+                          "attrs": {
+                            "x": 120,
+                            "y": 25,
+                            "width": 60,
+                            "height": 40,
+                            "rx": 8,
+                            "fill": "#cde4ee"
+                          }
+                        },
+                        {
+                          "tag": "polygon",
+                          "attrs": {
+                            "points": "260,20 282,45 260,70 238,45",
+                            "fill": "#cde4ee"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "image",
+                  "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmElEQVR4nO3WsQmAMBBAUffSuZzAxvFcw1IXsLWQBBPEMz747UHuNZdu3XYl6l5/QfAAAQIECFDgAAECBKiqZerPtQw0jHO2tE6BUctAlzp3jQABAgQI0DNArlge6Hv/oLIl62eLAwQIECBAgAABAhR/SUCAAAECBAgQIECAAAEKNgsIEKB2gH4VIECAAAEKHCBAgAABCtwB2+pMM86eI7wAAAAASUVORK5CYII=",
+                  "alt": "原创柱形实验缩略图",
+                  "aspectRatio": "16:9"
+                },
+                {
+                  "type": "caption",
+                  "value": "缩略图仅作版式示例，不编码测量结果。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "topology",
+          "nodes": [
+            {
+              "id": "in",
+              "label": "输入"
+            },
+            {
+              "id": "calc",
+              "label": "计算"
+            },
+            {
+              "id": "out",
+              "label": "输出"
+            }
+          ],
+          "links": [
+            {
+              "from": "in",
+              "to": "calc",
+              "load": 0.4,
+              "label": "合成 0.4"
+            },
+            {
+              "from": "calc",
+              "to": "out",
+              "load": 0.8,
+              "label": "合成 0.8"
+            }
+          ],
+          "highlight": "max-load",
+          "caption": "演示连接关系；与真实网络无关。"
+        },
+        {
+          "type": "chart",
+          "kind": "bar",
+          "xKey": "sample",
+          "title": "合成样本比较",
+          "unit": "示意单位",
+          "data": [
+            {
+              "sample": "A",
+              "value": 12
+            },
+            {
+              "sample": "B",
+              "value": {
+                "$": "reading"
+              }
+            },
+            {
+              "sample": "C",
+              "value": 30
+            }
+          ],
+          "series": [
+            {
+              "key": "value",
+              "label": "合成值",
+              "color": "purple"
+            }
+          ],
+          "note": "样本 B 绑定上方增益。"
+        },
+        {
+          "type": "table",
+          "columns": [
+            "项目",
+            "值",
+            "说明"
+          ],
+          "rows": [
+            [
+              "增益",
+              {
+                "$": "gain"
+              },
+              "可调"
+            ],
+            [
+              "读数",
+              {
+                "$": "reading"
+              },
+              "12 × 增益"
+            ]
+          ],
+          "caption": "数据来自本页状态，未连接传感器。"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "3. 阅读与解释",
+      "children": [
+        {
+          "type": "steps",
+          "items": [
+            {
+              "title": "声明参数",
+              "detail": "用数字、布尔值和字符串保存状态。"
+            },
+            {
+              "title": "表达计算",
+              "latex": "r=12g"
+            },
+            {
+              "title": "保留假设",
+              "detail": "始终注明示意数据与单位。"
+            }
+          ]
+        },
+        {
+          "type": "details",
+          "summary": "查看最小数据片段",
+          "children": [
+            {
+              "type": "code",
+              "language": "json",
+              "value": "{\"gain\":2,\"reading\":24}"
+            },
+            {
+              "type": "markdown",
+              "value": "**Markdown fallback**：这里保留原始字符，不解析 Markdown 或 HTML。"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "改变一个输入。",
+            "比较指标、图表和表格。",
+            {
+              "type": "text",
+              "value": "确认它们使用相同的状态来源。"
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "info",
+          "value": "示例用于检查组件组合。它没有校准信息，不能作为科学实验结果。"
+        },
+        {
+          "type": "carousel",
+          "children": [
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "title",
+                  "level": 3,
+                  "value": "先看单位"
+                },
+                {
+                  "type": "text",
+                  "value": "合成值使用示意单位。"
+                }
+              ]
+            },
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "title",
+                  "level": 3,
+                  "value": "再看来源"
+                },
+                {
+                  "type": "text",
+                  "value": "来源是页内常数与状态。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "spacer",
+          "height": 8
+        },
+        {
+          "type": "link",
+          "value": "示例外链（example.com）",
+          "href": "https://example.com/"
+        }
+      ]
+    }
+  ]
+}

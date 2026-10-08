@@ -1,0 +1,110 @@
+{
+  "version": "iui/1",
+  "title": "一次合成延迟波动",
+  "description": "原创人工序列，仅用于演示趋势、缺测和系列切换；不是网络测量报告。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "先看趋势，再追问原因"
+    },
+    {
+      "type": "badge",
+      "value": "原创示意数据 · 非实测",
+      "color": "info"
+    },
+    {
+      "type": "text",
+      "value": "两条合成曲线在后半段一起升高，随后回落。切换图例中的系列，可以分别检查变化；这种共同变化本身不足以定位故障。"
+    },
+    {
+      "type": "chart",
+      "id": "rtt-line",
+      "kind": "line",
+      "title": "合成往返时延",
+      "xKey": "minute",
+      "unit": "ms",
+      "yMin": 0,
+      "yMax": 240,
+      "data": [
+        {
+          "minute": "00:00",
+          "near": 8,
+          "far": 24
+        },
+        {
+          "minute": "00:01",
+          "near": 11,
+          "far": 27
+        },
+        {
+          "minute": "00:02",
+          "near": 9,
+          "far": 25
+        },
+        {
+          "minute": "00:03",
+          "near": null,
+          "far": null
+        },
+        {
+          "minute": "00:04",
+          "near": 86,
+          "far": 139
+        },
+        {
+          "minute": "00:05",
+          "near": 112,
+          "far": 211
+        },
+        {
+          "minute": "00:06",
+          "near": 76,
+          "far": 164
+        },
+        {
+          "minute": "00:07",
+          "near": 13,
+          "far": 32
+        },
+        {
+          "minute": "00:08",
+          "near": 10,
+          "far": 26
+        }
+      ],
+      "series": [
+        {
+          "key": "near",
+          "label": "近端目标（合成）",
+          "color": "blue"
+        },
+        {
+          "key": "far",
+          "label": "远端目标（合成）",
+          "color": "green"
+        }
+      ],
+      "note": "00:03 被刻意设为 null：画线应断开，不能补零或跨越缺口。时间标签是实验内相对时间。"
+    },
+    {
+      "type": "callout",
+      "tone": "caution",
+      "value": "这里没有设备采样、路由信息或重传记录。请勿据此判断真实网络拥塞、丢包率或服务质量。"
+    },
+    {
+      "type": "details",
+      "summary": "如何复核这张图",
+      "children": [
+        {
+          "type": "list",
+          "items": [
+            "纵轴单位为毫秒，起点为零。",
+            "近端与远端是虚构目标，没有绑定真实主机。",
+            "使用系列开关只改变可见性，底层数据不变。"
+          ]
+        }
+      ]
+    }
+  ]
+}

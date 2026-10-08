@@ -1,0 +1,185 @@
+{
+  "version": "iui/1",
+  "title": "路径瓶颈如何改变发送窗口",
+  "description": "原创教学模型；所有链路负载与窗口数值均为假设，未采集设备或论文实验数据。",
+  "theme": "auto",
+  "state": {
+    "U2": 1.2
+  },
+  "computed": {
+    "Umax": {
+      "op": "max",
+      "args": [
+        0.8,
+        {
+          "$": "U2"
+        },
+        0.9
+      ]
+    },
+    "Wnew": {
+      "op": "round",
+      "args": [
+        {
+          "op": "add",
+          "args": [
+            {
+              "op": "div",
+              "args": [
+                95,
+                {
+                  "$": "Umax"
+                }
+              ]
+            },
+            5
+          ]
+        },
+        1
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "跟着瓶颈调整下一轮窗口"
+    },
+    {
+      "type": "badge",
+      "value": "原创示意数据 · 非实测",
+      "color": "info"
+    },
+    {
+      "type": "text",
+      "value": "把三段链路放在同一条路径中比较。调低中间链路的负载后，限制发送窗口的位置会移到最后一段。"
+    },
+    {
+      "type": "topology",
+      "nodes": [
+        {
+          "id": "source",
+          "label": "源端"
+        },
+        {
+          "id": "a",
+          "label": "交换 A"
+        },
+        {
+          "id": "b",
+          "label": "交换 B"
+        },
+        {
+          "id": "sink",
+          "label": "目的端"
+        }
+      ],
+      "links": [
+        {
+          "from": "source",
+          "to": "a",
+          "load": 0.8,
+          "label": "U₁ = 0.80"
+        },
+        {
+          "from": "a",
+          "to": "b",
+          "load": {
+            "$": "U2"
+          },
+          "label": "U₂（滑块控制）"
+        },
+        {
+          "from": "b",
+          "to": "sink",
+          "load": 0.9,
+          "label": "U₃ = 0.90"
+        }
+      ],
+      "highlight": "max-load",
+      "caption": "高亮边表示当前最大的负载比；数值没有量纲。"
+    },
+    {
+      "type": "slider",
+      "label": "中间链路负载 U₂",
+      "bind": "U2",
+      "min": 0.6,
+      "max": 1.5,
+      "step": 0.05,
+      "marks": [
+        {
+          "value": 0.6,
+          "label": "0.60"
+        },
+        {
+          "value": 0.9,
+          "label": "0.90"
+        },
+        {
+          "value": 1.2,
+          "label": "1.20"
+        },
+        {
+          "value": 1.5,
+          "label": "1.50"
+        }
+      ]
+    },
+    {
+      "type": "metric-grid",
+      "columns": 2,
+      "children": [
+        {
+          "type": "metric",
+          "label": "最大负载 Umax",
+          "value": {
+            "$": "Umax"
+          },
+          "precision": 2,
+          "color": "danger"
+        },
+        {
+          "type": "metric",
+          "label": "下一轮窗口 Wnew",
+          "value": {
+            "$": "Wnew"
+          },
+          "precision": 1,
+          "unit": "示意单位"
+        }
+      ]
+    },
+    {
+      "type": "math",
+      "latex": "U_{\\max}=\\max(0.8,U_2,0.9),\\qquad W_{\\mathrm{new}}=\\frac{0.95\\times100}{U_{\\max}}+5",
+      "block": true
+    },
+    {
+      "type": "caption",
+      "value": "假定目标系数 0.95、旧窗口 100、加性增量 5。该简化算式用于学习反馈方向，不是完整 HPCC 协议或性能预测。"
+    },
+    {
+      "type": "steps",
+      "items": [
+        {
+          "title": "读取三个负载比",
+          "detail": "两侧固定为 0.80 和 0.90，中间值由控件给出。"
+        },
+        {
+          "title": "取路径最大值",
+          "detail": "中间值降到 0.60 时，路径最大值仍为 0.90。"
+        },
+        {
+          "title": "按最大值计算窗口",
+          "detail": "初始窗口结果为 84.2；把滑块移至 0.60 后，结果为 110.6。"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "恢复初始示例",
+      "action": {
+        "kind": "reset"
+      }
+    }
+  ]
+}
