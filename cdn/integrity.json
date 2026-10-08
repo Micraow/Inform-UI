@@ -1,0 +1,47 @@
+{
+  "schema": "iui/1",
+  "libraryVersion": "0.1.0",
+  "fonts": "No font assets required; MathML uses the browser/system math font.",
+  "files": {
+    "iui.min.js": {
+      "bytes": 534802,
+      "sha256": "e5869f4fb8c1e5b5522cf7916ce4a94137db486eab62cc64be906cba35c71b95",
+      "integrity": "sha384-X4Rt35yAO/19WxkNANBRLE+p3Sfmru705nAoSia/o8ce63uB7EJomAboXXZen0NT"
+    },
+    "iui.min.js.map": {
+      "bytes": 614596,
+      "sha256": "112df1df31db65f8157cd5ae44b654ea754b96b9559120524c0a19dd561dfc5a",
+      "integrity": "sha384-gR0iOQxgpIRaOQIukZ49ohHxV8oSHFKfPLuNv61QmUMoemofavsRwfcoi/jzTCZn"
+    },
+    "iui.global.min.js": {
+      "bytes": 534964,
+      "sha256": "d29b546d99b0e95ca1885bf1704d4fc8076a7483d241d099743b395ec4a1567d",
+      "integrity": "sha384-hw7bFmIIdxB9id+Ts+z0mP330ATKgZXHdtzmQZfvVLz/9VZ1EiobK4lyahBWq2B9"
+    },
+    "iui.global.min.js.map": {
+      "bytes": 614843,
+      "sha256": "9fa26c6b913f849a9730fa51e0d133166c344a4c1dac1988cf5d06ecdd3fd997",
+      "integrity": "sha384-wmupneZN1X18pvj7YXJKdGZ90VnaZmJK5YQ7PjvkgKxk5869pyM0b0jKo6icbmB0"
+    },
+    "iui.css": {
+      "bytes": 8513,
+      "sha256": "4dc4e34ba6b194039a26dc1ae138c1280e06267fa4abb66a2644aecdc13607c0",
+      "integrity": "sha384-yO4iUqoqAWFZqWp58yjTOukFYTtnWxdU6wD2Njgfr4RQfKFVu11IPBGtFceh0usS"
+    },
+    "iui.schema.json": {
+      "bytes": 44156,
+      "sha256": "1f871b9b5d46c6665fe8b73eee00e18b79c048dd0e111af7cb21ae1b4a4d99c9",
+      "integrity": "sha384-pT2LuIRJsGnYuCaf0hkulQV1aEv7X4kHyXsWM70FxEQhXVqWljQItseG14xBu9Rp"
+    },
+    "LICENSE.txt": {
+      "bytes": 1084,
+      "sha256": "a1359998b30fa53107555eb85ed312f993ea7c2c699db6125fe05ab0b66e6cf0",
+      "integrity": "sha384-fs/9yk2tITTI05uA/l7TfVsFa1fkyu3jR1JRbkjKSTgGbaV6otuGIdTf7lBGQY/E"
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "bytes": 2980,
+      "sha256": "27005ef1e6e2df205b279e46be05cb56c1c3a0252025422cf99909a922b0dab3",
+      "integrity": "sha384-EG0/GOo/pTMhbB2f4b0R5jf78oC7P+Hd67+daQYHBiWKozenq7CwzTylaGwScQNs"
+    }
+  }
+}

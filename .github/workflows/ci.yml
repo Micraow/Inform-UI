@@ -18,7 +18,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm audit --omit=dev
-      - run: git diff --exit-code -- src/schema
+      - run: git diff --exit-code -- src/schema cdn
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
       - uses: actions/upload-artifact@v4

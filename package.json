@@ -37,8 +37,9 @@
     "test": "node --test --test-concurrency=1 tests/*.test.mjs",
     "test:browser": "playwright test",
     "check:boundary": "node scripts/check-boundary.mjs",
-    "check": "npm run generate && npm run build && npm run typecheck && npm test && npm run test:types && npm run check:boundary",
-    "test:types": "tsc --noEmit --strict --module NodeNext --target ES2022 --skipLibCheck tests/types-consumer.mts"
+    "check": "npm run generate && npm run build && npm run build:cdn && npm run typecheck && npm test && npm run test:types && npm run check:boundary",
+    "test:types": "tsc --noEmit --strict --module NodeNext --target ES2022 --skipLibCheck tests/types-consumer.mts",
+    "build:cdn": "node scripts/build-cdn.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0",
