@@ -17,6 +17,7 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run check
+      - run: npm audit --omit=dev
       - run: git diff --exit-code -- src/schema
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser

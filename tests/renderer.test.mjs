@@ -55,3 +55,7 @@ test('slider marks reflect numeric positions; topology subtitle is visible',()=>
   const d=dom(),h=host(d),c=mount(h,{version:'iui/1',state:{x:2},body:[{type:'slider',label:'X',bind:'x',min:0,max:10,step:1,marks:[{value:2,label:'Two'},{value:8,label:'Eight'}]},{type:'topology',nodes:[{id:'a',label:'A',subtitle:'Source'},{id:'b',label:'B'}],links:[{from:'a',to:'b'}]}]});
   assert.equal(h.querySelector('[data-value="2"]').style.left,'20%');assert.equal(h.querySelector('[data-value="8"]').style.left,'80%');assert.ok([...h.querySelectorAll('svg text')].some(e=>e.textContent==='Source'));c.dispose();
 });
+test('controller rejects accessor patches before invoking getters and preserves previous changes',()=>{
+  const d=dom(),h=host(d),c=mount(h,{version:'iui/1',state:{x:1,y:2},body:[{type:'text',value:{$:'x'}}]});let calls=0;
+  const patch=Object.defineProperty({},'x',{enumerable:true,get(){calls++;return 3;}});assert.throws(()=>c.setState(patch));assert.equal(calls,0);c.setState({x:3});c.setState({y:4});assert.deepEqual(c.getState(),{x:3,y:4});c.dispose();
+});

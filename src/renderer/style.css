@@ -11,3 +11,6 @@
 
 .iui-layout{--iui-gap:4;--iui-padding:0;--iui-columns:2}.iui-card{--iui-padding:5}.iui-card[data-border=false]{border:none}.iui-chart svg,.iui-topology svg,.iui-svg{overflow:hidden}
 @media(max-width:520px){.iui-card{--iui-padding:4;padding:calc(var(--iui-padding)*4px)}.iui-metric-grid{grid-template-columns:repeat(var(--iui-mobile-columns,2),minmax(0,1fr))}}
+
+.iui-root .iui-description{margin-block-end:24px}.iui-root .iui-body>*+*{margin-block-start:20px}.iui-root .iui-body>:is(h1,h2,h3)+*{margin-block-start:10px}.iui-marks>span{width:max-content}
+body.iui-page{background:#fff}body.iui-page[data-theme=dark]{background:#191b1f}@media(prefers-color-scheme:dark){body.iui-page[data-theme=auto]{background:#191b1f}}

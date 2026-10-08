@@ -4,8 +4,8 @@ The original project code is MIT licensed. The package lock records exact depend
 
 Runtime dependencies:
 
-- Ajv 8.17.1, MIT, copyright Evgeny Poberezkin. Used during generation and for generated-validator helper functions. The generated validator is built from this project's schema.
-- KaTeX 0.16.22, MIT, copyright Khan Academy and other contributors. Used for trusted-library MathML generation with untrusted TeX input; HTML extensions are not trusted. No KaTeX font files are bundled.
+- Ajv 8.20.0, MIT, copyright Evgeny Poberezkin. Used during generation and for generated-validator helper functions. The generated validator is built from this project's schema.
+- KaTeX 0.18.2, MIT, copyright Khan Academy and other contributors. Used for trusted-library MathML generation with untrusted TeX input; HTML extensions are not trusted. No KaTeX font files are bundled.
 
 Their license texts are included below. Bundled builds preserve dependency license comments. Development-only tooling retains the license included in each installed package; it is not claimed as original project code.
 

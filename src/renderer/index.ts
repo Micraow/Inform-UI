@@ -28,6 +28,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   const doc = container.ownerDocument;
   const prefix = `iui-${++instance}-`;
   let disposed = false;
+  let hasHeading = false;
   let current: IUIDocument;
   let state: Record<string, string | number | boolean> = {};
   let computed: Record<string, Value> = {};
@@ -55,7 +56,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   const fail = (e: unknown) => { error.textContent = e instanceof Error ? e.message : String(e); };
   function change(patch: Record<string, string | number | boolean>) {
     ensureLive();
-    const candidate = evaluateState(current, {...state, ...patch});
+    const candidate = evaluateState({...current,state}, patch);
     if (!candidate.ok) throw new InvalidDocumentError(candidate.issues);
     state = {...candidate.state}; computed = {...candidate.computed};
     error.textContent = ''; notify();
@@ -75,7 +76,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
     let out: HTMLElement | SVGElement;
     switch(n.type) {
       case 'text': case 'title': case 'caption': case 'badge': {
-        const tag = n.type === 'title' ? (`h${n.level ?? 2}` as 'h1'|'h2'|'h3') : n.type === 'badge' ? 'span' : 'p';
+        const tag = n.type === 'title' ? (`h${n.level ?? (hasHeading ? 2 : 1)}` as 'h1'|'h2'|'h3') : n.type === 'badge' ? 'span' : 'p';
+        if(n.type==='title')hasHeading=true;
         out = element(tag, `iui-${n.type}`); const target = out;
         bind(() => target.textContent = text(value(n.value)));
         if ('color' in n && n.color) out.dataset.color = n.color;
@@ -180,7 +182,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   function replace(next: unknown) {
     ensureLive(); const validation=validateDocument(next);if(!validation.ok)throw new InvalidDocumentError(validation.issues);
     const evaluated=evaluateState(validation.document);if(!evaluated.ok)throw new InvalidDocumentError(evaluated.issues);
-    clear();current=validation.document;state={...evaluated.state};computed={...evaluated.computed};
+    clear();hasHeading=false;current=validation.document;state={...evaluated.state};computed={...evaluated.computed};
     root=element('article','iui-root');root.dataset.theme=current.theme??'auto';root.dir='auto';
     if(options.styles!==false){const style=element('style');style.textContent=styles;root.append(style);}
     if(current.title)root.setAttribute('aria-label',current.title);
