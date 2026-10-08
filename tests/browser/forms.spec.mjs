@@ -55,7 +55,7 @@ for (const colorScheme of ['light', 'dark']) for (const width of [390, 768, 1100
     await form.getByRole('textbox', { name: '演示邮箱' }).focus();
     await page.keyboard.press('Enter');
     await expect(form).toHaveAttribute('data-status', 'success');
-    await expect(form.getByRole('status')).toHaveText('已完成当前视图的本地提交。');
+    await expect(form.locator('.iui-form-status')).toHaveText('已完成当前视图的本地提交。');
     await form.getByRole('button', { name: '恢复初值' }).click();
     await expect(amount).toHaveValue('126');
     await expect(people).toHaveValue('3');
@@ -127,7 +127,7 @@ test('forms: actual failure is announced and retry succeeds', async ({ page }) =
   const form = page.getByRole('form', { name: 'Action form' });
   await form.getByRole('button', { name: 'Submit', exact: true }).click();
   await expect(form).toHaveAttribute('data-status', 'error');
-  await expect(form.getByRole('status')).toHaveText('Submission failed. Try again.');
+  await expect(form.locator('.iui-form-status')).toHaveText('Submission failed. Try again.');
   await page.screenshot({ path: 'test-results/forms-action-error.png', fullPage: true });
   await form.getByRole('button', { name: 'Submit', exact: true }).click();
   await expect(form).toHaveAttribute('data-status', 'success');
