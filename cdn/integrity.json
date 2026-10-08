@@ -9,9 +9,9 @@
       "integrity": "sha384-q6xRJc2CDTphYtQXcXMi4Q1l1LAiGADj2KQ0pvFqteqUJOxm2IygaZpSMK2K8oOB"
     },
     "iui.min.js.map": {
-      "bytes": 616882,
-      "sha256": "8113c7d727b2f988492d5cf69c50cb73789e5952662719ac371b48b236f83abe",
-      "integrity": "sha384-hQr8fiJvRgA43efa4MZCPuaVlCmliEMp+wtd3bnmA9YLko4elwmNX0ikf055COju"
+      "bytes": 616846,
+      "sha256": "bb95900ca73b28bdec63c8bec37e3ad78ad911d85a3369efd56ab5993bea2fd7",
+      "integrity": "sha384-9YDlNGcO0Oeho/8j0p6fS8bxgH+3cw/utRCou89QTOsmlb1qPTWB8EO8k9AnOgRx"
     },
     "iui.global.min.js": {
       "bytes": 910886,
@@ -19,9 +19,9 @@
       "integrity": "sha384-TFjBiCHoXGNRCByDYBY6XFhOH947MPPBDx4MuISbZ/LDo/ZnmzwCHLxVWj6vXG/G"
     },
     "iui.global.min.js.map": {
-      "bytes": 617129,
-      "sha256": "b7b0b227abfcb303794c5a665e04abf99056f01f93b2f50500509b3790b4ad7c",
-      "integrity": "sha384-0EGCUC6QgmVFajKPd3ioSEzy0BIYi6LrOuZJvJbeBJ9LQ276qICfBobtWjcC31ma"
+      "bytes": 617093,
+      "sha256": "b0e3d71d38cecc1b3e0b1394978098f29a98db2335e134fbc0b579e212a8ae9d",
+      "integrity": "sha384-qt6nwY+9pfZdh+0jxptGoj5nN4EGIMBDp/gP9S8vqUKPL0MZnrBOO4vuEK8p0XGa"
     },
     "iui.css": {
       "bytes": 36168,

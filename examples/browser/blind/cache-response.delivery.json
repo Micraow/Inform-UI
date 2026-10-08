@@ -1,8 +1,8 @@
 {
   "artifact": "cache-response.delivery.html",
-  "sha256": "b6c6c7f2ebfaf400240f6d187069fc3b2b6399b4f0c647b36825848242c2b310",
+  "sha256": "530b4970052da47fb20d455c0b5f4eb598fda2c155cedf0a1ba7b1a101801f2c",
   "authorRevisionSha256": "d9dd795c6780751771f98451a5503fe846f7221dc72a96a82d536ace7e90f461",
-  "cdnCommit": "b46f974d10d6a344fe5fc615e4aa5b895e4567f7",
+  "cdnCommit": "95bb0f2adccfd1f68db92dd38a17a6c89148ebd8",
   "changes": "Only fixed CDN commit URLs and their SRI were replaced. The author JSON, narrative, formulas, controls and standard bootstrap remain unchanged.",
   "jsonIdenticalToAuthorRevision": true
 }

@@ -4,7 +4,7 @@ import {build} from 'esbuild';
 import {mkdir,readFile,writeFile,copyFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 await mkdir('cdn',{recursive:true});
-const options={entryPoints:['src/browser.ts'],bundle:true,platform:'browser',target:'es2022',minify:true,sourcemap:'external',sourcesContent:false,loader:{'.css':'text'},legalComments:'eof',metafile:true,logLevel:'info'};
+const options={entryPoints:['src/browser.ts'],bundle:true,preserveSymlinks:true,platform:'browser',target:'es2022',minify:true,sourcemap:'external',sourcesContent:false,loader:{'.css':'text'},legalComments:'eof',metafile:true,logLevel:'info'};
 for(const [name,format] of [['iui.min.js','esm'],['iui.global.min.js','iife']]){
   const result=await build({...options,format,outfile:`cdn/${name}`,...(format==='iife'?{globalName:'IUI'}:{})});
   for(const [file,metadata]of Object.entries(result.metafile.outputs))if(file.endsWith('.js')&&metadata.imports.length)throw new Error(`CDN bundle has unresolved dependencies: ${file}`);
