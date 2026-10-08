@@ -40,3 +40,5 @@ const controller = mount(host, document, {
 可复用状态文档：[forms/states.json](../examples/forms/states.json)。[actions.mjs](../examples/forms/actions.mjs) 是原创离线演示适配器，提供显式完成的 pending 与首次失败后重试，没有计时器、fetch 或存储。loading/error 通过真实提交产生，不虚构未实现的 JSON status 字段。
 
 当前不支持文件上传、日期选择器、富文本编辑或任意正则约束。网页聊天只生成 JSON 时应使用默认本地表单；宿主操作示例供已有网页应用选择使用。
+
+原生控件若清理初值中的换行或空白，导致显示字符串与绑定状态不同，提交会被阻止并提示编辑。修正后的用户输入再写回状态；库不会默默提交未经同一规则验证的隐藏原值，也不会静默更改调用方初值。

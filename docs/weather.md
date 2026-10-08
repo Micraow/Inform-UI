@@ -18,4 +18,4 @@
 
 温度、湿度或降水概率未知时用 `null`；湿度与降水概率单位为百分比 `0–100`，`0` 不代表缺测。日期必须递增且不重复；逐小时顺序根据真实时间，而不是本地时钟文字。夏令时出现两次 `01:00` 时，数据表和读数保留各自偏移。
 
-状态测试文档见 [weather/states.json](../examples/weather/states.json)。它们可直接作为后续统一组件 Demo 的可编辑 JSON 输入。旧固定 CDN 只支持其对应 Schema；新节点在浏览器矩阵和截图验收通过后才会更新到新的固定入口。
+状态测试文档见 [weather/states.json](../examples/weather/states.json)。它们可直接作为后续统一组件 Demo 的可编辑 JSON 输入。旧固定CDN只支持其对应Schema；新固定入口与本页合同一起列于cdn.md，真实加载验收由该提交的CI记录。

@@ -1,39 +1,39 @@
 {
-  "commit": "95bb0f2adccfd1f68db92dd38a17a6c89148ebd8",
-  "js": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@95bb0f2adccfd1f68db92dd38a17a6c89148ebd8/cdn/iui.global.min.js",
-  "esm": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@95bb0f2adccfd1f68db92dd38a17a6c89148ebd8/cdn/iui.min.js",
-  "css": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@95bb0f2adccfd1f68db92dd38a17a6c89148ebd8/cdn/iui.css",
-  "schema": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@95bb0f2adccfd1f68db92dd38a17a6c89148ebd8/cdn/iui.schema.json",
+  "commit": "7c490585f3ae4b72999b3dd5db7a0b8ee65ac417",
+  "js": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.global.min.js",
+  "esm": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.min.js",
+  "css": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.css",
+  "schema": "https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.schema.json",
   "integrity": {
     "iui.min.js": {
-      "bytes": 910724,
-      "sha256": "de8345742e45fb336555fb83e06aa0c71650f542a92cae2b31f406f08eb9190b",
-      "integrity": "sha384-q6xRJc2CDTphYtQXcXMi4Q1l1LAiGADj2KQ0pvFqteqUJOxm2IygaZpSMK2K8oOB"
+      "bytes": 1052354,
+      "sha256": "c17f4fa2d40a8ba90912fd0ad8352214e034a4fa7b2f6d36520734c2cef95399",
+      "integrity": "sha384-9ICDX91YhgPP2VdY4AybxengmU+U9dL+eUFRJ3a6FAbQpCfPWh1mvjT2rtm99ZP5"
     },
     "iui.min.js.map": {
-      "bytes": 616882,
-      "sha256": "8113c7d727b2f988492d5cf69c50cb73789e5952662719ac371b48b236f83abe",
-      "integrity": "sha384-hQr8fiJvRgA43efa4MZCPuaVlCmliEMp+wtd3bnmA9YLko4elwmNX0ikf055COju"
+      "bytes": 754191,
+      "sha256": "e06531afe1c63dbb9e13680b4a087895a95032966e22c77524482c4b8f956968",
+      "integrity": "sha384-FN0drgZJ5LGIyPwUcQXYtHUzQmU+nrkECLpsrGwzV4ZIK/XFCAmxDtug/jl2iHnf"
     },
     "iui.global.min.js": {
-      "bytes": 910886,
-      "sha256": "d65ce70706a47ab60ba22c44aa0ed62b30c3177c542456caef94060b24025233",
-      "integrity": "sha384-TFjBiCHoXGNRCByDYBY6XFhOH947MPPBDx4MuISbZ/LDo/ZnmzwCHLxVWj6vXG/G"
+      "bytes": 1052516,
+      "sha256": "ec0ba94448dfbc5fb3150d471d93e1485063416f41fe3fead88174acee81ce08",
+      "integrity": "sha384-aCgRqdVDj8wl8C9Rz3p8JuyEkc606WMjP8ykO1kwjrvUVa/EQ9oH5Ne1ocHzA/CD"
     },
     "iui.global.min.js.map": {
-      "bytes": 617129,
-      "sha256": "b7b0b227abfcb303794c5a665e04abf99056f01f93b2f50500509b3790b4ad7c",
-      "integrity": "sha384-0EGCUC6QgmVFajKPd3ioSEzy0BIYi6LrOuZJvJbeBJ9LQ276qICfBobtWjcC31ma"
+      "bytes": 754438,
+      "sha256": "335a70006a23d735dd48b282d659696ccdbd7e6f4af4db51e9da27a9e5308000",
+      "integrity": "sha384-lXLTk9MTUCgCDdXt5pYSIJw3wgfeZ8LLyRlzCyoz+rIyf5e2qJln8XJvr/F6cjag"
     },
     "iui.css": {
-      "bytes": 36168,
-      "sha256": "78981f5ee46a2181f0b501e75d6da11634d35d54d3c75b7676bdde5e98fd4e51",
-      "integrity": "sha384-WnXEt8agh2ZXeEhfBtTnHQsYGmAt/wX2Vh71toJzflgPssB1I/G8s2z4VPi4nuaD"
+      "bytes": 50527,
+      "sha256": "65367db24b7db4c33a9ea25d6f916b4420b79accc00a21a12cd6e21d77683f36",
+      "integrity": "sha384-r0zJufAML6IlJGwy3/CCOf9IfetRaVAu0WOIwmVd49QUET9B0brLD+31Rqt3sKuH"
     },
     "iui.schema.json": {
-      "bytes": 44156,
-      "sha256": "1f871b9b5d46c6665fe8b73eee00e18b79c048dd0e111af7cb21ae1b4a4d99c9",
-      "integrity": "sha384-pT2LuIRJsGnYuCaf0hkulQV1aEv7X4kHyXsWM70FxEQhXVqWljQItseG14xBu9Rp"
+      "bytes": 60416,
+      "sha256": "85dc8f3473c0f753567cb318d81c43e3a2a5712288650136183c878dbc836a93",
+      "integrity": "sha384-vQbf97XSXRIo8Pfrv0fw63ONlwplIgbi7n/LBKU0XKWVgIUZTGSEsf/Nluwmq5v/"
     },
     "LICENSE.txt": {
       "bytes": 1084,
@@ -41,9 +41,9 @@
       "integrity": "sha384-fs/9yk2tITTI05uA/l7TfVsFa1fkyu3jR1JRbkjKSTgGbaV6otuGIdTf7lBGQY/E"
     },
     "THIRD_PARTY_NOTICES.md": {
-      "bytes": 3496,
-      "sha256": "8e09a6ce0cee57cb204c307300b9bbf1153677803fe487541deefa5405c856de",
-      "integrity": "sha384-E5lzr/htFm4JXVH2AH9VNDg/+f4qTRmn7Nn1ATy0n6T+cvIqWDo1r+zYYwxkWKoy"
+      "bytes": 3928,
+      "sha256": "200a8674f4556a240332f26ccaecd8dabaa6a54c6e8d8889d58a977e3de5a978",
+      "integrity": "sha384-JVQLy1BWoN/HhjvxkIDpkoX03uBIdGiVhR3leRQ81DPRntnZUrv/QMMgcZOvu3eT"
     },
     "fonts/LICENSE.txt": {
       "bytes": 1107,
