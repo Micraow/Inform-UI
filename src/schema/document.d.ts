@@ -63,6 +63,7 @@ export type Node =
   | ButtonNode
   | TopologyNode
   | ChartNode
+  | WeatherNode
   | SvgNode
   | NativeNode;
 
@@ -315,6 +316,7 @@ export interface TableNode {
 export interface MetricNode {
   type: "metric";
   id?: string;
+  variant?: "plain" | "card";
   label: string;
   value: Value;
   unit?: string;
@@ -495,6 +497,53 @@ export interface ChartNode {
   unit?: string;
   title?: string;
   note?: string;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+}
+export interface WeatherNode {
+  type: "weather";
+  id?: string;
+  location: {
+    name: string;
+    timezone: string;
+  };
+  updatedAt: string;
+  source: {
+    label: string;
+    url?: string;
+    synthetic: boolean;
+  };
+  units: {
+    temperature: "celsius" | "fahrenheit";
+  };
+  current: {
+    time: string;
+    temperature: number | null;
+    feelsLike?: number | null;
+    condition: "clear" | "partly-cloudy" | "cloudy" | "rain" | "snow" | "storm" | "fog" | "unknown";
+    humidity?: number | null;
+  };
+  /**
+   * @minItems 0
+   * @maxItems 16
+   */
+  daily: {
+    date: string;
+    low: number | null;
+    high: number | null;
+    condition: "clear" | "partly-cloudy" | "cloudy" | "rain" | "snow" | "storm" | "fog" | "unknown";
+    precipitationProbability: number | null;
+  }[];
+  /**
+   * @minItems 0
+   * @maxItems 384
+   */
+  hourly: {
+    time: string;
+    temperature: number | null;
+    precipitationProbability: number | null;
+  }[];
+  initialDate?: string;
   status?: "ready" | "loading" | "error";
   message?: string;
 }

@@ -235,6 +235,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if (node.id) { if (ids.has(node.id)) add(issue('DUPLICATE_ID', `${path}/id`, `Duplicate node id: ${node.id}.`)); ids.add(node.id); }
     for (const [value, at] of nodeValues(node, path)) capture(() => { infer(value, at); });
     inspectExtension(node,path,state,add);
+    if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
     if (node.type === 'image' && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Images must use HTTP(S) or base64 PNG, JPEG, GIF or WebP.'));

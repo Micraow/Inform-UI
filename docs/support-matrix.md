@@ -2,8 +2,8 @@
 
 `iui/1` is the Intelligent-UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The schema recognizes the 34 historical node names so that
-unsupported input can be diagnosed explicitly.
+ChatGPT services. The schema recognizes 35 project-defined node types, including the historical
+`native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
 `portable` backend is its main renderer, not a separate edition or an interim
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Count: 32 rendered + 1 plain-text fallback + 1 rejected = 34 node types.**
+**Count: 33 rendered + 1 plain-text fallback + 1 rejected = 34 node types.**
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -59,6 +59,7 @@ results from the current revision for those claims.
 | `button` | Rendered | Exactly two declarative actions: reset document state, or set one declared state value. No callbacks, network submission, clipboard, or arbitrary commands. |
 | `topology` | Rendered | Original SVG node/edge diagram with optional maximum-load highlighting and a textual summary. Layout is deterministic, not a general graph-layout engine. |
 | `chart` | Rendered | Line, grouped bar, scatter, area and single-series donut; explicit category/linear/time X axes, typed finite bounds, null gaps, empty/loading/error views, keyboard point readout, series switches and data table. No stacking, brush, zoom, export or chart-kind switch. See charts.md for axis rules and version boundaries. |
+| `weather` | Rendered | Supplied provenance/timezone/current/daily/hourly data; local date/unit/metric/chart-table controls; null, loading/empty/error states; explicit percent and DST semantics. No live provider connection. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 
@@ -110,4 +111,4 @@ For broader user-visible requirements, see the
 [52-capability assessment](gallery-capabilities.md). For source and media
 boundaries, see [provenance](provenance.md).
 
-Numeric chart increment: [synthetic state fixture](../examples/numeric-charts.json), [axis contract](charts.md). Forms/weather remain outside the current accepted schema until their independent integration.
+Numeric chart increment: [synthetic state fixture](../examples/numeric-charts.json), [axis contract](charts.md). Forms remain outside the current accepted schema until their independent integration. Weather has its own typed domain contract and examples; browser evidence is tracked per commit.

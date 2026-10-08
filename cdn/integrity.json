@@ -4,34 +4,34 @@
   "fonts": "KaTeX 0.18.2: official MIT WOFF2 assets, relative to this CSS. HTML visual output and accessible MathML.",
   "files": {
     "iui.min.js": {
-      "bytes": 922019,
-      "sha256": "0fd06fa7b5afcbfe6830bc3169a5dc30ee43eae5ed15fb80f1e34e5955cd42c8",
-      "integrity": "sha384-27qmIUXizteKRl6a01gb4ZnwdMC5nJKYGXMJhfyMnwv6feqSW9PA8OUJcrufBsok"
+      "bytes": 985993,
+      "sha256": "b5f90f62576ac5d972ef37c4d5864fe014b4fa86af2420470d0212d73f67bff6",
+      "integrity": "sha384-FrgfY/87cZDLIIqpSmmwQVOpxFpflu8hO/cmn087NcvJvhtL3V9uyQc5T69ThsJ2"
     },
     "iui.min.js.map": {
-      "bytes": 630287,
-      "sha256": "dbd5320f6d4966f13c6a18eb894ef009b3950500eef3233b403802fb9aef6214",
-      "integrity": "sha384-pDg3OgYPgLEYfAmrh6G+feWs1DtSdjZ1exSoRa/pSo4fsn+J5xIEI7M9O+0yNP5w"
+      "bytes": 686966,
+      "sha256": "abf636fe0bab42e4947b6cc015c1073cc227695f80b1d87c4215b32f9c37fb8d",
+      "integrity": "sha384-UA0nnM62vdBDgIDugqgWrIMinvBoPG46JQXAEMV31MlRMV+bauZGW1VvtRP+eJVC"
     },
     "iui.global.min.js": {
-      "bytes": 922181,
-      "sha256": "97dd69828f8bdac0d3bc28fd1fccb8504e18f549c6a5f8b080ee91d0853e1065",
-      "integrity": "sha384-CJVE1O/hXGXSRhZm+Zjw8M2kFSUSUmB7p+drEu80rZVfoYFBuEEErfd9Ci6qFK19"
+      "bytes": 986155,
+      "sha256": "8b23228283815fb6d2d0ae6c4fb5531f1368ccc08bfdcf6e27ccf60a1bbd9e8e",
+      "integrity": "sha384-yAGHDWbWLDgmBmJRW8xzHa1jg5QH/zguSgKvQr+1ApLnl7NLFQ9XZvHtMBh/GXj9"
     },
     "iui.global.min.js.map": {
-      "bytes": 630534,
-      "sha256": "5f9b7eeaffb1ad291b161db52b7939e887c1ec9ebd5ee013bbaac39cdcf2820e",
-      "integrity": "sha384-iKk3yQ7PpRWMXp7qQbnPcYKlgemtkpnJAl9Dh3z3q3OWWpzpul7AOGJJHehz8qG5"
+      "bytes": 687213,
+      "sha256": "3b9da57c356d74c07b41e948a17752cd9497e7f91b49e4d5aa9c9e21e56db135",
+      "integrity": "sha384-YsqKWSOKRMCX0hQ0OZKXWl5p/rl8wzEmYtPD8qhb/cbkxFXy+aJDLT7T9qEJ4vf3"
     },
     "iui.css": {
-      "bytes": 37078,
-      "sha256": "740fc2dc0122686378bf3d3a1a82ce8eac1ca4399818f815d3f37cb86c7afb63",
-      "integrity": "sha384-9Fq3UbRa6Q9iAyrL23NVarJ8niUEF6mYQJgAdAJn43rc4TQwsmKfLFedvkV1Z3Qe"
+      "bytes": 45818,
+      "sha256": "9439d353cca63b5b2d6e80ed1cbd72781e8b66759889097cb01aca15558b4a30",
+      "integrity": "sha384-WyhQAR0UMMz+mVLF94X8X2KMUI6fFjsS1tPcytezmtdkBYwkNAeOrnz0+Z6aYLjW"
     },
     "iui.schema.json": {
-      "bytes": 44902,
-      "sha256": "e73bf033b4d62b9db9609813be74eda81b048194b5c25a0319bf82595088a063",
-      "integrity": "sha384-c5ndDc7xKy72kNnY3YegaCWLrw8Q7WFj8Eps9cDTSysSWlCzJizW7iBEFLsie+m4"
+      "bytes": 51749,
+      "sha256": "d53d65571ede8f2efbf563e7997a42a0cf4fc40af402772462c79057c8b685e0",
+      "integrity": "sha384-xI8Ai0J2rFbpwrE4S51soRcHILPbPG5fUTY83zfyHJOjj0TudDG63KYOBv0AkAqk"
     },
     "LICENSE.txt": {
       "bytes": 1084,
@@ -39,9 +39,9 @@
       "integrity": "sha384-fs/9yk2tITTI05uA/l7TfVsFa1fkyu3jR1JRbkjKSTgGbaV6otuGIdTf7lBGQY/E"
     },
     "THIRD_PARTY_NOTICES.md": {
-      "bytes": 3496,
-      "sha256": "8e09a6ce0cee57cb204c307300b9bbf1153677803fe487541deefa5405c856de",
-      "integrity": "sha384-E5lzr/htFm4JXVH2AH9VNDg/+f4qTRmn7Nn1ATy0n6T+cvIqWDo1r+zYYwxkWKoy"
+      "bytes": 3928,
+      "sha256": "200a8674f4556a240332f26ccaecd8dabaa6a54c6e8d8889d58a977e3de5a978",
+      "integrity": "sha384-JVQLy1BWoN/HhjvxkIDpkoX03uBIdGiVhR3leRQ81DPRntnZUrv/QMMgcZOvu3eT"
     },
     "fonts/LICENSE.txt": {
       "bytes": 1107,

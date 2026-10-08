@@ -60,3 +60,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 Font provenance: pinned npm katex@0.18.2 dist/fonts, byte-for-byte copies. Upstream font project: https://github.com/KaTeX/katex-fonts (MIT, copyright 2018 Khan Academy). KaTeX browser requirements: https://katex.org/docs/browser.html.
+
+## Public visual token reference
+
+Selected numeric/color values were informed by OpenAI Apps SDK UI, Copyright 2025 OpenAI, MIT: https://github.com/openai/apps-sdk-ui/blob/main/LICENSE. The layout/CSS here is independently authored; no Apps SDK runtime is bundled. The MIT permission/warranty terms printed above apply to this referenced public material as well. Private captures and private font/CSS assets are not redistributed.

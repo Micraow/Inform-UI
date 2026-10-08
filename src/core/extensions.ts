@@ -21,6 +21,22 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
     if(node.kind==='scatter'&&scale==='category') error('CHART_AXIS','/xScale','Scatter requires an explicit linear or time xScale.');
     if(node.kind==='donut'&&(node.series.length!==1||scale!=='category'||node.xMin!==undefined||node.xMax!==undefined||node.yMin!==undefined||node.yMax!==undefined)) error('CHART_DONUT','','Donut uses one nonnegative series, category labels and no Cartesian bounds.');
   }
+  if(node.type==='weather') {
+    if(!validTimezone(node.location.timezone)) error('TIMEZONE','/location/timezone','Use a recognized IANA time zone.');
+    if(!Number.isFinite(timestamp(node.updatedAt))) error('WEATHER_DATE','/updatedAt','updatedAt must be a valid timestamp with offset.');
+    if(!Number.isFinite(timestamp(node.current.time))) error('WEATHER_DATE','/current/time','Current observation needs a valid timestamp with offset.');
+    let previous='';
+    node.daily.forEach((d,i)=>{
+      if(!validDate(d.date)||d.date<=previous) error('WEATHER_DATE',`/daily/${i}/date`,'Daily dates must be valid, unique and increasing.');previous=d.date;
+      if(d.low!==null&&d.high!==null&&d.low>d.high) error('WEATHER_RANGE',`/daily/${i}`,'Daily low must not exceed high.');
+    });
+    let prior=-Infinity;
+    node.hourly.forEach((h,i)=>{const ms=timestamp(h.time);if(!Number.isFinite(ms)||ms<=prior)error('WEATHER_DATE',`/hourly/${i}/time`,'Hourly timestamps must be valid, unique and increasing.');prior=ms;});
+    if(node.initialDate!==undefined&&(!validDate(node.initialDate)||!node.daily.some(d=>d.date===node.initialDate))) error('WEATHER_DATE','/initialDate','Initial date must name a provided daily forecast.');
+    const temperatures=[node.current.temperature,node.current.feelsLike,...node.daily.flatMap(d=>[d.low,d.high]),...node.hourly.map(h=>h.temperature)];
+    const absoluteZero=node.units.temperature==='celsius'?-273.15:-459.67;
+    if(temperatures.some(n=>typeof n==='number'&&(n<absoluteZero||n>1000))) error('WEATHER_RANGE','','Temperatures must be physically valid and suitable for a weather display.');
+  }
 }
 /** Stable finite domains, including a single extreme value; bounds never turn into NaN SVG coordinates. */
 export function chartXDomain(values:readonly number[],min?:number,max?:number,time=false):[number,number]{

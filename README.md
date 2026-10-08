@@ -131,6 +131,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 | [RTT 时间序列](examples/rtt.json) | 两组曲线、缺测空档、图例开关与数据表 |
 | [Wi-Fi 状态说明](examples/wifi.json) | 紧凑指标、单位和解释文字 |
 | [工具短名单](examples/shortlist.json) | 原创缩略图、标题、摘要与链接混排 |
+| [天气领域视图](examples/weather.json) | 调用方供数、当地日期/℃℉/温度降水/图表表格切换 |
 | [真实数值坐标](examples/numeric-charts.json) | 不等距/时间采样、五种图形与空/加载/错误状态 |
 | [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
@@ -138,7 +139,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 ## 当前支持范围
 
-目前识别 34 种节点：**32 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
+目前开发分支识别 35 种节点：**33 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
 `portable` 是现有 API 中的渲染方式名称；HTML 与嵌入网页是同一套库的用法，不是不同产品版本。后续能力沿独立公开实现扩展，历史私有桥接不属于产品路线。外部数据可来自本地或你选择的服务商。
 
@@ -150,6 +151,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 - [API 与 CLI 使用](docs/api.md)
 - [JSON Schema](src/schema/iui.schema.json) · [TypeScript 文档类型](src/schema/document.d.ts)
 - [节点支持表](docs/support-matrix.md) · [能力评估](docs/gallery-capabilities.md)
+- [数值图表](docs/charts.md) · [天气数据契约](docs/weather.md) · [视觉依据](docs/design-tokens.md)
 - [安全与资源策略](docs/security.md)
 - [开发指南](docs/development.md) · [架构决策](docs/architecture.md) · [验证记录](docs/verification.md)
 - [更新日志](CHANGELOG.md) · [来源与素材说明](docs/provenance.md)

@@ -1,3 +1,4 @@
+import {renderWeather} from './weather.js';
 import {renderChart} from './charts.js';
 import type {RendererContext} from './context.js';
 import katex from 'katex';
@@ -123,7 +124,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'box': case 'card': case 'row': case 'col': case 'grid': {
-        out=element('div',`iui-layout iui-${n.type}`);
+        out=element('div',`iui-layout iui-${n.type}`);if(n.gap===undefined&&['box','card','col'].includes(n.type))out.dataset.semanticGap='true';
         if(n.gap !== undefined) out.style.setProperty('--iui-gap',String(n.gap));
         if(n.padding !== undefined) out.style.setProperty('--iui-padding',String(n.padding));
         if(n.type==='grid') out.style.setProperty('--iui-columns',String(n.columns??2));
@@ -134,13 +135,13 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if(n.border!==undefined) out.dataset.border=String(n.border); if(n.background) out.dataset.background=n.background;
         children(out,n.children); break;
       }
-      case 'section': out=element('section','iui-layout'); if(n.heading)out.append(element('h2','',n.heading)); children(out,n.children); break;
-      case 'figure': out=element('figure','iui-layout'); children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
+      case 'section': out=element('section','iui-layout');out.dataset.semanticGap='true'; if(n.heading)out.append(element('h2','',n.heading)); children(out,n.children); break;
+      case 'figure': out=element('figure','iui-layout');out.dataset.semanticGap='true'; children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
       case 'carousel': out=element('div','iui-carousel'); out.tabIndex=0;out.setAttribute('role','region');out.setAttribute('aria-label',labels.collection);children(out,n.children);break;
       case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>showValue(li,value(item as Value)));out.append(li);}break;
       case 'table': {out=element('div','iui-table-wrap');const table=element('table');if(n.caption)table.append(element('caption','',n.caption));const head=element('thead'),tr=element('tr');for(const c of n.columns){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);const body=element('tbody');for(const row of n.rows){const r=element('tr');for(const cell of row){const td=element('td');bind(()=>showValue(td,value(cell)));r.append(td);}body.append(r);}table.append(body);out.append(table);break;}
-      case 'metric': {out=element('div','iui-metric');out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):display(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}
+      case 'metric': {out=element('div','iui-metric');out.dataset.variant=n.variant??'plain';out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):display(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}
       case 'metric-grid': out=element('div','iui-layout iui-metric-grid');out.style.setProperty('--iui-columns',String(n.columns??2));out.style.setProperty('--iui-mobile-columns',String(Math.min(2,n.columns??2)));children(out,n.children);break;
       case 'steps': out=element('ol','iui-steps');for(const item of n.items){const li=element('li');li.append(element('strong','',item.title));if(item.detail)li.append(element('p','',item.detail));if(item.latex)li.append(formula(item.latex));out.append(li);}break;
       case 'callout': out=element('aside','iui-callout',n.value);out.dataset.tone=n.tone??'neutral';break;
@@ -150,6 +151,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state});else fromControl({[n.action.bind!]:n.action.value!});});break;}
       case 'topology': out=topology(n);break;
       case 'chart': out=renderChart(context,n);break;
+      case 'weather': out=renderWeather(context,n);break;
       case 'svg': {out=svg('svg',{viewBox:n.viewBox,role:'img','aria-label':n.label??labels.diagram});out.classList.add('iui-svg');for(const shape of n.shapes){const s=svg(shape.tag,shape.attrs);if(shape.text)s.textContent=shape.text;out.append(s);}break;}
       case 'native': throw new Error('Native runtime is not supported');
       default: {const impossible: never=n;throw new Error(`Unsupported node: ${JSON.stringify(impossible)}`);}

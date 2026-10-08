@@ -21,6 +21,73 @@ body.iui-page{background:#fff}body.iui-page[data-theme=dark]{background:#191b1f}
 .iui-chart-readout:empty{display:none}.iui-chart circle.iui-point-active{stroke:var(--iui-ink);stroke-width:1.5}.iui-data-status{padding:24px 12px;text-align:center;color:var(--iui-muted);border:1px dashed var(--iui-line);border-radius:8px}.iui-data-status[data-state=error]{color:var(--iui-red)}.iui-data-status[data-state=loading]{background:var(--iui-surface)}
 .iui-chart [hidden]{display:none!important}
 
+
+/* Original weather layout; consumes the renderer's existing semantic palette. */
+.iui-weather{container-type:inline-size;min-width:0;max-width:100%;font-variant-numeric:tabular-nums}
+.iui-weather [hidden]{display:none!important}
+.iui-weather-header{display:flex;align-items:start;justify-content:space-between;gap:20px}
+.iui-root .iui-weather-location{font-size:1.3rem;line-height:1.35;letter-spacing:-.02em}
+.iui-weather-place{min-width:0}.iui-weather-place .iui-caption{margin-block-start:4px}
+.iui-weather-segment{display:flex;align-items:stretch;flex-wrap:wrap;gap:4px}
+.iui-root .iui-weather-segment button{min-height:40px;padding:7px 10px;border-color:transparent;white-space:normal;line-height:1.35}
+.iui-root .iui-weather-segment button[aria-pressed=true]{background:var(--iui-surface);border-color:var(--iui-line);font-weight:600}
+.iui-weather-current{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;padding-block:22px 20px}
+.iui-weather-current-main{display:flex;align-items:center;gap:12px}
+.iui-weather-current-icon{width:46px;height:46px;color:var(--iui-orange);flex:none}
+.iui-weather-current-temperature{font-size:2.7rem;line-height:1.1;letter-spacing:-.055em;font-weight:550}
+.iui-weather-current-description{flex:1;min-width:170px}
+.iui-weather-eyebrow{font-size:.76rem;color:var(--iui-muted)}.iui-weather-condition{font-size:1rem;font-weight:550}
+.iui-weather-current-description time{display:block;margin-block-start:4px;font-size:.74rem}
+.iui-weather-facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0;padding:0}
+.iui-weather-facts dt{font-size:.75rem;color:var(--iui-muted)}.iui-weather-facts dd{font-size:.85rem;margin:0}
+.iui-weather-days{display:flex;gap:0;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;padding-block:4px 8px;max-width:100%;border-block:1px solid var(--iui-line)}
+.iui-root .iui-weather-day{display:flex;flex:1 0 auto;min-width:64px;flex-direction:column;align-items:center;gap:8px;padding:10px 8px;border:none;border-radius:8px;background:transparent;line-height:1.3;scroll-margin-inline:8px}
+.iui-root .iui-weather-day[aria-selected=true]{background:var(--iui-surface);box-shadow:inset 0 -2px var(--iui-blue)}
+.iui-weather-day-date{font-size:.77rem;font-weight:550;white-space:nowrap}.iui-weather-day-icon{width:28px;height:28px;color:var(--iui-muted)}
+.iui-weather-day-range{font-size:.75rem;white-space:nowrap}.iui-weather-day-rain,.iui-weather-day-hourly{color:var(--iui-muted);font-size:.73rem}
+.iui-weather-panel{padding-block-start:20px}.iui-root .iui-weather-hourly-title{font-size:.88rem;font-weight:550;line-height:1.5}
+.iui-weather-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-block:8px 12px}
+.iui-weather-chart{display:block;width:100%;height:120px;overflow:hidden;outline-offset:3px}
+.iui-weather-chart:focus-visible,.iui-weather-table-wrap:focus-visible{outline:2px solid var(--iui-blue)}
+.iui-weather-grid{stroke:var(--iui-line);stroke-dasharray:3 4;stroke-width:1}
+.iui-weather-tick{fill:var(--iui-muted);font-size:10px;font-family:inherit}
+.iui-weather-line{stroke:var(--iui-orange);stroke-width:2;vector-effect:non-scaling-stroke}
+.iui-weather-point{fill:var(--iui-orange);stroke:var(--iui-bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.iui-weather-bar{fill:var(--iui-blue)}
+.iui-weather-point-active{stroke:var(--iui-ink);stroke-width:2;vector-effect:non-scaling-stroke}
+.iui-weather-cursor{stroke:var(--iui-muted);stroke-width:1;stroke-dasharray:2 3;pointer-events:none}
+.iui-weather-readout{display:block;min-height:2.6em;margin-block-start:8px;color:var(--iui-muted);font-size:.76rem;line-height:1.5}
+.iui-weather-table-wrap{max-width:100%;overflow:auto;max-height:320px;margin-block-start:8px}
+.iui-root .iui-weather-table{font-size:.78rem}.iui-root .iui-weather-table th,.iui-root .iui-weather-table td{padding:8px 10px;vertical-align:top}
+.iui-root .iui-weather-table tbody th{background:transparent;font-weight:400}.iui-root .iui-weather-table caption{padding:0 0 8px;font-size:.75rem}
+.iui-weather-source{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin-block-start:12px;padding-block-start:12px;border-block-start:1px solid var(--iui-line);font-size:.72rem;line-height:1.5;color:var(--iui-muted)}
+.iui-weather-synthetic{display:inline-block;padding-inline-start:8px;font-weight:600}
+.iui-weather-status,.iui-weather-empty{padding-block:22px;color:var(--iui-muted);font-size:.9rem}
+.iui-weather[data-status=loading] .iui-weather-status{min-height:310px;display:grid;place-items:center;background:linear-gradient(90deg,transparent,var(--iui-surface),transparent);border-radius:10px;margin-block-start:12px}
+.iui-weather[data-status=loading]{min-height:400px}.iui-weather[data-status=error] .iui-weather-status{color:var(--iui-red)}
+.iui-weather-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@container(max-width:400px){.iui-weather-current-temperature{font-size:2.3rem}.iui-weather-current{gap:12px}.iui-weather-current-description{min-width:145px}.iui-weather-facts{flex-basis:100%;gap:8px 22px}.iui-weather-toolbar{align-items:start}.iui-root .iui-weather-segment button{font-size:.77rem;min-height:40px;padding:7px 8px}.iui-weather-header{gap:8px}.iui-weather-source{display:block}.iui-weather-source time{display:block;margin-block-start:4px}}
+/* Semantic token baseline: public MIT Apps SDK UI values; interaction shades are original.
+   Explicit JSON gap/padding values still take precedence over relationship defaults. */
+.iui-root{--iui-bg:#fff;--iui-surface-primary:#fff;--iui-surface-secondary:#f9f9f9;--iui-surface-tertiary:#f3f3f3;--iui-surface:var(--iui-surface-secondary);--iui-ink:#0d0d0d;--iui-muted:#5d5d5d;--iui-tertiary:#8f8f8f;--iui-line:#e3e3e3;--iui-focus:#0169cc;--iui-hover:#f3f3f3;--iui-active:#e8e8e8;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+.iui-root[data-theme=dark]{--iui-bg:#212121;--iui-surface-primary:#212121;--iui-surface-secondary:#181818;--iui-surface-tertiary:#131313;--iui-ink:#fff;--iui-muted:#afafaf;--iui-tertiary:#8a8a8a;--iui-line:#414141;--iui-focus:#0285ff;--iui-hover:#303030;--iui-active:#3a3a3a}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto]{--iui-bg:#212121;--iui-surface-primary:#212121;--iui-surface-secondary:#181818;--iui-surface-tertiary:#131313;--iui-ink:#fff;--iui-muted:#afafaf;--iui-tertiary:#8a8a8a;--iui-line:#414141;--iui-focus:#0285ff;--iui-hover:#303030;--iui-active:#3a3a3a}}
+.iui-root [data-color=tertiary]{color:var(--iui-tertiary)}.iui-layout[data-background=surface]{background:var(--iui-surface-primary)}.iui-layout[data-background=surface-secondary]{background:var(--iui-surface-secondary)}.iui-layout[data-background=surface-tertiary]{background:var(--iui-surface-tertiary)}
+.iui-root :is(h1,h2,h3){font-weight:600}.iui-root .iui-caption{font-size:14px;line-height:20px}.iui-root .iui-metric-label{font-size:12px;line-height:18px}.iui-root .iui-metric-value{font-weight:600}.iui-metric[data-variant=plain]{background:none;padding:0;border-radius:0}
+.iui-layout{--iui-gap:2}.iui-layout[data-semantic-gap=true]{gap:0}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>*+*{margin-block-start:8px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>:is(h1,h2,h3)+*{margin-block-start:16px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>:is(h1,h2,h3)+:is(.iui-text,.iui-list){margin-block-start:8px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>*+.iui-caption{margin-block-start:4px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>:is(.iui-text,.iui-caption)+.iui-text{margin-block-start:0}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>hr{margin-block:16px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>hr+*{margin-block-start:16px}
+.iui-root :is(button,select){transition:background-color .12s,border-color .12s}.iui-root button:hover:enabled{background:var(--iui-hover)}.iui-root button:active:enabled{background:var(--iui-active)}.iui-root button:disabled{cursor:not-allowed;opacity:.55}.iui-root :is(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline-color:var(--iui-focus)}
+@media(max-width:520px){.iui-root{font-size:16px}}@media(prefers-reduced-motion:reduce){.iui-root *{transition:none!important}}
+body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:dark){body.iui-page[data-theme=auto]{background:#212121}}
+
+.iui-weather-area{fill:var(--iui-orange);fill-opacity:.12;stroke:none}
+
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).
 The MIT License (MIT)
