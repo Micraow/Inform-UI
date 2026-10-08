@@ -14,7 +14,7 @@
 - [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/iui.schema.json)
 - [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@b46f974d10d6a344fe5fc615e4aa5b895e4567f7/cdn/integrity.json)
 
-数学公式使用 MathML 和浏览器/系统字体，**没有额外字体下载**。两个脚本格式任选其一，不要同时加载。
+数学公式使用 KaTeX 可视排版与无障碍 MathML。CSS 会从同一固定提交的 `cdn/fonts/` 下载官方 MIT WOFF2 字体；部署时须保留这个目录。离线编译与默认 DOM 注入则内嵌相同字体。两个脚本格式任选其一，不要同时加载。
 
 ## 可复制的最小 HTML
 
@@ -88,7 +88,7 @@
 
 固定提交的两个 JS、CSS、Schema 已分别取回并核对 SHA-256：均为 HTTP 200，MIME 分别为 JavaScript/CSS/JSON，`Access-Control-Allow-Origin: *`，缓存为一年 `immutable`。机器可读锁定信息见 [`cdn-lock.json`](../cdn-lock.json)。
 
-真实浏览器是否通过，以 `tests/browser/cdn.spec.mjs` 对应的 [GitHub Actions](https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml) 结果为准。该测试从新上下文打开本地 `file://` HTML，禁用浏览器缓存并阻止 service worker，只允许固定 CDN JS/CSS/Schema，不注入本地运行库；另外验证计算、重置、MathML、错误提示和网络字节哈希。HTTP 200 本身不算渲染通过。
+真实浏览器是否通过，以 `tests/browser/cdn.spec.mjs` 对应的 [GitHub Actions](https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml) 结果为准。该测试从新上下文打开本地 `file://` HTML，禁用浏览器缓存并阻止 service worker，只允许固定 CDN JS/CSS/Schema 及字体，不注入本地运行库；另外验证计算、重置、MathML、错误提示和网络字节哈希。HTTP 200 本身不算渲染通过。
 
 普通网页聊天是否能够凭 Skill/Schema 独立生成合适的新页面，是另一层作者使用验收；基础 CDN smoke test 不代替这项测试。
 

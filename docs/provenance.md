@@ -91,7 +91,7 @@ also original geometric descriptions.
 
 ## Dependency and distribution boundaries
 
-Ajv provides JSON Schema validation; KaTeX provides formula parsing and MathML
+Ajv provides JSON Schema validation; KaTeX provides formula parsing, visual HTML, accessible MathML and official MIT fonts
 output. Build, type-generation, and test dependencies are declared separately
 in the package manifest. Review the package's third-party notices and lockfile
 when distributing a build; project licensing is not a substitute for those

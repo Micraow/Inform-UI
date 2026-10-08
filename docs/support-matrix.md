@@ -32,7 +32,7 @@ results from the current revision for those claims.
 | `caption` | Rendered | Lower-emphasis explanatory text; no source lookup. |
 | `markdown` | Plain-text fallback | Original characters are displayed as text. Formatting, embedded HTML, images, and Markdown links are not parsed. |
 | `code` | Rendered | Escaped preformatted code with optional language label. No execution, syntax highlighting, copy action, or editor. |
-| `math` | Rendered | KaTeX generates MathML with trust disabled. Unsupported syntax remains formula source with an accessibility label; no remote equation service or font download is required. |
+| `math` | Rendered | KaTeX generates visible HTML plus accessible MathML with trust disabled. Unsupported syntax remains formula source with an accessibility label; offline output embeds official MIT WOFF2 fonts; CDN CSS loads the same fonts from its pinned asset directory. No remote equation service is used. |
 | `badge` | Rendered | Compact text and semantic color. Size and arbitrary visual variants are not configurable. |
 | `divider` | Rendered | A semantic horizontal separator. |
 | `spacer` | Rendered | Bounded fixed-height spacing; not a general CSS or flex-spacer escape hatch. |

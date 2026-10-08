@@ -32,7 +32,7 @@ license grants, guarantees of host integration, or promises of future delivery.
 | cap-003 | Rich inline emphasis | Extension | Weight is available on text nodes; mixed inline bold/italic/underline/strike runs have no schema. |
 | cap-004 | Inline code | Extension | `code` provides a block; there is no inline-code span node. |
 | cap-005 | Code blocks with tooling | Extension | Escaped `code` blocks work; highlighting, copying, and editing require implementation. |
-| cap-006 | Mathematical typesetting | Implemented | `math` and step formulas use KaTeX MathML; invalid or unsupported TeX falls back to source. |
+| cap-006 | Mathematical typesetting | Implemented | `math` and step formulas use KaTeX HTML plus accessible MathML and bundled official fonts; invalid or unsupported TeX falls back to source. |
 | cap-007 | Quotation blocks | Extension | `callout` can emphasize text, but quotation semantics and attribution need a dedicated design. |
 | cap-008 | Badges | Implemented | `badge` supports text and semantic color. Catalog size/solid/outline variants are not exposed. |
 | cap-009 | Field labels and hints | Implemented | Labels are part of slider/toggle/select; captions can supply adjacent explanation. No independent form-label registry. |

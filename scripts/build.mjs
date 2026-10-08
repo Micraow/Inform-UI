@@ -1,12 +1,14 @@
+import {generateMathStyle} from './math-assets.mjs';
+await generateMathStyle();
 import {build} from 'esbuild';
-import {mkdir,copyFile} from 'node:fs/promises';
+import {mkdir,copyFile,readFile,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 await mkdir('dist',{recursive:true});
 const common={bundle:true,target:'es2022',loader:{'.css':'text'},logLevel:'info',legalComments:'linked'};
 await build({...common,entryPoints:['src/index.ts'],outfile:'dist/index.js',platform:'node',format:'esm',external:['katex']});
 await build({...common,entryPoints:['src/browser.ts'],outfile:'dist/browser.js',platform:'browser',format:'esm'});
 await build({...common,entryPoints:['src/standalone.ts'],outfile:'dist/standalone.js',platform:'browser',format:'iife',minify:true,legalComments:'eof'});
-await copyFile('src/renderer/style.css','dist/style.css');
+await writeFile('dist/style.css',(await readFile('src/renderer/style.css','utf8'))+'\n'+(await readFile('src/renderer/math-style.css','utf8')));
 execFileSync(process.execPath,['node_modules/typescript/bin/tsc','--emitDeclarationOnly'],{stdio:'inherit'});
 await mkdir('dist/types/schema',{recursive:true});
 await copyFile('src/schema/document.d.ts','dist/types/schema/document.d.ts');

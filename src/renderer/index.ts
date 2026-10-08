@@ -2,8 +2,9 @@ import katex from 'katex';
 import { evaluateState, evaluateValue, validateDocument } from '../core/index.js';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
+import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet;
+const styles: string = stylesheet + '\n' + mathStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -80,7 +81,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   const children = (parent: HTMLElement, nodes: readonly Node[]) => { for (const node of nodes) parent.append(render(node)); };
   function formula(latex: string, block = true) {
     const target = element(block ? 'div' : 'span', 'iui-math');
-    try { target.innerHTML = katex.renderToString(latex, {output:'mathml', displayMode:block, throwOnError:true, trust:false, strict:'error', maxExpand:200, maxSize:20}); }
+    try { target.innerHTML = katex.renderToString(latex, {output:'htmlAndMathml', displayMode:block, throwOnError:true, trust:false, strict:'error', maxExpand:200, maxSize:20}); }
     catch { target.textContent = latex; target.classList.add('iui-math-error'); target.setAttribute('aria-label', labels.formulaSource); }
     return target;
   }
