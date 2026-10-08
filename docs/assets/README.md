@@ -1,0 +1,12 @@
+# README 效果图来源
+
+本目录只含 Intelligent-UI 自己的原创合成示例运行截图，不含参考网站或用户提供的原始截图。
+
+| 图片 | 输入 | 验证环境 |
+| --- | --- | --- |
+| `hpcc-light.png` | [`examples/hpcc.json`](../../examples/hpcc.json) | Chromium，1100px，亮色 |
+| `rtt-dark.png` | [`examples/rtt.json`](../../examples/rtt.json) | Chromium，1100px，暗色 |
+
+两张图均来自核心提交 `aa17c6eab822fa59dbca548071cc98f1a8499805` 的 [GitHub Actions run 37761477677](https://github.com/Micraow/Intelligent-UI/actions/runs/37761477677)，使用本项目自己的 JSON→HTML 渲染链路生成。此后的首页/文档修改不改变这些示例的渲染代码。
+
+合成数据仅用于表达交互和排版，不是实测结果。素材随项目采用 MIT 许可；字体由测试浏览器环境提供，仓库没有分发字体文件。

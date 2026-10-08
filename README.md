@@ -1,106 +1,151 @@
-# Intelligent-UI
+<h1 align="center">Intelligent-UI</h1>
 
-An open, vendor-neutral JS/TS library for original scientific explanations from compact **`iui/1` JSON**. Any model, application, or person can supply the JSON; this library owns safe rendering, typography, state, equations, diagrams, charts, and responsive layout.
+<p align="center"><strong>让简短的 JSON，变成可阅读、可交互的科学解释。</strong></p>
+<p align="center">正文 · 公式 · 图表 · 拓扑 · 联动控件</p>
 
-This is an independent project, not an official OpenAI implementation. No captured runtime, private component bundle, or original reference screenshot is distributed.
+<p align="center">
+  <a href="https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml"><img src="https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml/badge.svg?branch=feat%2Fportable-core-20261008&amp;event=pull_request" alt="GitHub Actions CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"></a>
+  <a href="tsconfig.json"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&amp;logoColor=white" alt="TypeScript 5.9"></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/Node.js-%E2%89%A522-339933?logo=node.js&amp;logoColor=white" alt="Node.js 22 or newer"></a>
+</p>
 
-## One independent library
+<p align="center">
+  <a href="#快速开始">快速开始</a> ·
+  <a href="#一套库两种用法">两种用法</a> ·
+  <a href="#示例">示例</a> ·
+  <a href="#文档">文档</a>
+</p>
 
-Intelligent-UI runs without an OpenAI account, API, service, or runtime. Independent operation is the product's long-term foundation.
+Intelligent-UI 是一套 **独立、开源的 JavaScript / TypeScript 界面库**。模型、应用或人只需提供结构化内容，库负责排版、公式、图表与交互。适合技术说明、教学演示、研究笔记，以及需要图文混排的 AI 回答。
 
-There is one core library. `portable` is the existing backend's technical name in the API, not a separate edition, reduced-access tier, or temporary bridge to a future OpenAI-dependent product. Standalone HTML and embedding in another webpage are two delivery methods for the same library. Future components should extend the independent public implementation; historical private-runtime bridge experiments are outside this product's roadmap.
+**不需要 OpenAI 账号、API、服务或运行时。** 同一套库既能生成离线 HTML，也能嵌入你的网页。项目追求克制、清晰的编辑式科学表达。
 
-中文：Intelligent-UI 是一套面向所有人、可独立运行的公开库，不依赖 OpenAI。`portable` 只是现有 API 中的渲染方式名称；离线 HTML 和嵌入网页是同一套库的两种用法，不是多个产品版本。
+## 看看效果
 
-## Start locally
+下面是本库从原创 JSON 生成的真实浏览器截图。拖动示例中的滑块，链路瓶颈与窗口数值会一起更新。
 
-Node.js 22 or newer is required for building and the CLI. This package is **not published to npm**; use this checkout. The package.json flag `private: true` only prevents accidental npm publication; it does not restrict access to this public MIT-licensed source. Generated inline HTML can be used without Node.js.
+<p align="center">
+  <img src="docs/assets/hpcc-light.png" alt="HPCC 教学示例：链路拓扑、负载滑块、联动指标和数学公式" width="720">
+</p>
+
+<details>
+<summary>查看深色模式与 RTT 图表</summary>
+<br>
+<p align="center">
+  <img src="docs/assets/rtt-dark.png" alt="深色模式下的合成 RTT 曲线：两组数据、缺测空档和系列开关" width="720">
+</p>
+</details>
+
+截图中的数据均为示意，不是设备实测。图片来自本项目的合成示例与 Chromium 测试，未使用原版网站截图。[截图来源](docs/assets/README.md)
+
+## 能做什么
+
+- **自然的图文混排**：标题、正文、说明、卡片、列表、表格与步骤使用一致的排版和间距
+- **科学内容表达**：MathML 公式、SVG 拓扑、折线图与柱状图；保留单位和缺测数据
+- **可解释的交互**：滑块、开关、选择器和重置按钮，驱动声明式计算与联动指标
+- **适应阅读环境**：亮色 / 深色主题、窄屏重排、键盘操作和图表数据表
+- **一份 JSON，多处使用**：单文件离线 HTML、共享静态资源，或直接嵌入现有页面
+- **有约束的内容协议**：提供 `iui/1` Schema、TypeScript 类型与运行时校验，不执行模型提供的 JavaScript
+
+## 快速开始
+
+需要 **Node.js 22+** 构建和使用 CLI。生成后的单文件 HTML 不需要 Node.js。
+
+> 当前是源码开发预览，尚未发布 npm 包。以下命令使用已有实现的开发分支，不需要寻找同名 npm 包。
 
 ```sh
+git clone --branch feat/portable-core-20261008 https://github.com/Micraow/Intelligent-UI.git
+cd Intelligent-UI
 npm ci --ignore-scripts
 npm run build
+
 node bin/iui.mjs validate examples/hpcc.json
 node bin/iui.mjs build examples/hpcc.json --out output/hpcc.html --lang zh-CN
 ```
 
-Open the resulting HTML. Inline output is a single offline file with no remote scripts, fonts, analytics, or service dependency. External images remain placeholders until the reader explicitly loads them.
+用浏览器打开 `output/hpcc.html`，就能拖动滑块、查看瓶颈变化和公式反馈。默认输出包含所需代码与样式，可以离线运行；远程图片需要阅读者主动加载。
+
+## 一套库，两种用法
+
+### 1. 生成独立 HTML
+
+CLI 适合把模型输出保存成可直接打开、分享的页面：
 
 ```sh
-# Reuse content-hashed JS/CSS assets across documents; serve this output directory.
-node bin/iui.mjs build examples/rtt.json --out output/rtt.html --assets shared
-node bin/iui.mjs inspect examples/rtt.json
-node bin/iui.mjs doctor
+node bin/iui.mjs build answer.json --out answer.html --lang zh-CN
 ```
 
-`validate --json` prints machine-readable results. Invalid schema/semantics exits 1; file, argument, or JSON parsing errors exit 2. `preview` is not implemented yet; use your existing local static server for shared assets.
-
-## JavaScript API
+也可以在 Node.js 中调用：
 
 ```js
-import { validateDocument, compileHtml, compileArtifact } from './dist/index.js';
+import { readFile, writeFile } from 'node:fs/promises';
+import { compileHtml } from './dist/index.js';
 
-const spec = {
-  version: 'iui/1',
-  description: 'Illustrative values, not measurements.',
-  state: { load: 1.2 },
-  computed: { window: { op: 'round', args: [
-    { op: 'div', args: [100, { $: 'load' }] }, 1
-  ] } },
-  body: [
-    { type: 'title', level: 1, value: 'Explore a feedback relationship' },
-    { type: 'slider', label: 'Load', bind: 'load', min: 0.5, max: 1.5, step: 0.05 },
-    { type: 'metric', label: 'Illustrative window', value: { $: 'window' } }
-  ]
-};
-const result = validateDocument(spec);
-if (!result.ok) throw new Error(JSON.stringify(result.issues));
-const html = await compileHtml(result.document, { assets: 'inline', lang: 'en' });
-// For shared assets, write html and every relative-path entry in assets:
-const artifact = await compileArtifact(spec, { assets: 'shared' });
+const answer = JSON.parse(await readFile('examples/hpcc.json', 'utf8'));
+await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 ```
 
-Successful validation returns a detached, deeply frozen document. Errors consistently expose `{code, path, message}`, with JSON Pointer paths. Both compilers validate their input and reject invalid content. `compileHtml` returns a string; `compileArtifact` returns `{html, assets}`. Output is deterministic for the same input, options, and library version.
+多页共用资源时，CLI 支持 `--assets shared`；将输出 HTML 和 `iui-assets/` 一起放到静态服务器即可。[编译与 CLI 说明](docs/api.md)
 
-## Browser API
+### 2. 嵌入你的网页
 
-```js
-import { mount } from './dist/browser.js';
-const controller = mount(document.querySelector('#answer'), spec);
-controller.setState({ load: 0.9 });
-console.log(controller.getState());
-controller.update(nextDocument); // validate first, reset to the new document's state
-controller.dispose();           // detach owned UI and event/resize subscriptions
+在通过 HTTP(S) 提供的页面中，使用构建后的浏览器模块：
+
+```html
+<div id="answer"></div>
+<script type="module">
+  import { mount } from './dist/browser.js';
+
+  const controller = mount(document.querySelector('#answer'), {
+    version: 'iui/1',
+    state: { gain: 2 },
+    computed: { result: { op: 'mul', args: [12, { $: 'gain' }] } },
+    body: [
+      { type: 'title', value: '调节增益，观察读数' },
+      { type: 'slider', label: '增益', bind: 'gain', min: 1, max: 4, step: 1 },
+      { type: 'metric', label: '合成读数', value: { $: 'result' }, unit: '示意单位' }
+    ]
+  });
+
+  // controller.update(nextDocument); // 更新完整内容
+  // controller.dispose();            // 页面卸载时清理
+</script>
 ```
 
-Mount injects scoped styles by default. Supply `{styles: false}` and load `dist/style.css` yourself when the host owns stylesheet delivery. Multiple controllers keep separate state. Invalid document or state updates throw before changing the accepted data. After disposal, further state changes are rejected. API validation and rendering run synchronously; no asynchronous update queue or race-prone fetch is introduced.
+库默认注入有作用域的样式。已有样式管理或严格 CSP 的应用可自行加载 `dist/style.css`，并传入 `{ styles: false }`。[浏览器 API](docs/api.md#浏览器-api)
 
-See the generated [TypeScript document types](src/schema/document.d.ts), [JSON Schema](src/schema/iui.schema.json), [API/security notes](docs/security.md), and [original examples](examples).
+## 示例
 
-## What is implemented
+| 示例 | 可以体验什么 |
+| --- | --- |
+| [链路瓶颈与反馈](examples/hpcc.json) | 拓扑高亮、滑块、公式与指标联动 |
+| [RTT 时间序列](examples/rtt.json) | 两组曲线、缺测空档、图例开关与数据表 |
+| [Wi-Fi 状态说明](examples/wifi.json) | 紧凑指标、单位和解释文字 |
+| [工具短名单](examples/shortlist.json) | 原创缩略图、标题、摘要与链接混排 |
+| [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
-- 34 recognized node types: **32 rendered, 1 explicit plain-text fallback, 1 rejected native bridge**
-- Structural Ajv 2020-12 validation and semantic checks for expressions, cycles, types, state, chart/table/topology data, URLs, and SVG attributes
-- Ahead-of-time generated validator; no runtime schema compilation, `eval`, or model-written JavaScript
-- Line/bar charts with missing-data gaps, series toggles, and an accessible data table
-- Slider, checkbox, select, reset/set actions, and computed metrics
-- KaTeX-to-MathML equations, original SVG topology, scoped light/dark styles, narrow-screen layout
-- Inline/shared HTML compilation and `validate`, `build`, `inspect`, `doctor` commands
+想让 AI 生成这类 JSON，可搭配独立维护的 [Intelligent-UI-skill](https://github.com/Micraow/Intelligent-UI-skill)。核心库也可以单独使用。
 
-[The node matrix](docs/support-matrix.md) and [52-capability assessment](docs/gallery-capabilities.md) state exactly what is limited, rejected, or requires optional application-provided data/actions. A catalog entry is not a passing test. Scatter/pie charts, a general-purpose app sandbox, React-specific bindings, maps, live search, and media services are not implemented. Optional integrations may use any suitable provider or local data; none require OpenAI. The rejected historical `native` node is a diagnostic compatibility boundary, not another edition or a promised private adapter.
+## 当前支持范围
 
-## Development and verification
+目前识别 34 种节点：**32 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。图表当前支持折线与柱状图；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
-```sh
-npm run check             # generate, build, type-check, unit/DOM/CLI tests, source boundary
-npm run test:browser      # Playwright Chromium; install its browser separately if needed
-```
+`portable` 是现有 API 中的渲染方式名称；HTML 与嵌入网页是同一套库的用法，不是不同产品版本。后续能力沿独立公开实现扩展，历史私有桥接不属于产品路线。外部数据可来自本地或你选择的服务商。
 
-CI uses Node 22, Chromium, synthetic fixtures, 390px/desktop layouts, light/dark themes, CSP, repeated input/reset, chart gaps, series visibility, and lifecycle checks. Screenshots are evidence for visual review, not an automated pixel-match claim. No private reference assets are sent to CI.
+完整边界见 [节点支持表](docs/support-matrix.md) 和 [52 项能力评估](docs/gallery-capabilities.md)。能力目录不代表已经全部实现。公式外观会受浏览器与系统字体影响。
 
-Local unit/DOM tests run in Node; JSDOM is not a substitute for real-browser layout validation. Windows and macOS are not yet exercised in CI. Native MathML appearance depends on browser/platform fonts. See [verification notes](docs/verification.md) for the latest measured status.
+## 文档
 
-## Architecture and license
+- [API 与 CLI 使用](docs/api.md)
+- [JSON Schema](src/schema/iui.schema.json) · [TypeScript 文档类型](src/schema/document.d.ts)
+- [节点支持表](docs/support-matrix.md) · [能力评估](docs/gallery-capabilities.md)
+- [安全与资源策略](docs/security.md)
+- [开发指南](docs/development.md) · [架构决策](docs/architecture.md) · [验证记录](docs/verification.md)
+- [更新日志](CHANGELOG.md) · [来源与素材说明](docs/provenance.md)
 
-A single package keeps the first working vertical slice small: `src/schema`, `src/core`, `src/renderer`, `src/compiler.ts`, and `bin/iui.mjs`. The [authoring skill](https://github.com/Micraow/Intelligent-UI-skill) is maintained separately and validates its examples against this library.
+## 参与与许可
 
-Original source: [MIT](LICENSE). Third-party dependencies retain their licenses; see [notices](THIRD_PARTY_NOTICES.md) and [provenance](docs/provenance.md). npm publication, formal releases, deployment, and proprietary runtime redistribution are outside this milestone.
+欢迎通过 [Issue](https://github.com/Micraow/Intelligent-UI/issues) 提交问题、示例和改进建议。开始修改前请阅读[开发指南](docs/development.md)。
+
+源码采用 **[MIT License](LICENSE)**，第三方依赖保留各自许可，见 [Third-party notices](THIRD_PARTY_NOTICES.md)。`package.json` 的 `private: true` 仅防止误发 npm，不限制这份公开源码的使用。
