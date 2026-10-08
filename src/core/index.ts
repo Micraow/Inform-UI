@@ -1,3 +1,4 @@
+import {inspectExtension,timestamp,chartXDomain} from './extensions.js';
 import validateSchema from '../schema/validator.cjs';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
 export type { IUIDocument, Node, Value } from '../schema/document.js';
@@ -233,6 +234,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
   walkNodes(document, (node, path) => {
     if (node.id) { if (ids.has(node.id)) add(issue('DUPLICATE_ID', `${path}/id`, `Duplicate node id: ${node.id}.`)); ids.add(node.id); }
     for (const [value, at] of nodeValues(node, path)) capture(() => { infer(value, at); });
+    inspectExtension(node,path,state,add);
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
     if (node.type === 'image' && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Images must use HTTP(S) or base64 PNG, JPEG, GIF or WebP.'));
@@ -304,15 +306,17 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
     if (node.type === 'chart') {
       let observations = 0;
       const numeric: number[] = [];
+      const xs:number[]=[]; const scale=node.xScale??'category';
       node.data.forEach((row, i) => {
-        capture(() => { const x = evaluate(row[node.xKey], pointer(`${path}/data/${i}`, node.xKey)); if (typeof x !== 'string' && typeof x !== 'number') add(issue('CHART_X', pointer(`${path}/data/${i}`, node.xKey), 'Chart x values must be strings or numbers.')); });
+        capture(() => { const at=pointer(`${path}/data/${i}`,node.xKey),x=evaluate(row[node.xKey],at); if(scale==='category'){if(typeof x!=='string'&&typeof x!=='number')add(issue('CHART_X',at,'Category values must be strings or numbers.'));}else{const n=scale==='time'?timestamp(x):typeof x==='number'?x:NaN; if(!Number.isFinite(n))add(issue('CHART_X',at,'Numeric axes require finite numbers; time axes require epoch milliseconds or ISO timestamps with offset.'));else{if((node.xMin!==undefined&&n<node.xMin)||(node.xMax!==undefined&&n>node.xMax))add(issue('CHART_BOUNDS',at,'Observation is outside stated x bounds.'));if(node.kind!=='scatter'&&xs.length&&n<=xs.at(-1)!)add(issue('CHART_ORDER',at,'Line, area and bar numeric x values must be strictly increasing.'));xs.push(n);}} });
         node.series.forEach((series) => capture(() => {
           const at = pointer(`${path}/data/${i}`, series.key), value = evaluate(row[series.key], at);
           if (value !== null && typeof value !== 'number') add(issue('CHART_VALUE', at, 'Chart y values must be numbers or explicit null gaps.'));
-          if (typeof value === 'number') { observations++; numeric.push(value); if ((node.yMin !== undefined && value < node.yMin) || (node.yMax !== undefined && value > node.yMax)) add(issue('CHART_BOUNDS', at, 'Observation lies outside the stated y bounds.')); }
+          if (typeof value === 'number') { if(node.kind==='donut'&&value<0)add(issue('CHART_DONUT',at,'Donut values must be nonnegative.')); observations++; numeric.push(value); if ((node.yMin !== undefined && value < node.yMin) || (node.yMax !== undefined && value > node.yMax)) add(issue('CHART_BOUNDS', at, 'Observation lies outside the stated y bounds.')); }
         }));
       });
-      if (!observations) add(issue('CHART_EMPTY', `${path}/data`, 'A chart needs at least one numeric observation.'));
+      if(xs.length&&(()=>{const [a,b]=chartXDomain(xs,node.xMin,node.xMax,scale==='time');return !(a<b)||!Number.isFinite(b-a)||(scale==='time'&&(Math.abs(a)>8.64e15||Math.abs(b)>8.64e15));})())add(issue('CHART_BOUNDS',`${path}/data`,'X domain span must be finite.'));
+      if(node.kind==='donut'&&!Number.isFinite(numeric.reduce((a,b)=>a+b,0)))add(issue('CHART_DONUT',`${path}/data`,'Donut total must be finite.'));
       if (numeric.length) {
         const low = node.yMin ?? Math.min(0, ...numeric);
         const high = node.yMax ?? Math.max(1, ...numeric);

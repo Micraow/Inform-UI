@@ -59,10 +59,10 @@ license grants, guarantees of host integration, or promises of future delivery.
 | cap-030 | Date selection | Extension | No date picker, calendar, time-zone, or range-validation contract. |
 | cap-031 | Sliders | Implemented | `slider` binds bounded numeric state with a step and live output. |
 | cap-032 | Forms and submission | Extension | Individual controls exist; grouped validation, submission, and network actions do not. |
-| cap-033 | Line charts | Implemented | `chart.kind="line"`; multiple series, null gaps, visibility switches, readable data disclosure. |
+| cap-033 | Line charts | Implemented | `chart.kind="line"` or `area`; category/linear/time coordinates, null gaps, series switches, keyboard inspection and data disclosure. |
 | cap-034 | Bar charts | Implemented | `chart.kind="bar"`; grouped series with a zero-aware baseline. No stacking or chart-kind switch. |
-| cap-035 | Scatter plots | Extension | Not an accepted chart kind; do not relabel a line chart as scatter. |
-| cap-036 | Pie charts | Extension | Not an accepted chart kind; use a table or appropriate bar comparison until implemented. |
+| cap-035 | Scatter plots | Implemented | `chart.kind="scatter"` with explicit linear/time X; unordered points, negative coordinates and null gaps. |
+| cap-036 | Pie charts | Partial | `chart.kind="donut"` provides nonnegative composition with a center total. A full-disk pie variant is not exposed. |
 | cap-037 | Vector diagrams | Implemented | Constrained `svg` shapes and a dedicated `topology` node; no raw SVG injection. |
 | cap-038 | Statistical metrics | Implemented | `metric`, `metric-grid`; explicit units, precision, and notes. Data must be supplied. |
 | cap-039 | Icon vocabulary | Extension | Authors can supply original constrained shapes or text symbols. There is no icon-name registry or bundled third-party icon set. |

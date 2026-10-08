@@ -16,7 +16,7 @@ const english = {
   externalImage: 'External image', loadImage: 'Load external image',
   imageDisclosure: (hostname: string) => `Loading shares your IP address with ${hostname}.`,
   collection: 'Scrollable collection', diagram: 'Diagram', topology: 'Network topology',
-  maximumLoad: 'Maximum load', to: 'to'
+  maximumLoad: 'Maximum load', to: 'to', loading:'Loading…',empty:'No data available',loadError:'Data is unavailable',total:'Total'
 };
 const chinese: typeof english = {
   viewChartData: '查看图表数据', chartData: '图表数据', category: '类别', axisValue: '横轴值',
@@ -25,7 +25,7 @@ const chinese: typeof english = {
   externalImage: '外部图片', loadImage: '加载外部图片',
   imageDisclosure: (hostname: string) => `加载图片会向 ${hostname} 提供你的 IP 地址。`,
   collection: '可横向滚动的内容', diagram: '示意图', topology: '网络拓扑',
-  maximumLoad: '最大负载', to: '到'
+  maximumLoad: '最大负载', to: '到', loading:'正在加载…',empty:'暂无数据',loadError:'数据暂不可用',total:'合计'
 };
 
 /** Built-in labels follow the nearest host language; unsupported languages use English. */

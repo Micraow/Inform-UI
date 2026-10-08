@@ -460,20 +460,20 @@ export interface TopologyNode {
 export interface ChartNode {
   type: "chart";
   id?: string;
-  kind: "line" | "bar";
+  kind: "line" | "bar" | "scatter" | "area" | "donut";
   xKey: string;
+  xScale?: "category" | "linear" | "time";
+  xLabel?: string;
+  xMin?: number;
+  xMax?: number;
+  timezone?: string;
   /**
-   * @minItems 1
+   * @minItems 0
    * @maxItems 300
    */
-  data: [
-    {
-      [k: string]: Value;
-    },
-    ...{
-      [k: string]: Value;
-    }[]
-  ];
+  data: {
+    [k: string]: Value;
+  }[];
   /**
    * @minItems 1
    * @maxItems 6
@@ -495,6 +495,8 @@ export interface ChartNode {
   unit?: string;
   title?: string;
   note?: string;
+  status?: "ready" | "loading" | "error";
+  message?: string;
 }
 export interface SvgNode {
   type: "svg";

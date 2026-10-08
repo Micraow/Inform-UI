@@ -14,3 +14,9 @@
 
 .iui-root .iui-description{margin-block-end:24px}.iui-root .iui-body>*+*{margin-block-start:20px}.iui-root .iui-body>:is(h1,h2,h3)+*{margin-block-start:10px}.iui-marks>span{width:max-content}
 body.iui-page{background:#fff}body.iui-page[data-theme=dark]{background:#191b1f}@media(prefers-color-scheme:dark){body.iui-page[data-theme=auto]{background:#191b1f}}
+/* Chart interaction belongs to the figure and never changes the underlying values. */
+.iui-chart [tabindex]:focus-visible{outline:2px solid var(--iui-blue);outline-offset:2px;border-radius:4px}
+.iui-chart-controls .iui-swatch{display:inline-block;inline-size:8px;block-size:8px;border-radius:50%;flex:none}
+.iui-chart-key{display:inline-flex;align-items:center;gap:6px}.iui-chart-readout{display:block;font-size:12px;line-height:18px;color:var(--iui-muted);min-block-size:18px;overflow-wrap:anywhere}
+.iui-chart-readout:empty{display:none}.iui-chart circle.iui-point-active{stroke:var(--iui-ink);stroke-width:1.5}.iui-data-status{padding:24px 12px;text-align:center;color:var(--iui-muted);border:1px dashed var(--iui-line);border-radius:8px}.iui-data-status[data-state=error]{color:var(--iui-red)}.iui-data-status[data-state=loading]{background:var(--iui-surface)}
+.iui-chart [hidden]{display:none!important}

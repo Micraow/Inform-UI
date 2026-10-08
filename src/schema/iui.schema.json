@@ -1647,10 +1647,36 @@
         "kind": {
           "enum": [
             "line",
-            "bar"
+            "bar",
+            "scatter",
+            "area",
+            "donut"
           ]
         },
         "xKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "xScale": {
+          "enum": [
+            "category",
+            "linear",
+            "time"
+          ]
+        },
+        "xLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "xMin": {
+          "type": "number"
+        },
+        "xMax": {
+          "type": "number"
+        },
+        "timezone": {
           "type": "string",
           "minLength": 1,
           "maxLength": 200
@@ -1663,7 +1689,7 @@
               "$ref": "#/$defs/Value"
             }
           },
-          "minItems": 1,
+          "minItems": 0,
           "maxItems": 300
         },
         "series": {
@@ -1716,6 +1742,17 @@
           "maxLength": 12000
         },
         "note": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
           "type": "string",
           "maxLength": 12000
         }

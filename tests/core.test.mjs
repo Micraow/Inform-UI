@@ -163,7 +163,7 @@ test('duplicate ids, topology endpoints, loads and table widths are checked', ()
 test('chart null gaps stay valid while missing cells and misleading bounds fail', () => {
   assert.equal(validateDocument(doc([chart])).ok, true);
   invalid(doc([{ ...chart, data: [{ x: 'A' }] }]), 'CHART_MISSING');
-  invalid(doc([{ ...chart, data: [{ x: 'A', y: null }] }]), 'CHART_EMPTY');
+  assert.equal(validateDocument(doc([{ ...chart, data: [{ x: 'A', y: null }] }])).ok,true); // Explicit empty state, never a fabricated zero.
   invalid(doc([{ ...chart, data: [{ x: 'A', y: '1' }] }]), 'CHART_VALUE');
   invalid(doc([{ ...chart, data: [{ x: null, y: 1 }] }]), 'CHART_X');
   invalid(doc([{ ...chart, yMin: 2, yMax: 1 }]), 'CHART_BOUNDS');

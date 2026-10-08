@@ -1,3 +1,5 @@
+import {renderChart} from './charts.js';
+import type {RendererContext} from './context.js';
 import katex from 'katex';
 import { evaluateState, evaluateValue, validateDocument } from '../core/index.js';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
@@ -78,6 +80,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
     try { change(patch); } catch(e) { notify(); fail(e); }
   }
   function ensureLive() { if (disposed) throw new Error('This UI controller has been disposed'); }
+  const context:RendererContext={doc,prefix,labels:()=>labels,element,svg,on,bind,cleanup:fn=>removers.push(fn),value,display,showValue,getState:()=>state,change,fromControl,render,actions:{}};
   const children = (parent: HTMLElement, nodes: readonly Node[]) => { for (const node of nodes) parent.append(render(node)); };
   function formula(latex: string, block = true) {
     const target = element(block ? 'div' : 'span', 'iui-math');
@@ -146,7 +149,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
       case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state});else fromControl({[n.action.bind!]:n.action.value!});});break;}
       case 'topology': out=topology(n);break;
-      case 'chart': out=chart(n);break;
+      case 'chart': out=renderChart(context,n);break;
       case 'svg': {out=svg('svg',{viewBox:n.viewBox,role:'img','aria-label':n.label??labels.diagram});out.classList.add('iui-svg');for(const shape of n.shapes){const s=svg(shape.tag,shape.attrs);if(shape.text)s.textContent=shape.text;out.append(s);}break;}
       case 'native': throw new Error('Native runtime is not supported');
       default: {const impossible: never=n;throw new Error(`Unsupported node: ${JSON.stringify(impossible)}`);}
@@ -168,30 +171,6 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       graphic.setAttribute('aria-label',[n.caption,...n.nodes.map(node=>[node.label,node.subtitle].filter(Boolean).join(': ')),...n.links.map((link,i)=>`${link.from} ${labels.to} ${link.to}: ${link.label??''} ${loads[i]===null?'':display(loads[i])}`)].filter(Boolean).join('; '));
       summary.textContent=[n.caption,finite.length?`${labels.maximumLoad}: ${maximum.toFixed(2)}.`:''].filter(Boolean).join(' ');
     });return figure;
-  }
-  function chart(n: Extract<Node,{type:'chart'}>) {
-    const figure=element('figure','iui-chart');if(n.title)figure.append(element('figcaption','iui-chart-title',n.title));
-    const controls=element('div','iui-chart-controls'),visible=n.series.map(()=>true);figure.append(controls);
-    const graphic=svg('svg',{role:'img','aria-label':n.title??labels.chartData});figure.append(graphic);
-    const details=element('details'),tableHost=element('div');details.append(element('summary','',labels.viewChartData),tableHost);figure.append(details);if(n.note)figure.append(element('p','iui-caption',n.note));
-    const paint=()=>{graphic.replaceChildren();const width=Math.max(290,figure.clientWidth||640),height=240,pad={l:48,r:16,t:16,b:34},plotW=width-pad.l-pad.r,plotH=height-pad.t-pad.b;
-      graphic.setAttribute('viewBox',`0 0 ${width} ${height}`);
-      const resolved=n.data.map(row=>n.series.map(s=>row[s.key]==null?null:value(row[s.key] as Value)));
-      const nums=resolved.flat().filter((v):v is number=>typeof v==='number');const min=n.yMin??Math.min(0,...nums),max=n.yMax??Math.max(1,...nums);const span=max-min||1;
-      const x=(i:number)=>pad.l+(n.kind==='bar'?plotW*(i+.5)/n.data.length:n.data.length===1?plotW/2:i/(n.data.length-1)*plotW),y=(v:number)=>pad.t+(1-(v-min)/span)*plotH;
-      for(let tick=0;tick<=4;tick++){const v=min+(span*(tick/4)),yy=y(v);graphic.append(svg('line',{x1:pad.l,x2:width-pad.r,y1:yy,y2:yy,stroke:'var(--iui-line)'}));const label=svg('text',{x:pad.l-8,y:yy+4,'text-anchor':'end','font-size':11});label.textContent=Number(v.toFixed(2)).toString();graphic.append(label);}
-      const labelStep=Math.max(1,Math.ceil(n.data.length/(width<400?4:7)));for(let i=0;i<n.data.length;i++){if(i%labelStep!==0&&i!==n.data.length-1)continue;const label=svg('text',{x:x(i),y:height-8,'text-anchor':i===0?'start':i===n.data.length-1?'end':'middle','font-size':11});const full=display(value(n.data[i][n.xKey] as Value));label.textContent=shorten(full,10);const tip=svg('title');tip.textContent=full;label.append(tip);graphic.append(label);}
-      for(const [s,series]of n.series.entries()){if(!visible[s])continue;const group=svg('g',{'data-series':series.key});const color=palette[series.color??(['blue','green','orange','red','purple','gray'] as const)[s]];let segment='';const flush=()=>{if(segment)group.append(svg('path',{d:segment,fill:'none',stroke:color,'stroke-width':2.25}));segment='';};
-        for(let i=0;i<n.data.length;i++){const v=resolved[i][s];if(typeof v!=='number'){flush();continue;}if(n.kind==='line'){segment+=`${segment?'L':'M'} ${x(i)} ${y(v)} `;group.append(svg('circle',{cx:x(i),cy:y(v),r:3,fill:color}));}else {const count=n.data.length,groupWidth=plotW/count*.72,bw=groupWidth/n.series.length,cx=pad.l+plotW*(i+.5)/count;const baseline=y(Math.max(min,Math.min(max,0)));group.append(svg('rect',{x:cx-groupWidth/2+s*bw,y:Math.min(baseline,y(v)),width:Math.max(1,bw-2),height:Math.abs(y(v)-baseline),fill:color,rx:2}));}}
-        flush();graphic.append(group);}
-      const wrap=element('div','iui-table-wrap'),table=element('table'),head=element('thead'),tr=element('tr');
-      table.setAttribute('aria-label',n.title?`${labels.chartData}: ${n.title}`:labels.chartData);
-      for(const c of [n.kind==='bar'?labels.category:labels.axisValue,...n.series.map(s=>s.label+(n.unit?.trim()?` (${n.unit.trim()})`:''))]){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);
-      const tbody=element('tbody');for(const [i,row]of n.data.entries()){const tr=element('tr');for(const v of [value(row[n.xKey] as Value),...resolved[i]]){const cell=element('td');showValue(cell,v===null?labels.missing:v);tr.append(cell);}tbody.append(tr);}table.append(tbody);wrap.append(table);tableHost.replaceChildren(wrap);
-    };
-    for(const [i,series]of n.series.entries()){const label=element('label'),checkbox=element('input');checkbox.type='checkbox';checkbox.checked=true;checkbox.setAttribute('aria-label',`${labels.show} ${series.label}`);label.append(checkbox,doc.createTextNode(series.label));on(checkbox,'change',()=>{visible[i]=checkbox.checked;paint();});controls.append(label);}
-    // Chart table values are resolved scalars; render it without accumulating bindings.
-    bind(paint);return figure;
   }
   function replace(next: unknown) {
     ensureLive(); const validation=validateDocument(next);if(!validation.ok)throw new InvalidDocumentError(validation.issues);
