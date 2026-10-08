@@ -20,7 +20,9 @@ jobs:
       - run: npm audit --omit=dev
       - run: git diff --exit-code -- src/schema src/renderer/math-style.css cdn
       - run: npx playwright install --with-deps chromium
-      - run: sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+      - name: Install CJK test font with bounded network retries
+        timeout-minutes: 4
+        run: sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends fonts-noto-cjk
       - run: npm run test:browser
       - uses: actions/upload-artifact@v4
         if: always()
