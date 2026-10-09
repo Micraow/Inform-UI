@@ -1,14 +1,14 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分5，已写待验24，未实现174。
+当前固定分母为256项：功能已验53，部分5，已写待验28，未实现170。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-最近正式验收见[66节点证据](verification-66.md)。二十四项本地候选见[84节点本地冻结](local-enhancements-84.md)，本地测试不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
+最近正式验收见[66节点证据](verification-66.md)。二十八项本地候选见[88节点本地冻结](local-enhancements-88.md)，本地测试不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
-| base-animate | 动画/过渡与组编排 | 未实现 | 暂无专门实现证据 |
+| base-animate | 动画/过渡与组编排 | 已写待验 | 显式有限WAAPI预览/停止、子DOM保留、减少动态效果与生命周期边界已本地实现；无自动播放，真实浏览器待合批。 |
 | base-badge | 徽章 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-blockquote | 引用块 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-box | 基础容器 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -16,7 +16,7 @@
 | base-caption | 说明/图注 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-card | 卡片容器 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-carousel | 轮播 | 已写待验 | 有限原生上一/下一、RTL边界、子状态保留已本地实现；真实浏览器待约30组件合批。 |
-| base-celebration | 完成庆祝反馈 | 未实现 | 暂无专门实现证据 |
+| base-celebration | 完成庆祝反馈 | 已写待验 | 供数消息与有限本地装饰的显式预览已本地实现；不核实成就/完成，真实浏览器待合批。 |
 | base-line-chart | 折线图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-bar-chart | 柱状图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-area-chart | 面积图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -63,7 +63,7 @@
 | base-youtube | YouTube播放器 | 未实现 | 暂无专门实现证据 |
 | sports-schedule | Epl Schedule | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | sports-standings | Epl Standings | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| american-football-games | Cfb Games | 部分实现 | 通用scoreboard未覆盖完整橄榄球合同 |
+| american-football-games | Cfb Games | 部分 | 通用scoreboard未覆盖完整橄榄球合同 |
 | location-choice-request | Ask User Location V2 | 未实现 | 暂无专门实现证据 |
 | web-link-cards | Web Links Carousel | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
@@ -76,8 +76,8 @@
 | entity-reviews | Entity Reviews | 已写待验 | 供数评论的原生评分筛选/稳定排序与保留详情已本地实现；缺评分不变0，无发评/点赞，真实浏览器待合批。 |
 | restaurant-availability | Reservation Time Pills Ref | 已写待验 | 供数时段的原生日期筛选、可取消本地选择事件与生命周期防护已本地实现；不预订/刷新供应，真实浏览器待合批。 |
 | scheduled-task-suggestion | Offer Scheduled Prompt | 未实现 | 暂无专门实现证据 |
-| email-draft | Draft Email | 未实现 | 暂无专门实现证据 |
-| task-expansion-card | Task Expansion Card | 未实现 | 暂无专门实现证据 |
+| email-draft | Draft Email | 已写待验 | 供数收件人/主题与复用writing的本地正文编辑、选择、显式复制已本地实现；不发送邮件/打开账户，真实浏览器待合批。 |
+| task-expansion-card | Task Expansion Card | 已写待验 | 供数计划的原生详情、Reviewed本地勾选及恢复初始标记已本地实现；回顾不代表任务执行，真实浏览器待合批。 |
 | unit-converter | Unit Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
 | asset-distribution | Ledger Account Breakdown | 未实现 | 暂无专门实现证据 |
 | transaction-list | Ledger Recent Transactions | 未实现 | 暂无专门实现证据 |
@@ -223,7 +223,7 @@
 | multiple-choice-block-v2 | Multiple Choice Block V2 | 未实现 | 暂无专门实现证据 |
 | nba-game-boxscore | Nba Game Boxscore | 未实现 | 暂无专门实现证据 |
 | nba-player-summary | Nba Player Summary | 未实现 | 暂无专门实现证据 |
-| nba-scores | Nba Scores | 部分实现 | 通用scoreboard未覆盖完整NBA合同 |
+| nba-scores | Nba Scores | 部分 | 通用scoreboard未覆盖完整NBA合同 |
 | offer-voice-conversation | Offer Voice Conversation | 未实现 | 暂无专门实现证据 |
 | onboarding-feature-card | Onboarding Feature Card | 未实现 | 暂无专门实现证据 |
 | onboarding-plugin-suggestions | Onboarding Plugin Suggestions | 未实现 | 暂无专门实现证据 |
@@ -246,7 +246,7 @@
 | shared-activity-planner | Shared Activity Planner | 未实现 | 暂无专门实现证据 |
 | sidebar-fact-table | Sidebar Fact Table | 未实现 | 暂无专门实现证据 |
 | sidebar-people-also-ask | Sidebar People Also Ask | 未实现 | 暂无专门实现证据 |
-| soccer-games | Soccer Games | 部分实现 | 通用scoreboard未覆盖完整足球合同 |
+| soccer-games | Soccer Games | 部分 | 通用scoreboard未覆盖完整足球合同 |
 | speech-synthesizer | Speech Synthesizer | 未实现 | 暂无专门实现证据 |
 | stock-chart | Stock Chart | 功能已验 | 55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。 |
 | stock-comparison-chart | Stock Comparison Chart | 功能已验 | 55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。 |
@@ -258,8 +258,8 @@
 | task-autopause-card | Task Autopause Card | 未实现 | 暂无专门实现证据 |
 | tennis-player-summary | Tennis Player Summary | 未实现 | 暂无专门实现证据 |
 | visual-card-carousel | Visual Card Carousel | 未实现 | 暂无专门实现证据 |
-| weather-sidebar-title | Weather Sidebar Title | 部分实现 | 仅weather内标题，非独立组件 |
-| weather | Weather | 部分实现 | 旧天气变体行为未完整核对 |
+| weather-sidebar-title | Weather Sidebar Title | 部分 | 仅weather内标题，非独立组件 |
+| weather | Weather | 部分 | 旧天气变体行为未完整核对 |
 | weather-widget-v3 | Weather Widget V3 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | whats-new-capability-search | Whats New Capability Search | 未实现 | 暂无专门实现证据 |
 | whats-new-capability-welcome | Whats New Capability Welcome | 未实现 | 暂无专门实现证据 |

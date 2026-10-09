@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T10:28:59.436006+00:00",
+  "as_of_utc": "2026-10-09T10:56:34.266701+00:00",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -22,12 +22,12 @@
     "fixed_cdn_asset_commit": "d370ffb2df310fce0da9299e6e254a58509ba544",
     "loading_sources_verified_commit": "7db01a63d18d61a59f508e11433877b073ed5a7b",
     "loading_sources_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37898154911",
-    "local_enhancement_checkpoint": "See docs/local-enhancements-84.md;24 distinct local candidates await accumulated browser acceptance. Recommended CDN remains d370."
+    "local_enhancement_checkpoint": "See docs/local-enhancements-88.md;28 distinct local candidates await accumulated browser acceptance. Recommended CDN remains d370."
   },
   "counts": {
-    "not_implemented": 174,
+    "implemented_pending_verification": 28,
     "functionally_verified": 53,
-    "implemented_pending_verification": 24,
+    "not_implemented": 170,
     "partial": 5
   },
   "components": [
@@ -35,8 +35,8 @@
       "id": "base-animate",
       "name": "动画/过渡与组编排",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "显式有限WAAPI预览/停止、子DOM保留、减少动态效果与生命周期边界已本地实现；无自动播放，真实浏览器待合批。"
     },
     {
       "id": "base-badge",
@@ -91,8 +91,8 @@
       "id": "base-celebration",
       "name": "完成庆祝反馈",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供数消息与有限本地装饰的显式预览已本地实现；不核实成就/完成，真实浏览器待合批。"
     },
     {
       "id": "base-line-chart",
@@ -519,15 +519,15 @@
       "id": "email-draft",
       "name": "Draft Email",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供数收件人/主题与复用writing的本地正文编辑、选择、显式复制已本地实现；不发送邮件/打开账户，真实浏览器待合批。"
     },
     {
       "id": "task-expansion-card",
       "name": "Task Expansion Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供数计划的原生详情、Reviewed本地勾选及恢复初始标记已本地实现；回顾不代表任务执行，真实浏览器待合批。"
     },
     {
       "id": "unit-converter",

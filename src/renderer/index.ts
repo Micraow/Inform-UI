@@ -1,3 +1,6 @@
+import {renderEmailDraft} from './email-draft.js';
+import {renderTaskExpansionCard} from './task-expansion-card.js';
+import {renderMotion} from './motion.js';
 import {renderAvailability} from './availability.js';
 import {renderThread} from './thread.js';
 import {renderNewsArticle} from './news.js';
@@ -156,6 +159,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'label':out=fieldLabels.render(n);break;
       case 'person-profile':out=renderPersonProfile(context,n,labels.personUI);break;
       case 'writing-block':out=renderWriting(context,n,labels.writingUI);break;
+      case 'email-draft':out=renderEmailDraft(context,n,labels.draftReviewUI,labels.writingUI);break;
+      case 'task-expansion-card':out=renderTaskExpansionCard(context,n,labels.draftReviewUI);break;
       case 'markdown': out=renderMarkdown(context,n,labels.markdownUI);break;
       case 'code': out=renderCode(context,n,labels);break;
       case 'math': out = formula(n.latex,n.block ?? true); break;
@@ -195,6 +200,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'section': out=element('section','iui-layout');out.dataset.semanticGap='true'; if(n.heading)out.append(element('h2','',n.heading)); children(out,n.children); break;
       case 'figure': out=element('figure','iui-layout');out.dataset.semanticGap='true'; children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
+      case 'animate':case 'celebration':out=renderMotion(context,n,labels.motionUI);break;
       case 'carousel': out=renderCarousel(context,n,labels.carouselUI);break;
       case 'tab-group': out=renderTabs(context,n);break;
       case 'tab-panel': out=element('div','iui-tab-panel iui-layout');children(out,n.children);break;

@@ -41,8 +41,15 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
       }
     }
   }
+  if(node.type==='task-expansion-card') {
+    const seen = new Set<string>();
+    node.steps.forEach((step, i) => {
+      if (seen.has(step.id)) error('TASK_REVIEW_ID', '/steps/'+i+'/id', 'Step IDs must be unique.');
+      seen.add(step.id);
+    });
+  }
   if(node.type==='form') {
-    const visit=(n:Node)=>{if(n.type==='writing-block')error('WRITING_FORM','/children','Local writing drafts cannot be nested within forms.');if(n.type==='restaurant-menu')error('MENU_FORM','/children','Local menu search cannot be nested within forms.');if(n.type==='rating')error('RATING_FORM','/children','Standalone controlled ratings cannot be nested within forms.');if(n.type==='fill-blank'||n.type==='sentence-builder')error('LEARNING_FORM','/children','Local practice widgets cannot be nested within forms.');if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if(n.type==='tab-group')error('TAB_FORM','/children','Place a complete form inside a tab panel, rather than splitting one form across hidden panels.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
+    const visit=(n:Node)=>{if(n.type==='email-draft')error('EMAIL_FORM','/children','Local email drafts cannot be nested within forms.');if(n.type==='writing-block')error('WRITING_FORM','/children','Local writing drafts cannot be nested within forms.');if(n.type==='restaurant-menu')error('MENU_FORM','/children','Local menu search cannot be nested within forms.');if(n.type==='rating')error('RATING_FORM','/children','Standalone controlled ratings cannot be nested within forms.');if(n.type==='fill-blank'||n.type==='sentence-builder')error('LEARNING_FORM','/children','Local practice widgets cannot be nested within forms.');if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if(n.type==='tab-group')error('TAB_FORM','/children','Place a complete form inside a tab panel, rather than splitting one form across hidden panels.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
     node.children.forEach(visit);
   }
   if(node.type==='chart') {

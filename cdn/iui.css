@@ -961,6 +961,51 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 @media(max-width:480px){.iui-root .iui-thread{padding:12px}.iui-root .iui-thread .iui-thread-comment{padding-inline-start:8px}}
 @media(forced-colors:active){.iui-root .iui-thread,.iui-root .iui-thread .iui-thread-comment{border-color:CanvasText}.iui-root .iui-thread :is(.iui-thread-meta,.iui-thread-note){color:CanvasText}.iui-root .iui-thread .iui-thread-link{color:LinkText}.iui-root .iui-thread :focus-visible{outline-color:Highlight}}
 
+
+/* Bounded, explicit motion previews; real reading content and focus never clip. */
+.iui-root .iui-motion{min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);overflow-wrap:anywhere}
+.iui-root .iui-motion>*+*{margin-block-start:12px}
+.iui-root .iui-motion-label{font-size:1.15rem;line-height:1.4;white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-motion-content{min-inline-size:0;opacity:1;transform:none}
+.iui-root .iui-motion-content>*+*{margin-block-start:12px}
+.iui-root .iui-motion-note,.iui-root .iui-motion-empty{color:var(--iui-muted);font-size:.875rem}
+.iui-root .iui-celebration-message{white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-celebration-decoration{position:relative;block-size:52px;max-inline-size:100%;overflow:hidden;pointer-events:none;contain:paint}
+.iui-root .iui-celebration-shape{position:absolute;inline-size:8px;block-size:8px;border-radius:2px;opacity:.35;transform:none;pointer-events:none}
+.iui-root .iui-celebration-shape:nth-child(even){border-radius:50%}
+.iui-root .iui-motion-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.iui-root .iui-motion-controls button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-motion-controls button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-motion-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-motion-status{min-block-size:1.5em;font-size:.9rem}
+@media(max-width:520px){.iui-root .iui-motion{padding:12px}}
+@media(forced-colors:active){.iui-root .iui-motion,.iui-root .iui-motion-controls button{border-color:ButtonText}.iui-root .iui-motion-note,.iui-root .iui-motion-empty{color:CanvasText}.iui-root .iui-motion-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-celebration-shape{background:CanvasText!important;opacity:1}.iui-root .iui-motion-controls button:focus-visible{outline-color:Highlight}}
+
+
+/* Original local review cards. Plain authored content, native controls only. */
+.iui-root :is(.iui-email-draft,.iui-task-expansion-card){box-sizing:border-box;min-inline-size:0;max-inline-size:100%;margin:0;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root :is(.iui-email-title,.iui-task-review-title){font-size:1.15rem;line-height:1.5;font-weight:600;white-space:pre-wrap;max-inline-size:100%}
+.iui-root .iui-email-metadata{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:8px 16px;margin-block:12px}
+.iui-root .iui-email-metadata dt{font-weight:600}
+.iui-root .iui-email-metadata :is(dt,dd){min-inline-size:0;margin:0;white-space:pre-wrap}
+.iui-root .iui-email-recipients{margin:0;padding-inline-start:1.5em}
+.iui-root .iui-email-recipients>li{white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-email-empty{margin:0}
+.iui-root :is(.iui-email-disclosure,.iui-task-review-note,.iui-task-review-count){font-size:.875rem;color:var(--iui-muted);margin-block:10px;white-space:pre-wrap}
+.iui-root .iui-email-draft>.iui-writing-block{margin-block-start:12px;background:var(--iui-bg)}
+.iui-root .iui-task-review-steps{margin-block:12px;padding-inline-start:1.8em}
+.iui-root .iui-task-review-step{padding-block:12px;border-block-end:1px solid var(--iui-line)}
+.iui-root .iui-task-review-step-title{font-size:1rem;line-height:1.5;margin:0;white-space:pre-wrap}
+.iui-root :is(.iui-task-review-summary,.iui-task-review-description,.iui-task-review-details>p){margin-block:8px;white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-task-review-check{display:flex;align-items:center;gap:10px;min-block-size:44px;inline-size:fit-content;max-inline-size:100%;cursor:pointer}
+.iui-root .iui-task-review-check>input{inline-size:20px;block-size:20px;flex:none;accent-color:var(--iui-focus);margin:0}
+.iui-root .iui-task-review-details>summary{min-block-size:44px;box-sizing:border-box;padding-block:10px;cursor:pointer}
+.iui-root .iui-task-review-reset{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-task-expansion-card :is(input,button,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-task-expansion-card :is(input,button):disabled,.iui-root .iui-task-review-reset[aria-disabled=true]{color:var(--iui-disabled-text);cursor:default}
+@media(max-width:520px){.iui-root .iui-email-metadata{grid-template-columns:minmax(0,1fr);gap:4px}.iui-root .iui-email-metadata dd{margin-block-end:8px}}
+@media(forced-colors:active){.iui-root :is(.iui-email-draft,.iui-task-expansion-card,.iui-task-review-step){border-color:CanvasText}.iui-root :is(.iui-email-disclosure,.iui-task-review-note,.iui-task-review-count){color:CanvasText}.iui-root .iui-task-expansion-card :focus-visible{outline-color:Highlight}.iui-root .iui-task-expansion-card :is(input,button):disabled,.iui-root .iui-task-review-reset[aria-disabled=true]{color:GrayText}}
+
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).
 The MIT License (MIT)

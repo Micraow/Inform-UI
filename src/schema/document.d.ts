@@ -42,6 +42,8 @@ export type Node =
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
+  | EmailDraftNode
+  | TaskExpansionCardNode
   | CodeNode
   | MathNode
   | BadgeNode
@@ -70,6 +72,8 @@ export type Node =
   | CitationNode
   | WebLinkCardsNode
   | PromptSuggestionsNode
+  | AnimateNode
+  | CelebrationNode
   | CarouselNode
   | TabPanelNode
   | TabGroupNode
@@ -644,6 +648,44 @@ export interface WritingBlockNode {
   editable?: boolean;
   note?: string;
 }
+export interface EmailDraftNode {
+  type: "email-draft";
+  id?: string;
+  label: string;
+  subject: string;
+  body: string;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  to: string[];
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  cc?: string[];
+  note?: string;
+  editable?: boolean;
+}
+export interface TaskExpansionCardNode {
+  type: "task-expansion-card";
+  id?: string;
+  title: string;
+  summary?: string;
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  steps: [TaskReviewStep, ...TaskReviewStep[]];
+  disabled?: Value;
+}
+export interface TaskReviewStep {
+  id: string;
+  title: string;
+  description?: string;
+  details?: string;
+  reviewed?: boolean;
+}
 export interface MathNode {
   type: "math";
   id?: string;
@@ -936,6 +978,27 @@ export interface PromptSuggestionsNode {
 export interface PromptSuggestion {
   id: string;
   text: string;
+}
+export interface AnimateNode {
+  type: "animate";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 50
+   */
+  children: Node[];
+  effect?: "fade" | "rise";
+  duration?: number;
+  disabled?: boolean;
+}
+export interface CelebrationNode {
+  type: "celebration";
+  id?: string;
+  label: string;
+  message: string;
+  duration?: number;
+  disabled?: boolean;
 }
 export interface CarouselNode {
   type: "carousel";

@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 84 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 88 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working candidate source: 83 rendered + 1 rejected =84 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
+**Working candidate source: 87 rendered + 1 rejected =88 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -145,3 +145,5 @@ For broader user-visible requirements, see the
 boundaries, see [provenance](provenance.md).
 
 Numeric chart increment: [synthetic state fixture](../examples/numeric-charts.json), [axis contract](charts.md). Forms and weather have typed contracts and examples; browser evidence is tracked per commit. Sports schedule/scoreboard/standings are implemented in source; quiz/flashcards are implemented in source; finance quote/history/comparison have source/browser acceptance; heatmap also has source/browser acceptance; player/event/bracket/racing variants remain pending. See [sports contract](sports.md).
+
+The [28-candidate local checkpoint](local-enhancements-88.md) adds [explicit finite motion previews](motion.md) and [local email/plan review cards](draft-review.md). Full Node regression passes 863/863; real-browser acceptance remains pending. No email sending, task execution, provider call or achievement verification is supplied.

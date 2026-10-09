@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:d909c81c30422022012a0bad09204169573a3464fd10f93248cf038a51ee1142:document:base+finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:f9b19f37a786081bd1491b7471501be5b02f1f9aeeba473e85b30bd890f47db7:document:base+finance",
   "title": "Inform UI document subset: base, finance",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -247,6 +247,52 @@
         "type",
         "label",
         "events"
+      ],
+      "additionalProperties": false
+    },
+    "AnimateNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "animate"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "effect": {
+          "enum": [
+            "fade",
+            "rise"
+          ]
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 1000
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "children"
       ],
       "additionalProperties": false
     },
@@ -732,6 +778,43 @@
       ],
       "additionalProperties": false
     },
+    "CelebrationNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "celebration"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 300,
+          "maximum": 1800
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "message"
+      ],
+      "additionalProperties": false
+    },
     "ChecklistItem": {
       "type": "object",
       "properties": {
@@ -1096,6 +1179,67 @@
       },
       "required": [
         "type"
+      ],
+      "additionalProperties": false
+    },
+    "EmailDraftNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "email-draft"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "subject": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 320
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 320
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "editable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "subject",
+        "body",
+        "to"
       ],
       "additionalProperties": false
     },
@@ -2562,6 +2706,12 @@
           "$ref": "#/$defs/WritingBlockNode"
         },
         {
+          "$ref": "#/$defs/EmailDraftNode"
+        },
+        {
+          "$ref": "#/$defs/TaskExpansionCardNode"
+        },
+        {
           "$ref": "#/$defs/CodeNode"
         },
         {
@@ -2644,6 +2794,12 @@
         },
         {
           "$ref": "#/$defs/PromptSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/AnimateNode"
+        },
+        {
+          "$ref": "#/$defs/CelebrationNode"
         },
         {
           "$ref": "#/$defs/CarouselNode"
@@ -4038,6 +4194,75 @@
       "required": [
         "kind",
         "rows"
+      ],
+      "additionalProperties": false
+    },
+    "TaskExpansionCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "task-expansion-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TaskReviewStep"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "steps"
+      ],
+      "additionalProperties": false
+    },
+    "TaskReviewStep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 6000
+        },
+        "reviewed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title"
       ],
       "additionalProperties": false
     },

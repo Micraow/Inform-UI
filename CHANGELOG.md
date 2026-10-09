@@ -1,5 +1,11 @@
 # Changelog
 
+## Local motion and review checkpoint (browser pending)
+
+- Add explicit finite animation/celebration previews, a supplied email envelope with the existing local body editor, and native plan-review marks.
+- Guard reduced-motion and cancellation lifecycles; a failed cancellation does not claim the content is static. Email never sends and review marks never imply execution.
+- Full Node suite 863/863 passes, with all 306 production/build inputs unchanged throughout the run. Twenty-eight distinct candidates await accumulated browser acceptance; [stage evidence](docs/local-enhancements-88.md).
+
 ## Local supplied reading and availability checkpoint (browser pending)
 
 - Add supplied news articles, review filtering/sorting, explicit local availability choices and finite discussion trees.

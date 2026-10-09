@@ -19,6 +19,14 @@ async function mount(page,s=documentSpec()) {
   await page.goto('/mount.html');await page.waitForFunction(()=>!!window.iui);
   await page.evaluate(spec=>{window.labelsController=window.iui.mount(document.querySelector('#host'),spec);},s);
 }
+// Click the visible label with real input even when its associated control is disabled.
+// Playwright's enabledness check follows label.control, which would wait here.
+async function boundaryLabelClick(page,label){
+  await label.scrollIntoViewIfNeeded();const box=await label.boundingBox();expect(box).not.toBeNull();
+  const point={x:box.x+box.width/2,y:box.y+box.height/2};
+  expect(await label.evaluate((el,p)=>el.contains(el.ownerDocument.elementFromPoint(p.x,p.y)),point)).toBe(true);
+  await page.mouse.click(point.x,point.y);
+}
 const control=(page,kind)=>page.locator(`[data-bind="${kind}"]`);
 const extra=(page,kind)=>page.locator(`[data-iui=label][id$="extra-${kind}"]`);
 
@@ -64,7 +72,7 @@ test('Arabic-first RTL and forced colors preserve label wrap, names and focus',a
 
 test('native click keeps disabled and hidden boundaries; replacement isolates roots and old labels',async({page})=>{
   const spec={version:'iui/1',state:{check:false,locked:true},body:[{type:'label',target:'check',text:'Extra checkbox'},{type:'field',label:'Locked group',disabled:{$:'locked'},children:[{type:'input',id:'check',kind:'checkbox',bind:'check',label:'Original checkbox'}]},{type:'label',target:'hidden',text:'Hidden target'},{type:'details',summary:'Closed details',children:[{type:'input',kind:'text',id:'hidden',label:'Hidden input',bind:'text'}]}]};spec.state.text='Draft';
-  await mount(page,spec);const label=page.getByText('Extra checkbox',{exact:true}),check=page.locator('input[type=checkbox]');await label.click();await expect(check).not.toBeChecked();await expect(check).toBeDisabled();
+  await mount(page,spec);const label=page.getByText('Extra checkbox',{exact:true}),check=page.locator('input[type=checkbox]');await boundaryLabelClick(page,label);await expect(check).not.toBeChecked();await expect(check).toBeDisabled();
   await page.getByText('Hidden target',{exact:true}).click();await expect(page.locator('details')).not.toHaveAttribute('open','');
   await page.evaluate(()=>window.labelsController.setState({locked:false}));await label.click();await expect(check).toBeChecked();
   await page.evaluate(spec=>{window.oldLabel=document.querySelector('[data-iui=label]');window.labelsController.update(spec);document.querySelector('#host').append(window.oldLabel);},spec);expect(await page.evaluate(()=>window.oldLabel.control)).toBeNull();

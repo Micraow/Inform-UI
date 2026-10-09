@@ -1,0 +1,10 @@
+{
+  "version": "iui/1",
+  "title": "Local email draft review",
+  "state": {"count": 0},
+  "body": [
+    {"type":"email-draft","id":"main-email","label":"Fictional email draft","to":["Alex <alex@example.invalid>","Sam <sam@example.invalid>","Alex <alex@example.invalid>"],"cc":["Review <review@example.invalid>"],"subject":"Review the supplied outline","body":"Hello,\r\n\r\nHere is the supplied outline for review.\r\nThis is a local example only.\r\n\r\nThank you.","note":"Fictional addresses. Copy copies only the visible message body."},
+    {"type":"email-draft","label":"Empty local draft","to":[],"subject":"","body":""},
+    {"type":"email-draft","label":"مسودة عربية","to":["قارئ <reader@example.invalid>"],"subject":"مراجعة المسودة","body":"مرحباً،\nهذه مسودة محلية للمراجعة فقط.","editable":false}
+  ]
+}

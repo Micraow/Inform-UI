@@ -11,6 +11,14 @@ async function setup(page,input=fixture,lang='en'){
     window.availabilityController=window.iui.mount(host,{...input,state:{other:0,...input.state}});
   },{input,lang});return requests;
 }
+// aria-disabled keeps a native boundary button focusable; locator.click/tap intentionally
+// waits for ARIA-enabledness, so boundary activation uses real hit-tested input.
+async function activateBoundary(page,control,touch=false){
+  await control.scrollIntoViewIfNeeded();const box=await control.boundingBox();expect(box).not.toBeNull();
+  const point={x:box.x+box.width/2,y:box.y+box.height/2};
+  expect(await control.evaluate((el,p)=>el.contains(el.ownerDocument.elementFromPoint(p.x,p.y)),point)).toBe(true);
+  if(touch)await page.touchscreen.tap(point.x,point.y);else await page.mouse.click(point.x,point.y);
+}
 const first=page=>page.locator('.iui-availability').first();
 const choice=(root,id)=>root.locator(`[data-slot-id=${id}] button`);
 for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`availability ${theme} ${width}: native pointer/keyboard, persistent choice, clear boundary, no requests`,async({page})=>{
@@ -23,7 +31,7 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`avai
   await choice(root,'next').focus();await page.keyboard.press('Enter');await page.keyboard.press('Space');expect(await page.evaluate(()=>window.availabilityEvents.length)).toBe(3);
   await page.evaluate(()=>{window.availabilitySavedSlot=document.querySelector('[data-slot-id=early]');window.availabilityController.setState({other:1});});await expect(choice(root,'next')).toBeFocused();
   await select.selectOption('');expect(await page.evaluate(()=>window.availabilitySavedSlot===document.querySelector('[data-slot-id=early]'))).toBe(true);await expect(choice(root,'unavailable')).toBeDisabled();await expect(choice(root,'unavailable')).toContainText('Unavailable');
-  await clear.click();await expect(clear).toBeFocused();await expect(clear).toHaveAttribute('aria-disabled','true');await clear.click();expect(await page.evaluate(()=>window.availabilityEvents.length)).toBe(3);
+  await clear.click();await expect(clear).toBeFocused();await expect(clear).toHaveAttribute('aria-disabled','true');await activateBoundary(page,clear);expect(await page.evaluate(()=>window.availabilityEvents.length)).toBe(3);
   await expect(page.locator('.iui-availability').nth(1).locator('.iui-availability-empty')).toHaveText('No time options supplied.');
   expect(await root.locator('button,select').evaluateAll(els=>els.every(el=>el.getBoundingClientRect().height>=44))).toBe(true);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(requests).toEqual([]);expect(errors).toEqual([]);await page.screenshot({path:`test-results/availability-${theme}-${width}.png`,fullPage:true});
@@ -49,7 +57,7 @@ test('availability forced colors, inherited disabled controls and outer-form res
 test('availability genuine touch activates once, native selector filters and clear boundary remains focusable',async({browser})=>{
   const context=await browser.newContext({baseURL:'http://127.0.0.1:4173',hasTouch:true,viewport:{width:390,height:950}}),page=await context.newPage();const requests=await setup(page),root=first(page),select=root.locator('select'),clear=root.locator('.iui-availability-clear');
   await choice(root,'early').tap();await expect(choice(root,'early')).toHaveAttribute('aria-pressed','true');expect(await page.evaluate(()=>window.availabilityEvents.length)).toBe(1);
-  await select.tap();await page.keyboard.press('Escape');await select.selectOption('2026-10-10');await expect(choice(root,'early')).toBeHidden();await choice(root,'next').tap();await expect(choice(root,'next')).toHaveAttribute('aria-pressed','true');await clear.tap();await clear.tap();await expect(clear).toHaveAttribute('aria-disabled','true');expect(await page.evaluate(()=>window.availabilityEvents.length)).toBe(2);expect(requests).toEqual([]);await context.close();
+  await select.tap();await page.keyboard.press('Escape');await select.selectOption('2026-10-10');await expect(choice(root,'early')).toBeHidden();await choice(root,'next').tap();await expect(choice(root,'next')).toHaveAttribute('aria-pressed','true');await clear.tap();await expect(clear).toHaveAttribute('aria-disabled','true');await activateBoundary(page,clear,true);expect(await page.evaluate(()=>window.availabilityEvents.length)).toBe(2);expect(requests).toEqual([]);await context.close();
 });
 
 test('availability host cancellation, repeated event, pending forms, ordinary source link and lifecycle offline',async({page,context})=>{

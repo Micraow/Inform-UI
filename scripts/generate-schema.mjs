@@ -65,6 +65,10 @@ defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:t
 node('reddit-thread-card', { title:string(300,1), author:short, body:string(6000), source:object({label:short,url:string(2048,1)},['label']), comments:array(ref('ThreadComment'),0,50), community:short, score:threadScore, expanded:bool }, ['title','author','body','source','comments']);
 node('markdown', { value: string() }, ['value']);
 node('writing-block', { label: short, value: string(), editable: bool, note: string(1000) }, ['label','value']);
+// Original supplied envelope and local plan review; no services or execution.
+node('email-draft', { label:short, subject:string(300), body:string(), to:array(string(320,1),0,20), cc:array(string(320,1),0,20), note:string(1000), editable:bool }, ['label','subject','body','to']);
+defs.TaskReviewStep = object({id:key,title:short,description:string(2000),details:string(6000),reviewed:bool}, ['id','title']);
+node('task-expansion-card', {title:short,summary:string(2000),steps:array(ref('TaskReviewStep'),1,20),disabled:ref('Value')}, ['title','steps']);
 node('code', { value: string(), language: short, inline: bool, copy: bool, highlight: bool }, ['value']);
 // Inline code cannot opt into block controls. Keep exact disjoint structural
 // branches so validator, generated public types and all domain subsets agree.
@@ -105,6 +109,9 @@ node('web-link-cards', { label: short, items: array(ref('SourceRecord'),1,20) },
 // Original supplied prompt suggestions: explicit DOM handoff, no generated/chat content.
 defs.PromptSuggestion=object({id:key,text:string(2000,1)},['id','text']);
 node('prompt-suggestions',{label:short,description:string(1000),items:array(ref('PromptSuggestion'),1,12),initialVisible:integer(1,12)},['label','items']);
+// Original bounded previews; no automatic playback or arbitrary animation payloads.
+node('animate', { label:short, children:array(ref('Node'),0,50), effect:choice('fade','rise'), duration:integer(100,1000), disabled:bool }, ['label','children']);
+node('celebration', { label:short, message:string(1000,1), duration:integer(300,1800), disabled:bool }, ['label','message']);
 node('carousel', { children, label: short, controls: bool }, ['children']);
 node('tab-panel', { label: short, disabled: bool, children }, ['id','label','children']);
 node('tab-group', { label: short, initial: short, children: array(ref('TabPanelNode'),1,20) }, ['label','children']);

@@ -1,3 +1,4 @@
+import {motionEnglish,motionChinese} from './motion-labels.js';
 import {availabilityEnglish,availabilityChinese} from './availability-labels.js';
 import {threadEnglish,threadChinese} from './thread-labels.js';
 import {newsEnglish,newsChinese} from './news-labels.js';
@@ -16,6 +17,7 @@ import {sentenceBuilderEnglish,sentenceBuilderChinese} from './sentence-builder-
 import {markdownEnglish,markdownChinese} from './markdown-labels.js';
 import {codeEnglish,codeChinese} from './code-labels.js';
 import {writingEnglish,writingChinese} from './writing-labels.js';
+import {draftReviewEnglish,draftReviewChinese} from './draft-review-labels.js';
 import {carouselEnglish,carouselChinese} from './carousel-labels.js';
 import {sourceEnglish,sourceChinese} from './source-labels.js';
 import {loadingEnglish,loadingChinese} from './loading-labels.js';
@@ -35,6 +37,7 @@ export function formatNumber(value: number): string {
 
 import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
+  motionUI:motionEnglish,
   availabilityUI:availabilityEnglish,threadUI:threadEnglish,
   newsUI:newsEnglish,reviewsUI:reviewsEnglish,
   personUI:personEnglish,
@@ -49,6 +52,7 @@ const english = {
   pieUI:pieEnglish,
   codeUI: codeEnglish,
   writingUI: writingEnglish,
+  draftReviewUI: draftReviewEnglish,
   carouselUI: carouselEnglish,
   sources: sourceEnglish,
   loadingUI: loadingEnglish,
@@ -65,6 +69,7 @@ const english = {
   loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', invalidDate:'Enter a valid date.', beforeMinDate:'The date is before the earliest allowed date.', afterMaxDate:'The date is after the latest allowed date.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
+  motionUI:motionChinese,
   availabilityUI:availabilityChinese,threadUI:threadChinese,
   newsUI:newsChinese,reviewsUI:reviewsChinese,
   personUI:personChinese,
@@ -79,6 +84,7 @@ const chinese: typeof english = {
   pieUI:pieChinese,
   codeUI: codeChinese,
   writingUI: writingChinese,
+  draftReviewUI: draftReviewChinese,
   carouselUI: carouselChinese,
   sources: sourceChinese,
   loadingUI: loadingChinese,

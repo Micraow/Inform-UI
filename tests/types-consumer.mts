@@ -1,3 +1,5 @@
+import './draft-review-types-consumer.mjs';
+import './motion-types-consumer.mjs';
 import "./news-types-consumer.mjs";
 import "./button-types-consumer.mjs";
 import {compileArtifact,compileHtml,mount,validateDocument,evaluateState} from '../dist/index.js';
