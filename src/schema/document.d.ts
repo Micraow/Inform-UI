@@ -52,6 +52,8 @@ export type Node =
   | SectionNode
   | FigureNode
   | DetailsNode
+  | TooltipNode
+  | PopoverNode
   | CarouselNode
   | ListNode
   | TableNode
@@ -71,6 +73,9 @@ export type Node =
   | ButtonNode
   | TopologyNode
   | ChartNode
+  | ClockNode
+  | StopwatchNode
+  | TimerNode
   | WeatherNode
   | SportsScheduleNode
   | SportsScoreboardNode
@@ -204,6 +209,36 @@ export type TableNode1 =
       caption?: string;
       status?: "ready" | "loading" | "error";
       message?: string;
+    };
+export type ClockNode = {
+  type: "clock";
+  id?: string;
+  title?: string;
+  timezone: string;
+  mode: "live" | "snapshot";
+  at?: string;
+  hourCycle?: "h12" | "h23";
+  seconds?: boolean;
+} & ClockNode1;
+export type ClockNode1 =
+  | {
+      type?: "clock";
+      id?: string;
+      title?: string;
+      timezone?: string;
+      mode: "live";
+      hourCycle?: "h12" | "h23";
+      seconds?: boolean;
+    }
+  | {
+      type?: "clock";
+      id?: string;
+      title?: string;
+      timezone?: string;
+      mode: "snapshot";
+      at: string;
+      hourCycle?: "h12" | "h23";
+      seconds?: boolean;
     };
 
 /**
@@ -451,6 +486,25 @@ export interface DetailsNode {
    * @maxItems 500
    */
   children: Node[];
+}
+export interface TooltipNode {
+  type: "tooltip";
+  id?: string;
+  label: string;
+  value: string;
+  placement?: "top" | "bottom";
+}
+export interface PopoverNode {
+  type: "popover";
+  id?: string;
+  label: string;
+  title?: string;
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  children: [Node, ...Node[]];
+  placement?: "top" | "bottom";
 }
 export interface CarouselNode {
   type: "carousel";
@@ -784,6 +838,19 @@ export interface ChartNode {
   note?: string;
   status?: "ready" | "loading" | "error";
   message?: string;
+}
+export interface StopwatchNode {
+  type: "stopwatch";
+  id?: string;
+  title?: string;
+  elapsedMs?: number;
+  laps?: boolean;
+}
+export interface TimerNode {
+  type: "timer";
+  id?: string;
+  title?: string;
+  durationMs: number;
 }
 export interface WeatherNode {
   type: "weather";

@@ -1,6 +1,6 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验36，部分14，已写待验5，未实现201。
+当前固定分母为256项：功能已验36，部分14，已写待验10，未实现196。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
@@ -8,7 +8,7 @@
 |---|---|---|---|
 | base-animate | 动画/过渡与组编排 | 未实现 | 暂无专门实现证据 |
 | base-badge | 徽章 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-blockquote | 引用块 | 已写待验 | 基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。 |
+| base-blockquote | 引用块 | 已写待验 | 基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。 |
 | base-box | 基础容器 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-button | 按钮 | 部分实现 | 仅set/reset动作 |
 | base-caption | 说明/图注 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -20,7 +20,7 @@
 | base-area-chart | 面积图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-scatter-chart | 散点图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-checkbox | 复选框 | 部分实现 | 仅toggle基础绑定，缺独立required/disabled合同 |
-| base-code | 行内代码 | 已写待验 | 基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。 |
+| base-code | 行内代码 | 已写待验 | 基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。 |
 | base-col | 纵向布局 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-date-picker | 日期选择 | 未实现 | 暂无专门实现证据 |
 | base-divider | 分隔线 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -28,7 +28,7 @@
 | base-flashcard-flip | 双面翻卡容器 | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | base-flow | 流式铺排 | 未实现 | 暂无专门实现证据 |
 | base-form | 表单 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-grid | 网格 | 已写待验 | 基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。 |
+| base-grid | 网格 | 已写待验 | 基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。 |
 | base-html-view | 隔离HTML视图 | 未实现 | 暂无专门实现证据 |
 | base-icon | 图标 | 未实现 | 暂无专门实现证据 |
 | base-image | 图片 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -42,7 +42,7 @@
 | base-markdown | Markdown | 部分实现 | 纯文本降级 |
 | base-math | 数学公式 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-pie-chart | 饼图/环图 | 部分实现 | 只有donut |
-| base-popover | 弹出层 | 未实现 | 暂无专门实现证据 |
+| base-popover | 弹出层 | 已写待验 | 独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。 |
 | base-pressable | 可点击内容区 | 未实现 | 暂无专门实现证据 |
 | base-pulse-indicator | 脉冲状态指示 | 未实现 | 暂无专门实现证据 |
 | base-radio-group | 单选组 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -53,11 +53,11 @@
 | base-slider | 滑块 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-spacer | 间隔占位 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-svg | SVG矢量图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-table | 表格 | 已写待验 | 基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。 |
-| base-text | 文本 | 已写待验 | 基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。 |
+| base-table | 表格 | 已写待验 | 基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。 |
+| base-text | 文本 | 已写待验 | 基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。 |
 | base-textarea | 多行输入 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-title | 标题 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-tooltip | 工具提示 | 未实现 | 暂无专门实现证据 |
+| base-tooltip | 工具提示 | 已写待验 | 独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。 |
 | base-youtube | YouTube播放器 | 未实现 | 暂无专门实现证据 |
 | sports-schedule | Epl Schedule | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | sports-standings | Epl Standings | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -150,7 +150,7 @@
 | care-provider-results | Care Provider Results | 未实现 | 暂无专门实现证据 |
 | care-provider-sidebar | Care Provider Sidebar | 未实现 | 暂无专门实现证据 |
 | checklist | Checklist | 未实现 | 暂无专门实现证据 |
-| clock | Clock | 未实现 | 暂无专门实现证据 |
+| clock | Clock | 已写待验 | 独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。 |
 | code-cite | Code Cite | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-advice | Conversational Onboarding Advice | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-search | Conversational Onboarding Search | 未实现 | 暂无专门实现证据 |
@@ -159,8 +159,8 @@
 | copy-words | Copy Words | 未实现 | 暂无专门实现证据 |
 | create-interactive-poll | Create Interactive Poll | 未实现 | 暂无专门实现证据 |
 | cricket-match-boxscore | Cricket Match Boxscore | 未实现 | 暂无专门实现证据 |
-| digital-stopwatch | Digital Stopwatch | 未实现 | 暂无专门实现证据 |
-| digital-timer | Digital Timer | 未实现 | 暂无专门实现证据 |
+| digital-stopwatch | Digital Stopwatch | 已写待验 | 独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。 |
+| digital-timer | Digital Timer | 已写待验 | 独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。 |
 | display-automation | Display Automation | 未实现 | 暂无专门实现证据 |
 | election-results | Election Results | 未实现 | 暂无专门实现证据 |
 | email-preview | Email Preview | 未实现 | 暂无专门实现证据 |

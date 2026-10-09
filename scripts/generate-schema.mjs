@@ -50,6 +50,8 @@ node('blockquote', { children: array(ref('Node'), 1, 30), attribution: string(50
 node('section', { heading: string(), children }, ['children']);
 node('figure', { children, caption: string() }, ['children']);
 node('details', { summary: short, children }, ['summary', 'children']);
+node('tooltip', { label: short, value: string(2000), placement: choice('top', 'bottom') }, ['label', 'value']);
+node('popover', { label: short, title: short, children: array(ref('Node'), 1, 20), placement: choice('top', 'bottom') }, ['label', 'children']);
 node('carousel', { children }, ['children']);
 node('list', { ordered: bool, items: array({ anyOf: [ref('Value'), ref('Node')] }, 0, 100) }, ['items']);
 defs.TableCellObject = object({ value: ref('Value'), rowSpan: integer(1, 200), colSpan: integer(1, 20), header: bool, scope: choice('row', 'col', 'rowgroup'), align }, ['value']);
@@ -79,6 +81,15 @@ const probability = { anyOf: [{ type: 'number', minimum: 0, maximum: 100 }, { ty
 const condition = choice('clear', 'partly-cloudy', 'cloudy', 'rain', 'snow', 'storm', 'fog', 'unknown');
 const timestamp = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$', maxLength: 40 };
 const date = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$' };
+// Original in-page time controls. No OS alarms, remote synchronization or persistence.
+node('clock', { title: short, timezone: short, mode: choice('live', 'snapshot'), at: timestamp, hourCycle: choice('h12', 'h23'), seconds: bool }, ['timezone', 'mode'], 'time');
+const { at: _snapshotOnly, ...liveClock } = defs.ClockNode.properties;
+defs.ClockNode.oneOf = [
+  object({ ...liveClock, mode: { const: 'live' } }, ['mode']),
+  object({ ...defs.ClockNode.properties, mode: { const: 'snapshot' } }, ['mode', 'at'])
+];
+node('stopwatch', { title: short, elapsedMs: integer(0, 604800000), laps: bool }, [], 'time');
+node('timer', { title: short, durationMs: integer(1, 604800000) }, ['durationMs'], 'time');
 node('weather', { location: object({ name: short, timezone: short }, ['name', 'timezone']), updatedAt: timestamp, source: object({ label: short, url: string(2048), synthetic: bool }, ['label', 'synthetic']), units: object({ temperature: choice('celsius', 'fahrenheit') }, ['temperature']), current: object({ time: timestamp, temperature: nullableNumber, feelsLike: nullableNumber, condition, humidity: probability }, ['time', 'temperature', 'condition']), daily: array(object({ date, low: nullableNumber, high: nullableNumber, condition, precipitationProbability: probability }, ['date', 'low', 'high', 'condition', 'precipitationProbability']), 0, 16), hourly: array(object({ time: timestamp, temperature: nullableNumber, precipitationProbability: probability }, ['time', 'temperature', 'precipitationProbability']), 0, 384), initialDate: date, status: choice('ready', 'loading', 'error'), message: string() }, ['location', 'updatedAt', 'source', 'units', 'current', 'daily', 'hourly'], 'weather');
 
 // Shared project-owned sports model. Data is supplied; no provider or league rules are inferred.

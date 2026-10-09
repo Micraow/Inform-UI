@@ -1,0 +1,25 @@
+{
+  "version": "iui/1",
+  "title": "按需展开的说明",
+  "description": "原创本地合成示例：提示只包含文字，说明面板可以包含现有交互控件。",
+  "theme": "auto",
+  "state": { "count": 0, "note": "本地草稿" },
+  "body": [
+    { "type": "title", "value": "小提示与说明面板" },
+    { "type": "tooltip", "id": "help", "label": "什么是合成数据？", "value": "这页使用原创虚构数据，只用于展示组件行为。可悬停、聚焦或轻触此按钮查看；按 Escape 关闭。", "placement": "top" },
+    { "type": "popover", "id": "details", "label": "展开本地说明", "title": "编辑草稿", "children": [
+      { "type": "text", "value": "该面板不是模态窗口，可以继续使用背景内容。" },
+      { "type": "input", "kind": "text", "label": "草稿名称", "bind": "note" },
+      { "type": "text", "value": { "$": "count" } },
+      { "type": "button", "label": "记录一次", "action": { "kind": "set", "bind": "count", "value": 1 } },
+      { "type": "popover", "label": "查看更多说明", "title": "嵌套说明", "placement": "top", "children": [
+        { "type": "text", "value": "按一次 Escape 关闭最内层，再按一次关闭外层。" },
+        { "type": "tooltip", "label": "焦点如何返回？", "value": "关闭按钮和 Escape 会把焦点还给当前面板的触发按钮。" }
+      ] }
+    ] },
+    { "type": "popover", "label": "另一份说明", "children": [
+      { "type": "text", "value": "打开同级面板会关闭前一个分支；不会同时堆积多个同级面板。" }
+    ] },
+    { "type": "caption", "value": "内建文案跟随最近宿主语言；不支持原生顶层浮层的浏览器使用流式展开面板。" }
+  ]
+}

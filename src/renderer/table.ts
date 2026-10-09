@@ -15,7 +15,9 @@ const overlaps = (start: number, span: number, other: number, otherSpan: number)
 export function renderTable(c: RendererContext, n: TableNode): HTMLElement {
   const sequence = (sequences.get(c) ?? 0) + 1;
   sequences.set(c, sequence);
-  const id = `${c.prefix}table-${sequence}`;
+  // Caller node ids use c.prefix + node.id. Keep generated associations outside
+  // that namespace so a valid caller id cannot shadow a table/header/caption.
+  const id = `iui-table-internal-${c.prefix}${sequence}`;
   const container = c.element('div', 'iui-table-container');
   const scroll = c.element('div', 'iui-table-wrap iui-table-scroll');
   const table = c.element('table', 'iui-table');

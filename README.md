@@ -146,13 +146,15 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 | [本地学习](examples/learning.json) | 单选/多选、解释计分与重试，闪卡翻面、自评与总结 |
 | [金融快照](examples/finance.json) | 明确来源/时间、真实时间轴、相对共同基准比较（源码增量） |
 | [金融热图](examples/heatmap.json) | 真实权重面积、行业筛选、涨跌色阶与完整表（源码增量） |
+| [本地时间控件](examples/time.json) | 时区快照/设备时钟、秒表分圈、页内倒计时（源码候选） |
+| [提示与说明面板](examples/overlays.json) | 文本提示、非模态嵌套面板、焦点与关闭（源码候选） |
 | [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
 想让 AI 生成这类 JSON，可搭配独立维护的 [Inform-UI-skill](https://github.com/Micraow/Inform-UI-skill)。核心库也可以单独使用。
 
 ## 当前支持范围
 
-固定审计清单共256项，目前功能闭环已验36项、部分18项、已写待验0项、未实现202项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
+固定审计清单共256项，目前功能闭环已验36项、部分14项、已写待验10项、未实现196项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
 
 当前已验固定入口识别 52 种节点：**50 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 

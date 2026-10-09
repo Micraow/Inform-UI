@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T04:30:00Z",
+  "as_of_utc": "2026-10-09T05:21:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -12,13 +12,17 @@
     "heatmap_verified_commit": "8e8908dc6e4a93758ca5fc154a84d4130577f2e6",
     "heatmap_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37871441850",
     "converters_verified_commit": "b5664a8b94222f0cdb2952ac26d4592c68a92146",
-    "converters_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37878019661"
+    "converters_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37878019661",
+    "foundation_source_verified_commit": "3ca90cd6f0111dad3c889ab7ed180aac7dcce6c4",
+    "foundation_source_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37885593941",
+    "forms_boundary_verified_commit": "8fe02551ab98bb84d36f295b6f06537ceed3636f",
+    "forms_boundary_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37887521690"
   },
   "counts": {
-    "not_implemented": 201,
+    "not_implemented": 196,
     "functionally_verified": 36,
     "partial": 14,
-    "implemented_pending_verification": 5
+    "implemented_pending_verification": 10
   },
   "components": [
     {
@@ -40,7 +44,7 @@
       "name": "引用块",
       "layer": "primitive",
       "status": "implemented_pending_verification",
-      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
+      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
     },
     {
       "id": "base-box",
@@ -124,7 +128,7 @@
       "name": "行内代码",
       "layer": "primitive",
       "status": "implemented_pending_verification",
-      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
+      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
     },
     {
       "id": "base-col",
@@ -184,7 +188,7 @@
       "name": "网格",
       "layer": "primitive",
       "status": "implemented_pending_verification",
-      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
+      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
     },
     {
       "id": "base-html-view",
@@ -281,8 +285,8 @@
       "id": "base-popover",
       "name": "弹出层",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
     },
     {
       "id": "base-pressable",
@@ -359,14 +363,14 @@
       "name": "表格",
       "layer": "primitive",
       "status": "implemented_pending_verification",
-      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
+      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
     },
     {
       "id": "base-text",
       "name": "文本",
       "layer": "primitive",
       "status": "implemented_pending_verification",
-      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
+      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
     },
     {
       "id": "base-textarea",
@@ -386,8 +390,8 @@
       "id": "base-tooltip",
       "name": "工具提示",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
     },
     {
       "id": "base-youtube",
@@ -1041,8 +1045,8 @@
       "id": "clock",
       "name": "Clock",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
     },
     {
       "id": "code-cite",
@@ -1104,15 +1108,15 @@
       "id": "digital-stopwatch",
       "name": "Digital Stopwatch",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
     },
     {
       "id": "digital-timer",
       "name": "Digital Timer",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
     },
     {
       "id": "display-automation",

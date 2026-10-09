@@ -1,4 +1,5 @@
 import {inspectConverters} from './converters.js';
+import {inspectClock} from './time.js';
 import {tableLayout, isTableCellObject, TableLayoutError} from './table.js';
 import {inspectHeatmap} from './heatmap.js';
 import {isFinance,inspectFinance} from './finance.js';
@@ -250,6 +251,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(isFinance(node))inspectFinance(node,path,add,isSafeURL);
     if(node.type==='finance-heatmap')inspectHeatmap(node,path,add,isSafeURL);
     if(node.type==='unit-converter'||node.type==='currency-converter')inspectConverters(node,path,add,isSafeURL);
+    if(node.type==='clock')inspectClock(node,path,add);
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));

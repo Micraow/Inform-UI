@@ -20,3 +20,16 @@ const missingText:Node={type:'text'};
 // @ts-expect-error table requires rows or sections
 const missingTable:Node={type:'table',columns:['A']};
 void [missingText,missingTable];
+const clock:Node={type:'clock',mode:'snapshot',timezone:'UTC',at:'2026-10-09T00:00:00Z'};
+const stopwatch:Node={type:'stopwatch',elapsedMs:0,laps:true};
+const timer:Node={type:'timer',durationMs:1000};
+const tooltip:Node={type:'tooltip',label:'Help',value:'Inert text'};
+const popover:Node={type:'popover',label:'Details',children:[tooltip,timer]};
+void [clock,stopwatch,popover];
+// @ts-expect-error snapshot mode requires an explicit instant
+const missingInstant:Node={type:'clock',mode:'snapshot',timezone:'UTC'};
+// @ts-expect-error a timer requires its duration
+const missingDuration:Node={type:'timer'};
+// @ts-expect-error tooltip contents are inert text, not child nodes
+const interactiveTooltip:Node={type:'tooltip',label:'Help',value:'Text',children:[timer]};
+void [missingInstant,missingDuration,interactiveTooltip];

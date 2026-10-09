@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:4df88e6ba4574c7df5a206443872ced3ae24c36b117c2e3e583e58126c90b2b4:document:base+charts",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:f88f3568394d7d33ccfedee94c48e2d7af0991ee7d060181fd6a5691940790aa:document:base+charts",
   "title": "Inform UI document subset: base, charts",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1282,6 +1282,12 @@
           "$ref": "#/$defs/DetailsNode"
         },
         {
+          "$ref": "#/$defs/TooltipNode"
+        },
+        {
+          "$ref": "#/$defs/PopoverNode"
+        },
+        {
           "$ref": "#/$defs/CarouselNode"
         },
         {
@@ -1318,6 +1324,49 @@
           "$ref": "#/$defs/ChartNode"
         }
       ]
+    },
+    "PopoverNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "popover"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "placement": {
+          "enum": [
+            "top",
+            "bottom"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "children"
+      ],
+      "additionalProperties": false
     },
     "RowNode": {
       "type": "object",
@@ -2235,6 +2284,40 @@
         "type",
         "label",
         "bind"
+      ],
+      "additionalProperties": false
+    },
+    "TooltipNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tooltip"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "placement": {
+          "enum": [
+            "top",
+            "bottom"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "value"
       ],
       "additionalProperties": false
     },

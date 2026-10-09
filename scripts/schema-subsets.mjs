@@ -5,7 +5,7 @@ import { join } from 'node:path';
 // Discovery metadata only. The canonical generator owns every node definition and group assignment.
 export const SCHEMA_GROUPS = Object.freeze({
   base: { title: '基础内容、布局与联动控件', examples: ['examples/wifi.json', 'examples/shortlist.json', 'examples/math-fonts.json', 'examples/foundations.json', 'examples/structured-tables.json'] },
-  forms: { title: '表单与字段', examples: ['examples/forms.json'] },
+  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json'] },
   charts: { title: '通用图表与数值/时间坐标', examples: ['examples/rtt.json', 'examples/numeric-charts.json'] },
   graphics: { title: '拓扑与受限SVG', examples: ['examples/hpcc.json'] },
   weather: { title: '天气供数视图', examples: ['examples/weather.json'] },
@@ -13,6 +13,7 @@ export const SCHEMA_GROUPS = Object.freeze({
   learning: { title: '测验与闪卡', examples: ['examples/learning.json'] },
   finance: { title: '金融快照、历史、比较与热图', examples: ['examples/finance-preview.json'] },
   converters: { title: '单位与汇率换算', examples: ['examples/converters.json'] },
+  time: { title: '本地时钟、秒表与倒计时', examples: ['examples/time.json'] },
   compatibility: { title: '仅识别的历史输入边界', examples: [], warning: 'native is structurally recognized but always rejected by validateDocument; it is not a supported renderer.' },
 });
 

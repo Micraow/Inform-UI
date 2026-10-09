@@ -7,6 +7,18 @@ import {mount,validateDocument,compileHtml,compileArtifact} from '../dist/index.
 const fixture=JSON.parse(await readFile(new URL('../examples/structured-tables.json',import.meta.url)));
 const setup=()=>{const dom=new JSDOM('<div id="host"></div>',{url:'https://example.test/'});return {dom,host:dom.window.document.getElementById('host')};};
 
+test('caller table ids cannot shadow generated table, caption or header associations',()=>{
+  const {dom,host}=setup();
+  const controller=mount(host,{version:'iui/1',body:['table-1-data','table-1-caption','table-1-header-0-0-0'].map(id=>({type:'table',id,caption:'Original caption',columns:['Value'],rows:[[1]]}))});
+  const ids=[...host.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length);
+  for(const cell of host.querySelectorAll('td')){
+    const headers=cell.getAttribute('headers').split(' ').map(id=>dom.window.document.getElementById(id));
+    assert.ok(headers.every(node=>node.tagName==='TH'));assert.deepEqual(headers.map(node=>node.textContent),['Value']);
+  }
+  for(const wrapper of host.querySelectorAll('.iui-table-scroll'))assert.equal(dom.window.document.getElementById(wrapper.getAttribute('aria-labelledby')).tagName,'CAPTION');
+  controller.dispose();
+});
+
 test('public table mount preserves structured semantics, expressions, state focus, update and disposal',()=>{
   assert.equal(validateDocument(fixture).ok,true);const {dom,host}=setup();const controller=mount(host,fixture);
   assert.equal(host.querySelectorAll('.iui-table').length,2);assert.equal(host.querySelectorAll('.iui-table')[0].tBodies.length,2);
