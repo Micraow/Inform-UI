@@ -4,6 +4,7 @@ import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import { compileHtml } from '../../dist/index.js';
 const fixture=JSON.parse(await readFile(new URL('../../examples/source-cards.json',import.meta.url),'utf8'));
+const rtlFixture=JSON.parse(await readFile(new URL('../fixtures/source-rtl.json',import.meta.url),'utf8'));
 const byId=(page,id)=>page.locator(`[data-iui][id$="-${id}"]`);
 async function mount(page,input=fixture,lang='en'){
   await page.goto('/mount.html');await page.waitForFunction(()=>Boolean(window.iui));
@@ -76,7 +77,7 @@ test('native keyboard scrolling and link activation retain browser semantics',as
 });
 
 test('RTL logical next/previous move through caller order and do not wrap',async({page})=>{
-  await mount(page,{...fixture,title:'مصادر اصطناعية للاختبار'},'ar');const block=byId(page,'sample-links'),rail=block.locator('ul'),prev=block.getByRole('button',{name:'Previous links'}),next=block.getByRole('button',{name:'Next links'});
+  await mount(page,rtlFixture,'ar');const block=byId(page,'sample-links'),rail=block.locator('ul'),prev=block.getByRole('button',{name:'Previous links'}),next=block.getByRole('button',{name:'Next links'});
   expect(await rail.evaluate(el=>getComputedStyle(el).direction)).toBe('rtl');await expect(next).toHaveAttribute('aria-disabled','false');const start=await rail.evaluate(el=>el.firstElementChild.getBoundingClientRect().right);
   await activate(rail,next,'Space');expect(await rail.evaluate(el=>el.firstElementChild.getBoundingClientRect().right)).toBeGreaterThan(start);await goBoundary(rail,next);await expect(rail.locator('a').last()).toBeInViewport();await activate(rail,next,'Enter');
   await goBoundary(rail,prev);await expect(rail.locator('a').first()).toBeInViewport();await rail.focus();await beginScroll(rail);await page.keyboard.press('ArrowLeft');await endScroll(rail);expect(await rail.evaluate(el=>el.firstElementChild.getBoundingClientRect().right)).toBeGreaterThan(start);

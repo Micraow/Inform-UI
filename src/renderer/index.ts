@@ -1,3 +1,5 @@
+import {renderCode} from './code.js';
+import {renderCarousel} from './carousel.js';
 import {renderSource} from './sources.js';
 import {renderLoading} from './loading.js';
 import {renderPrimitive} from './primitives.js';
@@ -129,7 +131,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'markdown': out = element('div'); out.dataset.fallback = 'plain-text'; out.append(element('p','iui-caption',labels.plainText),element('p','iui-markdown',n.value)); break;
-      case 'code': { if (n.inline) out = element('code', 'iui-inline-code', n.value); else { out = element('pre','iui-code'); out.append(element('code','',n.value)); } if (n.language) out.setAttribute('aria-label',`${n.language} ${labels.code}`); break; }
+      case 'code': out=renderCode(context,n,labels);break;
       case 'math': out = formula(n.latex,n.block ?? true); break;
       case 'divider': out = element('hr'); break;
       case 'spacer': out = element('div'); out.style.height = `${n.height ?? 16}px`; out.setAttribute('aria-hidden','true'); break;
@@ -166,7 +168,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'section': out=element('section','iui-layout');out.dataset.semanticGap='true'; if(n.heading)out.append(element('h2','',n.heading)); children(out,n.children); break;
       case 'figure': out=element('figure','iui-layout');out.dataset.semanticGap='true'; children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
-      case 'carousel': out=element('div','iui-carousel'); out.tabIndex=0;out.setAttribute('role','region');out.setAttribute('aria-label',labels.collection);children(out,n.children);break;
+      case 'carousel': out=renderCarousel(context,n,labels.carouselUI);break;
       case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>showValue(li,value(item as Value)));out.append(li);}break;
       case 'table': out=renderTable(context,n);break;
       case 'metric': {out=element('div','iui-metric');out.dataset.variant=n.variant??'plain';out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):display(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}

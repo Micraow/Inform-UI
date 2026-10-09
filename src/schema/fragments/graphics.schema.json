@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:e21597b642848d76fe792c57ca088074d45e328a86278a9fbbddbc3ba05a9862:document:base+graphics",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:e0aa25de9b8ea9be22b489c0556f57ceb1871f3918a3f85cd091d3f38300ff7d:document:base+graphics",
   "title": "Inform UI document subset: base, graphics",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -488,6 +488,14 @@
           },
           "minItems": 0,
           "maxItems": 500
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "controls": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -562,13 +570,89 @@
         },
         "inline": {
           "type": "boolean"
+        },
+        "copy": {
+          "type": "boolean"
+        },
+        "highlight": {
+          "type": "boolean"
         }
       },
       "required": [
         "type",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "code"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "inline": {
+              "const": true
+            },
+            "copy": {
+              "const": false
+            },
+            "highlight": {
+              "const": false
+            }
+          },
+          "required": [
+            "inline"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "code"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "inline": {
+              "const": false
+            },
+            "copy": {
+              "type": "boolean"
+            },
+            "highlight": {
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ]
     },
     "ColNode": {
       "type": "object",

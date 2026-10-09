@@ -1,3 +1,5 @@
+import {codeEnglish,codeChinese} from './code-labels.js';
+import {carouselEnglish,carouselChinese} from './carousel-labels.js';
 import {sourceEnglish,sourceChinese} from './source-labels.js';
 import {loadingEnglish,loadingChinese} from './loading-labels.js';
 import {primitiveEnglish,primitiveChinese} from './primitive-labels.js';
@@ -15,6 +17,8 @@ export function formatNumber(value: number): string {
 }
 
 const english = {
+  codeUI: codeEnglish,
+  carouselUI: carouselEnglish,
   sources: sourceEnglish,
   loadingUI: loadingEnglish,
   primitive: primitiveEnglish,
@@ -30,6 +34,8 @@ const english = {
   loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
+  codeUI: codeChinese,
+  carouselUI: carouselChinese,
   sources: sourceChinese,
   loadingUI: loadingChinese,
   primitive: primitiveChinese,

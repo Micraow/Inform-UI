@@ -48,7 +48,7 @@ results from the current revision for those claims.
 | `section` | Rendered | Optional heading followed by child nodes. |
 | `figure` | Rendered | Grouped content and an optional figure caption. |
 | `details` | Rendered | Native disclosure with a summary and expandable child content. Not a hover popup. |
-| `carousel` | Rendered | Focusable horizontal scroll-snap collection. No autoplay, looping, or previous/next buttons. |
+| `carousel` | Rendered | Finite native scrolling with optional label/previous-next controls; exact boundary no-op, retained child state. No autoplay, looping or cloning. Later candidate, browser acceptance pending. |
 | `list` | Rendered | Ordered or unordered items containing safe values or supported nodes. No separate description-list schema. |
 | `table` | Rendered | Native multi-section and merged-cell tables with shared occupancy validation, explicit header associations and local keyboard scroll. Legacy rows preserved. No sorting, editing or remote pagination. |
 | `metric` | Rendered | Label, value, optional unit, precision, hint, and semantic color. Formatting does not establish data provenance. |

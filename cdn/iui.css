@@ -564,6 +564,40 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-source-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(forced-colors:active){.iui-root .iui-citation,.iui-root .iui-source-card{border-color:CanvasText}.iui-root .iui-source-title{color:LinkText}.iui-root .iui-source-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-source-rail:focus-visible,.iui-root .iui-source-title:focus-visible,.iui-root .iui-source-controls button:focus-visible{outline-color:Highlight}}
 
+/* Original scoped upgrade. Append after the original carousel declaration. */
+.iui-root .iui-carousel-shell{min-inline-size:0;max-inline-size:100%;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-carousel-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:4px}
+.iui-root .iui-carousel-label{flex:1 1 12rem;min-inline-size:0;font-weight:600}
+.iui-root .iui-carousel-controls{display:flex;flex-wrap:wrap;gap:8px}
+.iui-root .iui-carousel-controls button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-carousel-controls button[aria-disabled=true]{cursor:default;color:var(--iui-muted);background:var(--iui-surface)}
+.iui-root .iui-carousel{box-sizing:border-box;display:flex;gap:16px;min-inline-size:0;max-inline-size:100%;padding:6px 6px 12px;overflow-x:auto;scroll-snap-type:none;scroll-behavior:auto;overscroll-behavior-inline:contain}
+.iui-root .iui-carousel>*{box-sizing:border-box;flex:0 0 min(85%,320px);min-inline-size:0;max-inline-size:100%;scroll-snap-align:none;overflow-wrap:anywhere}
+.iui-root .iui-carousel:empty{display:none}
+.iui-root .iui-carousel-position{font-size:.75rem;color:var(--iui-muted);min-block-size:1.5em;padding-inline:6px;font-variant-numeric:tabular-nums}
+.iui-root .iui-carousel:focus-visible{outline:2px solid var(--iui-focus);outline-offset:-2px}
+.iui-root .iui-carousel-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+/* Inset child outlines stay visible even for controls aligned to a card edge. */
+.iui-root .iui-carousel :is(button,a,input,select,textarea,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:-2px}
+.iui-root .iui-carousel :is(pre,.iui-table){max-inline-size:100%;min-inline-size:0;overflow-x:auto}
+@media(forced-colors:active){.iui-root .iui-carousel-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-carousel:focus-visible,.iui-root .iui-carousel :focus-visible,.iui-root .iui-carousel-controls button:focus-visible{outline-color:Highlight}}
+
+/* Original theme-token styles. Append after the existing base .iui-code rule. */
+.iui-code-block{min-inline-size:0;max-inline-size:100%;align-self:stretch}
+.iui-code-block>.iui-code{box-sizing:border-box;inline-size:100%;min-inline-size:0;max-inline-size:100%;margin-block:0;overflow:auto;white-space:pre;direction:ltr;unicode-bidi:isolate;user-select:text}
+.iui-code-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-inline-size:0;margin-block-end:6px}
+.iui-code-language{font-size:.8rem;color:var(--iui-muted);overflow-wrap:anywhere;min-inline-size:0;unicode-bidi:plaintext}
+.iui-code-copy{margin-inline-start:auto;flex:none;font:inherit;font-size:.85rem;min-block-size:36px;padding:6px 12px;border:1px solid var(--iui-line);border-radius:6px;color:var(--iui-ink);background:var(--iui-surface);cursor:pointer}
+.iui-code-copy[aria-disabled=true]{cursor:wait}
+.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-code-status{display:block;font-size:.82rem;color:var(--iui-muted);overflow-wrap:anywhere;margin-block-start:4px;min-block-size:1.4em}
+.iui-code-token-comment{color:var(--iui-muted);font-style:italic}
+.iui-code-token-string{color:var(--iui-success)}
+.iui-code-token-number{color:var(--iui-info)}
+.iui-code-token-keyword{color:var(--iui-info);font-weight:600}
+@media(forced-colors:active){.iui-code-copy{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-code-block>.iui-code{border-color:CanvasText}.iui-code-block [class*=iui-code-token-]{color:CanvasText}.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline-color:Highlight}}
+/* No animation, transitions, fonts, assets, network or motion to reduce. */
+
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).
 The MIT License (MIT)

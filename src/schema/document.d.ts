@@ -149,6 +149,34 @@ export type TextNode1 =
       strike?: boolean;
       shimmer?: boolean;
     };
+export type CodeNode = {
+  type: "code";
+  id?: string;
+  value: string;
+  language?: string;
+  inline?: boolean;
+  copy?: boolean;
+  highlight?: boolean;
+} & CodeNode1;
+export type CodeNode1 =
+  | {
+      type?: "code";
+      id?: string;
+      value?: string;
+      language?: string;
+      inline: true;
+      copy?: false;
+      highlight?: false;
+    }
+  | {
+      type?: "code";
+      id?: string;
+      value?: string;
+      language?: string;
+      inline?: false;
+      copy?: boolean;
+      highlight?: boolean;
+    };
 export type LoadingBlockNode = {
   type: "loading-block";
   id?: string;
@@ -330,13 +358,6 @@ export interface MarkdownNode {
   type: "markdown";
   id?: string;
   value: string;
-}
-export interface CodeNode {
-  type: "code";
-  id?: string;
-  value: string;
-  language?: string;
-  inline?: boolean;
 }
 export interface MathNode {
   type: "math";
@@ -615,6 +636,8 @@ export interface CarouselNode {
    * @maxItems 500
    */
   children: Node[];
+  label?: string;
+  controls?: boolean;
 }
 export interface ListNode {
   type: "list";

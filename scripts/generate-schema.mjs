@@ -36,7 +36,13 @@ node('text', { value: ref('Value'), runs: array(ref('TextRun'), 1, 100), ...text
 defs.TextNode.oneOf = [object(defs.TextNode.properties, ['value']), object(defs.TextNode.properties, ['runs'])];
 for (const name of ['title', 'caption']) node(name, { value: ref('Value'), ...textStyle, ...(name === 'title' ? { level: integer(1, 3) } : {}) }, ['value']);
 node('markdown', { value: string() }, ['value']);
-node('code', { value: string(), language: short, inline: bool }, ['value']);
+node('code', { value: string(), language: short, inline: bool, copy: bool, highlight: bool }, ['value']);
+// Inline code cannot opt into block controls. Keep exact disjoint structural
+// branches so validator, generated public types and all domain subsets agree.
+defs.CodeNode.oneOf = [
+  object({ ...defs.CodeNode.properties, inline: { const: true }, copy: { const: false }, highlight: { const: false } }, ['inline']),
+  object({ ...defs.CodeNode.properties, inline: { const: false } })
+];
 node('math', { latex: string(6000, 1), block: bool }, ['latex']);
 node('badge', { value: ref('Value'), color }, ['value']);
 node('divider');
@@ -66,7 +72,7 @@ const sourceFields = { title: string(300,1), url: string(2048,1), publisher: str
 defs.SourceRecord = object(sourceFields, ['title','url']);
 node('citation', { ...sourceFields, number: integer(1,999) }, ['title','url']);
 node('web-link-cards', { label: short, items: array(ref('SourceRecord'),1,20) }, ['label','items']);
-node('carousel', { children }, ['children']);
+node('carousel', { children, label: short, controls: bool }, ['children']);
 node('list', { ordered: bool, items: array({ anyOf: [ref('Value'), ref('Node')] }, 0, 100) }, ['items']);
 defs.TableCellObject = object({ value: ref('Value'), rowSpan: integer(1, 200), colSpan: integer(1, 20), header: bool, scope: choice('row', 'col', 'rowgroup'), align }, ['value']);
 defs.TableCell = { anyOf: [ref('Value'), ref('TableCellObject')] };

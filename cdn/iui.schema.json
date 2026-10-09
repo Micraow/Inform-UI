@@ -542,13 +542,89 @@
         },
         "inline": {
           "type": "boolean"
+        },
+        "copy": {
+          "type": "boolean"
+        },
+        "highlight": {
+          "type": "boolean"
         }
       },
       "required": [
         "type",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "code"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "inline": {
+              "const": true
+            },
+            "copy": {
+              "const": false
+            },
+            "highlight": {
+              "const": false
+            }
+          },
+          "required": [
+            "inline"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "code"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "inline": {
+              "const": false
+            },
+            "copy": {
+              "type": "boolean"
+            },
+            "highlight": {
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ]
     },
     "MathNode": {
       "type": "object",
@@ -1833,6 +1909,14 @@
           },
           "minItems": 0,
           "maxItems": 500
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "controls": {
+          "type": "boolean"
         }
       },
       "required": [

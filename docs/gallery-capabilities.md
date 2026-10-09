@@ -45,7 +45,7 @@ license grants, guarantees of host integration, or promises of future delivery.
 | cap-015 | Masonry/flow layout | Extension | A responsive `grid` is available as an explicit approximation, not a masonry engine. |
 | cap-016 | Dividers | Implemented | `divider` separates adjacent content groups. |
 | cap-017 | Lists | Implemented | `list` supports ordered/unordered and nested node content; no dedicated description-list mode. |
-| cap-018 | Carousels | Implemented | `carousel` is a scrollable collection with snapping; catalog arrow controls, looping, and autoplay are absent. |
+| cap-018 | Carousels | Implemented | `carousel` has native bounded scrolling and optional previous/next controls in the later candidate. Browser acceptance is pending; looping, autoplay and cloning are deliberately absent. |
 | cap-019 | Clickable content regions | Extension | Only `link` navigation and restricted `button` actions exist; cards cannot carry arbitrary event handlers. |
 | cap-020 | Popovers/tooltips | Extension | `details` is a disclosure fallback; it does not implement a hover popup or floating panel. |
 | cap-021 | Spacing | Implemented | `spacer` and layout gap tokens cover bounded spacing; no free-form layout expressions. |
