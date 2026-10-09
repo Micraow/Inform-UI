@@ -39,6 +39,8 @@ export type Node =
   | NewsArticleNode
   | EntityReviewsNode
   | RestaurantAvailabilityNode
+  | LocationChoiceRequestNode
+  | BusinessGalleryNode
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
@@ -604,6 +606,45 @@ export interface RestaurantAvailabilitySlot {
   date: string;
   time: string;
   available: boolean;
+}
+export interface LocationChoiceRequestNode {
+  type: "location-choice-request";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  options: [LocationChoiceOption, ...LocationChoiceOption[]];
+  source?: LocationChoiceSource;
+}
+export interface LocationChoiceOption {
+  id: string;
+  label: string;
+  address?: string;
+  description?: string;
+}
+export interface LocationChoiceSource {
+  label: string;
+  url?: string;
+}
+export interface BusinessGalleryNode {
+  type: "business-gallery";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  images: [BusinessGalleryImage, ...BusinessGalleryImage[]];
+}
+export interface BusinessGalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  caption?: string;
 }
 export interface RedditThreadCardNode {
   type: "reddit-thread-card";

@@ -1108,6 +1108,156 @@
       ],
       "additionalProperties": false
     },
+    "LocationChoiceOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "LocationChoiceSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "LocationChoiceRequestNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "location-choice-request"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LocationChoiceOption"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "source": {
+          "$ref": "#/$defs/LocationChoiceSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "BusinessGalleryImage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500000
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "src",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "BusinessGalleryNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "business-gallery"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BusinessGalleryImage"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "images"
+      ],
+      "additionalProperties": false
+    },
     "ThreadComment": {
       "type": "object",
       "properties": {
@@ -7490,6 +7640,12 @@
         },
         {
           "$ref": "#/$defs/RestaurantAvailabilityNode"
+        },
+        {
+          "$ref": "#/$defs/LocationChoiceRequestNode"
+        },
+        {
+          "$ref": "#/$defs/BusinessGalleryNode"
         },
         {
           "$ref": "#/$defs/RedditThreadCardNode"

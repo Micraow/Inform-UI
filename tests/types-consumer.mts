@@ -1,3 +1,4 @@
+import './choice-gallery-types-consumer.mjs';
 import './draft-review-types-consumer.mjs';
 import './motion-types-consumer.mjs';
 import "./news-types-consumer.mjs";

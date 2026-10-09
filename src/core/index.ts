@@ -1,3 +1,4 @@
+import {inspectLocationChoice,inspectBusinessGallery} from './choice-gallery.js';
 import {inspectAvailability} from './availability.js';
 import {inspectThread} from './thread.js';
 import {inspectNewsArticle} from './news.js';
@@ -305,6 +306,8 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='person-profile')inspectPersonProfile(node,path,add,isSafeURL);
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
+    if(node.type==='location-choice-request')inspectLocationChoice(node,path,add,isSafeURL);
+    if(node.type==='business-gallery')inspectBusinessGallery(node,path,add,url=>isSafeURL(url,'image'));
     if(node.type==='restaurant-availability')inspectAvailability(node,path,add,isSafeURL);
     if(node.type==='reddit-thread-card')inspectThread(node,path,add,isSafeURL);
     if(node.type==='agenda')inspectAgenda(node,path,add,isSafeURL);

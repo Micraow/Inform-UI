@@ -1,5 +1,11 @@
 # Changelog
 
+## Local supplied choices and gallery checkpoint (browser pending)
+
+- Add supplied location selection and per-image-consent gallery contracts, with no provider, location, booking or upload service.
+- Harden the shared image consent path and Forms inherited-disabled, synchronous adapter retirement and cancellation-reentry boundaries.
+- Preserve separate evidence for the previous full 863-test run, the final-two 164-test impact run and the final Forms 237-test impact run; [details](docs/local-enhancements-90.md).
+
 ## Local motion and review checkpoint (browser pending)
 
 - Add explicit finite animation/celebration previews, a supplied email envelope with the existing local body editor, and native plan-review marks.

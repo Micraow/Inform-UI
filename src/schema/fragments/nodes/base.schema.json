@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:f9b19f37a786081bd1491b7471501be5b02f1f9aeeba473e85b30bd890f47db7:node:base",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:620f7cdca4c4143090167e583cbdb8d9160b1cfcfc35e0afa071f2a8bcdd8785:node:base",
   "title": "Inform UI node subset: base",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -387,6 +387,71 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "BusinessGalleryImage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500000
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "src",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "BusinessGalleryNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "business-gallery"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BusinessGalleryImage"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "images"
       ],
       "additionalProperties": false
     },
@@ -1804,6 +1869,91 @@
       ],
       "additionalProperties": false
     },
+    "LocationChoiceOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "LocationChoiceRequestNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "location-choice-request"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LocationChoiceOption"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "source": {
+          "$ref": "#/$defs/LocationChoiceSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "LocationChoiceSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "MarkdownNode": {
       "type": "object",
       "properties": {
@@ -2125,6 +2275,12 @@
         },
         {
           "$ref": "#/$defs/RestaurantAvailabilityNode"
+        },
+        {
+          "$ref": "#/$defs/LocationChoiceRequestNode"
+        },
+        {
+          "$ref": "#/$defs/BusinessGalleryNode"
         },
         {
           "$ref": "#/$defs/RedditThreadCardNode"

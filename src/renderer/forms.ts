@@ -264,7 +264,7 @@ export function createForms(c: RendererContext) {
       if (!pointerAction || next !== pointerAction) return false;
       deferredBlur.add(refresh); return true;
     } };
-    let busy = false;
+    let busy = false, transitioning = false;
     let generation = 0;
     let abort: AbortController | undefined;
     let alive = true;
@@ -303,7 +303,7 @@ export function createForms(c: RendererContext) {
       if (pointerAction && pointer.pointerId !== pointerId) return;
       const target = (pointer.target as Element | null)?.closest?.('button');
       const localAction = target?.closest('.iui-root') === out.closest('.iui-root');
-      if (!target || target.disabled || !localAction) return;
+      if (!target || target.matches(':disabled') || !localAction) return;
       flushPointerBlur(); pointerAction = target; pointerId = pointer.pointerId;
     });
     on(c.doc, 'pointerup', (event: Event) => {
@@ -331,70 +331,81 @@ export function createForms(c: RendererContext) {
     // Draft-only edits (for example an empty number input) also invalidate a prior success label.
     on(out, 'input', clearSuccess); on(out, 'change', clearSuccess);
     const reset = () => {
-      flushPointerBlur(false);
-      generation++;
-      const pending = abort;
-      abort = undefined;
-      busy = false;
-      pending?.abort();
-      if (!alive) return;
-      paint();
+      if (!alive || transitioning) return;
+      transitioning = true;
       try {
-        c.change(initial);
-        local.fields.forEach(field => field.reset());
-        setStatus('cancelled', c.labels().cancelled);
-      } catch (failure) {
-        // Cancellation still aborts work. A rejected atomic state reset must never claim success.
-        setStatus('error', failure instanceof Error ? failure.message : c.labels().formInvalid);
-      }
+        flushPointerBlur(false);
+        generation++;
+        const pending = abort;
+        abort = undefined;
+        busy = false;
+        pending?.abort();
+        if (!alive) return;
+        paint();
+        try {
+          c.change(initial);
+          local.fields.forEach(field => field.reset());
+          setStatus('cancelled', c.labels().cancelled);
+        } catch (failure) {
+          // Cancellation still aborts work. A rejected atomic state reset must never claim success.
+          setStatus('error', failure instanceof Error ? failure.message : c.labels().formInvalid);
+        }
+      } finally { transitioning = false; }
     };
 
     on(out, 'submit', (event: Event) => {
       event.preventDefault();
-      flushPointerBlur(false);
-      if (!alive || busy || submit.disabled) return;
-      const invalid = local.fields.filter(field => !field.validate());
-      if (invalid.length) {
-        setStatus('invalid', c.labels().formInvalid);
-        invalid[0].focus();
-        return;
-      }
-      const enabled = new Set(controls.filter(control => !disabled(control)).map(control => control.dataset.bind!));
-      const values = Object.freeze(Object.fromEntries([...enabled].map(key => [key, c.getState()[key]])));
-      // Only own properties can be selected, including for objects with a prototype.
-      const action = n.action && Object.hasOwn(c.actions, n.action) ? c.actions[n.action] : undefined;
-      if (n.action && typeof action !== 'function') {
-        setStatus('error', c.labels().noAdapter);
-        return;
-      }
-      const ticket = ++generation;
-      abort = new AbortController();
-      const signal = abort.signal;
-      busy = true;
-      setStatus('busy', c.labels().submitting);
-      paint();
-      let work: void | Promise<void>;
-      try { work = action?.({ values, signal }); }
-      catch { work = Promise.reject(new Error('Action failed')); }
-      Promise.resolve(work).then(() => {
-        if (!alive || ticket !== generation) return;
-        busy = false;
-        abort = undefined;
+      if (!alive || busy || transitioning || submit.matches(':disabled')) return;
+      transitioning = true;
+      try {
+        flushPointerBlur(false);
+        const invalid = local.fields.filter(field => !field.validate());
+        if (invalid.length) {
+          setStatus('invalid', c.labels().formInvalid);
+          invalid[0].focus();
+          return;
+        }
+        const enabled = new Set(controls.filter(control => !disabled(control)).map(control => control.dataset.bind!));
+        const values = Object.freeze(Object.fromEntries([...enabled].map(key => [key, c.getState()[key]])));
+        // Only own properties can be selected, including for objects with a prototype.
+        let action: RendererContext['actions'][string] | undefined;
+        try { action = n.action && Object.hasOwn(c.actions, n.action) ? c.actions[n.action] : undefined; }
+        catch { if (alive) setStatus('error', n.errorMessage ?? c.labels().submitError); return; }
+        // Adapter getters may synchronously replace/dispose this mount or disable an ancestor.
+        if (!alive || submit.matches(':disabled')) return;
+        if (n.action && typeof action !== 'function') {
+          setStatus('error', c.labels().noAdapter);
+          return;
+        }
+        const ticket = ++generation;
+        abort = new AbortController();
+        const signal = abort.signal;
+        busy = true;
+        setStatus('busy', c.labels().submitting);
         paint();
-        if ([...enabled].every(key => Object.is(c.getState()[key], values[key]))) setStatus('success', n.successMessage ?? c.labels().submitted);
-        else setStatus('idle', '');
-        const CustomEvent = c.doc.defaultView?.CustomEvent;
-        if (CustomEvent) out.dispatchEvent(new CustomEvent('iui:submit', { bubbles: true, detail: { id: n.id ?? null, values } }));
-      }, () => {
-        if (!alive || ticket !== generation) return;
-        busy = false;
-        abort = undefined;
-        paint();
-        setStatus('error', n.errorMessage ?? c.labels().submitError);
-      });
+        let work: void | Promise<void>;
+        try { work = action?.({ values, signal }); }
+        catch { work = Promise.reject(new Error('Action failed')); }
+        Promise.resolve(work).then(() => {
+          if (!alive || ticket !== generation) return;
+          busy = false;
+          abort = undefined;
+          paint();
+          if ([...enabled].every(key => Object.is(c.getState()[key], values[key]))) setStatus('success', n.successMessage ?? c.labels().submitted);
+          else setStatus('idle', '');
+          const CustomEvent = c.doc.defaultView?.CustomEvent;
+          if (CustomEvent) out.dispatchEvent(new CustomEvent('iui:submit', { bubbles: true, detail: { id: n.id ?? null, values } }));
+        }, () => {
+          if (!alive || ticket !== generation) return;
+          busy = false;
+          abort = undefined;
+          paint();
+          setStatus('error', n.errorMessage ?? c.labels().submitError);
+        });
+      } finally { transitioning = false; }
     });
-    on(cancel, 'click', () => { if (!cancel.disabled) reset(); });
-    on(out, 'reset', (event: Event) => { event.preventDefault(); if (alive && !cancel.disabled) reset(); });
+    on(cancel, 'click', () => { if (alive && !cancel.matches(':disabled')) reset(); });
+    on(out, 'reset', (event: Event) => { event.preventDefault(); if (alive && !cancel.matches(':disabled')) reset(); });
     c.cleanup(() => { alive = false; generation++; abort?.abort(); abort = undefined; flushPointerBlur(false); });
     out.dataset.status = 'idle';
     return out;

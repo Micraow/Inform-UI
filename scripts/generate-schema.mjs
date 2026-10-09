@@ -59,6 +59,13 @@ node('entity-reviews', {label:short,description:string(2000),source:ref('ReviewS
 defs.RestaurantAvailabilitySlot = object({id:key,date:{...agendaDate,minLength:10,maxLength:10},time:{...agendaTime,minLength:5,maxLength:5},available:bool},['id','date','time','available']);
 defs.RestaurantAvailabilitySource = object({label:short,url:string(2048,1)},['label']);
 node('restaurant-availability',{title:short,venue:short,partySize:integer(1,20),timeZoneLabel:string(100,1),description:string(2000),source:ref('RestaurantAvailabilitySource'),slots:array(ref('RestaurantAvailabilitySlot'),0,100)},['title','venue','partySize','timeZoneLabel','slots']);
+// Original finite supplied-place and media contracts; no lookup or location services.
+const suppliedKey = {...key, pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'};
+defs.LocationChoiceOption = object({id:suppliedKey,label:short,address:string(1000),description:string(1000)},['id','label']);
+defs.LocationChoiceSource = object({label:short,url:string(2048,1)},['label']);
+node('location-choice-request',{label:short,description:string(2000),options:array(ref('LocationChoiceOption'),1,12),source:ref('LocationChoiceSource')},['label','options']);
+defs.BusinessGalleryImage = object({id:suppliedKey,src:string(500000,1),alt:string(2000,1),caption:string(2000)},['id','src','alt']);
+node('business-gallery',{label:short,description:string(2000),images:array(ref('BusinessGalleryImage'),1,12)},['label','images']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);

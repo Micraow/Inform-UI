@@ -1,3 +1,4 @@
+import {renderLocationChoice,renderBusinessGallery} from './choice-gallery.js';
 import {renderEmailDraft} from './email-draft.js';
 import {renderTaskExpansionCard} from './task-expansion-card.js';
 import {renderMotion} from './motion.js';
@@ -154,6 +155,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if ('shimmer' in n && n.shimmer) out.classList.add('iui-text-shimmer');
         break;
       }
+      case 'location-choice-request':out=renderLocationChoice(context,n,labels.choiceGalleryUI);break;
+      case 'business-gallery':out=renderBusinessGallery(context,n,labels.choiceGalleryUI);break;
       case 'restaurant-menu':out=renderMenu(context,n,labels.menuUI);break;
       case 'prompt-suggestions':out=renderSuggestions(context,n,labels.suggestionsUI);break;
       case 'label':out=fieldLabels.render(n);break;
@@ -174,13 +177,33 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'favicon': out=renderFavicon(context,n,labels.faviconUI); break;
       case 'image': {
         out = element('figure','iui-image'); const target = out;
-        const load = () => { const img = element('img'); img.src=n.src; img.alt=n.alt; img.loading='lazy'; img.referrerPolicy='no-referrer';
-          if(n.aspectRatio) img.style.aspectRatio=n.aspectRatio.replace(':','/'); img.style.objectFit=n.fit ?? 'contain';
-          target.replaceChildren(img); };
-        if (n.src.startsWith('data:')) load();
+        const content = element('div','iui-image-content'); target.append(content);
+        const external = !/^data:/i.test(n.src);
+        let alive = true, requested = false, loading = false;
+        let button: HTMLButtonElement | undefined;
+        context.cleanup(()=>{ alive = false; });
+        const blocked = () => !alive || (external && (!target.isConnected || !button?.isConnected || button.matches(':disabled') || !!button.closest('[hidden]')));
+        const load = () => {
+          if (requested || loading || blocked()) return;
+          loading = true;
+          try {
+            const img = element('img'); img.alt=n.alt; img.loading='lazy'; img.decoding='async'; img.referrerPolicy='no-referrer';
+            if(n.aspectRatio) img.style.aspectRatio=n.aspectRatio.replace(':','/'); img.style.objectFit=n.fit ?? 'contain';
+            // Document hooks may synchronously update/dispose during element creation.
+            if (blocked()) return;
+            requested = true;
+            on(img,'error',()=>{ if(alive && target.isConnected && img.parentElement===content) target.dataset.imageStatus='error'; });
+            on(img,'load',()=>{ if(alive && target.isConnected && img.parentElement===content) target.dataset.imageStatus='loaded'; });
+            target.dataset.imageStatus='loading';
+            img.src=n.src;
+            if (!alive || (external && !target.isConnected)) return;
+            content.replaceChildren(img);
+          } finally { loading = false; }
+        };
+        if (!external) load();
         else { const consent=element('div','iui-image-consent'); consent.append(element('p','',n.alt||labels.externalImage));
           consent.append(element('p','iui-caption',labels.imageDisclosure(new URL(n.src).hostname)));
-          const button=element('button','',labels.loadImage); button.type='button'; on(button,'click',load); consent.append(button); target.append(consent); }
+          button=element('button','',labels.loadImage); button.type='button'; on(button,'click',load); consent.append(button); content.append(consent); }
         break;
       }
       case 'box': case 'card': case 'row': case 'col': case 'grid': {

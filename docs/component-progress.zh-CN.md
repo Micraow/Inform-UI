@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分5，已写待验28，未实现170。
+当前固定分母为256项：功能已验53，部分5，已写待验30，未实现168。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-最近正式验收见[66节点证据](verification-66.md)。二十八项本地候选见[88节点本地冻结](local-enhancements-88.md)，本地测试不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
+最近正式验收见[66节点证据](verification-66.md)。三十项本地候选见[90节点本地冻结](local-enhancements-90.md)，本地测试不计真实浏览器验收；本批统一准备远端验收。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -64,9 +64,9 @@
 | sports-schedule | Epl Schedule | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | sports-standings | Epl Standings | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | american-football-games | Cfb Games | 部分 | 通用scoreboard未覆盖完整橄榄球合同 |
-| location-choice-request | Ask User Location V2 | 未实现 | 暂无专门实现证据 |
+| location-choice-request | Ask User Location V2 | 已写待验 | 供数地点原生选择/清除、可取消本地事件及禁用/生命周期边界已本地实现；不定位/地图搜索/预订，真实浏览器待合批。 |
 | web-link-cards | Web Links Carousel | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
-| business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
+| business-gallery | Business Gallery | 已写待验 | 供数图片与独立图注、逐图远程加载确认及共享图片生命周期防护已本地实现；不搜索/上传/调用媒体服务，真实浏览器待合批。 |
 | citation | Cite | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | calendar-agenda | Calendar List | 已写待验 | 原创供数日程、严格日期时间、稳定分组/筛选与保留详情已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |

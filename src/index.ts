@@ -10,4 +10,5 @@ export type {FormAction,FormActionContext} from './renderer/context.js';
 export type {SuggestionDetail} from './renderer/suggestions.js';
 
 
+export type {LocationChoiceDetail} from './renderer/choice-gallery.js';
 export type {ReservationChoiceDetail} from './renderer/availability.js';
