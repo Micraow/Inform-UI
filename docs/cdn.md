@@ -33,7 +33,7 @@
     integrity="sha384-r0zJufAML6IlJGwy3/CCOf9IfetRaVAu0WOIwmVd49QUET9B0brLD+31Rqt3sKuH"
     crossorigin="anonymous">
 </head>
-<body>
+<body class="iui-page" data-theme="auto" style="margin:0">
   <main id="answer"></main>
   <pre id="status" role="alert"></pre>
   <script id="spec" type="application/json">
@@ -97,3 +97,5 @@
 jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓存；修复时请发布到新提交并同时更新 URL 与 SRI，不覆盖旧链接。它将 HTML 按纯文本提供，因此应把这里生成的 HTML 保存到本地或放到自己的站点，不能把 CDN HTML 链接当成页面托管。[官方说明](https://github.com/jsdelivr/jsdelivr#github)
 
 当前没有 npm 发布或正式 release。使用相同 CSS/JS/Schema 提交，不混搭版本；CDN 暂不可达时会显示加载错误，本地 agent 仍可使用[源码构建方式](../README.md#源码与本地-agent)。
+
+独立文档壳使用 `body.iui-page` 与匹配的 `data-theme`（auto/light/dark），让页面外围背景也跟随主题；嵌入现有网页时不要给宿主添加这个类。`mount` 的样式保持局部作用域，不修改宿主背景。

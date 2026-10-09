@@ -27,7 +27,7 @@ export class InvalidDocumentError extends Error {
   }
 }
 let instance = 0;
-const palette = {blue:'var(--iui-blue)',green:'var(--iui-green)',orange:'var(--iui-orange)',red:'var(--iui-red)',purple:'var(--iui-purple)',gray:'var(--iui-muted)'};
+const palette = {blue:'var(--iui-series-blue)',green:'var(--iui-series-green)',orange:'var(--iui-series-orange)',red:'var(--iui-series-red)',purple:'var(--iui-series-purple)',gray:'var(--iui-series-gray)'};
 const shorten = (s: string, limit: number) => Array.from(s).length > limit ? Array.from(s).slice(0,limit-1).join('')+'…' : s;
 
 /** Mount a validated, self-contained UI. Updates are synchronous and atomic. */

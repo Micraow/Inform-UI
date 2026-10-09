@@ -2,7 +2,7 @@ import type { Node,Value } from '../schema/document.js';
 import { timestamp,chartXDomain } from '../core/extensions.js';
 import type { RendererContext } from './context.js';
 const colors=['blue','green','orange','red','purple','gray'] as const;
-const palette={blue:'var(--iui-blue)',green:'var(--iui-green)',orange:'var(--iui-orange)',red:'var(--iui-red)',purple:'var(--iui-purple)',gray:'var(--iui-muted)'};
+const palette={blue:'var(--iui-series-blue)',green:'var(--iui-series-green)',orange:'var(--iui-series-orange)',red:'var(--iui-series-red)',purple:'var(--iui-series-purple)',gray:'var(--iui-series-gray)'};
 const shorten=(s:string)=>Array.from(s).length>12?Array.from(s).slice(0,11).join('')+'…':s;
 /** Cartesian coordinates are calculated from data, while text formatting is presentation-only. */
 export function renderChart(c:RendererContext,n:Extract<Node,{type:'chart'}>):HTMLElement {
