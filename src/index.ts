@@ -20,3 +20,5 @@ export type {PollReadyDetail} from './renderer/poll.js';
 
 export type {JobShortlistDetail} from './renderer/jobs.js';
 export type {ProductChoiceDetail} from './renderer/product-card.js';
+
+export type {FlightSearchDetail,FlightResultDetail} from './renderer/flight-discovery.js';
