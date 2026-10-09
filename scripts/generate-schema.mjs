@@ -262,6 +262,16 @@ node('stopwatch', { title: short, elapsedMs: integer(0, 604800000), laps: bool }
 node('timer', { title: short, durationMs: integer(1, 604800000) }, ['durationMs'], 'time');
 node('weather', { location: object({ name: short, timezone: short }, ['name', 'timezone']), updatedAt: timestamp, source: object({ label: short, url: string(2048), synthetic: bool }, ['label', 'synthetic']), units: object({ temperature: choice('celsius', 'fahrenheit') }, ['temperature']), current: object({ time: timestamp, temperature: nullableNumber, feelsLike: nullableNumber, condition, humidity: probability }, ['time', 'temperature', 'condition']), daily: array(object({ date, low: nullableNumber, high: nullableNumber, condition, precipitationProbability: probability }, ['date', 'low', 'high', 'condition', 'precipitationProbability']), 0, 16), hourly: array(object({ time: timestamp, temperature: nullableNumber, precipitationProbability: probability }, ['time', 'temperature', 'precipitationProbability']), 0, 384), initialDate: date, status: choice('ready', 'loading', 'error'), message: string() }, ['location', 'updatedAt', 'source', 'units', 'current', 'daily', 'hourly'], 'weather');
 
+// Original supplied player records: no inferred statistics, rankings, or league rules.
+const playerCount = {anyOf:[integer(0,1000000),{type:'null'}]};
+const playerRate = {anyOf:[{type:'number',minimum:0,maximum:10000},{type:'null'}]};
+const playerRank = {anyOf:[integer(1,1000000),{type:'null'}]};
+const playerRecordCommon = {id:suppliedKey,season:short,note:string(2000),source:ref('TravelEventSource')};
+defs.BasketballPlayerRecord=object({...playerRecordCommon,team:{anyOf:[short,{type:'null'}]},scope:choice('regular-season','playoffs','preseason','other','unknown'),games:playerCount,minutesPerGame:playerRate,pointsPerGame:playerRate,reboundsPerGame:playerRate,assistsPerGame:playerRate},['id','season','team','scope','games','minutesPerGame','pointsPerGame','reboundsPerGame','assistsPerGame']);
+defs.TennisPlayerRecord=object({...playerRecordCommon,surface:choice('hard','clay','grass','carpet','other','unknown'),matches:playerCount,wins:playerCount,losses:playerCount,titles:playerCount,rank:playerRank},['id','season','surface','matches','wins','losses','titles','rank']);
+const playerCommon={label:short,player:short,description:string(3000),observedAt:flightAt,source:ref('TravelEventSource')};
+node('nba-player-summary',{...playerCommon,records:array(ref('BasketballPlayerRecord'),0,100)},['label','player','records'],'sports');
+node('tennis-player-summary',{...playerCommon,records:array(ref('TennisPlayerRecord'),0,100)},['label','player','records'],'sports');
 // Supplied motorsport snapshots: no live providers or inferred scoring rules.
 defs.MotorsportSession=object({id:suppliedKey,label:short,kind:choice('practice','qualifying','sprint','race','other'),status:choice('scheduled','complete','cancelled','postponed','unknown'),startsAt:{anyOf:[flightAt,{type:'null'}]},endsAt:flightAt,note:string(2000)},['id','label','kind','status','startsAt']);
 defs.MotorsportRace=object({id:suppliedKey,label:short,season:integer(1900,9999),round:integer(1,1000),circuit:short,location:short,sessions:array(ref('MotorsportSession'),0,20),source:ref('TravelEventSource')},['id','label','season','round','circuit','location','sessions']);

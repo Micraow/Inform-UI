@@ -200,3 +200,5 @@ import './entity-facts-types-consumer.mjs';
 import './ledger-records-types-consumer.mjs';
 
 import './motorsport-types-consumer.mjs';
+
+import './player-summaries-types-consumer.mjs';

@@ -1,3 +1,4 @@
+import {renderPlayerSummary} from './player-summaries.js';
 import {renderMotorsportRaces,renderMotorsportStandings} from './motorsport.js';
 import {renderLedgerAccounts,renderLedgerRecurring} from './ledger-records.js';
 import {renderFactTable,renderEntityThumbnails} from './entity-facts.js';
@@ -174,6 +175,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'nba-player-summary':case 'tennis-player-summary':out=renderPlayerSummary(context,n,labels.playerSummaryUI);break;
       case 'f1-races':out=renderMotorsportRaces(context,n,labels.motorsportUI);break;
       case 'f1-standings':out=renderMotorsportStandings(context,n,labels.motorsportUI);break;
       case 'ledger-accounts':out=renderLedgerAccounts(context,n,labels.ledgerRecordsUI);break;
