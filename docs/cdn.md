@@ -6,13 +6,13 @@
 
 ## 已固定的公开入口
 
-以下链接固定到包含预构建产物的完整 Git commit `f35e33b146c266ecf16371733c51064129afaec3`，不随分支变化。
+以下链接固定到包含预构建产物的完整 Git commit `064ab51e1224045ca2968e3e3f1a3e886f3fca4c`，不随分支变化。
 
-- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.global.min.js)，导出 `window.IUI`
-- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
-- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.css)
-- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.schema.json)
-- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/integrity.json)
+- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/iui.global.min.js)，导出 `window.IUI`
+- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
+- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/iui.css)
+- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/iui.schema.json)
+- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/integrity.json)
 
 数学公式使用 KaTeX 可视排版与无障碍 MathML。CSS 会从同一固定提交的 `cdn/fonts/` 下载官方 MIT WOFF2 字体；部署时须保留这个目录。离线编译与默认 DOM 注入则内嵌相同字体。两个脚本格式任选其一，不要同时加载。
 
@@ -29,8 +29,8 @@
   <meta name="referrer" content="no-referrer">
   <title>Inform UI 示例</title>
   <link id="iui-style" rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.css"
-    integrity="sha384-R+ybWEp3LYtcukj5okG9CNtbw1tj9iz5/gmk1gujU5Tyg9G8pF5LIBP+WSJ1TmfH"
+    href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/iui.css"
+    integrity="sha384-b9Fs3hvitvhtio4FkB82fDurrf09T+j9zh/CiWRNmLkQZycn894/nyNDOpq3nYEa"
     crossorigin="anonymous">
 </head>
 <body class="iui-page" data-theme="auto" style="margin:0">
@@ -49,8 +49,8 @@
   }
   </script>
   <script
-    src="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.global.min.js"
-    integrity="sha384-ExWzUtY9GmozAptkPneHZmDC/HDRNNA8SN+gug8wRukKTWOkKo2QwNEJOF9ekPZr"
+    src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@064ab51e1224045ca2968e3e3f1a3e886f3fca4c/cdn/iui.global.min.js"
+    integrity="sha384-R/xK2Ewh8duMhbO5XqnTILQvyu4Ob0Hsw5nqQkRdddquWdPeScw9VX9cN5M7BKFd"
     crossorigin="anonymous"></script>
   <script>
     const status = document.getElementById('status');
@@ -100,11 +100,13 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 独立文档壳使用 `body.iui-page` 与匹配的 `data-theme`（auto/light/dark），让页面外围背景也跟随主题；嵌入现有网页时不要给宿主添加这个类。`mount` 的样式保持局部作用域，不修改宿主背景。
 
-当前固定50节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[f35e33b](https://github.com/Micraow/Inform-UI/actions/runs/37873911247)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
+当前固定50节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[11a5dac](https://github.com/Micraow/Inform-UI/actions/runs/37876233005)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
 
 - [体育与学习HTML](../examples/browser/domains-preview.html) · [JSON](../examples/domains-preview.json)
 - [金融组件HTML](../examples/browser/finance-preview.html) · [JSON](../examples/finance-preview.json)
 
 页面只引用同一固定JS/CSS/字体。新的file://实载记录以当前PR的CI为准，HTTP200本身不代替浏览器验收。
 
-热图的选中项边框使用 selection token，整图鼠标/键盘焦点使用 focus token；保留必要键盘提示。此次样式修复不改变50节点的数据合同。
+热图选中框独立绘制在最上层并内缩，鼠标为2px；键盘使用同一块的3px focus色内框，无合适可见面积时才显示整图备用焦点。12组DPR1/2、亮暗和整数/分数尺寸已执行逐边像素检查，图块权重面积保持不变。该修复不改变50节点的数据合同。
+
+新品牌提交064ab51的JS/CSS/Schema与已验11a5dac逐字一致。Inform-UI新仓库的固定global/ESM/CSS/Schema路径已实际取得HTTP200并核对MIME、CORS与SHA-256；不依赖对旧仓库重定向的假设。新的file://验证仍以当前CI结果为准。

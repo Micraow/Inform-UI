@@ -1,13 +1,5 @@
-import{test,expect}from'@playwright/test';import{readFile,writeFile}from'node:fs/promises';import{pngPixels}from'./png-pixels.mjs';
+import{test,expect}from'@playwright/test';import{readFile,writeFile}from'node:fs/promises';import{pngPixels,edgeWidths}from'./png-pixels.mjs';
 const fixture=JSON.parse(await readFile(new URL('../../examples/heatmap.json',import.meta.url)));
-function edgeWidths(png,bounds,dpr,color){
- const same=rgb=>rgb.every((v,i)=>Math.abs(v-color[i])<=1),result={left:[],right:[],top:[],bottom:[]};
- for(const t of [.25,.5,.75])for(const side of Object.keys(result)){
-  const vertical=side==='left'||side==='right',x=(vertical?(side==='left'?bounds.x:bounds.x+bounds.width):bounds.x+bounds.width*t)*dpr,y=(vertical?bounds.y+bounds.height*t:(side==='top'?bounds.y:bounds.y+bounds.height))*dpr;
-  let count=0;for(let offset=-5*dpr;offset<=5*dpr;offset++)if(same(png.rgb(Math.floor(x)+(vertical?offset:0),Math.floor(y)+(vertical?0:offset))))count++;
-  result[side].push(count);
- }return result;
-}
 for(const theme of ['light','dark'])for(const dpr of [1,2])for(const width of [390,768.375,1100.5])test(`heatmap pixel edges ${theme} DPR${dpr} width${width}`,async({browser})=>{
  const context=await browser.newContext({baseURL:'http://127.0.0.1:4173',viewport:{width:Math.ceil(width),height:1200},deviceScaleFactor:dpr,colorScheme:theme}),page=await context.newPage();
  try{
