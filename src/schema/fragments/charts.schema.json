@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:b649df68e1bec1399eec1bd07f19ec798039fee78d0e9180f3c41af941b7f889:document:base+charts",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:2bb0614c6a5edb33c2655af39d4140c82cf2858f5063e4227f871c388add8b22:document:base+charts",
   "title": "Inform UI document subset: base, charts",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -619,6 +619,68 @@
         "type",
         "label",
         "images"
+      ],
+      "additionalProperties": false
+    },
+    "BusinessHoursDay": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "enum": [
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "status": {
+          "enum": [
+            "hours",
+            "closed",
+            "unknown"
+          ]
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BusinessHoursPeriod"
+          },
+          "minItems": 0,
+          "maxItems": 4
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "day",
+        "status",
+        "periods"
+      ],
+      "additionalProperties": false
+    },
+    "BusinessHoursPeriod": {
+      "type": "object",
+      "properties": {
+        "opens": {
+          "type": "string",
+          "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$(?![\\s\\S])"
+        },
+        "closes": {
+          "type": "string",
+          "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$(?![\\s\\S])"
+        },
+        "nextDay": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "opens",
+        "closes"
       ],
       "additionalProperties": false
     },
@@ -1531,6 +1593,139 @@
       ],
       "additionalProperties": false
     },
+    "DiningReview": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "rating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "food": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "service": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "atmosphere": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "visitDate": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "occasion": {
+          "enum": [
+            "breakfast",
+            "lunch",
+            "dinner",
+            "other",
+            "unknown"
+          ]
+        },
+        "dishes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "source": {
+          "$ref": "#/$defs/PlaceSource"
+        }
+      },
+      "required": [
+        "id",
+        "author",
+        "text",
+        "occasion"
+      ],
+      "additionalProperties": false
+    },
+    "DiscoveryAirport": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "code",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "DiscoveryFlightResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "legs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FlightLeg"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "price": {
+          "$ref": "#/$defs/SuppliedPrice"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "legs"
+      ],
+      "additionalProperties": false
+    },
     "DividerNode": {
       "type": "object",
       "properties": {
@@ -2132,6 +2327,113 @@
         "label",
         "optionId",
         "legs"
+      ],
+      "additionalProperties": false
+    },
+    "FlightResultsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flight-results"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiscoveryFlightResult"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "results"
+      ],
+      "additionalProperties": false
+    },
+    "FlightSearchFormNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flight-search-form"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "airports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiscoveryAirport"
+          },
+          "minItems": 2,
+          "maxItems": 80
+        },
+        "initialOrigin": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "initialDestination": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "initialDepartureDate": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "initialReturnDate": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "initialTravelers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "airports"
       ],
       "additionalProperties": false
     },
@@ -2843,6 +3145,98 @@
       ],
       "additionalProperties": false
     },
+    "LocalBusinessNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "local-business"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "address": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "phoneLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timezoneLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hours": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BusinessHoursDay"
+          },
+          "minItems": 0,
+          "maxItems": 7
+        },
+        "initialDay": {
+          "enum": [
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "accessibility": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "source": {
+          "$ref": "#/$defs/PlaceSource"
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "category",
+        "address",
+        "hours"
+      ],
+      "additionalProperties": false
+    },
     "LocationChoiceOption": {
       "type": "object",
       "properties": {
@@ -3288,6 +3682,18 @@
         },
         {
           "$ref": "#/$defs/ProductCardNode"
+        },
+        {
+          "$ref": "#/$defs/LocalBusinessNode"
+        },
+        {
+          "$ref": "#/$defs/RestaurantReviewsNode"
+        },
+        {
+          "$ref": "#/$defs/FlightSearchFormNode"
+        },
+        {
+          "$ref": "#/$defs/FlightResultsNode"
         },
         {
           "$ref": "#/$defs/RedditThreadCardNode"
@@ -3919,6 +4325,26 @@
       },
       "required": [
         "label"
+      ],
+      "additionalProperties": false
+    },
+    "PlaceSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
       ],
       "additionalProperties": false
     },
@@ -4574,6 +5000,51 @@
         "title",
         "currency",
         "sections"
+      ],
+      "additionalProperties": false
+    },
+    "RestaurantReviewsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "restaurant-reviews"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "restaurantName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiningReview"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/PlaceSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "restaurantName",
+        "reviews"
       ],
       "additionalProperties": false
     },

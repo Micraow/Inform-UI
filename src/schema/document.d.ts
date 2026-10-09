@@ -52,6 +52,10 @@ export type Node =
   | FileNavListNode
   | JobsNode
   | ProductCardNode
+  | LocalBusinessNode
+  | RestaurantReviewsNode
+  | FlightSearchFormNode
+  | FlightResultsNode
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
@@ -1041,6 +1045,127 @@ export interface ProductVariant {
   label: string;
   availability: "available" | "unavailable" | "unknown";
   price?: SuppliedPrice;
+}
+export interface LocalBusinessNode {
+  type: "local-business";
+  id?: string;
+  name: string;
+  category: string;
+  address: string;
+  description?: string;
+  phoneLabel?: string;
+  timezoneLabel?: string;
+  /**
+   * @minItems 0
+   * @maxItems 7
+   */
+  hours: BusinessHoursDay[];
+  initialDay?: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  services?: string[];
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  accessibility?: string[];
+  source?: PlaceSource;
+}
+export interface BusinessHoursDay {
+  day: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+  status: "hours" | "closed" | "unknown";
+  /**
+   * @minItems 0
+   * @maxItems 4
+   */
+  periods: BusinessHoursPeriod[];
+  note?: string;
+}
+export interface BusinessHoursPeriod {
+  opens: string;
+  closes: string;
+  nextDay?: boolean;
+}
+export interface PlaceSource {
+  label: string;
+  url: string;
+}
+export interface RestaurantReviewsNode {
+  type: "restaurant-reviews";
+  id?: string;
+  label: string;
+  restaurantName: string;
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  reviews: DiningReview[];
+  description?: string;
+  source?: PlaceSource;
+}
+export interface DiningReview {
+  id: string;
+  author: string;
+  text: string;
+  rating?: number;
+  food?: number;
+  service?: number;
+  atmosphere?: number;
+  visitDate?: string;
+  occasion: "breakfast" | "lunch" | "dinner" | "other" | "unknown";
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  dishes?: string[];
+  source?: PlaceSource;
+}
+export interface FlightSearchFormNode {
+  type: "flight-search-form";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 2
+   * @maxItems 80
+   */
+  airports: [DiscoveryAirport, DiscoveryAirport, ...DiscoveryAirport[]];
+  initialOrigin?: string;
+  initialDestination?: string;
+  initialDepartureDate?: string;
+  initialReturnDate?: string;
+  initialTravelers?: number;
+  disabled?: boolean;
+}
+export interface DiscoveryAirport {
+  code: string;
+  label: string;
+}
+export interface FlightResultsNode {
+  type: "flight-results";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  results: DiscoveryFlightResult[];
+  source?: TravelEventSource;
+}
+export interface DiscoveryFlightResult {
+  id: string;
+  label: string;
+  /**
+   * @minItems 1
+   * @maxItems 8
+   */
+  legs: [FlightLeg, ...FlightLeg[]];
+  price?: SuppliedPrice;
+  note?: string;
+  source?: TravelEventSource;
 }
 export interface RedditThreadCardNode {
   type: "reddit-thread-card";
