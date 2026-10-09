@@ -13,6 +13,8 @@ for(const colorScheme of ['light','dark'])for(const width of [390,768,1100])test
   await details.locator('summary').click();await expect(details).toHaveAttribute('open','');
   await page.evaluate(()=>window.agendaSavedItem=document.querySelector('[data-event-id=discussion]'));
   await select.focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');await expect(select).toHaveValue('2026-10-09');await expect(select).toBeFocused();
+  // Enter can leave the native select popup open on Linux; dismiss it without changing the selected value or focus.
+  await page.keyboard.press('Escape');await expect(select).toHaveValue('2026-10-09');await expect(select).toBeFocused();
   await expect(agenda.locator('.iui-agenda-date:not([hidden])')).toHaveCount(1);await expect(agenda.locator('[data-event-id=review]')).toBeHidden();
   await select.selectOption('2026-10-16');await select.selectOption('2026-10-09');await page.evaluate(()=>window.agendaController.setState({other:1}));
   await expect(details).toHaveAttribute('open','');await expect(select).toBeFocused();expect(await page.evaluate(()=>window.agendaSavedItem===document.querySelector('[data-event-id=discussion]'))).toBe(true);

@@ -11,7 +11,7 @@ async function open(page,spec=documentFor(),lang='en'){
     document.documentElement.lang=lang;
     window.suggestions=window.iui.mount(document.getElementById('host'),spec);
     window.suggestionEvents=[];
-    const preview=document.createElement('p');preview.id='event-preview';preview.setAttribute('aria-label','Host event preview');document.body.append(preview);
+    const preview=document.createElement('p');preview.id='event-preview';preview.style.overflowWrap='anywhere';preview.setAttribute('aria-label','Host event preview');document.body.append(preview);
     document.getElementById('host').addEventListener('iui:suggestion',event=>{
       window.suggestionEvents.push({detail:event.detail,target:event.target.dataset.iui,frozen:Object.isFrozen(event.detail),composed:event.composed,bubbles:event.bubbles,cancelable:event.cancelable});
       if(event.detail.suggestionId==='idea1'){event.preventDefault();return;}
@@ -54,7 +54,7 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`sugg
 test('suggestions Arabic-first RTL, exact long literal text and forced colors',async({page})=>{
   await page.setViewportSize({width:390,height:1000});await page.emulateMedia({forcedColors:'active',reducedMotion:'reduce'});
   const n=suggestion();n.label='اقتراحات للقراءة';n.description='اختر اقتراحًا من القائمة';n.items[0].text='ط'.repeat(2000);n.items[1].text='مرحبا 😀\r\n<script>never()</script>';
-  const root=await open(page,documentFor(n));expect(await root.evaluate(element=>getComputedStyle(element).direction)).toBe('rtl');await choice(root,0).click();await expect(choice(root,0)).toHaveAttribute('aria-pressed','true');expect(await choice(root,0).textContent()).toBe(n.items[0].text);expect(await choice(root,1).textContent()).toBe(n.items[1].text);await expect(root.locator('script,img,iframe,a')).toHaveCount(0);
+  const root=await open(page,documentFor(n));expect(await root.evaluate(element=>getComputedStyle(element).direction)).toBe('rtl');await choice(root,0).click();await expect(choice(root,0)).toHaveAttribute('aria-pressed','true');expect(await choice(root,0).textContent()).toBe(n.items[0].text);await expect(page.locator('#event-preview')).toHaveText('Host received a local event: '+n.items[0].text);expect(await choice(root,1).textContent()).toBe(n.items[1].text);await expect(root.locator('script,img,iframe,a')).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:'test-results/suggestions-rtl-forced-colors.png',fullPage:true});
 });
 test('suggestions Chinese UI, disabled form/no-submit and synchronous replacement/disposal',async({page})=>{

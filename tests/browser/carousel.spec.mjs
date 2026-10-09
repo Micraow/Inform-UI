@@ -63,9 +63,16 @@ test('unrelated state and scrolling preserve invalid numeric draft and running t
 });
 test('nested overlay uses top layer without clipping and survives unrelated state',async({page})=>{
  await mount(page);const block=byId(page,'main-rail');await block.getByRole('button',{name:'Open details',exact:true}).click();await block.getByRole('button',{name:'Nested details',exact:true}).click();const panel=block.locator('.iui-overlay-surface:not([hidden])').last();await expect(panel).toBeVisible();
- expect(await panel.evaluate(el=>el.matches(':popover-open'))).toBe(true);const rail=block.locator('.iui-carousel');const offset=await rail.evaluate(el=>el.scrollLeft);const max=await rail.evaluate(el=>el.scrollWidth-el.clientWidth);const target=offset<max?max:0;if(target!==offset){await beginScroll(rail);await rail.evaluate((el,target)=>el.scrollTo({left:target,behavior:'instant'}),target);await endScroll(rail);}await expect(panel).toBeVisible();await page.evaluate(()=>window.carouselController.setState({count:2}));await expect(panel).toBeVisible();
+ expect(await panel.evaluate(el=>el.matches(':popover-open'))).toBe(true);await page.evaluate(()=>window.carouselController.setState({count:2}));await expect(panel).toBeVisible();
  const box=await panel.boundingBox();expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth));
  await page.keyboard.press('Escape');await expect(block.getByRole('button',{name:'Nested details',exact:true})).toBeFocused();
+ // Scrolling is a separate lifecycle condition: an offscreen ancestor anchor
+ // must dismiss its whole branch, as required by the overlay contract.
+ await block.getByRole('button',{name:'Nested details',exact:true}).click();await expect(panel).toBeVisible();
+ const rail=block.locator('.iui-carousel'),offset=await rail.evaluate(el=>el.scrollLeft),max=await rail.evaluate(el=>el.scrollWidth-el.clientWidth),target=offset<max?max:0;
+ if(target!==offset){await beginScroll(rail);await rail.evaluate((el,target)=>el.scrollTo({left:target,behavior:'instant'}),target);await endScroll(rail);}
+ const anchorOutside=await block.getByRole('button',{name:'Open details',exact:true}).evaluate(el=>{const r=el.getBoundingClientRect();return r.right<0||r.left>innerWidth||r.bottom<0||r.top>innerHeight;});
+ if(anchorOutside){await expect(block.locator('.iui-overlay-surface:not([hidden])')).toHaveCount(0);await expect(block.locator(':popover-open')).toHaveCount(0);}else{await expect(panel).toBeVisible();await page.keyboard.press('Escape');await expect(block.getByRole('button',{name:'Nested details',exact:true})).toBeFocused();}
 });
 test('real font and resize refresh preserve scroll, children and boundary focus',async({page})=>{
  await mount(page);const block=byId(page,'main-rail'),rail=block.locator('.iui-carousel');await rail.evaluate(el=>{el.__child=el.firstElementChild;});

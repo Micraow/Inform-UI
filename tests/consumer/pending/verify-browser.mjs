@@ -528,6 +528,11 @@ export async function smokeExample(page, entry, document, expect) {
       await disclosure(page,details,expect);
       await key(page,select,'Home',expect); await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter');
       await expect(select).toHaveValue('2026-10-09'); await expect(select).toBeFocused();
+      // Enter may open Chromium's native select popup after arrow selection.
+      // Dismiss it through the keyboard before later selection and capture;
+      // the committed value and native focus must survive dismissal.
+      await page.keyboard.press('Escape');
+      await expect(select).toHaveValue('2026-10-09'); await expect(select).toBeFocused();
       await expect(root.locator('[data-event-id=review]')).toBeHidden();
       await select.selectOption('2026-10-16'); await select.selectOption('2026-10-09'); await expect(details).toHaveAttribute('open','');
       await select.selectOption(''); await expect(root.locator('.iui-agenda-date:not([hidden])')).toHaveCount(2); break;

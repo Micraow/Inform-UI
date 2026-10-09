@@ -35,7 +35,7 @@ test('person-profile forced colors/reduced motion and native reading in a busy f
     window.personController=window.iui.mount(document.getElementById('host'),{version:'iui/1',body:[{type:'form',label:'Synthetic form',action:'save',children:[input.body[0]]}]},{actions:{save:()=>{window.personSubmits++;return new Promise(resolve=>window.releasePersonSave=resolve);}}});
   },fixture);
   const summary=page.locator('.iui-person-profile summary'),details=page.locator('.iui-person-profile details');
-  await page.getByRole('button',{name:'Submit',exact:true}).click();await expect(page.locator('.iui-form-fields')).toBeDisabled();
+  await page.getByRole('button',{name:'Submit',exact:true}).click();await expect(page.locator('.iui-form-fields')).toHaveJSProperty('disabled',true);expect(await page.locator('.iui-form-fields').evaluate(el=>el.matches(':disabled'))).toBe(true);
   await summary.click();await expect(details).toHaveAttribute('open','');await summary.focus();await page.keyboard.press('Space');await expect(details).not.toHaveAttribute('open','');await page.keyboard.press('Enter');await expect(details).toHaveAttribute('open','');
   expect(await summary.evaluate(el=>getComputedStyle(el).outlineStyle)).not.toBe('none');expect(await page.evaluate(()=>window.personSubmits)).toBe(1);
   expect(await page.evaluate(()=>[...new FormData(document.querySelector('form')).entries()])).toEqual([]);
