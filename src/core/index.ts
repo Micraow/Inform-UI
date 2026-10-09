@@ -1,3 +1,4 @@
+import {isLearning,inspectLearning} from './learning.js';
 import {isSports,inspectSports} from './sports.js';
 import {inspectExtension,timestamp,chartXDomain,isField,fieldTypeIssue} from './extensions.js';
 import validateSchema from '../schema/validator.cjs';
@@ -237,6 +238,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     for (const [value, at] of nodeValues(node, path)) capture(() => { infer(value, at); });
     inspectExtension(node,path,state,add);
     if(isSports(node))inspectSports(node,path,add,isSafeURL);
+    if(isLearning(node))inspectLearning(node,path,add);
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));

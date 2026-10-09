@@ -1,3 +1,4 @@
+import {renderLearning} from './learning.js';
 import {renderSports} from './sports.js';
 import {createForms} from './forms.js';
 import {renderWeather} from './weather.js';
@@ -158,6 +159,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'topology': out=topology(n);break;
       case 'chart': out=renderChart(context,n);break;
       case 'weather': out=renderWeather(context,n);break;
+      case 'quiz': case 'flashcards': out=renderLearning(context,n); break;
       case 'sports-schedule': case 'sports-scoreboard': case 'sports-standings': out=renderSports(context,n);break;
       case 'svg': {out=svg('svg',{viewBox:n.viewBox,role:'img','aria-label':n.label??labels.diagram});out.classList.add('iui-svg');for(const shape of n.shapes){const s=svg(shape.tag,shape.attrs);if(shape.text)s.textContent=shape.text;out.append(s);}break;}
       case 'native': throw new Error('Native runtime is not supported');

@@ -73,6 +73,8 @@ export type Node =
   | SportsScheduleNode
   | SportsScoreboardNode
   | SportsStandingsNode
+  | QuizNode
+  | FlashcardsNode
   | SvgNode
   | NativeNode;
 
@@ -781,6 +783,72 @@ export interface SportsStandingsNode {
   message?: string;
   initialTeamId?: string;
   initialGroup?: string;
+}
+export interface QuizNode {
+  type: "quiz";
+  id?: string;
+  title: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  questions: QuizQuestion[];
+  status?: "ready" | "loading" | "error";
+  message?: string;
+}
+export interface QuizQuestion {
+  id: string;
+  kind: "single" | "multiple";
+  prompt: string;
+  latex?: string;
+  /**
+   * @minItems 2
+   * @maxItems 20
+   */
+  choices: [
+    {
+      id: string;
+      label: string;
+    },
+    {
+      id: string;
+      label: string;
+    },
+    ...{
+      id: string;
+      label: string;
+    }[]
+  ];
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  correct: [string, ...string[]];
+  explanation: string;
+  explanationLatex?: string;
+  points?: number;
+}
+export interface FlashcardsNode {
+  type: "flashcards";
+  id?: string;
+  title: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  cards: Flashcard[];
+  status?: "ready" | "loading" | "error";
+  message?: string;
+}
+export interface Flashcard {
+  id: string;
+  front: string;
+  back: string;
+  frontLatex?: string;
+  backLatex?: string;
+  hint?: string;
 }
 export interface SvgNode {
   type: "svg";
