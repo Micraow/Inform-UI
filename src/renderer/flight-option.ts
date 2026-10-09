@@ -41,7 +41,7 @@ export function renderFlightOption(c: RendererContext, n: FlightOptionNode, t: T
   if (n.source) root.append(travelSource(c,n.source,t));
   let selected = false, alive = true, dispatching = false;
   c.cleanup(()=>{alive=false;});
-  const blocked = (button:HTMLButtonElement) => !alive || !root.isConnected || button.matches(':disabled') || !!button.closest('[hidden],[inert]');
+  const blocked = (button:HTMLButtonElement) => !alive || !root.isConnected || !button.isConnected || !root.contains(button) || button.matches(':disabled') || !!button.closest('[hidden],[inert]');
   const paint = () => {
     select.setAttribute('aria-pressed',String(selected)); select.setAttribute('aria-disabled',String(selected)); clear.setAttribute('aria-disabled',String(!selected));
     selection.textContent = selected ? t.selected : t.noSelection; root.dataset.selected = String(selected);

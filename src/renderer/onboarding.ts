@@ -12,7 +12,7 @@ export function renderOnboarding(c:RendererContext,n:OnboardingSelectionNode,t:O
  const guidance=e('p','iui-onboarding-guidance',t.range(minimum,maximum));guidance.id=id+'-range';root.append(guidance);root.setAttribute('aria-describedby',`${note.id} ${guidance.id}`);
  const list=e('div','iui-onboarding-options'),count=e('p','iui-onboarding-count'),status=e('p','iui-onboarding-status');status.id=id+'-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.setAttribute('aria-atomic','true');
  const initial=new Set(n.initial??[]);let selected=new Set(initial),alive=true,dispatching=false;
- const blocked=(control:HTMLElement)=>!alive||!root.isConnected||control.matches(':disabled')||!!control.closest('[hidden],[inert]');
+ const blocked=(control:HTMLElement)=>!alive||!root.isConnected||!control.isConnected||!root.contains(control)||control.matches(':disabled')||!!control.closest('[hidden],[inert]');
  const entries=n.options.map((option,index)=>{
   const label=e('label','iui-onboarding-option'),input=e('input'),text=e('span','iui-onboarding-option-body'),title=e('span','iui-onboarding-option-title',option.label);
   input.type=multiple?'checkbox':'radio';input.id=`${id}-${index}`;input.name=id;input.setAttribute('form',id+'-local-only');label.htmlFor=input.id;title.id=input.id+'-title';input.setAttribute('aria-labelledby',title.id);input.dataset.optionId=option.id;input.checked=input.defaultChecked=selected.has(option.id);text.append(title);
@@ -33,7 +33,7 @@ export function renderOnboarding(c:RendererContext,n:OnboardingSelectionNode,t:O
    const selectedIds=Object.freeze(n.options.filter(option=>selected.has(option.id)).map(option=>option.id));const detail:OnboardingChoiceDetail=Object.freeze({componentId:n.id??null,selectedIds});
    const Constructor=c.doc.defaultView?.CustomEvent;let event:CustomEvent<OnboardingChoiceDetail>;
    if(typeof Constructor==='function')event=new Constructor('iui:onboarding-choice',{detail,bubbles:true,cancelable:true,composed:false});else{event=c.doc.createEvent('CustomEvent');event.initCustomEvent('iui:onboarding-choice',true,true,detail);}
-   if(blocked(proceed))return;const accepted=root.dispatchEvent(event);if(!alive||!root.isConnected)return;setStatus(accepted?'ready':'not-accepted',accepted?t.ready:t.rejected);
+   if(blocked(proceed))return;const accepted=root.dispatchEvent(event);if(blocked(proceed))return;setStatus(accepted?'ready':'not-accepted',accepted?t.ready:t.rejected);
   }catch{if(alive&&root.isConnected)setStatus('error',t.error);}finally{dispatching=false;}
  });
  c.cleanup(()=>{alive=false;});paint();setStatus('idle','');return root;
