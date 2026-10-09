@@ -3,3 +3,4 @@
 *.woff2 binary
 src/schema/** linguist-generated=true
 cdn/** linguist-generated=true
+*.otf binary

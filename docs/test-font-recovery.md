@@ -1,0 +1,13 @@
+# Deterministic CJK browser-test setup
+
+The previous37-candidate run37955823948 lost canonical browser execution after a61.2MB `fonts-noto-cjk` apt download exceeded its four-minute step. This recovery replaces that network-dependent font setup with one checked-in, unmodified official Noto Sans CJK SC Regular OTF and its complete same-commit SIL OFL1.1 license. It does not remove Chinese text, permit tofu, increase screenshot timeouts or claim visual fidelity from a green source test.
+
+The official Sans2.004 tag resolves to523d033d6cb47f4a80c58a35753646f5c3608a78. The16,437,364-byte font has SHA256 `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b`. Its downloaded bytes also match the upstream Git blob `dc15562470b4f842321894787a0d066879ccff8b`, independently read from the GitHub contents API at that immutable revision. The exact font/license URLs and hashes are in tests/assets/fonts/noto-cjk-sc/font-lock.json. This asset keeps its upstream font license; it is not relicensed under MIT.
+
+The original JS verifier checks font/license hashes and byte counts, parses standard SFNT Unicode cmap formats4/12, and requires real nonzero glyph mappings for current CJK fixture/label text. The current source requires923 glyphs. A future uncovered character fails the preflight. Nine focused tests cover actual mappings, absent glyphs, corrupted font/license, malformed tables, redirected filenames and symlink substitution.
+
+The Linux install mode copies only verified bytes into an explicit temporary fonts directory, with a sibling fontconfig cache. It preserves normal system fonts and asserts that `fc-match` resolves the named CJK family to that exact file. This succeeded locally. An initial cache-inside-font-directory arrangement failed; the tested sibling layout avoids scanning a changing cache as font input. No files are installed into system or persistent user-font locations. Workflow export of the temporary FONTCONFIG_FILE applies to canonical, consumer and Skill browser subprocesses.
+
+A new prepared Chromium CDP case checks the actual platform font used by Chinese text rendered through the normal library style, records the actual fonts and expected digest, and preserves a screenshot. It must execute successfully before claiming the browser used this face. Local glyph/fontconfig checks do not constitute real-browser, typography or high-fidelity acceptance. No CI was started for this recovery.
+
+Only test assets, test/verifier code, Git binary attributes, documentation and workflow setup change. Production source/build inputs and generated103 runtime bytes remain the990d checkpoint. The font is excluded from the package files allowlist and public CDN. There is no runtime font download or OpenAI dependency.

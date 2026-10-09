@@ -40,9 +40,11 @@ jobs:
       - run: npm audit --omit=dev
       - run: node scripts/check-generated.mjs
       - run: npx playwright install --with-deps chromium
-      - name: Install CJK test font with bounded network retries
-        timeout-minutes: 4
-        run: sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends fonts-noto-cjk
+      - name: Verify and install pinned licensed CJK test font
+        timeout-minutes: 2
+        run: |
+          node scripts/prepare-test-font.mjs --install "$RUNNER_TEMP/inform-ui-fonts"
+          echo "FONTCONFIG_FILE=$RUNNER_TEMP/inform-ui-fonts/fonts.conf" >> "$GITHUB_ENV"
       - name: Run canonical browser acceptance once
         run: npm run test:browser
       - name: Run each locked original consumer once
