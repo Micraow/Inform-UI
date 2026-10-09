@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T16:23:48Z",
+  "as_of_utc": "2026-10-09T16:44:01Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -33,12 +33,25 @@
       "sidebar-people-also-ask",
       "jobs",
       "product-card"
+    ],
+    "local_107_source": "e43e05a98b39bad958f2a9aaa231b7369ddc5f6a",
+    "later_10_candidates": [
+      "create-interactive-poll",
+      "email-preview",
+      "file-nav-list",
+      "sidebar-people-also-ask",
+      "jobs",
+      "product-card",
+      "local-business",
+      "restaurant-reviews",
+      "flight-search-form",
+      "flight-results"
     ]
   },
   "counts": {
-    "implemented_pending_verification": 43,
+    "implemented_pending_verification": 47,
     "functionally_verified": 53,
-    "not_implemented": 155,
+    "not_implemented": 151,
     "partial": 5
   },
   "components": [
@@ -1216,15 +1229,15 @@
       "id": "flight-results",
       "name": "Flight Results",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。"
     },
     {
       "id": "flight-search-form",
       "name": "Flight Search Form",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。"
     },
     {
       "id": "flight-tracker",
@@ -1531,8 +1544,8 @@
       "id": "local-business",
       "name": "Local Business",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。"
     },
     {
       "id": "multiple-choice-block-v2",
@@ -1696,8 +1709,8 @@
       "id": "restaurant-reviews",
       "name": "Restaurant Reviews",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。"
     },
     {
       "id": "shared-activity-planner",

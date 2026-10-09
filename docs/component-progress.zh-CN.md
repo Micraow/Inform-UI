@@ -1,10 +1,10 @@
 # 组件实现进度
 
-固定分母256项：功能已验53，已写待验43，部分5，未实现155。协议节点数103是另一种计数。
+固定分母256项：功能已验53，已写待验47，部分5，未实现151。协议节点数107是另一种计数。
 
-43项本地候选分为37项既有候选和6项后续本地候选。37项最新CI [37955823948](https://github.com/Micraow/Inform-UI/actions/runs/37955823948) 已失败，仍待验收；后续6项为create-interactive-poll、email-preview、file-nav-list、sidebar-people-also-ask、jobs、product-card。两组均未提升功能已验计数。
+47项本地候选分为37项既有候选和10项后续本地候选。37项最新CI [37955823948](https://github.com/Micraow/Inform-UI/actions/runs/37955823948) 已失败，仍待验收；后续10项为create-interactive-poll、email-preview、file-nav-list、sidebar-people-also-ask、jobs、product-card、local-business、restaurant-reviews、flight-search-form、flight-results。两组均未提升功能已验计数。
 
-功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。历史正式验收见[66节点证据](verification-66.md)，37项历史冻结见[97节点记录](local-enhancements-97.md)。103节点整合的针对性测试也不等于完整或真实浏览器验收。
+功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。历史正式验收见[66节点证据](verification-66.md)，37项历史冻结见[97节点记录](local-enhancements-97.md)。107节点针对性整合检查不等于完整或真实浏览器验收。活动规划候选未纳入此冻结。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -174,8 +174,8 @@
 | file-cite | File Cite | 未实现 | 暂无专门实现证据 |
 | file-nav-list | File Nav List | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | finance-onboarding-suggestions | Finance Onboarding Suggestions | 未实现 | 暂无专门实现证据 |
-| flight-results | Flight Results | 未实现 | 暂无专门实现证据 |
-| flight-search-form | Flight Search Form | 未实现 | 暂无专门实现证据 |
+| flight-results | Flight Results | 已写待验 | 独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。 |
+| flight-search-form | Flight Search Form | 已写待验 | 独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。 |
 | flight-tracker | Flight Tracker | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
 | follow-up-action-bar | Follow Up Action Bar | 未实现 | 暂无专门实现证据 |
 | follow-up-card-group | Follow Up Card Group | 未实现 | 暂无专门实现证据 |
@@ -219,7 +219,7 @@
 | link | Link | 未实现 | 暂无专门实现证据 |
 | link-card | Link Card | 未实现 | 暂无专门实现证据 |
 | list-automations | List Automations | 未实现 | 暂无专门实现证据 |
-| local-business | Local Business | 未实现 | 暂无专门实现证据 |
+| local-business | Local Business | 已写待验 | 独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。 |
 | multiple-choice-block-v2 | Multiple Choice Block V2 | 未实现 | 暂无专门实现证据 |
 | nba-game-boxscore | Nba Game Boxscore | 未实现 | 暂无专门实现证据 |
 | nba-player-summary | Nba Player Summary | 未实现 | 暂无专门实现证据 |
@@ -242,7 +242,7 @@
 | recommendation-card | Recommendation Card | 未实现 | 暂无专门实现证据 |
 | recommendation-link-card | Recommendation Link Card | 未实现 | 暂无专门实现证据 |
 | reservation-time-pills-ref-carousel | Reservation Time Pills Ref Carousel | 未实现 | 暂无专门实现证据 |
-| restaurant-reviews | Restaurant Reviews | 未实现 | 暂无专门实现证据 |
+| restaurant-reviews | Restaurant Reviews | 已写待验 | 独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。 |
 | shared-activity-planner | Shared Activity Planner | 未实现 | 暂无专门实现证据 |
 | sidebar-fact-table | Sidebar Fact Table | 未实现 | 暂无专门实现证据 |
 | sidebar-people-also-ask | Sidebar People Also Ask | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
