@@ -24,3 +24,5 @@ export type {ProductChoiceDetail} from './renderer/product-card.js';
 export type {FlightSearchDetail,FlightResultDetail} from './renderer/flight-discovery.js';
 
 export type {ActivityPlanDetail,EventReviewDetail} from './renderer/activity-planning.js';
+
+export type {WordMarkDetail,WordsCopyDetail} from './renderer/vocabulary.js';

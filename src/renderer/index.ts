@@ -1,3 +1,4 @@
+import {renderWordCard,renderCopyWords} from './vocabulary.js';
 import {renderActivityPlanner,renderEventSidebar} from './activity-planning.js';
 import {renderFlightSearch,renderFlightResults} from './flight-discovery.js';
 import {renderLocalBusiness,renderRestaurantReviews} from './local-places.js';
@@ -169,6 +170,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'word-card':out=renderWordCard(context,n,labels.vocabularyUI);break;
+      case 'copy-words':out=renderCopyWords(context,n,labels.vocabularyUI);break;
       case 'shared-activity-planner':out=renderActivityPlanner(context,n,labels.activityUI);break;
       case 'event-sidebar':out=renderEventSidebar(context,n,labels.activityUI);break;
       case 'flight-search-form':out=renderFlightSearch(context,n,labels.discoveryUI);break;

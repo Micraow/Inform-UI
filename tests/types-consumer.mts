@@ -190,3 +190,5 @@ import './local-places-types-consumer.mjs';
 import './flight-discovery-types-consumer.mjs';
 
 import './activity-planning-types-consumer.mjs';
+
+import './vocabulary-tools-types-consumer.mjs';
