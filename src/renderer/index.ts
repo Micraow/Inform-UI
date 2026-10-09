@@ -1,3 +1,7 @@
+import {renderAvailability} from './availability.js';
+import {renderThread} from './thread.js';
+import {renderNewsArticle} from './news.js';
+import {renderEntityReviews} from './entity-reviews.js';
 import {renderWriting} from './writing.js';
 import {renderPersonProfile} from './person-profile.js';
 import {renderMenu} from './menu.js';
@@ -218,6 +222,10 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'loading':case 'loading-block': out=renderLoading(context,n,labels.loadingUI); break;
       case 'flow':case 'icon':case 'pulse-indicator': out=renderPrimitive(context,n,labels.primitive); break;
       case 'finance-quote': case 'finance-chart': case 'finance-comparison': out=renderFinance(context,n); break;
+      case 'news-article':out=renderNewsArticle(context,n,labels.newsUI);break;
+      case 'entity-reviews':out=renderEntityReviews(context,n,labels.reviewsUI);break;
+      case 'restaurant-availability':out=renderAvailability(context,n,labels.availabilityUI);break;
+      case 'reddit-thread-card':out=renderThread(context,n,labels.threadUI);break;
       case 'agenda': out=renderAgenda(context,n,labels.agendaUI); break;
       case 'rating': out=renderRating(context,n,labels.ratingUI); break;
       case 'vocab-card': out=renderVocabCard(context,n,labels.vocabUI); break;

@@ -106,7 +106,7 @@ test('CSS includes wrap, logical constraints, semantic palette and exact busy-on
   const shared=await readFile(new URL('../src/renderer/style.css',import.meta.url),'utf8'),start=shared.indexOf('/* Original finite primitives.');assert.ok(start>=0);const tail=shared.slice(start),end=tail.indexOf('\n/* Original',1),css=end<0?tail:tail.slice(0,end);
   assert.ok(!css.includes('iui-source-sr')); // Do not inspect a later renderer module's unrelated screen-reader styles.
   assert.match(css,/flex-flow: row wrap/);assert.match(css,/overflow-wrap: anywhere/);assert.match(css,/max-inline-size: 100%/);
-  assert.match(css,/\.iui-flow > :is\(\.iui-time, \.iui-weather, \.iui-finance, \.iui-converter\) \{ flex-basis: min\(20rem, 100%\)/);
+  assert.match(css,/\.iui-flow > :is\(\.iui-time, \.iui-weather, \.iui-finance, \.iui-converter, \.iui-thread\) \{ flex-basis: min\(20rem, 100%\)/);
   assert.ok(!/(?:position:\s*absolute|\border:|grid-auto-flow|url\(|@import)/.test(css));
   assert.match(css,/\[data-status=busy\]\[data-animate=true\].*animation:/);assert.match(css,/@media \(prefers-reduced-motion: reduce\)/);assert.match(css,/animation: none; opacity: 1/);
   for(const token of ['ink','muted','info','success','warning','danger'])assert.ok(css.includes(`var(--iui-${token})`));

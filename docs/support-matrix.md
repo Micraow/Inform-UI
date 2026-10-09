@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 80 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 84 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working candidate source: 79 rendered + 1 rejected =80 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
+**Working candidate source: 83 rendered + 1 rejected =84 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -74,6 +74,10 @@ results from the current revision for those claims.
 | `label` | Rendered candidate | Native extra label associated with a declared supported control, including forward references. [Contract](label.md). |
 | `person-profile` | Rendered candidate | Supplied literal facts and native biography disclosure; no identity verification or retrieval. [Contract](person-profile.md). |
 | `writing-block` | Rendered candidate | Local textarea draft with explicit trusted copy/selection/revert and honest stale-copy status. No sending or persistence. [Contract](writing-block.md). |
+| `news-article` | Rendered candidate | Supplied literal article with native full-text disclosure and explicit provenance; no retrieval or credibility claim. [Contract](news-article.md). |
+| `entity-reviews` | Rendered candidate | Finite supplied reviews, native rating filters/stable sort and retained disclosures; no inferred aggregate score or posting. [Contract](entity-reviews.md). |
+| `restaurant-availability` | Rendered candidate | Supplied venue wall times with a cancelable local choice event; no booking, refresh or timezone conversion. [Contract](restaurant-availability.md). |
+| `reddit-thread-card` | Rendered candidate | Supplied discussion tree, bounded nesting and native reading disclosures; no provider API, voting or posting. [Contract](reddit-thread-card.md). |
 | `favicon` | Rendered candidate | Supplied image or local fallback, explicit remote-load action, native error/retry and no icon discovery service. See [contract](favicon.md). |
 | `agenda` | Rendered candidate | Strict supplied floating date/time labels, stable date groups and native date filtering. No calendar service or timezone conversion. See [contract](agenda.md). |
 | `rating` | Rendered candidate | Native integer0..max controlled radio rating with atomic bounds; standalone and explicitly excluded from Forms ownership. See [contract](rating.md). |

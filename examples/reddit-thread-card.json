@@ -1,0 +1,27 @@
+{
+  "version": "iui/1",
+  "title": "Synthetic supplied discussion",
+  "description": "All names, communities and discussion text in this example are fictional. No provider is connected.",
+  "body": [
+    {
+      "type": "reddit-thread-card",
+      "title": "Fictional reading-room discussion",
+      "author": "Fictional Mira",
+      "community": "Fictional Field Notes Club",
+      "body": "Synthetic question: which part of the imaginary chapter was clearest?\nThese are supplied example comments, not retrieved posts.",
+      "score": 0,
+      "source": {"label": "Synthetic demonstration source", "url": "https://example.invalid/synthetic-discussion"},
+      "comments": [
+        {"id": "opening", "author": "Fictional Rowan", "body": "Synthetic response: the opening example helped.", "score": 3, "replies": [
+          {"id": "clarification", "author": "Fictional Lin", "body": "Synthetic reply: could you describe what was helpful?", "score": null, "replies": [
+            {"id": "detail", "author": "Fictional Rowan", "body": "Synthetic detail: the labels matched the diagram.", "score": -1, "replies": [
+              {"id": "thanks", "author": "Fictional Lin", "body": "Synthetic final reply: I see the connection now."}
+            ]}
+          ]}
+        ]},
+        {"id": "different", "author": "Fictional Sol", "body": "Synthetic response: I would add another example.\n**This text stays literal.**", "score": 0}
+      ]
+    },
+    {"type": "reddit-thread-card", "title": "Fictional empty thread", "author": "Fictional Ari", "body": "No comments were supplied for this example.", "source": {"label": "Synthetic local example"}, "comments": []}
+  ]
+}

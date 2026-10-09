@@ -1,5 +1,11 @@
 # Changelog
 
+## Local supplied reading and availability checkpoint (browser pending)
+
+- Add supplied news articles, review filtering/sorting, explicit local availability choices and finite discussion trees.
+- Preserve native reading details, missing scores, source provenance and host lifecycle boundaries; availability does not perform reservations.
+- Full Node attempt 807/808 plus corrected exact flow selector test and 16/16 focused retest; source/generated assets unchanged by that test-only correction. Build/types/boundary gates pass. Twenty-four distinct candidates await the accumulated browser batch; see [precise evidence](docs/local-enhancements-84.md).
+
 ## Local reading and draft checkpoint (browser pending)
 
 - Add supplied menu, explicit suggestion handoff, extra native field labels, supplied person profile and local writing draft.

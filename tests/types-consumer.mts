@@ -1,3 +1,4 @@
+import "./news-types-consumer.mjs";
 import "./button-types-consumer.mjs";
 import {compileArtifact,compileHtml,mount,validateDocument,evaluateState} from '../dist/index.js';
 import type {IUIDocument,Node,Value,Controller} from '../dist/index.js';
@@ -160,3 +161,10 @@ void [writingMissingLabel,writingBinding,writingSend,writingEditable];
 
 import './person-profile-types-consumer.mjs';
 import './types-menu.mjs';
+
+import './entity-reviews-types-consumer.mjs';
+
+
+import "./availability-types-consumer.mjs";
+
+import './thread-types-consumer.mjs';

@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分5，已写待验20，未实现178。
+当前固定分母为256项：功能已验53，部分5，已写待验24，未实现174。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-最近正式验收见[66节点证据](verification-66.md)。二十项本地候选见[80节点本地冻结](local-enhancements-80.md)，本地测试不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
+最近正式验收见[66节点证据](verification-66.md)。二十四项本地候选见[84节点本地冻结](local-enhancements-84.md)，本地测试不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -71,10 +71,10 @@
 | calendar-agenda | Calendar List | 已写待验 | 原创供数日程、严格日期时间、稳定分组/筛选与保留详情已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | person-profile | Person | 已写待验 | 供数档案、原生详情与安全来源阅读已本地实现；不作身份核验，真实浏览器待合批。 |
-| reddit-thread-card | Reddit | 未实现 | 暂无专门实现证据 |
+| reddit-thread-card | Reddit | 已写待验 | 供数讨论及有限嵌套评论的原生展开阅读已本地实现；无服务嵌入/发帖/投票，真实浏览器待合批。 |
 | restaurant-menu | Restaurant Menu | 已写待验 | 供数菜单的原生搜索/分类与精确零值/缺价、持久详情已本地实现；真实浏览器待合批。 |
-| entity-reviews | Entity Reviews | 未实现 | 暂无专门实现证据 |
-| restaurant-availability | Reservation Time Pills Ref | 未实现 | 暂无专门实现证据 |
+| entity-reviews | Entity Reviews | 已写待验 | 供数评论的原生评分筛选/稳定排序与保留详情已本地实现；缺评分不变0，无发评/点赞，真实浏览器待合批。 |
+| restaurant-availability | Reservation Time Pills Ref | 已写待验 | 供数时段的原生日期筛选、可取消本地选择事件与生命周期防护已本地实现；不预订/刷新供应，真实浏览器待合批。 |
 | scheduled-task-suggestion | Offer Scheduled Prompt | 未实现 | 暂无专门实现证据 |
 | email-draft | Draft Email | 未实现 | 暂无专门实现证据 |
 | task-expansion-card | Task Expansion Card | 未实现 | 暂无专门实现证据 |
@@ -86,7 +86,7 @@
 | entity-card | Entity Card | 未实现 | 暂无专门实现证据 |
 | prompt-suggestions | Follow Up | 已写待验 | 原生供数建议选择、可取消显式DOM事件及禁用/重入/清理边界已本地实现；无自动发消息，真实浏览器待合批。 |
 | conversation-suggestions | Conversational Onboarding Follow Up Pills | 未实现 | 暂无专门实现证据 |
-| news-article | News Article | 未实现 | 暂无专门实现证据 |
+| news-article | News Article | 已写待验 | 供数文章、明确来源/日期与原生全文展开已本地实现；无检索或可信度推断，真实浏览器待合批。 |
 | flight-option | Flight Card | 未实现 | 暂无专门实现证据 |
 | currency-converter | Currency Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
 | code-block | Code Block | 已写待验 | 显式可信复制、有限原生高亮与原文保持已本地实现；真实激活/剪贴板边界及视觉待合批。 |

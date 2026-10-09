@@ -36,6 +36,10 @@ export type Node =
   | CaptionNode
   | AgendaNode
   | PersonProfileNode
+  | NewsArticleNode
+  | EntityReviewsNode
+  | RestaurantAvailabilityNode
+  | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
   | CodeNode
@@ -523,6 +527,109 @@ export interface PersonLink {
 export interface PersonSource {
   label: string;
   url?: string;
+}
+export interface NewsArticleNode {
+  type: "news-article";
+  id?: string;
+  headline: string;
+  source: {
+    label: string;
+    url?: string;
+  };
+  summary?: string;
+  author?: string;
+  published?: string;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  paragraphs?: string[];
+  expanded?: boolean;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  tags?: string[];
+}
+export interface EntityReviewsNode {
+  type: "entity-reviews";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: ReviewSource;
+  /**
+   * @minItems 0
+   * @maxItems 50
+   */
+  items: ReviewRecord[];
+}
+export interface ReviewSource {
+  label: string;
+  url?: string;
+}
+export interface ReviewRecord {
+  id: string;
+  author: string;
+  body: string;
+  rating: number | null;
+  date?: string;
+  title?: string;
+  url?: string;
+}
+export interface RestaurantAvailabilityNode {
+  type: "restaurant-availability";
+  id?: string;
+  title: string;
+  venue: string;
+  partySize: number;
+  timeZoneLabel: string;
+  description?: string;
+  source?: RestaurantAvailabilitySource;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  slots: RestaurantAvailabilitySlot[];
+}
+export interface RestaurantAvailabilitySource {
+  label: string;
+  url?: string;
+}
+export interface RestaurantAvailabilitySlot {
+  id: string;
+  date: string;
+  time: string;
+  available: boolean;
+}
+export interface RedditThreadCardNode {
+  type: "reddit-thread-card";
+  id?: string;
+  title: string;
+  author: string;
+  body: string;
+  source: {
+    label: string;
+    url?: string;
+  };
+  /**
+   * @minItems 0
+   * @maxItems 50
+   */
+  comments: ThreadComment[];
+  community?: string;
+  score?: number | null;
+  expanded?: boolean;
+}
+export interface ThreadComment {
+  id: string;
+  author: string;
+  body: string;
+  score?: number | null;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  replies?: ThreadComment[];
 }
 export interface MarkdownNode {
   type: "markdown";

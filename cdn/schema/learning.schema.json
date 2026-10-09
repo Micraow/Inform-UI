@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:b06a7e9087799f851146d3992d937e43eea8e77b59b6fea194ca2b55bf6fcb79:document:base+learning",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:d909c81c30422022012a0bad09204169573a3464fd10f93248cf038a51ee1142:document:base+learning",
   "title": "Inform UI document subset: base, learning",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1099,6 +1099,45 @@
       ],
       "additionalProperties": false
     },
+    "EntityReviewsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "entity-reviews"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/ReviewSource"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReviewRecord"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "FaviconNode": {
       "type": "object",
       "properties": {
@@ -2094,6 +2133,85 @@
       ],
       "additionalProperties": false
     },
+    "NewsArticleNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "news-article"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "headline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "label"
+          ],
+          "additionalProperties": false
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "published": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+        },
+        "paragraphs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          },
+          "minItems": 0,
+          "maxItems": 30
+        },
+        "expanded": {
+          "type": "boolean"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 0,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "type",
+        "headline",
+        "source"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -2110,6 +2228,18 @@
         },
         {
           "$ref": "#/$defs/PersonProfileNode"
+        },
+        {
+          "$ref": "#/$defs/NewsArticleNode"
+        },
+        {
+          "$ref": "#/$defs/EntityReviewsNode"
+        },
+        {
+          "$ref": "#/$defs/RestaurantAvailabilityNode"
+        },
+        {
+          "$ref": "#/$defs/RedditThreadCardNode"
         },
         {
           "$ref": "#/$defs/MarkdownNode"
@@ -2712,6 +2842,196 @@
       ],
       "additionalProperties": false
     },
+    "RedditThreadCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "reddit-thread-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 6000
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "label"
+          ],
+          "additionalProperties": false
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ThreadComment"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "community": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expanded": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "author",
+        "body",
+        "source",
+        "comments"
+      ],
+      "additionalProperties": false
+    },
+    "RestaurantAvailabilityNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "restaurant-availability"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "partySize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "timeZoneLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/RestaurantAvailabilitySource"
+        },
+        "slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RestaurantAvailabilitySlot"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "venue",
+        "partySize",
+        "timeZoneLabel",
+        "slots"
+      ],
+      "additionalProperties": false
+    },
+    "RestaurantAvailabilitySlot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "time": {
+          "type": "string",
+          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$",
+          "minLength": 5,
+          "maxLength": 5
+        },
+        "available": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "time",
+        "available"
+      ],
+      "additionalProperties": false
+    },
+    "RestaurantAvailabilitySource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "RestaurantMenuNode": {
       "type": "object",
       "properties": {
@@ -2769,6 +3089,79 @@
         "title",
         "currency",
         "sections"
+      ],
+      "additionalProperties": false
+    },
+    "ReviewRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "author",
+        "body",
+        "rating"
+      ],
+      "additionalProperties": false
+    },
+    "ReviewSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label"
       ],
       "additionalProperties": false
     },
@@ -3772,6 +4165,51 @@
       },
       "required": [
         "value"
+      ],
+      "additionalProperties": false
+    },
+    "ThreadComment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -1000000000,
+              "maximum": 1000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ThreadComment"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "id",
+        "author",
+        "body"
       ],
       "additionalProperties": false
     },

@@ -393,7 +393,7 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-flow > * { flex: 0 1 auto; min-inline-size: 0; max-inline-size: 100%; }
 /* These existing modules use inline-size containment, so auto has no
    content-derived flex basis. Ordinary children keep their natural auto basis. */
-.iui-root .iui-flow > :is(.iui-time, .iui-weather, .iui-finance, .iui-converter) { flex-basis: min(20rem, 100%); }
+.iui-root .iui-flow > :is(.iui-time, .iui-weather, .iui-finance, .iui-converter, .iui-thread) { flex-basis: min(20rem, 100%); }
 .iui-root .iui-flow[data-gap=none] { gap: 0; }
 .iui-root .iui-flow[data-gap=sm] { gap: 4px; }
 .iui-root .iui-flow[data-gap=lg] { gap: 16px; }
@@ -867,6 +867,99 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-person-profile :is(a,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
 @media(max-width:520px){.iui-root .iui-person-profile{padding:14px}.iui-root .iui-person-fact{grid-template-columns:minmax(0,1fr);gap:4px}}
 @media(forced-colors:active){.iui-root .iui-person-profile,.iui-root .iui-person-fact{border-color:CanvasText}.iui-root .iui-person-note,.iui-root .iui-person-link-hint{color:CanvasText}.iui-root .iui-person-profile :focus-visible{outline-color:Highlight}}
+
+
+/* Original supplied article. Native disclosure; no network, truncation or animation. */
+.iui-root .iui-news-article{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere;padding:20px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary)}
+.iui-root .iui-news-article .iui-news-headline{font-size:1.35rem;line-height:1.4;margin:0}
+.iui-root .iui-news-article :is(.iui-news-headline,.iui-news-author,.iui-news-source,.iui-news-source-label,.iui-news-summary,.iui-news-tag,.iui-news-paragraph){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-news-metadata{display:flex;flex-wrap:wrap;gap:8px 24px;margin-block:12px 0}
+.iui-root .iui-news-meta-item{min-inline-size:0;max-inline-size:100%}
+.iui-root .iui-news-meta-item dt{font-size:.75rem;color:var(--iui-muted)}
+.iui-root .iui-news-meta-item dd{margin:0;font-size:.875rem}
+.iui-root .iui-news-note{margin-block-start:12px;font-size:.8rem;color:var(--iui-muted)}
+.iui-root .iui-news-published{display:inline-block;font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.iui-root .iui-news-source-link{display:inline-block;min-block-size:44px;max-inline-size:100%;padding-block:10px}
+.iui-root .iui-news-link-hint{font-size:.8rem}
+.iui-root .iui-news-tags{display:flex;flex-wrap:wrap;gap:6px 10px;padding:0;margin-block:12px 0;list-style:none}
+.iui-root .iui-news-tag{max-inline-size:100%;padding:3px 8px;border:1px solid var(--iui-line);border-radius:6px;font-size:.8rem;background:var(--iui-surface)}
+.iui-root .iui-news-summary{margin-block-start:16px;line-height:1.7}
+.iui-root .iui-news-details{margin-block-start:16px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-news-details>summary{min-block-size:44px;padding-block:12px;font-weight:600;cursor:pointer}
+.iui-root .iui-news-body{padding-block:4px}
+.iui-root .iui-news-paragraph{line-height:1.8;margin:0}
+.iui-root .iui-news-paragraph+.iui-news-paragraph{margin-block-start:16px}
+.iui-root .iui-news-article :is(summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(max-width:520px){.iui-root .iui-news-article{padding:16px}.iui-root .iui-news-article .iui-news-headline{font-size:1.2rem}}
+@media(forced-colors:active){.iui-root .iui-news-article,.iui-root .iui-news-tag,.iui-root .iui-news-details{border-color:CanvasText}.iui-root .iui-news-source-link{color:LinkText}.iui-root .iui-news-article :focus-visible{outline-color:Highlight}}
+
+
+/* Finite supplied reviews, native controls and disclosure, no visual reordering. */
+.iui-root .iui-reviews{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-reviews [hidden]{display:none!important}
+.iui-root .iui-reviews :is(.iui-reviews-label,.iui-reviews-description,.iui-reviews-author,.iui-reviews-title,.iui-reviews-body,.iui-reviews-source){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-reviews :is(.iui-reviews-note,.iui-reviews-date,.iui-reviews-count){color:var(--iui-muted);font-size:.875rem}
+.iui-root .iui-reviews :is(.iui-reviews-description,.iui-reviews-note,.iui-reviews-source){margin-block-start:8px}
+.iui-root .iui-reviews-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin-block:16px}
+.iui-root .iui-reviews-control{display:flex;flex-direction:column;gap:6px;min-inline-size:0;max-inline-size:100%;flex:1 1 200px}
+.iui-root .iui-reviews select{font:inherit;color:var(--iui-ink);background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:6px;min-block-size:44px;min-inline-size:0;max-inline-size:100%;padding:8px 12px}
+.iui-root .iui-reviews select:disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:not-allowed}
+.iui-root .iui-reviews-list{padding-inline-start:1.5rem;margin-block:12px 0}
+.iui-root .iui-reviews-item{padding:12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);margin-block-end:12px}
+.iui-root .iui-reviews-author{font-size:1rem;margin:0;font-weight:650}
+.iui-root .iui-reviews-title{font-weight:600}
+.iui-root .iui-reviews-item>*+*{margin-block-start:8px}
+.iui-root .iui-reviews-date{display:inline-block;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.iui-root .iui-reviews-details>summary{cursor:pointer;min-block-size:44px;padding-block:10px}
+.iui-root .iui-reviews-body{margin-block:8px;line-height:1.6}
+.iui-root .iui-reviews :is(.iui-reviews-link,.iui-reviews-source-link){display:inline-block;padding-block:10px;min-block-size:44px;max-inline-size:100%}
+.iui-root .iui-reviews :is(select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+@media(forced-colors:active){.iui-root .iui-reviews select{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-reviews select:disabled{color:GrayText}.iui-root .iui-reviews-item{border-color:CanvasText}.iui-root .iui-reviews :is(.iui-reviews-note,.iui-reviews-date,.iui-reviews-count){color:CanvasText}.iui-root .iui-reviews :focus-visible{outline-color:Highlight}}
+
+
+/* Original supplied time choices. Local intent only; native controls, no motion. */
+.iui-root .iui-availability{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere;border:1px solid var(--iui-line);border-radius:14px;padding:20px;background:var(--iui-surface-primary);text-align:start}
+.iui-root .iui-availability [hidden]{display:none!important}
+.iui-root .iui-availability :is(.iui-availability-title,.iui-availability-description,dd){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-availability>*+*{margin-block-start:12px}
+.iui-root .iui-availability-facts{display:flex;flex-wrap:wrap;gap:12px 24px}
+.iui-root .iui-availability-facts>div{max-inline-size:100%;min-inline-size:0}
+.iui-root .iui-availability-facts dt,.iui-root .iui-availability :is(.iui-availability-note,.iui-availability-counts,.iui-availability-source){font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-availability-facts dd{margin:0}
+.iui-root .iui-availability-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.iui-root .iui-availability :is(button,select,a){min-block-size:44px;min-inline-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-availability-filter{font:inherit;color:var(--iui-ink);background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:6px;padding:8px 12px}
+.iui-root .iui-availability-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;list-style:none;padding:0}
+.iui-root .iui-availability-choice{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;inline-size:100%;font-variant-numeric:tabular-nums}
+.iui-root .iui-availability time{display:inline-block;unicode-bidi:isolate}
+.iui-root .iui-availability-choice[aria-pressed=true]{border-color:var(--iui-ink);box-shadow:inset 0 -2px var(--iui-ink);font-weight:650}
+.iui-root .iui-availability-slot-status{flex-basis:100%;font-size:.85rem}
+.iui-root .iui-availability :is(button,select):disabled,.iui-root .iui-availability-clear[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-availability-status:empty{display:none}
+.iui-root .iui-availability-source a{display:inline-block;padding-block:10px}
+.iui-root .iui-availability :is(button,select,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(max-width:520px){.iui-root .iui-availability{padding:16px}}
+@media(forced-colors:active){.iui-root .iui-availability{border-color:CanvasText}.iui-root .iui-availability-filter{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-availability :is(button,select):disabled,.iui-root .iui-availability-clear[aria-disabled=true]{color:GrayText}.iui-root .iui-availability-choice[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-availability :focus-visible{outline-color:Highlight}}
+.iui-root .iui-availability :is(button,select){transition:none;animation:none}
+
+
+/* Original supplied discussion reader. Logical spacing preserves source order in RTL. */
+.iui-root .iui-thread{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere;border:1px solid var(--iui-line);border-radius:12px;padding:16px;background:var(--iui-surface-primary);container-type:inline-size}
+.iui-root .iui-thread :is(.iui-thread-title,.iui-thread-body,.iui-thread-comment-body,.iui-thread-author,.iui-thread-community,.iui-thread-comment-author,.iui-thread-source-label){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-thread> *+*{margin-block-start:12px}
+.iui-root .iui-thread :is(.iui-thread-meta,.iui-thread-note){font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-thread .iui-thread-field-label{font-weight:600}
+.iui-root .iui-thread .iui-thread-score-value{font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.iui-root .iui-thread .iui-thread-comments{list-style-type:none;margin:0;padding-inline-start:0;min-inline-size:0}
+.iui-root .iui-thread .iui-thread-comment-item{min-inline-size:0;margin-block-start:12px}
+.iui-root .iui-thread .iui-thread-comment{min-inline-size:0;border-inline-start:2px solid var(--iui-line);padding-inline-start:16px}
+.iui-root .iui-thread .iui-thread-comment> *+*{margin-block-start:8px}
+.iui-root .iui-thread :is(.iui-thread-discussion,.iui-thread-replies)>summary{cursor:pointer;min-block-size:44px;padding-block:10px;overflow-wrap:anywhere}
+.iui-root .iui-thread .iui-thread-link{display:inline-block;min-block-size:44px;padding-block:10px;max-inline-size:100%}
+.iui-root .iui-thread :is(summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+@container(max-width:400px){.iui-root .iui-thread .iui-thread-comment{padding-inline-start:8px}}
+@media(max-width:480px){.iui-root .iui-thread{padding:12px}.iui-root .iui-thread .iui-thread-comment{padding-inline-start:8px}}
+@media(forced-colors:active){.iui-root .iui-thread,.iui-root .iui-thread .iui-thread-comment{border-color:CanvasText}.iui-root .iui-thread :is(.iui-thread-meta,.iui-thread-note){color:CanvasText}.iui-root .iui-thread .iui-thread-link{color:LinkText}.iui-root .iui-thread :focus-visible{outline-color:Highlight}}
 
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).

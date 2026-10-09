@@ -49,6 +49,20 @@ defs.PersonFact = object({ id:key, label:short, value:string(2000,1) }, ['id','l
 defs.PersonLink = object({ id:key, label:short, url:string(2048,1) }, ['id','label','url']);
 defs.PersonSource = object({ label:short, url:string(2048,1) }, ['label']);
 node('person-profile', { name:short, role:short, organization:short, location:short, biography:string(6000), expanded:bool, facts:array(ref('PersonFact'),0,12), links:array(ref('PersonLink'),0,8), source:ref('PersonSource') }, ['name']);
+// Original finite article supplied by the author; no ingestion, verification or runtime state.
+node('news-article', { headline:string(300,1), source:object({label:short,url:string(2048,1)},['label']), summary:string(4000), author:short, published:agendaDate, paragraphs:array(string(4000,1),0,30), expanded:bool, tags:array(string(40,1),0,8) }, ['headline','source']);
+// A finite supplied collection, with explicit nullable ratings and strict calendar labels.
+defs.ReviewRecord = object({ id:{...key,pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'}, author:short, body:string(4000,1), rating:{anyOf:[integer(1,5),{type:'null'}]}, date:{...agendaDate,minLength:10,maxLength:10}, title:short, url:string(2048,1) }, ['id','author','body','rating']);
+defs.ReviewSource = object({label:short,url:string(2048,1)}, ['label']);
+node('entity-reviews', {label:short,description:string(2000),source:ref('ReviewSource'),items:array(ref('ReviewRecord'),0,50)}, ['label','items']);
+// Supplied venue wall times only; semantic checks enforce dates and unique choices.
+defs.RestaurantAvailabilitySlot = object({id:key,date:{...agendaDate,minLength:10,maxLength:10},time:{...agendaTime,minLength:5,maxLength:5},available:bool},['id','date','time','available']);
+defs.RestaurantAvailabilitySource = object({label:short,url:string(2048,1)},['label']);
+node('restaurant-availability',{title:short,venue:short,partySize:integer(1,20),timeZoneLabel:string(100,1),description:string(2000),source:ref('RestaurantAvailabilitySource'),slots:array(ref('RestaurantAvailabilitySlot'),0,100)},['title','venue','partySize','timeZoneLabel','slots']);
+// Original bounded reader for supplied discussion content; no provider integration.
+const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
+defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);
+node('reddit-thread-card', { title:string(300,1), author:short, body:string(6000), source:object({label:short,url:string(2048,1)},['label']), comments:array(ref('ThreadComment'),0,50), community:short, score:threadScore, expanded:bool }, ['title','author','body','source','comments']);
 node('markdown', { value: string() }, ['value']);
 node('writing-block', { label: short, value: string(), editable: bool, note: string(1000) }, ['label','value']);
 node('code', { value: string(), language: short, inline: bool, copy: bool, highlight: bool }, ['value']);

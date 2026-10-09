@@ -1,3 +1,7 @@
+import {inspectAvailability} from './availability.js';
+import {inspectThread} from './thread.js';
+import {inspectNewsArticle} from './news.js';
+import {inspectEntityReviews} from './entity-reviews.js';
 import {inspectPersonProfile} from './person-profile.js';
 import {inspectAgenda} from './agenda.js';
 import {ratingValueIssue} from './rating.js';
@@ -299,6 +303,10 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='unit-converter'||node.type==='currency-converter')inspectConverters(node,path,add,isSafeURL);
     if(node.type==='clock')inspectClock(node,path,add);
     if(node.type==='person-profile')inspectPersonProfile(node,path,add,isSafeURL);
+    if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
+    if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
+    if(node.type==='restaurant-availability')inspectAvailability(node,path,add,isSafeURL);
+    if(node.type==='reddit-thread-card')inspectThread(node,path,add,isSafeURL);
     if(node.type==='agenda')inspectAgenda(node,path,add,isSafeURL);
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
