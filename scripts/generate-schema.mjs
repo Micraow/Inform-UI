@@ -55,6 +55,13 @@ node('popover', { label: short, title: short, children: array(ref('Node'), 1, 20
 node('flow', { children: array(ref('Node'), 1, 50), gap: choice('none','sm','md','lg'), align: choice('start','center','end'), justify: choice('start','center','end','between') }, ['children']);
 node('icon', { name: choice('info','check','warning','error','plus','minus','arrow-left','arrow-right','external-link','clock'), size: choice('sm','md','lg'), tone: choice('default','muted','info','success','warning','danger'), label: short }, ['name']);
 node('pulse-indicator', { label: short, status: choice('idle','busy','success','warning','error'), animate: bool }, ['label','status']);
+node('loading', { label: short, progress: ref('Value'), size: choice('sm','md','lg'), showValue: bool }, ['label']);
+node('loading-block', { label: short, shape: choice('text','card','circle'), lines: integer(1,10), animate: bool }, ['label']);
+const { lines: _textOnlyLines, ...nonTextLoadingBlock } = defs.LoadingBlockNode.properties;
+defs.LoadingBlockNode.oneOf = [
+  object({ ...defs.LoadingBlockNode.properties, shape: { const: 'text' } }),
+  object({ ...nonTextLoadingBlock, shape: choice('card','circle') }, ['shape'])
+];
 node('carousel', { children }, ['children']);
 node('list', { ordered: bool, items: array({ anyOf: [ref('Value'), ref('Node')] }, 0, 100) }, ['items']);
 defs.TableCellObject = object({ value: ref('Value'), rowSpan: integer(1, 200), colSpan: integer(1, 20), header: bool, scope: choice('row', 'col', 'rowgroup'), align }, ['value']);

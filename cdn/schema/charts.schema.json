@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:15b96401d69a0edff3560bf19af97c0a71292876b23e098156b3e7934edf100d:document:base+charts",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:7ba84deb92beaac902b061e92d93557e8d5106aef5cbfe66491af2e0d625a99b:document:base+charts",
   "title": "Inform UI document subset: base, charts",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1181,6 +1181,144 @@
       ],
       "additionalProperties": false
     },
+    "LoadingBlockNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "loading-block"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "shape": {
+          "enum": [
+            "text",
+            "card",
+            "circle"
+          ]
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "animate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "loading-block"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "shape": {
+              "const": "text"
+            },
+            "lines": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "animate": {
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "loading-block"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "shape": {
+              "enum": [
+                "card",
+                "circle"
+              ]
+            },
+            "animate": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "shape"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "LoadingNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "loading"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "progress": {
+          "$ref": "#/$defs/Value"
+        },
+        "size": {
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "showValue": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "MarkdownNode": {
       "type": "object",
       "properties": {
@@ -1398,6 +1536,12 @@
         },
         {
           "$ref": "#/$defs/PulseIndicatorNode"
+        },
+        {
+          "$ref": "#/$defs/LoadingNode"
+        },
+        {
+          "$ref": "#/$defs/LoadingBlockNode"
         },
         {
           "$ref": "#/$defs/CarouselNode"

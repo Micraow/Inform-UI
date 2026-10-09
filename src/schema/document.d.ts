@@ -57,6 +57,8 @@ export type Node =
   | FlowNode
   | IconNode
   | PulseIndicatorNode
+  | LoadingNode
+  | LoadingBlockNode
   | CarouselNode
   | ListNode
   | TableNode
@@ -144,6 +146,30 @@ export type TextNode1 =
       underline?: boolean;
       strike?: boolean;
       shimmer?: boolean;
+    };
+export type LoadingBlockNode = {
+  type: "loading-block";
+  id?: string;
+  label: string;
+  shape?: "text" | "card" | "circle";
+  lines?: number;
+  animate?: boolean;
+} & LoadingBlockNode1;
+export type LoadingBlockNode1 =
+  | {
+      type?: "loading-block";
+      id?: string;
+      label?: string;
+      shape?: "text";
+      lines?: number;
+      animate?: boolean;
+    }
+  | {
+      type?: "loading-block";
+      id?: string;
+      label?: string;
+      shape: "card" | "circle";
+      animate?: boolean;
     };
 export type TableNode = {
   type: "table";
@@ -545,6 +571,14 @@ export interface PulseIndicatorNode {
   label: string;
   status: "idle" | "busy" | "success" | "warning" | "error";
   animate?: boolean;
+}
+export interface LoadingNode {
+  type: "loading";
+  id?: string;
+  label: string;
+  progress?: Value;
+  size?: "sm" | "md" | "lg";
+  showValue?: boolean;
 }
 export interface CarouselNode {
   type: "carousel";

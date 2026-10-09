@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 62 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 64 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,11 +23,11 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working source: 60 rendered + 1 plain-text fallback + 1 rejected = 62 node types.** The recommended fixed CDN remains at52; the foundation, time, overlay and finite primitive additions are source candidates awaiting combined browser/CDN acceptance. See [contract and examples](foundations.md).
+**Working source: 62 rendered + 1 plain-text fallback + 1 rejected = 64 node types.** The recommended fixed CDN is the verified 62-node 01ae batch, including foundations, time, overlays and finite primitives. Loading nodes are a later source candidate pending browser/CDN acceptance. See [executed 62-node evidence](verification-62.md) and [loading contract](loading.md).
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
-| `text` | Rendered | Escaped value or explicit rich-text runs, safe inline links/code, semantic color/weight/alignment and decoration. No inline HTML. New fields await browser/CDN acceptance. |
+| `text` | Rendered | Escaped value or explicit rich-text runs, safe inline links/code, semantic color/weight/alignment and decoration. No inline HTML. |
 | `title` | Rendered | Heading levels 1–3, with the same safe values and emphasis options. |
 | `caption` | Rendered | Lower-emphasis explanatory text; no source lookup. |
 | `markdown` | Plain-text fallback | Original characters are displayed as text. Formatting, embedded HTML, images, and Markdown links are not parsed. |
@@ -42,15 +42,15 @@ results from the current revision for those claims.
 | `card` | Rendered | Bordered, padded grouping using renderer-owned visual defaults. |
 | `row` | Rendered | Horizontal flex grouping that can wrap; not absolute positioning. |
 | `col` | Rendered | Vertical flex grouping. |
-| `grid` | Rendered | One to six equal-width columns; candidate desktop/mobile grid-item spans and explicit narrow-screen columns. No dense reorder or masonry. |
-| `grid-item` | Rendered candidate | Direct grid child with validated desktop/mobile column span and desktop row span. |
-| `blockquote` | Rendered candidate | Safe child content, supplied attribution and validated citation URL. No source retrieval. |
+| `grid` | Rendered | One to six equal-width columns; desktop/mobile grid-item spans and explicit narrow-screen columns. No dense reorder or masonry. |
+| `grid-item` | Rendered | Direct grid child with validated desktop/mobile column span and desktop row span. |
+| `blockquote` | Rendered | Safe child content, supplied attribution and validated citation URL. No source retrieval. |
 | `section` | Rendered | Optional heading followed by child nodes. |
 | `figure` | Rendered | Grouped content and an optional figure caption. |
 | `details` | Rendered | Native disclosure with a summary and expandable child content. Not a hover popup. |
 | `carousel` | Rendered | Focusable horizontal scroll-snap collection. No autoplay, looping, or previous/next buttons. |
 | `list` | Rendered | Ordered or unordered items containing safe values or supported nodes. No separate description-list schema. |
-| `table` | Rendered | Candidate native multi-section and merged-cell tables with shared occupancy validation, explicit header associations and local keyboard scroll. Legacy rows preserved. No sorting, editing or remote pagination. |
+| `table` | Rendered | Native multi-section and merged-cell tables with shared occupancy validation, explicit header associations and local keyboard scroll. Legacy rows preserved. No sorting, editing or remote pagination. |
 | `metric` | Rendered | Label, value, optional unit, precision, hint, and semantic color. Formatting does not establish data provenance. |
 | `metric-grid` | Rendered | Compact responsive metric grouping, with one to four requested columns. |
 | `steps` | Rendered | Ordered titled steps, optional explanation, and optional formula per step. No automatic algorithm execution. |
@@ -72,9 +72,10 @@ results from the current revision for those claims.
 | `finance-quote` / `finance-chart` / `finance-comparison` | Rendered | Supplied quote/time/status/delay; local history ranges, actual time axes, null gaps and exact common-baseline percentage comparison across currencies. No FX conversion, provider, trading or wall-clock inference. Source/browser verified at 55bfa57; included in fixed 52-node CDN. |
 | `finance-heatmap` | Rendered | Exact supplied weight areas, signed change colors, sector filter, keyboard item detail and full data table; zero/missing weights never receive fabricated area. Source/browser verified at 8e8908d, included in fixed 52-node CDN. |
 | `unit-converter` / `currency-converter` | Rendered | Nine unit categories, absolute/difference temperature, local draft validation/swap/reset; supplied FX snapshots with explicit missing values, exact source/time and stable extreme ratios. No live provider or transaction. Nine source browser scenarios and six fresh file:// CDN views passed in run37878019661; included in the fixed 52-node CDN. See converters.md. |
-| `clock` / `stopwatch` / `timer` | Rendered candidate | Explicit live/snapshot time zones and local monotonic duration controls with pause/resume/reset, bounded laps and one completion status. No OS alarm, notification, persistence or time service. See [time contract](time.md). |
-| `tooltip` / `popover` | Rendered candidate | Inert text tips and nonmodal child panels; keyboard, dismiss/return-focus, viewport-aware native top layer or explicit inline fallback. See [overlay contract](overlays.md). |
-| `flow` / `icon` / `pulse-indicator` | Rendered candidate | DOM-order wrapping, ten finite original semantic glyphs, supplied explicit status with reduced motion. No arbitrary icon loading or inferred service status. See [primitive contract](primitives.md); browser/CDN batch acceptance pending. |
+| `clock` / `stopwatch` / `timer` | Rendered | Explicit live/snapshot time zones and local monotonic duration controls with pause/resume/reset, bounded laps and one completion status. No OS alarm, notification, persistence or time service. See [time contract](time.md). |
+| `tooltip` / `popover` | Rendered | Inert text tips and nonmodal child panels; keyboard, dismiss/return-focus, viewport-aware native top layer or explicit inline fallback. See [overlay contract](overlays.md). |
+| `flow` / `icon` / `pulse-indicator` | Rendered | DOM-order wrapping, ten finite original semantic glyphs, supplied explicit status with reduced motion. No arbitrary icon loading or inferred service status. See [primitive contract](primitives.md); [batch acceptance passed](verification-62.md). |
+| `loading` / `loading-block` | Rendered candidate | Explicit supplied progress or honestly indeterminate spinner; finite text/card/circle placeholders, no network/task observation or live/busy claims. Dynamic range validation is atomic. See [loading contract](loading.md); later batch browser/CDN pending. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 

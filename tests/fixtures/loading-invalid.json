@@ -1,0 +1,21 @@
+[
+  { "why": "Missing authored label", "node": { "type": "loading", "progress": 0 } },
+  { "why": "Empty authored label", "node": { "type": "loading", "label": "" } },
+  { "why": "Explicit null is not missing progress", "node": { "type": "loading", "label": "Invalid", "progress": null } },
+  { "why": "Progress has no numeric string coercion", "node": { "type": "loading", "label": "Invalid", "progress": "25" } },
+  { "why": "Progress has no boolean coercion", "node": { "type": "loading", "label": "Invalid", "progress": false } },
+  { "why": "Lower range bound", "node": { "type": "loading", "label": "Invalid", "progress": -0.001 } },
+  { "why": "Upper range bound", "node": { "type": "loading", "label": "Invalid", "progress": 100.001 } },
+  { "why": "No task URL", "node": { "type": "loading", "label": "Invalid", "url": "https://example.invalid/task" } },
+  { "why": "No autonomous interval", "node": { "type": "loading", "label": "Invalid", "interval": 1000 } },
+  { "why": "No loading animate field", "node": { "type": "loading", "label": "Invalid", "animate": false } },
+  { "why": "Literal finite size", "node": { "type": "loading", "label": "Invalid", "size": 20 } },
+  { "why": "Finite skeleton presets only", "node": { "type": "loading-block", "label": "Invalid", "shape": "image" } },
+  { "why": "At least one text line", "node": { "type": "loading-block", "label": "Invalid", "lines": 0 } },
+  { "why": "At most ten text lines", "node": { "type": "loading-block", "label": "Invalid", "lines": 11 } },
+  { "why": "Integer line count", "node": { "type": "loading-block", "label": "Invalid", "lines": 2.5 } },
+  { "why": "Card ignores no author intent", "node": { "type": "loading-block", "label": "Invalid", "shape": "card", "lines": 3 } },
+  { "why": "Circle ignores no author intent", "node": { "type": "loading-block", "label": "Invalid", "shape": "circle", "lines": 1 } },
+  { "why": "No raw CSS", "node": { "type": "loading-block", "label": "Invalid", "width": "100%" } },
+  { "why": "No dynamic content replacement", "node": { "type": "loading-block", "label": "Invalid", "children": [{ "type": "text", "value": "Unsupported replacement" }] } }
+]

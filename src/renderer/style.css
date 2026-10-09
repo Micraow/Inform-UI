@@ -450,3 +450,93 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 @media (forced-colors: active) {
   .iui-root .iui-pulse-dot { color: CanvasText; }
 }
+
+/* Original finite loading geometry. Existing host tokens supply all colors. */
+.iui-root .iui-loading,
+.iui-root .iui-loading-block {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  color: var(--iui-ink);
+  font-size: .875rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.iui-root .iui-loading-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-inline-size: 0;
+}
+.iui-root .iui-loading-label,
+.iui-root .iui-loading-block-label { min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-loading-value,
+.iui-root .iui-loading-hint { color: var(--iui-muted); min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-loading-value { font-variant-numeric: tabular-nums; margin-inline-start: auto; }
+.iui-root .iui-loading-track {
+  inline-size: 100%;
+  block-size: 8px;
+  margin-block-start: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--iui-surface);
+  /* Inset outline preserves the exact fill ratio and needs no minimum fill. */
+  outline: 1px solid var(--iui-line);
+  outline-offset: -1px;
+}
+.iui-root .iui-loading-fill { display: block; block-size: 100%; background: var(--iui-ink); }
+.iui-root .iui-loading[data-size=sm] .iui-loading-track { block-size: 4px; }
+.iui-root .iui-loading[data-size=lg] .iui-loading-track { block-size: 12px; }
+.iui-root .iui-loading-spinner {
+  display: block;
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+  overflow: hidden;
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: iui-loading-spin 1.2s linear infinite;
+}
+.iui-root .iui-loading[data-size=sm] .iui-loading-spinner { inline-size: 16px; block-size: 16px; }
+.iui-root .iui-loading[data-size=lg] .iui-loading-spinner { inline-size: 28px; block-size: 28px; }
+.iui-root .iui-loading-spinner-ring { stroke: var(--iui-line); }
+.iui-root .iui-loading-spinner-arc { stroke: currentColor; }
+.iui-root .iui-loading-block-label { display: block; margin-block-end: 8px; }
+.iui-root .iui-loading-block-shapes { display: grid; gap: 8px; min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-loading-block-piece {
+  display: block;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  border: 1px solid var(--iui-line);
+  border-radius: 4px;
+  background: var(--iui-surface);
+}
+.iui-root .iui-loading-block-line { block-size: 12px; inline-size: 100%; }
+.iui-root .iui-loading-block-line:last-child { inline-size: 68%; }
+.iui-root .iui-loading-block-line:only-child { inline-size: 100%; }
+.iui-root .iui-loading-block-copy { display: grid; gap: 8px; min-inline-size: 0; }
+.iui-root .iui-loading-block[data-shape=card] .iui-loading-block-shapes {
+  inline-size: min(100%, 24rem);
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--iui-line);
+  border-radius: 8px;
+}
+.iui-root .iui-loading-block-media { block-size: 100px; }
+.iui-root .iui-loading-block-circle { inline-size: 48px; aspect-ratio: 1; border-radius: 50%; box-sizing: border-box; }
+.iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { animation: iui-loading-soft-pulse 1.8s ease-in-out infinite; }
+@keyframes iui-loading-spin { to { transform: rotate(360deg); } }
+@keyframes iui-loading-soft-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) {
+  .iui-root .iui-loading-spinner,
+  .iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { animation: none; opacity: 1; }
+}
+@media (forced-colors: active) {
+  .iui-root .iui-loading-track { background: Canvas; outline-color: CanvasText; }
+  .iui-root .iui-loading-fill { background: Highlight; forced-color-adjust: none; }
+  .iui-root .iui-loading-spinner-ring,
+  .iui-root .iui-loading-spinner-arc { stroke: CanvasText; }
+  .iui-root .iui-loading-block-piece,
+  .iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { background: Canvas; border-color: CanvasText; animation: none; opacity: 1; }
+  .iui-root .iui-loading-block[data-shape=card] .iui-loading-block-shapes { border-color: CanvasText; }
+}

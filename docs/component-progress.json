@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T06:26:00Z",
+  "as_of_utc": "2026-10-09T06:30:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -24,8 +24,8 @@
   "counts": {
     "not_implemented": 193,
     "functionally_verified": 49,
-    "implemented_pending_verification": 0,
-    "partial": 14
+    "implemented_pending_verification": 2,
+    "partial": 12
   },
   "components": [
     {
@@ -246,15 +246,15 @@
       "id": "base-loading",
       "name": "加载指示",
       "layer": "primitive",
-      "status": "partial",
-      "note": "仅领域局部状态"
+      "status": "implemented_pending_verification",
+      "note": "独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。"
     },
     {
       "id": "base-loading-block",
       "name": "骨架/加载占位",
       "layer": "primitive",
-      "status": "partial",
-      "note": "仅领域局部状态"
+      "status": "implemented_pending_verification",
+      "note": "独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。"
     },
     {
       "id": "base-lottie",

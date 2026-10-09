@@ -198,6 +198,7 @@ function nodeValues(node: Node, path: string): [Value, string][] {
   const values: [Value, string][] = [];
   for (const key of ['disabled', 'error'] as const) if (key in node) { const v=(node as unknown as Record<string,Value>)[key]; if(v!==undefined)values.push([v,`${path}/${key}`]); }
   if ('value' in node && node.value !== undefined) values.push([node.value, `${path}/value`]);
+  if (node.type === 'loading' && node.progress !== undefined) values.push([node.progress, `${path}/progress`]);
   if (node.type === 'text') node.runs?.forEach((run, i) => values.push([run.value, `${path}/runs/${i}/value`]));
   if (node.type === 'list') node.items.forEach((item, i) => { if (!record(item) || !('type' in item)) values.push([item as Value, `${path}/items/${i}`]); });
   if (node.type === 'table') {
@@ -323,6 +324,10 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
   const controls: [Node, string][] = [];
   walkNodes(document, (node, path) => {
     for (const [value, at] of nodeValues(node, path)) capture(() => { const resolved=evaluate(value, at); if(at===`${path}/disabled`&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
+    if (node.type === 'loading' && node.progress !== undefined) capture(() => {
+      const at = `${path}/progress`, value = evaluate(node.progress!, at);
+      if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 100) add(issue('LOADING_PROGRESS', at, 'Loading progress must resolve to a finite number from 0 to 100.'));
+    });
     if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select' || isField(node)) {
       controls.push([node, path]);
       const e = controlIssue(node, state[node.bind], pointer('/state', node.bind)); if (e) add(e);
