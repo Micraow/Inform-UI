@@ -202,3 +202,5 @@ import './ledger-records-types-consumer.mjs';
 import './motorsport-types-consumer.mjs';
 
 import './player-summaries-types-consumer.mjs';
+
+import './boxscores-types-consumer.mjs';

@@ -9,7 +9,7 @@ export const SCHEMA_GROUPS = Object.freeze({
   charts: { title: '通用图表与数值/时间坐标', examples: ['examples/rtt.json', 'examples/numeric-charts.json', 'examples/pie.json'] },
   graphics: { title: '拓扑与受限SVG', examples: ['examples/hpcc.json'] },
   weather: { title: '天气供数视图', examples: ['examples/weather.json'] },
-  sports: { title: '体育赛程、记分牌与积分榜', examples: ['examples/sports.json', 'examples/motorsport.json', 'examples/player-summaries.json'] },
+  sports: { title: '体育赛程、记分牌与积分榜', examples: ['examples/sports.json', 'examples/motorsport.json', 'examples/player-summaries.json', 'examples/boxscores.json'] },
   learning: { title: '本地学习练习', examples: ['examples/learning.json', 'examples/fill-blank-practice.json', 'examples/sentence-builder.json', 'examples/vocab-card.json'] },
   finance: { title: '金融快照、历史、比较与热图', examples: ['examples/finance-preview.json', 'examples/finance-lists.json', 'examples/ledger-records.json'] },
   converters: { title: '单位与汇率换算', examples: ['examples/converters.json'] },
