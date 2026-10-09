@@ -1,4 +1,5 @@
 import {questionsEnglish,questionsChinese} from './related-questions-labels.js';
+import {decisionEnglish,decisionChinese} from './decision-labels.js';
 import {mailFilesEnglish,mailFilesChinese} from './mail-files-labels.js';
 import {pollEnglish,pollChinese} from './poll-labels.js';
 import {trackerEnglish,trackerChinese} from './tracker-labels.js';
@@ -46,6 +47,7 @@ export function formatNumber(value: number): string {
 import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
   questionsUI:questionsEnglish,
+  decisionUI:decisionEnglish,
   mailFilesUI:mailFilesEnglish,
   pollUI:pollEnglish,
   trackerUI:trackerEnglish,
@@ -86,6 +88,7 @@ const english = {
 };
 const chinese: typeof english = {
   questionsUI:questionsChinese,
+  decisionUI:decisionChinese,
   mailFilesUI:mailFilesChinese,
   pollUI:pollChinese,
   trackerUI:trackerChinese,
