@@ -27,8 +27,12 @@ An explicit valid Prepare emits `iui:poll-ready`: bubbling, cancelable, noncompo
 
 Cancellation retains every edit. Acceptance means only that a local draft is ready; nothing is published. A later explicit Prepare may emit again. Reentrant ready handlers cannot edit, reset or dispatch a second operation. Event constructor/getter/listener replacement or disposal cannot dispatch or repaint a retired composer. Constructor failures leave the draft retryable.
 
-Disabled/pending, hidden/inert, detached or moved-outside-root controls cannot initiate operations. Update resets the local draft; dispose removes listeners. All preview and status content is literal text.
+Disabled/pending, hidden/inert, detached or moved-outside-root controls cannot initiate operations. Retained input handlers and later legitimate edits never rewrite externally moved inputs or reclaim externally moved option rows. Prepare requires the question, mode and every current option input to remain owned and enabled; ownership is rechecked after event construction and dispatch, so a host interruption cannot produce a stale ready status or focus an outside invalid input. Update resets the local draft; dispose removes listeners. All preview and status content is literal text.
 
 ## Verification
 
 Focused tests cover public schema/semantic parity, incomplete drafts, Unicode, editing/caret, add/remove/reorder, bounded identities, retired listeners, preview safety, readiness validation, frozen event order, cancellation/repeat, Forms exclusion, native reset, disabled/inert/detached controls, ownerDocument/shadow boundaries and deterministic compilation. Prepared browser tests cover actual keyboard/pointer/touch composition, light/dark widths, RTL and forced colors. Prepared specs are not browser acceptance evidence; canonical accepted counts remain unchanged.
+
+## Ownership regression evidence
+
+An independent combined-runtime audit reproduced eight failures involving detached or externally moved question/option/mode controls, reclaimed option rows and validation focus outside the component. The repair keeps model restoration within owned controls and rechecks all draft inputs at readiness boundaries. Dedicated regressions also cover a host moving an option during event construction or dispatch. This is a lifecycle repair within the existing candidate, not an additional canonical component.
