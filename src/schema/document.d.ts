@@ -56,6 +56,14 @@ export type Node =
   | RestaurantReviewsNode
   | FlightSearchFormNode
   | FlightResultsNode
+  | SharedActivityPlannerNode
+  | EventSidebarNode
+  | WordCardNode
+  | CopyWordsNode
+  | CodeCiteNode
+  | FileCiteNode
+  | SidebarFactTableNode
+  | EntityThumbnailListNode
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
@@ -1166,6 +1174,208 @@ export interface DiscoveryFlightResult {
   price?: SuppliedPrice;
   note?: string;
   source?: TravelEventSource;
+}
+export interface SharedActivityPlannerNode {
+  type: "shared-activity-planner";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  participants: [ActivityParticipant, ...ActivityParticipant[]];
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  options: ActivityOption[];
+  disabled?: boolean;
+}
+export interface ActivityParticipant {
+  id: string;
+  label: string;
+}
+export interface ActivityOption {
+  id: string;
+  label: string;
+  startsAt: string;
+  endsAt: string;
+  location?: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  availability: ActivityAvailability[];
+  source?: TravelEventSource;
+}
+export interface ActivityAvailability {
+  participantId: string;
+  status: "available" | "unavailable" | "unknown";
+}
+export interface EventSidebarNode {
+  type: "event-sidebar";
+  id?: string;
+  eventId: string;
+  label: string;
+  organizer?: string;
+  location?: string;
+  startsAt: string;
+  endsAt: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  agenda: EventAgendaEntry[];
+  source?: TravelEventSource;
+}
+export interface EventAgendaEntry {
+  id: string;
+  label: string;
+  startsAt: string;
+  endsAt: string;
+  category: string;
+  description?: string;
+  speaker?: string;
+}
+export interface WordCardNode {
+  type: "word-card";
+  id?: string;
+  wordId: string;
+  term: string;
+  definition: string;
+  pronunciation?: string;
+  partOfSpeech?: string;
+  translation?: string;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  examples?: WordExample[];
+  initiallyRevealed?: boolean;
+  disabled?: boolean;
+  source?: TravelEventSource;
+}
+export interface WordExample {
+  text: string;
+  translation?: string;
+}
+export interface CopyWordsNode {
+  type: "copy-words";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 80
+   */
+  words: CopyWord[];
+  /**
+   * @minItems 0
+   * @maxItems 80
+   */
+  initialSelectedIds?: string[];
+  separator?: "lines" | "comma" | "space";
+  disabled?: boolean;
+}
+export interface CopyWord {
+  id: string;
+  text: string;
+  note?: string;
+}
+export interface CodeCiteNode {
+  type: "code-cite";
+  id?: string;
+  label: string;
+  fileName: string;
+  language?: string;
+  startLine: number;
+  /**
+   * @minItems 1
+   * @maxItems 120
+   */
+  lines: [string, ...string[]];
+  citedStart?: number;
+  citedEnd?: number;
+  source?: TravelEventSource;
+}
+export interface FileCiteNode {
+  type: "file-cite";
+  id?: string;
+  label: string;
+  fileName: string;
+  mediaType?: string;
+  totalPages?: number;
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  pages: [CitedFilePage, ...CitedFilePage[]];
+  initialPage?: number;
+  source?: TravelEventSource;
+}
+export interface CitedFilePage {
+  number: number;
+  label?: string;
+  text: string;
+  source?: TravelEventSource;
+}
+export interface SidebarFactTableNode {
+  type: "sidebar-fact-table";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 80
+   */
+  facts: SidebarFact[];
+  source?: TravelEventSource;
+}
+export interface SidebarFact {
+  id: string;
+  label: string;
+  value: string | null;
+  unit?: string;
+  group?: string;
+  note?: string;
+  observedAt?: string;
+  source?: TravelEventSource;
+}
+export interface EntityThumbnailListNode {
+  type: "entity-thumbnail-list";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  entities: EntityThumbnailRecord[];
+  initialSelectedId?: string;
+  disabled?: boolean;
+}
+export interface EntityThumbnailRecord {
+  id: string;
+  label: string;
+  category: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  fields?: EntityThumbnailField[];
+  image?: {
+    src: string;
+    alt: string;
+  };
+  source?: TravelEventSource;
+}
+export interface EntityThumbnailField {
+  label: string;
+  value: string;
 }
 export interface RedditThreadCardNode {
   type: "reddit-thread-card";

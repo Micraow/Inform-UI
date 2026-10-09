@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:2bb0614c6a5edb33c2655af39d4140c82cf2858f5063e4227f871c388add8b22:document:base+charts",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:document:base+charts",
   "title": "Inform UI document subset: base, charts",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -71,6 +71,100 @@
   ],
   "additionalProperties": false,
   "$defs": {
+    "ActivityAvailability": {
+      "type": "object",
+      "properties": {
+        "participantId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "available",
+            "unavailable",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "participantId",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "ActivityOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "endsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "availability": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivityAvailability"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "startsAt",
+        "endsAt",
+        "availability"
+      ],
+      "additionalProperties": false
+    },
+    "ActivityParticipant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "AgendaEvent": {
       "type": "object",
       "properties": {
@@ -1297,6 +1391,97 @@
       ],
       "additionalProperties": false
     },
+    "CitedFilePage": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "number",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "CodeCiteNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "code-cite"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startLine": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "minItems": 1,
+          "maxItems": 120
+        },
+        "citedStart": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "citedEnd": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "fileName",
+        "startLine",
+        "lines"
+      ],
+      "additionalProperties": false
+    },
     "CodeNode": {
       "type": "object",
       "properties": {
@@ -1492,6 +1677,84 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "CopyWord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "CopyWordsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "copy-words"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CopyWord"
+          },
+          "minItems": 0,
+          "maxItems": 80
+        },
+        "initialSelectedIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+          },
+          "minItems": 0,
+          "maxItems": 80
+        },
+        "separator": {
+          "enum": [
+            "lines",
+            "comma",
+            "space"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "words"
       ],
       "additionalProperties": false
     },
@@ -1970,6 +2233,244 @@
       ],
       "additionalProperties": false
     },
+    "EntityThumbnailField": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "EntityThumbnailListNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "entity-thumbnail-list"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityThumbnailRecord"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "initialSelectedId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "entities"
+      ],
+      "additionalProperties": false
+    },
+    "EntityThumbnailRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EntityThumbnailField"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 140000
+            },
+            "alt": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "src",
+            "alt"
+          ],
+          "additionalProperties": false
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "category"
+      ],
+      "additionalProperties": false
+    },
+    "EventAgendaEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "endsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "speaker": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "startsAt",
+        "endsAt",
+        "category"
+      ],
+      "additionalProperties": false
+    },
+    "EventSidebarNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "event-sidebar"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "eventId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "organizer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "endsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "agenda": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EventAgendaEntry"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "eventId",
+        "label",
+        "startsAt",
+        "endsAt",
+        "agenda"
+      ],
+      "additionalProperties": false
+    },
     "FaviconNode": {
       "type": "object",
       "properties": {
@@ -2037,6 +2538,62 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "FileCiteNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "file-cite"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalPages": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CitedFilePage"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "initialPage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "fileName",
+        "pages"
       ],
       "additionalProperties": false
     },
@@ -3696,6 +4253,30 @@
           "$ref": "#/$defs/FlightResultsNode"
         },
         {
+          "$ref": "#/$defs/SharedActivityPlannerNode"
+        },
+        {
+          "$ref": "#/$defs/EventSidebarNode"
+        },
+        {
+          "$ref": "#/$defs/WordCardNode"
+        },
+        {
+          "$ref": "#/$defs/CopyWordsNode"
+        },
+        {
+          "$ref": "#/$defs/CodeCiteNode"
+        },
+        {
+          "$ref": "#/$defs/FileCiteNode"
+        },
+        {
+          "$ref": "#/$defs/SidebarFactTableNode"
+        },
+        {
+          "$ref": "#/$defs/EntityThumbnailListNode"
+        },
+        {
           "$ref": "#/$defs/RedditThreadCardNode"
         },
         {
@@ -5304,6 +5885,147 @@
       ],
       "additionalProperties": false
     },
+    "SharedActivityPlannerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "shared-activity-planner"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivityParticipant"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivityOption"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "participants",
+        "options"
+      ],
+      "additionalProperties": false
+    },
+    "SidebarFact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "group": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "SidebarFactTableNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "sidebar-fact-table"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SidebarFact"
+          },
+          "minItems": 0,
+          "maxItems": 80
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "facts"
+      ],
+      "additionalProperties": false
+    },
     "SidebarPeopleAlsoAskNode": {
       "type": "object",
       "properties": {
@@ -6616,6 +7338,89 @@
         "type",
         "label",
         "items"
+      ],
+      "additionalProperties": false
+    },
+    "WordCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "word-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "wordId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "term": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "pronunciation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "partOfSpeech": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "translation": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WordExample"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "initiallyRevealed": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "wordId",
+        "term",
+        "definition"
+      ],
+      "additionalProperties": false
+    },
+    "WordExample": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "translation": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "text"
       ],
       "additionalProperties": false
     },

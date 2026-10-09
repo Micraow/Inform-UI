@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T16:44:01Z",
+  "as_of_utc": "2026-10-09T17:53:18.658Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -46,12 +46,33 @@
       "restaurant-reviews",
       "flight-search-form",
       "flight-results"
+    ],
+    "local_115_source": "43a941ea05462ad915b9188937806778f00f4570",
+    "later_18_candidates": [
+      "create-interactive-poll",
+      "email-preview",
+      "file-nav-list",
+      "sidebar-people-also-ask",
+      "jobs",
+      "product-card",
+      "local-business",
+      "restaurant-reviews",
+      "flight-search-form",
+      "flight-results",
+      "shared-activity-planner",
+      "event-sidebar",
+      "word-card",
+      "copy-words",
+      "code-cite",
+      "file-cite",
+      "sidebar-fact-table",
+      "entity-thumbnail-list"
     ]
   },
   "counts": {
-    "implemented_pending_verification": 47,
+    "implemented_pending_verification": 55,
     "functionally_verified": 53,
-    "not_implemented": 151,
+    "not_implemented": 143,
     "partial": 5
   },
   "components": [
@@ -1082,8 +1103,8 @@
       "id": "code-cite",
       "name": "Code Cite",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应代码引用与文字预览，安全来源链接，无抓取或执行。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "conversational-onboarding-advice",
@@ -1117,8 +1138,8 @@
       "id": "copy-words",
       "name": "Copy Words",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "显式选词及可取消剪贴板意图，异步退役和手动选择焦点边界已保护。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "create-interactive-poll",
@@ -1180,15 +1201,15 @@
       "id": "entity-thumbnail-list",
       "name": "Entity Thumbnail List",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应实体缩略列表和本地选择意图，保留原始顺序。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "event-sidebar",
       "name": "Event Sidebar",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应日程原生披露、分类筛选和本地审阅事件，无日历写入。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "f1-races",
@@ -1208,8 +1229,8 @@
       "id": "file-cite",
       "name": "File Cite",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应文档引用与文字预览，无文件读取或下载。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "file-nav-list",
@@ -1716,15 +1737,15 @@
       "id": "shared-activity-planner",
       "name": "Shared Activity Planner",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应活动与参与者的本地偏好矩阵及冻结审阅事件，无邀请或参会推断。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "sidebar-fact-table",
       "name": "Sidebar Fact Table",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应事实表及本地筛选，保持未知值和来源，无外部事实补全。 真实浏览器与视觉验收待合批。"
     },
     {
       "id": "sidebar-people-also-ask",
@@ -1870,8 +1891,8 @@
       "id": "word-card",
       "name": "Word Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供应词义揭示和本地记忆标记，无词典或生成服务。 真实浏览器与视觉验收待合批。"
     }
   ]
 }

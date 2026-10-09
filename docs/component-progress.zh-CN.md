@@ -1,8 +1,8 @@
 # 组件实现进度
 
-固定分母256项：功能已验53，已写待验47，部分5，未实现151。协议节点数107是另一种计数。
+固定分母256项：功能已验53，已写待验55，部分5，未实现143。协议节点数115是另一种计数。
 
-47项本地候选分为37项既有候选和10项后续本地候选。37项最新CI [37955823948](https://github.com/Micraow/Inform-UI/actions/runs/37955823948) 已失败，仍待验收；后续10项为create-interactive-poll、email-preview、file-nav-list、sidebar-people-also-ask、jobs、product-card、local-business、restaurant-reviews、flight-search-form、flight-results。两组均未提升功能已验计数。
+55项本地候选分为37项既有候选和18项后续本地候选。37项最新CI [37955823948](https://github.com/Micraow/Inform-UI/actions/runs/37955823948) 已失败，仍待验收；后续18项为create-interactive-poll、email-preview、file-nav-list、sidebar-people-also-ask、jobs、product-card、local-business、restaurant-reviews、flight-search-form、flight-results、shared-activity-planner、event-sidebar、word-card、copy-words、code-cite、file-cite、sidebar-fact-table、entity-thumbnail-list。两组均未提升功能已验计数。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。历史正式验收见[66节点证据](verification-66.md)，37项历史冻结见[97节点记录](local-enhancements-97.md)。107节点针对性整合检查不等于完整或真实浏览器验收。活动规划候选未纳入此冻结。
 
@@ -153,12 +153,12 @@
 | care-provider-sidebar | Care Provider Sidebar | 未实现 | 暂无专门实现证据 |
 | checklist | Checklist | 已写待验 | 原创受控清单复用原生checkbox/Forms，筛选、一次原子批量操作及禁用/取消边界已本地实现；531项整合Node通过，真实浏览器待合批。 |
 | clock | Clock | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
-| code-cite | Code Cite | 未实现 | 暂无专门实现证据 |
+| code-cite | Code Cite | 已写待验 | 供应代码引用与文字预览，安全来源链接，无抓取或执行。 真实浏览器与视觉验收待合批。 |
 | conversational-onboarding-advice | Conversational Onboarding Advice | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-search | Conversational Onboarding Search | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-study | Conversational Onboarding Study | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-writing | Conversational Onboarding Writing | 未实现 | 暂无专门实现证据 |
-| copy-words | Copy Words | 未实现 | 暂无专门实现证据 |
+| copy-words | Copy Words | 已写待验 | 显式选词及可取消剪贴板意图，异步退役和手动选择焦点边界已保护。 真实浏览器与视觉验收待合批。 |
 | create-interactive-poll | Create Interactive Poll | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | cricket-match-boxscore | Cricket Match Boxscore | 未实现 | 暂无专门实现证据 |
 | digital-stopwatch | Digital Stopwatch | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
@@ -167,11 +167,11 @@
 | election-results | Election Results | 未实现 | 暂无专门实现证据 |
 | email-preview | Email Preview | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | entity | Entity | 未实现 | 暂无专门实现证据 |
-| entity-thumbnail-list | Entity Thumbnail List | 未实现 | 暂无专门实现证据 |
-| event-sidebar | Event Sidebar | 未实现 | 暂无专门实现证据 |
+| entity-thumbnail-list | Entity Thumbnail List | 已写待验 | 供应实体缩略列表和本地选择意图，保留原始顺序。 真实浏览器与视觉验收待合批。 |
+| event-sidebar | Event Sidebar | 已写待验 | 供应日程原生披露、分类筛选和本地审阅事件，无日历写入。 真实浏览器与视觉验收待合批。 |
 | f1-races | F1 Races | 未实现 | 暂无专门实现证据 |
 | f1-standings | F1 Standings | 未实现 | 暂无专门实现证据 |
-| file-cite | File Cite | 未实现 | 暂无专门实现证据 |
+| file-cite | File Cite | 已写待验 | 供应文档引用与文字预览，无文件读取或下载。 真实浏览器与视觉验收待合批。 |
 | file-nav-list | File Nav List | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | finance-onboarding-suggestions | Finance Onboarding Suggestions | 未实现 | 暂无专门实现证据 |
 | flight-results | Flight Results | 已写待验 | 独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。 |
@@ -243,8 +243,8 @@
 | recommendation-link-card | Recommendation Link Card | 未实现 | 暂无专门实现证据 |
 | reservation-time-pills-ref-carousel | Reservation Time Pills Ref Carousel | 未实现 | 暂无专门实现证据 |
 | restaurant-reviews | Restaurant Reviews | 已写待验 | 独立供数/本地意图候选；已进入107节点源码整合与针对性验证，无提供方调用，不计入37项批次或已验总数。 |
-| shared-activity-planner | Shared Activity Planner | 未实现 | 暂无专门实现证据 |
-| sidebar-fact-table | Sidebar Fact Table | 未实现 | 暂无专门实现证据 |
+| shared-activity-planner | Shared Activity Planner | 已写待验 | 供应活动与参与者的本地偏好矩阵及冻结审阅事件，无邀请或参会推断。 真实浏览器与视觉验收待合批。 |
+| sidebar-fact-table | Sidebar Fact Table | 已写待验 | 供应事实表及本地筛选，保持未知值和来源，无外部事实补全。 真实浏览器与视觉验收待合批。 |
 | sidebar-people-also-ask | Sidebar People Also Ask | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | soccer-games | Soccer Games | 部分 | 通用scoreboard未覆盖完整足球合同 |
 | speech-synthesizer | Speech Synthesizer | 未实现 | 暂无专门实现证据 |
@@ -263,4 +263,4 @@
 | weather-widget-v3 | Weather Widget V3 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | whats-new-capability-search | Whats New Capability Search | 未实现 | 暂无专门实现证据 |
 | whats-new-capability-welcome | Whats New Capability Welcome | 未实现 | 暂无专门实现证据 |
-| word-card | Word Card | 未实现 | 暂无专门实现证据 |
+| word-card | Word Card | 已写待验 | 供应词义揭示和本地记忆标记，无词典或生成服务。 真实浏览器与视觉验收待合批。 |
