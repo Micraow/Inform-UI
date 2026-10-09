@@ -26,8 +26,8 @@ test('tooltip pointer may cross the gap and remain over its content before leavi
 });
 test('touch pointer focus click sequence opens exactly once, second activation closes',()=>{
   const h=setup(),p=parts(h.mount(tooltip()));h.event(p.trigger,'pointerenter',{pointerType:'touch'});assert.equal(p.surface.hidden,true);
-  h.event(p.trigger,'pointerdown',{pointerType:'touch'});p.trigger.focus();assert.equal(p.surface.hidden,false);h.event(p.trigger,'pointerup',{pointerType:'touch'});p.trigger.click();assert.equal(p.surface.hidden,false);
-  h.event(p.trigger,'pointerdown',{pointerType:'touch'});h.event(p.trigger,'pointerup',{pointerType:'touch'});p.trigger.click();assert.equal(p.surface.hidden,true);h.dispose();
+  h.event(p.trigger,'pointerdown',{pointerType:'touch',pointerId:1});p.trigger.focus();assert.equal(p.surface.hidden,false);h.event(p.trigger,'pointerup',{pointerType:'touch',pointerId:1});h.event(p.trigger,'click',{pointerType:'touch',pointerId:1,detail:1});assert.equal(p.surface.hidden,false);
+  h.event(p.trigger,'pointerdown',{pointerType:'touch',pointerId:2});h.event(p.trigger,'pointerup',{pointerType:'touch',pointerId:2});h.event(p.trigger,'click',{pointerType:'touch',pointerId:2,detail:1});assert.equal(p.surface.hidden,true);h.dispose();
 });
 test('tooltip native keyboard click activation toggles without a custom keydown handler',()=>{
   const h=setup(),p=parts(h.mount(tooltip()));p.trigger.focus();p.trigger.click();assert.equal(p.surface.hidden,true);p.trigger.click();assert.equal(p.surface.hidden,false);h.dispose();
@@ -149,4 +149,31 @@ for(const native of [false,true])test(`hover-only Escape allows a later fresh fo
   h.event(p.trigger,'keydown',{key:'Escape'});assert.equal(p.surface.hidden,true);p.trigger.focus();h.setState({unrelated:7});
   assert.equal(p.surface.hidden,true,'retaining the same actual focus must not reopen an Escape-dismissed tooltip');
   outside.focus();p.trigger.focus();assert.equal(p.surface.hidden,false);h.dispose();
+});
+for(const native of [false,true])for(const focusBeforeRelease of [false,true])test(`touch release and compatibility click may be separate tasks (${native?'native shim':'inline'}, focus ${focusBeforeRelease?'before':'after'} release)`,()=>{
+  const h=setup({native}),p=parts(h.mount(tooltip())),scheduled=[];
+  h.win.setTimeout=fn=>{scheduled.push(fn);return scheduled.length;};h.win.clearTimeout=()=>{};
+  const pointer={pointerType:'touch',pointerId:9},activate=()=>h.event(p.trigger,'click',{...pointer,detail:1});
+  h.event(p.trigger,'pointerdown',pointer);if(focusBeforeRelease)p.trigger.focus();h.event(p.trigger,'pointerup',pointer);
+  for(const fn of scheduled.splice(0))fn();if(!focusBeforeRelease)p.trigger.focus();activate();assert.equal(p.surface.hidden,false);
+  h.event(p.trigger,'pointerdown',pointer);h.event(p.trigger,'pointerup',pointer);for(const fn of scheduled.splice(0))fn();activate();assert.equal(p.surface.hidden,true);
+  h.dispose();
+});
+for(const native of [false,true])test(`cancelled/dragged gestures cannot poison pointer or keyboard toggles (${native?'native shim':'inline'})`,()=>{
+  const h=setup({native}),p=parts(h.mount(tooltip())),outside=h.doc.createElement('button');h.doc.body.append(outside);
+  const pointer={pointerId:4,pointerType:'touch'},click=()=>h.event(p.trigger,'click',{...pointer,detail:1});
+  h.event(p.trigger,'pointerdown',pointer);p.trigger.focus();h.event(outside,'pointerup',pointer);click();assert.equal(p.surface.hidden,false,'cancelled release must not toggle the focused tooltip');
+  h.event(p.trigger,'keydown',{key:'Escape'});assert.equal(p.surface.hidden,true);
+  h.event(p.trigger,'pointerdown',pointer);h.event(p.trigger,'pointercancel',pointer);click();assert.equal(p.surface.hidden,true);
+  h.event(p.trigger,'pointerdown',pointer);h.event(p.trigger,'pointerup',pointer);click();assert.equal(p.surface.hidden,false);
+  // No click arrived after this release. A keyboard/programmatic activation is
+  // identified by its own zero-detail event and must use current open state.
+  h.event(p.trigger,'keydown',{key:'Escape'});outside.focus();h.event(p.trigger,'pointerdown',pointer);p.trigger.focus();h.event(p.trigger,'pointerup',pointer);p.trigger.click();assert.equal(p.surface.hidden,true);
+  h.dispose();
+});
+test('secondary pointers cannot overwrite a primary tooltip activation',()=>{
+  const h=setup(),p=parts(h.mount(tooltip()));
+  h.event(p.trigger,'pointerdown',{pointerId:1,pointerType:'touch',isPrimary:true});p.trigger.focus();
+  h.event(p.trigger,'pointerdown',{pointerId:2,pointerType:'touch',isPrimary:false});
+  h.event(p.trigger,'pointerup',{pointerId:1,pointerType:'touch'});h.event(p.trigger,'click',{pointerId:1,pointerType:'touch',detail:1});assert.equal(p.surface.hidden,false);h.dispose();
 });

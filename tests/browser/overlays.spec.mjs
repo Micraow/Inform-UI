@@ -92,10 +92,48 @@ test('overlays: nested Escape, ancestor closure, siblings, outside focus and rep
   await trigger(page).click();await page.locator('#outside').focus();await expect(visibleSurfaces(page)).toHaveCount(0);
 });
 
-test('overlays: a touch tap does not double-toggle when focus occurs before click',async({browser},testInfo)=>{
-  const context=await browser.newContext({hasTouch:true,viewport:{width:390,height:850},baseURL:testInfo.project.use.baseURL});const page=await context.newPage();
-  await mount(page);const help=page.getByRole('button',{name:'About this example'});
-  await help.tap();await expect(page.getByRole('tooltip')).toBeVisible();await help.tap();await expect(page.getByRole('tooltip')).toBeHidden();await context.close();
+async function touchScenario(browser,testInfo,run) {
+  const context=await browser.newContext({hasTouch:true,viewport:{width:390,height:850},baseURL:testInfo.project.use.baseURL});const page=await context.newPage(),errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  try {
+    await mount(page);
+    // Keep the external target physically exposed when either tooltip is open.
+    await page.locator('#outside').evaluate(el=>{el.style.cssText='position:fixed;right:16px;bottom:16px;min-height:44px';});
+    await page.evaluate(()=>{window.touchEvents=[];for(const type of ['pointerdown','pointerup','pointercancel','focus','blur','click','toggle'])document.addEventListener(type,event=>{if(window.touchEvents.length<200)window.touchEvents.push({type,target:event.target?.id,pointerId:event.pointerId,pointerType:event.pointerType,detail:event.detail,active:document.activeElement?.id,helpOpen:document.querySelector('[data-iui=tooltip]')?.dataset.open});},true);});
+    await run(page);expect(errors).toEqual([]);
+  } finally {
+    await testInfo.attach('ordered-touch-events',{body:JSON.stringify(await page.evaluate(()=>window.touchEvents??[]).catch(()=>[]),null,2),contentType:'application/json'});
+    await context.close();
+  }
+}
+test('overlays: real repeated touch taps, focus-first activation and Escape restart',async({browser},testInfo)=>{
+  await touchScenario(browser,testInfo,async page=>{
+    const help=page.getByRole('button',{name:'About this example'}),tip=page.getByRole('tooltip');
+    for(let i=0;i<3;i++){await help.tap();await expect(tip).toBeVisible();await help.tap();await expect(tip).toBeHidden();}
+    await help.tap();await page.keyboard.press('Escape');await expect(tip).toBeHidden();await help.tap();await expect(tip).toBeVisible();
+    await page.locator('#outside').tap();await expect(tip).toBeHidden();await expect(page.locator('#outside')).toBeFocused();
+    await help.focus();await expect(tip).toBeVisible();await help.tap();await expect(tip).toBeHidden();
+  });
+});
+for(const interrupted of ['drag-out','cancel'])test('overlays: native touch '+interrupted+' leaves the next tap usable',async({browser},testInfo)=>{
+  await touchScenario(browser,testInfo,async page=>{
+    const help=page.getByRole('button',{name:'About this example'}),tip=page.getByRole('tooltip');
+    await help.tap();await expect(tip).toBeVisible();await page.keyboard.press('Escape');await expect(tip).toBeHidden();
+    const box=await help.boundingBox(),cdp=await page.context().newCDPSession(page),point={x:box.x+box.width/2,y:box.y+box.height/2};
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point]});
+    if(interrupted==='drag-out'){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:380,y:800}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+    else await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+    await expect(tip).toBeHidden();await help.tap();await expect(tip).toBeVisible();await help.tap();await expect(tip).toBeHidden();
+  });
+});
+test('overlays: touch across independent mounts closes only the previous tooltip and preserves external focus',async({browser},testInfo)=>{
+  await touchScenario(browser,testInfo,async page=>{
+    await page.evaluate(()=>{const host=document.createElement('section');document.body.append(host);window.secondOverlay=window.iui.mount(host,{version:'iui/1',body:[{type:'tooltip',label:'Second mount help',value:'Independent original text'}]});});
+    const first=page.getByRole('button',{name:'About this example'}),second=page.getByRole('button',{name:'Second mount help'});
+    await first.tap();await expect(page.getByRole('tooltip')).toHaveCount(1);await second.tap();await expect(page.getByRole('tooltip')).toHaveText('Independent original text');
+    await page.locator('#outside').tap();await expect(page.getByRole('tooltip')).toHaveCount(0);await expect(page.locator('#outside')).toBeFocused();
+    await first.tap();await expect(page.getByRole('tooltip')).toHaveCount(1);await first.tap();await expect(page.getByRole('tooltip')).toHaveCount(0);
+  });
 });
 
 for(const width of [390,768,1100]) test(`overlays: ${width}px corners, clipping ancestors, long content and scrolled anchor`,async({page})=>{

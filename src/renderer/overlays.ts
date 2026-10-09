@@ -101,20 +101,19 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   root.append(trigger, surface);
   const manager = coordinator(doc);
   let opened = false, disposed = false, hoverTrigger = false, hoverSurface = false, focused = false;
-  let pinned = false, beforePointerOpen: boolean | undefined;
+  let pinned = false;
+  let pointerGesture: { id: number; wasOpen: boolean; cancelled: boolean } | undefined;
   const setTimer = (fn: () => void, delay: number) => win ? win.setTimeout(fn, delay) : globalThis.setTimeout(fn, delay);
   const clearTimer = (timer: ReturnType<typeof setTimer>) => {
     if (win) win.clearTimeout(timer as number);
     else globalThis.clearTimeout(timer as ReturnType<typeof setTimeout>);
   };
   let leaveTimer: ReturnType<typeof setTimer> | undefined;
-  let pointerTimer: ReturnType<typeof setTimer> | undefined;
   let removePointerWatch: (() => void) | undefined;
   let frame: number | undefined;
   let observers: (() => void)[] = [];
   const cancelLeave = () => { if (leaveTimer !== undefined) { clearTimer(leaveTimer); leaveTimer = undefined; } };
   const cancelPointer = () => {
-    if (pointerTimer !== undefined) { clearTimer(pointerTimer); pointerTimer = undefined; }
     removePointerWatch?.(); removePointerWatch = undefined;
   };
   const visibleAnchor = () => trigger.isConnected && !trigger.closest('[hidden], [inert], details:not([open])')
@@ -131,7 +130,7 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   const hide = (reason: CloseReason) => {
     if (!opened) return;
     opened = false; root.dataset.open = 'false'; pinned = false;
-    cancelLeave(); cancelPointer(); beforePointerOpen = undefined; stopWatching();
+    cancelLeave(); cancelPointer(); pointerGesture = undefined; stopWatching();
     if (n.type === 'popover') trigger.setAttribute('aria-expanded', 'false');
     // Mark closed first: the platform may synchronously issue beforetoggle while hiding.
     if (native) { try { surface.hidePopover(); } catch { /* Already detached or platform-closed. */ } }
@@ -215,27 +214,41 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
     // Escape. Calling focus() on an already-focused trigger emits no new event,
     // so dismissal stays closed until the user actually leaves and returns.
     c.on(trigger, 'focus', () => { focused = true; open(); });
-    c.on(trigger, 'blur', () => { focused = false; pinned = false; beforePointerOpen = undefined; cancelPointer(); delayedLeave(); });
+    c.on(trigger, 'blur', () => { focused = false; pinned = false; pointerGesture = undefined; cancelPointer(); delayedLeave(); });
     c.on(trigger, 'pointerdown', (event: Event) => {
-      cancelPointer(); beforePointerOpen = opened;
-      const pointerId = (event as PointerEvent).pointerId;
-      // Capture the matching release anywhere in this ownerDocument. Mouse drags
-      // need not release on the trigger; the native click still runs before timeout.
+      const pointer = event as PointerEvent;
+      if (pointer.isPrimary === false || pointer.button > 0) return;
+      cancelPointer();
+      const pointerId = pointer.pointerId;
+      pointerGesture = { id: pointerId, wasOpen: opened, cancelled: false };
+      // Preserve the gesture through a delayed compatibility click. A zero-delay
+      // timer is not an ordering boundary for touch-generated focus/click events.
+      // Release removes listeners; click identity or a new interaction consumes
+      // the bounded gesture record, so keyboard activation cannot inherit it.
       const release = (event: Event) => {
         if ((event as PointerEvent).pointerId !== pointerId) return;
         cancelPointer();
-        pointerTimer = setTimer(() => { beforePointerOpen = undefined; pointerTimer = undefined; }, 0);
+        const pointer = event as PointerEvent, rect = trigger.getBoundingClientRect();
+        const insideTarget = event.composedPath().includes(trigger);
+        const hasPoint = Number.isFinite(pointer.clientX) && Number.isFinite(pointer.clientY) && rect.width > 0 && rect.height > 0;
+        const insidePoint = !hasPoint || (pointer.clientX >= rect.left && pointer.clientX <= rect.right && pointer.clientY >= rect.top && pointer.clientY <= rect.bottom);
+        if (pointerGesture) pointerGesture.cancelled = !insideTarget || !insidePoint;
       };
       const cancel = (event: Event) => {
         if ((event as PointerEvent).pointerId !== pointerId) return;
-        beforePointerOpen = undefined; cancelPointer();
+        if (pointerGesture) pointerGesture.cancelled = true; cancelPointer();
       };
       doc.addEventListener('pointerup', release, true); doc.addEventListener('pointercancel', cancel, true);
       removePointerWatch = () => { doc.removeEventListener('pointerup', release, true); doc.removeEventListener('pointercancel', cancel, true); };
     });
-    if (win) c.on(win, 'blur', () => { beforePointerOpen = undefined; cancelPointer(); close('leave'); });
-    c.on(trigger, 'click', () => {
-      const wasOpen = beforePointerOpen ?? opened; beforePointerOpen = undefined; cancelPointer();
+    if (win) c.on(win, 'blur', () => { pointerGesture = undefined; cancelPointer(); close('leave'); });
+    c.on(trigger, 'click', (event: Event) => {
+      const click = event as MouseEvent & { pointerId?: number };
+      const gesture = click.detail > 0 && pointerGesture
+        && (click.pointerId === undefined || click.pointerId === pointerGesture.id) ? pointerGesture : undefined;
+      pointerGesture = undefined; cancelPointer();
+      if (gesture?.cancelled) return;
+      const wasOpen = gesture?.wasOpen ?? opened;
       if (wasOpen) close('toggle'); else { pinned = true; open(); }
     });
   } else {
