@@ -1,6 +1,17 @@
 import type {RendererContext} from './context.js';
-/** Checks the actual control, not merely the component's enclosing root. */
-export const readerBlocked=(root:HTMLElement,control:HTMLElement,alive:boolean)=>!alive||!root.isConnected||!control.isConnected||!root.contains(control)||control.matches(':disabled')||!!control.closest('[hidden],[inert]');
+/** Attribute visibility/inertness follows the composed tree, including slots and shadow hosts. */
+function blockedComposedAncestor(control:HTMLElement):boolean {
+ const seen=new Set<Node>();let current:Node|null=control;
+ while(current){
+  if(seen.has(current))return true;seen.add(current);
+  if(current.nodeType===1){const element=current as Element;if(element.hasAttribute('hidden')||element.hasAttribute('inert'))return true;if(element.assignedSlot){current=element.assignedSlot;continue;}}
+  if(current.parentNode){current=current.parentNode;continue;}
+  current=current.nodeType===11?(current as ShadowRoot).host??null:null;
+ }
+ return false;
+}
+/** Checks actual ownership and native disabled semantics without crossing fieldset boundaries artificially. */
+export const readerBlocked=(root:HTMLElement,control:HTMLElement,alive:boolean)=>!alive||!root.isConnected||!control.isConnected||!root.contains(control)||control.matches(':disabled')||blockedComposedAncestor(control);
 /** Reconcile native reset only after cancellation, later input and ownership settle. */
 export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:readonly (HTMLInputElement|HTMLSelectElement)[],revision:()=>number,restore:()=>void,reset:()=>void):void {
  let alive=true,resetRoot:EventTarget|undefined;
