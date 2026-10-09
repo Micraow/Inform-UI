@@ -12,7 +12,7 @@ for(const colorScheme of ['light','dark'])for(const width of [390,768,1100])test
   const widget=page.locator('.iui-reviews').first(),filter=widget.getByRole('combobox',{name:'Filter by supplied rating'}),sort=widget.getByRole('combobox',{name:'Sort supplied reviews'}),details=widget.locator('[data-review-id=five] details');
   await details.locator('summary').focus();await page.keyboard.press('Enter');await expect(details).toHaveAttribute('open','');
   await page.evaluate(()=>window.savedReview=document.querySelector('[data-review-id=five]'));
-  await filter.focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');await expect(filter).toHaveValue('rated');await expect(filter).toBeFocused();
+  await filter.focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');await expect(filter).toHaveValue('rated');await expect(filter).toBeFocused();await page.keyboard.press('Escape');await expect(filter).toHaveValue('rated');await expect(filter).toBeFocused();
   await expect(widget.locator('.iui-reviews-item:not([hidden])')).toHaveCount(3);await expect(widget.locator('.iui-reviews-count')).toHaveText('3 of 4 supplied reviews shown');
   await sort.selectOption('lowest');await expect(widget.locator('.iui-reviews-item').first()).toHaveAttribute('data-review-id','one');await filter.selectOption('1');await filter.selectOption('all');
   await sort.focus();await page.evaluate(()=>window.reviewsController.setState({other:1}));await expect(sort).toBeFocused();await expect(details).toHaveAttribute('open','');expect(await page.evaluate(()=>window.savedReview===document.querySelector('[data-review-id=five]'))).toBe(true);

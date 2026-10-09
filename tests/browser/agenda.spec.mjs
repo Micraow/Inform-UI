@@ -38,7 +38,7 @@ test('agenda forced colors, inherited disabled controls, enclosing form keyboard
   await page.evaluate(()=>{const host=document.getElementById('host'),form=document.createElement('form');host.replaceWith(form);form.append(host);window.agendaSubmits=0;form.addEventListener('submit',event=>{event.preventDefault();window.agendaSubmits++;});});
   const select=page.getByRole('combobox',{name:'按日期筛选'});await expect(select).toBeDisabled();
   await select.evaluate(el=>{el.value='2026-10-16';el.dispatchEvent(new Event('change',{bubbles:true}));});await expect(select).toHaveValue('');
-  await page.evaluate(()=>window.agendaController.setState({locked:false}));await select.focus();await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');await expect(select).toHaveValue('2026-10-09');
+  await page.evaluate(()=>window.agendaController.setState({locked:false}));await select.focus();await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');await expect(select).toHaveValue('2026-10-09');await expect(select).toBeFocused();await page.keyboard.press('Escape');await expect(select).toHaveValue('2026-10-09');await expect(select).toBeFocused();
   const summary=page.locator('[data-event-id=discussion] summary');await summary.focus();await page.keyboard.press('Enter');await expect(summary.locator('..')).toHaveAttribute('open','');
   expect(await summary.evaluate(el=>getComputedStyle(el).outlineStyle)).not.toBe('none');expect(await page.evaluate(()=>window.agendaSubmits)).toBe(0);
   expect(await page.evaluate(()=>[...new FormData(document.querySelector('form')).entries()])).toEqual([]);

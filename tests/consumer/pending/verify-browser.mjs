@@ -642,6 +642,8 @@ export async function smokeExample(page, entry, document, expect) {
       const details=root.locator('[data-review-id=five] details'); await disclosure(page,details,expect);
       await key(page,filter,'Home',expect); await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter');
       await expect(filter).toHaveValue('rated'); await expect(filter).toBeFocused(); await expect(root.locator('.iui-reviews-item:not([hidden])')).toHaveCount(3);
+      // Dismiss native platform popup only after proving the selected state.
+      await page.keyboard.press('Escape'); await expect(filter).toHaveValue('rated'); await expect(filter).toBeFocused();
       await sort.selectOption('lowest'); await expect(root.locator('.iui-reviews-item').first()).toHaveAttribute('data-review-id','one');
       await filter.selectOption('unrated'); await expect(root.locator('.iui-reviews-item:not([hidden])')).toHaveCount(1);
       await expect(root.locator('.iui-reviews-item:not([hidden])')).toHaveAttribute('data-review-id','unrated');
@@ -654,7 +656,8 @@ export async function smokeExample(page, entry, document, expect) {
       await expect(choice('unavailable')).toBeDisabled(); await nativePointer(page,choice('unavailable'),expect);
       expect(await page.evaluate(()=>window.pendingEvents.length)).toBe(0);
       await choice('early').click(); await expect(choice('early')).toHaveAttribute('aria-pressed','true');
-      await key(page,select,'End',expect); await page.keyboard.press('Enter'); await expect(select).toHaveValue('2026-10-10');
+      await key(page,select,'End',expect); await page.keyboard.press('Enter'); await expect(select).toHaveValue('2026-10-10'); await expect(select).toBeFocused();
+      await page.keyboard.press('Escape'); await expect(select).toHaveValue('2026-10-10'); await expect(select).toBeFocused();
       await expect(choice('early')).toBeHidden(); await expect(root.locator('.iui-availability-selection')).toContainText('2026-10-09 18:00');
       await key(page,choice('next'),'Enter',expect); await page.keyboard.press('Space');
       expect(await page.evaluate(()=>window.pendingEvents.length)).toBe(3);
