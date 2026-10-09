@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:graphics",
+  "title": "Inform UI node subset: graphics",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TopologyNode"
+        },
+        {
+          "$ref": "#/$defs/SvgNode"
+        }
+      ]
+    },
+    "SvgNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "svg"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "viewBox": {
+          "type": "string",
+          "pattern": "^\\d+\\s+\\d+\\s+\\d+\\s+\\d+$"
+        },
+        "shapes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "enum": [
+                  "rect",
+                  "line",
+                  "circle",
+                  "path",
+                  "text",
+                  "polyline",
+                  "polygon"
+                ]
+              },
+              "attrs": {
+                "type": "object",
+                "maxProperties": 24,
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 12000
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                }
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 12000
+              }
+            },
+            "required": [
+              "tag",
+              "attrs"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 150
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "viewBox",
+        "shapes"
+      ],
+      "additionalProperties": false
+    },
+    "TopologyNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "topology"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "subtitle": {
+                "type": "string",
+                "maxLength": 12000
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2,
+          "maxItems": 24
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "to": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 12000
+              },
+              "load": {
+                "$ref": "#/$defs/Value"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 40
+        },
+        "highlight": {
+          "enum": [
+            "max-load",
+            "none"
+          ]
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "nodes",
+        "links"
+      ],
+      "additionalProperties": false
+    },
+    "Value": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 12000
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "$"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "enum": [
+                "add",
+                "sub",
+                "mul",
+                "div",
+                "max",
+                "min",
+                "round",
+                "abs",
+                "clamp",
+                "gt",
+                "lt",
+                "eq",
+                "if",
+                "format"
+              ]
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Value"
+              },
+              "minItems": 1,
+              "maxItems": 12
+            }
+          },
+          "required": [
+            "op",
+            "args"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,501 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:learning",
+  "title": "Inform UI node subset: learning",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "FillBlankEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "FillBlankNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "fill-blank"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FillBlankPart"
+          },
+          "minItems": 1,
+          "maxItems": 50
+        },
+        "blanks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FillBlankEntry"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "parts",
+        "blanks"
+      ],
+      "additionalProperties": false
+    },
+    "FillBlankPart": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 2000
+        },
+        {
+          "type": "object",
+          "properties": {
+            "blank": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+            }
+          },
+          "required": [
+            "blank"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Flashcard": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "front": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "back": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "frontLatex": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "backLatex": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "front",
+        "back"
+      ],
+      "additionalProperties": false
+    },
+    "FlashcardsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flashcards"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "cards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Flashcard"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "cards"
+      ],
+      "additionalProperties": false
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/QuizNode"
+        },
+        {
+          "$ref": "#/$defs/FlashcardsNode"
+        },
+        {
+          "$ref": "#/$defs/FillBlankNode"
+        },
+        {
+          "$ref": "#/$defs/SentenceBuilderNode"
+        },
+        {
+          "$ref": "#/$defs/VocabCardNode"
+        }
+      ]
+    },
+    "QuizNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "quiz"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/QuizQuestion"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "questions"
+      ],
+      "additionalProperties": false
+    },
+    "QuizQuestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "kind": {
+          "enum": [
+            "single",
+            "multiple"
+          ]
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "latex": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "choices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 2,
+          "maxItems": 20
+        },
+        "correct": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 6000
+        },
+        "explanationLatex": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        },
+        "points": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "prompt",
+        "choices",
+        "correct",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "SentenceBuilderNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "sentence-builder"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SentenceToken"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "answer": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "joiner": {
+          "enum": [
+            " ",
+            ""
+          ]
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "tokens",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "SentenceToken": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "VocabCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "vocab-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "term": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "languageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "pronunciation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "partOfSpeech": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "senses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VocabSense"
+          },
+          "minItems": 1,
+          "maxItems": 10
+        }
+      },
+      "required": [
+        "type",
+        "term",
+        "senses"
+      ],
+      "additionalProperties": false
+    },
+    "VocabSense": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "meaning": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "translation": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "minItems": 0,
+          "maxItems": 5
+        }
+      },
+      "required": [
+        "id",
+        "meaning"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

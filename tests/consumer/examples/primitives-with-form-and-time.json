@@ -1,0 +1,92 @@
+{
+  "version": "iui/1",
+  "title": "排列控件不改变它们的状态与领域",
+  "description": "原创本地合成示例；计划字段与计时相互独立，不联网保存。",
+  "theme": "auto",
+  "state": {
+    "sets": 3
+  },
+  "body": [
+    {
+      "type": "flow",
+      "justify": "start",
+      "children": [
+        {
+          "type": "icon",
+          "name": "warning",
+          "tone": "warning"
+        },
+        {
+          "type": "text",
+          "value": "开始计时后，不要为改变状态点而反复update整份文档。"
+        }
+      ]
+    },
+    {
+      "type": "form",
+      "label": "练习计划",
+      "children": [
+        {
+          "type": "flow",
+          "align": "end",
+          "children": [
+            {
+              "type": "input",
+              "kind": "number",
+              "label": "组数",
+              "bind": "sets",
+              "min": 1,
+              "max": 8,
+              "step": 1
+            },
+            {
+              "type": "metric",
+              "label": "当前组数",
+              "value": {
+                "$": "sets"
+              },
+              "unit": "组"
+            }
+          ]
+        }
+      ],
+      "submitLabel": "检查计划",
+      "cancelLabel": "恢复计划"
+    },
+    {
+      "type": "timer",
+      "title": "两分钟页内练习",
+      "durationMs": 120000
+    },
+    {
+      "type": "pulse-indicator",
+      "label": "合成说明状态，不随计时变化",
+      "status": "idle",
+      "animate": false
+    },
+    {
+      "type": "popover",
+      "label": "为什么状态点不自动改变？",
+      "title": "不同层次的状态",
+      "children": [
+        {
+          "type": "flow",
+          "children": [
+            {
+              "type": "icon",
+              "name": "info"
+            },
+            {
+              "type": "text",
+              "value": "pulse-indicator的status是字面值，timer持有独立本地状态。flow只负责按顺序换行。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "caption",
+      "value": "此文档需要base＋forms＋time。把form/time放入base的flow或popover，不会免去对应领域合同。"
+    }
+  ]
+}

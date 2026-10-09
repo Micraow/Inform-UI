@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:compatibility",
+  "title": "Inform UI node subset: compatibility",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "NativeNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "native"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "enum": [
+            "box",
+            "row",
+            "col",
+            "grid",
+            "grid-item",
+            "card",
+            "text",
+            "title",
+            "caption",
+            "badge",
+            "divider",
+            "code",
+            "blockquote",
+            "bold",
+            "italic",
+            "underline",
+            "strikethrough",
+            "spacer",
+            "list",
+            "list-item",
+            "table",
+            "table-row",
+            "table-cell",
+            "flow",
+            "flow-item"
+          ]
+        },
+        "props": {
+          "type": "object",
+          "properties": {
+            "gap": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "padding": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "radius": {
+              "enum": [
+                "none",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl",
+                "full"
+              ]
+            },
+            "border": {
+              "type": "boolean"
+            },
+            "color": {
+              "enum": [
+                "default",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "accent"
+              ]
+            },
+            "size": {
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+                "2xl",
+                "3xl"
+              ]
+            },
+            "weight": {
+              "enum": [
+                "normal",
+                "medium",
+                "semibold",
+                "bold"
+              ]
+            },
+            "align": {
+              "enum": [
+                "start",
+                "center",
+                "end",
+                "stretch"
+              ]
+            },
+            "justify": {
+              "enum": [
+                "start",
+                "center",
+                "end",
+                "between",
+                "around"
+              ]
+            },
+            "width": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 20,
+                  "maximum": 1400
+                },
+                {
+                  "enum": [
+                    "100%",
+                    "auto"
+                  ]
+                }
+              ]
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1400
+            },
+            "maxWidth": {
+              "type": "integer",
+              "minimum": 20,
+              "maximum": 1400
+            },
+            "minWidth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1400
+            },
+            "background": {
+              "enum": [
+                "surface",
+                "surface-secondary",
+                "surface-tertiary",
+                "none"
+              ]
+            },
+            "marker": {
+              "enum": [
+                "bullet",
+                "number",
+                "none"
+              ]
+            },
+            "variant": {
+              "enum": [
+                "soft",
+                "solid",
+                "outline",
+                "ghost"
+              ]
+            },
+            "pill": {
+              "type": "boolean"
+            },
+            "textAlign": {
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            }
+          },
+          "required": [],
+          "additionalProperties": false,
+          "maxProperties": 18
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 500
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/NativeNode"
+        }
+      ]
+    }
+  }
+}

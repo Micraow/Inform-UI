@@ -1,0 +1,7 @@
+# Later reader integration checkpoint
+
+This separate source integration starts from frozen acceptance core `a4103c139012e19bd6fcefa09791418571562e47` and adds the local poll composer and supplied email/file readers. The reviewed 97-node source fixes are retained, including finite-motion controls and flight/onboarding control ownership. The existing 37-candidate acceptance asset, Skill revision, and batch lock are historical inputs for that earlier batch; they do not authorize accepting this later runtime.
+
+Seven additional independent interruption tests passed against the combined 100-node build: queued native reset after successful replacement, rejected atomic replacement with canceled reset, becoming inert after reset, and newer folder navigation/input taking precedence. Both readers are covered where applicable. They verify retired DOM is unchanged, local filter/model consistency, and no host-state writes. The earlier partial-control reset fixes are included. No further production bug was established in this bounded review.
+
+Before a later acceptance batch, finish affected build/type/schema and lifecycle checks, preserve source and generated-byte evidence, prepare matching Skill examples/guidance and an immutable asset, then replace the batch lock with those exact revisions. Real browser interaction, actual screenshots, visual review and full aggregate acceptance remain separate pending gates. The canonical accepted total remains 53; these three later candidates do not change the pending 37 batch already under acceptance.

@@ -1,0 +1,58 @@
+# 本地表单与受控提交
+
+完整示例：[forms.json](../examples/forms.json)。它使用合成点数展示姓名类文本、邮箱、数字、长文本、单选、分段选择，以及联动计算；不包含真实个人数据或外部提交地址。
+
+| 节点 | 行为 |
+| --- | --- |
+| `input` | `kind: text / number / email / checkbox / date`；`label`、`bind` 必填 |
+| `textarea` | 长文本，`rows` 控制初始高度 |
+| `radio` / `segmented` | 原生单选行为，键盘切换；`options` 值为同一类型的字符串或数字 |
+| `field` | 带 `label`、可选 `hint` 的原生 fieldset 分组，可以整体禁用 |
+| `form` | 本地校验、提交/取消、忙碌防重、错误/重试；不能嵌套 |
+
+字段可用 `hint`、`error`、`required`、`disabled`。`error` 为解析后字符串，`disabled` 为解析后布尔值；都可引用 state/computed。文本支持 `minLength/maxLength`，按原生 HTML 的 UTF-16 单元计数；数值支持 `min/max/step`。初始为空或不符合字段约束的值可以构成有效文档，错误在失焦/提交时显示。
+
+状态仍为 `string | number | boolean`，同名类型不可改变。数值字段的用户输入先检查完整数字及 `min/max/step`：空、未完成、越界或步长不符的输入只保留为 DOM 草稿，不写入共享 state，联动指标继续显示此前接受的数值。错误提示与提交校验检查当前可见草稿，不能因为旧 state 仍有效就提交它；改正为有效数字后才更新 state，或取消恢复初值。错误仍在失焦/提交后显示，已触达字段会即时更新错误。
+
+这里区分三种状态：可见输入草稿、共享 state、通过校验后的提交快照。初始文档和宿主 `setState()` 是权威数据，仍可包含类型正确但违反字段约束的值；它们会显示在字段和指标中，但表单提交仍被约束拦截。宿主明确设置该绑定会替换旧草稿，即使传入值与已有 state 相同；无关 state 更新保留草稿。文档级 set/reset 按钮也会覆盖对应草稿，取消和原生表单 reset 会清理本表单草稿并恢复初值；任何被整体计算校验拒绝的更新都不清草稿。字段约束不是宿主业务数据的安全校验边界，调用方仍需验证外部数据。文本/邮箱按其原有即时字符串绑定和提交校验合同处理。
+
+指针按下同一 UI 根中的原生按钮（包括提交/取消、文档 set/reset 和秒表等组件按钮）时，相关失焦错误布局延后到该手势结束，避免插入错误行把正在点击的按钮推走。取消手势、拖出后释放或窗口失焦会恢复校验；键盘 Tab、Enter 和程序焦点操作不等待指针动作。
+
+`input.kind: checkbox` 是带表单 hint/error/required 生命周期的原生复选框，绑定必须为 boolean。点击标签或按 Space 即时写入 true/false；required 只约束提交时必须勾选，false 仍可作为有效共享 state。宿主覆盖、取消、原生 reset 和文档 reset 复用现有表单生命周期；被全局计算校验拒绝的修改会恢复勾选状态并保留焦点。它不接受 placeholder、min/max/step、minLength/maxLength 或 indeterminate。禁用和 fieldset 继承禁用的字段不阻止提交，也不进入提交快照。轻量开关仍可用已有 `toggle`。
+
+复选框示例：[checkbox-practice.json](../examples/checkbox-practice.json)。本轮复选框增强尚待集中浏览器/CDN 验收；此前 d370 固定版不接受 checkbox kind。
+
+## 纯 JSON 默认行为
+
+没有 `form.action` 时，提交只进行本地校验、显示完成状态，并派发 `iui:submit` 事件；事件包含 `{ id, values }`。没有持久存储或网络提交，刷新后不会保留数据。`values` 只包含当前 form 未禁用的绑定字段，含已有 slider/toggle/select；无关全局 state 不被夹带。
+
+取消会终止正在进行的操作，恢复本表单初值。若其它全局计算条件已改变，使恢复值不再有效，取消仍会终止任务，但显示恢复错误并保留当前有效状态。
+
+## 宿主显式提供的操作
+
+JSON 只能引用白名单中的标识符，不接受 URL 或函数代码：
+
+```js
+const controller = mount(host, document, {
+  actions: {
+    'example.confirm': async ({ values, signal }) => {
+      // values 是只读快照；signal 在取消、update 或 dispose 时中止。
+      // 宿主决定如何处理数据；库不会自行调用外部服务。
+    }
+  }
+});
+```
+
+对应表单写 `"action":"example.confirm"`。如果宿主没有配置它，界面显示明确错误。返回 Promise 时进入忙碌状态，重复提交被忽略；取消后迟到的成功或失败不会覆盖新状态。外部副作用是否能够撤回，由宿主操作实现决定。
+
+可复用状态文档：[forms/states.json](../examples/forms/states.json)。[actions.mjs](../examples/forms/actions.mjs) 是原创离线演示适配器，提供显式完成的 pending 与首次失败后重试，没有计时器、fetch 或存储。loading/error 通过真实提交产生，不虚构未实现的 JSON status 字段。
+
+当前支持后续候选的原生日期字段；不支持文件上传、自绘日历弹层、富文本编辑或任意正则约束。网页聊天只生成 JSON 时应使用默认本地表单；宿主操作示例供已有网页应用选择使用。
+
+原生控件若清理初值中的换行或空白，导致显示字符串与绑定状态不同，提交会被阻止并提示编辑。修正后的用户输入再写回状态；库不会默默提交未经同一规则验证的隐藏原值，也不会静默更改调用方初值。
+
+再次编辑表单字段（包括暂未写入state的数字草稿）会清除上一次成功提示；无关全局state变化不影响结果。宿主在提交期间改了值时，迟到成功只对应原快照，不把当前新值标成已提交。
+
+原生日期输入使用明确的YYYY-MM-DD字符串和minDate/maxDate范围，复用本表单生命周期；见[日期字段合同](date-field.md)。这是后续本地候选，尚未通过真实浏览器批次。
+
+表单快照与原生 reset 合同由文档中的 `form` 节点拥有。不要把带受控字段的挂载容器再包在宿主自己管理的 HTML form 中；外层原生表单会绕开该节点的快照/校验生命周期。普通 disabled fieldset 继承仍受支持。

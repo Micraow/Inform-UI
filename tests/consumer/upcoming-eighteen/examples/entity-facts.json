@@ -1,0 +1,91 @@
+{
+  "version": "iui/1",
+  "title": "Original attributed facts and entity examples",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "sidebar-fact-table",
+      "label": "Supplied example facts",
+      "facts": [
+        {
+          "id": "height",
+          "label": "Example height",
+          "value": "12.50",
+          "unit": "m",
+          "group": "Dimensions",
+          "observedAt": "2028-02-29T10:00Z",
+          "note": "Original illustrative value; no measurement was taken.",
+          "source": {
+            "label": "Example fact source",
+            "url": "https://example.org/fact"
+          }
+        },
+        {
+          "id": "width",
+          "label": "Example width",
+          "value": null,
+          "unit": "m",
+          "group": "Dimensions"
+        },
+        {
+          "id": "material",
+          "label": "Example material",
+          "value": "Illustrative timber",
+          "group": "Materials"
+        },
+        {
+          "id": "note",
+          "label": "Supplied blank note",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "type": "entity-thumbnail-list",
+      "id": "entities",
+      "label": "Supplied example entities",
+      "entities": [
+        {
+          "id": "museum",
+          "label": "Example museum",
+          "category": "Place",
+          "description": "An original fictional place record.",
+          "fields": [
+            {
+              "label": "Area",
+              "value": "Example district"
+            }
+          ],
+          "source": {
+            "label": "Example entity source",
+            "url": "https://example.org/entity/museum"
+          },
+          "image": {
+            "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAFklEQVR4nGOwKEt8eriM4enhMouyRAAtEAZbDWz0hgAAAABJRU5ErkJggg==",
+            "alt": "Original project two-color checker swatch"
+          }
+        },
+        {
+          "id": "book",
+          "label": "Example book",
+          "category": "Work",
+          "description": "An original fictional publication record.",
+          "fields": [
+            {
+              "label": "Edition label",
+              "value": "As supplied"
+            }
+          ]
+        },
+        {
+          "id": "garden",
+          "label": "Example garden",
+          "category": "Place",
+          "description": "A second fictional place record."
+        }
+      ]
+    }
+  ]
+}

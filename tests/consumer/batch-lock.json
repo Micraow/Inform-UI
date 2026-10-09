@@ -1,0 +1,449 @@
+{
+  "format": "inform-ui-batch-lock/1",
+  "assetRevision": "26ec211fa529516af3b1523248f5912c45ec64c6",
+  "assetTree": "24dbdb12e9e1b557025cea4ad03f8aa5cebd5322",
+  "skillRevision": "e286789f4c5d75c1a12e5103314eb9926b81822c",
+  "skillTree": "698fc66f1c9c4d8cc2f953bd7e912e0498862986",
+  "integritySha256": "53a9a3dfa3f41bf5d66a1c7a22a73df936b6313d2859d7127347a89e15e4fd2c",
+  "schemaSha256": "83701bfd56d48109f5d0a3b2b6cc7b2b0d5d7530669a2b7cd80102c912486aeb",
+  "consumers": [
+    {
+      "id": "foundation",
+      "script": "tests/consumer/scripts/verify-next-browser.mjs",
+      "scriptSha256": "104e13a13df8d36df878ea6a61af81e3d844d32197aed400cc861f1bacd023bc",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "foundation-explainer": "zh-CN",
+        "local-time": "zh-CN",
+        "local-overlays": "zh-CN",
+        "local-number-draft": "zh-CN",
+        "timed-local-practice": "zh-CN",
+        "local-status-primitives": "zh-CN",
+        "primitives-with-form-and-time": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "foundation-explainer",
+          "corePath": "tests/consumer/examples/foundation-explainer.json",
+          "sha256": "2d5a725474ef6dfe7ea5dc9b778ecbce99ce2430a9a28a0cbeeb0c7c6a011038"
+        },
+        {
+          "name": "local-time",
+          "corePath": "tests/consumer/examples/local-time.json",
+          "sha256": "73c70ddff9d82bac4fafdc8ac2d5c09821dc90d5aa21f47ac35ee0b5161e8910"
+        },
+        {
+          "name": "local-overlays",
+          "corePath": "tests/consumer/examples/local-overlays.json",
+          "sha256": "46b2bae41ef2c9f62f309038e1e92d0c019b8c3ea8210e97406e4ff72eafd122"
+        },
+        {
+          "name": "local-number-draft",
+          "corePath": "tests/consumer/examples/local-number-draft.json",
+          "sha256": "8874ef5a57507b817c99b5595e243543b97555f5e4ed630cf69ef8b3d2f23a1e"
+        },
+        {
+          "name": "timed-local-practice",
+          "corePath": "tests/consumer/examples/timed-local-practice.json",
+          "sha256": "5f2835fba52d4c1b606949eea04adf8a80542f7b8b9dc6bb4a9ff7e4902b9e39"
+        },
+        {
+          "name": "local-status-primitives",
+          "corePath": "tests/consumer/examples/local-status-primitives.json",
+          "sha256": "133ab06f35b7def7cd2f805ce6a239f7b0087d36432dcfad05de5ad5879794dc"
+        },
+        {
+          "name": "primitives-with-form-and-time",
+          "corePath": "tests/consumer/examples/primitives-with-form-and-time.json",
+          "sha256": "ab465d21295097eded879f1e490c2a64ed2713d6c649a22ff4d7199366b9cadf"
+        }
+      ]
+    },
+    {
+      "id": "loading-sources",
+      "script": "tests/consumer/scripts/verify-next66-browser.mjs",
+      "scriptSha256": "e0ebc1bd38e6bad199642b673c3186c59a9c16a111bdfcd10c384475f595ada3",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "loading-numeric-progress": "zh-CN",
+        "loading-placeholder-shapes": "zh-CN",
+        "supplied-source-reading": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "loading-numeric-progress",
+          "corePath": "tests/consumer/examples/loading-numeric-progress.json",
+          "sha256": "97286a9321ebf32e078a8a1300f2df8f401bd0241aac97adcbc5906252624582"
+        },
+        {
+          "name": "loading-placeholder-shapes",
+          "corePath": "tests/consumer/examples/loading-placeholder-shapes.json",
+          "sha256": "d9f8d5794b8de800df98f35363d15ac2b10c548ffe18e739c36753f64f564b77"
+        },
+        {
+          "name": "supplied-source-reading",
+          "corePath": "tests/consumer/examples/supplied-source-reading.json",
+          "sha256": "1c644eee9a38338695748a98c770a97dd2611a08f30fbc8bca1c0a43cdbba4de"
+        }
+      ]
+    },
+    {
+      "id": "carousel",
+      "script": "tests/consumer/carousel/verify-browser.mjs",
+      "scriptSha256": "fd78c110a9c3c4a9722eb97bc8d07d0b7a767dbe51d635dc9a22fe9f3e0e1732",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "carousel-with-local-controls": "zh-CN",
+        "local-carousel-notes": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "carousel-with-local-controls",
+          "corePath": "tests/consumer/carousel/examples/carousel-with-local-controls.json",
+          "sha256": "f8901d7cf240c5830507fbd2c0a0e0b5cb15a9e6669d11f2144018f955a70cf2"
+        },
+        {
+          "name": "local-carousel-notes",
+          "corePath": "tests/consumer/carousel/examples/local-carousel-notes.json",
+          "sha256": "da6ae89a9e710c89787655763d4b8804071465de2b52c044f57f2c7f7e2a7da3"
+        }
+      ]
+    },
+    {
+      "id": "code",
+      "script": "tests/consumer/code/verify-browser.mjs",
+      "scriptSha256": "b75aff32e24179f22c8b6e817539a9b90ceea55f02b59f8fa5192677e85c1b29",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "local-code-explanation": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "local-code-explanation",
+          "corePath": "tests/consumer/code/examples/local-code-explanation.json",
+          "sha256": "1e0e17ca3ea091d93ff2925489d595080593858f72447f69acd60371a6f24b08"
+        }
+      ]
+    },
+    {
+      "id": "pie",
+      "script": "tests/consumer/pie/verify-browser.mjs",
+      "scriptSha256": "4d89405b0744f4f05dba3bac6b79f589edee8901480baa7ba7359a83d73a84c4",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "known-value-pie": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "known-value-pie",
+          "corePath": "tests/consumer/pie/examples/known-value-pie.json",
+          "sha256": "a7acf9c8fda8b78f0596a9eef959c94ffc237a8bf3e89b1fa6a201aa777b6c87"
+        }
+      ]
+    },
+    {
+      "id": "checkbox",
+      "script": "tests/consumer/checkbox/verify-browser.mjs",
+      "scriptSha256": "b96894914175776cab38fcba2ca27cd2bdbc52e5cfc56f4f4da1ad7fe297e7b5",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "local-checkbox-review": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "local-checkbox-review",
+          "corePath": "tests/consumer/checkbox/examples/local-checkbox-review.json",
+          "sha256": "03ef8740e85b074de0edafcc75f004a9d50c90d4abe614ae1698b6368f150679"
+        }
+      ]
+    },
+    {
+      "id": "pending",
+      "script": "tests/consumer/pending/verify-browser.mjs",
+      "scriptSha256": "f2d9d512694dfbcc851c6c0d31a3768699b46282cd06159981073b9ab9285c16",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "agenda": "zh-CN",
+        "artist-upcoming-events": "en",
+        "business-gallery": "en",
+        "button-actions": "en",
+        "carousel": "en",
+        "carousel-basic": "zh-CN",
+        "checkbox-practice": "zh-CN",
+        "checklist": "zh-CN",
+        "checklist-form": "zh-CN",
+        "code": "en",
+        "date-practice": "zh-CN",
+        "email-draft": "en",
+        "entity-reviews": "en",
+        "favicon": "zh-CN",
+        "field-labels": "zh-CN",
+        "fill-blank-practice": "zh-CN",
+        "finance-lists": "en",
+        "flight-option": "en",
+        "location-choice-request": "en",
+        "markdown-subset": "en",
+        "motion": "en",
+        "news-article": "zh-CN",
+        "onboarding-selection": "zh-CN",
+        "person-profile": "en",
+        "pie": "en",
+        "prompt-suggestions": "en",
+        "rating": "zh-CN",
+        "reddit-thread-card": "en",
+        "restaurant-availability": "en",
+        "restaurant-menu": "zh-CN",
+        "sentence-builder": "zh-CN",
+        "supplied-trackers": "en",
+        "tabs": "zh-CN",
+        "tabs-local-state": "zh-CN",
+        "task-expansion-card": "en",
+        "vocab-card": "en",
+        "writing-block": "en"
+      },
+      "examples": [
+        {
+          "name": "agenda",
+          "corePath": "tests/consumer/pending/examples/agenda.json",
+          "sha256": "c283ddc5005fa0c7e9465e14ad791628ae598524697e19678a3a9f919302974f"
+        },
+        {
+          "name": "artist-upcoming-events",
+          "corePath": "tests/consumer/pending/examples/artist-upcoming-events.json",
+          "sha256": "5879ebb931a95ffc85b85f864654aa10ef06dc7491c20cd8b540c178b217eb21"
+        },
+        {
+          "name": "business-gallery",
+          "corePath": "tests/consumer/pending/examples/business-gallery.json",
+          "sha256": "e49b06edd496298b8c9413782a8951c660afa371b460bf1bb77abe80942b47a2"
+        },
+        {
+          "name": "button-actions",
+          "corePath": "tests/consumer/pending/examples/button-actions.json",
+          "sha256": "229aa8348b5ca7d13af1b5be91496370e07a5be69015d83cd94989abe42c64d3"
+        },
+        {
+          "name": "carousel",
+          "corePath": "tests/consumer/pending/examples/carousel.json",
+          "sha256": "62b3cac7dcdfcfc6f7687375bb0377ee0ccc51b7b4cb264ba02c325c40e392cc"
+        },
+        {
+          "name": "carousel-basic",
+          "corePath": "tests/consumer/pending/examples/carousel-basic.json",
+          "sha256": "9bdbbbcb68dde0ebe50b5f676952fbaa42f2a4aeb5f2407aa8d9843dad456cfe"
+        },
+        {
+          "name": "checkbox-practice",
+          "corePath": "tests/consumer/pending/examples/checkbox-practice.json",
+          "sha256": "b290013320ebe7560c1e92d3e19d3454852093c62a08000427cca50e1498c297"
+        },
+        {
+          "name": "checklist",
+          "corePath": "tests/consumer/pending/examples/checklist.json",
+          "sha256": "c5570457a098e07012ea4a47c63ae0d627faed11d3ba3a3476edb063eeba53ff"
+        },
+        {
+          "name": "checklist-form",
+          "corePath": "tests/consumer/pending/examples/checklist-form.json",
+          "sha256": "e301430d5ee8df81a1030d4d078fbf7204d8a4ee85e1bd93c5fccd3894574283"
+        },
+        {
+          "name": "code",
+          "corePath": "tests/consumer/pending/examples/code.json",
+          "sha256": "7d25bee2c2f3e8c5f8b70e445d7478203b9e64bf6e647591a606585a6dfbffc7"
+        },
+        {
+          "name": "date-practice",
+          "corePath": "tests/consumer/pending/examples/date-practice.json",
+          "sha256": "8f921053244394ccfe4dac8fc3d8d6528a72dc945a1da90978f5bc4069346ca0"
+        },
+        {
+          "name": "email-draft",
+          "corePath": "tests/consumer/pending/examples/email-draft.json",
+          "sha256": "212e9225d8fab7b93f026d2b3a57be7d498684c6398bdcdebf87b3ca2eb144c5"
+        },
+        {
+          "name": "entity-reviews",
+          "corePath": "tests/consumer/pending/examples/entity-reviews.json",
+          "sha256": "3110ff0a7d7c3f99163c1bc8f91cce56e1180c8cff420a057fc7766fafaba022"
+        },
+        {
+          "name": "favicon",
+          "corePath": "tests/consumer/pending/examples/favicon.json",
+          "sha256": "2efcc04ebf1a220126777e5bd37741b05a8fd9e9dfa3761aa3d2dcd4a93f9d68"
+        },
+        {
+          "name": "field-labels",
+          "corePath": "tests/consumer/pending/examples/field-labels.json",
+          "sha256": "5e880fb34f11dcfd4fa365d5292b8914cc40638a2f1b3d5deb575da9f1a62715"
+        },
+        {
+          "name": "fill-blank-practice",
+          "corePath": "tests/consumer/pending/examples/fill-blank-practice.json",
+          "sha256": "7727b6dc7fc3fb6aee1b1de12a3f13792ea369f5a19b89dfba1abcaaec8d50d4"
+        },
+        {
+          "name": "finance-lists",
+          "corePath": "tests/consumer/pending/examples/finance-lists.json",
+          "sha256": "ab3d9cf84d9e658544d109c50642e88ee7b830c0e56a417daa8d8fc93d6dfd0d"
+        },
+        {
+          "name": "flight-option",
+          "corePath": "tests/consumer/pending/examples/flight-option.json",
+          "sha256": "dd7857589c93dae8c44c10fb6fb15f75239804851b4b03b2198d4c4caad4c726"
+        },
+        {
+          "name": "location-choice-request",
+          "corePath": "tests/consumer/pending/examples/location-choice-request.json",
+          "sha256": "179643391d8c819c10d4fb4680a70dd9b52cba50c32740168a5d506f4e4fcb0a"
+        },
+        {
+          "name": "markdown-subset",
+          "corePath": "tests/consumer/pending/examples/markdown-subset.json",
+          "sha256": "72f06da11ac69bc95214d7c369779f9485f3cdc7f9d1934aceeedf18061b35a5"
+        },
+        {
+          "name": "motion",
+          "corePath": "tests/consumer/pending/examples/motion.json",
+          "sha256": "6507e34ffd1a7a5393cb90ba0071b8d63d0a7d293a9c4161f0daddc9be261094"
+        },
+        {
+          "name": "news-article",
+          "corePath": "tests/consumer/pending/examples/news-article.json",
+          "sha256": "0fe3014f77bb8e8711d9500073edc6d94630c8048123f56bcd72f2a5d10026b2"
+        },
+        {
+          "name": "onboarding-selection",
+          "corePath": "tests/consumer/pending/examples/onboarding-selection.json",
+          "sha256": "defc49a8fee0dd0f1174fbdc5adabd8f153f0c921901bf13f628567a2bcbbe12"
+        },
+        {
+          "name": "person-profile",
+          "corePath": "tests/consumer/pending/examples/person-profile.json",
+          "sha256": "b9953ee7eb878c2ec6701d8122e630757fd9bbfc764d7b4f64408314a356cdf7"
+        },
+        {
+          "name": "pie",
+          "corePath": "tests/consumer/pending/examples/pie.json",
+          "sha256": "c8fd2a6a95706c525be0d5c0c8809873e67c6df9576a5728fe2866d4acc75b6d"
+        },
+        {
+          "name": "prompt-suggestions",
+          "corePath": "tests/consumer/pending/examples/prompt-suggestions.json",
+          "sha256": "30ffba1fedb1ac803933edc7279119ecec1cef5825316a5ea4b416068da0a491"
+        },
+        {
+          "name": "rating",
+          "corePath": "tests/consumer/pending/examples/rating.json",
+          "sha256": "e17dcaca6ebc422b78a692bbc4cc2741fff6517fb9813775563062c97f828b9a"
+        },
+        {
+          "name": "reddit-thread-card",
+          "corePath": "tests/consumer/pending/examples/reddit-thread-card.json",
+          "sha256": "c731fa907f7f7a4ff5d6cbf0c1aff28f8491ee125615e9e6d87b6f86cd8b9d50"
+        },
+        {
+          "name": "restaurant-availability",
+          "corePath": "tests/consumer/pending/examples/restaurant-availability.json",
+          "sha256": "2fdbe7fbf7ba52ab0f9720e0c3178e6619bd635b4a4f0d436d829d5f235b1ec2"
+        },
+        {
+          "name": "restaurant-menu",
+          "corePath": "tests/consumer/pending/examples/restaurant-menu.json",
+          "sha256": "44029f7b482a7f0889efe8301ba65097dc0bb82ef557634721d80430b0ebfe62"
+        },
+        {
+          "name": "sentence-builder",
+          "corePath": "tests/consumer/pending/examples/sentence-builder.json",
+          "sha256": "6b99215fceaafd94681c1930160f764952262eeb4cd2d252f17071bf23963e8d"
+        },
+        {
+          "name": "supplied-trackers",
+          "corePath": "tests/consumer/pending/examples/supplied-trackers.json",
+          "sha256": "7d7591b92dc79c5951779bf39fa2544f2a9c9dee26937744f641925358356d56"
+        },
+        {
+          "name": "tabs",
+          "corePath": "tests/consumer/pending/examples/tabs.json",
+          "sha256": "90452ae01385d959e7b50d152e40f4232350720e4cd335a5b571b822e53455b6"
+        },
+        {
+          "name": "tabs-local-state",
+          "corePath": "tests/consumer/pending/examples/tabs-local-state.json",
+          "sha256": "db58e48630836a73022aedf52fb0e93d4e2c3ecfe1492d89d05d8384c9b2a8c0"
+        },
+        {
+          "name": "task-expansion-card",
+          "corePath": "tests/consumer/pending/examples/task-expansion-card.json",
+          "sha256": "43159c25c41b9a4c21ba949a5066c3bc9584a2740360d529c57e1cd61b4b8ae0"
+        },
+        {
+          "name": "vocab-card",
+          "corePath": "tests/consumer/pending/examples/vocab-card.json",
+          "sha256": "d4c646a2a2b8ee34a0a949f1d3c7a3125dbf9b778245230b8a67a8f0a400ea95"
+        },
+        {
+          "name": "writing-block",
+          "corePath": "tests/consumer/pending/examples/writing-block.json",
+          "sha256": "9a4cb5f85ad658eabb38c9b4ca4c5ec3bee2160228d56615a24fe87c73244cfb"
+        }
+      ]
+    }
+  ]
+}

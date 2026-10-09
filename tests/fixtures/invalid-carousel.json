@@ -1,0 +1,49 @@
+[
+  {
+    "type": "carousel",
+    "children": [],
+    "label": ""
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "label": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "label": null
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "controls": null
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "controls": "true"
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "loop": true
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "autoplay": true
+  },
+  {
+    "type": "carousel",
+    "children": [],
+    "selected": 0
+  },
+  {
+    "type": "carousel"
+  },
+  {
+    "type": "carousel",
+    "children": null
+  }
+]

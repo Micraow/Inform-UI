@@ -1,0 +1,15 @@
+{
+  "version": "iui/1",
+  "title": "原创离线时间控件",
+  "description": "固定快照、设备时钟、秒表和倒计时。仅用于展示页面内计时，不是系统闹钟。",
+  "theme": "auto",
+  "state": { "tick": 0 },
+  "body": [
+    { "type": "clock", "title": "上海固定快照", "mode": "snapshot", "timezone": "Asia/Shanghai", "at": "2026-10-09T16:00:00Z" },
+    { "type": "clock", "title": "纽约设备时间", "mode": "live", "timezone": "America/New_York", "hourCycle": "h12" },
+    { "type": "stopwatch", "title": "分圈秒表", "elapsedMs": 1250 },
+    { "type": "timer", "title": "短时倒计时", "durationMs": 1200 },
+    { "type": "stopwatch", "title": "最大时长边界", "elapsedMs": 604799999, "laps": false },
+    { "type": "timer", "title": "毫秒边界", "durationMs": 1 }
+  ]
+}

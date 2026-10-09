@@ -1,0 +1,212 @@
+{
+  "version": "iui/1",
+  "title": "语义配色检查",
+  "state": {
+    "sample": 2,
+    "off": "不可编辑"
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "颜色跟随用途，而非一个蓝色"
+    },
+    {
+      "type": "caption",
+      "value": "原创视觉样本；公开SDK数值参考与项目角色映射。合成图表数据。"
+    },
+    {
+      "type": "text",
+      "color": "default",
+      "value": "default · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "secondary",
+      "value": "secondary · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "tertiary",
+      "value": "tertiary · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "info",
+      "value": "info · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "accent",
+      "value": "accent · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "success",
+      "value": "success · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "warning",
+      "value": "warning · 示例文字与数值 123"
+    },
+    {
+      "type": "text",
+      "color": "danger",
+      "value": "danger · 示例文字与数值 123"
+    },
+    {
+      "type": "link",
+      "value": "公开配色参考",
+      "href": "https://github.com/openai/apps-sdk-ui"
+    },
+    {
+      "type": "box",
+      "background": "surface",
+      "padding": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "surface"
+        }
+      ]
+    },
+    {
+      "type": "box",
+      "background": "surface-secondary",
+      "padding": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "surface-secondary"
+        }
+      ]
+    },
+    {
+      "type": "box",
+      "background": "surface-tertiary",
+      "padding": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "surface-tertiary"
+        }
+      ]
+    },
+    {
+      "type": "box",
+      "background": "info-soft",
+      "padding": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "info-soft"
+        }
+      ]
+    },
+    {
+      "type": "box",
+      "background": "success-soft",
+      "padding": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "success-soft"
+        }
+      ]
+    },
+    {
+      "type": "box",
+      "background": "danger-soft",
+      "padding": 3,
+      "children": [
+        {
+          "type": "text",
+          "value": "danger-soft"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "tone": "info",
+      "value": "信息状态：这是一条可读提示。"
+    },
+    {
+      "type": "callout",
+      "tone": "caution",
+      "value": "警告状态：请检查调用方提供的数据。"
+    },
+    {
+      "type": "slider",
+      "label": "选中与聚焦",
+      "bind": "sample",
+      "min": 0,
+      "max": 4,
+      "step": 1
+    },
+    {
+      "type": "input",
+      "kind": "text",
+      "label": "禁用字段",
+      "bind": "off",
+      "disabled": true
+    },
+    {
+      "type": "chart",
+      "kind": "line",
+      "title": "六个独立系列色（合成）",
+      "xKey": "x",
+      "data": [
+        {
+          "x": 0,
+          "blue": 1,
+          "green": 2,
+          "orange": 3,
+          "red": 4,
+          "purple": 5,
+          "gray": 6
+        },
+        {
+          "x": 1,
+          "blue": 2,
+          "green": 3,
+          "orange": 4,
+          "red": 5,
+          "purple": 6,
+          "gray": 7
+        }
+      ],
+      "series": [
+        {
+          "key": "blue",
+          "label": "blue",
+          "color": "blue"
+        },
+        {
+          "key": "green",
+          "label": "green",
+          "color": "green"
+        },
+        {
+          "key": "orange",
+          "label": "orange",
+          "color": "orange"
+        },
+        {
+          "key": "red",
+          "label": "red",
+          "color": "red"
+        },
+        {
+          "key": "purple",
+          "label": "purple",
+          "color": "purple"
+        },
+        {
+          "key": "gray",
+          "label": "gray",
+          "color": "gray"
+        }
+      ]
+    }
+  ]
+}

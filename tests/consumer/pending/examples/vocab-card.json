@@ -1,0 +1,45 @@
+{
+  "version": "iui/1",
+  "title": "Supplied vocabulary self-study",
+  "state": {
+    "unrelated": 1
+  },
+  "body": [
+    {
+      "type": "vocab-card",
+      "id": "vocab-main",
+      "term": "resolve",
+      "languageLabel": "English",
+      "pronunciation": "/rɪˈzɒlv/",
+      "partOfSpeech": "verb",
+      "senses": [
+        {
+          "id": "settle",
+          "meaning": "To find a solution to a problem.",
+          "translation": "解决",
+          "examples": [
+            "We resolved the issue together.",
+            "A clear test can resolve uncertainty."
+          ]
+        },
+        {
+          "id": "decide",
+          "meaning": "To decide firmly on a course of action.",
+          "translation": "决心",
+          "examples": [
+            "They resolved to return."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "Change unrelated state",
+      "action": {
+        "kind": "set",
+        "bind": "unrelated",
+        "value": 2
+      }
+    }
+  ]
+}

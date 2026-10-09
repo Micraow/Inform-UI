@@ -1,0 +1,35 @@
+{
+  "version": "iui/1",
+  "title": "Illustrative supplied flight option",
+  "description": "Original demonstration data, not a live itinerary or fare offer.",
+  "body": [
+    {
+      "type": "flight-option",
+      "id": "illustrative-flight",
+      "label": "Example Air: two supplied legs",
+      "optionId": "example-itinerary",
+      "description": "Compare the supplied route and fare description locally.",
+      "price": { "amount": 420.5, "currency": "USD" },
+      "legs": [
+        {
+          "id": "outbound",
+          "carrier": "Example Air",
+          "number": "EX 101",
+          "departure": { "airport": "LHR", "at": "2028-02-29T09:00Z", "name": "London Heathrow" },
+          "arrival": { "airport": "JFK", "at": "2028-02-29T07:00-05:00", "name": "New York JFK" },
+          "cabin": "Economy, as supplied"
+        },
+        {
+          "id": "connection",
+          "carrier": "Example Air",
+          "number": "EX 202",
+          "departure": { "airport": "JFK", "at": "2028-02-29T09:00-05:00", "name": "New York JFK" },
+          "arrival": { "airport": "ORD", "at": "2028-02-29T10:00-06:00", "name": "Chicago O'Hare" },
+          "cabin": "Economy, as supplied"
+        }
+      ],
+      "note": "Illustrative fare description: baggage and change terms must be checked with the provider independently. No booking is performed here.",
+      "source": { "label": "Illustrative source", "url": "https://example.com/supplied-flight" }
+    }
+  ]
+}

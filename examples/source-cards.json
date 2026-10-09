@@ -1,0 +1,21 @@
+{
+  "version": "iui/1",
+  "title": "Original fictional source references",
+  "description": "Every title, publisher, description and example.invalid URL here is synthetic. These cards do not establish that any source exists or supports any claim.",
+  "theme": "light",
+  "state": {"count": 0},
+  "body": [
+    {"type": "citation", "id": "sample-citation", "number": 7, "title": "Synthetic citation", "url": "https://example.invalid/citation", "publisher": "Fictional publisher", "description": "Original authored reference example. The number is supplied by the caller."},
+    {"type": "web-link-cards", "id": "sample-links", "label": "Fictional source links", "items": [
+      {"title": "Synthetic first link", "url": "https://example.invalid/first", "publisher": "Fictional publisher", "description": "A caller-provided summary with no remote lookup."},
+      {"title": "Synthetic long title ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ", "url": "https://example.invalid/second", "description": "原创占位描述，用于检查窄屏换行、文字阅读顺序和键盘焦点。它不是实际来源的摘要。"},
+      {"title": "Duplicate fictional title", "url": "https://example.invalid/third", "description": "First occurrence. Duplicates stay in caller order."},
+      {"title": "Duplicate fictional title", "url": "https://example.invalid/fourth", "description": "Second occurrence. No deduplication or ranking."},
+      {"title": "Fictional mixed-script example 示例 مثال", "url": "https://example.invalid/fifth", "publisher": "Example text only"},
+      {"title": "Literal <script>sample()</script>", "url": "https://example.invalid/sixth", "description": "Markup-looking text is displayed literally."},
+      {"title": "Synthetic final link", "url": "https://example.invalid/final", "description": "The final authored record. Navigation does not wrap."}
+    ]},
+    {"type": "web-link-cards", "id": "single-link", "label": "Single fictional link", "items": [{"title": "One synthetic source", "url": "https://example.invalid/only"}]},
+    {"type": "text", "value": {"$": "count"}}
+  ]
+}

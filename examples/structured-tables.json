@@ -1,0 +1,31 @@
+{
+  "version": "iui/1",
+  "title": "Structured observation tables",
+  "state": { "count": 0 },
+  "body": [
+    {
+      "type": "table",
+      "id": "observations",
+      "caption": "Synthetic observations · original demonstration",
+      "columns": ["Region", "Sample", "Baseline", "Follow-up", "Comment"],
+      "sections": [
+        { "kind": "head", "rows": [
+          [ { "value": "Group", "rowSpan": 2, "colSpan": 2 }, { "value": "Measurements", "colSpan": 2, "align": "center" }, { "value": "Notes", "rowSpan": 2 } ],
+          [ "Baseline", "Follow-up" ]
+        ] },
+        { "kind": "body", "rows": [
+          [ { "value": "North", "header": true, "rowSpan": 2, "scope": "rowgroup" }, { "value": "Alpha", "header": true }, { "value": { "$": "count" }, "align": "end" }, { "value": 24.999999999999996, "align": "end" }, "Zero is a real observation" ],
+          [ { "value": "Beta", "header": true }, { "value": null, "align": "end" }, { "value": 1.234567890123456, "align": "end" }, "The baseline is missing" ]
+        ] },
+        { "kind": "body", "rows": [
+          [ { "value": "South", "header": true, "rowSpan": 2 }, { "value": "Gamma", "header": true }, { "value": 0.00000000123, "colSpan": 2, "align": "end" }, "One merged measurement" ],
+          [ { "value": "Delta", "header": true }, { "value": -1200000000000.0002, "align": "end" }, { "value": { "op": "mul", "args": [ { "$": "count" }, 2 ] }, "align": "end" }, "Negative values retain precision" ]
+        ] },
+        { "kind": "foot", "rows": [
+          [ { "value": "Reported count", "header": true, "colSpan": 2 }, { "value": { "$": "count" }, "colSpan": 2, "align": "end" }, "Supplied footer; no automatic total" ]
+        ] }
+      ]
+    },
+    { "type": "table", "caption": "Legacy values remain compatible", "columns": ["Value", "Meaning"], "rows": [[0, "Zero"], [null, "Empty value"], [false, "Boolean"], [0.30000000000000004, "Presentation preserves original value"]] }
+  ]
+}

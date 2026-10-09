@@ -1,0 +1,211 @@
+{
+  "ready": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "quiz",
+        "title": "缓存与平均延迟：自测",
+        "description": "原创教学题。先作答，再查看解释；本地计分，不保存到服务。",
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "single",
+            "prompt": "命中耗时10 ms、未命中耗时110 ms，命中率80%时，平均耗时是多少？",
+            "latex": "T=ph+(1-p)m",
+            "choices": [
+              {
+                "id": "a",
+                "label": "10 ms"
+              },
+              {
+                "id": "b",
+                "label": "30 ms"
+              },
+              {
+                "id": "c",
+                "label": "88 ms"
+              }
+            ],
+            "correct": [
+              "b"
+            ],
+            "explanation": "平均耗时=0.8×10+0.2×110=30 ms。",
+            "explanationLatex": "T=0.8\\times10+0.2\\times110=30\\,\\mathrm{ms}",
+            "points": 2
+          },
+          {
+            "id": "q2",
+            "kind": "multiple",
+            "prompt": "在命中与未命中耗时固定且前者更小时，哪些结论正确？",
+            "choices": [
+              {
+                "id": "a",
+                "label": "提高命中率会降低平均耗时"
+              },
+              {
+                "id": "b",
+                "label": "100%命中时平均耗时仍为10 ms"
+              },
+              {
+                "id": "c",
+                "label": "命中率为零时平均耗时为零"
+              }
+            ],
+            "correct": [
+              "a",
+              "b"
+            ],
+            "explanation": "全未命中对应110 ms，全命中对应10 ms；平均耗时在两者之间。",
+            "points": 3
+          }
+        ],
+        "status": "ready"
+      }
+    ]
+  },
+  "loading": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "quiz",
+        "title": "缓存与平均延迟：自测",
+        "description": "原创教学题。先作答，再查看解释；本地计分，不保存到服务。",
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "single",
+            "prompt": "命中耗时10 ms、未命中耗时110 ms，命中率80%时，平均耗时是多少？",
+            "latex": "T=ph+(1-p)m",
+            "choices": [
+              {
+                "id": "a",
+                "label": "10 ms"
+              },
+              {
+                "id": "b",
+                "label": "30 ms"
+              },
+              {
+                "id": "c",
+                "label": "88 ms"
+              }
+            ],
+            "correct": [
+              "b"
+            ],
+            "explanation": "平均耗时=0.8×10+0.2×110=30 ms。",
+            "explanationLatex": "T=0.8\\times10+0.2\\times110=30\\,\\mathrm{ms}",
+            "points": 2
+          },
+          {
+            "id": "q2",
+            "kind": "multiple",
+            "prompt": "在命中与未命中耗时固定且前者更小时，哪些结论正确？",
+            "choices": [
+              {
+                "id": "a",
+                "label": "提高命中率会降低平均耗时"
+              },
+              {
+                "id": "b",
+                "label": "100%命中时平均耗时仍为10 ms"
+              },
+              {
+                "id": "c",
+                "label": "命中率为零时平均耗时为零"
+              }
+            ],
+            "correct": [
+              "a",
+              "b"
+            ],
+            "explanation": "全未命中对应110 ms，全命中对应10 ms；平均耗时在两者之间。",
+            "points": 3
+          }
+        ],
+        "status": "loading"
+      }
+    ]
+  },
+  "error": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "quiz",
+        "title": "缓存与平均延迟：自测",
+        "description": "原创教学题。先作答，再查看解释；本地计分，不保存到服务。",
+        "questions": [
+          {
+            "id": "q1",
+            "kind": "single",
+            "prompt": "命中耗时10 ms、未命中耗时110 ms，命中率80%时，平均耗时是多少？",
+            "latex": "T=ph+(1-p)m",
+            "choices": [
+              {
+                "id": "a",
+                "label": "10 ms"
+              },
+              {
+                "id": "b",
+                "label": "30 ms"
+              },
+              {
+                "id": "c",
+                "label": "88 ms"
+              }
+            ],
+            "correct": [
+              "b"
+            ],
+            "explanation": "平均耗时=0.8×10+0.2×110=30 ms。",
+            "explanationLatex": "T=0.8\\times10+0.2\\times110=30\\,\\mathrm{ms}",
+            "points": 2
+          },
+          {
+            "id": "q2",
+            "kind": "multiple",
+            "prompt": "在命中与未命中耗时固定且前者更小时，哪些结论正确？",
+            "choices": [
+              {
+                "id": "a",
+                "label": "提高命中率会降低平均耗时"
+              },
+              {
+                "id": "b",
+                "label": "100%命中时平均耗时仍为10 ms"
+              },
+              {
+                "id": "c",
+                "label": "命中率为零时平均耗时为零"
+              }
+            ],
+            "correct": [
+              "a",
+              "b"
+            ],
+            "explanation": "全未命中对应110 ms，全命中对应10 ms；平均耗时在两者之间。",
+            "points": 3
+          }
+        ],
+        "status": "error"
+      }
+    ]
+  },
+  "empty": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "quiz",
+        "title": "缓存与平均延迟：自测",
+        "description": "原创教学题。先作答，再查看解释；本地计分，不保存到服务。",
+        "questions": []
+      },
+      {
+        "type": "flashcards",
+        "title": "缓存概念：翻面与自评",
+        "description": "这些掌握标记只用于本轮复习，不代表学习诊断。",
+        "cards": []
+      }
+    ]
+  }
+}

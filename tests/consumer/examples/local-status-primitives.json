@@ -1,0 +1,63 @@
+{
+  "version": "iui/1",
+  "title": "清楚区分说明、图标和已知状态",
+  "description": "原创合成教学示例；状态由文档提供，不代表任何真实网络任务。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "让提示换行，保持阅读顺序",
+      "level": 1
+    },
+    {
+      "type": "flow",
+      "children": [
+        {
+          "type": "icon",
+          "name": "info",
+          "tone": "info"
+        },
+        {
+          "type": "text",
+          "value": "图标旁已有这段说明，所以图标作为装饰。页面变窄时按原顺序换行。"
+        }
+      ]
+    },
+    {
+      "type": "flow",
+      "gap": "sm",
+      "children": [
+        {
+          "type": "icon",
+          "name": "clock",
+          "label": "静态时钟图案",
+          "size": "lg"
+        },
+        {
+          "type": "text",
+          "value": "这只是图案，不会显示设备时间。"
+        }
+      ]
+    },
+    {
+      "type": "pulse-indicator",
+      "label": "合成任务：尚未开始",
+      "status": "idle"
+    },
+    {
+      "type": "pulse-indicator",
+      "label": "合成任务：处理阶段示意",
+      "status": "busy"
+    },
+    {
+      "type": "pulse-indicator",
+      "label": "合成任务：完成状态示意",
+      "status": "success",
+      "animate": false
+    },
+    {
+      "type": "caption",
+      "value": "以上是三个独立静态状态，不会自动依次运行；只有busy状态可能呈现装饰动画，减少动态效果时保持静止。"
+    }
+  ]
+}

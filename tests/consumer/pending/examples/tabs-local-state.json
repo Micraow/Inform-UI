@@ -1,0 +1,103 @@
+{
+  "version": "iui/1",
+  "title": "本地标签页示例",
+  "description": "三个原生标签页，内容始终留在当前文档中。",
+  "state": {
+    "notes": false,
+    "count": 2,
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "tab-group",
+      "id": "demo-tabs",
+      "label": "阅读方式",
+      "children": [
+        {
+          "type": "tab-panel",
+          "id": "overview",
+          "label": "概览",
+          "children": [
+            {
+              "type": "title",
+              "value": "本地内容切换",
+              "level": 2
+            },
+            {
+              "type": "text",
+              "value": "使用左右方向键、Home 或 End 切换；不会请求网络。"
+            },
+            {
+              "type": "toggle",
+              "label": "附注开关",
+              "bind": "notes"
+            },
+            {
+              "type": "form",
+              "label": "本地练习",
+              "children": [
+                {
+                  "type": "input",
+                  "kind": "number",
+                  "label": "偶数样本",
+                  "bind": "count",
+                  "min": 0,
+                  "max": 20,
+                  "step": 2
+                }
+              ],
+              "submitLabel": "检查本页",
+              "cancelLabel": "恢复初值"
+            },
+            {
+              "type": "timer",
+              "durationMs": 60000
+            },
+            {
+              "type": "popover",
+              "label": "练习说明",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "切换标签页会隐藏这份说明。倒计时继续运行。"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "tab-panel",
+          "id": "unavailable",
+          "label": "暂不可用",
+          "children": [],
+          "disabled": true
+        },
+        {
+          "type": "tab-panel",
+          "id": "reference",
+          "label": "参考与代码",
+          "children": [
+            {
+              "type": "code",
+              "language": "json",
+              "value": "{\"local\":true}"
+            },
+            {
+              "type": "text",
+              "value": {
+                "$": "notes"
+              }
+            },
+            {
+              "type": "metric",
+              "label": "接受值",
+              "value": {
+                "$": "count"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

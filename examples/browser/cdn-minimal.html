@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Inform UI 浏览器示例</title>
+<link id="iui-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.css" integrity="sha384-avgiFDwdK1wYMoqev29yNOdp6bpl0DQNVJAlf/2w9Au7yLZTZnJyeqGPHuesglJC" crossorigin="anonymous">
+</head>
+<body class="iui-page" data-theme="auto" style="margin:0">
+<main id="answer"></main>
+<pre id="status" role="alert"></pre>
+<script id="spec" type="application/json">{
+  "version": "iui/1",
+  "title": "公开CDN交互验证",
+  "description": "合成读数；仅验证公开浏览器接口，不代表实测。",
+  "state": {
+    "gain": 2
+  },
+  "computed": {
+    "result": {
+      "op": "mul",
+      "args": [
+        12,
+        {
+          "$": "gain"
+        }
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "调节增益，观察合成读数"
+    },
+    {
+      "type": "slider",
+      "label": "增益",
+      "bind": "gain",
+      "min": 1,
+      "max": 4,
+      "step": 1
+    },
+    {
+      "type": "metric",
+      "label": "合成读数",
+      "value": {
+        "$": "result"
+      },
+      "unit": "示意单位"
+    },
+    {
+      "type": "math",
+      "latex": "r=12g"
+    },
+    {
+      "type": "button",
+      "label": "恢复初值",
+      "action": {
+        "kind": "reset"
+      }
+    }
+  ]
+}</script>
+<script src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.global.min.js" integrity="sha384-lzlbbrCDkjA12MkdUPJYeXhFgDwTxOHIkGhav/we5EDEtLyU+OP1Z3gZgxl2K4Qp" crossorigin="anonymous"></script>
+<script>
+  const target = document.getElementById('answer');
+  const status = document.getElementById('status');
+  try {
+    if (!window.IUI) throw new Error('界面库加载失败，请检查网络或固定版本的 CDN 链接。');
+    if (!document.getElementById('iui-style').sheet) throw new Error('样式加载失败，请检查 CDN 链接。');
+    const result = IUI.validateDocument(JSON.parse(document.getElementById('spec').textContent));
+    if (!result.ok) status.textContent = result.issues.map(i => i.code + ' ' + i.path + ': ' + i.message).join('\n');
+    else IUI.mount(target, result.document, { styles: false });
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : String(error);
+  }
+</script>
+</body>
+</html>

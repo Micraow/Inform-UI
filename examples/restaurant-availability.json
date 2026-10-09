@@ -1,0 +1,24 @@
+{
+  "version": "iui/1",
+  "title": "Supplied restaurant time choices",
+  "description": "Original synthetic data for a local selection demonstration.",
+  "body": [
+    {
+      "type": "restaurant-availability",
+      "id": "dinner",
+      "title": "Choose a supplied dinner time",
+      "venue": "Example Garden Kitchen",
+      "partySize": 4,
+      "timeZoneLabel": "Venue wall time (authored label)",
+      "description": "Availability is supplied for this example and has not been checked with a provider.",
+      "source": {"label": "Synthetic example information", "url": "https://example.com/supplied-options"},
+      "slots": [
+        {"id": "next", "date": "2026-10-10", "time": "18:00", "available": true},
+        {"id": "late", "date": "2026-10-09", "time": "19:30", "available": true},
+        {"id": "early", "date": "2026-10-09", "time": "18:00", "available": true},
+        {"id": "unavailable", "date": "2026-10-09", "time": "18:30", "available": false}
+      ]
+    },
+    {"type": "restaurant-availability", "title": "No options supplied", "venue": "Example Courtyard", "partySize": 2, "timeZoneLabel": "Supplied venue time", "slots": []}
+  ]
+}

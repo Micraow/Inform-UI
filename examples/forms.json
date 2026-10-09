@@ -1,0 +1,237 @@
+{
+  "version": "iui/1",
+  "title": "本地点数分账",
+  "description": "原创合成演示。所有点数、名称与邮箱均为虚构；提交只确认当前视图，不发送邮件、不发起支付或联网。",
+  "theme": "auto",
+  "state": {
+    "splitName": "周末合成示例",
+    "amount": 126,
+    "people": 3,
+    "purpose": "meal",
+    "precision": 2,
+    "note": "三人均分；点数只用于演示。",
+    "email": "demo@example.invalid",
+    "includeFee": false,
+    "feePercent": 5,
+    "referenceError": ""
+  },
+  "computed": {
+    "total": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "amount"
+        },
+        {
+          "op": "if",
+          "args": [
+            {
+              "$": "includeFee"
+            },
+            {
+              "op": "add",
+              "args": [
+                1,
+                {
+                  "op": "div",
+                  "args": [
+                    {
+                      "$": "feePercent"
+                    },
+                    100
+                  ]
+                }
+              ]
+            },
+            1
+          ]
+        }
+      ]
+    },
+    "perPerson": {
+      "op": "round",
+      "args": [
+        {
+          "op": "div",
+          "args": [
+            {
+              "$": "total"
+            },
+            {
+              "op": "max",
+              "args": [
+                1,
+                {
+                  "$": "people"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$": "precision"
+        }
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "本地点数分账",
+      "level": 1
+    },
+    {
+      "type": "caption",
+      "value": "先调整字段，再提交；结果随数值更新。取消会恢复这一张表单的初值。"
+    },
+    {
+      "type": "form",
+      "id": "split-demo",
+      "label": "合成分账表单",
+      "submitLabel": "确认分账",
+      "cancelLabel": "恢复初值",
+      "successMessage": "已完成当前视图的本地提交。",
+      "children": [
+        {
+          "type": "input",
+          "kind": "text",
+          "label": "分账名称",
+          "bind": "splitName",
+          "required": true,
+          "minLength": 2,
+          "maxLength": 60,
+          "hint": "必填，请为这次分账简短命名。",
+          "error": {
+            "$": "referenceError"
+          }
+        },
+        {
+          "type": "field",
+          "label": "点数与人数",
+          "hint": "只演示均分算法，不代表真实账单。",
+          "children": [
+            {
+              "type": "row",
+              "children": [
+                {
+                  "type": "input",
+                  "kind": "number",
+                  "label": "总点数",
+                  "bind": "amount",
+                  "required": true,
+                  "min": 0,
+                  "max": 10000,
+                  "step": 0.01,
+                  "hint": "0–10000，可保留两位小数。"
+                },
+                {
+                  "type": "input",
+                  "kind": "number",
+                  "label": "参与人数",
+                  "bind": "people",
+                  "required": true,
+                  "min": 1,
+                  "max": 20,
+                  "step": 1,
+                  "hint": "1–20 的整数。"
+                }
+              ]
+            },
+            {
+              "type": "toggle",
+              "label": "加入合成附加点数",
+              "bind": "includeFee"
+            },
+            {
+              "type": "slider",
+              "label": "附加比例",
+              "bind": "feePercent",
+              "min": 0,
+              "max": 20,
+              "step": 1,
+              "unit": "%"
+            }
+          ]
+        },
+        {
+          "type": "radio",
+          "label": "演示场景",
+          "bind": "purpose",
+          "required": true,
+          "options": [
+            {
+              "label": "聚餐",
+              "value": "meal"
+            },
+            {
+              "label": "出游",
+              "value": "trip"
+            },
+            {
+              "label": "未开放的合成场景",
+              "value": "other",
+              "disabled": true
+            }
+          ]
+        },
+        {
+          "type": "segmented",
+          "label": "结果精度",
+          "bind": "precision",
+          "options": [
+            {
+              "label": "整数",
+              "value": 0
+            },
+            {
+              "label": "两位小数",
+              "value": 2
+            }
+          ],
+          "hint": "选择结果显示精度，也可用方向键切换。"
+        },
+        {
+          "type": "textarea",
+          "label": "演示备注",
+          "bind": "note",
+          "rows": 3,
+          "maxLength": 240,
+          "placeholder": "可留空",
+          "hint": "可填写分账说明或计算假设。"
+        },
+        {
+          "type": "input",
+          "kind": "email",
+          "label": "演示邮箱",
+          "bind": "email",
+          "hint": "可留空，只验证格式，不会发送任何邮件。"
+        },
+        {
+          "type": "metric",
+          "label": "每人点数",
+          "value": {
+            "$": "perPerson"
+          },
+          "unit": "点",
+          "hint": "输入未通过约束时请先修正，再提交结果。"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "caption",
+      "value": "空状态：没有待填写字段时，仍能明确给出本地操作结果。"
+    },
+    {
+      "type": "form",
+      "id": "empty-demo",
+      "label": "空白清单",
+      "submitLabel": "确认空清单",
+      "cancelLabel": "取消",
+      "successMessage": "空清单已在本地确认。",
+      "children": []
+    }
+  ]
+}

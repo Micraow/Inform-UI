@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {JSDOM} from 'jsdom';
+import {mount} from '../dist/index.js';
+const fixture=JSON.parse(await readFile(new URL('../examples/mail-files.json',import.meta.url)));
+const tick=async()=>{await Promise.resolve();await Promise.resolve();};
+function setup(index){const dom=new JSDOM('<form><main></main></form>'),doc=dom.window.document,host=doc.querySelector('main'),spec={...structuredClone(fixture),body:[structuredClone(fixture.body[index])]},ctrl=mount(host,spec),root=host.firstElementChild.querySelector('.iui-supplied-reader')??host.querySelector('.iui-supplied-reader'),search=root.querySelector('input');const input=value=>{search.value=value;search.dispatchEvent(new dom.window.Event('input',{bubbles:true}));};return{dom,doc,host,spec,ctrl,root,search,input,form:doc.querySelector('form'),close(){ctrl.dispose();dom.window.close();}};}
+for(const index of [0,1]){
+ test(`reader ${index} queued reset cannot mutate retired controls after successful update`,async()=>{const x=setup(index);x.input('not-found');x.form.reset();x.ctrl.update(x.spec);const old=x.root.outerHTML,current=x.host.innerHTML;await tick();assert.equal(x.root.outerHTML,old);assert.equal(x.host.innerHTML,current);x.search.dispatchEvent(new x.dom.window.Event('input'));assert.equal(x.root.outerHTML,old);x.close();});
+ test(`reader ${index} queued reset survives rejected atomic update and respects later cancellation`,async()=>{const x=setup(index);x.input('not-found');x.form.addEventListener('reset',event=>{assert.throws(()=>x.ctrl.update({version:'bad',body:[]}));event.preventDefault();},{once:true});x.form.reset();await tick();assert.equal(x.search.value,'not-found');assert.equal(x.root.querySelectorAll('.iui-reader-file:not([hidden])').length,0);x.close();});
+ test(`reader ${index} becoming inert after native reset preserves draft without host state writes`,async()=>{const x=setup(index);x.input('not-found');const state=x.ctrl.getState();x.form.reset();x.root.setAttribute('inert','');await tick();assert.equal(x.search.value,'not-found');assert.equal(x.root.querySelectorAll('.iui-reader-file:not([hidden])').length,0);assert.deepEqual(x.ctrl.getState(),state);x.close();});
+}
+test('newer folder navigation wins over pending native filter reset',async()=>{const x=setup(1);x.input('Travel');x.form.reset();x.root.querySelector('[data-entry-id="travel"] button').click();x.search.value='Photo';x.search.dispatchEvent(new x.dom.window.Event('input',{bubbles:true}));await tick();assert.equal(x.root.querySelector('.iui-file-folder-title').textContent,'Travel notes');assert.equal(x.search.value,'Photo');assert.deepEqual([...x.root.querySelectorAll('.iui-reader-file:not([hidden])')].map(e=>e.dataset.entryId),['photos']);x.close();});

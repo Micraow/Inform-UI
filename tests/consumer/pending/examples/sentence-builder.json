@@ -1,0 +1,31 @@
+{
+  "version": "iui/1",
+  "title": "有限本地组句练习",
+  "body": [
+    {
+      "type": "sentence-builder",
+      "title": "同一个词，可以出现两次",
+      "prompt": "按参考句的顺序选择词块：I think therefore I am。点击后可以前移、后移或移除。",
+      "tokens": [
+        {"id": "am", "text": "am"},
+        {"id": "i_first", "text": "I"},
+        {"id": "therefore", "text": "therefore"},
+        {"id": "i_second", "text": "I"},
+        {"id": "think", "text": "think"}
+      ],
+      "answer": ["i_first", "think", "therefore", "i_second", "am"],
+      "explanation": "两个 I 是独立词块；本练习按提供的词块身份和顺序检查，不推断其他合理句子。"
+    },
+    {
+      "type": "sentence-builder",
+      "title": "الترتيب ثم المعنى",
+      "prompt": "رتّب الكلمات. النص الأصلي محفوظ كما هو.",
+      "tokens": [
+        {"id": "tomorrow", "text": "غدًا"},
+        {"id": "learn", "text": "سنتعلم"},
+        {"id": "together", "text": "معًا"}
+      ],
+      "answer": ["learn", "together", "tomorrow"]
+    }
+  ]
+}

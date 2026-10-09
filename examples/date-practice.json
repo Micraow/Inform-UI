@@ -1,0 +1,21 @@
+{
+  "version": "iui/1",
+  "title": "日期字段练习",
+  "description": "原创合成示例。日期只保留在当前页面，不创建日程、不发送或保存数据。",
+  "state": { "practiceDate": "2024-02-29", "optionalDate": "", "locked": false },
+  "body": [
+    { "type": "title", "value": "日期字段练习" },
+    {
+      "type": "form", "label": "本地日期练习", "submitLabel": "检查日期", "cancelLabel": "恢复初值",
+      "children": [
+        { "type": "input", "kind": "date", "label": "练习日期", "bind": "practiceDate", "required": true, "minDate": "2024-01-01", "maxDate": "2024-12-31", "hint": "请选择 2024 年的日期。原始值使用 YYYY-MM-DD，显示格式由浏览器决定。" },
+        { "type": "field", "label": "可选日期", "disabled": { "$": "locked" }, "children": [
+          { "type": "input", "kind": "date", "label": "参考日期", "bind": "optionalDate", "hint": "留空会提交空字符串。" }
+        ] },
+        { "type": "text", "runs": [{ "value": "最后接受的日期：" }, { "value": { "$": "practiceDate" }, "code": true }] }
+      ]
+    },
+    { "type": "toggle", "label": "停用可选日期", "bind": "locked" },
+    { "type": "button", "label": "重置页面", "action": { "kind": "reset" } }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "format": "inform-ui-acceptance-handoff/1",
+  "status": "prepared; browser/CDN/CI not executed",
+  "coreRepository": "https://github.com/Micraow/Inform-UI",
+  "skillRepository": "https://github.com/Micraow/Inform-UI-skill",
+  "preparationBranch": "feat/combined115-local-20261009",
+  "lock": {
+    "path": "tests/consumer/batch-lock-115.json",
+    "sha256": "8c25b5988c0a40cf5fe9e2cecd6e17919acbba7a5f8db8ff9670a79a87267f3d",
+    "commit": "Use the commit containing this handoff and lock; supplied separately in the delivery."
+  },
+  "asset": {
+    "revision": "6bc30ab8cb15eb4351b1859dacef74e7f8a9a574",
+    "tree": "ca7ed45846b899fd86b058a2fa075d5af144da7f",
+    "proof": "docs/local-enhancements-115.json",
+    "proofSha256": "849a870a15b5188ef449dfdf3aa4dbf092ec17b4dffe20819db9625d27e998ff",
+    "proofPaths": 415,
+    "distPaths": 159
+  },
+  "skill": {
+    "revision": "7e1bb53842d73118eecd742b0517387e3a4bc5bd",
+    "tree": "be9eae803467f04ee305c0bfbf1cc2c7f78de9b6",
+    "contractPath": "candidates/upcoming-eighteen/library-contract.json",
+    "contractSha256": "6b3a9a779b88f1659236a4161ae8f1b2219f85582bdae5c6d1efb60e3be2ea6e",
+    "candidateManifestPath": "candidates/upcoming-eighteen/consumer-manifest.json",
+    "candidateManifestSha256": "1747c712e1204c5a9b9e7932fed90a68189922a3507a0197816856c2dc7017c3"
+  },
+  "verifiedLocal": {
+    "assetAggregate": {
+      "tests": 1592,
+      "passed": 1592,
+      "failed": 0,
+      "skipped": 0
+    },
+    "assetAffected": {
+      "tests": 284,
+      "passed": 284
+    },
+    "selectedSchemas": {
+      "tests": 4,
+      "passed": 4
+    },
+    "acceptanceHarness": {
+      "tests": 79,
+      "passed": 79,
+      "failed": 0,
+      "skipped": 0
+    },
+    "lockedExamplesValidatedAndCompiled": 62,
+    "skillSuiteReportedBySkillCheckout": {
+      "tests": 125,
+      "passed": 125,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "revision": "7e1bb53842d73118eecd742b0517387e3a4bc5bd"
+    },
+    "exactAssetProofRechecked": true,
+    "generatedSnapshotCheck": true,
+    "sourceBoundaryCheck": true,
+    "actualGeneratedLockPassedSkillReceiptManifestVerifier": true
+  },
+  "planned": {
+    "canonicalBrowser": {
+      "tests": 691,
+      "files": 78,
+      "inputHashes": 199
+    },
+    "consumerGroups": 8,
+    "consumerExamples": 62,
+    "inlineViews": 372,
+    "upcomingExamples": 10,
+    "upcomingCanonicalComponents": 18,
+    "candidateCdnFiles": 54,
+    "candidateCdnShellViews": 6,
+    "candidateCdnExampleInteractions": 60,
+    "contractsJobMinutes": 75,
+    "interactionTimeoutRelaxed": false,
+    "automaticRetries": false
+  },
+  "historical": {
+    "originalLock": "tests/consumer/batch-lock.json",
+    "originalLockSha256": "cb5d4483b37c501f949dc4662e9bb1ce9f4821dd9ec590f7ca128925a1dc6852",
+    "old37Acceptance": "failed/pending; not promoted",
+    "rootSkill97": "kept independent; not115 evidence",
+    "verifiedCanonical": 53,
+    "protocolNodeCountIsAcceptanceCount": false
+  },
+  "singleTrigger": {
+    "branch": "feat/portable-core-20261008",
+    "observedOriginalHead": "654877cd72890c412d30d8d04acf89989d2fd14e",
+    "commonAncestor": "a4103c139012e19bd6fcefa09791418571562e47",
+    "recheckRemoteHeadBeforeWriting": true,
+    "strategy": "Retain both histories with a no-fast-forward merge of the original head into the final reviewed lock tip; verify the tree stays unchanged.",
+    "finalCommitMustOmitSkipCi": true,
+    "pushOnceAfterMaintainerReview": true,
+    "forcePush": false,
+    "workflowDispatch": false,
+    "event": "existing pull_request synchronize; push trigger is main-only",
+    "workflow": ".github/workflows/ci.yml"
+  },
+  "nextSteps": [
+    "Review exact asset, Skill and lock pins; publish the approved immutable inputs without triggering redundant acceptance runs.",
+    "Recheck the original PR remote head and perform the reviewed history-preserving merge, with no force push.",
+    "Push that final reviewed commit once to the original PR branch.",
+    "Inspect real canonical-browser, consumer receipt and candidate115 CDN evidence; do not promote pending components merely because source tests passed."
+  ],
+  "instructions": "docs/accumulated-115-acceptance.md"
+}

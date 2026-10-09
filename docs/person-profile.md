@@ -1,0 +1,13 @@
+# Supplied person profile
+
+`person-profile` is one canonical, independently implemented reading component. Its name is required; role, organization, location, biography, facts, links, source and initial biography expansion are optional. It uses only supplied literal strings, with no people lookup, identity verification, media, inferred attributes or contact actions. The persistent note explicitly says that the information is supplied and not independently verified.
+
+Name, role, organization, location and record labels accept 1–200 Unicode code points. Biography accepts 0–6000. Facts are ordered records `{id,label,value}`, with at most 12 and values of 1–2000 code points. Links are ordered records `{id,label,url}`, with at most 8. IDs must be valid schema keys and unique within each list. Source is `{label,url?}`. URLs are 1–2048 code points, absolute HTTP(S), and must pass the shared URL policy. Expressions, bindings, unknown fields, email/phone launch URLs and credentials in URLs are rejected. Document resource budgets also apply.
+
+The semantic article has a named heading, optional ordered definition list and native details/summary for the biography. Links visibly disclose a new tab, use `noopener noreferrer`, and send no referrer. No network request is initiated by mounting. Unrelated state patches preserve the mounted disclosure, its native open state, and focus. A valid full document replacement resets to `expanded` (default false); invalid replacements are atomic. The component adds no form values and has no action buttons or custom activation handlers. Native reading elements are not assigned a disabled state when an enclosing form is busy.
+
+`examples/person-profile.json` contains only original fictional people and organizations. The base structural schema includes this node; full `validateDocument` is still required for duplicate IDs, URL policy, and global budgets.
+
+## Verification scope
+
+Focused public API tests cover all 256 optional-field combinations, limits and Unicode, exact issue paths, literal content, order, disclosure identity/focus, update/disposal, roots and ownerDocuments, authored ID lookalikes, form values, deterministic offline compilation and closed base schema references. Browser cases are prepared in `tests/browser/person-profile.spec.mjs` for pointer/touch/keyboard, 390/768/1100 light/dark, actual first-visible Arabic, forced colors/reduced motion, busy-form reading, safe intercepted new-tab navigation and lifecycle. They are unexecuted in this implementation handoff. JSDOM cannot establish native activation inside a disabled fieldset, popup isolation, visual layout, contrast or real keyboard/touch behavior.

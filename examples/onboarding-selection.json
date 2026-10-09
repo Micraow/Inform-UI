@@ -1,0 +1,11 @@
+{
+  "version":"iui/1",
+  "title":"本页选择示例",
+  "description":"原创合成选项，只发送可取消的本地页面事件。没有注册、保存、追踪或联网。",
+  "state":{"unrelated":0},
+  "body":[
+    {"type":"onboarding-selection","id":"practice-choices","label":"本次想先练习什么？","description":"请选择一至两项，随后可在本页继续或重置。","mode":"multiple","minimum":1,"maximum":2,"initial":["reading"],"options":[{"id":"reading","label":"阅读","description":"看看有限文字与数据例子。"},{"id":"writing","label":"写作","description":"在本页保留草稿，刷新后恢复。"},{"id":"reasoning","label":"推理练习","description":"比较明确提供的选项。"}]},
+    {"type":"button","label":"更改不相关的合成值","action":{"kind":"set","bind":"unrelated","value":1}},
+    {"type":"metric","label":"与选择卡独立的合成值","value":{"$":"unrelated"}}
+  ]
+}

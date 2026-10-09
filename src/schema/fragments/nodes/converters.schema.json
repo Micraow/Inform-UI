@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:converters",
+  "title": "Inform UI node subset: converters",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "CurrencyConverterNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "currency-converter"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/FinanceSource"
+        },
+        "asOf": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "base": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "rates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              "rate": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Units of this currency per one base-currency unit; null means unavailable."
+              }
+            },
+            "required": [
+              "currency",
+              "rate"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 200
+        },
+        "amount": {
+          "type": "number"
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "precision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "source",
+        "asOf",
+        "base",
+        "rates",
+        "amount"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "synthetic"
+      ],
+      "additionalProperties": false
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/UnitConverterNode"
+        },
+        {
+          "$ref": "#/$defs/CurrencyConverterNode"
+        }
+      ]
+    },
+    "UnitConverterNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "unit-converter"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "category": {
+          "enum": [
+            "length",
+            "mass",
+            "temperature",
+            "speed",
+            "area",
+            "volume",
+            "time",
+            "pressure",
+            "data"
+          ]
+        },
+        "amount": {
+          "type": "number"
+        },
+        "from": {
+          "enum": [
+            "m",
+            "cm",
+            "mm",
+            "km",
+            "in",
+            "ft",
+            "yd",
+            "mi",
+            "nmi",
+            "kg",
+            "g",
+            "mg",
+            "t",
+            "lb",
+            "oz",
+            "K",
+            "C",
+            "F",
+            "m-s",
+            "km-h",
+            "ft-s",
+            "mph",
+            "kn",
+            "m2",
+            "cm2",
+            "km2",
+            "ft2",
+            "ha",
+            "acre",
+            "L",
+            "mL",
+            "m3",
+            "gal-us",
+            "gal-imp",
+            "s",
+            "ms",
+            "min",
+            "h",
+            "d",
+            "Pa",
+            "kPa",
+            "MPa",
+            "bar",
+            "atm",
+            "psi",
+            "B",
+            "bit",
+            "kB",
+            "MB",
+            "GB",
+            "KiB",
+            "MiB",
+            "GiB"
+          ],
+          "description": "length: m, cm, mm, km, in, ft, yd, mi, nmi; mass: kg, g, mg, t, lb, oz; temperature: K, C, F; speed: m-s, km-h, ft-s, mph, kn; area: m2, cm2, km2, ft2, ha, acre; volume: L, mL, m3, gal-us, gal-imp; time: s, ms, min, h, d; pressure: Pa, kPa, MPa, bar, atm, psi; data: B, bit, kB, MB, GB, KiB, MiB, GiB"
+        },
+        "to": {
+          "enum": [
+            "m",
+            "cm",
+            "mm",
+            "km",
+            "in",
+            "ft",
+            "yd",
+            "mi",
+            "nmi",
+            "kg",
+            "g",
+            "mg",
+            "t",
+            "lb",
+            "oz",
+            "K",
+            "C",
+            "F",
+            "m-s",
+            "km-h",
+            "ft-s",
+            "mph",
+            "kn",
+            "m2",
+            "cm2",
+            "km2",
+            "ft2",
+            "ha",
+            "acre",
+            "L",
+            "mL",
+            "m3",
+            "gal-us",
+            "gal-imp",
+            "s",
+            "ms",
+            "min",
+            "h",
+            "d",
+            "Pa",
+            "kPa",
+            "MPa",
+            "bar",
+            "atm",
+            "psi",
+            "B",
+            "bit",
+            "kB",
+            "MB",
+            "GB",
+            "KiB",
+            "MiB",
+            "GiB"
+          ],
+          "description": "length: m, cm, mm, km, in, ft, yd, mi, nmi; mass: kg, g, mg, t, lb, oz; temperature: K, C, F; speed: m-s, km-h, ft-s, mph, kn; area: m2, cm2, km2, ft2, ha, acre; volume: L, mL, m3, gal-us, gal-imp; time: s, ms, min, h, d; pressure: Pa, kPa, MPa, bar, atm, psi; data: B, bit, kB, MB, GB, KiB, MiB, GiB"
+        },
+        "precision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12,
+          "description": "Maximum significant digits, default 8; raw values are retained."
+        },
+        "temperatureMode": {
+          "enum": [
+            "absolute",
+            "difference"
+          ],
+          "description": "Temperature only. Absolute includes scale offsets and must be >= 0 K; difference converts signed intervals without offsets."
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "amount",
+        "from",
+        "to"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

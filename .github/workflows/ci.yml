@@ -1,0 +1,104 @@
+# Accumulated acceptance binds exact source/asset/Skill revisions in the reviewed lock.
+name: JS-only portable UI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: library
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: library
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: library/package-lock.json
+      - name: Read reviewed batch revisions
+        id: batch
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('tests/consumer/batch-lock-115.json')); if(p.format!=='inform-ui-batch-lock/1') throw Error('Wrong batch lock'); for(const k of ['assetRevision','skillRevision']) { if(!/^[a-f0-9]{40}$/.test(p[k])) throw Error('Expected immutable '+k); fs.appendFileSync(process.env.GITHUB_OUTPUT,k+'='+p[k]+'\n'); }"
+      - uses: actions/checkout@v4
+        with:
+          repository: Micraow/Inform-UI-skill
+          ref: ${{ steps.batch.outputs.skillRevision }}
+          path: skill
+      - name: Prepare exact asset worktree
+        run: git worktree add --detach ../asset '${{ steps.batch.outputs.assetRevision }}'
+      - run: npm ci --ignore-scripts
+      - name: Verify exact accumulated browser plan without executing it
+        run: node scripts/batch-browser-plan.mjs --lock tests/consumer/batch-lock-115.json
+      - id: check
+        run: npm run check
+      - run: npm audit --omit=dev
+      - run: node scripts/check-generated.mjs
+      - run: npx playwright install --with-deps chromium
+      - name: Verify and install pinned licensed CJK test font
+        timeout-minutes: 2
+        run: |
+          node scripts/prepare-test-font.mjs --install "$RUNNER_TEMP/inform-ui-fonts"
+          echo "FONTCONFIG_FILE=$RUNNER_TEMP/inform-ui-fonts/fonts.conf" >> "$GITHUB_ENV"
+      - name: Run canonical browser acceptance once
+        run: npm run test:browser
+      - name: Run each locked original consumer once
+        if: ${{ !cancelled() && steps.check.outcome == 'success' }}
+        run: |
+          mkdir -p test-results
+          node scripts/run-batch-consumers.mjs --core "$PWD" --asset "$PWD/../asset" --skill "$PWD/../skill" --revision "$(git rev-parse HEAD)" --lock tests/consumer/batch-lock-115.json --evidence "$PWD/test-results/consumer-batch"
+      - name: Verify Skill-only contracts and CDN entrypoints
+        if: ${{ !cancelled() && steps.check.outcome == 'success' }}
+        # Unique Skill/CDN checks remain; only exact same-mode inline duplicates reuse evidence.
+        run: node scripts/run-skill-acceptance.mjs --skill "$PWD/../skill" --asset "$PWD/../asset" --core "$PWD" --revision "$(git rev-parse HEAD)" --lock tests/consumer/batch-lock-115.json --receipt "$PWD/test-results/consumer-batch/RECEIPT.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: synthetic-ui-browser-evidence
+          path: |
+            library/playwright-report/
+            library/test-results/
+            skill/artifacts/
+          retention-days: 7
+  portability:
+    name: Portability Node ${{ matrix.node }} / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, node: 24 }
+          - { os: windows-latest, node: 22 }
+          - { os: macos-latest, node: 22 }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: library
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: library/package-lock.json
+      - name: Build matched library on the actual platform
+        working-directory: library
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - name: Exercise platform-specific packaging and CLI paths
+        working-directory: library
+        shell: bash
+        run: node scripts/verify-platform-smoke.mjs --library "$PWD" --revision "$(git rev-parse HEAD)" --report artifacts/platform-smoke.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: platform-${{ matrix.os }}-node-${{ matrix.node }}
+          path: library/artifacts/platform-smoke.json
+          retention-days: 7

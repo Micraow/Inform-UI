@@ -1,0 +1,253 @@
+{
+  "version": "iui/1",
+  "title": "数据坐标，不是等距标签",
+  "description": "原创合成数据。数值和时间坐标按真实间隔绘制；空值明确保留为缺测。",
+  "body": [
+    {
+      "type": "title",
+      "value": "一个单位与一百个单位，应该相差多远？"
+    },
+    {
+      "type": "text",
+      "value": "横轴为 0、1、100 时，第二个点距起点只占全程的 1%。category 轴是等距分类；linear 与 time 轴才按数值间隔布局。"
+    },
+    {
+      "type": "chart",
+      "id": "uneven",
+      "kind": "line",
+      "xScale": "linear",
+      "xKey": "distance",
+      "xLabel": "距离 (m)",
+      "title": "不等距采样",
+      "unit": "V",
+      "data": [
+        {
+          "distance": 0,
+          "voltage": 0
+        },
+        {
+          "distance": 1,
+          "voltage": 2
+        },
+        {
+          "distance": 100,
+          "voltage": 4
+        }
+      ],
+      "series": [
+        {
+          "key": "voltage",
+          "label": "合成电压",
+          "color": "blue"
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "id": "negative",
+      "kind": "scatter",
+      "xScale": "linear",
+      "xKey": "x",
+      "xLabel": "横坐标",
+      "title": "负坐标与散点",
+      "data": [
+        {
+          "x": -8,
+          "y": -2
+        },
+        {
+          "x": 0,
+          "y": 3
+        },
+        {
+          "x": -3,
+          "y": null
+        },
+        {
+          "x": 5,
+          "y": -1
+        }
+      ],
+      "series": [
+        {
+          "key": "y",
+          "label": "测点",
+          "color": "green"
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "id": "time",
+      "kind": "area",
+      "xScale": "time",
+      "timezone": "Asia/Shanghai",
+      "xKey": "time",
+      "title": "时间间隔与缺测",
+      "unit": "℃",
+      "data": [
+        {
+          "time": "2026-10-08T08:00:00+08:00",
+          "temperature": 18
+        },
+        {
+          "time": "2026-10-08T08:02:00+08:00",
+          "temperature": 19
+        },
+        {
+          "time": "2026-10-08T08:30:00+08:00",
+          "temperature": null
+        },
+        {
+          "time": "2026-10-08T09:00:00+08:00",
+          "temperature": 21
+        },
+        {
+          "time": "2026-10-08T09:10:00+08:00",
+          "temperature": 20
+        }
+      ],
+      "series": [
+        {
+          "key": "temperature",
+          "label": "合成温度",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "id": "composition",
+      "kind": "donut",
+      "xKey": "category",
+      "title": "组成比例",
+      "unit": "件",
+      "data": [
+        {
+          "category": "已完成",
+          "count": 6
+        },
+        {
+          "category": "处理中",
+          "count": 3
+        },
+        {
+          "category": "待处理",
+          "count": 1
+        },
+        {
+          "category": "未知",
+          "count": null
+        }
+      ],
+      "series": [
+        {
+          "key": "count",
+          "label": "数量"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "summary": "查看单点、空数据、加载和错误状态",
+      "children": [
+        {
+          "type": "chart",
+          "id": "single",
+          "kind": "line",
+          "xScale": "linear",
+          "xKey": "x",
+          "title": "仅有一个点",
+          "data": [
+            {
+              "x": 7,
+              "y": -2
+            }
+          ],
+          "series": [
+            {
+              "key": "y",
+              "label": "读数"
+            }
+          ]
+        },
+        {
+          "type": "chart",
+          "id": "empty",
+          "kind": "area",
+          "xScale": "linear",
+          "xKey": "x",
+          "title": "尚无观测",
+          "data": [],
+          "series": [
+            {
+              "key": "y",
+              "label": "读数"
+            }
+          ]
+        },
+        {
+          "type": "chart",
+          "id": "loading",
+          "kind": "line",
+          "xKey": "x",
+          "title": "加载状态",
+          "status": "loading",
+          "data": [],
+          "series": [
+            {
+              "key": "y",
+              "label": "读数"
+            }
+          ]
+        },
+        {
+          "type": "chart",
+          "id": "failed",
+          "kind": "line",
+          "xKey": "x",
+          "title": "错误状态",
+          "status": "error",
+          "message": "示例错误：数据源不可用。调用方可以稍后更新文档。",
+          "data": [],
+          "series": [
+            {
+              "key": "y",
+              "label": "读数"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "kind": "area",
+      "xScale": "time",
+      "timezone": "UTC",
+      "xKey": "time",
+      "title": "微小量自动Y轴（合成数据）",
+      "data": [
+        {
+          "time": "2026-10-08T00:00:00Z",
+          "value": 0.000001
+        },
+        {
+          "time": "2026-10-08T01:00:00Z",
+          "value": null
+        },
+        {
+          "time": "2026-10-08T03:00:00Z",
+          "value": 0.000003
+        }
+      ],
+      "series": [
+        {
+          "key": "value",
+          "label": "合成微量",
+          "color": "blue"
+        }
+      ],
+      "note": "省略Y域时按实际量级显示，缺测仍断线；不强制1单位跨度。"
+    }
+  ]
+}

@@ -1,0 +1,630 @@
+{
+  "version": "iui/1",
+  "title": "Inform UI 第一阶段交互预览",
+  "description": "原创合成示例：本地表单、天气视图、真实坐标图表。这是当前阶段预览，不是所有领域组件完成声明。",
+  "theme": "auto",
+  "state": {
+    "splitName": "周末合成示例",
+    "amount": 126,
+    "people": 3,
+    "purpose": "meal",
+    "precision": 2,
+    "note": "三人均分；点数只用于演示。",
+    "email": "demo@example.invalid",
+    "includeFee": false,
+    "feePercent": 5,
+    "referenceError": ""
+  },
+  "computed": {
+    "total": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "amount"
+        },
+        {
+          "op": "if",
+          "args": [
+            {
+              "$": "includeFee"
+            },
+            {
+              "op": "add",
+              "args": [
+                1,
+                {
+                  "op": "div",
+                  "args": [
+                    {
+                      "$": "feePercent"
+                    },
+                    100
+                  ]
+                }
+              ]
+            },
+            1
+          ]
+        }
+      ]
+    },
+    "perPerson": {
+      "op": "round",
+      "args": [
+        {
+          "op": "div",
+          "args": [
+            {
+              "$": "total"
+            },
+            {
+              "op": "max",
+              "args": [
+                1,
+                {
+                  "$": "people"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$": "precision"
+        }
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "表单、天气与真实坐标"
+    },
+    {
+      "type": "caption",
+      "value": "同一套公开库渲染；数据均为合成，没有接入实时服务。"
+    },
+    {
+      "type": "section",
+      "heading": "01 · 本地表单",
+      "children": [
+        {
+          "type": "title",
+          "value": "本地点数分账",
+          "level": 1
+        },
+        {
+          "type": "caption",
+          "value": "先调整字段，再提交；结果随数值更新。取消会恢复这一张表单的初值。"
+        },
+        {
+          "type": "form",
+          "id": "split-demo",
+          "label": "合成分账表单",
+          "submitLabel": "确认分账",
+          "cancelLabel": "恢复初值",
+          "successMessage": "已完成当前视图的本地提交。",
+          "children": [
+            {
+              "type": "input",
+              "kind": "text",
+              "label": "分账名称",
+              "bind": "splitName",
+              "required": true,
+              "minLength": 2,
+              "maxLength": 60,
+              "hint": "必填，请为这次分账简短命名。",
+              "error": {
+                "$": "referenceError"
+              }
+            },
+            {
+              "type": "field",
+              "label": "点数与人数",
+              "hint": "只演示均分算法，不代表真实账单。",
+              "children": [
+                {
+                  "type": "row",
+                  "children": [
+                    {
+                      "type": "input",
+                      "kind": "number",
+                      "label": "总点数",
+                      "bind": "amount",
+                      "required": true,
+                      "min": 0,
+                      "max": 10000,
+                      "step": 0.01,
+                      "hint": "0–10000，可保留两位小数。"
+                    },
+                    {
+                      "type": "input",
+                      "kind": "number",
+                      "label": "参与人数",
+                      "bind": "people",
+                      "required": true,
+                      "min": 1,
+                      "max": 20,
+                      "step": 1,
+                      "hint": "1–20 的整数。"
+                    }
+                  ]
+                },
+                {
+                  "type": "toggle",
+                  "label": "加入合成附加点数",
+                  "bind": "includeFee"
+                },
+                {
+                  "type": "slider",
+                  "label": "附加比例",
+                  "bind": "feePercent",
+                  "min": 0,
+                  "max": 20,
+                  "step": 1,
+                  "unit": "%"
+                }
+              ]
+            },
+            {
+              "type": "radio",
+              "label": "演示场景",
+              "bind": "purpose",
+              "required": true,
+              "options": [
+                {
+                  "label": "聚餐",
+                  "value": "meal"
+                },
+                {
+                  "label": "出游",
+                  "value": "trip"
+                },
+                {
+                  "label": "未开放的合成场景",
+                  "value": "other",
+                  "disabled": true
+                }
+              ]
+            },
+            {
+              "type": "segmented",
+              "label": "结果精度",
+              "bind": "precision",
+              "options": [
+                {
+                  "label": "整数",
+                  "value": 0
+                },
+                {
+                  "label": "两位小数",
+                  "value": 2
+                }
+              ],
+              "hint": "选择结果显示精度，也可用方向键切换。"
+            },
+            {
+              "type": "textarea",
+              "label": "演示备注",
+              "bind": "note",
+              "rows": 3,
+              "maxLength": 240,
+              "placeholder": "可留空",
+              "hint": "可填写分账说明或计算假设。"
+            },
+            {
+              "type": "input",
+              "kind": "email",
+              "label": "演示邮箱",
+              "bind": "email",
+              "hint": "可留空，只验证格式，不会发送任何邮件。"
+            },
+            {
+              "type": "metric",
+              "label": "每人点数",
+              "value": {
+                "$": "perPerson"
+              },
+              "unit": "点",
+              "hint": "输入未通过约束时请先修正，再提交结果。"
+            }
+          ]
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "caption",
+          "value": "空状态：没有待填写字段时，仍能明确给出本地操作结果。"
+        },
+        {
+          "type": "form",
+          "id": "empty-demo",
+          "label": "空白清单",
+          "submitLabel": "确认空清单",
+          "cancelLabel": "取消",
+          "successMessage": "空清单已在本地确认。",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "02 · 调用方供数的天气",
+      "children": [
+        {
+          "type": "weather",
+          "id": "weather-demo",
+          "location": {
+            "name": "San Francisco",
+            "timezone": "America/Los_Angeles"
+          },
+          "updatedAt": "2026-11-01T00:30:00-07:00",
+          "source": {
+            "label": "Inform UI synthetic fixture",
+            "synthetic": true
+          },
+          "units": {
+            "temperature": "celsius"
+          },
+          "current": {
+            "time": "2026-11-01T00:00:00-07:00",
+            "temperature": 14.2,
+            "feelsLike": 13.4,
+            "condition": "partly-cloudy",
+            "humidity": 72
+          },
+          "daily": [
+            {
+              "date": "2026-11-01",
+              "low": 12.1,
+              "high": 18.6,
+              "condition": "partly-cloudy",
+              "precipitationProbability": 15
+            },
+            {
+              "date": "2026-11-02",
+              "low": 11.4,
+              "high": 17.5,
+              "condition": "rain",
+              "precipitationProbability": 75
+            },
+            {
+              "date": "2026-11-03",
+              "low": 10.7,
+              "high": 16.2,
+              "condition": "rain",
+              "precipitationProbability": 60
+            },
+            {
+              "date": "2026-11-04",
+              "low": 11.2,
+              "high": 18.7,
+              "condition": "cloudy",
+              "precipitationProbability": 20
+            },
+            {
+              "date": "2026-11-05",
+              "low": 12.4,
+              "high": 20.1,
+              "condition": "clear",
+              "precipitationProbability": 5
+            },
+            {
+              "date": "2026-11-06",
+              "low": null,
+              "high": null,
+              "condition": "unknown",
+              "precipitationProbability": null
+            }
+          ],
+          "hourly": [
+            {
+              "time": "2026-11-01T00:00:00-07:00",
+              "temperature": 14.2,
+              "precipitationProbability": 5
+            },
+            {
+              "time": "2026-11-01T01:00:00-07:00",
+              "temperature": 13.6,
+              "precipitationProbability": 10
+            },
+            {
+              "time": "2026-11-01T01:00:00-08:00",
+              "temperature": 13.1,
+              "precipitationProbability": 10
+            },
+            {
+              "time": "2026-11-01T03:00:00-08:00",
+              "temperature": 12.1,
+              "precipitationProbability": 15
+            },
+            {
+              "time": "2026-11-01T07:00:00-08:00",
+              "temperature": null,
+              "precipitationProbability": 10
+            },
+            {
+              "time": "2026-11-01T10:00:00-08:00",
+              "temperature": 16.4,
+              "precipitationProbability": 5
+            },
+            {
+              "time": "2026-11-01T15:00:00-08:00",
+              "temperature": 18.6,
+              "precipitationProbability": 0
+            },
+            {
+              "time": "2026-11-01T19:00:00-08:00",
+              "temperature": 15.5,
+              "precipitationProbability": null
+            },
+            {
+              "time": "2026-11-01T23:00:00-08:00",
+              "temperature": 13.9,
+              "precipitationProbability": 15
+            },
+            {
+              "time": "2026-11-02T04:00:00-08:00",
+              "temperature": 11.4,
+              "precipitationProbability": 60
+            },
+            {
+              "time": "2026-11-02T12:00:00-08:00",
+              "temperature": 17.5,
+              "precipitationProbability": 75
+            },
+            {
+              "time": "2026-11-02T20:00:00-08:00",
+              "temperature": 13.4,
+              "precipitationProbability": 40
+            },
+            {
+              "time": "2026-11-03T12:00:00-08:00",
+              "temperature": 16.2,
+              "precipitationProbability": 60
+            },
+            {
+              "time": "2026-11-04T12:00:00-08:00",
+              "temperature": 18.7,
+              "precipitationProbability": 20
+            },
+            {
+              "time": "2026-11-05T12:00:00-08:00",
+              "temperature": 20.1,
+              "precipitationProbability": 5
+            },
+            {
+              "time": "2026-11-06T12:00:00-08:00",
+              "temperature": null,
+              "precipitationProbability": null
+            }
+          ],
+          "initialDate": "2026-11-01",
+          "status": "ready"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "03 · 按数值与时间绘图",
+      "children": [
+        {
+          "type": "title",
+          "value": "一个单位与一百个单位，应该相差多远？"
+        },
+        {
+          "type": "text",
+          "value": "横轴为 0、1、100 时，第二个点距起点只占全程的 1%。category 轴是等距分类；linear 与 time 轴才按数值间隔布局。"
+        },
+        {
+          "type": "chart",
+          "id": "uneven",
+          "kind": "line",
+          "xScale": "linear",
+          "xKey": "distance",
+          "xLabel": "距离 (m)",
+          "title": "不等距采样",
+          "unit": "V",
+          "data": [
+            {
+              "distance": 0,
+              "voltage": 0
+            },
+            {
+              "distance": 1,
+              "voltage": 2
+            },
+            {
+              "distance": 100,
+              "voltage": 4
+            }
+          ],
+          "series": [
+            {
+              "key": "voltage",
+              "label": "合成电压",
+              "color": "blue"
+            }
+          ]
+        },
+        {
+          "type": "chart",
+          "id": "negative",
+          "kind": "scatter",
+          "xScale": "linear",
+          "xKey": "x",
+          "xLabel": "横坐标",
+          "title": "负坐标与散点",
+          "data": [
+            {
+              "x": -8,
+              "y": -2
+            },
+            {
+              "x": 0,
+              "y": 3
+            },
+            {
+              "x": -3,
+              "y": null
+            },
+            {
+              "x": 5,
+              "y": -1
+            }
+          ],
+          "series": [
+            {
+              "key": "y",
+              "label": "测点",
+              "color": "green"
+            }
+          ]
+        },
+        {
+          "type": "chart",
+          "id": "time",
+          "kind": "area",
+          "xScale": "time",
+          "timezone": "Asia/Shanghai",
+          "xKey": "time",
+          "title": "时间间隔与缺测",
+          "unit": "℃",
+          "data": [
+            {
+              "time": "2026-10-08T08:00:00+08:00",
+              "temperature": 18
+            },
+            {
+              "time": "2026-10-08T08:02:00+08:00",
+              "temperature": 19
+            },
+            {
+              "time": "2026-10-08T08:30:00+08:00",
+              "temperature": null
+            },
+            {
+              "time": "2026-10-08T09:00:00+08:00",
+              "temperature": 21
+            },
+            {
+              "time": "2026-10-08T09:10:00+08:00",
+              "temperature": 20
+            }
+          ],
+          "series": [
+            {
+              "key": "temperature",
+              "label": "合成温度",
+              "color": "orange"
+            }
+          ]
+        },
+        {
+          "type": "chart",
+          "id": "composition",
+          "kind": "donut",
+          "xKey": "category",
+          "title": "组成比例",
+          "unit": "件",
+          "data": [
+            {
+              "category": "已完成",
+              "count": 6
+            },
+            {
+              "category": "处理中",
+              "count": 3
+            },
+            {
+              "category": "待处理",
+              "count": 1
+            },
+            {
+              "category": "未知",
+              "count": null
+            }
+          ],
+          "series": [
+            {
+              "key": "count",
+              "label": "数量"
+            }
+          ]
+        },
+        {
+          "type": "details",
+          "summary": "查看单点、空数据、加载和错误状态",
+          "children": [
+            {
+              "type": "chart",
+              "id": "single",
+              "kind": "line",
+              "xScale": "linear",
+              "xKey": "x",
+              "title": "仅有一个点",
+              "data": [
+                {
+                  "x": 7,
+                  "y": -2
+                }
+              ],
+              "series": [
+                {
+                  "key": "y",
+                  "label": "读数"
+                }
+              ]
+            },
+            {
+              "type": "chart",
+              "id": "empty",
+              "kind": "area",
+              "xScale": "linear",
+              "xKey": "x",
+              "title": "尚无观测",
+              "data": [],
+              "series": [
+                {
+                  "key": "y",
+                  "label": "读数"
+                }
+              ]
+            },
+            {
+              "type": "chart",
+              "id": "loading",
+              "kind": "line",
+              "xKey": "x",
+              "title": "加载状态",
+              "status": "loading",
+              "data": [],
+              "series": [
+                {
+                  "key": "y",
+                  "label": "读数"
+                }
+              ]
+            },
+            {
+              "type": "chart",
+              "id": "failed",
+              "kind": "line",
+              "xKey": "x",
+              "title": "错误状态",
+              "status": "error",
+              "message": "示例错误：数据源不可用。调用方可以稍后更新文档。",
+              "data": [],
+              "series": [
+                {
+                  "key": "y",
+                  "label": "读数"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

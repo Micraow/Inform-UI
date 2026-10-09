@@ -1,0 +1,1300 @@
+/* One theme token source. Role/provenance mapping: docs/design-tokens.md. */
+.iui-root{--iui-bg:#ffffff;--iui-surface-primary:#ffffff;--iui-surface-secondary:#f9f9f9;--iui-surface-tertiary:#f3f3f3;--iui-ink:#0d0d0d;--iui-muted:#5d5d5d;--iui-tertiary:#8f8f8f;--iui-line:rgb(13 13 13 / 10%);--iui-focus:#0169cc;--iui-link:#339cff;--iui-info:#0169cc;--iui-success:#00692a;--iui-danger:#911e1b;--iui-warning:#923b0f;--iui-accent:#339cff;--iui-selection:#0285ff;--iui-hover:rgb(13 13 13 / 2%);--iui-active:rgb(13 13 13 / 4%);--iui-disabled-bg:rgb(13 13 13 / 5%);--iui-disabled-border:rgb(13 13 13 / 6%);--iui-disabled-text:#8f8f8f;--iui-info-soft:#e5f3ff;--iui-info-soft-text:#004f99;--iui-success-soft:#d9f4e4;--iui-success-soft-text:#008635;--iui-danger-soft:#ffd9d9;--iui-danger-soft-text:#ba2623;--iui-warning-soft:#ffe7d9;--iui-warning-soft-text:#923b0f;--iui-series-blue:#339cff;--iui-series-green:#008635;--iui-series-orange:#b9480d;--iui-series-red:#e02e2a;--iui-series-purple:#8046d9;--iui-series-gray:#767676;--iui-button-solid-bg:#181818;--iui-button-solid-hover:#303030;--iui-button-solid-active:#414141;--iui-button-solid-text:#ffffff;--iui-surface:var(--iui-surface-secondary);--iui-blue:var(--iui-series-blue);--iui-green:var(--iui-series-green);--iui-orange:var(--iui-series-orange);--iui-red:var(--iui-series-red);--iui-purple:var(--iui-series-purple);box-sizing:border-box;max-width:780px;margin-inline:auto;padding:32px 24px 48px;background:var(--iui-bg);color:var(--iui-ink);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;overflow-wrap:anywhere;color-scheme:light}
+.iui-root[data-theme=dark]{--iui-bg:#212121;--iui-surface-primary:#212121;--iui-surface-secondary:#181818;--iui-surface-tertiary:#131313;--iui-ink:#ffffff;--iui-muted:#afafaf;--iui-tertiary:#8f8f8f;--iui-line:rgb(255 255 255 / 12%);--iui-focus:#0285ff;--iui-link:#99ceff;--iui-info:#66b5ff;--iui-success:#04b84c;--iui-danger:#e02e2a;--iui-warning:#e25507;--iui-accent:#99ceff;--iui-selection:#0285ff;--iui-hover:rgb(255 255 255 / 4%);--iui-active:rgb(255 255 255 / 6%);--iui-disabled-bg:rgb(255 255 255 / 5%);--iui-disabled-border:rgb(255 255 255 / 6%);--iui-disabled-text:#5d5d5d;--iui-info-soft:rgb(2 133 255 / 13%);--iui-info-soft-text:#339cff;--iui-success-soft:rgb(4 184 76 / 15%);--iui-success-soft-text:#04b84c;--iui-danger-soft:rgb(250 66 62 / 16%);--iui-danger-soft-text:#fa423e;--iui-warning-soft:rgb(251 106 34 / 16%);--iui-warning-soft-text:#fb6a22;--iui-series-blue:#339cff;--iui-series-green:#40c977;--iui-series-orange:#ff8549;--iui-series-red:#ff6764;--iui-series-purple:#ad7bf9;--iui-series-gray:#afafaf;--iui-button-solid-bg:#f3f3f3;--iui-button-solid-hover:#ededed;--iui-button-solid-active:#dcdcdc;--iui-button-solid-text:#0d0d0d;color-scheme:dark}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto]{--iui-bg:#212121;--iui-surface-primary:#212121;--iui-surface-secondary:#181818;--iui-surface-tertiary:#131313;--iui-ink:#ffffff;--iui-muted:#afafaf;--iui-tertiary:#8f8f8f;--iui-line:rgb(255 255 255 / 12%);--iui-focus:#0285ff;--iui-link:#99ceff;--iui-info:#66b5ff;--iui-success:#04b84c;--iui-danger:#e02e2a;--iui-warning:#e25507;--iui-accent:#99ceff;--iui-selection:#0285ff;--iui-hover:rgb(255 255 255 / 4%);--iui-active:rgb(255 255 255 / 6%);--iui-disabled-bg:rgb(255 255 255 / 5%);--iui-disabled-border:rgb(255 255 255 / 6%);--iui-disabled-text:#5d5d5d;--iui-info-soft:rgb(2 133 255 / 13%);--iui-info-soft-text:#339cff;--iui-success-soft:rgb(4 184 76 / 15%);--iui-success-soft-text:#04b84c;--iui-danger-soft:rgb(250 66 62 / 16%);--iui-danger-soft-text:#fa423e;--iui-warning-soft:rgb(251 106 34 / 16%);--iui-warning-soft-text:#fb6a22;--iui-series-blue:#339cff;--iui-series-green:#40c977;--iui-series-orange:#ff8549;--iui-series-red:#ff6764;--iui-series-purple:#ad7bf9;--iui-series-gray:#afafaf;--iui-button-solid-bg:#f3f3f3;--iui-button-solid-hover:#ededed;--iui-button-solid-active:#dcdcdc;--iui-button-solid-text:#0d0d0d;color-scheme:dark}}
+.iui-root *{box-sizing:border-box;min-width:0}.iui-root :is(h1,h2,h3,p,figure,blockquote,pre){margin:0}.iui-body>*+*{margin-block-start:20px}.iui-body>:is(h1,h2,h3)+*{margin-block-start:10px}.iui-root h1{font-size:1.75rem;line-height:1.3;letter-spacing:-.025em;font-weight:650}.iui-root h2{font-size:1.3rem;line-height:1.4;font-weight:650}.iui-root h3{font-size:1.1rem;line-height:1.4;font-weight:650}.iui-text{white-space:pre-wrap}.iui-caption,.iui-description{font-size:.85rem;color:var(--iui-muted);line-height:1.65}.iui-description{margin-block-end:24px}.iui-root a{color:var(--iui-link);text-underline-offset:3px}.iui-root hr{border:0;border-block-start:1px solid var(--iui-line);margin-block:28px}.iui-layout{display:flex;flex-direction:column;gap:calc(var(--iui-gap,4)*4px);padding:calc(var(--iui-padding,0)*4px);max-width:100%}.iui-row{flex-direction:row;align-items:center;flex-wrap:wrap}.iui-row>*{flex:1}.iui-grid,.iui-metric-grid{display:grid;grid-template-columns:repeat(var(--iui-columns,2),minmax(0,1fr))}.iui-card{border:1px solid var(--iui-line);border-radius:14px;padding:calc(var(--iui-padding,5)*4px)}.iui-layout[data-border=true]{border:1px solid var(--iui-line)}.iui-layout[data-background=surface],.iui-layout[data-background=surface-secondary],.iui-layout[data-background=surface-tertiary]{background:var(--iui-surface)}.iui-layout[data-background=success-soft]{background:var(--iui-success-soft);color:var(--iui-success-soft-text)}.iui-layout[data-background=danger-soft]{background:var(--iui-danger-soft);color:var(--iui-danger-soft-text)}.iui-layout[data-background=info-soft]{background:var(--iui-info-soft);color:var(--iui-info-soft-text)}
+.iui-root [data-color=secondary]{color:var(--iui-muted)}.iui-root [data-color=success]{color:var(--iui-success)}.iui-root [data-color=danger]{color:var(--iui-danger)}.iui-root [data-color=warning]{color:var(--iui-warning)}.iui-root [data-color=info]{color:var(--iui-info)}.iui-root [data-color=accent]{color:var(--iui-accent)}.iui-badge{display:inline-block;align-self:start;font-size:.76rem;line-height:1.5;padding:3px 10px;border-radius:999px;background:var(--iui-surface);font-weight:600}.iui-metric{background:var(--iui-surface);padding:16px 20px;border-radius:10px}.iui-metric-label{font-size:.84rem;color:var(--iui-muted)}.iui-metric-value{font-size:1.7rem;font-weight:650;line-height:1.4;font-variant-numeric:tabular-nums;letter-spacing:-.03em}.iui-unit{font-size:.8rem;font-weight:400;letter-spacing:0;margin-inline-start:6px;color:var(--iui-muted)}.iui-callout{border-inline-start:3px solid var(--iui-line);background:var(--iui-surface);padding:12px 16px;border-radius:0 8px 8px 0;font-size:.92rem}.iui-callout[data-tone=info]{border-color:var(--iui-info);background:var(--iui-info-soft);color:var(--iui-info-soft-text)}.iui-callout[data-tone=caution]{border-color:var(--iui-warning);background:var(--iui-warning-soft);color:var(--iui-warning-soft-text)}.iui-steps{padding-inline-start:26px;margin:0}.iui-steps li{padding-inline-start:5px;margin-block:14px}.iui-steps li::marker{color:var(--iui-muted);font-weight:600}.iui-steps strong{font-weight:600}.iui-steps p{margin-block-start:5px}.iui-list{margin:0;padding-inline-start:24px}.iui-list li+li{margin-block-start:6px}.iui-code{font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:10px;padding:16px;overflow:auto;white-space:pre;max-width:100%;direction:ltr}.iui-markdown{white-space:pre-wrap}.iui-math{overflow:auto;max-width:100%;padding-block:12px;font-size:1.12rem}.iui-math math{margin:0 auto}.iui-math-error{color:var(--iui-danger);font:13px/1.5 ui-monospace,monospace}.iui-table-wrap{overflow:auto;max-width:100%;border:1px solid var(--iui-line);border-radius:10px}.iui-root table{border-collapse:collapse;width:100%;font-size:.875rem}.iui-root th{text-align:start;font-weight:600;background:var(--iui-surface)}.iui-root th,.iui-root td{padding:10px 14px;border-block-end:1px solid var(--iui-line)}.iui-root tr:last-child td{border:0}.iui-root caption{text-align:start;padding:10px 14px;color:var(--iui-muted)}
+.iui-control{display:flex;flex-direction:column;gap:8px;background:var(--iui-surface);border-radius:10px;padding:14px 16px}.iui-control-header{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:.875rem}.iui-control output{font-weight:600;font-variant-numeric:tabular-nums}.iui-root input[type=range]{width:100%;min-height:30px;margin:0;accent-color:var(--iui-selection)}.iui-root input[type=checkbox]{width:18px;height:18px;accent-color:var(--iui-selection)}.iui-toggle{flex-direction:row;align-items:center;gap:10px}.iui-root select,.iui-root button{font:inherit;font-size:.875rem;color:var(--iui-ink);background:var(--iui-bg);border:1px solid var(--iui-line);border-radius:8px;padding:8px 12px;cursor:pointer}.iui-root :is(button,a,input,select,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root summary{cursor:pointer;font-size:.9rem}.iui-details-body{margin-block-start:12px}.iui-marks{display:flex;justify-content:space-between;font-size:.73rem;color:var(--iui-muted)}.iui-chart svg,.iui-topology svg,.iui-svg{display:block;width:100%;height:auto;overflow:visible}.iui-chart{padding:16px 0}.iui-chart-title{font-size:.95rem;font-weight:600}.iui-chart-controls{display:flex;gap:14px;flex-wrap:wrap;margin-block:10px;font-size:.82rem}.iui-chart-controls label{display:flex;gap:6px;align-items:center}.iui-chart text,.iui-topology text{font-family:inherit;fill:var(--iui-muted)}.iui-chart details{margin-block-start:10px}.iui-topology{padding:16px;border:1px solid var(--iui-line);border-radius:12px}.iui-topology figcaption{margin-block-start:12px}.iui-topology [data-bottleneck=true] text{fill:var(--iui-red)}.iui-carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-block-end:12px}.iui-carousel>*{flex:0 0 min(85%,320px);scroll-snap-align:start}.iui-image img{display:block;max-width:100%;width:100%;height:auto;border-radius:10px}.iui-image-consent{background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:10px;padding:20px}.iui-image-consent>*+*{margin-block-start:10px}.iui-error{color:var(--iui-danger);font-size:.85rem}.iui-error:empty{display:none}
+@media(max-width:520px){.iui-root{padding:24px 16px 36px;font-size:15px}.iui-root h1{font-size:1.5rem}.iui-grid{grid-template-columns:1fr}.iui-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.iui-metric{padding:12px}.iui-metric-value{font-size:1.4rem}.iui-row{align-items:stretch}.iui-card{padding:16px}.iui-topology{padding:10px}.iui-body>*+*{margin-block-start:18px}}
+@media(prefers-reduced-motion:reduce){.iui-root *{scroll-behavior:auto!important}}
+
+.iui-marks{display:block;position:relative;min-height:24px}.iui-marks>span{position:absolute;max-width:72px;font-size:.7rem;line-height:1.2;text-align:center}
+
+.iui-layout{--iui-gap:4;--iui-padding:0;--iui-columns:2}.iui-card{--iui-padding:5}.iui-card[data-border=false]{border:none}.iui-chart svg,.iui-topology svg,.iui-svg{overflow:hidden}
+@media(max-width:520px){.iui-card{--iui-padding:4;padding:calc(var(--iui-padding)*4px)}.iui-metric-grid{grid-template-columns:repeat(var(--iui-mobile-columns,2),minmax(0,1fr))}}
+
+.iui-root .iui-description{margin-block-end:24px}.iui-root .iui-body>*+*{margin-block-start:20px}.iui-root .iui-body>:is(h1,h2,h3)+*{margin-block-start:10px}.iui-marks>span{width:max-content}
+body.iui-page{background:#ffffff}
+/* Chart interaction belongs to the figure and never changes the underlying values. */
+.iui-chart [tabindex]:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px;border-radius:4px}
+.iui-chart-controls .iui-swatch{display:inline-block;inline-size:8px;block-size:8px;border-radius:50%;flex:none}
+.iui-chart-key{display:inline-flex;align-items:center;gap:6px}.iui-chart-readout{display:block;font-size:12px;line-height:18px;color:var(--iui-muted);min-block-size:18px;overflow-wrap:anywhere}
+.iui-chart-readout:empty{display:none}.iui-chart circle.iui-point-active{stroke:var(--iui-ink);stroke-width:1.5}.iui-data-status{padding:24px 12px;text-align:center;color:var(--iui-muted);border:1px dashed var(--iui-line);border-radius:8px}.iui-data-status[data-state=error]{color:var(--iui-danger)}.iui-data-status[data-state=loading]{background:var(--iui-surface)}
+.iui-chart [hidden]{display:none!important}
+
+
+/* Original weather layout; consumes the renderer's existing semantic palette. */
+.iui-weather{container-type:inline-size;min-width:0;max-width:100%;font-variant-numeric:tabular-nums}
+.iui-weather [hidden]{display:none!important}
+.iui-weather-header{display:flex;align-items:start;justify-content:space-between;gap:20px}
+.iui-root .iui-weather-location{font-size:1.3rem;line-height:1.35;letter-spacing:-.02em}
+.iui-weather-place{min-width:0}.iui-weather-place .iui-caption{margin-block-start:4px}
+.iui-weather-segment{display:flex;align-items:stretch;flex-wrap:wrap;gap:4px}
+.iui-root .iui-weather-segment button{min-height:40px;padding:7px 10px;border-color:transparent;white-space:normal;line-height:1.35}
+.iui-root .iui-weather-segment button[aria-pressed=true]{background:var(--iui-surface);border-color:var(--iui-line);font-weight:600}
+.iui-weather-current{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;padding-block:22px 20px}
+.iui-weather-current-main{display:flex;align-items:center;gap:12px}
+.iui-weather-current-icon{width:46px;height:46px;color:var(--iui-orange);flex:none}
+.iui-weather-current-temperature{font-size:2.7rem;line-height:1.1;letter-spacing:-.055em;font-weight:550}
+.iui-weather-current-description{flex:1;min-width:170px}
+.iui-weather-eyebrow{font-size:.76rem;color:var(--iui-muted)}.iui-weather-condition{font-size:1rem;font-weight:550}
+.iui-weather-current-description time{display:block;margin-block-start:4px;font-size:.74rem}
+.iui-weather-facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0;padding:0}
+.iui-weather-facts dt{font-size:.75rem;color:var(--iui-muted)}.iui-weather-facts dd{font-size:.85rem;margin:0}
+.iui-weather-days{display:flex;gap:0;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;padding-block:4px 8px;max-width:100%;border-block:1px solid var(--iui-line)}
+.iui-root .iui-weather-day{display:flex;flex:1 0 auto;min-width:64px;flex-direction:column;align-items:center;gap:8px;padding:10px 8px;border:none;border-radius:8px;background:transparent;line-height:1.3;scroll-margin-inline:8px}
+.iui-root .iui-weather-day[aria-selected=true]{background:var(--iui-surface);box-shadow:inset 0 -2px var(--iui-selection)}
+.iui-weather-day-date{font-size:.77rem;font-weight:550;white-space:nowrap}.iui-weather-day-icon{width:28px;height:28px;color:var(--iui-muted)}
+.iui-weather-day-range{font-size:.75rem;white-space:nowrap}.iui-weather-day-rain,.iui-weather-day-hourly{color:var(--iui-muted);font-size:.73rem}
+.iui-weather-panel{padding-block-start:20px}.iui-root .iui-weather-hourly-title{font-size:.88rem;font-weight:550;line-height:1.5}
+.iui-weather-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-block:8px 12px}
+.iui-weather-chart{display:block;width:100%;height:120px;overflow:hidden;outline-offset:3px}
+.iui-weather-chart:focus-visible,.iui-weather-table-wrap:focus-visible{outline:2px solid var(--iui-focus)}
+.iui-weather-grid{stroke:var(--iui-line);stroke-dasharray:3 4;stroke-width:1}
+.iui-weather-tick{fill:var(--iui-muted);font-size:10px;font-family:inherit}
+.iui-weather-line{stroke:var(--iui-orange);stroke-width:2;vector-effect:non-scaling-stroke}
+.iui-weather-point{fill:var(--iui-orange);stroke:var(--iui-bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.iui-weather-bar{fill:var(--iui-blue)}
+.iui-weather-point-active{stroke:var(--iui-ink);stroke-width:2;vector-effect:non-scaling-stroke}
+.iui-weather-cursor{stroke:var(--iui-muted);stroke-width:1;stroke-dasharray:2 3;pointer-events:none}
+.iui-weather-readout{display:block;min-height:2.6em;margin-block-start:8px;color:var(--iui-muted);font-size:.76rem;line-height:1.5}
+.iui-weather-table-wrap{max-width:100%;overflow:auto;max-height:320px;margin-block-start:8px}
+.iui-root .iui-weather-table{font-size:.78rem}.iui-root .iui-weather-table th,.iui-root .iui-weather-table td{padding:8px 10px;vertical-align:top}
+.iui-root .iui-weather-table tbody th{background:transparent;font-weight:400}.iui-root .iui-weather-table caption{padding:0 0 8px;font-size:.75rem}
+.iui-weather-source{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin-block-start:12px;padding-block-start:12px;border-block-start:1px solid var(--iui-line);font-size:.72rem;line-height:1.5;color:var(--iui-muted)}
+.iui-weather-synthetic{display:inline-block;padding-inline-start:8px;font-weight:600}
+.iui-weather-status,.iui-weather-empty{padding-block:22px;color:var(--iui-muted);font-size:.9rem}
+.iui-weather[data-status=loading] .iui-weather-status{min-height:310px;display:grid;place-items:center;background:linear-gradient(90deg,transparent,var(--iui-surface),transparent);border-radius:10px;margin-block-start:12px}
+.iui-weather[data-status=loading]{min-height:400px}.iui-weather[data-status=error] .iui-weather-status{color:var(--iui-danger)}
+.iui-weather-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@container(max-width:400px){.iui-weather-current-temperature{font-size:2.3rem}.iui-weather-current{gap:12px}.iui-weather-current-description{min-width:145px}.iui-weather-facts{flex-basis:100%;gap:8px 22px}.iui-weather-toolbar{align-items:start}.iui-root .iui-weather-segment button{font-size:.77rem;min-height:40px;padding:7px 8px}.iui-weather-header{gap:8px}.iui-weather-source{display:block}.iui-weather-source time{display:block;margin-block-start:4px}}
+.iui-root [data-color=tertiary]{color:var(--iui-tertiary)}.iui-layout[data-background=surface]{background:var(--iui-surface-primary)}.iui-layout[data-background=surface-secondary]{background:var(--iui-surface-secondary)}.iui-layout[data-background=surface-tertiary]{background:var(--iui-surface-tertiary)}
+.iui-root :is(h1,h2,h3){font-weight:600}.iui-root .iui-caption{font-size:14px;line-height:20px}.iui-root .iui-metric-label{font-size:12px;line-height:18px}.iui-root .iui-metric-value{font-weight:600}.iui-metric[data-variant=plain]{background:none;padding:0;border-radius:0}
+.iui-layout{--iui-gap:2}.iui-layout[data-semantic-gap=true]{gap:0}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>*+*{margin-block-start:8px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>:is(h1,h2,h3)+*{margin-block-start:16px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>:is(h1,h2,h3)+:is(.iui-text,.iui-list){margin-block-start:8px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>*+.iui-caption{margin-block-start:4px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>:is(.iui-text,.iui-caption)+.iui-text{margin-block-start:0}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>hr{margin-block:16px}
+.iui-root :is(.iui-body,.iui-layout[data-semantic-gap=true])>hr+*{margin-block-start:16px}
+.iui-root :is(button,select){transition:background-color .12s,border-color .12s}.iui-root button:hover:enabled{background:var(--iui-hover)}.iui-root button:active:enabled{background:var(--iui-active)}.iui-root button:disabled{cursor:not-allowed;opacity:1;color:var(--iui-disabled-text);background:var(--iui-disabled-bg);border-color:var(--iui-disabled-border)}.iui-root :is(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline-color:var(--iui-focus)}
+@media(max-width:520px){.iui-root{font-size:16px}}@media(prefers-reduced-motion:reduce){.iui-root *{transition:none!important}}
+body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:dark){body.iui-page[data-theme=auto]{background:#212121}}
+
+.iui-weather-area{fill:var(--iui-orange);fill-opacity:.12;stroke:none}
+
+/* Original form styling. Uses the host's semantic tokens; does not redefine global colors.
+   Spacing follows the audited 4px rhythm, 2px label/control, 4px hint, 6px actions.
+   Public MIT Apps SDK UI informed the 8px corners and 14/20px secondary type. */
+.iui-root .iui-form,
+.iui-root .iui-field,
+.iui-root .iui-field-group { min-width: 0; max-width: 100%; }
+.iui-root :is(.iui-form-fields, .iui-field-group, .iui-choices) {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.iui-root .iui-form-fields > :not(legend) + :not(legend),
+.iui-root .iui-field-group > :not(legend) + :not(legend) { margin-block-start: 12px; }
+.iui-root :is(.iui-form-title, .iui-field-label) {
+  max-width: 100%;
+  padding: 0;
+  color: var(--iui-ink);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.iui-root .iui-form-title { margin-block-end: 16px; font-size: 1rem; }
+.iui-root .iui-field-label { display: block; margin-block-end: 2px; }
+.iui-root .iui-field-group > legend { margin-block-end: 8px; }
+.iui-root .iui-field-required { color: var(--iui-danger); }
+.iui-root .iui-field > :is(input:not([type=checkbox]), textarea) {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--iui-line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: var(--iui-ink);
+  background: var(--iui-bg);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.iui-root .iui-field-checkbox { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: 10px; align-items: center; }
+.iui-root .iui-field-checkbox > input[type=checkbox] { margin: 0; width: 18px; height: 18px; }
+.iui-root .iui-field-checkbox > .iui-field-label { display: flex; align-items: center; min-height: 44px; margin: 0; cursor: pointer; }
+.iui-root .iui-field-checkbox > :is(.iui-field-hint, .iui-field-error) { grid-column: 2; }
+.iui-root .iui-field > textarea { resize: vertical; min-height: 100px; }
+.iui-root .iui-field > :is(input, textarea)::placeholder { color: var(--iui-muted); opacity: 1; }
+.iui-root .iui-field > :is(input, textarea):hover:enabled { border-color: var(--iui-muted); }
+.iui-root :is(.iui-field input, .iui-field textarea, .iui-form-actions button):focus-visible {
+  outline: 2px solid var(--iui-focus);
+  outline-offset: 3px;
+}
+.iui-root .iui-field > :is(input, textarea)[aria-invalid=true] { border-color: var(--iui-danger); }
+.iui-root :is(.iui-field-hint, .iui-field-error) { margin-block-start: 4px; font-size: .875rem; line-height: 1.45; }
+.iui-root :is(.iui-field-error, .iui-form-status[data-error=true]) { color: var(--iui-danger); }
+.iui-root :is(.iui-field-error, .iui-field-hint)[hidden] { display: none; }
+.iui-root .iui-field-group-hint { margin-block-end: 8px; }
+.iui-root .iui-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 0;
+  font-size: .875rem;
+  line-height: 1.45;
+  cursor: pointer;
+}
+.iui-root .iui-choice input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--iui-selection);
+}
+.iui-root .iui-choice-text { min-width: 0; overflow-wrap: anywhere; }
+.iui-root .iui-choice:has(input:disabled) { color: var(--iui-muted); cursor: not-allowed; }
+.iui-root .iui-segmented { display: flex; flex-wrap: wrap; gap: 6px; }
+.iui-root .iui-segmented > legend { width: 100%; margin-block-end: 4px; }
+.iui-root .iui-segmented .iui-choice {
+  position: relative;
+  flex: 1 1 100px;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid var(--iui-line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--iui-bg);
+}
+.iui-root .iui-segmented .iui-choice:has(input:checked) {
+  border-color: var(--iui-selection);
+  background: var(--iui-info-soft);color: var(--iui-info-soft-text);
+}
+.iui-root .iui-segmented .iui-choice:has(input:focus-visible) { outline: 2px solid var(--iui-focus); outline-offset: 3px; }
+.iui-root .iui-segmented input:focus-visible { outline: none; }
+.iui-root :is(.iui-field input, .iui-field textarea):disabled {
+  color: var(--iui-disabled-text);
+  background: var(--iui-disabled-bg);
+  border-color: var(--iui-disabled-border);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.iui-root .iui-form-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-block-start: 16px; }
+.iui-root .iui-form-actions button { min-height: 44px; font-weight: 500; }
+.iui-root .iui-form-actions .iui-button-primary { color: var(--iui-button-solid-text); background: var(--iui-button-solid-bg); border-color: var(--iui-button-solid-bg); }
+.iui-root .iui-form-actions .iui-button-primary:hover:enabled { background:var(--iui-button-solid-hover);border-color:var(--iui-button-solid-hover); }
+.iui-root .iui-form-actions .iui-button-primary:active:enabled { background:var(--iui-button-solid-active);border-color:var(--iui-button-solid-active); }
+.iui-root .iui-form-actions button:disabled { cursor: not-allowed; opacity:1;color:var(--iui-disabled-text);background:var(--iui-disabled-bg);border-color:var(--iui-disabled-border); }
+.iui-root .iui-form-status { margin-block-start: 8px; font-size: .875rem; line-height: 1.45; }
+.iui-root .iui-form-status:empty { display: none; }
+.iui-root .iui-form[data-status=success] .iui-form-status { color: var(--iui-success); }
+@media (forced-colors: active) {
+  .iui-root .iui-segmented .iui-choice:has(input:checked) { outline: 2px solid Highlight; }
+  .iui-root .iui-field > :is(input, textarea)[aria-invalid=true] { outline: 2px dashed CanvasText; }
+}
+/* Original sports views consume the shared neutral palette; team marks are text, not fetched assets. */
+.iui-sports{max-width:100%;min-width:0;font-variant-numeric:tabular-nums}.iui-sports [hidden]{display:none!important}
+.iui-sports-header{display:flex;align-items:center;justify-content:space-between;gap:12px}.iui-root .iui-sports-title{font-size:1.25rem;margin-top:4px}
+.iui-sports-toolbar{display:flex;flex-wrap:wrap;gap:8px 12px;margin-block:16px}.iui-sports-filter{display:flex;flex:1 1 150px;min-width:0;flex-direction:column;gap:2px;font-size:12px;color:var(--iui-muted)}.iui-sports-filter select{width:100%;min-height:40px;color:var(--iui-ink)}
+.iui-root .iui-sports-day{font-size:14px;line-height:20px;margin-block:16px 4px;font-weight:600}
+.iui-sports-game{border-bottom:1px solid var(--iui-line)}.iui-sports-game>summary{list-style:none;padding-block:12px}.iui-sports-game>summary::-webkit-details-marker{display:none}
+.iui-sports-game-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:var(--iui-muted);margin-bottom:8px}
+.iui-sports-state{font-size:12px;font-weight:600;line-height:18px;border:1px solid var(--iui-line);border-radius:6px;padding:2px 6px;color:var(--iui-muted)}.iui-sports-state[data-status=live]{color:var(--iui-success);border-color:var(--iui-success)}.iui-sports-state[data-status=postponed]{color:var(--iui-warning)}.iui-sports-state[data-status=cancelled]{color:var(--iui-danger)}
+.iui-sports-versus{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto minmax(0,1fr);gap:8px;align-items:center}.iui-sports-versus>.iui-sports-team:last-child{justify-content:flex-end;text-align:end}.iui-sports-separator{color:var(--iui-muted)}
+.iui-sports-team{display:flex;align-items:center;gap:8px;min-width:0}.iui-sports-name{overflow-wrap:anywhere}.iui-sports-monogram{display:inline-flex;align-items:center;justify-content:center;flex:none;width:28px;height:28px;border:1px solid var(--iui-line);border-radius:50%;font-size:10px;font-weight:600;background:var(--iui-surface-secondary)}
+.iui-sports-monogram[data-color=blue]{color:var(--iui-blue)}.iui-sports-monogram[data-color=green]{color:var(--iui-green)}.iui-sports-monogram[data-color=orange]{color:var(--iui-orange)}.iui-sports-monogram[data-color=red]{color:var(--iui-red)}.iui-sports-monogram[data-color=purple]{color:var(--iui-purple)}
+.iui-sports-score{font-size:22px;font-weight:600;white-space:nowrap}.iui-sports-score[data-missing=true]{color:var(--iui-muted)}.iui-sports-details-label{display:block;margin-top:4px;font-size:12px;color:var(--iui-muted)}.iui-sports-details-label:after{content:' ＋'}.iui-sports-game[open] .iui-sports-details-label:after{content:' −'}
+.iui-sports-game-detail{display:flex;flex-direction:column;gap:8px;padding-block:8px 12px;font-size:14px}.iui-sports-game-detail time{display:block}
+.iui-sports-table-wrap{max-width:100%;overflow:auto;overscroll-behavior-inline:contain}.iui-root .iui-sports-table-wrap :is(th,td){padding:8px 10px}.iui-root .iui-sports-table-wrap caption{font-size:12px;padding:8px 0;text-align:start}.iui-sports-standing-table{min-width:620px}.iui-sports-standing-table .iui-sports-team{min-width:130px;max-width:260px}.iui-root .iui-sports-standing-table tbody th{background:transparent;font-weight:500}.iui-root .iui-sports-sort{border:0;padding:2px;background:transparent;font-weight:600;white-space:nowrap}.iui-sports-standing-table th[aria-sort=ascending] button:after{content:' ↑'}.iui-sports-standing-table th[aria-sort=descending] button:after{content:' ↓'}
+.iui-sports-board{border-block:1px solid var(--iui-line);padding-block:16px}.iui-sports-board-status{display:flex;justify-content:center;gap:12px;align-items:center;font-size:12px;color:var(--iui-muted)}.iui-sports-board-sides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-block:20px}.iui-sports-board-team{text-align:center}.iui-sports-board-team .iui-sports-team{justify-content:center;flex-wrap:wrap}.iui-sports-board-team .iui-sports-score{display:block;font-size:44px;margin-block:8px}.iui-sports-side{flex-basis:100%;font-size:12px;color:var(--iui-muted)}.iui-sports-clock{text-align:center;font-size:14px;font-weight:500}.iui-sports-winner{display:block;color:var(--iui-success);font-size:12px}
+.iui-sports-source{display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--iui-muted);line-height:18px}.iui-sports-source>p:last-child{flex-basis:100%}.iui-sports-synthetic{margin-inline-start:8px}.iui-sports-status,.iui-sports-empty{padding:24px 12px;text-align:center;color:var(--iui-muted)}.iui-sports-status[role=alert]{color:var(--iui-danger)}.iui-sports[aria-busy=true] .iui-sports-status{min-height:180px;background:var(--iui-surface-secondary);display:grid;place-items:center;border-radius:8px}
+@media(max-width:520px){.iui-sports-versus{grid-template-columns:minmax(0,1fr) auto;gap:6px}.iui-sports-versus>.iui-sports-team:last-child{grid-column:1;grid-row:2;justify-content:flex-start;text-align:start}.iui-sports-versus>.iui-sports-score:nth-child(4){grid-column:2;grid-row:2}.iui-sports-separator{display:none}.iui-sports-filter{flex-basis:140px}.iui-sports-board-team .iui-sports-score{font-size:36px}.iui-sports-board-sides{gap:12px}}
+/* Original local learning views: stable controls, explicit answer state, no flip animation. */
+.iui-learning{min-width:0;max-width:100%}.iui-learning-header{display:flex;flex-direction:column;gap:8px}.iui-root .iui-learning-title{font-size:1.25rem}.iui-learning-body{display:flex;flex-direction:column;gap:16px;margin-block:16px}.iui-learning-progress{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:var(--iui-muted)}.iui-learning-progress progress{flex:1 1 120px;max-width:220px;height:6px;accent-color:var(--iui-selection)}.iui-root .iui-learning-heading{font-size:18px;line-height:1.5;overflow-wrap:anywhere}.iui-learning-heading:focus{outline:2px solid var(--iui-focus);outline-offset:4px}.iui-learning-question{min-width:0;margin:0;padding:0;border:0}.iui-learning-question>legend{padding:0;margin-bottom:8px;max-width:100%}.iui-learning-question>.iui-caption{margin-bottom:12px}.iui-learning-choice{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--iui-line);border-radius:8px;margin-block:6px;cursor:pointer;min-width:0}.iui-learning-choice>input{flex:none;margin-top:5px;accent-color:var(--iui-selection)}.iui-learning-choice>span{overflow-wrap:anywhere}.iui-learning-choice:has(input:checked){background:var(--iui-surface-secondary)}.iui-learning-choice[data-correct=true]{border-color:var(--iui-success)}.iui-learning-choice:has(input:disabled){cursor:default}.iui-learning-choice-note{margin-inline-start:auto;flex:none;font-size:12px;color:var(--iui-success)}.iui-learning-feedback{border-inline-start:3px solid var(--iui-warning);padding:8px 12px;display:flex;flex-direction:column;gap:8px}.iui-learning-feedback[data-correct=true]{border-color:var(--iui-success)}.iui-learning-nav,.iui-learning-rating{display:flex;flex-wrap:wrap;gap:8px}.iui-learning-nav button,.iui-learning-rating button{min-height:40px}.iui-learning-rating button[aria-pressed=true]{outline:2px solid var(--iui-focus);outline-offset:2px}.iui-learning-live{position:absolute!important;inline-size:1px;block-size:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}.iui-learning-result{display:flex;flex-wrap:wrap;gap:12px}.iui-learning-result>:is(h3,p,ol){flex-basis:100%}.iui-learning-score{font-size:24px;font-weight:600}.iui-learning-empty{padding:32px 12px;color:var(--iui-muted);text-align:center}.iui-learning-empty[role=alert]{color:var(--iui-danger)}.iui-learning[aria-busy=true] .iui-learning-empty{min-height:180px;background:var(--iui-surface-secondary)}.iui-flashcard{min-height:240px;padding:20px;border:1px solid var(--iui-line);border-radius:12px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;background:var(--iui-surface-secondary)}.iui-flashcard[data-side=back]{background:var(--iui-surface-primary)}.iui-flashcard-text{font-size:20px;line-height:1.6;overflow-wrap:anywhere}.iui-flashcard .iui-math{max-width:100%}@media(max-width:520px){.iui-learning-choice{padding:10px;gap:8px}.iui-learning-choice-note{flex-shrink:1}.iui-flashcard{padding:16px}.iui-flashcard-text{font-size:18px}}
+
+.iui-sports-standing-table :is(th,td){white-space:nowrap}.iui-sports-standing-table tbody th,.iui-sports-standing-table td:last-child{white-space:normal}
+/* Original financial presentation; only host semantic and categorical series tokens. */
+.iui-finance{container-type:inline-size;min-width:0;max-width:100%;font-variant-numeric:tabular-nums}
+.iui-finance [hidden]{display:none!important}
+.iui-root .iui-finance-title{font-size:1.05rem;line-height:1.45;letter-spacing:-.015em}
+.iui-finance-header{margin-block-end:16px}
+.iui-finance-identity{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.iui-finance-symbol{font-weight:650;letter-spacing:.015em}.iui-finance-name{overflow-wrap:anywhere}
+.iui-finance-name,.iui-finance-exchange,.iui-finance-currency{color:var(--iui-muted);font-size:.82rem}
+.iui-finance-price{font-size:2.1rem;line-height:1.3;font-weight:600;letter-spacing:-.035em;margin-block:8px 4px;overflow-wrap:anywhere}
+.iui-finance-change{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 6px;font-size:.9rem}
+.iui-finance-change[data-direction=up]{color:var(--iui-success)}.iui-finance-change[data-direction=down]{color:var(--iui-danger)}
+.iui-finance-change-label{color:var(--iui-muted);font-size:.76rem;margin-inline-start:4px}
+.iui-root .iui-finance-previous{font-size:.76rem;color:var(--iui-muted);margin-block-start:6px}
+.iui-finance-meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 12px;margin-block-start:8px;font-size:.73rem;line-height:1.55;color:var(--iui-muted)}
+.iui-finance-market{font-weight:600}.iui-finance-market[data-market=halted]{color:var(--iui-warning)}
+.iui-finance-baseline{font-size:.84rem;line-height:1.6}.iui-finance-baseline time{font-weight:550}
+.iui-root .iui-finance-note{color:var(--iui-muted);font-size:.76rem;line-height:1.6;margin-block-start:4px}
+.iui-finance-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin-block:16px}
+.iui-finance-legend-row{min-width:0}.iui-root .iui-finance-legend-button{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 7px;padding:8px 10px;text-align:start;min-height:40px;max-width:100%;width:100%;border-radius:8px;background:transparent}
+.iui-root .iui-finance-legend-button[aria-pressed=false]{color:var(--iui-muted);background:var(--iui-surface);border-style:dashed}
+.iui-finance-legend-button[aria-pressed=false] .iui-finance-swatch{opacity:.35}
+.iui-finance-legend-button .iui-finance-name{flex-basis:100%;font-size:.75rem}
+.iui-finance-swatch{display:inline-block;width:18px;height:0;flex:none;border-top:3px solid var(--iui-finance-series);align-self:center}
+.iui-finance-swatch[data-dash='1'],.iui-finance-swatch[data-dash='3'],.iui-finance-swatch[data-dash='4']{border-top-style:dashed}
+.iui-finance-swatch[data-dash='2'],.iui-finance-swatch[data-dash='5']{border-top-style:dotted}
+.iui-finance-legend-row .iui-finance-meta{padding-inline:2px;font-size:.68rem}
+.iui-finance-legend-row .iui-finance-updated{flex-basis:100%}
+.iui-root .iui-finance-incomparable{color:var(--iui-muted);font-size:.73rem;margin-block-start:5px}
+.iui-finance-ranges{display:flex;flex-wrap:wrap;gap:4px;margin-block:18px 8px}
+.iui-root .iui-finance-ranges button{min-height:40px;padding:7px 12px;border-color:transparent;border-radius:8px;font-size:.8rem}
+.iui-root .iui-finance-ranges button[aria-pressed=true]{background:var(--iui-surface);border-color:var(--iui-line);font-weight:600}
+.iui-finance-range-description{font-size:.7rem;color:var(--iui-muted);line-height:1.6}
+.iui-root .iui-finance-axis-title{font-size:.72rem;color:var(--iui-muted);margin-block:12px 3px}
+.iui-finance-chart{display:block;width:100%;height:228px;overflow:hidden;outline-offset:4px}
+.iui-finance-chart:focus-visible,.iui-finance-table-wrap:focus-visible{outline:2px solid var(--iui-focus)}
+.iui-finance-grid{stroke:var(--iui-line);stroke-width:1;stroke-dasharray:3 4}
+.iui-finance-tick{fill:var(--iui-muted);font-family:inherit;font-size:10px}
+.iui-finance-baseline-line{stroke:var(--iui-muted);stroke-width:1;stroke-dasharray:5 4}
+.iui-finance-line{stroke:var(--iui-finance-series);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.iui-finance-point{fill:var(--iui-finance-series);stroke:var(--iui-bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.iui-finance-point-active{stroke:var(--iui-ink);stroke-width:2}.iui-finance-cursor{stroke:var(--iui-muted);stroke-dasharray:2 3;pointer-events:none}
+.iui-finance-readout{display:block;color:var(--iui-muted);font-size:.75rem;line-height:1.6;min-height:2.6em;overflow-wrap:anywhere}
+.iui-finance-empty{padding-block:16px;color:var(--iui-muted);font-size:.82rem}
+.iui-finance-table-details{margin-block-start:12px}.iui-finance-table-details>summary{font-size:.8rem}
+.iui-finance-table-wrap{overflow:auto;max-width:100%;max-height:360px;margin-block-start:8px;overscroll-behavior-inline:contain}
+.iui-root .iui-finance-table{font-size:.75rem}.iui-root .iui-finance-table th,.iui-root .iui-finance-table td{padding:8px 10px;vertical-align:top}
+.iui-root .iui-finance-table tbody th{font-weight:400;background:transparent;min-width:150px}
+.iui-finance-table thead th{min-width:110px}.iui-root .iui-finance-table caption{padding:4px 0 8px;font-size:.7rem}
+.iui-finance-source{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 6px;padding-block-start:12px;margin-block-start:16px;border-block-start:1px solid var(--iui-line);font-size:.72rem;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-finance-synthetic{font-weight:600;margin-inline-start:6px}
+.iui-finance-status{padding:24px 12px;border:1px dashed var(--iui-line);border-radius:8px;color:var(--iui-muted);text-align:center}
+.iui-finance[data-status=loading] .iui-finance-status{min-height:160px;display:grid;place-items:center;background:var(--iui-surface)}
+.iui-finance[data-status=error] .iui-finance-status{color:var(--iui-danger)}
+.iui-finance-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@container(max-width:400px){.iui-finance-legend{grid-template-columns:1fr;gap:10px}.iui-finance-price{font-size:1.9rem}.iui-finance-meta{gap:3px 8px}.iui-finance-updated{flex-basis:100%}.iui-root .iui-finance-ranges button{padding:7px 10px}.iui-finance-header{margin-block-end:12px}}
+/* Original weighted heatmap; exact areas, signed labels and full records remain separate. */
+.iui-heatmap{min-width:0;max-width:100%}.iui-heatmap [hidden]{display:none!important}.iui-root .iui-heatmap-title{font-size:20px;line-height:28px}.iui-heatmap-body{display:flex;flex-direction:column;gap:12px;margin-block:16px}.iui-heatmap-filter{display:flex;gap:8px;align-items:center;font-size:14px}.iui-heatmap-filter select{min-width:140px;max-width:100%}.iui-heatmap-graphic{display:block;width:100%;height:auto}.iui-heatmap-graphic:focus{outline:none}.iui-heatmap-graphic[data-active-tile=false][data-input-mode=keyboard]:focus{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-heatmap-selection{stroke:var(--iui-selection);vector-effect:non-scaling-stroke;shape-rendering:crispEdges}.iui-heatmap-graphic[data-input-mode=keyboard]:focus .iui-heatmap-selection{stroke:var(--iui-focus)}.iui-heatmap-tile{stroke:#fff;stroke-width:1;vector-effect:non-scaling-stroke;cursor:pointer}.iui-heatmap-label{fill:var(--iui-ink);font-family:inherit;font-size:14px;font-weight:600;pointer-events:none}.iui-heatmap-change{fill:var(--iui-ink);font-family:inherit;font-size:12px;pointer-events:none}.iui-heatmap-readout{display:block;min-height:48px;font-size:14px;line-height:20px;overflow-wrap:anywhere}.iui-heatmap-empty,.iui-heatmap-status{padding:24px 12px;text-align:center;color:var(--iui-muted)}.iui-heatmap-status[role=alert]{color:var(--iui-danger)}.iui-heatmap[aria-busy=true] .iui-heatmap-status{min-height:200px;background:var(--iui-surface-secondary)}.iui-heatmap-table{max-width:100%;overflow:auto;overscroll-behavior-inline:contain;margin-top:12px}.iui-heatmap-table table{min-width:760px}.iui-heatmap-table :is(th,td){vertical-align:top}.iui-heatmap-source{display:flex;flex-wrap:wrap;gap:4px 14px;color:var(--iui-muted);font-size:12px;line-height:18px}.iui-heatmap-source time{flex-basis:100%}
+.iui-heatmap-table :is(th,td){white-space:nowrap}.iui-heatmap-table tbody th{white-space:normal;min-width:180px;max-width:240px}.iui-heatmap-table td:last-child{white-space:normal;min-width:290px}.iui-heatmap-table th:first-child{min-width:220px}
+
+/* Original converter layout; shared semantic tokens remain the single color source. */
+.iui-converter{container-type:inline-size;max-width:100%;padding:20px;border:1px solid var(--iui-line);border-radius:14px;font-variant-numeric:tabular-nums}
+.iui-converter [hidden]{display:none!important}
+.iui-root .iui-converter-title{font-size:1.125rem;line-height:1.4;margin-block-end:16px}
+.iui-converter-controls{display:flex;align-items:end;flex-wrap:wrap;gap:12px}
+.iui-converter-field{display:flex;flex:1 1 180px;flex-direction:column;gap:4px;min-width:0}
+.iui-converter-field label,.iui-converter-result-label{font-size:.8125rem;line-height:1.5;color:var(--iui-muted)}
+.iui-converter-amount-field{flex-basis:100%}
+.iui-root .iui-converter :is(input,select){width:100%;min-width:0;min-height:44px;font:inherit;font-size:1rem;line-height:1.5;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);color:var(--iui-ink);padding:9px 12px}
+.iui-root .iui-converter input[aria-invalid=true]{border-color:var(--iui-danger)}
+.iui-converter-pair{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:end;margin-block-start:12px}
+.iui-root .iui-converter-swap{min-height:44px;min-width:60px;padding:9px 12px;background:var(--iui-surface-secondary);font-size:.875rem}
+.iui-root :is(.iui-converter-hint,.iui-converter-error,.iui-converter-note,.iui-converter-rounding,.iui-converter-relation){font-size:.8125rem;line-height:1.55;margin-block-start:8px;color:var(--iui-muted)}
+.iui-root .iui-converter-error{color:var(--iui-danger)}
+.iui-converter-result-box{display:flex;flex-direction:column;gap:6px;margin-block-start:16px;padding:16px;background:var(--iui-surface-secondary);border-radius:10px}
+.iui-converter-result{display:block;font-size:1.75rem;line-height:1.35;letter-spacing:-.025em;font-weight:600;overflow-wrap:anywhere}
+.iui-root .iui-converter-relation{color:var(--iui-ink)}
+.iui-root .iui-converter-rounding{font-size:.75rem}
+.iui-converter-source{display:flex;flex-wrap:wrap;gap:4px 16px;margin-block-start:16px;padding-block-start:12px;border-block-start:1px solid var(--iui-line);font-size:.75rem;line-height:1.55;color:var(--iui-muted)}
+.iui-converter-source time{overflow-wrap:anywhere}.iui-converter-synthetic{font-weight:600}
+.iui-converter-rates{margin-block-start:16px}.iui-converter-table-wrap{max-width:100%;max-height:300px;overflow:auto;margin-block-start:8px}
+.iui-root .iui-converter-reset{margin-block-start:12px;min-height:44px;font-size:.8125rem}
+.iui-root .iui-converter-rates :is(th,td){font-size:.8125rem;padding:8px 12px}.iui-root .iui-converter-rates caption{font-size:.75rem;padding:0 0 8px}
+.iui-root .iui-converter-status{color:var(--iui-muted);font-size:.875rem;padding-block:20px}.iui-converter[data-status=error] .iui-converter-status{color:var(--iui-danger)}
+.iui-converter[data-status=loading] .iui-converter-status{min-height:120px;display:grid;place-items:center;background:var(--iui-surface-secondary);border-radius:10px}
+@container(max-width:400px){.iui-converter-pair{grid-template-columns:minmax(0,1fr);gap:8px}.iui-root .iui-converter-swap{justify-self:start;min-width:80px}.iui-converter-result{font-size:1.5rem}}
+@media(max-width:520px){.iui-converter{padding:16px}}
+@media(forced-colors:active){.iui-converter-result-box{border:1px solid CanvasText}.iui-root .iui-converter input[aria-invalid=true]{border:2px solid CanvasText}}
+
+/* Original structured-table presentation. Reuses the host semantic palette. */
+.iui-table-container{min-width:0;max-width:100%}
+.iui-table-container [hidden]{display:none!important}
+.iui-table-scroll{max-width:100%;overflow:auto;overscroll-behavior-inline:contain;scrollbar-width:thin}
+.iui-table-scroll:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-table{width:100%;border-collapse:collapse;table-layout:auto;font-size:.875rem;line-height:1.5}
+.iui-root .iui-table :is(th,td){padding:10px 14px;vertical-align:top;text-align:start;border-block-end:1px solid var(--iui-line);overflow-wrap:normal;word-break:normal}
+.iui-root .iui-table th{font-weight:600;background:var(--iui-surface-secondary)}
+.iui-root .iui-table tbody th{background:var(--iui-surface-primary)}
+.iui-root .iui-table tfoot :is(th,td){background:var(--iui-surface-secondary);border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-table tbody+tbody{border-block-start:2px solid var(--iui-line)}
+.iui-root .iui-table tr:last-child :is(th,td){border-block-end:0}
+.iui-root .iui-table .iui-table-number{white-space:nowrap;font-variant-numeric:tabular-nums;overflow-wrap:normal}
+.iui-root .iui-table :is(th,td)[data-align=start]{text-align:start}
+.iui-root .iui-table :is(th,td)[data-align=center]{text-align:center}
+.iui-root .iui-table :is(th,td)[data-align=end]{text-align:end}
+.iui-root .iui-table caption{padding:10px 14px;text-align:start;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-root .iui-table-scroll-hint,.iui-root .iui-table-status{margin-block-start:6px;font-size:.76rem;line-height:1.5;color:var(--iui-muted)}
+.iui-root .iui-table-status[role=alert]{color:var(--iui-danger)}
+@media(max-width:520px){.iui-root .iui-table :is(th,td){padding:9px 12px}}
+
+/* Original inline and grid details; all content still uses the same renderer. */
+.iui-inline-code{font: .9em/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--iui-surface-secondary);border:1px solid var(--iui-line);border-radius:4px;padding:1px 4px;white-space:break-spaces;overflow-wrap:anywhere}
+.iui-grid-item{display:flex;flex-direction:column;gap:8px;min-width:0;grid-column:span var(--iui-col-span,1);grid-row:span var(--iui-row-span,1)}
+.iui-root .iui-blockquote{padding:8px 0 8px 16px;border-inline-start:3px solid var(--iui-line);color:var(--iui-ink)}
+.iui-blockquote>*+*{margin-block-start:8px}.iui-quote-attribution{font-size:12px;color:var(--iui-muted);line-height:1.5}
+.iui-text-shimmer{position:relative;isolation:isolate;overflow:hidden}
+.iui-text-shimmer::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 25%,var(--iui-hover) 50%,transparent 75%);background-size:200% 100%;animation:iui-text-shimmer 2.4s linear infinite}
+@keyframes iui-text-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+@media(max-width:520px){.iui-root .iui-grid{grid-template-columns:repeat(var(--iui-grid-mobile-columns,1),minmax(0,1fr))}.iui-grid-item{grid-column:span var(--iui-mobile-col-span,1);grid-row:auto}}
+@media(prefers-reduced-motion:reduce){.iui-text-shimmer::after{animation:none;background:none}}
+
+/* Original scoped time controls. Theme values come from the shared semantic tokens. */
+.iui-time{container-type:inline-size;min-width:0;max-width:100%;border:1px solid var(--iui-line);border-radius:12px;padding:20px;background:var(--iui-surface-primary);font-variant-numeric:tabular-nums;box-sizing:border-box}
+.iui-time [hidden]{display:none!important}
+.iui-root .iui-time-title{margin:0;font-size:1rem;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.iui-time-mode,.iui-time-separator{font-size:.76rem;font-weight:400;color:var(--iui-muted)}
+.iui-time-digits{display:block;max-width:100%;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:clamp(1.35rem,9cqi,3.25rem);line-height:1.3;letter-spacing:-.04em;white-space:nowrap;direction:ltr;margin-block:16px 8px;color:var(--iui-ink)}
+.iui-time-date{display:block;font-size:.93rem;color:var(--iui-ink)}
+.iui-root .iui-time-zone,.iui-root .iui-time-note,.iui-root .iui-time-format,.iui-root .iui-time-lap-empty,.iui-root .iui-time-lap-limit{margin-block:8px 0;font-size:.76rem;line-height:1.5;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-root .iui-time-status{margin-block:12px 8px;min-height:1.5em;font-size:.87rem}
+.iui-time[data-status=complete] .iui-time-status{color:var(--iui-success)}
+.iui-time[data-status=limit] .iui-time-status{color:var(--iui-warning)}
+.iui-time-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block:8px 16px}
+.iui-root .iui-time-actions button{min-height:44px;min-width:64px;max-width:100%;padding:9px 14px;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-time-actions button:disabled{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg);border-color:var(--iui-disabled-border)}
+.iui-root .iui-time-actions button:not(:disabled):hover{background:var(--iui-hover)}
+.iui-time-actions button:focus-visible,.iui-time-lap-region:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-time-lap-region{margin-block-start:16px;max-height:17rem;max-width:100%;overflow:auto;overscroll-behavior:contain;border:1px solid var(--iui-line);border-radius:8px}
+.iui-root .iui-time-laps{font-size:.76rem;width:100%;border-collapse:collapse}
+.iui-root .iui-time-laps :is(th,td){padding:9px 10px;white-space:nowrap;text-align:end}
+.iui-root .iui-time-laps th:first-child{text-align:start}
+.iui-root .iui-time-laps caption{text-align:start;padding:9px 10px;white-space:normal;font-weight:600;color:var(--iui-ink)}
+.iui-root .iui-time-laps tbody th{font-weight:400;background:transparent}
+@media(max-width:520px){.iui-time{padding:16px}.iui-root .iui-time-actions button{flex:1 1 auto;padding-inline:10px}.iui-root .iui-time-laps :is(th,td){padding:8px 6px;font-size:.71rem}}
+
+/* Original overlay primitives. No imported runtime, private visual assets or hardcoded theme palette. */
+.iui-root .iui-overlay{max-width:100%;min-width:0}
+.iui-root .iui-overlay-trigger{min-height:44px;max-width:100%;white-space:normal;text-align:start;overflow-wrap:anywhere}
+.iui-root .iui-overlay-surface{box-sizing:border-box;margin:0;border:1px solid var(--iui-line);border-radius:12px;padding:16px;color:var(--iui-ink);background:var(--iui-surface-primary,var(--iui-bg));font:inherit;text-align:start;overflow:auto;overscroll-behavior:contain;overflow-wrap:anywhere;box-shadow:0 8px 28px rgb(0 0 0 / 16%);scrollbar-width:thin}
+.iui-root .iui-overlay-surface[hidden]{display:none!important}
+.iui-root .iui-overlay-surface[data-positioning=top-layer]{position:fixed;inset:auto;width:min(360px,calc(100vw - 16px));max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);z-index:1}
+.iui-root .iui-overlay-surface::backdrop{background:transparent;pointer-events:none}
+.iui-root .iui-tooltip-surface{padding:10px 12px;font-size:.875rem;line-height:1.5;white-space:pre-wrap}
+.iui-root .iui-tooltip-surface[data-positioning=top-layer]{width:max-content;max-width:min(320px,calc(100vw - 16px))}
+.iui-root .iui-overlay-surface[data-positioning=inline]{position:static;width:100%;max-width:100%;max-height:min(60dvh,520px);margin-block-start:8px;box-shadow:none}
+.iui-root .iui-popover-header{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-block-end:12px}
+.iui-root .iui-popover-title{font-size:1rem;line-height:1.5;font-weight:600;flex:1;min-width:0}
+.iui-root .iui-popover-header .iui-overlay-close{flex:none;margin-inline-start:auto;min-height:44px;max-width:100%;white-space:normal}
+.iui-root .iui-popover-body{min-width:0;max-width:100%;display:flex;flex-direction:column;gap:12px}
+.iui-root :is(.iui-overlay-trigger,.iui-overlay-close):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.iui-root .iui-overlay-surface{animation:none;transition:none;scroll-behavior:auto}}
+@media(forced-colors:active){.iui-root .iui-overlay-surface{border:1px solid CanvasText;box-shadow:none}}
+/* Original finite primitives. All rules stay inside a host and use its palette. */
+.iui-root .iui-flow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+.iui-root .iui-flow > * { flex: 0 1 auto; min-inline-size: 0; max-inline-size: 100%; }
+/* These existing modules use inline-size containment, so auto has no
+   content-derived flex basis. Ordinary children keep their natural auto basis. */
+.iui-root .iui-flow > :is(.iui-time, .iui-weather, .iui-finance, .iui-converter, .iui-thread) { flex-basis: min(20rem, 100%); }
+.iui-root .iui-flow[data-gap=none] { gap: 0; }
+.iui-root .iui-flow[data-gap=sm] { gap: 4px; }
+.iui-root .iui-flow[data-gap=lg] { gap: 16px; }
+.iui-root .iui-flow[data-align=start] { align-items: flex-start; }
+.iui-root .iui-flow[data-align=end] { align-items: flex-end; }
+.iui-root .iui-flow[data-justify=center] { justify-content: center; }
+.iui-root .iui-flow[data-justify=end] { justify-content: flex-end; }
+.iui-root .iui-flow[data-justify=between] { justify-content: space-between; }
+.iui-root .iui-icon {
+  display: inline-block;
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+  vertical-align: -.2em;
+  overflow: hidden;
+  color: var(--iui-ink);
+}
+.iui-root .iui-icon[data-size=sm] { inline-size: 16px; block-size: 16px; }
+.iui-root .iui-icon[data-size=lg] { inline-size: 24px; block-size: 24px; }
+.iui-root .iui-icon[data-tone=muted] { color: var(--iui-muted); }
+.iui-root .iui-icon[data-tone=info] { color: var(--iui-info); }
+.iui-root .iui-icon[data-tone=success] { color: var(--iui-success); }
+.iui-root .iui-icon[data-tone=warning] { color: var(--iui-warning); }
+.iui-root .iui-icon[data-tone=danger] { color: var(--iui-danger); }
+.iui-root .iui-pulse-indicator {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  color: var(--iui-ink);
+  font-size: .875rem;
+  line-height: 1.5;
+  vertical-align: baseline;
+}
+.iui-root .iui-pulse-content { display: flex; flex-wrap: wrap; gap: 2px 8px; min-inline-size: 0; overflow-wrap: anywhere; }
+.iui-root .iui-pulse-label { min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-pulse-status { color: var(--iui-muted); }
+.iui-root .iui-pulse-dot {
+  display: inline-block;
+  flex: none;
+  inline-size: 8px;
+  block-size: 8px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--iui-muted);
+}
+.iui-root .iui-pulse-indicator[data-status=busy] .iui-pulse-dot { color: var(--iui-info); }
+.iui-root .iui-pulse-indicator[data-status=success] .iui-pulse-dot { color: var(--iui-success); }
+.iui-root .iui-pulse-indicator[data-status=warning] .iui-pulse-dot { color: var(--iui-warning); }
+.iui-root .iui-pulse-indicator[data-status=error] .iui-pulse-dot { color: var(--iui-danger); }
+.iui-root .iui-pulse-indicator[data-status=busy][data-animate=true] .iui-pulse-dot { animation: iui-primitive-busy-pulse 1.8s ease-in-out infinite; }
+@keyframes iui-primitive-busy-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) {
+  .iui-root .iui-pulse-indicator[data-status=busy][data-animate=true] .iui-pulse-dot { animation: none; opacity: 1; }
+}
+@media (forced-colors: active) {
+  .iui-root .iui-pulse-dot { color: CanvasText; }
+}
+
+/* Original finite loading geometry. Existing host tokens supply all colors. */
+.iui-root .iui-loading,
+.iui-root .iui-loading-block {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  color: var(--iui-ink);
+  font-size: .875rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.iui-root .iui-loading-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-inline-size: 0;
+}
+.iui-root .iui-loading-label,
+.iui-root .iui-loading-block-label { min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-loading-value,
+.iui-root .iui-loading-hint { color: var(--iui-muted); min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-loading-value { font-variant-numeric: tabular-nums; margin-inline-start: auto; }
+.iui-root .iui-loading-track {
+  inline-size: 100%;
+  block-size: 8px;
+  margin-block-start: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--iui-surface);
+  /* Inset outline preserves the exact fill ratio and needs no minimum fill. */
+  outline: 1px solid var(--iui-line);
+  outline-offset: -1px;
+}
+.iui-root .iui-loading-fill { display: block; block-size: 100%; background: var(--iui-ink); }
+.iui-root .iui-loading[data-size=sm] .iui-loading-track { block-size: 4px; }
+.iui-root .iui-loading[data-size=lg] .iui-loading-track { block-size: 12px; }
+.iui-root .iui-loading-spinner {
+  display: block;
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+  overflow: hidden;
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: iui-loading-spin 1.2s linear infinite;
+}
+.iui-root .iui-loading[data-size=sm] .iui-loading-spinner { inline-size: 16px; block-size: 16px; }
+.iui-root .iui-loading[data-size=lg] .iui-loading-spinner { inline-size: 28px; block-size: 28px; }
+.iui-root .iui-loading-spinner-ring { stroke: var(--iui-line); }
+.iui-root .iui-loading-spinner-arc { stroke: currentColor; }
+.iui-root .iui-loading-block-label { display: block; margin-block-end: 8px; }
+.iui-root .iui-loading-block-shapes { display: grid; gap: 8px; min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-loading-block-piece {
+  display: block;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  border: 1px solid var(--iui-line);
+  border-radius: 4px;
+  background: var(--iui-surface);
+}
+.iui-root .iui-loading-block-line { block-size: 12px; inline-size: 100%; }
+.iui-root .iui-loading-block-line:last-child { inline-size: 68%; }
+.iui-root .iui-loading-block-line:only-child { inline-size: 100%; }
+.iui-root .iui-loading-block-copy { display: grid; gap: 8px; min-inline-size: 0; }
+.iui-root .iui-loading-block[data-shape=card] .iui-loading-block-shapes {
+  inline-size: min(100%, 24rem);
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--iui-line);
+  border-radius: 8px;
+}
+.iui-root .iui-loading-block-media { block-size: 100px; }
+.iui-root .iui-loading-block-circle { inline-size: 48px; aspect-ratio: 1; border-radius: 50%; box-sizing: border-box; }
+.iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { animation: iui-loading-soft-pulse 1.8s ease-in-out infinite; }
+@keyframes iui-loading-spin { to { transform: rotate(360deg); } }
+@keyframes iui-loading-soft-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) {
+  .iui-root .iui-loading-spinner,
+  .iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { animation: none; opacity: 1; }
+}
+@media (forced-colors: active) {
+  .iui-root .iui-loading-track { background: Canvas; outline-color: CanvasText; }
+  .iui-root .iui-loading-fill { background: Highlight; forced-color-adjust: none; }
+  .iui-root .iui-loading-spinner-ring,
+  .iui-root .iui-loading-spinner-arc { stroke: CanvasText; }
+  .iui-root .iui-loading-block-piece,
+  .iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { background: Canvas; border-color: CanvasText; animation: none; opacity: 1; }
+  .iui-root .iui-loading-block[data-shape=card] .iui-loading-block-shapes { border-color: CanvasText; }
+}
+
+/* Original, host-scoped source presentation. The rail alone may scroll. */
+.iui-root .iui-citation,.iui-root .iui-web-link-cards{max-inline-size:100%;min-inline-size:0;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-citation{border-inline-start:3px solid var(--iui-line);padding:10px 14px;background:var(--iui-surface);border-radius:6px}
+.iui-root .iui-source-heading{display:flex;align-items:baseline;gap:8px;min-inline-size:0}
+.iui-root .iui-source-number{flex:none;color:var(--iui-muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.iui-root .iui-source-title{color:var(--iui-ink);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;overflow-wrap:anywhere;min-inline-size:0}
+.iui-root .iui-source-title:hover{color:var(--iui-focus)}
+.iui-root .iui-source-meta{display:flex;flex-wrap:wrap;gap:4px 10px;margin-block-start:6px;color:var(--iui-muted);font-size:.75rem;line-height:1.5}
+.iui-root .iui-source-domain{overflow-wrap:anywhere;min-inline-size:0}
+.iui-root .iui-source-description{margin-block-start:8px;font-size:.875rem;line-height:1.6;white-space:pre-wrap}
+.iui-root .iui-source-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;margin-block-end:8px}
+.iui-root .iui-source-label{font-weight:600;flex:1 1 12rem;min-inline-size:0}
+.iui-root .iui-source-controls{display:flex;flex-wrap:wrap;gap:8px;min-inline-size:0}
+.iui-root .iui-source-controls button{min-block-size:40px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;font-size:.8rem}
+.iui-root .iui-source-controls button[aria-disabled=true]{color:var(--iui-muted);background:var(--iui-surface);cursor:default}
+.iui-root .iui-source-rail{display:flex;align-items:stretch;gap:12px;max-inline-size:100%;margin:0;padding:4px 4px 12px;list-style:none;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;scroll-behavior:auto}
+.iui-root .iui-source-card{flex:0 0 min(85%,20rem);min-inline-size:0;border:1px solid var(--iui-line);border-radius:12px;padding:14px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root .iui-source-card:only-child{flex-basis:min(100%,30rem)}
+.iui-root .iui-source-position{min-block-size:1.5em;margin-block-start:5px;font-size:.75rem;color:var(--iui-muted);font-variant-numeric:tabular-nums}
+.iui-root .iui-source-rail:focus-visible,.iui-root .iui-source-title:focus-visible,.iui-root .iui-source-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-source-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(forced-colors:active){.iui-root .iui-citation,.iui-root .iui-source-card{border-color:CanvasText}.iui-root .iui-source-title{color:LinkText}.iui-root .iui-source-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-source-rail:focus-visible,.iui-root .iui-source-title:focus-visible,.iui-root .iui-source-controls button:focus-visible{outline-color:Highlight}}
+
+/* Original scoped upgrade. Append after the original carousel declaration. */
+.iui-root .iui-carousel-shell{min-inline-size:0;max-inline-size:100%;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-carousel-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:4px}
+.iui-root .iui-carousel-label{flex:1 1 12rem;min-inline-size:0;font-weight:600}
+.iui-root .iui-carousel-controls{display:flex;flex-wrap:wrap;gap:8px}
+.iui-root .iui-carousel-controls button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-carousel-controls button[aria-disabled=true]{cursor:default;color:var(--iui-muted);background:var(--iui-surface)}
+.iui-root .iui-carousel{box-sizing:border-box;display:flex;gap:16px;min-inline-size:0;max-inline-size:100%;padding:6px 6px 12px;overflow-x:auto;scroll-snap-type:none;scroll-behavior:auto;overscroll-behavior-inline:contain}
+.iui-root .iui-carousel>*{box-sizing:border-box;flex:0 0 min(85%,320px);min-inline-size:0;max-inline-size:100%;scroll-snap-align:none;overflow-wrap:anywhere}
+.iui-root .iui-carousel:empty{display:none}
+.iui-root .iui-carousel-position{font-size:.75rem;color:var(--iui-muted);min-block-size:1.5em;padding-inline:6px;font-variant-numeric:tabular-nums}
+.iui-root .iui-carousel:focus-visible{outline:2px solid var(--iui-focus);outline-offset:-2px}
+.iui-root .iui-carousel-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+/* Inset child outlines stay visible even for controls aligned to a card edge. */
+.iui-root .iui-carousel :is(button,a,input,select,textarea,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:-2px}
+.iui-root .iui-carousel :is(pre,.iui-table){max-inline-size:100%;min-inline-size:0;overflow-x:auto}
+@media(forced-colors:active){.iui-root .iui-carousel-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-carousel:focus-visible,.iui-root .iui-carousel :focus-visible,.iui-root .iui-carousel-controls button:focus-visible{outline-color:Highlight}}
+
+/* Original theme-token styles. Append after the existing base .iui-code rule. */
+.iui-code-block{min-inline-size:0;max-inline-size:100%;align-self:stretch}
+.iui-code-block>.iui-code{box-sizing:border-box;inline-size:100%;min-inline-size:0;max-inline-size:100%;margin-block:0;overflow:auto;white-space:pre;direction:ltr;unicode-bidi:isolate;user-select:text}
+.iui-code-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-inline-size:0;margin-block-end:6px}
+.iui-code-language{font-size:.8rem;color:var(--iui-muted);overflow-wrap:anywhere;min-inline-size:0;unicode-bidi:plaintext}
+.iui-code-copy{margin-inline-start:auto;flex:none;font:inherit;font-size:.85rem;min-block-size:36px;padding:6px 12px;border:1px solid var(--iui-line);border-radius:6px;color:var(--iui-ink);background:var(--iui-surface);cursor:pointer}
+.iui-code-copy[aria-disabled=true]{cursor:wait}
+.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-code-status{display:block;font-size:.82rem;color:var(--iui-muted);overflow-wrap:anywhere;margin-block-start:4px;min-block-size:1.4em}
+.iui-code-token-comment{color:var(--iui-muted);font-style:italic}
+.iui-code-token-string{color:var(--iui-success)}
+.iui-code-token-number{color:var(--iui-info)}
+.iui-code-token-keyword{color:var(--iui-info);font-weight:600}
+@media(forced-colors:active){.iui-code-copy{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-code-block>.iui-code{border-color:CanvasText}.iui-code-block [class*=iui-code-token-]{color:CanvasText}.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline-color:Highlight}}
+/* No animation, transitions, fonts, assets, network or motion to reduce. */
+
+/* Append to renderer/style.css; both runtime mount and compiler already consume it. */
+.iui-pie{min-inline-size:0;max-inline-size:100%}
+.iui-pie .iui-chart-key{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-pie .iui-chart-title,.iui-pie .iui-caption{overflow-wrap:anywhere}
+.iui-pie path.iui-point-active{stroke:var(--iui-ink);stroke-width:2;stroke-linejoin:round}
+@media(forced-colors:active){.iui-pie path{stroke:CanvasText;stroke-width:1;forced-color-adjust:none}.iui-pie path.iui-point-active{stroke:Highlight;stroke-width:4}.iui-pie svg:focus-visible{outline-color:Highlight}}
+
+.iui-pie .iui-pie-key-active{outline:1px solid var(--iui-focus);outline-offset:3px;border-radius:2px}
+
+/* Finite tabs preserve the actual child tree; only panel visibility changes. */
+.iui-root .iui-tab-group { min-width:0; max-width:100%; }
+.iui-root .iui-tab-list { display:flex; gap:4px; max-width:100%; min-width:0; overflow-x:auto; overscroll-behavior-inline:contain; padding:4px; border-block-end:1px solid var(--iui-line); }
+.iui-root .iui-tab-list > button { flex:0 0 auto; max-width:100%; white-space:normal; overflow-wrap:anywhere; min-height:44px; border:1px solid transparent; border-radius:6px 6px 0 0; padding:8px 12px; background:transparent; color:var(--iui-muted); }
+.iui-root .iui-tab-list > button[aria-selected=true] { color:var(--iui-ink); background:var(--iui-surface); border-color:var(--iui-line); border-block-end:3px solid var(--iui-accent); }
+.iui-root .iui-tab-list > button:disabled { opacity:.5; cursor:not-allowed; }
+.iui-root .iui-tab-panel { min-width:0; max-width:100%; padding-block:16px; }
+.iui-root .iui-tab-panel[hidden] { display:none!important; }
+.iui-root .iui-tab-group :is([role=tab], [role=tabpanel]):focus-visible { outline:2px solid var(--iui-accent); outline-offset:2px; }
+@media (forced-colors:active) { .iui-root .iui-tab-list > button[aria-selected=true] { border-color:ButtonText; border-block-end-color:Highlight; } }
+
+/* Append after shared styles. No global selectors or external resources. */
+.iui-root .iui-markdown{white-space:normal;min-width:0;max-width:100%;overflow-wrap:anywhere;line-height:1.65}
+.iui-root .iui-markdown :where(p,li,blockquote,h1,h2,h3,h4,h5,h6){white-space:pre-wrap}
+.iui-root .iui-markdown> :first-child{margin-block-start:0}.iui-root .iui-markdown> :last-child{margin-block-end:0}
+.iui-root .iui-markdown p{margin-block:.75em}.iui-root .iui-markdown :where(h1,h2,h3,h4,h5,h6){line-height:1.3;margin-block:1.2em .5em}
+.iui-root .iui-markdown :where(ul,ol){padding-inline-start:1.7em;margin-block:.75em}.iui-root .iui-markdown li+li{margin-block-start:.3em}
+.iui-root .iui-markdown blockquote{margin-inline:0;padding-inline:1em;border-inline-start:3px solid var(--iui-line);color:var(--iui-muted)}
+.iui-root .iui-markdown :not(pre)>code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--iui-surface);padding:.1em .3em;border-radius:4px}
+.iui-root .iui-markdown .iui-code{box-sizing:border-box;min-width:0;max-width:100%;overflow:auto;overflow-wrap:normal;white-space:pre;margin-block:.75em}
+.iui-root .iui-markdown-code{min-width:0;max-width:100%}.iui-root .iui-markdown-language{color:var(--iui-muted);font-size:.8em;white-space:pre-wrap}
+.iui-root .iui-markdown a{color:var(--iui-accent);text-decoration:underline;text-underline-offset:.15em}.iui-root .iui-markdown a:focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px;border-radius:2px}
+.iui-root .iui-markdown-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* Original finite local learning layout, using existing semantic tokens only. */
+.iui-root .iui-fill-blank{min-inline-size:0;max-inline-size:100%;padding:20px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-bg);overflow-wrap:anywhere}
+.iui-root .iui-fill-blank-title{font-size:1.2rem;line-height:1.4;margin-block:4px 10px}
+.iui-root .iui-fill-blank-description{white-space:pre-wrap;margin-block-end:10px}
+.iui-root .iui-fill-blank-passage{white-space:pre-wrap;line-height:2.9;margin-block:18px}
+.iui-root .iui-fill-blank-slot{display:inline-flex;align-items:center;gap:4px;max-inline-size:100%;vertical-align:middle;white-space:normal;margin-inline:3px}
+.iui-root .iui-fill-blank-number{font-size:.7rem;color:var(--iui-muted);line-height:1.2;flex:none}
+.iui-root .iui-fill-blank-input{font:inherit;font-size:.95rem;line-height:1.4;inline-size:14ch;min-inline-size:0;max-inline-size:100%;box-sizing:border-box;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-block-end:2px solid var(--iui-muted);border-radius:5px;padding:7px 8px}
+.iui-root .iui-fill-blank-input[aria-invalid=true]{border-color:var(--iui-danger)}
+.iui-root .iui-fill-blank-input:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-fill-blank-feedback{margin:0;padding-inline-start:24px;font-size:.85rem}
+.iui-root .iui-fill-blank-row{padding-block:5px;min-inline-size:0}
+.iui-root .iui-fill-blank-label{font-weight:600}
+.iui-root .iui-fill-blank-message,.iui-root .iui-fill-blank-explanation{white-space:pre-wrap;margin-block-start:3px}
+.iui-root .iui-fill-blank-row[data-result=correct] .iui-fill-blank-message{color:var(--iui-success)}
+.iui-root .iui-fill-blank-row:is([data-result=missing],[data-result=too-long],[data-result=incorrect]) .iui-fill-blank-message{color:var(--iui-danger)}
+.iui-root .iui-fill-blank-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block:16px 8px}
+.iui-root .iui-fill-blank-actions button{min-block-size:40px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-fill-blank-actions button:disabled{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root .iui-fill-blank-status{font-size:.875rem;min-block-size:1.5em;margin-block:6px 10px}
+.iui-root .iui-fill-blank [hidden]{display:none!important}
+.iui-root .iui-fill-blank-sr{position:absolute!important;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:520px){.iui-root .iui-fill-blank{padding:14px}.iui-root .iui-fill-blank-input{inline-size:12ch}}
+@media(forced-colors:active){.iui-root .iui-fill-blank-input,.iui-root .iui-fill-blank-actions button{border-color:ButtonText}.iui-root .iui-fill-blank-input[aria-invalid=true]{border-style:double}.iui-root .iui-fill-blank-actions button:disabled{color:GrayText}}
+
+
+/* Original learning-sentence-builder-card. Local tokens preserve their literal content. */
+.iui-root .iui-sentence-builder{display:flex;flex-direction:column;gap:12px;border:1px solid var(--iui-line);border-radius:14px;padding:20px;max-width:100%;background:var(--iui-bg)}.iui-root .iui-sentence-builder [hidden]{display:none!important}.iui-root .iui-sentence-builder-group{display:flex;flex-direction:column;gap:10px;min-width:0}.iui-root .iui-sentence-builder-bank,.iui-root .iui-sentence-builder-controls,.iui-root .iui-sentence-builder-item-actions{display:flex;flex-wrap:wrap;gap:8px}.iui-root .iui-sentence-builder :is(button,.iui-root .iui-sentence-builder-token,.iui-root .iui-sentence-builder-literal){white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%}.iui-root .iui-sentence-builder button{min-height:44px;text-align:start;touch-action:manipulation}.iui-root .iui-sentence-builder button:disabled,.iui-root .iui-sentence-builder button[aria-disabled=true]{color:var(--iui-muted);background:var(--iui-surface);cursor:default}.iui-root .iui-sentence-builder button:not(:disabled):not([aria-disabled=true]):hover{background:var(--iui-hover)}.iui-root .iui-sentence-builder-chosen{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}.iui-root .iui-sentence-builder-item{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px;border:1px solid var(--iui-line);border-radius:10px;background:var(--iui-surface)}.iui-root .iui-sentence-builder-position{font-size:.8rem;color:var(--iui-muted);font-variant-numeric:tabular-nums}.iui-root .iui-sentence-builder-item>.iui-sentence-builder-token{flex:1 1 100px}.iui-root .iui-sentence-builder-item-actions{flex:0 1 auto}.iui-root .iui-sentence-builder-reference{display:flex;flex-direction:column;gap:10px;padding:12px;background:var(--iui-surface);border-inline-start:3px solid var(--iui-info)}.iui-root .iui-sentence-builder-reference-list{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0;padding-inline-start:24px}.iui-root .iui-sentence-builder-feedback{min-height:1.5em}.iui-root .iui-sentence-builder[data-attempt=correct] .iui-sentence-builder-feedback{color:var(--iui-success)}.iui-root .iui-sentence-builder[data-attempt=incorrect] .iui-sentence-builder-feedback{color:var(--iui-danger)}
+@media(max-width:480px){.iui-root .iui-sentence-builder{padding:14px}.iui-root .iui-sentence-builder-item-actions{flex-basis:100%}}
+@media(forced-colors:active){.iui-root .iui-sentence-builder,.iui-root .iui-sentence-builder-item,.iui-root .iui-sentence-builder button{border-color:ButtonText}.iui-root .iui-sentence-builder button:disabled,.iui-root .iui-sentence-builder button[aria-disabled=true]{color:GrayText}.iui-root .iui-sentence-builder .iui-sentence-builder-feedback{color:CanvasText}.iui-root .iui-sentence-builder-reference{border-color:Highlight}}
+
+/* Controlled checklist composes native fields and shared form snapshots. */
+.iui-root .iui-checklist{min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-bg)}
+.iui-root .iui-checklist-label{font-weight:600;padding-inline:6px;overflow-wrap:anywhere}
+.iui-root .iui-checklist-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.iui-root .iui-checklist-count{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.iui-root .iui-checklist-filter{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.iui-root .iui-checklist-filter select{font:inherit;max-inline-size:100%;min-block-size:44px;padding:8px;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:6px}
+.iui-root .iui-checklist button{min-block-size:44px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-checklist button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-checklist-items{list-style:none;margin:14px 0 0;padding:0}
+.iui-root .iui-checklist-item{min-inline-size:0;padding-block:8px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-checklist-item[data-complete=true] .iui-field-label{text-decoration:line-through}
+.iui-root .iui-checklist [hidden]{display:none!important}
+.iui-root .iui-checklist-feedback{min-block-size:1.5em;font-size:.85rem;overflow-wrap:anywhere}
+.iui-root .iui-checklist :is(select,button,input):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(forced-colors:active){.iui-root .iui-checklist,.iui-root .iui-checklist-filter select{border-color:ButtonText}.iui-root .iui-checklist button[aria-disabled=true]{color:GrayText}}
+
+
+/* Original finite rating: visible native radios, logical sizing, and no motion. */
+.iui-root .iui-rating{min-inline-size:0;max-inline-size:100%;margin:0;padding:16px;border:1px solid var(--iui-line);border-radius:8px}
+.iui-root .iui-rating-label{font-weight:600;overflow-wrap:anywhere;max-inline-size:100%;padding-inline:4px}
+.iui-root .iui-rating-hint{margin-block:0 8px;overflow-wrap:anywhere}
+.iui-root .iui-rating-options{display:flex;flex-wrap:wrap;gap:6px;min-inline-size:0;max-inline-size:100%}
+.iui-root .iui-rating-choice{display:inline-flex;align-items:center;justify-content:center;gap:5px;box-sizing:border-box;min-block-size:44px;min-inline-size:52px;padding:6px;border:1px solid var(--iui-line);border-radius:6px;cursor:pointer}
+.iui-root .iui-rating-choice input{margin:0;accent-color:var(--iui-accent)}
+.iui-root .iui-rating-star{font-size:1.25rem;line-height:1;color:var(--iui-muted)}
+.iui-root .iui-rating-choice[data-filled=true] .iui-rating-star{color:var(--iui-accent)}
+.iui-root .iui-rating-choice:has(input:checked){border-color:var(--iui-accent);background:var(--iui-surface);font-weight:600}
+.iui-root .iui-rating-number{font-variant-numeric:tabular-nums;font-size:.85rem}
+.iui-root .iui-rating-output{display:block;margin-block:10px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.iui-root .iui-rating-clear{min-block-size:44px;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-rating-clear[aria-disabled=true]{color:var(--iui-muted);cursor:default}
+.iui-root .iui-rating :is(input,button):focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px}
+.iui-root .iui-rating:disabled .iui-rating-choice{cursor:default;opacity:.65}
+.iui-root .iui-rating-feedback{margin-block:10px 0;color:var(--iui-danger);overflow-wrap:anywhere}
+.iui-root .iui-rating-feedback[hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-rating-choice:has(input:checked){border:2px solid Highlight}.iui-root .iui-rating-star,.iui-root .iui-rating-choice[data-filled=true] .iui-rating-star{color:CanvasText}.iui-root .iui-rating :is(input,button):focus-visible{outline-color:Highlight}.iui-root .iui-rating-clear[aria-disabled=true]{color:GrayText}.iui-root .iui-rating-feedback{color:CanvasText}}
+
+/* Original finite vocabulary reference; styles stay inside its component. */
+.iui-root .iui-vocab-card{display:flex;flex-direction:column;gap:16px;max-inline-size:100%;padding:20px;border:1px solid var(--iui-line);border-radius:14px;background:var(--iui-surface-primary);overflow-wrap:anywhere;text-align:start}
+.iui-root .iui-vocab-card [hidden]{display:none!important}
+.iui-root .iui-vocab-term{font-size:1.5rem;line-height:1.4;white-space:pre-wrap}
+.iui-root .iui-vocab-metadata{display:flex;flex-wrap:wrap;gap:12px 24px;margin:0}
+.iui-root .iui-vocab-meta{max-inline-size:100%}
+.iui-root .iui-vocab-meta dt,.iui-root .iui-vocab-label{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-vocab-meta dd{margin:0;white-space:pre-wrap}
+.iui-root .iui-vocab-actions{display:flex;flex-wrap:wrap;gap:8px}
+.iui-root .iui-vocab-actions button{min-block-size:44px;max-inline-size:100%;white-space:normal}
+.iui-root .iui-vocab-actions button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-vocab-actions button[aria-pressed=true]{border-color:var(--iui-ink);background:var(--iui-surface-tertiary);font-weight:650;box-shadow:inset 0 -2px var(--iui-ink)}
+.iui-root .iui-vocab-details{display:flex;flex-direction:column;gap:16px;padding-block-start:16px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-vocab-senses,.iui-root .iui-vocab-examples{margin:0;padding-inline-start:24px}
+.iui-root .iui-vocab-sense+.iui-vocab-sense{margin-block-start:20px}
+.iui-root .iui-vocab-sense>*+*{margin-block-start:8px}
+.iui-root .iui-vocab-meaning,.iui-root .iui-vocab-translation,.iui-root .iui-vocab-examples li{white-space:pre-wrap}
+.iui-root .iui-vocab-examples-title{margin:0;font-size:.9rem;font-weight:600}
+.iui-root .iui-vocab-examples li+li{margin-block-start:8px}
+.iui-root .iui-vocab-rating{display:flex;flex-direction:column;gap:8px}
+.iui-root .iui-vocab-status,.iui-root .iui-vocab-note{font-size:.85rem;line-height:1.6;color:var(--iui-muted)}
+.iui-root .iui-vocab-status:empty{display:none}
+@media(max-width:520px){.iui-root .iui-vocab-card{padding:16px}}
+@media(forced-colors:active){.iui-root .iui-vocab-card,.iui-root .iui-vocab-details{border-color:CanvasText}.iui-root .iui-vocab-actions button[aria-pressed=true]{border-color:Highlight;outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-vocab-actions button:focus-visible{outline-color:Highlight}.iui-root .iui-vocab-note,.iui-root .iui-vocab-status,.iui-root .iui-vocab-label,.iui-root .iui-vocab-meta dt{color:CanvasText}}
+
+/* Supplied icon dimensions remain fixed while optional consent/status wrap. */
+.iui-root .iui-favicon{--iui-favicon-size:32px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;max-inline-size:100%}
+.iui-root .iui-favicon[data-size=sm]{--iui-favicon-size:24px}.iui-root .iui-favicon[data-size=lg]{--iui-favicon-size:48px}
+.iui-root .iui-favicon-visual{display:inline-flex;align-items:center;justify-content:center;flex:0 0 var(--iui-favicon-size);inline-size:var(--iui-favicon-size);block-size:var(--iui-favicon-size);border:1px solid var(--iui-line);border-radius:6px;background:var(--iui-surface);color:var(--iui-ink);font-size:calc(var(--iui-favicon-size)*.4);line-height:1}
+.iui-root .iui-favicon img{inline-size:100%;block-size:100%;object-fit:contain;border-radius:5px}
+.iui-root .iui-favicon [hidden]{display:none!important}
+.iui-root .iui-favicon-controls{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-inline-size:0;flex:1 1 200px}
+.iui-root .iui-favicon button{min-block-size:44px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-favicon button[aria-disabled=true]{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root .iui-favicon-status{font-size:.8rem;color:var(--iui-muted);overflow-wrap:anywhere}
+@media(forced-colors:active){.iui-root .iui-favicon-visual{border-color:CanvasText}.iui-root .iui-favicon button[aria-disabled=true]{color:GrayText}}
+
+
+/* Original finite agenda. Native controls; no animation or external assets. */
+.iui-root .iui-agenda{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-agenda :is(.iui-agenda-label,.iui-agenda-description,.iui-agenda-event-title,.iui-agenda-event-description,.iui-agenda-location-value){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-agenda :is(.iui-agenda-description,.iui-agenda-note){margin-block-start:8px}
+.iui-root .iui-agenda :is(.iui-agenda-note,.iui-agenda-time){color:var(--iui-muted);font-size:.875rem}
+.iui-root .iui-agenda-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-block:16px}
+.iui-root .iui-agenda-filter{font:inherit;color:var(--iui-ink);background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:6px;min-block-size:44px;max-inline-size:100%;padding:8px 12px}
+.iui-root .iui-agenda-filter:disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:not-allowed}
+.iui-root .iui-agenda-date{margin-block-start:20px}
+.iui-root .iui-agenda-date[hidden]{display:none!important}
+.iui-root .iui-agenda-events{padding-inline-start:1.5rem;margin-block:12px 0}
+.iui-root .iui-agenda-event{padding:12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary)}
+.iui-root .iui-agenda-event+.iui-agenda-event{margin-block-start:10px}
+.iui-root .iui-agenda-event-title{font-size:1rem;margin:0;font-weight:650}
+.iui-root .iui-agenda-event>*+*{margin-block-start:8px}
+.iui-root .iui-agenda-time{font-variant-numeric:tabular-nums}
+.iui-root .iui-agenda time{display:inline-block;unicode-bidi:isolate}
+.iui-root .iui-agenda-cancelled{font-weight:600;color:var(--iui-muted)}
+.iui-root .iui-agenda-details>summary{cursor:pointer;min-block-size:44px;padding-block:10px}
+.iui-root .iui-agenda-details>p{margin-block:8px}
+.iui-root .iui-agenda-location-label{font-weight:600}
+.iui-root .iui-agenda-link{display:inline-block;padding-block:10px;min-block-size:44px;max-inline-size:100%}
+.iui-root .iui-agenda :is(select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+@media(forced-colors:active){.iui-root .iui-agenda-filter{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-agenda-filter:disabled{color:GrayText}.iui-root .iui-agenda-event{border-color:CanvasText}.iui-root .iui-agenda-cancelled{color:CanvasText}.iui-root .iui-agenda :focus-visible{outline-color:Highlight}}
+
+
+/* One canonical native button, with optional explicitly configured host action. */
+.iui-root .iui-button,.iui-root .iui-button-cancel{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;text-align:center}
+.iui-root .iui-button-host{min-inline-size:0;max-inline-size:100%;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.iui-root .iui-button-controls{display:flex;flex-wrap:wrap;align-items:center;gap:6px;max-inline-size:100%}
+.iui-root .iui-button-hint,.iui-root .iui-button-status{display:block;font-size:.8rem;line-height:1.45;overflow-wrap:anywhere;max-inline-size:100%;color:var(--iui-muted)}
+.iui-root .iui-button>.iui-button-hint{margin-block-start:4px;color:inherit}
+.iui-root .iui-button[data-tone=primary]:enabled{color:var(--iui-button-solid-text);background:var(--iui-button-solid-bg);border-color:var(--iui-button-solid-bg)}
+.iui-root .iui-button[data-tone=primary]:enabled:hover{background:var(--iui-button-solid-hover);border-color:var(--iui-button-solid-hover)}
+.iui-root .iui-button[data-tone=primary]:enabled:active{background:var(--iui-button-solid-active);border-color:var(--iui-button-solid-active)}
+.iui-root .iui-button[data-tone=danger]:enabled{color:var(--iui-danger-soft-text);background:var(--iui-danger-soft);border-color:currentColor}
+.iui-root .iui-button[aria-disabled=true]:enabled{cursor:progress}
+.iui-root .iui-button-host[data-status=error]>.iui-button-status,.iui-root .iui-button-host[data-status=unavailable]>.iui-button-status{color:var(--iui-danger)}
+.iui-root .iui-button-cancel[hidden]{display:none}
+.iui-root .iui-button-status:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(forced-colors:active){.iui-root .iui-button[data-tone]:enabled{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-button:disabled{color:GrayText;border-color:GrayText}.iui-root .iui-button-status:focus-visible{outline-color:Highlight}}
+
+
+/* Original finite menu, responsive local controls and literal supplied data. */
+.iui-root .iui-menu{display:flex;flex-direction:column;gap:12px;max-inline-size:100%;min-inline-size:0}
+.iui-root .iui-menu-controls{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
+.iui-root .iui-menu-control{display:flex;flex:1 1 190px;flex-direction:column;gap:5px;max-inline-size:100%;font-size:.875rem}
+.iui-root .iui-menu :is(input,select,button){min-block-size:44px;max-inline-size:100%;font:inherit}
+.iui-root .iui-menu :is(input,select){inline-size:100%;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);color:var(--iui-ink)}
+.iui-root .iui-menu button{white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-menu :is(input,select,button):disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-menu-count{font-size:.875rem;font-variant-numeric:tabular-nums;color:var(--iui-muted)}
+.iui-root .iui-menu-limit{color:var(--iui-danger);font-size:.875rem}
+.iui-root .iui-menu-empty{padding:20px;border:1px dashed var(--iui-line);border-radius:8px;color:var(--iui-muted)}
+.iui-root .iui-menu-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;list-style:none;padding:0;margin:10px 0 0}
+.iui-root .iui-menu-item{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--iui-line);border-radius:10px;background:var(--iui-surface)}
+.iui-root .iui-menu-item-heading{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;align-items:baseline}
+.iui-root .iui-menu-name{font-size:1rem;line-height:1.5;font-weight:600;margin:0;flex:1 1 130px}
+.iui-root .iui-menu-price{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.iui-root .iui-menu-description{white-space:pre-wrap;font-size:.925rem}
+.iui-root .iui-menu-item-status{font-size:.8rem;color:var(--iui-muted)}
+.iui-root .iui-menu-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.iui-root .iui-menu-tag{font-size:.8rem;white-space:pre-wrap;border:1px solid var(--iui-line);border-radius:6px;padding:2px 7px}
+.iui-root .iui-menu-details summary{padding-block:8px;min-block-size:44px}
+.iui-root .iui-menu-details .iui-menu-description{margin-block-start:8px}
+.iui-root .iui-menu [hidden]{display:none!important}
+.iui-root .iui-menu :is(input,select,button,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(forced-colors:active){.iui-root .iui-menu :is(input,select,button),.iui-root .iui-menu-item,.iui-root .iui-menu-tag,.iui-root .iui-menu-empty{border-color:ButtonText}.iui-root .iui-menu-limit{color:CanvasText}.iui-root .iui-menu :is(input,select,button):disabled{color:GrayText}}
+
+
+/* Supplied local suggestions; all selectors stay inside the owning renderer. */
+.iui-root .iui-suggestions{display:flex;flex-direction:column;gap:12px;max-inline-size:100%;min-inline-size:0}
+.iui-root .iui-suggestions :is(.iui-suggestions-title,.iui-suggestions-description,.iui-suggestions-choice){white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-suggestions-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;list-style:none;padding:0;margin:0}
+.iui-root .iui-suggestions-list>li{display:flex;min-inline-size:0}
+.iui-root .iui-suggestions-choice{inline-size:100%;min-block-size:44px;text-align:start;padding:12px 14px;background:var(--iui-surface);border:1px solid var(--iui-line);line-height:1.5}
+.iui-root .iui-suggestions-choice[aria-pressed=true]{border-color:var(--iui-focus);box-shadow:inset 0 0 0 1px var(--iui-focus);font-weight:600}
+.iui-root .iui-suggestions-actions{display:flex;flex-wrap:wrap;gap:10px}
+.iui-root .iui-suggestions-actions button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-suggestions button:disabled,.iui-root .iui-suggestions button[aria-disabled=true]{color:var(--iui-muted);cursor:default}
+.iui-root .iui-suggestions-status{font-size:.875rem;min-block-size:1.5em;overflow-wrap:anywhere}
+.iui-root .iui-suggestions [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-suggestions-choice[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-4px;border-color:Highlight}.iui-root .iui-suggestions button:disabled,.iui-root .iui-suggestions button[aria-disabled=true]{color:GrayText}}
+
+/* Additional native labels keep author text and inherited direction intact. */
+.iui-root .iui-label{display:block;box-sizing:border-box;min-inline-size:0;max-inline-size:100%;min-block-size:44px;padding-block:8px;font-weight:600;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+
+
+
+/* Independent literal writing drafts, with native textarea editing/selection. */
+.iui-root .iui-writing-block{display:flex;flex-direction:column;gap:10px;min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-bg)}
+.iui-root .iui-writing-label{font-weight:600;overflow-wrap:anywhere}
+.iui-root .iui-writing-draft{box-sizing:border-box;inline-size:100%;min-inline-size:0;max-inline-size:100%;min-block-size:180px;resize:vertical;font:inherit;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:8px}
+.iui-root .iui-writing-meta,.iui-root .iui-writing-controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.iui-root .iui-writing-count{font-variant-numeric:tabular-nums}
+.iui-root .iui-writing-meta,.iui-root .iui-writing-note{color:var(--iui-muted);font-size:.85rem;overflow-wrap:anywhere}
+.iui-root .iui-writing-block p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-writing-limit{color:var(--iui-danger)}
+.iui-root .iui-writing-status{min-block-size:1.5em;font-size:.9rem}
+.iui-root .iui-writing-controls button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-writing-controls button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-writing-block :is(textarea,button):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-writing-block [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-writing-block,.iui-root .iui-writing-draft,.iui-root .iui-writing-controls button{border-color:ButtonText}.iui-root .iui-writing-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-writing-limit{color:CanvasText}}
+
+
+
+/* Supplied person records: text only, native disclosure, no remote media. */
+.iui-root .iui-person-profile{min-inline-size:0;max-inline-size:100%;padding:18px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);overflow-wrap:anywhere}
+.iui-root .iui-person-profile :is(.iui-person-name,.iui-person-field-value,.iui-person-biography-text,.iui-person-link-label,.iui-person-source-label,dt,dd){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-person-profile>*+*{margin-block-start:10px}
+.iui-root .iui-person-name{font-size:1.3rem;line-height:1.35}
+.iui-root .iui-person-field-label,.iui-root .iui-person-facts dt{font-weight:600}
+.iui-root .iui-person-note,.iui-root .iui-person-link-hint{font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-person-facts{margin-inline:0;padding:0}
+.iui-root .iui-person-fact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:6px 14px;padding-block:8px;border-block-end:1px solid var(--iui-line)}
+.iui-root .iui-person-facts :is(dt,dd){min-inline-size:0;margin:0}
+.iui-root .iui-person-biography>summary{cursor:pointer;min-block-size:44px;padding-block:10px}
+.iui-root .iui-person-biography-text{margin-block:8px}
+.iui-root .iui-person-links-title{font-size:1rem}
+.iui-root .iui-person-links ul{padding-inline-start:1.5rem;margin-block:4px 0}
+.iui-root .iui-person-link{display:inline-block;max-inline-size:100%;min-block-size:44px;padding-block:10px}
+.iui-root .iui-person-profile :is(a,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(max-width:520px){.iui-root .iui-person-profile{padding:14px}.iui-root .iui-person-fact{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media(forced-colors:active){.iui-root .iui-person-profile,.iui-root .iui-person-fact{border-color:CanvasText}.iui-root .iui-person-note,.iui-root .iui-person-link-hint{color:CanvasText}.iui-root .iui-person-profile :focus-visible{outline-color:Highlight}}
+
+
+/* Original supplied article. Native disclosure; no network, truncation or animation. */
+.iui-root .iui-news-article{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere;padding:20px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary)}
+.iui-root .iui-news-article .iui-news-headline{font-size:1.35rem;line-height:1.4;margin:0}
+.iui-root .iui-news-article :is(.iui-news-headline,.iui-news-author,.iui-news-source,.iui-news-source-label,.iui-news-summary,.iui-news-tag,.iui-news-paragraph){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-news-metadata{display:flex;flex-wrap:wrap;gap:8px 24px;margin-block:12px 0}
+.iui-root .iui-news-meta-item{min-inline-size:0;max-inline-size:100%}
+.iui-root .iui-news-meta-item dt{font-size:.75rem;color:var(--iui-muted)}
+.iui-root .iui-news-meta-item dd{margin:0;font-size:.875rem}
+.iui-root .iui-news-note{margin-block-start:12px;font-size:.8rem;color:var(--iui-muted)}
+.iui-root .iui-news-published{display:inline-block;font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.iui-root .iui-news-source-link{display:inline-block;min-block-size:44px;max-inline-size:100%;padding-block:10px}
+.iui-root .iui-news-link-hint{font-size:.8rem}
+.iui-root .iui-news-tags{display:flex;flex-wrap:wrap;gap:6px 10px;padding:0;margin-block:12px 0;list-style:none}
+.iui-root .iui-news-tag{max-inline-size:100%;padding:3px 8px;border:1px solid var(--iui-line);border-radius:6px;font-size:.8rem;background:var(--iui-surface)}
+.iui-root .iui-news-summary{margin-block-start:16px;line-height:1.7}
+.iui-root .iui-news-details{margin-block-start:16px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-news-details>summary{min-block-size:44px;padding-block:12px;font-weight:600;cursor:pointer}
+.iui-root .iui-news-body{padding-block:4px}
+.iui-root .iui-news-paragraph{line-height:1.8;margin:0}
+.iui-root .iui-news-paragraph+.iui-news-paragraph{margin-block-start:16px}
+.iui-root .iui-news-article :is(summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(max-width:520px){.iui-root .iui-news-article{padding:16px}.iui-root .iui-news-article .iui-news-headline{font-size:1.2rem}}
+@media(forced-colors:active){.iui-root .iui-news-article,.iui-root .iui-news-tag,.iui-root .iui-news-details{border-color:CanvasText}.iui-root .iui-news-source-link{color:LinkText}.iui-root .iui-news-article :focus-visible{outline-color:Highlight}}
+
+
+/* Finite supplied reviews, native controls and disclosure, no visual reordering. */
+.iui-root .iui-reviews{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-reviews [hidden]{display:none!important}
+.iui-root .iui-reviews :is(.iui-reviews-label,.iui-reviews-description,.iui-reviews-author,.iui-reviews-title,.iui-reviews-body,.iui-reviews-source){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-reviews :is(.iui-reviews-note,.iui-reviews-date,.iui-reviews-count){color:var(--iui-muted);font-size:.875rem}
+.iui-root .iui-reviews :is(.iui-reviews-description,.iui-reviews-note,.iui-reviews-source){margin-block-start:8px}
+.iui-root .iui-reviews-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin-block:16px}
+.iui-root .iui-reviews-control{display:flex;flex-direction:column;gap:6px;min-inline-size:0;max-inline-size:100%;flex:1 1 200px}
+.iui-root .iui-reviews select{font:inherit;color:var(--iui-ink);background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:6px;min-block-size:44px;min-inline-size:0;max-inline-size:100%;padding:8px 12px}
+.iui-root .iui-reviews select:disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:not-allowed}
+.iui-root .iui-reviews-list{padding-inline-start:1.5rem;margin-block:12px 0}
+.iui-root .iui-reviews-item{padding:12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);margin-block-end:12px}
+.iui-root .iui-reviews-author{font-size:1rem;margin:0;font-weight:650}
+.iui-root .iui-reviews-title{font-weight:600}
+.iui-root .iui-reviews-item>*+*{margin-block-start:8px}
+.iui-root .iui-reviews-date{display:inline-block;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+.iui-root .iui-reviews-details>summary{cursor:pointer;min-block-size:44px;padding-block:10px}
+.iui-root .iui-reviews-body{margin-block:8px;line-height:1.6}
+.iui-root .iui-reviews :is(.iui-reviews-link,.iui-reviews-source-link){display:inline-block;padding-block:10px;min-block-size:44px;max-inline-size:100%}
+.iui-root .iui-reviews :is(select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+@media(forced-colors:active){.iui-root .iui-reviews select{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-reviews select:disabled{color:GrayText}.iui-root .iui-reviews-item{border-color:CanvasText}.iui-root .iui-reviews :is(.iui-reviews-note,.iui-reviews-date,.iui-reviews-count){color:CanvasText}.iui-root .iui-reviews :focus-visible{outline-color:Highlight}}
+
+
+/* Original supplied time choices. Local intent only; native controls, no motion. */
+.iui-root .iui-availability{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere;border:1px solid var(--iui-line);border-radius:14px;padding:20px;background:var(--iui-surface-primary);text-align:start}
+.iui-root .iui-availability [hidden]{display:none!important}
+.iui-root .iui-availability :is(.iui-availability-title,.iui-availability-description,dd){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-availability>*+*{margin-block-start:12px}
+.iui-root .iui-availability-facts{display:flex;flex-wrap:wrap;gap:12px 24px}
+.iui-root .iui-availability-facts>div{max-inline-size:100%;min-inline-size:0}
+.iui-root .iui-availability-facts dt,.iui-root .iui-availability :is(.iui-availability-note,.iui-availability-counts,.iui-availability-source){font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-availability-facts dd{margin:0}
+.iui-root .iui-availability-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.iui-root .iui-availability :is(button,select,a){min-block-size:44px;min-inline-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-availability-filter{font:inherit;color:var(--iui-ink);background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:6px;padding:8px 12px}
+.iui-root .iui-availability-slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;list-style:none;padding:0}
+.iui-root .iui-availability-choice{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;inline-size:100%;font-variant-numeric:tabular-nums}
+.iui-root .iui-availability time{display:inline-block;unicode-bidi:isolate}
+.iui-root .iui-availability-choice[aria-pressed=true]{border-color:var(--iui-ink);box-shadow:inset 0 -2px var(--iui-ink);font-weight:650}
+.iui-root .iui-availability-slot-status{flex-basis:100%;font-size:.85rem}
+.iui-root .iui-availability :is(button,select):disabled,.iui-root .iui-availability-clear[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-availability-status:empty{display:none}
+.iui-root .iui-availability-source a{display:inline-block;padding-block:10px}
+.iui-root .iui-availability :is(button,select,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(max-width:520px){.iui-root .iui-availability{padding:16px}}
+@media(forced-colors:active){.iui-root .iui-availability{border-color:CanvasText}.iui-root .iui-availability-filter{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-availability :is(button,select):disabled,.iui-root .iui-availability-clear[aria-disabled=true]{color:GrayText}.iui-root .iui-availability-choice[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-availability :focus-visible{outline-color:Highlight}}
+.iui-root .iui-availability :is(button,select){transition:none;animation:none}
+
+
+/* Original supplied discussion reader. Logical spacing preserves source order in RTL. */
+.iui-root .iui-thread{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere;border:1px solid var(--iui-line);border-radius:12px;padding:16px;background:var(--iui-surface-primary);container-type:inline-size}
+.iui-root .iui-thread :is(.iui-thread-title,.iui-thread-body,.iui-thread-comment-body,.iui-thread-author,.iui-thread-community,.iui-thread-comment-author,.iui-thread-source-label){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-thread> *+*{margin-block-start:12px}
+.iui-root .iui-thread :is(.iui-thread-meta,.iui-thread-note){font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-thread .iui-thread-field-label{font-weight:600}
+.iui-root .iui-thread .iui-thread-score-value{font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.iui-root .iui-thread .iui-thread-comments{list-style-type:none;margin:0;padding-inline-start:0;min-inline-size:0}
+.iui-root .iui-thread .iui-thread-comment-item{min-inline-size:0;margin-block-start:12px}
+.iui-root .iui-thread .iui-thread-comment{min-inline-size:0;border-inline-start:2px solid var(--iui-line);padding-inline-start:16px}
+.iui-root .iui-thread .iui-thread-comment> *+*{margin-block-start:8px}
+.iui-root .iui-thread :is(.iui-thread-discussion,.iui-thread-replies)>summary{cursor:pointer;min-block-size:44px;padding-block:10px;overflow-wrap:anywhere}
+.iui-root .iui-thread .iui-thread-link{display:inline-block;min-block-size:44px;padding-block:10px;max-inline-size:100%}
+.iui-root .iui-thread :is(summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+@container(max-width:400px){.iui-root .iui-thread .iui-thread-comment{padding-inline-start:8px}}
+@media(max-width:480px){.iui-root .iui-thread{padding:12px}.iui-root .iui-thread .iui-thread-comment{padding-inline-start:8px}}
+@media(forced-colors:active){.iui-root .iui-thread,.iui-root .iui-thread .iui-thread-comment{border-color:CanvasText}.iui-root .iui-thread :is(.iui-thread-meta,.iui-thread-note){color:CanvasText}.iui-root .iui-thread .iui-thread-link{color:LinkText}.iui-root .iui-thread :focus-visible{outline-color:Highlight}}
+
+
+/* Bounded, explicit motion previews; real reading content and focus never clip. */
+.iui-root .iui-motion{min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);overflow-wrap:anywhere}
+.iui-root .iui-motion>*+*{margin-block-start:12px}
+.iui-root .iui-motion-label{font-size:1.15rem;line-height:1.4;white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-motion-content{min-inline-size:0;opacity:1;transform:none}
+.iui-root .iui-motion-content>*+*{margin-block-start:12px}
+.iui-root .iui-motion-note,.iui-root .iui-motion-empty{color:var(--iui-muted);font-size:.875rem}
+.iui-root .iui-celebration-message{white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-celebration-decoration{position:relative;block-size:52px;max-inline-size:100%;overflow:hidden;pointer-events:none;contain:paint}
+.iui-root .iui-celebration-shape{position:absolute;inline-size:8px;block-size:8px;border-radius:2px;opacity:.35;transform:none;pointer-events:none}
+.iui-root .iui-celebration-shape:nth-child(even){border-radius:50%}
+.iui-root .iui-motion-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.iui-root .iui-motion-controls button{transition:none;min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-motion-controls button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-motion-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-motion-status{min-block-size:1.5em;font-size:.9rem}
+@media(max-width:520px){.iui-root .iui-motion{padding:12px}}
+@media(forced-colors:active){.iui-root .iui-motion,.iui-root .iui-motion-controls button{border-color:ButtonText}.iui-root .iui-motion-note,.iui-root .iui-motion-empty{color:CanvasText}.iui-root .iui-motion-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-celebration-shape{background:CanvasText!important;opacity:1}.iui-root .iui-motion-controls button:focus-visible{outline-color:Highlight}}
+
+
+/* Original local review cards. Plain authored content, native controls only. */
+.iui-root :is(.iui-email-draft,.iui-task-expansion-card){box-sizing:border-box;min-inline-size:0;max-inline-size:100%;margin:0;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root :is(.iui-email-title,.iui-task-review-title){font-size:1.15rem;line-height:1.5;font-weight:600;white-space:pre-wrap;max-inline-size:100%}
+.iui-root .iui-email-metadata{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:8px 16px;margin-block:12px}
+.iui-root .iui-email-metadata dt{font-weight:600}
+.iui-root .iui-email-metadata :is(dt,dd){min-inline-size:0;margin:0;white-space:pre-wrap}
+.iui-root .iui-email-recipients{margin:0;padding-inline-start:1.5em}
+.iui-root .iui-email-recipients>li{white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-email-empty{margin:0}
+.iui-root :is(.iui-email-disclosure,.iui-task-review-note,.iui-task-review-count){font-size:.875rem;color:var(--iui-muted);margin-block:10px;white-space:pre-wrap}
+.iui-root .iui-email-draft>.iui-writing-block{margin-block-start:12px;background:var(--iui-bg)}
+.iui-root .iui-task-review-steps{margin-block:12px;padding-inline-start:1.8em}
+.iui-root .iui-task-review-step{padding-block:12px;border-block-end:1px solid var(--iui-line)}
+.iui-root .iui-task-review-step-title{font-size:1rem;line-height:1.5;margin:0;white-space:pre-wrap}
+.iui-root :is(.iui-task-review-summary,.iui-task-review-description,.iui-task-review-details>p){margin-block:8px;white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-task-review-check{display:flex;align-items:center;gap:10px;min-block-size:44px;inline-size:fit-content;max-inline-size:100%;cursor:pointer}
+.iui-root .iui-task-review-check>input{inline-size:20px;block-size:20px;flex:none;accent-color:var(--iui-focus);margin:0}
+.iui-root .iui-task-review-details>summary{min-block-size:44px;box-sizing:border-box;padding-block:10px;cursor:pointer}
+.iui-root .iui-task-review-reset{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-task-expansion-card :is(input,button,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-task-expansion-card :is(input,button):disabled,.iui-root .iui-task-review-reset[aria-disabled=true]{color:var(--iui-disabled-text);cursor:default}
+@media(max-width:520px){.iui-root .iui-email-metadata{grid-template-columns:minmax(0,1fr);gap:4px}.iui-root .iui-email-metadata dd{margin-block-end:8px}}
+@media(forced-colors:active){.iui-root :is(.iui-email-draft,.iui-task-expansion-card,.iui-task-review-step){border-color:CanvasText}.iui-root :is(.iui-email-disclosure,.iui-task-review-note,.iui-task-review-count){color:CanvasText}.iui-root .iui-task-expansion-card :focus-visible{outline-color:Highlight}.iui-root .iui-task-expansion-card :is(input,button):disabled,.iui-root .iui-task-review-reset[aria-disabled=true]{color:GrayText}}
+
+
+/* Original supplied-place choices and independently consented media, scoped locally. */
+.iui-root :is(.iui-location-choice,.iui-business-gallery){min-inline-size:0;display:grid;gap:12px}
+.iui-root :is(.iui-location-choice,.iui-business-gallery) :is(h2,p){margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root :is(.iui-location-choice-title,.iui-business-gallery-title){font-size:1.12rem;line-height:1.4}
+.iui-root :is(.iui-location-choice-note,.iui-business-gallery-note,.iui-location-choice-address,.iui-location-choice-detail,.iui-business-gallery-caption){color:var(--iui-muted);font-size:.875rem;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap}
+.iui-root .iui-location-choice-options{list-style:none;padding:0;margin:0;display:grid;gap:10px;min-inline-size:0}
+.iui-root .iui-location-choice-option{display:flex;flex-direction:column;gap:6px;text-align:start;inline-size:100%;min-block-size:44px;min-inline-size:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-location-choice-label{font-weight:600}
+.iui-root .iui-location-choice-option[aria-pressed=true]{border-color:var(--iui-focus);box-shadow:inset 0 0 0 1px var(--iui-focus);background:var(--iui-surface)}
+.iui-root .iui-location-choice-clear{justify-self:start;min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-location-choice-clear[aria-disabled=true]{opacity:.65;cursor:default}
+.iui-root .iui-location-choice-status:empty{display:none}
+.iui-root .iui-business-gallery-images{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;min-inline-size:0}
+.iui-root .iui-business-gallery-item{min-inline-size:0}
+.iui-root .iui-business-gallery-item .iui-image{margin:0;display:grid;gap:8px;min-inline-size:0}
+.iui-root .iui-business-gallery-item .iui-image-content{min-block-size:160px;min-inline-size:0;display:grid;align-content:center;background:var(--iui-surface);border-radius:10px}
+.iui-root .iui-business-gallery-item .iui-image img{min-block-size:160px;max-block-size:480px;object-fit:contain;overflow-wrap:anywhere}
+.iui-root .iui-business-gallery-item .iui-image-consent{min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-business-gallery-item button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root :is(.iui-location-choice,.iui-business-gallery) button:disabled{cursor:not-allowed;opacity:.65}
+@media(forced-colors:active){
+  .iui-root .iui-location-choice-option[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-3px;box-shadow:none}
+  .iui-root :is(.iui-location-choice,.iui-business-gallery) button:focus-visible{outline:2px solid Highlight;outline-offset:3px}
+  .iui-root .iui-business-gallery-item .iui-image-content{border:1px solid CanvasText}
+}
+
+/* Local onboarding choices retain native radios/checkboxes and logical layout. */
+.iui-root .iui-onboarding{min-inline-size:0;margin:0;padding:1rem;border:1px solid var(--iui-line);border-radius:16px;background:var(--iui-surface)}
+.iui-root .iui-onboarding-title{font-weight:700;padding-inline:.25rem;overflow-wrap:anywhere}
+.iui-root .iui-onboarding-description,.iui-root .iui-onboarding-note,.iui-root .iui-onboarding-guidance,.iui-root .iui-onboarding-count,.iui-root .iui-onboarding-status{margin-block:.5rem;overflow-wrap:anywhere}
+.iui-root .iui-onboarding-note,.iui-root .iui-onboarding-option-description{font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-onboarding-options{display:grid;gap:.625rem;margin-block:1rem}
+.iui-root .iui-onboarding-option{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem;border:1px solid var(--iui-line);border-radius:12px;cursor:pointer;min-inline-size:0}
+.iui-root .iui-onboarding-option[data-selected=true]{border-color:var(--iui-accent);background:var(--iui-surface-secondary)}
+.iui-root .iui-onboarding-option input{flex:0 0 auto;inline-size:1.1rem;block-size:1.1rem;margin:.15rem 0 0;accent-color:var(--iui-accent)}
+.iui-root .iui-onboarding-option-body{display:grid;gap:.25rem;min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-onboarding-option-title{font-weight:600}
+.iui-root .iui-onboarding-option:focus-within{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-onboarding-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.iui-root .iui-onboarding-status{min-block-size:1.5em}
+.iui-root .iui-onboarding[data-status=invalid] .iui-onboarding-status,.iui-root .iui-onboarding[data-status=error] .iui-onboarding-status{color:var(--iui-danger)}
+.iui-root .iui-onboarding-option:has(input:disabled){cursor:default;opacity:.65}
+@media(forced-colors:active){.iui-root .iui-onboarding-option[data-selected=true]{border:2px solid Highlight}.iui-root .iui-onboarding-option:focus-within{outline-color:Highlight}}
+
+/* Original finite supplied travel/events readers. No remote images or motion. */
+.iui-root :is(.iui-flight-option,.iui-artist-events){box-sizing:border-box;min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root :is(.iui-flight-option,.iui-artist-events)>*+*{margin-block-start:12px}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(h2,h3,p,dd,dt){white-space:pre-wrap;overflow-wrap:anywhere;min-inline-size:0}
+.iui-root :is(.iui-flight-title,.iui-events-artist){font-size:1.15rem;line-height:1.5;margin:0}
+.iui-root :is(.iui-flight-carrier,.iui-events-title){font-size:1rem;line-height:1.5;margin:0}
+.iui-root :is(.iui-travel-disclosure,.iui-flight-note,.iui-events-time-zone,.iui-events-count){font-size:.875rem;color:var(--iui-muted)}
+.iui-root :is(.iui-flight-legs,.iui-events-list){display:grid;gap:12px;min-inline-size:0;list-style:none;margin:0;padding:0}
+.iui-root :is(.iui-flight-leg,.iui-events-item){min-inline-size:0;padding-block:12px;border-block-start:1px solid var(--iui-line)}
+.iui-root :is(.iui-flight-leg,.iui-events-item)>*+*{margin-block-start:8px}
+.iui-root :is(.iui-flight-time,.iui-flight-route,.iui-events-date,.iui-events-time,.iui-flight-price bdi){font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.iui-root .iui-flight-facts{display:grid;gap:8px;margin:8px 0}
+.iui-root .iui-flight-facts>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px 12px}
+.iui-root .iui-flight-facts dt{font-weight:600}
+.iui-root .iui-flight-facts dd{margin:0}
+.iui-root :is(.iui-flight-controls,.iui-events-controls){display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-inline-size:0}
+.iui-root :is(.iui-flight-controls button,.iui-events-filter){min-block-size:44px;max-inline-size:100%;min-inline-size:0;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation;transition:none;animation:none}
+.iui-root .iui-events-filter{padding:8px 12px;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:8px;font:inherit}
+.iui-root .iui-flight-select[aria-pressed=true]{border-color:var(--iui-focus);box-shadow:inset 0 0 0 1px var(--iui-focus);font-weight:650}
+.iui-root .iui-flight-controls button[aria-disabled=true]{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(button,select):disabled{cursor:not-allowed;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(summary,a){display:block;box-sizing:border-box;min-block-size:44px;max-inline-size:100%;padding-block:10px}
+.iui-root :is(.iui-flight-option,.iui-artist-events) summary{display:list-item;cursor:pointer}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(button,select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-flight-status:empty{display:none}
+.iui-root .iui-events-item[hidden]{display:none}
+@media(max-width:520px){.iui-root :is(.iui-flight-option,.iui-artist-events){padding:12px}.iui-root .iui-flight-facts>div{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media(forced-colors:active){.iui-root :is(.iui-flight-option,.iui-artist-events,.iui-flight-leg,.iui-events-item){border-color:CanvasText}.iui-root :is(.iui-travel-disclosure,.iui-flight-note,.iui-events-time-zone,.iui-events-count){color:CanvasText}.iui-root .iui-flight-select[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-flight-controls button[aria-disabled=true],.iui-root :is(.iui-flight-option,.iui-artist-events) :is(button,select):disabled{color:GrayText}.iui-root :is(.iui-flight-option,.iui-artist-events) :focus-visible{outline-color:Highlight}}
+
+/* Original supplied ledger views: exact readable values, bounded decorative shares. */
+.iui-root .iui-ledger{box-sizing:border-box;min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root .iui-ledger>*+*{margin-block-start:12px}
+.iui-root .iui-ledger :is(h2,h3,p){margin-block-end:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-ledger-title{font-size:1.15rem;line-height:1.5}
+.iui-root .iui-ledger-currency{font-size:1.05rem}
+.iui-root :is(.iui-ledger-note,.iui-ledger-observed,.iui-ledger-counts,.iui-ledger-group-counts,.iui-ledger-source,.iui-ledger-empty,.iui-ledger-shares-undefined){font-size:.875rem;line-height:1.5;color:var(--iui-muted)}
+.iui-root .iui-ledger-description{unicode-bidi:plaintext}
+.iui-root .iui-ledger-filters{display:flex;flex-wrap:wrap;gap:12px;align-items:end;min-inline-size:0}
+.iui-root .iui-ledger-filter{display:grid;gap:4px;min-inline-size:0;max-inline-size:100%}
+.iui-root .iui-ledger-filters :is(select,button){box-sizing:border-box;min-block-size:44px;max-inline-size:100%;min-inline-size:0;font:inherit;color:var(--iui-text);border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);padding:8px 12px;touch-action:manipulation}
+.iui-root .iui-ledger-filters button{white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-ledger-reset[aria-disabled=true]{color:var(--iui-muted);cursor:default}
+.iui-root .iui-ledger-filters :disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-ledger :is(select,button,summary,a,.iui-ledger-table-wrap):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-ledger-currency-group{min-inline-size:0;border-block-start:1px solid var(--iui-line);padding-block-start:12px}
+.iui-root .iui-ledger-currency-group>*+*{margin-block-start:10px}
+.iui-root .iui-ledger-subtotal{font-weight:600;font-variant-numeric:tabular-nums}
+.iui-root .iui-ledger-distribution{display:flex;inline-size:100%;block-size:12px;border-radius:6px;overflow:hidden;background:var(--iui-line)}
+.iui-root .iui-ledger-segment{display:block;flex:none;height:100%}
+.iui-root .iui-ledger-segment[data-color=blue]{background:var(--iui-series-blue)}
+.iui-root .iui-ledger-segment[data-color=green]{background:var(--iui-series-green)}
+.iui-root .iui-ledger-segment[data-color=orange]{background:var(--iui-series-orange)}
+.iui-root .iui-ledger-segment[data-color=purple]{background:var(--iui-series-purple)}
+.iui-root .iui-ledger-segment[data-color=red]{background:var(--iui-series-red)}
+.iui-root .iui-ledger-segment[data-color=gray]{background:var(--iui-series-gray)}
+.iui-root .iui-ledger-table-wrap{max-inline-size:100%;min-inline-size:0;overflow-x:auto;overscroll-behavior-inline:contain}
+.iui-root .iui-ledger-table{inline-size:100%;border-collapse:collapse;table-layout:fixed;min-inline-size:28rem;font-size:.9rem;line-height:1.5}
+.iui-root .iui-transaction-list .iui-ledger-table{min-inline-size:40rem}
+.iui-root .iui-ledger-table caption{text-align:start;font-weight:600;padding-block:8px;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-ledger-table :is(th,td){padding:10px 8px;text-align:start;vertical-align:top;border-block-end:1px solid var(--iui-line);white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-ledger-table th[scope=row]{font-weight:500;unicode-bidi:plaintext}
+.iui-root .iui-ledger-table thead{color:var(--iui-muted)}
+.iui-root .iui-ledger-amount{font-variant-numeric:tabular-nums}
+.iui-root .iui-ledger-details>summary{box-sizing:border-box;min-block-size:44px;padding-block:10px;cursor:pointer;font-weight:500}
+.iui-root .iui-ledger-details :is(dt,dd){margin:0;white-space:pre-wrap;unicode-bidi:plaintext;overflow-wrap:anywhere}
+.iui-root .iui-ledger-details dt{font-weight:600;margin-block-start:8px}
+.iui-root .iui-ledger-source a{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-ledger [hidden]{display:none!important}
+@media(max-width:480px){.iui-root .iui-ledger{padding:12px}.iui-root .iui-ledger-filter{flex:1 1 10rem}.iui-root .iui-ledger-filters select{inline-size:100%}}
+@media(forced-colors:active){.iui-root .iui-ledger,.iui-root .iui-ledger-currency-group,.iui-root .iui-ledger-table :is(th,td){border-color:CanvasText}.iui-root .iui-ledger :is(p,thead){color:CanvasText}.iui-root .iui-ledger-segment{background:Highlight!important;border-inline-end:1px solid Canvas}.iui-root .iui-ledger-filters :disabled,.iui-root .iui-ledger-reset[aria-disabled=true]{color:GrayText}.iui-root .iui-ledger :focus-visible{outline-color:Highlight}.iui-root .iui-ledger a{color:LinkText}}
+
+/* Original supplied shipment and flight snapshots; no geographic/live progress animation. */
+.iui-root .iui-tracker{border:1px solid var(--iui-line);border-radius:16px;padding:20px;background:var(--iui-surface);min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-tracker :is(h2,h3,h4,p,dl,dd){margin:0}
+.iui-root .iui-tracker-title{font-size:1.2rem;line-height:1.4}
+.iui-root .iui-tracker :is(.iui-tracker-description,.iui-tracker-note,.iui-tracker-observed,.iui-tracker-source){margin-block-start:10px;line-height:1.6;white-space:pre-wrap}
+.iui-root .iui-tracker-note,.iui-root .iui-tracker-observed,.iui-root .iui-tracker-missing{color:var(--iui-muted)}
+.iui-root .iui-tracker-status{display:inline-block;margin-block:14px 8px;padding:5px 12px;border:1px solid var(--iui-line);border-radius:999px;font-weight:650;background:var(--iui-surface-tertiary)}
+.iui-root .iui-tracker-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:12px;margin-block:14px}
+.iui-root .iui-tracker-facts dt,.iui-root .iui-tracker-slots dt{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-tracker-facts dd{font-weight:550;white-space:pre-wrap}
+.iui-root .iui-tracker-route{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-block:16px}
+.iui-root .iui-tracker-endpoint{border:1px solid var(--iui-line);border-radius:12px;padding:16px;min-inline-size:0}
+.iui-root .iui-tracker-airport{font-size:2rem;letter-spacing:.08em;font-weight:700;line-height:1.5}
+.iui-root .iui-tracker-slots{display:grid;gap:12px;margin-block:12px}
+.iui-root .iui-tracker-time{display:inline-block;font-variant-numeric:tabular-nums;unicode-bidi:isolate;overflow-wrap:anywhere}
+.iui-root .iui-tracker-records-title{margin-block-start:20px;font-size:1.05rem}
+.iui-root .iui-tracker-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block:12px}
+.iui-root .iui-tracker-toolbar :is(select,button){font:inherit;min-block-size:44px;max-inline-size:100%;border:1px solid var(--iui-line);border-radius:8px;padding:8px 12px;background:var(--iui-surface);color:inherit}
+.iui-root .iui-tracker-toolbar button{cursor:pointer}
+.iui-root .iui-tracker-reset[aria-disabled=true]{opacity:.65}
+.iui-root .iui-tracker-toolbar :disabled{cursor:not-allowed;opacity:.6}
+.iui-root .iui-tracker-count{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-tracker-empty{padding-block:20px}
+.iui-root .iui-tracker-timeline{list-style:none;padding:0;margin:16px 0 0}
+.iui-root .iui-tracker-record{display:grid;grid-template-columns:18px minmax(0,1fr);gap:12px;position:relative;padding-block:0 20px}
+.iui-root .iui-tracker-record:not(:last-child)::before{content:'';position:absolute;inset-inline-start:7px;inset-block:18px 0;border-inline-start:2px solid var(--iui-line)}
+.iui-root .iui-tracker-dot{box-sizing:border-box;inline-size:16px;block-size:16px;border:2px solid currentColor;border-radius:50%;margin-block-start:3px;color:var(--iui-muted)}
+.iui-root .iui-tracker-record[data-category=complete] .iui-tracker-dot{background:currentColor}
+.iui-root .iui-tracker-record:is([data-category=current],[data-category=disruption]) .iui-tracker-dot{border-radius:3px;color:var(--iui-ink);border-width:4px}
+.iui-root .iui-tracker-record-kind{display:block;font-size:.85rem;font-weight:650;color:var(--iui-muted);margin-block-end:4px}
+.iui-root .iui-tracker-record h4{font-size:1rem;line-height:1.5;white-space:pre-wrap}
+.iui-root .iui-tracker-record :is(time,.iui-tracker-location){margin-block-start:6px;font-size:.9rem}
+.iui-root .iui-tracker-details{margin-block-start:4px}
+.iui-root .iui-tracker-details summary{cursor:pointer;min-block-size:44px;box-sizing:border-box;padding-block:12px}
+.iui-root .iui-tracker-details p{white-space:pre-wrap;line-height:1.6;padding-block:4px 12px}
+.iui-root .iui-tracker-source a{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-tracker :is(select,button,summary,a):focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.iui-root .iui-tracker [hidden]{display:none!important}
+@media(max-width:600px){.iui-root .iui-tracker{padding:14px}.iui-root .iui-tracker-route{grid-template-columns:1fr}.iui-root .iui-tracker-toolbar label{flex-basis:100%}.iui-root .iui-tracker-toolbar select{flex:1;min-inline-size:0}}
+@media(forced-colors:active){.iui-root .iui-tracker,.iui-root .iui-tracker :is(.iui-tracker-endpoint,.iui-tracker-status,select,button){border-color:CanvasText}.iui-root .iui-tracker :is(.iui-tracker-dot,.iui-tracker-note,.iui-tracker-count,dt){color:CanvasText}.iui-root .iui-tracker-record::before{border-color:CanvasText}.iui-root .iui-tracker-record[data-category=complete] .iui-tracker-dot{background:CanvasText}}
+
+/* Original finite local poll composer. No publication, results or vote collection. */
+.iui-root .iui-poll{min-inline-size:0;margin:0;padding:20px;border:1px solid var(--iui-line);border-radius:16px;background:var(--iui-surface-primary)}
+.iui-root .iui-poll-title{font-size:1.2rem;font-weight:650;padding-inline:6px}
+.iui-root .iui-poll :is(p,h3){margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-poll-note,.iui-root .iui-poll-count{color:var(--iui-muted);font-size:.9rem;margin-block:8px 14px}
+.iui-root .iui-poll-question-label,.iui-root .iui-poll-option-label{display:block;font-weight:600;margin-block:10px 6px}
+.iui-root .iui-poll :is(textarea,input[type=text]){display:block;box-sizing:border-box;inline-size:100%;min-inline-size:0;min-block-size:44px;padding:10px 12px;font:inherit;color:inherit;background:var(--iui-bg);border:1px solid var(--iui-line);border-radius:8px}
+.iui-root .iui-poll textarea{resize:vertical;white-space:pre-wrap}
+.iui-root .iui-poll-options-title{font-size:1rem;margin-block:20px 8px}
+.iui-root .iui-poll-options{display:grid;gap:12px}
+.iui-root .iui-poll-option{padding:12px;border:1px solid var(--iui-line);border-radius:10px;background:var(--iui-surface-secondary);min-inline-size:0}
+.iui-root .iui-poll-option-actions,.iui-root .iui-poll-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block-start:10px}
+.iui-root .iui-poll button{font:inherit;min-block-size:44px;max-inline-size:100%;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;white-space:normal;overflow-wrap:anywhere;cursor:pointer;transition:none}
+.iui-root .iui-poll button[aria-disabled=true]{opacity:.65}
+.iui-root .iui-poll-add{margin-block:0 12px}
+.iui-root .iui-poll-mode{display:flex;align-items:center;gap:10px;min-block-size:44px;cursor:pointer}
+.iui-root .iui-poll-mode input{inline-size:20px;block-size:20px;accent-color:var(--iui-focus)}
+.iui-root .iui-poll-preview{margin-block-start:18px;padding:16px;border:1px dashed var(--iui-line);border-radius:12px;background:var(--iui-surface-secondary)}
+.iui-root .iui-poll-preview :is(h3,li){white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-poll-preview p{margin-block-start:8px;color:var(--iui-muted)}
+.iui-root .iui-poll-status{margin-block-start:14px;min-block-size:1.5em}
+.iui-root .iui-poll[data-status=invalid] .iui-poll-status,.iui-root .iui-poll [aria-invalid=true]{color:var(--iui-danger)}
+.iui-root .iui-poll [aria-invalid=true]{border-color:var(--iui-danger)}
+.iui-root .iui-poll :is(input,textarea,button):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-poll [hidden]{display:none!important}
+@media(max-width:480px){.iui-root .iui-poll{padding:12px}.iui-root .iui-poll-option{padding:10px}.iui-root .iui-poll-option-actions button{flex:1 1 auto}}
+@media(forced-colors:active){.iui-root .iui-poll,.iui-root .iui-poll :is(.iui-poll-option,.iui-poll-preview,input,textarea,button){border-color:CanvasText}.iui-root .iui-poll :is(.iui-poll-note,.iui-poll-count,.iui-poll-status){color:CanvasText}.iui-root .iui-poll :focus-visible{outline-color:Highlight}}
+
+/* Original supplied email reader and file navigator; no remote thumbnails or previews. */
+.iui-root .iui-supplied-reader{min-inline-size:0;border:1px solid var(--iui-line);border-radius:16px;padding:20px;background:var(--iui-surface-primary);overflow-wrap:anywhere}
+.iui-root .iui-supplied-reader :is(h2,h3,h4,p,ul,dl,dd){margin:0}
+.iui-root .iui-supplied-reader h2{font-size:1.2rem;line-height:1.4}
+.iui-root .iui-reader-note{font-size:.9rem;color:var(--iui-muted);margin-block:10px 16px!important;line-height:1.6}
+.iui-root .iui-reader-description,.iui-root .iui-reader-name{white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-reader-time,.iui-root .iui-email-address{unicode-bidi:isolate;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.iui-root .iui-email-from,.iui-root .iui-email-sent{margin-block:8px!important}
+.iui-root .iui-email-person-name{font-weight:600}
+.iui-root .iui-email-sent{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-supplied-reader summary{min-block-size:44px;box-sizing:border-box;cursor:pointer;padding-block:12px}
+.iui-root .iui-email-recipients{border-block:1px solid var(--iui-line);margin-block:14px}
+.iui-root .iui-email-recipients h3{font-size:.9rem;color:var(--iui-muted)}
+.iui-root .iui-email-recipients ul{padding-inline-start:20px;margin-block:6px 14px}
+.iui-root .iui-email-recipients li{padding-block:3px}
+.iui-root .iui-email-body-title,.iui-root .iui-email-attachments-title{font-size:1rem;margin-block:18px 10px!important}
+.iui-root .iui-email-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}
+.iui-root .iui-email-quoted{margin-block:14px;padding-inline:14px;border-inline-start:3px solid var(--iui-line);background:var(--iui-surface-secondary)}
+.iui-root .iui-reader-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block:12px}
+.iui-root .iui-reader-toolbar label{font-size:.9rem;font-weight:550}
+.iui-root .iui-reader-search{flex:1 1 12rem;min-inline-size:0}
+.iui-root .iui-supplied-reader :is(button,select,input[type=search]){font:inherit;box-sizing:border-box;min-block-size:44px;max-inline-size:100%;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);color:inherit;transition:none}
+.iui-root .iui-supplied-reader button{cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-supplied-reader button[aria-disabled=true]{opacity:.65}
+.iui-root .iui-reader-count,.iui-root .iui-file-kind{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-reader-empty{padding-block:20px}
+.iui-root .iui-reader-files{list-style:none;padding:0;margin-block:10px!important;display:grid;gap:10px}
+.iui-root .iui-reader-file{min-inline-size:0;border:1px solid var(--iui-line);border-radius:10px;padding:14px;background:var(--iui-surface-secondary)}
+.iui-root .iui-reader-name{font-size:1rem;line-height:1.5}
+.iui-root .iui-reader-details dl{display:grid;gap:8px;padding-block:4px 10px}
+.iui-root .iui-reader-details dt{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-reader-details dd,.iui-root .iui-reader-details p{white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-reader-link{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-reader-source{margin-block-start:12px!important}
+.iui-root .iui-file-breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block:12px}
+.iui-root .iui-file-crumb[aria-current=page]{font-weight:700;border-color:var(--iui-ink)}
+.iui-root .iui-file-folder-title{font-size:1.05rem;margin-block:16px 10px!important}
+.iui-root .iui-file-nav .iui-reader-file{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px}
+.iui-root .iui-file-icon{inline-size:20px;block-size:26px;box-sizing:border-box;border:2px solid var(--iui-muted);border-radius:3px;margin-block-start:5px}
+.iui-root .iui-reader-file[data-kind=folder] .iui-file-icon{block-size:18px;margin-block-start:14px;border-radius:3px 3px 5px 5px;position:relative}
+.iui-root .iui-reader-file[data-kind=folder] .iui-file-icon::before{content:'';position:absolute;inline-size:10px;block-size:5px;inset-inline-start:-2px;inset-block-start:-7px;border:2px solid var(--iui-muted);border-block-end:0;border-radius:3px 3px 0 0}
+.iui-root .iui-file-open-folder{text-align:start;font-weight:650!important}
+.iui-root .iui-file-kind{display:block;margin-block:6px}
+.iui-root .iui-supplied-reader :is(button,input,select,summary,a,[tabindex]):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-supplied-reader [hidden]{display:none!important}
+@media(max-width:480px){.iui-root .iui-supplied-reader{padding:12px}.iui-root .iui-reader-toolbar label{flex-basis:100%}.iui-root .iui-reader-search{inline-size:100%}.iui-root .iui-reader-file{padding:10px}}
+@media(forced-colors:active){.iui-root .iui-supplied-reader,.iui-root .iui-supplied-reader :is(button,input,select,.iui-reader-file,.iui-file-icon){border-color:CanvasText}.iui-root .iui-supplied-reader :is(.iui-reader-note,.iui-reader-count,dt,.iui-file-kind){color:CanvasText}.iui-root .iui-supplied-reader :focus-visible{outline-color:Highlight}}
+
+/* Original bounded supplied-question reader. */
+.iui-related-questions{border:1px solid var(--iui-line);border-radius:12px;padding:1rem;min-width:0;overflow-wrap:anywhere}.iui-questions-title{font-size:1.2rem;margin:0 0 .5rem}.iui-questions-note,.iui-question-unsourced,.iui-questions-count{font-size:.85rem;color:var(--iui-muted)}.iui-questions-toolbar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-block:1rem}.iui-questions-toolbar label{flex-basis:100%}.iui-questions-search{flex:1;min-width:0;width:12rem;font:inherit;color:var(--iui-ink);background:var(--iui-bg);border:1px solid var(--iui-line);border-radius:8px;padding:8px 12px}.iui-questions-toolbar button{white-space:normal}.iui-question{border-block-start:1px solid var(--iui-line);padding-block:.65rem}.iui-question-summary{cursor:pointer;font-weight:600;overflow-wrap:anywhere}.iui-question-answer{white-space:pre-wrap;margin-block:.65rem}.iui-question-unanswered{font-style:italic;color:var(--iui-muted)}.iui-question-sources-title{font-size:.85rem;margin-block:.5rem}.iui-question-sources{padding-inline-start:1.25rem}.iui-question-link-hint{font-size:.8rem}.iui-question-summary:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-questions-toolbar button[aria-disabled=true]{opacity:.6}@media(forced-colors:active){.iui-related-questions,.iui-question{border-color:CanvasText}.iui-question-summary:focus-visible{outline-color:Highlight}}
+/* Original supplied job/product decision cards. No provider, cart or application actions. */
+.iui-root .iui-decision-card{border:1px solid var(--iui-line);border-radius:16px;padding:20px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-decision-card :is(h2,h3,p){margin:0}
+.iui-root .iui-decision-card h2{font-size:1.2rem;line-height:1.4}
+.iui-root .iui-decision-description{white-space:pre-wrap;line-height:1.65}
+.iui-root .iui-decision-note{font-size:.9rem;color:var(--iui-muted);margin-block:12px!important;line-height:1.6}
+.iui-root .iui-decision-card summary{min-block-size:44px;box-sizing:border-box;padding-block:12px;cursor:pointer}
+.iui-root .iui-decision-card :is(button,select,input[type=search],input[type=number]){font:inherit;min-block-size:44px;max-inline-size:100%;box-sizing:border-box;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;color:inherit;background:var(--iui-bg);transition:none}
+.iui-root .iui-decision-card button{cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-decision-card button[aria-disabled=true]{opacity:.65}
+.iui-root .iui-decision-card :is(button,input,select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-decision-card a{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-decision-card [hidden]{display:none!important}
+.iui-root .iui-jobs-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block:12px}
+.iui-root .iui-jobs-search{flex:1 1 14rem;min-inline-size:0}
+.iui-root .iui-jobs-only{display:flex;align-items:center;gap:8px;min-block-size:44px}
+.iui-root .iui-jobs-only input{inline-size:20px;block-size:20px;accent-color:var(--iui-focus)}
+.iui-root .iui-jobs-count{font-size:.9rem;color:var(--iui-muted)}
+.iui-root .iui-jobs-list{list-style:none;padding:0;display:grid;gap:14px;margin-block:14px}
+.iui-root .iui-job{padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-secondary);min-inline-size:0}
+.iui-root .iui-job-title{font-size:1.05rem;line-height:1.5}
+.iui-root .iui-job-organization{font-weight:600;margin-block:4px!important}
+.iui-root .iui-job-location,.iui-root .iui-job-date{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-job-badges{display:flex;flex-wrap:wrap;gap:6px;margin-block:10px!important}
+.iui-root .iui-job-badges span{padding:3px 8px;border:1px solid var(--iui-line);border-radius:999px;font-size:.85rem}
+.iui-root .iui-job-pay{font-variant-numeric:tabular-nums;margin-block:8px!important}
+.iui-root .iui-job-shortlist{margin-inline-end:10px}
+.iui-root .iui-job-shortlist[aria-pressed=true]{border-color:var(--iui-focus);font-weight:650}
+.iui-root .iui-jobs-status,.iui-root .iui-product-status{min-block-size:1.5em;margin-block-start:12px!important}
+.iui-root .iui-jobs-empty{padding-block:20px}
+.iui-root .iui-product-image{display:block;max-inline-size:100%;inline-size:100%;block-size:220px;object-fit:contain;background:var(--iui-surface-secondary);border-radius:12px;margin-block:12px}
+.iui-root .iui-product-brand{font-weight:600;margin-block:6px!important}
+.iui-root .iui-product-seller,.iui-root .iui-product-availability{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-product-price{font-weight:700;font-size:1.2rem;font-variant-numeric:tabular-nums;margin-block:12px 4px!important}
+.iui-root .iui-product-controls{border:1px solid var(--iui-line);border-radius:12px;padding:14px;margin-block-start:18px;min-inline-size:0}
+.iui-root .iui-product-controls legend{padding-inline:6px;font-weight:600}
+.iui-root .iui-product-controls>label{display:block;margin-block:10px 6px;font-weight:550}
+.iui-root .iui-product-variant{inline-size:100%}
+.iui-root .iui-product-counter{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.iui-root .iui-product-quantity{inline-size:6rem;min-inline-size:0}
+.iui-root .iui-product-subtotal{margin-block-start:14px!important;font-weight:600;font-variant-numeric:tabular-nums}
+.iui-root .iui-product-review{margin-inline-end:8px}
+.iui-root .iui-product-quantity[aria-invalid=true]{border-color:var(--iui-danger)}
+@media(max-width:480px){.iui-root .iui-decision-card{padding:12px}.iui-root .iui-job{padding:12px}.iui-root .iui-jobs-toolbar>label:not(.iui-jobs-only){flex-basis:100%}.iui-root .iui-jobs-toolbar>select{flex:1;min-inline-size:0}.iui-root .iui-product-counter button{flex:1 1 7rem}}
+@media(forced-colors:active){.iui-root .iui-decision-card,.iui-root .iui-decision-card :is(button,select,input,fieldset,.iui-job,.iui-job-badges span){border-color:CanvasText}.iui-root .iui-decision-card :is(.iui-decision-note,.iui-jobs-count,.iui-job-date,.iui-product-availability){color:CanvasText}.iui-root .iui-job-shortlist[aria-pressed=true]{border-color:Highlight}.iui-root .iui-decision-card :focus-visible{outline-color:Highlight}}
+/* Original supplied place snapshots and dimension-aware dining reader. */
+.iui-root .iui-place-card{border:1px solid var(--iui-line);border-radius:12px;padding:1rem;background:var(--iui-surface-primary);overflow-wrap:anywhere;min-width:0}.iui-root .iui-place-note,.iui-root .iui-place-source{font-size:.875rem;color:var(--iui-muted)}.iui-root .iui-place-text,.iui-root .iui-business-address{white-space:pre-wrap}.iui-root .iui-place-toolbar{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;margin-block:1rem}.iui-root .iui-place-toolbar input,.iui-root .iui-place-toolbar select,.iui-root .iui-place-toolbar button{min-height:44px;max-width:100%;min-width:0;font:inherit;color:inherit;background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:.45rem;padding:.55rem;transition:none}.iui-root .iui-place-card summary{min-height:44px;padding-block:.65rem;cursor:pointer}.iui-root .iui-place-card :is(button,input,select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root .iui-business-day{border-inline-start:3px solid var(--iui-accent);padding-inline-start:1rem}.iui-root .iui-business-period{font-variant-numeric:tabular-nums;margin-block:.5rem}.iui-root .iui-dining-list{padding:0;list-style:none;display:grid;gap:.85rem}.iui-root .iui-dining-review{border:1px solid var(--iui-line);padding:1rem;border-radius:.6rem;min-width:0}.iui-root .iui-dining-score{font-weight:650}.iui-root .iui-dining-dimensions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.35rem}.iui-root .iui-dining-dimensions dd{margin:0}.iui-root .iui-place-card [hidden]{display:none!important}@media(forced-colors:active){.iui-root .iui-place-card,.iui-root .iui-dining-review,.iui-root .iui-business-day{border-color:CanvasText}.iui-root .iui-place-note,.iui-root .iui-place-source{color:CanvasText}}@media(min-width:600px){.iui-root .iui-place-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}.iui-root .iui-dining-reset{grid-column:1/-1}}
+/* Original local flight intent and supplied itinerary exploration. */
+.iui-root .iui-flight-discovery{border:1px solid var(--iui-line);border-radius:12px;padding:16px;min-inline-size:0;overflow-wrap:anywhere;background:var(--iui-surface-primary)}.iui-root .iui-discovery-note,.iui-root .iui-discovery-source{color:var(--iui-muted);font-size:.875rem}.iui-root .iui-discovery-text{white-space:pre-wrap}.iui-root .iui-discovery-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;border:0;padding:0;margin-block:16px;min-inline-size:0}.iui-root .iui-discovery-fields :is(input,select,button),.iui-root .iui-flight-result-choose{font:inherit;min-block-size:44px;max-inline-size:100%;min-inline-size:0;border:1px solid var(--iui-line);border-radius:8px;padding:8px;background:var(--iui-surface-primary);color:inherit;transition:none}.iui-root .iui-discovery-fields input[type=checkbox]{inline-size:24px}.iui-root .iui-flight-return{display:grid;gap:8px}.iui-root .iui-flight-result-list{display:grid;gap:12px;list-style:none;padding:0}.iui-root .iui-flight-result{border:1px solid var(--iui-line);border-radius:10px;padding:16px;min-inline-size:0}.iui-root .iui-flight-result-price{font-weight:650;font-variant-numeric:tabular-nums}.iui-root .iui-flight-result-leg{border-inline-start:2px solid var(--iui-line);padding-inline-start:12px;margin-block:12px}.iui-root .iui-flight-discovery summary{cursor:pointer;min-block-size:44px;padding-block:10px}.iui-root .iui-flight-discovery :is(input,select,button,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root .iui-flight-result-choose[aria-pressed=true]{border-color:var(--iui-focus);font-weight:650}.iui-root .iui-flight-discovery [hidden]{display:none!important}@media(forced-colors:active){.iui-root .iui-flight-discovery,.iui-root .iui-flight-result,.iui-root .iui-flight-result-leg{border-color:CanvasText}.iui-root .iui-discovery-note,.iui-root .iui-discovery-source{color:CanvasText}}@media(min-width:600px){.iui-root .iui-discovery-fields{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}.iui-root .iui-flight-return{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,2fr)}}
+/* Original local availability/preference matrix and supplied event sidebar. */
+.iui-root .iui-activity-card{padding:16px;border:1px solid var(--iui-line);border-radius:12px;min-inline-size:0;overflow-wrap:anywhere;background:var(--iui-surface-primary)}.iui-root .iui-activity-note,.iui-root .iui-activity-source{font-size:.875rem;color:var(--iui-muted)}.iui-root .iui-activity-text{white-space:pre-wrap}.iui-root .iui-activity-fields{border:0;padding:0;min-inline-size:0;display:grid;gap:10px}.iui-root .iui-activity-options,.iui-root .iui-event-agenda{padding:0;list-style:none;display:grid;gap:12px}.iui-root .iui-activity-option,.iui-root .iui-event-entry{padding:14px;border:1px solid var(--iui-line);border-radius:10px;min-inline-size:0}.iui-root .iui-activity-card :is(select,button){font:inherit;min-block-size:44px;max-inline-size:100%;min-inline-size:0;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);color:inherit;transition:none}.iui-root .iui-activity-option label,.iui-root .iui-event-toolbar label{display:block;margin-block:8px}.iui-root .iui-activity-option select{display:block;inline-size:100%}.iui-root .iui-activity-summary{margin-block:12px!important;font-size:.9rem}.iui-root .iui-activity-times{font-variant-numeric:tabular-nums;font-size:.9rem}.iui-root .iui-activity-card summary{min-block-size:44px;cursor:pointer;padding-block:10px}.iui-root .iui-activity-card :is(select,button,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root .iui-activity-choose[aria-pressed=true]{border-color:var(--iui-focus);font-weight:650}.iui-root .iui-activity-card [hidden]{display:none!important}@media(min-width:700px){.iui-root .iui-activity-options{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(forced-colors:active){.iui-root .iui-activity-card,.iui-root .iui-activity-option,.iui-root .iui-event-entry{border-color:CanvasText}.iui-root .iui-activity-note,.iui-root .iui-activity-source{color:CanvasText}}
+/* Original supplied vocabulary reveal and user-triggered local clipboard workflow. */
+.iui-root .iui-vocabulary-card{padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-root .iui-vocabulary-note,.iui-root .iui-vocabulary-source{font-size:.875rem;color:var(--iui-muted)}.iui-root .iui-vocabulary-text{white-space:pre-wrap}.iui-root .iui-vocabulary-controls{border:0;padding:0;min-inline-size:0;display:grid;gap:10px}.iui-root .iui-vocabulary-card :is(button,select,textarea){font:inherit;min-block-size:44px;max-inline-size:100%;min-inline-size:0;padding:8px;color:inherit;background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:8px;transition:none}.iui-root .iui-word-pronunciation{font-size:1.1rem}.iui-root .iui-word-meaning{padding:16px;background:var(--iui-surface-secondary);border-radius:8px}.iui-root .iui-word-mark[aria-pressed=true]{border-color:var(--iui-focus);font-weight:650}.iui-root .iui-copy-word-list{list-style:none;padding:0;display:grid;gap:8px;max-block-size:360px;overflow:auto}.iui-root .iui-copy-word{padding:8px;border:1px solid var(--iui-line);border-radius:8px}.iui-root .iui-copy-word label{display:flex;align-items:center;gap:10px;min-block-size:44px;cursor:pointer}.iui-root .iui-copy-word input{inline-size:22px;block-size:22px;flex:none}.iui-root .iui-copy-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.iui-root .iui-copy-preview{inline-size:100%;resize:vertical;white-space:pre-wrap}.iui-root .iui-vocabulary-card summary{min-block-size:44px;padding-block:10px;cursor:pointer}.iui-root .iui-vocabulary-card :is(input,button,select,textarea,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root .iui-vocabulary-card [hidden]{display:none!important}@media(forced-colors:active){.iui-root .iui-vocabulary-card,.iui-root .iui-copy-word{border-color:CanvasText}.iui-root .iui-vocabulary-note,.iui-root .iui-vocabulary-source{color:CanvasText}}
+/* Original supplied code-line and document-page citation readers. */
+.iui-root .iui-source-citation{padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-root .iui-citation-note,.iui-root .iui-citation-source{font-size:.875rem;color:var(--iui-muted)}.iui-root .iui-source-citation :is(button,select,textarea){min-block-size:44px;max-inline-size:100%;min-inline-size:0;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);color:inherit;font:inherit;transition:none}.iui-root .iui-code-citation-viewport{overflow:auto;max-block-size:480px;border:1px solid var(--iui-line);border-radius:8px;margin-block:12px}.iui-root .iui-code-citation-lines{padding-inline-start:5.5rem;margin:0;min-inline-size:max-content}.iui-root .iui-code-citation-line{padding:4px 12px;white-space:pre;min-block-size:1.5em}.iui-root .iui-code-citation-line[data-cited=true]{background:var(--iui-info-soft);border-inline-start:3px solid var(--iui-info)}.iui-root .iui-code-citation-line code{font-family:ui-monospace,monospace;white-space:pre}.iui-root .iui-file-cite-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block:12px}.iui-root .iui-file-cite-page{padding:14px;border-inline-start:3px solid var(--iui-line);margin-block:12px}.iui-root .iui-citation-excerpt{white-space:pre-wrap}.iui-root .iui-citation-preview{display:block;inline-size:100%;margin-block:10px;resize:vertical;white-space:pre-wrap}.iui-root .iui-source-citation :is(button,select,textarea,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root .iui-source-citation [hidden]{display:none!important}@media(forced-colors:active){.iui-root .iui-source-citation,.iui-root .iui-code-citation-viewport,.iui-root .iui-file-cite-page,.iui-root .iui-code-citation-line[data-cited=true]{border-color:CanvasText}.iui-root .iui-citation-note,.iui-root .iui-citation-source{color:CanvasText}}
+/* Original attributed fact rows and local entity-thumbnail selection. */
+.iui-root .iui-entity-facts{padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-root .iui-entity-facts-note,.iui-root .iui-entity-facts-source{font-size:.875rem;color:var(--iui-muted)}.iui-root .iui-entity-facts-text{white-space:pre-wrap}.iui-root .iui-entity-facts-toolbar{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-block:12px}.iui-root .iui-entity-facts :is(input,select,button){min-block-size:44px;max-inline-size:100%;min-inline-size:0;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);color:inherit;font:inherit;transition:none}.iui-root .iui-facts-table{border-collapse:collapse;table-layout:fixed;inline-size:100%;font-size:.9rem}.iui-root .iui-facts-table :is(th,td){padding:10px 6px;text-align:start;vertical-align:top;border-block-end:1px solid var(--iui-line);overflow-wrap:anywhere}.iui-root .iui-facts-table caption{text-align:start;font-weight:600;padding-block:8px}.iui-root .iui-entity-fields{border:0;padding:0;min-inline-size:0}.iui-root .iui-entity-thumbnail-list{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.iui-root .iui-entity-thumbnail-choice{inline-size:100%;block-size:100%;display:flex;flex-direction:column;align-items:stretch;gap:8px;text-align:start}.iui-root .iui-entity-thumbnail-image{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;inline-size:100%;background:var(--iui-surface-secondary);border-radius:6px;overflow:hidden}.iui-root .iui-entity-thumbnail-image img{inline-size:100%;block-size:100%;object-fit:contain}.iui-root .iui-entity-image-fallback{padding:8px;font-size:.85rem}.iui-root .iui-entity-thumbnail-title{font-weight:600}.iui-root .iui-entity-thumbnail-category{font-size:.875rem;color:var(--iui-muted)}.iui-root .iui-entity-thumbnail-choice[aria-pressed=true]{border-color:var(--iui-focus)}.iui-root .iui-entity-detail-panel{border-inline-start:3px solid var(--iui-line);padding:12px;margin-block:12px}.iui-root .iui-entity-detail-panel dl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px}.iui-root .iui-entity-detail-panel dd{margin:0}.iui-root .iui-entity-facts summary{min-block-size:44px;padding-block:10px;cursor:pointer}.iui-root .iui-entity-facts :is(input,select,button,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-root .iui-entity-facts [hidden]{display:none!important}@media(min-width:700px){.iui-root .iui-entity-thumbnail-list{grid-template-columns:repeat(3,minmax(0,1fr))}.iui-root .iui-entity-facts-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}.iui-root .iui-entity-facts-reset{grid-column:1/-1}}@media(forced-colors:active){.iui-root .iui-entity-facts,.iui-root .iui-entity-detail-panel{border-color:CanvasText}.iui-root .iui-entity-facts-note,.iui-root .iui-entity-thumbnail-category,.iui-root .iui-entity-facts-source{color:CanvasText}}

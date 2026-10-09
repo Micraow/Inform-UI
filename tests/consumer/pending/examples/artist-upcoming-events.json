@@ -1,0 +1,20 @@
+{
+  "version": "iui/1",
+  "title": "Illustrative supplied artist events",
+  "description": "Original demonstration records, not verified performances or ticket availability.",
+  "body": [
+    {
+      "type": "artist-upcoming-events",
+      "artist": "Example Ensemble",
+      "label": "Supplied performance dates",
+      "description": "The caller's order is preserved, including historical and repeated dates.",
+      "events": [
+        { "id": "march", "title": "Evening set", "date": "2028-03-10", "start": "19:30", "timeZoneLabel": "Venue time as supplied", "venue": "Example Hall", "location": "Example City", "description": "Illustrative supplied program description.", "url": "https://example.com/supplied-event" },
+        { "id": "february", "title": "Acoustic set", "date": "2028-02-29", "start": "18:00", "timeZoneLabel": "UTC+01:00 label, not converted", "venue": "Example Studio", "description": "An independently supplied date and time." },
+        { "id": "historical", "title": "Historical supplied date", "date": "2020-01-15", "venue": "Example Hall", "description": "This record is retained without a system-clock filter." }
+      ],
+      "source": { "label": "Illustrative source", "url": "https://example.com/supplied-events" }
+    },
+    { "type": "artist-upcoming-events", "artist": "Another example artist", "events": [] }
+  ]
+}

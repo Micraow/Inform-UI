@@ -1,0 +1,59 @@
+{
+  "version": "iui/1",
+  "title": "显示和复制代码，不代表运行过它",
+  "description": "原创合成代码；没有网络请求、执行结果或剪贴板读取。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "level": 1,
+      "value": "先读解释，再按需复制代码"
+    },
+    {
+      "type": "text",
+      "value": "这段原创JavaScript只显示，不执行。可选着色只是词法提示；复制需你明确操作，失败时仍可选择原文。"
+    },
+    {
+      "type": "code",
+      "id": "copy-example",
+      "language": "js",
+      "copy": true,
+      "highlight": true,
+      "value": "const samples = [2, 4];\r\n\tconst mean = samples.reduce((a, b) => a + b, 0) / samples.length;\r\n// Original synthetic example: display and copy only.\r\n"
+    },
+    {
+      "type": "text",
+      "runs": [
+        {
+          "value": "变量名 "
+        },
+        {
+          "value": "mean",
+          "code": true
+        },
+        {
+          "value": " 只是正文中的行内文字。下面的inline code不放复制按钮。"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "id": "inline-example",
+      "inline": true,
+      "copy": false,
+      "highlight": false,
+      "value": "mean"
+    },
+    {
+      "type": "code",
+      "id": "plain-unknown",
+      "language": "unknown-synthetic-language",
+      "highlight": true,
+      "value": "literal <tag> & exactly supplied text\n\tNo parser or execution is implied."
+    },
+    {
+      "type": "caption",
+      "value": "CRLF、制表符和末尾换行应原样保留；按钮状态不保证浏览器允许剪贴板写入。这里没有实际执行或来源验证声明。"
+    }
+  ]
+}

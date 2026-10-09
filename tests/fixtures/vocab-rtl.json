@@ -1,0 +1,25 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "vocab-card",
+      "id": "vocab-rtl",
+      "term": "اِسْتَكْشَفَ",
+      "languageLabel": "العربية",
+      "pronunciation": "istakshafa",
+      "partOfSpeech": "فعل",
+      "senses": [
+        {
+          "id": "discover",
+          "meaning": "بحث عن شيء أو تعرّف إليه.",
+          "translation": "To explore or discover.",
+          "examples": [
+            "اِسْتَكْشَفَ الباحثُ المنطقةَ.",
+            "نستكشف أفكارًا جديدةً معًا."
+          ]
+        }
+      ]
+    }
+  ],
+  "description": "مراجعة مفردات مقدّمة في هذا المستند."
+}

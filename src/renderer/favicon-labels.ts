@@ -1,0 +1,3 @@
+export interface FaviconLabels {load:string;retry:string;loading:string;loaded:string;failed:string;disclosure:(host:string)=>string}
+export const faviconEnglish:FaviconLabels={load:'Load icon',retry:'Retry icon',loading:'Loading supplied icon…',loaded:'Supplied icon loaded.',failed:'Icon unavailable. Showing the local fallback.',disclosure:host=>`Loading sends an image request to ${host}. No icon lookup is performed.`};
+export const faviconChinese:FaviconLabels={load:'加载图标',retry:'重试图标',loading:'正在加载所提供的图标…',loaded:'已加载所提供的图标。',failed:'图标不可用，显示本地替代标识。',disclosure:host=>`加载会向 ${host} 请求图片，不会自动查询网站图标。`};

@@ -1,0 +1,5 @@
+import type {WordCardNode,CopyWordsNode} from '../schema/document.js';import type {Issue} from './index.js';
+export function inspectVocabulary(n:WordCardNode|CopyWordsNode,path:string,add:(issue:Issue)=>void,safeURL:(url:string)=>boolean):void{
+ if(n.type==='word-card'){if(n.source&&(!/^https?:\/\//i.test(n.source.url)||!safeURL(n.source.url)))add({code:'UNSAFE_URL',path:path+'/source/url',message:'Use a safe supplied absolute HTTP(S) source.'});}
+ else{const ids=new Set<string>();n.words.forEach((word,i)=>{if(ids.has(word.id))add({code:'DUPLICATE_ID',path:`${path}/words/${i}/id`,message:'Word IDs must be unique.'});ids.add(word.id);});const selected=new Set<string>();n.initialSelectedIds?.forEach((id,i)=>{if(selected.has(id))add({code:'DUPLICATE_ID',path:`${path}/initialSelectedIds/${i}`,message:'Initial selected IDs must be unique.'});selected.add(id);if(!ids.has(id))add({code:'COPY_WORD_ID',path:`${path}/initialSelectedIds/${i}`,message:'Initial selection must reference a supplied word.'});});}
+}

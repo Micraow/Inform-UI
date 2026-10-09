@@ -1,0 +1,6 @@
+{
+  "version":"iui/1",
+  "title":"Supplied questions",
+  "state":{"other":0},
+  "body":[{"type":"sidebar-people-also-ask","label":"Questions about the supplied sample","description":"Original demonstration text; no remote answer service.","expanded":["scope"],"items":[{"id":"scope","question":"What does this sample provide?","answer":"A local reader for explicitly supplied questions and answers.\nSources remain ordinary optional links.","sources":[{"label":"Example source","url":"https://example.org/reference"}]},{"id":"missing","question":"Has the source been independently verified?","answer":null},{"id":"literal","question":"Can the answer contain markup?","answer":"<script>literal text</script> is displayed as text, never run."}]}]
+}

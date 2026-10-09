@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:charts",
+  "title": "Inform UI node subset: charts",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "ChartNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "line",
+            "bar",
+            "scatter",
+            "area",
+            "donut",
+            "pie"
+          ]
+        },
+        "xKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "xScale": {
+          "enum": [
+            "category",
+            "linear",
+            "time"
+          ]
+        },
+        "xLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "xMin": {
+          "type": "number"
+        },
+        "xMax": {
+          "type": "number"
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/$defs/Value"
+            }
+          },
+          "minItems": 0,
+          "maxItems": 300
+        },
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "color": {
+                "enum": [
+                  "blue",
+                  "green",
+                  "orange",
+                  "red",
+                  "purple",
+                  "gray"
+                ]
+              }
+            },
+            "required": [
+              "key",
+              "label"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 6
+        },
+        "yMin": {
+          "type": "number"
+        },
+        "yMax": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "kind",
+        "xKey",
+        "data",
+        "series"
+      ],
+      "additionalProperties": false
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ChartNode"
+        }
+      ]
+    },
+    "Value": {
+      "oneOf": [
+        {
+          "type": "string",
+          "maxLength": 12000
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "$"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "enum": [
+                "add",
+                "sub",
+                "mul",
+                "div",
+                "max",
+                "min",
+                "round",
+                "abs",
+                "clamp",
+                "gt",
+                "lt",
+                "eq",
+                "if",
+                "format"
+              ]
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Value"
+              },
+              "minItems": 1,
+              "maxItems": 12
+            }
+          },
+          "required": [
+            "op",
+            "args"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

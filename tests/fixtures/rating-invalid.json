@@ -1,0 +1,7 @@
+[
+ {"name":"fractional shared score","code":"RATING_VALUE","document":{"version":"iui/1","state":{"score":2.5},"body":[{"type":"rating","label":"Rating","bind":"score"}]}},
+ {"name":"string shared score","code":"INPUT_TYPE","document":{"version":"iui/1","state":{"score":"3"},"body":[{"type":"rating","label":"Rating","bind":"score"}]}},
+ {"name":"nested form ownership","code":"RATING_FORM","document":{"version":"iui/1","state":{"score":0},"body":[{"type":"form","label":"Form","children":[{"type":"list","items":[{"type":"rating","label":"Rating","bind":"score"}]}]}]}},
+ {"name":"unsupported readonly variant","code":"SCHEMA","document":{"version":"iui/1","state":{"score":0},"body":[{"type":"rating","label":"Rating","bind":"score","readOnly":true}]}},
+ {"name":"no declared binding","code":"UNKNOWN_BIND","document":{"version":"iui/1","state":{},"body":[{"type":"rating","label":"Rating","bind":"score"}]}}
+]

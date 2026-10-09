@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>缓存命中率为什么影响平均响应时间？</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.css" integrity="sha384-LHkRYrW+gjyqnUp86CgtLDWvOrTbN3oncoJv80YTzEHuGnfZadFBbc4HgBPMNQz2" crossorigin="anonymous">
+</head>
+<body>
+  <main id="iui">正在加载界面…</main>
+  <noscript>请启用 JavaScript 以查看这个交互文档。</noscript>
+  <script id="iui-spec" type="application/json">
+  {
+    "version": "iui/1",
+    "title": "缓存命中率为什么影响平均响应时间？",
+    "description": "通过两个联动输入，理解命中率、平均响应时间和加速比。所有数值均为教学假设或据此推导的结果。",
+    "theme": "auto",
+    "state": {
+      "hit_percent": 80,
+      "source_ms": 100
+    },
+    "computed": {
+      "cache_ms": 5,
+      "hit_rate": { "op": "div", "args": [{ "$": "hit_percent" }, 100] },
+      "miss_rate": { "op": "sub", "args": [1, { "$": "hit_rate" }] },
+      "average_ms": {
+        "op": "add",
+        "args": [
+          { "$": "cache_ms" },
+          { "op": "mul", "args": [{ "$": "miss_rate" }, { "$": "source_ms" }] }
+        ]
+      },
+      "speedup": { "op": "div", "args": [{ "$": "source_ms" }, { "$": "average_ms" }] },
+      "threshold_percent": {
+        "op": "div",
+        "args": [{ "op": "mul", "args": [100, { "$": "cache_ms" }] }, { "$": "source_ms" }]
+      },
+      "effect_note": {
+        "op": "if",
+        "args": [
+          { "op": "gt", "args": [{ "$": "speedup" }, 1] },
+          "当前假设下，缓存降低了平均耗时。命中的请求省下了源站等待，足以抵消每次查询缓存的开销。",
+          {
+            "op": "if",
+            "args": [
+              { "op": "lt", "args": [{ "$": "speedup" }, 1] },
+              "当前假设下，缓存反而增加了平均耗时。命中的请求太少，省下的源站等待还不足以抵消缓存查询开销。",
+              "当前假设下，两种方案的平均耗时相同：命中带来的节省恰好抵消了缓存查询开销。"
+            ]
+          }
+        ]
+      }
+    },
+    "body": [
+      { "type": "title", "level": 1, "value": "缓存命中率为什么影响平均响应时间？" },
+      { "type": "text", "value": "命中缓存，就少等一次较慢的源站响应。命中率越高，走慢路径的请求越少，平均响应时间通常就越短。不过，查询缓存本身也要花时间：命中率太低时，缓存可能让平均响应变慢。" },
+      { "type": "caption", "value": "本页所有数值均为教学假设或由这些假设推导的结果，不代表任何真实系统的实测数据。时间单位均为毫秒（ms）。" },
+      {
+        "type": "section",
+        "heading": "改一改，看看平均值如何变化",
+        "children": [
+          { "type": "text", "value": "设每个请求先花 5 ms 查询缓存；命中就结束，未命中则再等待一次源站响应。不使用缓存时，请求直接访问源站。拖动下面任意一个输入，平均耗时、加速比和图表会一起变化。" },
+          { "type": "slider", "label": "缓存命中率", "bind": "hit_percent", "min": 0, "max": 100, "step": 1, "unit": "%" },
+          { "type": "slider", "label": "一次源站访问耗时", "bind": "source_ms", "min": 20, "max": 400, "step": 10, "unit": "ms" },
+          {
+            "type": "metric-grid",
+            "columns": 2,
+            "children": [
+              { "type": "metric", "label": "使用缓存的平均耗时", "value": { "$": "average_ms" }, "unit": "ms", "precision": 1, "hint": "包含每次请求的 5 ms 缓存查询开销" },
+              { "type": "metric", "label": "相对直接访问源站的加速比", "value": { "$": "speedup" }, "unit": "倍", "precision": 2, "hint": "基准耗时 ÷ 当前平均耗时；大于 1 才是加速" }
+            ]
+          },
+          { "type": "text", "value": { "$": "effect_note" } },
+          {
+            "type": "figure",
+            "children": [
+              {
+                "type": "chart",
+                "kind": "bar",
+                "title": "同样的源站，平均要等多久？",
+                "xKey": "scenario",
+                "data": [
+                  { "scenario": "直接访问源站", "response_ms": { "$": "source_ms" } },
+                  { "scenario": "先查询缓存", "response_ms": { "$": "average_ms" } }
+                ],
+                "series": [{ "key": "response_ms", "label": "平均响应时间", "color": "blue" }],
+                "unit": "ms",
+                "yMin": 0,
+                "note": "教学模型推导值，纵轴从 0 开始；柱子越短，平均等待越少。"
+              }
+            ],
+            "caption": "保持源站耗时不变，提高命中率，观察缓存方案的柱子缩短。再保持命中率不变，改变源站耗时，观察两种方案的差距。每次变化都使用同一组教学假设。"
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "heading": "平均数，是两条路径的加权结果",
+        "children": [
+          { "type": "math", "latex": "\\bar T = h c + (1-h)(c+s)", "block": true },
+          { "type": "text", "value": "这里 h 是 0 到 1 之间的命中比例，c 是缓存查询耗时，s 是单次源站访问耗时。比例为 h 的请求只花 c；其余比例为 1−h 的请求花 c+s。将两条路径的耗时按发生比例加权，就得到每个请求的平均耗时。输入中的 80% 在公式里要写成 0.8。" },
+          { "type": "math", "latex": "\\bar T = c + (1-h)s", "block": true },
+          { "type": "text", "value": "合并同类项后更容易看出原因：所有请求都付出一次 c，只有未命中的请求才付出 s。因此在源站耗时固定时，平均耗时随命中率提高而线性下降。命中率每增加 1 个百分点，平均耗时减少 0.01×s。" },
+          { "type": "math", "latex": "S = \\frac{s}{\\bar T}", "block": true },
+          { "type": "text", "value": "加速比 S 用不使用缓存时的耗时 s，除以使用缓存后的平均耗时。S=1 表示一样快；S 大于 1 表示加速；S 小于 1 表示变慢。它比较的是平均延迟，不能直接当作吞吐量提升倍数。" },
+          { "type": "text", "value": "默认教学例子取命中率 80%、源站耗时 100 ms：平均耗时为 5+0.2×100=25 ms，加速比为 100÷25=4 倍。可以想成假设的 100 次请求中，80 次各花 5 ms，20 次各花 105 ms，总耗时相加后再除以请求数。这个静态例子对应页面初始值。" }
+        ]
+      },
+      {
+        "type": "section",
+        "heading": "一个边界：有缓存，不保证更快",
+        "children": [
+          { "type": "math", "latex": "\\bar T \u003c s \\quad\\Longleftrightarrow\\quad h > \\frac{c}{s}", "block": true },
+          { "type": "text", "value": "要比直接访问源站更快，命中比例必须高于 c÷s；恰好相等时，两种方案平均耗时相同。下方把这个比例换算成百分数。它会随源站耗时变化：源站越慢，省下一次访问越有价值，达到收支平衡所需的命中率也越低。" },
+          { "type": "metric", "label": "当前的收支平衡命中率", "value": { "$": "threshold_percent" }, "unit": "%", "precision": 2, "hint": "需严格高于此值才会加速；显示值经过四舍五入" },
+          {
+            "type": "list",
+            "items": [
+              "试试 0% 命中：每次都要访问源站，还额外查询缓存，平均耗时比直接访问源站多 5 ms。",
+              "试试 100% 命中：平均耗时降到 5 ms，而不是 0。缓存查询开销构成这个模型的下限。",
+              "把源站设为 100 ms、命中率设为 5%：平均耗时为 100 ms，加速比恰好为 1。再提高命中率，才开始受益。"
+            ]
+          },
+          { "type": "button", "label": "恢复默认教学例子", "action": { "kind": "reset" } }
+        ]
+      },
+      {
+        "type": "details",
+        "summary": "教学假设与适用边界",
+        "children": [
+          { "type": "text", "value": "缓存查询与源站访问按顺序发生，不重叠；缓存查询固定为 5 ms，源站访问固定为输入值，命中率可独立调节。缓存查询耗时包含命中时返回结果的成本。未命中时不再计入额外的缓存写入、失效处理或重试开销。" },
+          { "type": "text", "value": "输入范围 0%–100% 和 20–400 ms 都是为演示选择的假设范围。因为源站耗时始终为正，且使用缓存后的平均耗时至少为 5 ms，所有允许输入下的加速比都有定义。" },
+          { "type": "text", "value": "实际系统还可能受排队、并发、网络波动、缓存容量和热点分布影响；源站耗时也可能随负载改变。本页只解释按请求加权的平均响应时间，不能据此预测 P95/P99 尾延迟或真实容量。" }
+        ]
+      },
+      { "type": "caption", "value": "本 HTML 尚未实际打开验证。直接在启用 JavaScript 的联网浏览器中打开即可；页面需从固定 CDN 加载 Intelligent-UI 的脚本与样式，无需安装 Node 或构建。" }
+    ]
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.global.min.js" integrity="sha384-tvz7phydYNWyvO3Sz/W+xhrMv0sp+UOlR1p/b3+w9E9M9Hmjff+bGzjaUAglOWd9" crossorigin="anonymous"></script>
+  <script>
+    const host = document.getElementById('iui');
+    try {
+      if (!window.IUI) throw new Error('库未加载，请检查网络或 CDN 地址。');
+      const { validateDocument, mount } = window.IUI;
+      const input = JSON.parse(document.getElementById('iui-spec').textContent);
+      const result = validateDocument(input);
+      if (!result.ok) throw new Error(result.issues.map(i => `${i.code} ${i.path}: ${i.message}`).join('\n'));
+      mount(host, result.document, { styles: false });
+    } catch (error) {
+      host.textContent = `未能显示界面：${error.message}`;
+    }
+  </script>
+</body>
+</html>

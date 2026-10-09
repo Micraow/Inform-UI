@@ -1,0 +1,40 @@
+{
+  "artifact": "cache-response.first.html",
+  "sha256": "1ce5200d24d259a29af160ead40059d96fb2ae5db35145533c6a78e6912e67eb",
+  "bytes": 10369,
+  "skillSha256": "032fda61626e1d5237711bd5ecb14fa6c917a4f36a70fe1f984d3a174f84f9a2",
+  "attempt": "first, unchanged",
+  "overallAcceptance": "not fully compliant",
+  "knownFindings": [
+    {
+      "code": "UNESCAPED_JSON_LT",
+      "path": "/body/5/children/0/latex",
+      "message": "The original JSON data block contains one literal less-than sign instead of the required Unicode escape."
+    }
+  ],
+  "declaredModel": {
+    "cacheLookupMs": 5,
+    "hitPercent": {
+      "min": 0,
+      "max": 100,
+      "step": 1
+    },
+    "sourceMs": {
+      "min": 20,
+      "max": 400,
+      "step": 10
+    },
+    "averageMs": "5 + (1 - hit_percent / 100) * source_ms",
+    "speedup": "source_ms / average_ms",
+    "thresholdPercent": "500 / source_ms",
+    "reachableGridStates": 3939
+  },
+  "scopeNotes": [
+    {
+      "code": "BOUNDARY_NOT_REPRESENTABLE",
+      "case": "equal hit and total miss path cost",
+      "message": "The document declares hit=5 ms and miss=5+source_ms; equality requires source_ms=0, outside its 20–400 ms control range and undefined threshold division.",
+      "severity": "not covered; outside the explicitly declared domain, not a functional failure"
+    }
+  ]
+}

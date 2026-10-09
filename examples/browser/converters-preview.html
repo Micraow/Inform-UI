@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Inform UI 单位与汇率换算预览</title>
+<link id="iui-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.css" integrity="sha384-avgiFDwdK1wYMoqev29yNOdp6bpl0DQNVJAlf/2w9Au7yLZTZnJyeqGPHuesglJC" crossorigin="anonymous">
+</head>
+<body class="iui-page" data-theme="auto" style="margin:0">
+<main id="answer"></main>
+<pre id="status" role="alert"></pre>
+<script id="spec" type="application/json">{
+  "version": "iui/1",
+  "title": "单位与汇率换算",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "换算之前，先看单位与基准"
+    },
+    {
+      "type": "caption",
+      "value": "九类单位可在控件中切换；汇率只是带时间的合成快照，没有实时行情连接。"
+    },
+    {
+      "type": "unit-converter",
+      "title": "绝对温度和温差不同",
+      "category": "temperature",
+      "amount": 10,
+      "from": "C",
+      "to": "F",
+      "temperatureMode": "difference"
+    },
+    {
+      "type": "unit-converter",
+      "title": "十进制与二进制数据量",
+      "category": "data",
+      "amount": 1,
+      "from": "MiB",
+      "to": "MB"
+    },
+    {
+      "type": "currency-converter",
+      "title": "调用方提供的汇率快照",
+      "amount": 100,
+      "base": "USD",
+      "from": "USD",
+      "to": "EUR",
+      "precision": 8,
+      "source": {
+        "label": "Inform UI 原创合成汇率",
+        "synthetic": true
+      },
+      "asOf": "2026-10-09T09:00:00+08:00",
+      "rates": [
+        {
+          "currency": "EUR",
+          "rate": 0.8
+        },
+        {
+          "currency": "JPY",
+          "rate": 160
+        },
+        {
+          "currency": "GBP",
+          "rate": null
+        }
+      ]
+    }
+  ]
+}</script>
+<script src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.global.min.js" integrity="sha384-lzlbbrCDkjA12MkdUPJYeXhFgDwTxOHIkGhav/we5EDEtLyU+OP1Z3gZgxl2K4Qp" crossorigin="anonymous"></script>
+<script>
+  const target = document.getElementById('answer');
+  const status = document.getElementById('status');
+  try {
+    if (!window.IUI) throw new Error('界面库加载失败，请检查网络或固定版本的 CDN 链接。');
+    if (!document.getElementById('iui-style').sheet) throw new Error('样式加载失败，请检查 CDN 链接。');
+    const result = IUI.validateDocument(JSON.parse(document.getElementById('spec').textContent));
+    if (!result.ok) status.textContent = result.issues.map(i => i.code + ' ' + i.path + ': ' + i.message).join('\n');
+    else IUI.mount(target, result.document, { styles: false });
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : String(error);
+  }
+</script>
+</body>
+</html>

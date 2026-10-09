@@ -1,0 +1,7 @@
+{
+  "repository": "Micraow/Inform-UI-skill",
+  "revision": "5b83f9d5aba392cae6897ee3f9053184f3405ff4",
+  "source": "scripts/verify-consumer-reuse.mjs",
+  "sha256": "ff4d4a18b84d93eca5d3f94c533040df594f3ef6c4dfd88d6ed93db27ca064ac",
+  "purpose": "Exact original receiver fixture for core/Skill protocol roundtrip tests; runtime loads the actual pinned Skill source."
+}

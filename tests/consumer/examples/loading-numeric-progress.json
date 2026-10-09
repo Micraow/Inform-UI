@@ -1,0 +1,61 @@
+{
+  "version": "iui/1",
+  "title": "已知零值和未知进度不同",
+  "description": "原创合成教学示例；滑块手动改变演示数值，不代表真实后台任务。",
+  "theme": "auto",
+  "state": {
+    "completed": 5
+  },
+  "computed": {
+    "progress": {
+      "op": "mul",
+      "args": [
+        {
+          "op": "div",
+          "args": [
+            {
+              "$": "completed"
+            },
+            32
+          ]
+        },
+        100
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "用提供的数值显示进度",
+      "level": 1
+    },
+    {
+      "type": "text",
+      "value": "假设共有32个样本。移动滑块只是试算已完成比例；组件不会观察任务或自动增加数值。"
+    },
+    {
+      "type": "slider",
+      "label": "合成已完成样本数",
+      "bind": "completed",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "个"
+    },
+    {
+      "type": "loading",
+      "label": "合成样本处理比例",
+      "progress": {
+        "$": "progress"
+      }
+    },
+    {
+      "type": "loading",
+      "label": "另一个合成任务：未提供进度"
+    },
+    {
+      "type": "caption",
+      "value": "初始5/32=15.625%。把滑块移到0表示已知0%；下方省略progress的状态仍为未知。数据均为合成示例。"
+    }
+  ]
+}

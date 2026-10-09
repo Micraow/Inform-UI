@@ -1,0 +1,103 @@
+{
+  "version": "iui/1",
+  "title": "有限横向集合不等于自动轮播",
+  "description": "原创合成说明，没有网络请求、自动播放或实际来源内容。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "level": 1,
+      "value": "补充内容保留顺序，重要说明留在正文"
+    },
+    {
+      "type": "text",
+      "value": "这是原创合成示例。横向区域仅呈现有限内容，不自动播放、循环或切换。"
+    },
+    {
+      "type": "carousel",
+      "id": "notes",
+      "label": "三条独立的合成说明",
+      "children": [
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "title",
+              "level": 2,
+              "value": "一：区分已知与未知"
+            },
+            {
+              "type": "text",
+              "value": "已知为零的观测与没有观测是不同情况。"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "title",
+              "level": 2,
+              "value": "二：保留原始单位"
+            },
+            {
+              "type": "text",
+              "value": "计算和来源一起说明，不为了显示方便改变数据含义。"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "title",
+              "level": 2,
+              "value": "三：留意阅读顺序"
+            },
+            {
+              "type": "text",
+              "value": "库不复制、重排条目；精确比较时宜改用表格。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "carousel",
+      "id": "empty",
+      "label": "合成空集合",
+      "children": []
+    },
+    {
+      "type": "carousel",
+      "id": "single",
+      "label": "单条补充说明",
+      "children": [
+        {
+          "type": "text",
+          "value": "只有一项时不需要无效的分页按钮。"
+        }
+      ]
+    },
+    {
+      "type": "carousel",
+      "id": "native-only",
+      "label": "只保留浏览器原生滚动",
+      "controls": false,
+      "children": [
+        {
+          "type": "text",
+          "value": "合成补充资料甲：无自定义按钮也可原生滚动。"
+        },
+        {
+          "type": "text",
+          "value": "合成补充资料乙：不监听全局键盘或模拟手势。"
+        },
+        {
+          "type": "text",
+          "value": "合成补充资料丙：没有自动播放或选中状态。"
+        }
+      ]
+    }
+  ]
+}

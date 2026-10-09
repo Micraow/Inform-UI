@@ -1,0 +1,37 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "grid",
+      "columns": 2,
+      "mobileColumns": 1,
+      "children": [
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "code",
+              "id": "main-code",
+              "value": "const greeting = \"你好 😀\";\r\n\t// exact whitespace\r\nconsole.log(greeting);\n// long line: xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal x",
+              "language": "TypeScript",
+              "copy": true,
+              "highlight": true
+            }
+          ]
+        },
+        {
+          "type": "col",
+          "children": [
+            {
+              "type": "code",
+              "id": "json-code",
+              "value": "{ \"literal\": \"</script><img src=x>\", \"count\": 3, \"valid\": true }",
+              "language": "json",
+              "highlight": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

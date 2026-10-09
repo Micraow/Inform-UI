@@ -1,0 +1,20 @@
+{
+  "version": "iui/1",
+  "title": "Supplied review collection",
+  "description": "Fictional synthetic examples. No review provider is connected.",
+  "body": [
+    {
+      "type": "entity-reviews",
+      "label": "Fictional reading-room reviews",
+      "description": "Use the local filters and sort to explore only these supplied records.",
+      "source": {"label": "Synthetic example collection", "url": "https://example.com/reviews"},
+      "items": [
+        {"id": "five", "author": "Fictional reader Aster", "rating": 5, "date": "2026-10-01", "title": "A quiet afternoon", "body": "This synthetic review describes a fictional reading room.\nThe full supplied text stays available here.", "url": "https://example.com/reviews/five"},
+        {"id": "unrated", "author": "Fictional reader Ember", "rating": null, "title": "A note without a score", "body": "This supplied record intentionally has no rating or date. No score is inferred from these words."},
+        {"id": "three", "author": "Fictional reader Birch", "rating": 3, "date": "2024-02-29", "body": "Another clearly fictional example with a supplied calendar date."},
+        {"id": "one", "author": "Fictional reader Moss", "rating": 1, "date": "2026-10-01", "body": "Equal supplied dates retain their original order."}
+      ]
+    },
+    {"type": "entity-reviews", "label": "Empty supplied collection", "items": []}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": "iui/1",
+  "title": "Explicit local motion previews",
+  "body": [
+    {"type":"animate","label":"Read at rest","effect":"rise","children":[{"type":"text","value":"This content stays mounted and readable before, during and after a short preview."},{"type":"details","summary":"Persistent details","children":[{"type":"text","value":"Opening this stays unchanged through the preview."}]}]},
+    {"type":"celebration","label":"A supplied message","message":"Thank you for taking a look. This message is supplied by the document author."},
+    {"type":"animate","label":"Empty preview","children":[]}
+  ]
+}

@@ -1,0 +1,32 @@
+import {test,expect} from '@playwright/test';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+const lock=JSON.parse(await readFile('cdn-lock.json','utf8'));
+const fonts=Object.keys(lock.integrity).filter(n=>n.endsWith('.woff2')).map(n=>new URL(n,lock.css).href);
+const allowed=new Set([lock.js,lock.css,...fonts]);
+test.use({serviceWorkers:'block'});
+for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`thirty-component collection file CDN ${theme} ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:1000});await page.emulateMedia({colorScheme:theme,reducedMotion:'reduce'});
+ const cdp=await page.context().newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
+ const errors=[],requests=[],assets={},pending=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));page.on('requestfailed',r=>errors.push(r.url()+': '+r.failure()?.errorText));
+ await page.route('**/*',r=>r.request().url().startsWith('file:')||allowed.has(r.request().url())?r.continue():r.abort('blockedbyclient'));
+ page.on('response',r=>{if([lock.js,lock.css].includes(r.url()))pending.push((async()=>{const b=await r.body();assets[r.url()]={status:r.status(),sha256:createHash('sha256').update(b).digest('hex')};})());});
+ await page.goto(pathToFileURL(resolve('examples/browser/component-collection.html')).href);await expect(page.locator('#status')).toBeEmpty();
+ const sections=page.locator('details[id*="demo-section-"]');await expect(sections).toHaveCount(30);
+ const section=n=>page.locator(`details[id$="demo-section-${n}"]`);
+ for(let n=1;n<=30;n++){await section(n).locator(':scope > summary').click();await expect(section(n)).toHaveAttribute('open','');}
+ const checkbox=section(4).locator('input[type=checkbox]');const was=await checkbox.isChecked();await checkbox.click();expect(await checkbox.isChecked()).toBe(!was);
+ const draft=section(27).locator('textarea');await draft.fill('本页保留的原创邮件草稿。');
+ await section(15).getByRole('button',{name:'将本页合成值设为1',exact:true}).click();await expect(section(15).locator('.iui-metric-value')).toHaveText('1');await expect(draft).toHaveValue('本页保留的原创邮件草稿。');
+ await section(27).locator(':scope > summary').click();await section(27).locator(':scope > summary').press('Enter');await expect(draft).toHaveValue('本页保留的原创邮件草稿。');
+ await expect(section(30).locator('figcaption')).not.toHaveCount(0);
+ expect(await section(30).locator('img[src^="http"]').count()).toBe(0);
+ await page.evaluate(()=>document.fonts.ready);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.waitForLoadState('networkidle');await Promise.all(pending);
+ for(const[name,url]of [['iui.global.min.js',lock.js],['iui.css',lock.css]])expect(assets[url]).toEqual({status:200,sha256:lock.integrity[name].sha256});
+ expect(requests.filter(u=>u.startsWith('http')).every(u=>allowed.has(u))).toBe(true);expect(errors).toEqual([]);
+ await writeFile(`test-results/component-collection-${theme}-${width}.json`,JSON.stringify({asset:lock.commit,assets,requests,errors,sections:30},null,2));
+ await page.screenshot({path:`test-results/component-collection-${theme}-${width}.png`,fullPage:true});
+});

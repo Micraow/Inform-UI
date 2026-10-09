@@ -1,0 +1,15 @@
+{
+  "version": "iui/1",
+  "title": "数学字体与排版",
+  "description": "原创公式回归示例，用于检查数学字形、上下标、积分、伸缩括号及无障碍 MathML。",
+  "body": [
+    {"type":"title","value":"让公式保留数学字形"},
+    {"type":"caption","value":"此页使用明确许可的 KaTeX 数学字体。公式内容不依赖远程服务。"},
+    {"type":"math","id":"sets","latex":"A_1 \\subseteq A_1 \\cup A_2 \\Rightarrow f(A_1) \\subseteq f(A_1 \\cup A_2)"},
+    {"type":"math","id":"inline","block":false,"latex":"R_1 + \\alpha + \\beta + \\Gamma = \\mathbb{R}"},
+    {"type":"math","id":"integral","latex":"\\int_0^1 x^2\\,\\mathrm{d}x = \\frac{1}{3}"},
+    {"type":"math","id":"braces","latex":"\\left\\{\\begin{aligned} x+y&=3\\\\ x-y&=1 \\end{aligned}\\right."},
+    {"type":"math","id":"variants","latex":"\\mathbf{R}\\;\\mathit{R}\\;\\boldsymbol{\\alpha}\\;\\mathcal{F}\\;\\mathfrak{g}\\;\\mathsf{R}\\;\\mathtt{R}"},
+    {"type":"caption","value":"公式保留原始 LaTeX 注释。窄屏只在公式区域内滚动，正文不横向溢出。"}
+  ]
+}

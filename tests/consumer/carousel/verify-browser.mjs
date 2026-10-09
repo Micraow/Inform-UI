@@ -1,0 +1,39 @@
+/** Original consumers for a future frozen carousel upgrade. Not yet executed. */
+import assert from 'node:assert/strict';import{readFile,writeFile,mkdir,mkdtemp,rm}from'node:fs/promises';import path from'node:path';import{tmpdir}from'node:os';import{fileURLToPath,pathToFileURL}from'node:url';import{createRequire}from'node:module';import{spawnSync}from'node:child_process';
+const root=path.dirname(fileURLToPath(import.meta.url));function arg(flag){const i=process.argv.indexOf(flag);if(i<0)return;const v=process.argv[i+1];assert.ok(v&&!v.startsWith('--'));return v;}
+assert.ok(arg('--library'));const library=path.resolve(arg('--library')),revision=arg('--revision');assert.match(revision??'',/^[a-f0-9]{40}$/);const git=spawnSync('git',['-C',library,'rev-parse','HEAD'],{encoding:'utf8'});assert.equal(git.status,0,git.stderr);assert.equal(git.stdout.trim(),revision);
+const pkg=JSON.parse(await readFile(path.join(library,'package.json'),'utf8'));const{validateDocument,compileHtml}=await import(pathToFileURL(path.resolve(library,pkg.exports['.'].import)).href);const require=createRequire(path.join(library,'package.json')),{chromium,expect}=require('@playwright/test');
+const shots=path.resolve(arg('--screenshots')??path.join(root,'artifacts/browser'));await mkdir(shots,{recursive:true});const temporary=await mkdtemp(path.join(tmpdir(),'inform-carousel-consumer-'));let browser,count=0;
+async function boundaryMouse(page,button,rail){await button.scrollIntoViewIfNeeded();const box=await button.boundingBox();assert.ok(box);const x=box.x+box.width/2,y=box.y+box.height/2;assert.equal(await button.evaluate((el,p)=>el===el.ownerDocument.elementFromPoint(p.x,p.y)||el.contains(el.ownerDocument.elementFromPoint(p.x,p.y)),{x,y}),true);const before=await rail.evaluate(el=>el.scrollLeft);await page.mouse.click(x,y);await expect(button).toBeFocused();assert.equal(await rail.evaluate(el=>el.scrollLeft),before);}
+try{browser=await chromium.launch({headless:true,...(process.env.IUI_BROWSER_EXECUTABLE?{executablePath:process.env.IUI_BROWSER_EXECUTABLE}:{})});
+for(const name of ['local-carousel-notes','carousel-with-local-controls'])for(const theme of ['light','dark'])for(const width of [390,768,1100]){
+ const d=JSON.parse(await readFile(path.join(root,'examples',name+'.json'),'utf8'));const checked=validateDocument(d);assert.equal(checked.ok,true,JSON.stringify(checked.issues));const label=`${name}-${theme}-${width}`,file=path.join(temporary,label+'.html');await writeFile(file,await compileHtml({...d,theme},{assets:'inline',backend:'portable',lang:'zh-CN'}));
+ const page=await browser.newPage({viewport:{width,height:1050},colorScheme:theme,reducedMotion:'reduce'}),errors=[],external=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/^https?:/.test(r.url()))external.push(r.url());});
+ await page.clock.install({time:new Date('2026-10-09T00:00:00Z')});await page.clock.pauseAt(new Date('2026-10-09T00:00:01Z'));await page.goto(pathToFileURL(file).href);await page.waitForSelector('.iui-root');await page.evaluate(()=>document.fonts.ready);await page.clock.runFor(20);
+ const shell=id=>page.locator(`[data-iui=carousel][id$="-${id}"]`);
+ if(name==='local-carousel-notes'){
+  const main=shell('notes'),rail=main.getByRole('region',{name:'三条独立的合成说明',exact:true}),next=main.getByRole('button',{name:'下一组内容',exact:true}),previous=main.getByRole('button',{name:'上一组内容',exact:true});
+  await expect(rail.locator(':scope > *')).toHaveCount(3);await expect(next).toHaveAttribute('aria-disabled','false');await expect(previous).toHaveAttribute('aria-disabled','true');await boundaryMouse(page,previous,rail);
+  const g=await rail.evaluate(el=>({w:el.clientWidth,max:el.scrollWidth-el.clientWidth}));await next.focus();await page.keyboard.press('Enter');await expect(next).toBeFocused();await expect.poll(()=>rail.evaluate(el=>el.scrollLeft)).toBeCloseTo(Math.min(g.w,g.max),0);
+  for(let i=0;i<3&&await next.getAttribute('aria-disabled')==='false';i++)await next.click();await expect(next).toHaveAttribute('aria-disabled','true');await boundaryMouse(page,next,rail);const end=await rail.evaluate(el=>el.scrollLeft);await page.keyboard.press('Space');assert.equal(await rail.evaluate(el=>el.scrollLeft),end);await expect(next).toBeFocused();
+  const empty=shell('empty'),single=shell('single'),native=shell('native-only');await expect(empty.getByText('暂无内容',{exact:true})).toBeVisible();await expect(empty.locator('button,[tabindex="0"]')).toHaveCount(0);await expect(single.locator('.iui-carousel-controls')).toHaveCount(0);await expect(native.locator('.iui-carousel-controls')).toHaveCount(0);await expect(native.locator('.iui-carousel')).toHaveAttribute('tabindex','0');
+  assert.equal(await rail.evaluate(el=>getComputedStyle(el).scrollBehavior),'auto');assert.equal(await main.locator('[aria-live],[aria-selected],[aria-current]').count(),0);
+ }
+ if(name==='carousel-with-local-controls'){
+  const main=shell('local-controls'),rail=main.locator('.iui-carousel'),input=page.getByLabel('合成偶数样本数',{exact:false}),timer=main.locator('.iui-time');
+  const start=timer.locator('[data-time-action=start]'),pause=timer.locator('[data-time-action=pause]');await start.click();await page.clock.runFor(250);await expect(timer).toHaveAttribute('data-status','running');
+  await input.fill('3');await rail.evaluate(el=>{window.carouselConsumerRail=el;window.carouselConsumerInput=el.querySelector('input');window.carouselConsumerTimer=el.querySelector('.iui-time');});
+  await page.getByRole('button',{name:'只更新无关状态',exact:true}).click();await expect(input).toHaveValue('3');await expect(page.locator('.iui-metric-value > span:first-child')).toHaveText('2');
+  assert.equal(await rail.evaluate(el=>el===window.carouselConsumerRail&&el.querySelector('input')===window.carouselConsumerInput&&el.querySelector('.iui-time')===window.carouselConsumerTimer),true);
+  await page.clock.runFor(250);await expect(timer.locator('.iui-time-digits')).toHaveAttribute('data-milliseconds','59500');await expect(timer).toHaveAttribute('data-status','running');
+  const next=main.getByRole('button',{name:'下一组内容',exact:true});if(await next.getAttribute('aria-disabled')==='false')await next.click();await expect(input).toHaveValue('3');await expect(timer).toHaveAttribute('data-status','running');
+  await pause.click();await expect(timer).toHaveAttribute('data-status','paused');
+  await page.getByRole('button',{name:'为什么滚动不会重置？',exact:true}).click();const dialog=page.getByRole('dialog',{name:'容器和子组件的生命周期',exact:true});await expect(dialog).toBeVisible();
+  // Clicking a paging control is an ordinary outside action for this popover.
+  const previous=main.getByRole('button',{name:'上一组内容',exact:true});if(await previous.getAttribute('aria-disabled')==='false')await previous.click();else await boundaryMouse(page,previous,rail);await expect(dialog).toBeHidden();
+  await page.getByRole('button',{name:'恢复文档初始state',exact:true}).click();await expect(input).toHaveValue('2');await expect(timer).toHaveAttribute('data-status','paused');await expect(timer.locator('.iui-time-digits')).toHaveAttribute('data-milliseconds','59500');
+ }
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),label+': whole-page overflow');assert.deepEqual(errors,[]);assert.deepEqual(external,[]);await page.screenshot({path:path.join(shots,label+'.png'),fullPage:true});await page.close();count++;console.log(`PASS ${label}`);
+}
+await writeFile(path.join(shots,'RESULTS.json'),JSON.stringify({revision,exampleLanguages:{"carousel-with-local-controls":"zh-CN","local-carousel-notes":"zh-CN"},localCompiledViews:count,widths:[390,768,1100],themes:['light','dark'],browser:'chromium',publicCdn:'not-run',screenReader:'not-run',screenshotReview:'pending-human-review'},null,2)+'\n');
+}finally{await browser?.close();await rm(temporary,{recursive:true,force:true});}

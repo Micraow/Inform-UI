@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:time",
+  "title": "Inform UI node subset: time",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "ClockNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "clock"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "mode": {
+          "enum": [
+            "live",
+            "snapshot"
+          ]
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "hourCycle": {
+          "enum": [
+            "h12",
+            "h23"
+          ]
+        },
+        "seconds": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "timezone",
+        "mode"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "clock"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "mode": {
+              "const": "live"
+            },
+            "hourCycle": {
+              "enum": [
+                "h12",
+                "h23"
+              ]
+            },
+            "seconds": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "mode"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "clock"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "timezone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "mode": {
+              "const": "snapshot"
+            },
+            "at": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+              "maxLength": 40
+            },
+            "hourCycle": {
+              "enum": [
+                "h12",
+                "h23"
+              ]
+            },
+            "seconds": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "mode",
+            "at"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ClockNode"
+        },
+        {
+          "$ref": "#/$defs/StopwatchNode"
+        },
+        {
+          "$ref": "#/$defs/TimerNode"
+        }
+      ]
+    },
+    "StopwatchNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "stopwatch"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "elapsedMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 604800000
+        },
+        "laps": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TimerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "timer"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 604800000
+        }
+      },
+      "required": [
+        "type",
+        "durationMs"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

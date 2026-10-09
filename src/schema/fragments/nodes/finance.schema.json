@@ -1,0 +1,745 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$ref": "#/$defs/Node",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:node:finance",
+  "title": "Inform UI node subset: finance",
+  "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
+  "$defs": {
+    "AssetDistributionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "asset-distribution"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "observedAt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerAccount"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "accounts"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceChartNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-chart"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/FinanceSource"
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "instrument": {
+          "$ref": "#/$defs/FinanceInstrument"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FinanceRange"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "initialRange": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        }
+      },
+      "required": [
+        "type",
+        "source",
+        "instrument",
+        "ranges"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceComparisonNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-comparison"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/FinanceSource"
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "instruments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FinanceInstrument"
+          },
+          "minItems": 2,
+          "maxItems": 6
+        },
+        "baselineAt": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FinanceRange"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "initialRange": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        }
+      },
+      "required": [
+        "type",
+        "source",
+        "instruments",
+        "baselineAt",
+        "ranges"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceHeatmapNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-heatmap"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/FinanceSource"
+        },
+        "asOf": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "weightLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "changeBasis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "sector": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "weight": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              "changePercent": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "asOf": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+                "maxLength": 40
+              },
+              "marketStatus": {
+                "enum": [
+                  "open",
+                  "closed",
+                  "pre",
+                  "post",
+                  "halted",
+                  "unknown"
+                ]
+              },
+              "delayMinutes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10080
+              }
+            },
+            "required": [
+              "id",
+              "symbol",
+              "name",
+              "sector",
+              "weight",
+              "price",
+              "currency",
+              "changePercent",
+              "asOf",
+              "marketStatus",
+              "delayMinutes"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 200
+        },
+        "initialSector": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "source",
+        "asOf",
+        "timezone",
+        "weightLabel",
+        "changeBasis",
+        "cells"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceInstrument": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "symbol": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "exchange": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "asOf": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "marketStatus": {
+          "enum": [
+            "open",
+            "closed",
+            "pre",
+            "post",
+            "halted",
+            "unknown"
+          ]
+        },
+        "delayMinutes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10080
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "previousClose": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+                "maxLength": 40
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "time",
+              "price"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 500
+        }
+      },
+      "required": [
+        "id",
+        "symbol",
+        "name",
+        "currency",
+        "timezone",
+        "asOf",
+        "marketStatus",
+        "delayMinutes",
+        "price",
+        "previousClose",
+        "history"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceQuoteNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-quote"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/FinanceSource"
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "instrument": {
+          "$ref": "#/$defs/FinanceInstrument"
+        }
+      },
+      "required": [
+        "type",
+        "source",
+        "instrument"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceRange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "from": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "from",
+        "to"
+      ],
+      "additionalProperties": false
+    },
+    "FinanceSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "synthetic"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-\\d{2}-\\d{2}$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "direction": {
+          "enum": [
+            "debit",
+            "credit"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "posted"
+          ]
+        },
+        "counterparty": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "description",
+        "amount",
+        "currency",
+        "direction"
+      ],
+      "additionalProperties": false
+    },
+    "Node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/FinanceQuoteNode"
+        },
+        {
+          "$ref": "#/$defs/FinanceChartNode"
+        },
+        {
+          "$ref": "#/$defs/FinanceComparisonNode"
+        },
+        {
+          "$ref": "#/$defs/FinanceHeatmapNode"
+        },
+        {
+          "$ref": "#/$defs/AssetDistributionNode"
+        },
+        {
+          "$ref": "#/$defs/TransactionListNode"
+        }
+      ]
+    },
+    "TransactionListNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "transaction-list"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerTransaction"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "transactions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

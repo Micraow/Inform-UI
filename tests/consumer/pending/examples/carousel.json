@@ -1,0 +1,138 @@
+{
+  "version": "iui/1",
+  "title": "Original finite collection",
+  "description": "Original offline examples; no retrieval, looping or autoplay.",
+  "theme": "light",
+  "state": {
+    "quantity": 3,
+    "count": 0
+  },
+  "body": [
+    {
+      "type": "carousel",
+      "id": "main-rail",
+      "label": "Original items",
+      "children": [
+        {
+          "type": "form",
+          "label": "Local draft",
+          "children": [
+            {
+              "type": "input",
+              "kind": "number",
+              "label": "Quantity",
+              "bind": "quantity",
+              "min": 1,
+              "max": 8,
+              "step": 1
+            }
+          ]
+        },
+        {
+          "type": "timer",
+          "title": "Local timer",
+          "durationMs": 60000
+        },
+        {
+          "type": "popover",
+          "label": "Open details",
+          "title": "Local details",
+          "children": [
+            {
+              "type": "text",
+              "value": "Original local details remain open while the rail scrolls."
+            },
+            {
+              "type": "popover",
+              "label": "Nested details",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Nested original content."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "value": "original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_"
+        },
+        {
+          "type": "table",
+          "columns": [
+            "Label",
+            "Value"
+          ],
+          "rows": [
+            [
+              "Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label Long original label ",
+              7
+            ],
+            [
+              "Second observation",
+              12
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "value": "Mixed original content 示例 مثال wraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparoundwraparound"
+        }
+      ]
+    },
+    {
+      "type": "carousel",
+      "id": "empty-rail",
+      "children": []
+    },
+    {
+      "type": "carousel",
+      "id": "single-rail",
+      "children": [
+        {
+          "type": "text",
+          "value": "One original item"
+        }
+      ]
+    },
+    {
+      "type": "carousel",
+      "id": "native-rail",
+      "label": "Native items",
+      "controls": false,
+      "children": [
+        {
+          "type": "text",
+          "value": "Native item 1"
+        },
+        {
+          "type": "text",
+          "value": "Native item 2"
+        },
+        {
+          "type": "text",
+          "value": "Native item 3"
+        },
+        {
+          "type": "text",
+          "value": "Native item 4"
+        },
+        {
+          "type": "text",
+          "value": "Native item 5"
+        },
+        {
+          "type": "text",
+          "value": "Native item 6"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "value": {
+        "$": "count"
+      }
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "version": "iui/1",
+  "title": "把零值、缺测和分组表达清楚",
+  "description": "原创合成教学示例；仅在页面内运行，不联网、不保存、不发通知。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "level": 1,
+      "value": "少量结构足以表达含义"
+    },
+    {
+      "type": "text",
+      "runs": [
+        {
+          "value": "重要区别：",
+          "bold": true
+        },
+        {
+          "value": "0 是观测值，"
+        },
+        {
+          "value": "null",
+          "code": true
+        },
+        {
+          "value": " 是缺测。以下是原创合成表。"
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "mobileColumns": 1,
+      "children": [
+        {
+          "type": "grid-item",
+          "colSpan": 2,
+          "mobileColSpan": 1,
+          "children": [
+            {
+              "type": "blockquote",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "没有观测到，与观测到零，不是同一回事。"
+                }
+              ],
+              "attribution": "本页原创教学句"
+            }
+          ]
+        },
+        {
+          "type": "grid-item",
+          "children": [
+            {
+              "type": "code",
+              "value": "count = 0",
+              "inline": true
+            },
+            {
+              "type": "caption",
+              "value": "只展示代码，不执行。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "caption": "合成记录，缺测原样保留",
+      "columns": [
+        "批次",
+        "样本",
+        "前测",
+        "后测"
+      ],
+      "sections": [
+        {
+          "kind": "head",
+          "rows": [
+            [
+              {
+                "value": "识别信息",
+                "colSpan": 2
+              },
+              {
+                "value": "观测值",
+                "colSpan": 2
+              }
+            ],
+            [
+              "批次",
+              "样本",
+              "前测",
+              "后测"
+            ]
+          ]
+        },
+        {
+          "kind": "body",
+          "rows": [
+            [
+              {
+                "value": "第一批",
+                "header": true,
+                "scope": "rowgroup",
+                "rowSpan": 2
+              },
+              {
+                "value": "A",
+                "header": true
+              },
+              0,
+              2
+            ],
+            [
+              {
+                "value": "B",
+                "header": true
+              },
+              null,
+              1
+            ]
+          ]
+        },
+        {
+          "kind": "foot",
+          "rows": [
+            [
+              {
+                "value": "说明",
+                "header": true,
+                "colSpan": 2
+              },
+              {
+                "value": "所有数值均为合成示例",
+                "colSpan": 2
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tooltip",
+      "label": "合并的单元格需要 null 占位吗？",
+      "value": "不需要。上方的 rowSpan 或左侧 colSpan 已经占据相应逻辑位置；再填 null 会造成多余单元格。"
+    }
+  ]
+}

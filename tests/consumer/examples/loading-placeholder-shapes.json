@@ -1,0 +1,39 @@
+{
+  "version": "iui/1",
+  "title": "占位形状只表达预期结构",
+  "description": "原创合成示例；没有网络请求或自动替换内容。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "有限占位形状，始终保留可读标签"
+    },
+    {
+      "type": "flow",
+      "align": "start",
+      "children": [
+        {
+          "type": "loading-block",
+          "label": "合成文本结构示意",
+          "shape": "text",
+          "lines": 4,
+          "animate": false
+        },
+        {
+          "type": "loading-block",
+          "label": "合成卡片结构示意",
+          "shape": "card"
+        },
+        {
+          "type": "loading-block",
+          "label": "合成圆形结构示意",
+          "shape": "circle"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "value": "这些块不代表真的在下载，也不会自己变成文章、图片或头像。card/circle不接受lines；需要实际内容时由宿主明确更新。"
+    }
+  ]
+}

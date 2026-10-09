@@ -1,0 +1,63 @@
+{
+  "version": "iui/1",
+  "title": "本地标签页示例",
+  "description": "三个原生标签页，内容始终留在当前文档中。",
+  "state": {
+    "notes": false
+  },
+  "body": [
+    {
+      "type": "tab-group",
+      "id": "demo-tabs",
+      "label": "阅读方式",
+      "children": [
+        {
+          "type": "tab-panel",
+          "id": "overview",
+          "label": "概览",
+          "children": [
+            {
+              "type": "title",
+              "value": "本地内容切换",
+              "level": 2
+            },
+            {
+              "type": "text",
+              "value": "使用左右方向键、Home 或 End 切换；不会请求网络。"
+            },
+            {
+              "type": "toggle",
+              "label": "附注开关",
+              "bind": "notes"
+            }
+          ]
+        },
+        {
+          "type": "tab-panel",
+          "id": "unavailable",
+          "label": "暂不可用",
+          "children": [],
+          "disabled": true
+        },
+        {
+          "type": "tab-panel",
+          "id": "reference",
+          "label": "参考与代码",
+          "children": [
+            {
+              "type": "code",
+              "language": "json",
+              "value": "{\"local\":true}"
+            },
+            {
+              "type": "text",
+              "value": {
+                "$": "notes"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

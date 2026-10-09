@@ -1,0 +1,818 @@
+{
+  "schemaVersion": "iui/1",
+  "format": "inform-ui-schema-index/1",
+  "fullSchema": {
+    "path": "../iui.schema.json",
+    "utf8Bytes": 244111,
+    "unicodeCodePoints": 244111,
+    "estimatedTokens": 61028,
+    "sha256": "b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c"
+  },
+  "semantics": "All bundles perform structural validation only. The unchanged full validateDocument also checks state references, ranges, dates, URLs, native rejection and other semantic rules.",
+  "tokenEstimateMethod": "ceil(Unicode code points / 4), a rough model-independent heuristic; not measured model tokens or a guaranteed saving.",
+  "recommendedForAuthoring": "Use groups[].documentSchema. Node files are field-lookup subsets; recursive Node children are limited to the owned group and document state is absent.",
+  "examplesBase": "Paths are relative to this CDN index URL; repositoryPath is supplied for local checkouts.",
+  "nodeOwners": {
+    "agenda": "base",
+    "animate": "base",
+    "artist-upcoming-events": "base",
+    "asset-distribution": "finance",
+    "badge": "base",
+    "blockquote": "base",
+    "box": "base",
+    "business-gallery": "base",
+    "button": "base",
+    "callout": "base",
+    "caption": "base",
+    "card": "base",
+    "carousel": "base",
+    "celebration": "base",
+    "chart": "charts",
+    "checklist": "base",
+    "citation": "base",
+    "clock": "time",
+    "code": "base",
+    "code-cite": "base",
+    "col": "base",
+    "copy-words": "base",
+    "create-interactive-poll": "base",
+    "currency-converter": "converters",
+    "details": "base",
+    "divider": "base",
+    "email-draft": "base",
+    "email-preview": "base",
+    "entity-reviews": "base",
+    "entity-thumbnail-list": "base",
+    "event-sidebar": "base",
+    "favicon": "base",
+    "field": "forms",
+    "figure": "base",
+    "file-cite": "base",
+    "file-nav-list": "base",
+    "fill-blank": "learning",
+    "finance-chart": "finance",
+    "finance-comparison": "finance",
+    "finance-heatmap": "finance",
+    "finance-quote": "finance",
+    "flashcards": "learning",
+    "flight-option": "base",
+    "flight-results": "base",
+    "flight-search-form": "base",
+    "flight-tracker": "base",
+    "flow": "base",
+    "form": "forms",
+    "grid": "base",
+    "grid-item": "base",
+    "icon": "base",
+    "image": "base",
+    "input": "forms",
+    "jobs": "base",
+    "label": "base",
+    "link": "base",
+    "list": "base",
+    "loading": "base",
+    "loading-block": "base",
+    "local-business": "base",
+    "location-choice-request": "base",
+    "markdown": "base",
+    "math": "base",
+    "metric": "base",
+    "metric-grid": "base",
+    "native": "compatibility",
+    "news-article": "base",
+    "onboarding-selection": "base",
+    "package-tracker": "base",
+    "person-profile": "base",
+    "popover": "base",
+    "product-card": "base",
+    "prompt-suggestions": "base",
+    "pulse-indicator": "base",
+    "quiz": "learning",
+    "radio": "forms",
+    "rating": "base",
+    "reddit-thread-card": "base",
+    "restaurant-availability": "base",
+    "restaurant-menu": "base",
+    "restaurant-reviews": "base",
+    "row": "base",
+    "section": "base",
+    "segmented": "forms",
+    "select": "base",
+    "sentence-builder": "learning",
+    "shared-activity-planner": "base",
+    "sidebar-fact-table": "base",
+    "sidebar-people-also-ask": "base",
+    "slider": "base",
+    "spacer": "base",
+    "sports-schedule": "sports",
+    "sports-scoreboard": "sports",
+    "sports-standings": "sports",
+    "steps": "base",
+    "stopwatch": "time",
+    "svg": "graphics",
+    "tab-group": "base",
+    "tab-panel": "base",
+    "table": "base",
+    "task-expansion-card": "base",
+    "text": "base",
+    "textarea": "forms",
+    "timer": "time",
+    "title": "base",
+    "toggle": "base",
+    "tooltip": "base",
+    "topology": "graphics",
+    "transaction-list": "finance",
+    "unit-converter": "converters",
+    "vocab-card": "learning",
+    "weather": "weather",
+    "web-link-cards": "base",
+    "word-card": "base",
+    "writing-block": "base"
+  },
+  "nodeSupportExceptions": {
+    "native": "rejected"
+  },
+  "nodeSupportNotes": {
+    "markdown": "Bounded original Markdown subset, not CommonMark; unsupported syntax remains literal."
+  },
+  "groups": [
+    {
+      "id": "base",
+      "title": "基础内容、布局与联动控件",
+      "includedGroups": [
+        "base"
+      ],
+      "ownedNodeTypes": [
+        "text",
+        "title",
+        "caption",
+        "agenda",
+        "person-profile",
+        "news-article",
+        "entity-reviews",
+        "restaurant-availability",
+        "onboarding-selection",
+        "create-interactive-poll",
+        "location-choice-request",
+        "business-gallery",
+        "flight-option",
+        "artist-upcoming-events",
+        "package-tracker",
+        "flight-tracker",
+        "sidebar-people-also-ask",
+        "email-preview",
+        "file-nav-list",
+        "jobs",
+        "product-card",
+        "local-business",
+        "restaurant-reviews",
+        "flight-search-form",
+        "flight-results",
+        "shared-activity-planner",
+        "event-sidebar",
+        "word-card",
+        "copy-words",
+        "code-cite",
+        "file-cite",
+        "sidebar-fact-table",
+        "entity-thumbnail-list",
+        "reddit-thread-card",
+        "markdown",
+        "writing-block",
+        "email-draft",
+        "task-expansion-card",
+        "code",
+        "math",
+        "badge",
+        "divider",
+        "spacer",
+        "link",
+        "favicon",
+        "image",
+        "box",
+        "card",
+        "row",
+        "col",
+        "grid",
+        "grid-item",
+        "blockquote",
+        "section",
+        "figure",
+        "details",
+        "tooltip",
+        "popover",
+        "flow",
+        "icon",
+        "pulse-indicator",
+        "loading",
+        "loading-block",
+        "citation",
+        "web-link-cards",
+        "prompt-suggestions",
+        "animate",
+        "celebration",
+        "carousel",
+        "tab-panel",
+        "tab-group",
+        "list",
+        "restaurant-menu",
+        "table",
+        "metric",
+        "metric-grid",
+        "steps",
+        "callout",
+        "label",
+        "slider",
+        "checklist",
+        "rating",
+        "toggle",
+        "select",
+        "button"
+      ],
+      "documentSchema": {
+        "path": "base.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 160862,
+        "unicodeCodePoints": 160862,
+        "estimatedTokens": 40216,
+        "sha256": "b8de65cdb843069aa904b4dd99c0547164d4f6ea4971a92d3e5333d32db5c598"
+      },
+      "nodeSchema": {
+        "path": "nodes/base.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 159613,
+        "unicodeCodePoints": 159613,
+        "estimatedTokens": 39904,
+        "sha256": "c55add64ac2f8fba74206651e4c67698d06233f71a3b1de180d7bb15cfa94d34"
+      },
+      "examples": [
+        {
+          "path": "../../examples/entity-facts.json",
+          "repositoryPath": "examples/entity-facts.json"
+        },
+        {
+          "path": "../../examples/source-citations.json",
+          "repositoryPath": "examples/source-citations.json"
+        },
+        {
+          "path": "../../examples/vocabulary-tools.json",
+          "repositoryPath": "examples/vocabulary-tools.json"
+        },
+        {
+          "path": "../../examples/activity-planning.json",
+          "repositoryPath": "examples/activity-planning.json"
+        },
+        {
+          "path": "../../examples/flight-discovery.json",
+          "repositoryPath": "examples/flight-discovery.json"
+        },
+        {
+          "path": "../../examples/local-places.json",
+          "repositoryPath": "examples/local-places.json"
+        },
+        {
+          "path": "../../examples/decision-cards.json",
+          "repositoryPath": "examples/decision-cards.json"
+        },
+        {
+          "path": "../../examples/related-questions.json",
+          "repositoryPath": "examples/related-questions.json"
+        },
+        {
+          "path": "../../examples/mail-files.json",
+          "repositoryPath": "examples/mail-files.json"
+        },
+        {
+          "path": "../../examples/create-interactive-poll.json",
+          "repositoryPath": "examples/create-interactive-poll.json"
+        },
+        {
+          "path": "../../examples/supplied-trackers.json",
+          "repositoryPath": "examples/supplied-trackers.json"
+        },
+        {
+          "path": "../../examples/flight-option.json",
+          "repositoryPath": "examples/flight-option.json"
+        },
+        {
+          "path": "../../examples/artist-upcoming-events.json",
+          "repositoryPath": "examples/artist-upcoming-events.json"
+        },
+        {
+          "path": "../../examples/onboarding-selection.json",
+          "repositoryPath": "examples/onboarding-selection.json"
+        },
+        {
+          "path": "../../examples/motion.json",
+          "repositoryPath": "examples/motion.json"
+        },
+        {
+          "path": "../../examples/wifi.json",
+          "repositoryPath": "examples/wifi.json"
+        },
+        {
+          "path": "../../examples/shortlist.json",
+          "repositoryPath": "examples/shortlist.json"
+        },
+        {
+          "path": "../../examples/math-fonts.json",
+          "repositoryPath": "examples/math-fonts.json"
+        },
+        {
+          "path": "../../examples/foundations.json",
+          "repositoryPath": "examples/foundations.json"
+        },
+        {
+          "path": "../../examples/structured-tables.json",
+          "repositoryPath": "examples/structured-tables.json"
+        },
+        {
+          "path": "../../examples/local-status-primitives.json",
+          "repositoryPath": "examples/local-status-primitives.json"
+        },
+        {
+          "path": "../../examples/loading-states.json",
+          "repositoryPath": "examples/loading-states.json"
+        },
+        {
+          "path": "../../examples/source-cards.json",
+          "repositoryPath": "examples/source-cards.json"
+        },
+        {
+          "path": "../../examples/carousel-basic.json",
+          "repositoryPath": "examples/carousel-basic.json"
+        },
+        {
+          "path": "../../examples/code.json",
+          "repositoryPath": "examples/code.json"
+        },
+        {
+          "path": "../../examples/markdown-subset.json",
+          "repositoryPath": "examples/markdown-subset.json"
+        },
+        {
+          "path": "../../examples/tabs.json",
+          "repositoryPath": "examples/tabs.json"
+        },
+        {
+          "path": "../../examples/checklist.json",
+          "repositoryPath": "examples/checklist.json"
+        },
+        {
+          "path": "../../examples/prompt-suggestions.json",
+          "repositoryPath": "examples/prompt-suggestions.json"
+        },
+        {
+          "path": "../../examples/restaurant-menu.json",
+          "repositoryPath": "examples/restaurant-menu.json"
+        },
+        {
+          "path": "../../examples/writing-block.json",
+          "repositoryPath": "examples/writing-block.json"
+        },
+        {
+          "path": "../../examples/email-draft.json",
+          "repositoryPath": "examples/email-draft.json"
+        },
+        {
+          "path": "../../examples/task-expansion-card.json",
+          "repositoryPath": "examples/task-expansion-card.json"
+        },
+        {
+          "path": "../../examples/person-profile.json",
+          "repositoryPath": "examples/person-profile.json"
+        },
+        {
+          "path": "../../examples/news-article.json",
+          "repositoryPath": "examples/news-article.json"
+        },
+        {
+          "path": "../../examples/entity-reviews.json",
+          "repositoryPath": "examples/entity-reviews.json"
+        },
+        {
+          "path": "../../examples/restaurant-availability.json",
+          "repositoryPath": "examples/restaurant-availability.json"
+        },
+        {
+          "path": "../../examples/location-choice-request.json",
+          "repositoryPath": "examples/location-choice-request.json"
+        },
+        {
+          "path": "../../examples/business-gallery.json",
+          "repositoryPath": "examples/business-gallery.json"
+        },
+        {
+          "path": "../../examples/reddit-thread-card.json",
+          "repositoryPath": "examples/reddit-thread-card.json"
+        },
+        {
+          "path": "../../examples/rating.json",
+          "repositoryPath": "examples/rating.json"
+        },
+        {
+          "path": "../../examples/favicon.json",
+          "repositoryPath": "examples/favicon.json"
+        },
+        {
+          "path": "../../examples/agenda.json",
+          "repositoryPath": "examples/agenda.json"
+        },
+        {
+          "path": "../../examples/button-actions.json",
+          "repositoryPath": "examples/button-actions.json"
+        }
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "表单与字段",
+      "includedGroups": [
+        "base",
+        "forms"
+      ],
+      "ownedNodeTypes": [
+        "input",
+        "textarea",
+        "radio",
+        "segmented",
+        "field",
+        "form"
+      ],
+      "documentSchema": {
+        "path": "forms.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 173586,
+        "unicodeCodePoints": 173586,
+        "estimatedTokens": 43397,
+        "sha256": "17feda3a6d3f55e585412a525c1c9ed87933e8ce8718dc9b21c2b9af9b535930"
+      },
+      "nodeSchema": {
+        "path": "nodes/forms.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 14592,
+        "unicodeCodePoints": 14592,
+        "estimatedTokens": 3648,
+        "sha256": "edcb8bc72d2d689dda782bf97c056da1ce2f9f694fac8ebd7ddc36858adee7f0"
+      },
+      "examples": [
+        {
+          "path": "../../examples/forms.json",
+          "repositoryPath": "examples/forms.json"
+        },
+        {
+          "path": "../../examples/overlays.json",
+          "repositoryPath": "examples/overlays.json"
+        },
+        {
+          "path": "../../examples/checkbox-practice.json",
+          "repositoryPath": "examples/checkbox-practice.json"
+        },
+        {
+          "path": "../../examples/date-practice.json",
+          "repositoryPath": "examples/date-practice.json"
+        },
+        {
+          "path": "../../examples/checklist-form.json",
+          "repositoryPath": "examples/checklist-form.json"
+        },
+        {
+          "path": "../../examples/field-labels.json",
+          "repositoryPath": "examples/field-labels.json"
+        }
+      ]
+    },
+    {
+      "id": "charts",
+      "title": "通用图表与数值/时间坐标",
+      "includedGroups": [
+        "base",
+        "charts"
+      ],
+      "ownedNodeTypes": [
+        "chart"
+      ],
+      "documentSchema": {
+        "path": "charts.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 163796,
+        "unicodeCodePoints": 163796,
+        "estimatedTokens": 40949,
+        "sha256": "764baa877b081abad590184a0b2e85440b8703f52360fa4887f61f0f6585e43f"
+      },
+      "nodeSchema": {
+        "path": "nodes/charts.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 4802,
+        "unicodeCodePoints": 4802,
+        "estimatedTokens": 1201,
+        "sha256": "fe5c0692aa04e50f198c7499345bfbc421247870407b176b4528dcd8112e67b4"
+      },
+      "examples": [
+        {
+          "path": "../../examples/rtt.json",
+          "repositoryPath": "examples/rtt.json"
+        },
+        {
+          "path": "../../examples/numeric-charts.json",
+          "repositoryPath": "examples/numeric-charts.json"
+        },
+        {
+          "path": "../../examples/pie.json",
+          "repositoryPath": "examples/pie.json"
+        }
+      ]
+    },
+    {
+      "id": "graphics",
+      "title": "拓扑与受限SVG",
+      "includedGroups": [
+        "base",
+        "graphics"
+      ],
+      "ownedNodeTypes": [
+        "topology",
+        "svg"
+      ],
+      "documentSchema": {
+        "path": "graphics.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 164814,
+        "unicodeCodePoints": 164814,
+        "estimatedTokens": 41204,
+        "sha256": "beb25921f4449eded9f9727ef840a2da8f1cb001631802d41ac2e640e95f652c"
+      },
+      "nodeSchema": {
+        "path": "nodes/graphics.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 5820,
+        "unicodeCodePoints": 5820,
+        "estimatedTokens": 1455,
+        "sha256": "b0a047e3eeb0c3e2a738abfb83b2d5afc29670f505e0a6e877137deefa417c79"
+      },
+      "examples": [
+        {
+          "path": "../../examples/hpcc.json",
+          "repositoryPath": "examples/hpcc.json"
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "title": "天气供数视图",
+      "includedGroups": [
+        "base",
+        "weather"
+      ],
+      "ownedNodeTypes": [
+        "weather"
+      ],
+      "documentSchema": {
+        "path": "weather.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 167622,
+        "unicodeCodePoints": 167622,
+        "estimatedTokens": 41906,
+        "sha256": "4d8571fc799523a437f605fcba26ab7296a14f265da2508762fd0bf46a1bd87c"
+      },
+      "nodeSchema": {
+        "path": "nodes/weather.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 7218,
+        "unicodeCodePoints": 7218,
+        "estimatedTokens": 1805,
+        "sha256": "2d13bc5e79a7e18a69f31bc671fea73ab154f8cb22b1e6c9a047e22f2e557704"
+      },
+      "examples": [
+        {
+          "path": "../../examples/weather.json",
+          "repositoryPath": "examples/weather.json"
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "title": "体育赛程、记分牌与积分榜",
+      "includedGroups": [
+        "base",
+        "sports"
+      ],
+      "ownedNodeTypes": [
+        "sports-schedule",
+        "sports-scoreboard",
+        "sports-standings"
+      ],
+      "documentSchema": {
+        "path": "sports.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 174696,
+        "unicodeCodePoints": 174696,
+        "estimatedTokens": 43674,
+        "sha256": "cb5c005be6fc4174236489cb1f7cc2114a11b5a5c25d4e1eb9247a8ae4019348"
+      },
+      "nodeSchema": {
+        "path": "nodes/sports.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 14292,
+        "unicodeCodePoints": 14292,
+        "estimatedTokens": 3573,
+        "sha256": "c8df79fced5c6b8006daa5f5862a72df17595344bee41e3dadabe94bfc696975"
+      },
+      "examples": [
+        {
+          "path": "../../examples/sports.json",
+          "repositoryPath": "examples/sports.json"
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "title": "本地学习练习",
+      "includedGroups": [
+        "base",
+        "learning"
+      ],
+      "ownedNodeTypes": [
+        "quiz",
+        "flashcards",
+        "fill-blank",
+        "sentence-builder",
+        "vocab-card"
+      ],
+      "documentSchema": {
+        "path": "learning.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 171413,
+        "unicodeCodePoints": 171413,
+        "estimatedTokens": 42854,
+        "sha256": "ac4a743246e465f593ecdad99589bc0d8415bc13f89b7aeb744d184d96af661e"
+      },
+      "nodeSchema": {
+        "path": "nodes/learning.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 11009,
+        "unicodeCodePoints": 11009,
+        "estimatedTokens": 2753,
+        "sha256": "dbfdabb484f33dc587aa6228a6b4787240ac3b865817f7089b94a386678c3cda"
+      },
+      "examples": [
+        {
+          "path": "../../examples/learning.json",
+          "repositoryPath": "examples/learning.json"
+        },
+        {
+          "path": "../../examples/fill-blank-practice.json",
+          "repositoryPath": "examples/fill-blank-practice.json"
+        },
+        {
+          "path": "../../examples/sentence-builder.json",
+          "repositoryPath": "examples/sentence-builder.json"
+        },
+        {
+          "path": "../../examples/vocab-card.json",
+          "repositoryPath": "examples/vocab-card.json"
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "title": "金融快照、历史、比较与热图",
+      "includedGroups": [
+        "base",
+        "finance"
+      ],
+      "ownedNodeTypes": [
+        "finance-quote",
+        "finance-chart",
+        "finance-comparison",
+        "finance-heatmap",
+        "asset-distribution",
+        "transaction-list"
+      ],
+      "documentSchema": {
+        "path": "finance.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 177784,
+        "unicodeCodePoints": 177784,
+        "estimatedTokens": 44446,
+        "sha256": "4ff682f02bcbb6334b2eea3b86e0c1b5012f47d65edb29a6b3d31c5225703caf"
+      },
+      "nodeSchema": {
+        "path": "nodes/finance.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 17380,
+        "unicodeCodePoints": 17380,
+        "estimatedTokens": 4345,
+        "sha256": "900129774be44da96ac58ded5af6ba1c375bc8ec88971a80c7d95d4b18d6fdde"
+      },
+      "examples": [
+        {
+          "path": "../../examples/finance-preview.json",
+          "repositoryPath": "examples/finance-preview.json"
+        },
+        {
+          "path": "../../examples/finance-lists.json",
+          "repositoryPath": "examples/finance-lists.json"
+        }
+      ]
+    },
+    {
+      "id": "converters",
+      "title": "单位与汇率换算",
+      "includedGroups": [
+        "base",
+        "converters"
+      ],
+      "ownedNodeTypes": [
+        "unit-converter",
+        "currency-converter"
+      ],
+      "documentSchema": {
+        "path": "converters.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 167827,
+        "unicodeCodePoints": 167827,
+        "estimatedTokens": 41957,
+        "sha256": "59ad0a4f8264df4e31bbd3b0fb68ed1db62c2373cbd48af75af46f789fb04f7f"
+      },
+      "nodeSchema": {
+        "path": "nodes/converters.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 7423,
+        "unicodeCodePoints": 7423,
+        "estimatedTokens": 1856,
+        "sha256": "a98fda73d1bbf5f4cf7d3bcbe49692bfdd53dc8f21bbc9a87c98b4b698680de4"
+      },
+      "examples": [
+        {
+          "path": "../../examples/converters.json",
+          "repositoryPath": "examples/converters.json"
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "title": "本地时钟、秒表与倒计时",
+      "includedGroups": [
+        "base",
+        "time"
+      ],
+      "ownedNodeTypes": [
+        "clock",
+        "stopwatch",
+        "timer"
+      ],
+      "documentSchema": {
+        "path": "time.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 165373,
+        "unicodeCodePoints": 165373,
+        "estimatedTokens": 41344,
+        "sha256": "0cfc1cc53d1f2a86a1759f0fbbf24b171dec5a19cab09d48eb517069368963ec"
+      },
+      "nodeSchema": {
+        "path": "nodes/time.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 4969,
+        "unicodeCodePoints": 4969,
+        "estimatedTokens": 1243,
+        "sha256": "4fa3afc197af3b43daa228613ae063feb62c93c73abcb9461c2ebeda83ef110d"
+      },
+      "examples": [
+        {
+          "path": "../../examples/time.json",
+          "repositoryPath": "examples/time.json"
+        }
+      ]
+    },
+    {
+      "id": "compatibility",
+      "title": "仅识别的历史输入边界",
+      "includedGroups": [
+        "base",
+        "compatibility"
+      ],
+      "ownedNodeTypes": [
+        "native"
+      ],
+      "documentSchema": {
+        "path": "compatibility.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 165622,
+        "unicodeCodePoints": 165622,
+        "estimatedTokens": 41406,
+        "sha256": "4f1074d84ebab17dbaa1a00d03150253b8b2df60b4a009219a87047fad5f588c"
+      },
+      "nodeSchema": {
+        "path": "nodes/compatibility.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 5218,
+        "unicodeCodePoints": 5218,
+        "estimatedTokens": 1305,
+        "sha256": "b787a9c5409e2d6bc97f7451d1004c196b9deb6ea96aedf699b2571acfc55d50"
+      },
+      "examples": [],
+      "warning": "native is structurally recognized but always rejected by validateDocument; it is not a supported renderer."
+    }
+  ]
+}

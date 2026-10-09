@@ -1,0 +1,95 @@
+{
+  "version": "iui/1",
+  "title": "原创合成菜单",
+  "description": "全部名称、价格和状态均为原创测试数据，并非真实餐厅信息。",
+  "state": {
+    "n": 1
+  },
+  "body": [
+    {
+      "type": "restaurant-menu",
+      "title": "纸间小馆 · 合成菜单",
+      "description": "有限的提供数据，在本页按名称、描述或标签搜索。",
+      "currency": "CNY",
+      "source": {
+        "label": "原创合成样例",
+        "url": "https://example.invalid/synthetic-menu"
+      },
+      "sections": [
+        {
+          "id": "mains",
+          "title": "主食",
+          "items": [
+            {
+              "id": "rice",
+              "name": "香草蔬菜饭",
+              "description": "带有清香的原创合成主食描述。",
+              "price": 28.125,
+              "tags": [
+                "植物食材",
+                "香草"
+              ],
+              "status": "available"
+            },
+            {
+              "id": "soup",
+              "name": "秋日汤",
+              "description": "这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。",
+              "price": null,
+              "tags": [
+                "季节样例"
+              ],
+              "status": "unavailable"
+            }
+          ]
+        },
+        {
+          "id": "drinks",
+          "title": "饮品",
+          "items": [
+            {
+              "id": "water",
+              "name": "饮用水",
+              "description": "明确标注的零价格示例。",
+              "price": 0,
+              "tags": [
+                "冷饮"
+              ],
+              "status": "available"
+            },
+            {
+              "id": "tea",
+              "name": "香草茶",
+              "description": "精确保留极小数值的示例。",
+              "price": 1e-7,
+              "tags": [
+                "香草",
+                "热饮"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "title": "暂未提供项目的分类",
+          "items": []
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "只更新其他状态",
+      "action": {
+        "kind": "set",
+        "bind": "n",
+        "value": 2
+      }
+    },
+    {
+      "type": "text",
+      "value": {
+        "$": "n"
+      }
+    }
+  ]
+}

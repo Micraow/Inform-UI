@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Inform UI 本地计划与计时</title>
+<link id="iui-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.css" integrity="sha384-avgiFDwdK1wYMoqev29yNOdp6bpl0DQNVJAlf/2w9Au7yLZTZnJyeqGPHuesglJC" crossorigin="anonymous">
+</head>
+<body class="iui-page" data-theme="auto" style="margin:0">
+<main id="answer"></main>
+<pre id="status" role="alert"></pre>
+<script id="spec" type="application/json">{
+  "version": "iui/1",
+  "title": "本地练习计划与计时",
+  "description": "原创合成示例。数值仅演示输入、计算和计时，不连接账户、支付或提醒服务。",
+  "state": {
+    "hours": 6
+  },
+  "computed": {
+    "totalHours": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "hours"
+        },
+        4
+      ]
+    },
+    "cost": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "totalHours"
+        },
+        80
+      ]
+    },
+    "balance": {
+      "op": "sub",
+      "args": [
+        2000,
+        {
+          "$": "cost"
+        }
+      ]
+    },
+    "practiceScale": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "hours"
+        },
+        5
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "value": "先检查输入，再开始计时"
+    },
+    {
+      "type": "text",
+      "runs": [
+        {
+          "value": "一个月的合成练习计划。",
+          "bold": true
+        },
+        {
+          "value": "有效数字会更新 ",
+          "italic": true
+        },
+        {
+          "value": "state.hours",
+          "code": true
+        },
+        {
+          "value": "；无效数字保留为可改正的草稿。"
+        }
+      ]
+    },
+    {
+      "type": "form",
+      "label": "检查合成计划",
+      "submitLabel": "检查当前草稿",
+      "cancelLabel": "恢复6小时",
+      "children": [
+        {
+          "type": "input",
+          "kind": "number",
+          "label": "每周练习小时",
+          "bind": "hours",
+          "min": 0,
+          "max": 20,
+          "step": 0.5,
+          "required": true,
+          "hint": "0到20小时，步长0.5。可试试-1、21或0.1，再改成12.5。"
+        },
+        {
+          "type": "metric-grid",
+          "columns": 3,
+          "children": [
+            {
+              "type": "metric",
+              "label": "4周总时长",
+              "value": {
+                "$": "totalHours"
+              },
+              "unit": "小时"
+            },
+            {
+              "type": "metric",
+              "label": "合成总成本",
+              "value": {
+                "$": "cost"
+              },
+              "unit": "CNY"
+            },
+            {
+              "type": "metric",
+              "label": "2000元预算余额",
+              "value": {
+                "$": "balance"
+              },
+              "unit": "CNY",
+              "hint": "负值仅表示超出此合成预算。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "popover",
+      "label": "为什么输入和指标可能不同？",
+      "title": "草稿、状态与提交",
+      "children": [
+        {
+          "type": "text",
+          "value": "空值、未完成数字、越界值和步长不符的数字不会写入共享state。指标保持此前接受的数值；提交检查的是现在看见的草稿，不会偷偷提交旧state。"
+        },
+        {
+          "type": "text",
+          "value": "这里提交只进行本地检查，没有保存或网络发送。宿主明确写入state是另一种数据来源。"
+        },
+        {
+          "type": "tooltip",
+          "label": "关闭后会丢草稿吗？",
+          "value": "关闭说明面板不会重建表单。取消表单才会恢复初始数值；刷新页面不会保留本地状态。"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "caption": "两种输入的不同结果",
+      "columns": [
+        "类别",
+        "输入例子",
+        "结果"
+      ],
+      "rows": [
+        [
+          {
+            "value": "无效草稿",
+            "header": true,
+            "rowSpan": 2
+          },
+          "-1或21",
+          "越界，指标不变且提交被拦截"
+        ],
+        [
+          "0.1",
+          "不符合0.5步长，指标不变且提交被拦截"
+        ],
+        [
+          {
+            "value": "有效数字",
+            "header": true
+          },
+          "12.5",
+          "更新为50小时、4000元成本"
+        ]
+      ]
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "mobileColumns": 1,
+      "children": [
+        {
+          "type": "grid-item",
+          "colSpan": 1,
+          "mobileColSpan": 1,
+          "children": [
+            {
+              "type": "stopwatch",
+              "title": "练习秒表",
+              "laps": true
+            }
+          ]
+        },
+        {
+          "type": "grid-item",
+          "colSpan": 1,
+          "mobileColSpan": 1,
+          "children": [
+            {
+              "type": "timer",
+              "title": "60秒观察",
+              "durationMs": 60000
+            }
+          ]
+        },
+        {
+          "type": "grid-item",
+          "colSpan": 2,
+          "mobileColSpan": 1,
+          "children": [
+            {
+              "type": "clock",
+              "title": "固定时区示例",
+              "mode": "snapshot",
+              "timezone": "Asia/Shanghai",
+              "at": "2026-10-09T16:00:00Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tooltip",
+      "label": "计时有什么边界？",
+      "value": "这只是页内计时。设备休眠可能影响时间，关闭页面后不会响铃或发送提醒。"
+    },
+    {
+      "type": "flow",
+      "gap": "md",
+      "align": "center",
+      "children": [
+        {
+          "type": "icon",
+          "name": "clock",
+          "label": "静态时钟图标",
+          "tone": "muted"
+        },
+        {
+          "type": "pulse-indicator",
+          "label": "作者给定的练习状态",
+          "status": "idle",
+          "animate": false
+        },
+        {
+          "type": "caption",
+          "value": "图标不计时；这条固定状态没有连接后台任务。"
+        }
+      ]
+    },
+    {
+      "type": "blockquote",
+      "attribution": "本项目原创合成示例",
+      "children": [
+        {
+          "type": "text",
+          "value": "先明确数据来源、输入边界和状态，再解释界面给出的结果。"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "调用方提供的进度与占位",
+      "children": [
+        {
+          "type": "caption",
+          "value": "这里把最后有效小时数乘5映射到0–100，只是合成数值，不观察计时器或后台任务。"
+        },
+        {
+          "type": "loading",
+          "label": "作者给定的练习强度比例",
+          "progress": {
+            "$": "practiceScale"
+          }
+        },
+        {
+          "type": "loading",
+          "label": "另一项合成任务：未提供进度"
+        },
+        {
+          "type": "loading-block",
+          "label": "形状占位演示，不表示正在发送请求",
+          "shape": "text",
+          "lines": 3,
+          "animate": false
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "作者给定的虚构资料",
+      "children": [
+        {
+          "type": "caption",
+          "value": "以下地址均为example.invalid，仅演示结构；标题和来源未经过检索，不要把它们当作真实证据。"
+        },
+        {
+          "type": "citation",
+          "number": 1,
+          "title": "虚构方法说明（仅格式示例）",
+          "url": "https://example.invalid/method",
+          "publisher": "合成出版方",
+          "description": "引用编号由作者给定；组件不判断资料是否支持页面中的结论。"
+        },
+        {
+          "type": "web-link-cards",
+          "label": "三个虚构资料条目",
+          "items": [
+            {
+              "title": "合成资料甲：输入与数值",
+              "url": "https://example.invalid/input",
+              "description": "演示说明文字、目标域名和原生外链，不会自动读取页面。"
+            },
+            {
+              "title": "合成资料乙：时间边界",
+              "url": "https://example.invalid/time",
+              "description": "卡片保持作者顺序，可用前后按钮、键盘或触摸原生滚动。"
+            },
+            {
+              "title": "合成资料丙：缺失进度",
+              "url": "https://example.invalid/progress",
+              "description": "没有给出进度时不会伪造为零，也不会宣称任务完成。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</script>
+<script src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.global.min.js" integrity="sha384-lzlbbrCDkjA12MkdUPJYeXhFgDwTxOHIkGhav/we5EDEtLyU+OP1Z3gZgxl2K4Qp" crossorigin="anonymous"></script>
+<script>
+  const target = document.getElementById('answer');
+  const status = document.getElementById('status');
+  try {
+    if (!window.IUI) throw new Error('界面库加载失败，请检查网络或固定版本的 CDN 链接。');
+    if (!document.getElementById('iui-style').sheet) throw new Error('样式加载失败，请检查 CDN 链接。');
+    const result = IUI.validateDocument(JSON.parse(document.getElementById('spec').textContent));
+    if (!result.ok) status.textContent = result.issues.map(i => i.code + ' ' + i.path + ': ' + i.message).join('\n');
+    else IUI.mount(target, result.document, { styles: false });
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : String(error);
+  }
+</script>
+</body>
+</html>

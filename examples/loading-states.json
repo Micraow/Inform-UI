@@ -1,0 +1,22 @@
+{
+  "version": "iui/1",
+  "title": "Original caller-supplied progress demonstration",
+  "theme": "auto",
+  "state": { "done": 25, "total": 100, "other": 0 },
+  "computed": { "percent": { "op": "mul", "args": [{ "op": "div", "args": [{ "$": "done" }, { "$": "total" }] }, 100] } },
+  "body": [
+    { "type": "title", "value": "Caller-supplied progress" },
+    { "type": "caption", "value": "Original local demonstration; this document does not observe a network task." },
+    { "type": "slider", "label": "Supplied completion", "bind": "done", "min": 0, "max": 100, "step": 0.125 },
+    { "type": "loading", "id": "reactive-progress", "label": "Explicit sample progress", "progress": { "$": "percent" } },
+    { "type": "loading", "id": "zero-progress", "label": "Zero is known", "progress": 0, "size": "sm" },
+    { "type": "loading", "id": "full-progress", "label": "Full scale is known", "progress": 100, "size": "lg" },
+    { "type": "loading", "id": "fraction-progress", "label": "Fraction is exact", "progress": 33.333333333333336 },
+    { "type": "loading", "id": "hidden-value", "label": "Accessible progress remains", "progress": 12.5, "showValue": false },
+    { "type": "loading", "id": "indeterminate", "label": "No progress was supplied", "size": "md" },
+    { "type": "loading-block", "id": "text-placeholder", "label": "Text placeholder", "lines": 3 },
+    { "type": "loading-block", "id": "card-placeholder", "label": "Card placeholder", "shape": "card" },
+    { "type": "loading-block", "id": "circle-placeholder", "label": "Circle placeholder", "shape": "circle", "animate": false },
+    { "type": "loading-block", "id": "long-placeholder", "label": "LongLabelWithoutBreaks0123456789LongLabelWithoutBreaks0123456789LongLabelWithoutBreaks0123456789LongLabelWithoutBreaks0123456789", "lines": 10, "animate": false }
+  ]
+}

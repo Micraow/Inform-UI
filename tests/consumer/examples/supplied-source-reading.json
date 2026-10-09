@@ -1,0 +1,119 @@
+{
+  "version": "iui/1",
+  "title": "来源呈现不等于来源核实",
+  "description": "原创合成文档；所有URL使用保留的.invalid域名，不应作为真实参考资料。",
+  "theme": "auto",
+  "state": {
+    "readCount": 1
+  },
+  "computed": {
+    "progress": {
+      "op": "mul",
+      "args": [
+        {
+          "op": "div",
+          "args": [
+            {
+              "$": "readCount"
+            },
+            4
+          ]
+        },
+        100
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "caption",
+      "value": "原创合成资料导航示例。example.invalid链接、标题与发布者均为虚构占位，不是可用资料或真实证据。"
+    },
+    {
+      "type": "title",
+      "level": 1,
+      "value": "把来源信息放在相关解释旁边"
+    },
+    {
+      "type": "text",
+      "value": "引用编号与摘要由作者提供。组件不会搜索、阅读网页、判断可信度，也不会因为打开链接就增加进度。"
+    },
+    {
+      "type": "citation",
+      "id": "single-source",
+      "number": 7,
+      "title": "合成示例：观测值与缺测值的区分",
+      "url": "https://example.invalid/supplied-note",
+      "publisher": "虚构教学资料组",
+      "description": "这是原创占位说明，不归于真实出版物；编号7由调用方明确提供。"
+    },
+    {
+      "type": "form",
+      "id": "reading-demo",
+      "submitLabel": "检查输入",
+      "cancelLabel": "恢复演示初值",
+      "children": [
+        {
+          "type": "input",
+          "kind": "number",
+          "label": "手动提供的演示完成份数",
+          "bind": "readCount",
+          "min": 0,
+          "max": 4,
+          "step": 1,
+          "required": true
+        }
+      ],
+      "label": "合成阅读进度试算"
+    },
+    {
+      "type": "loading",
+      "id": "manual-progress",
+      "label": "手动数值的合成比例，不代表网页已读",
+      "progress": {
+        "$": "progress"
+      }
+    },
+    {
+      "type": "web-link-cards",
+      "id": "supplied-links",
+      "label": "四份虚构参考资料，保留作者顺序",
+      "items": [
+        {
+          "title": "合成资料甲：检查观测单位",
+          "url": "https://example.invalid/units",
+          "publisher": "虚构教学资料组",
+          "description": "此文字由作者写入，组件不抓取页面摘要或缩略图。"
+        },
+        {
+          "title": "合成资料乙：理解缺测",
+          "url": "https://example.invalid/missing",
+          "description": "缺测与零不同。这是原创示意句，不是来自虚构链接的真实引文。"
+        },
+        {
+          "title": "合成资料乙：理解缺测",
+          "url": "https://example.invalid/missing",
+          "publisher": "重复条目按原序保留",
+          "description": "同一链接可重复列出；组件不去重、不排名，也不自动编号。"
+        },
+        {
+          "title": "合成资料丁：检查很长的标题在窄屏是否仍然完整可读",
+          "url": "https://example.invalid/final",
+          "description": "正文明确说明来源的作用。卡片横向浏览不等于已经核实来源或读完内容。"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "明确写回2份合成进度",
+      "action": {
+        "kind": "set",
+        "bind": "readCount",
+        "value": 2
+      }
+    },
+    {
+      "type": "caption",
+      "value": "本例组合需要base＋forms。页内表单仅校验；点击来源链接是用户主动的新标签页导航，进度没有自动监听。"
+    }
+  ]
+}

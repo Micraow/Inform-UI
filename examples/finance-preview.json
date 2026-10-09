@@ -1,0 +1,417 @@
+{
+  "version": "iui/1",
+  "title": "Inform UI 金融组件预览",
+  "description": "原创合成行情；价格历史、共同基准比较与真实权重热图。固定256项组件清单中36项功能已验，不是完整库完成声明。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "价格、共同基准与面积"
+    },
+    {
+      "type": "caption",
+      "value": "调用方供数的独立UI；市场状态/延迟/时间明确，不连接行情服务或执行交易。"
+    },
+    {
+      "type": "finance-quote",
+      "id": "quote",
+      "title": "行情快照",
+      "source": {
+        "label": "Inform UI original synthetic market fixture",
+        "synthetic": true
+      },
+      "instrument": {
+        "id": "orbit",
+        "symbol": "ORBT",
+        "name": "Orbit Meadow Synthetic Research Index",
+        "currency": "USD",
+        "exchange": "SYNTHETIC",
+        "timezone": "America/Los_Angeles",
+        "asOf": "2026-11-01T06:15:00-08:00",
+        "marketStatus": "closed",
+        "delayMinutes": 15,
+        "price": 112,
+        "previousClose": 100,
+        "history": [
+          {
+            "time": "2026-11-01T00:30:00-07:00",
+            "price": 100
+          },
+          {
+            "time": "2026-11-01T01:00:00-07:00",
+            "price": 102
+          },
+          {
+            "time": "2026-11-01T01:00:00-08:00",
+            "price": 105
+          },
+          {
+            "time": "2026-11-01T02:00:00-08:00",
+            "price": null
+          },
+          {
+            "time": "2026-11-01T05:30:00-08:00",
+            "price": 108
+          },
+          {
+            "time": "2026-11-01T06:00:00-08:00",
+            "price": 112
+          }
+        ]
+      }
+    },
+    {
+      "type": "finance-chart",
+      "id": "history",
+      "title": "带缺测的价格历史",
+      "source": {
+        "label": "Inform UI original synthetic market fixture",
+        "synthetic": true
+      },
+      "instrument": {
+        "id": "orbit",
+        "symbol": "ORBT",
+        "name": "Orbit Meadow Synthetic Research Index",
+        "currency": "USD",
+        "exchange": "SYNTHETIC",
+        "timezone": "America/Los_Angeles",
+        "asOf": "2026-11-01T06:15:00-08:00",
+        "marketStatus": "closed",
+        "delayMinutes": 15,
+        "price": 112,
+        "previousClose": 100,
+        "history": [
+          {
+            "time": "2026-11-01T00:30:00-07:00",
+            "price": 100
+          },
+          {
+            "time": "2026-11-01T01:00:00-07:00",
+            "price": 102
+          },
+          {
+            "time": "2026-11-01T01:00:00-08:00",
+            "price": 105
+          },
+          {
+            "time": "2026-11-01T02:00:00-08:00",
+            "price": null
+          },
+          {
+            "time": "2026-11-01T05:30:00-08:00",
+            "price": 108
+          },
+          {
+            "time": "2026-11-01T06:00:00-08:00",
+            "price": 112
+          }
+        ]
+      },
+      "ranges": [
+        {
+          "id": "all",
+          "label": "完整时段",
+          "from": "2026-11-01T00:30:00-07:00",
+          "to": "2026-11-01T06:15:00-08:00"
+        },
+        {
+          "id": "dst",
+          "label": "重复的 01:00",
+          "from": "2026-11-01T01:00:00-07:00",
+          "to": "2026-11-01T01:00:00-08:00"
+        },
+        {
+          "id": "point",
+          "label": "单点",
+          "from": "2026-11-01T06:00:00-08:00",
+          "to": "2026-11-01T06:15:00-08:00"
+        },
+        {
+          "id": "empty",
+          "label": "空时段",
+          "from": "2026-10-31T10:00:00-07:00",
+          "to": "2026-10-31T11:00:00-07:00"
+        }
+      ],
+      "initialRange": "all"
+    },
+    {
+      "type": "finance-comparison",
+      "id": "comparison",
+      "title": "同一时刻为基准的相对表现",
+      "source": {
+        "label": "Inform UI original synthetic market fixture",
+        "synthetic": true
+      },
+      "instruments": [
+        {
+          "id": "orbit",
+          "symbol": "ORBT",
+          "name": "Orbit Meadow Synthetic Research Index",
+          "currency": "USD",
+          "exchange": "SYNTHETIC",
+          "timezone": "America/Los_Angeles",
+          "asOf": "2026-11-01T06:15:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15,
+          "price": 112,
+          "previousClose": 100,
+          "history": [
+            {
+              "time": "2026-11-01T00:30:00-07:00",
+              "price": 100
+            },
+            {
+              "time": "2026-11-01T01:00:00-07:00",
+              "price": 102
+            },
+            {
+              "time": "2026-11-01T01:00:00-08:00",
+              "price": 105
+            },
+            {
+              "time": "2026-11-01T02:00:00-08:00",
+              "price": null
+            },
+            {
+              "time": "2026-11-01T05:30:00-08:00",
+              "price": 108
+            },
+            {
+              "time": "2026-11-01T06:00:00-08:00",
+              "price": 112
+            }
+          ]
+        },
+        {
+          "id": "tide",
+          "symbol": "TIDE",
+          "name": "Tidewater Synthetic Community Infrastructure Index",
+          "currency": "EUR",
+          "exchange": "SYNTHETIC",
+          "timezone": "America/Los_Angeles",
+          "asOf": "2026-11-01T06:15:00-08:00",
+          "marketStatus": "post",
+          "delayMinutes": 15,
+          "price": 224,
+          "previousClose": 200,
+          "history": [
+            {
+              "time": "2026-11-01T00:30:00-07:00",
+              "price": 200
+            },
+            {
+              "time": "2026-11-01T01:00:00-07:00",
+              "price": 210
+            },
+            {
+              "time": "2026-11-01T01:00:00-08:00",
+              "price": 208
+            },
+            {
+              "time": "2026-11-01T02:00:00-08:00",
+              "price": 212
+            },
+            {
+              "time": "2026-11-01T05:30:00-08:00",
+              "price": null
+            },
+            {
+              "time": "2026-11-01T06:00:00-08:00",
+              "price": 224
+            }
+          ]
+        },
+        {
+          "id": "seed",
+          "symbol": "SEED",
+          "name": "Seedling Synthetic Small-value Unit with a deliberately long descriptive name",
+          "currency": "JPY",
+          "exchange": "SYNTHETIC",
+          "timezone": "America/Los_Angeles",
+          "asOf": "2026-11-01T06:15:00-08:00",
+          "marketStatus": "halted",
+          "delayMinutes": 15,
+          "price": 0.0032,
+          "previousClose": 0.0025,
+          "history": [
+            {
+              "time": "2026-11-01T00:30:00-07:00",
+              "price": null
+            },
+            {
+              "time": "2026-11-01T01:00:00-07:00",
+              "price": 0.0025
+            },
+            {
+              "time": "2026-11-01T01:00:00-08:00",
+              "price": 0.0028
+            },
+            {
+              "time": "2026-11-01T02:00:00-08:00",
+              "price": 0.003
+            },
+            {
+              "time": "2026-11-01T05:30:00-08:00",
+              "price": null
+            },
+            {
+              "time": "2026-11-01T06:00:00-08:00",
+              "price": 0.0032
+            }
+          ]
+        }
+      ],
+      "baselineAt": "2026-11-01T00:30:00-07:00",
+      "timezone": "America/Los_Angeles",
+      "ranges": [
+        {
+          "id": "all",
+          "label": "完整时段",
+          "from": "2026-11-01T00:30:00-07:00",
+          "to": "2026-11-01T06:15:00-08:00"
+        },
+        {
+          "id": "dst",
+          "label": "重复的 01:00",
+          "from": "2026-11-01T01:00:00-07:00",
+          "to": "2026-11-01T01:00:00-08:00"
+        },
+        {
+          "id": "point",
+          "label": "单点",
+          "from": "2026-11-01T06:00:00-08:00",
+          "to": "2026-11-01T06:15:00-08:00"
+        },
+        {
+          "id": "empty",
+          "label": "空时段",
+          "from": "2026-10-31T10:00:00-07:00",
+          "to": "2026-10-31T11:00:00-07:00"
+        }
+      ],
+      "initialRange": "all"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "finance-heatmap",
+      "title": "面积与变动，是两种不同的信息",
+      "source": {
+        "label": "Inform UI 原创合成数据",
+        "synthetic": true
+      },
+      "asOf": "2026-11-01T02:00:00-08:00",
+      "timezone": "America/Los_Angeles",
+      "weightLabel": "示意权重（非真实市值）",
+      "changeBasis": "较合成前收盘",
+      "cells": [
+        {
+          "id": "alpha",
+          "symbol": "Aster",
+          "name": "星河算力（合成）",
+          "sector": "技术",
+          "weight": 40,
+          "price": 120,
+          "currency": "USD",
+          "changePercent": 12,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        },
+        {
+          "id": "beta",
+          "symbol": "Birch",
+          "name": "白桦储能（合成）",
+          "sector": "能源",
+          "weight": 25,
+          "price": 45,
+          "currency": "USD",
+          "changePercent": -5,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        },
+        {
+          "id": "gamma",
+          "symbol": "Cedar",
+          "name": "青杉交通（合成）",
+          "sector": "工业",
+          "weight": 15,
+          "price": 0,
+          "currency": "CNY",
+          "changePercent": -100,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        },
+        {
+          "id": "delta",
+          "symbol": "Dawn",
+          "name": "晨光研究（合成）",
+          "sector": "技术",
+          "weight": 10,
+          "price": 0.0004,
+          "currency": "EUR",
+          "changePercent": 0,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        },
+        {
+          "id": "epsilon",
+          "symbol": "Ember",
+          "name": "余烬材料（合成）",
+          "sector": "工业",
+          "weight": 8,
+          "price": null,
+          "currency": "USD",
+          "changePercent": null,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "halted",
+          "delayMinutes": 15
+        },
+        {
+          "id": "zeta",
+          "symbol": "FarawayVeryLongSyntheticName",
+          "name": "远方超长名称用于排版（合成）",
+          "sector": "技术",
+          "weight": 2,
+          "price": 20,
+          "currency": "JPY",
+          "changePercent": 2.5,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        },
+        {
+          "id": "zero",
+          "symbol": "Zero",
+          "name": "零权重样本（合成）",
+          "sector": "能源",
+          "weight": 0,
+          "price": 8,
+          "currency": "USD",
+          "changePercent": 1,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        },
+        {
+          "id": "missing",
+          "symbol": "Missing",
+          "name": "缺测权重样本（合成）",
+          "sector": "能源",
+          "weight": null,
+          "price": null,
+          "currency": "USD",
+          "changePercent": null,
+          "asOf": "2026-11-01T01:30:00-08:00",
+          "marketStatus": "closed",
+          "delayMinutes": 15
+        }
+      ]
+    }
+  ]
+}

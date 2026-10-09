@@ -1,0 +1,48 @@
+{
+  "version": "iui/1",
+  "title": "提供的网站图标",
+  "description": "原创静态图标示例。仅显式提供的远程图片会在按下加载后请求，不调用网站图标查询服务。",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "flow",
+      "children": [
+        {
+          "type": "favicon",
+          "label": "无网络的本地标识",
+          "fallback": "UI",
+          "size": "sm"
+        },
+        {
+          "type": "favicon",
+          "label": "原创蓝色图标",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAOUlEQVR4nO3OMQ0AIAwAsHnCLvZQgIAhYiGDpEf/xtqZnUJAQOD5wJg1AgICAgICAv8HbhMQEGgPHNhPT9NZ8BXHAAAAAElFTkSuQmCC",
+          "size": "md"
+        },
+        {
+          "type": "favicon",
+          "label": "宽尺寸替代标识",
+          "fallback": "例",
+          "size": "lg"
+        }
+      ]
+    },
+    {
+      "type": "favicon",
+      "label": "需用户显式加载的外部图标",
+      "src": "https://example.invalid/supplied-icon.png",
+      "fallback": "站"
+    },
+    {
+      "type": "button",
+      "label": "仅更新其他状态",
+      "action": {
+        "kind": "set",
+        "bind": "other",
+        "value": 1
+      }
+    }
+  ]
+}

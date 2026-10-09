@@ -1,0 +1,160 @@
+{
+  "version": "iui/1",
+  "title": "研究工具卡片样式",
+  "description": "三个虚构项目，仅用于展示推荐列表排版。缩略图为本项目原创几何图形；链接统一使用 example.com 示例域名。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "一组便于比较的工具条目"
+    },
+    {
+      "type": "badge",
+      "value": "原创示意数据 · 非实测",
+      "color": "info"
+    },
+    {
+      "type": "text",
+      "value": "下面的名字和说明都是虚构内容，不构成实际产品推荐。每个条目按缩略图、标题、摘要、链接的顺序阅读。"
+    },
+    {
+      "type": "card",
+      "padding": 3,
+      "children": [
+        {
+          "type": "row",
+          "gap": 3,
+          "children": [
+            {
+              "type": "box",
+              "width": 120,
+              "children": [
+                {
+                  "type": "image",
+                  "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmklEQVR4nO3WsQmAMBBAUfdxBDdyBBdxLgexEextLSTBBPGMD357kHvNpVu3XYm6118QPECAAAECFDhAgAABqmqZhnMtA/XjnC2tU2DUMtClzl0jQIAAAQL0DJArlgf63j+obMn62eIAAQIECBAgQIAAxV8SECBAgAABAgQIECBAgILNAgIEqB2gXwUIECBAgAIHCBAgQIACdwCO7WrYAlZ7/wAAAABJRU5ErkJggg==",
+                  "alt": "原创几何缩略图：三条高度递增的柱形和一个圆点",
+                  "aspectRatio": "16:9",
+                  "fit": "contain"
+                }
+              ]
+            },
+            {
+              "type": "col",
+              "gap": 1,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 2,
+                  "value": "Trace Loom"
+                },
+                {
+                  "type": "text",
+                  "value": "组织时间序列与缺测注记的虚构研究工具。"
+                },
+                {
+                  "type": "link",
+                  "value": "打开示例链接（example.com）",
+                  "href": "https://example.com/?illustration=Trace%20Loom"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "padding": 3,
+      "children": [
+        {
+          "type": "row",
+          "gap": 3,
+          "children": [
+            {
+              "type": "box",
+              "width": 120,
+              "children": [
+                {
+                  "type": "image",
+                  "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmElEQVR4nO3WsQmAMBBAUffSuZzAxvFcw1IXsLWQBBPEMz747UHuNZdu3XYl6l5/QfAAAQIECFDgAAECBKiqZerPtQw0jHO2tE6BUctAlzp3jQABAgQI0DNArlge6Hv/oLIl62eLAwQIECBAgAABAhR/SUCAAAECBAgQIECAAAEKNgsIEKB2gH4VIECAAAEKHCBAgAABCtwB2+pMM86eI7wAAAAASUVORK5CYII=",
+                  "alt": "原创几何缩略图：三条高度递增的柱形和一个圆点",
+                  "aspectRatio": "16:9",
+                  "fit": "contain"
+                }
+              ]
+            },
+            {
+              "type": "col",
+              "gap": 1,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 2,
+                  "value": "Packet Garden"
+                },
+                {
+                  "type": "text",
+                  "value": "整理实验条件与对照组的虚构记录工具。"
+                },
+                {
+                  "type": "link",
+                  "value": "打开示例链接（example.com）",
+                  "href": "https://example.com/?illustration=Packet%20Garden"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "padding": 3,
+      "children": [
+        {
+          "type": "row",
+          "gap": 3,
+          "children": [
+            {
+              "type": "box",
+              "width": 120,
+              "children": [
+                {
+                  "type": "image",
+                  "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmUlEQVR4nO3WsQmAMBBAUfdyBieycwB3cwprncDWQhJMEM/44LcHuddcunXflKh7/QXBAwQIECBAgQMECBCgqpa5P9cy0DCN2dI6BUYtA13q3DUCBAgQIEDPALlieaDv/YPKlqyfLQ4QIECAAAECBAhQ/CUBAQIECBAgQIAAAQIEKNgsIECA2gH6VYAAAQIEKHCAAAECBChwByj2LY7mJOIMAAAAAElFTkSuQmCC",
+                  "alt": "原创几何缩略图：三条高度递增的柱形和一个圆点",
+                  "aspectRatio": "16:9",
+                  "fit": "contain"
+                }
+              ]
+            },
+            {
+              "type": "col",
+              "gap": 1,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 2,
+                  "value": "Signal Notes"
+                },
+                {
+                  "type": "text",
+                  "value": "把单位、假设和读数并排展示的虚构笔记工具。"
+                },
+                {
+                  "type": "link",
+                  "value": "打开示例链接（example.com）",
+                  "href": "https://example.com/?illustration=Signal%20Notes"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "caption",
+      "value": "来源：Inform UI 原创合成条目。没有检索 GitHub、评分、下载量或用户评价。"
+    }
+  ]
+}

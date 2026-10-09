@@ -1,0 +1,755 @@
+{
+  "format": "inform-ui-batch-lock/1",
+  "assetRevision": "6bc30ab8cb15eb4351b1859dacef74e7f8a9a574",
+  "assetTree": "ca7ed45846b899fd86b058a2fa075d5af144da7f",
+  "skillRevision": "7e1bb53842d73118eecd742b0517387e3a4bc5bd",
+  "skillTree": "be9eae803467f04ee305c0bfbf1cc2c7f78de9b6",
+  "integritySha256": "320f32ecd3ec31e1a9371574f335cf8a0e4ae6a526e1797326695bab96b4cbb3",
+  "schemaSha256": "b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c",
+  "consumers": [
+    {
+      "id": "foundation",
+      "script": "tests/consumer/scripts/verify-next-browser.mjs",
+      "scriptSha256": "104e13a13df8d36df878ea6a61af81e3d844d32197aed400cc861f1bacd023bc",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "foundation-explainer": "zh-CN",
+        "local-time": "zh-CN",
+        "local-overlays": "zh-CN",
+        "local-number-draft": "zh-CN",
+        "timed-local-practice": "zh-CN",
+        "local-status-primitives": "zh-CN",
+        "primitives-with-form-and-time": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "foundation-explainer",
+          "corePath": "tests/consumer/examples/foundation-explainer.json",
+          "sha256": "2d5a725474ef6dfe7ea5dc9b778ecbce99ce2430a9a28a0cbeeb0c7c6a011038"
+        },
+        {
+          "name": "local-time",
+          "corePath": "tests/consumer/examples/local-time.json",
+          "sha256": "73c70ddff9d82bac4fafdc8ac2d5c09821dc90d5aa21f47ac35ee0b5161e8910"
+        },
+        {
+          "name": "local-overlays",
+          "corePath": "tests/consumer/examples/local-overlays.json",
+          "sha256": "46b2bae41ef2c9f62f309038e1e92d0c019b8c3ea8210e97406e4ff72eafd122"
+        },
+        {
+          "name": "local-number-draft",
+          "corePath": "tests/consumer/examples/local-number-draft.json",
+          "sha256": "8874ef5a57507b817c99b5595e243543b97555f5e4ed630cf69ef8b3d2f23a1e"
+        },
+        {
+          "name": "timed-local-practice",
+          "corePath": "tests/consumer/examples/timed-local-practice.json",
+          "sha256": "5f2835fba52d4c1b606949eea04adf8a80542f7b8b9dc6bb4a9ff7e4902b9e39"
+        },
+        {
+          "name": "local-status-primitives",
+          "corePath": "tests/consumer/examples/local-status-primitives.json",
+          "sha256": "133ab06f35b7def7cd2f805ce6a239f7b0087d36432dcfad05de5ad5879794dc"
+        },
+        {
+          "name": "primitives-with-form-and-time",
+          "corePath": "tests/consumer/examples/primitives-with-form-and-time.json",
+          "sha256": "ab465d21295097eded879f1e490c2a64ed2713d6c649a22ff4d7199366b9cadf"
+        }
+      ]
+    },
+    {
+      "id": "loading-sources",
+      "script": "tests/consumer/scripts/verify-next66-browser.mjs",
+      "scriptSha256": "e0ebc1bd38e6bad199642b673c3186c59a9c16a111bdfcd10c384475f595ada3",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "loading-numeric-progress": "zh-CN",
+        "loading-placeholder-shapes": "zh-CN",
+        "supplied-source-reading": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "loading-numeric-progress",
+          "corePath": "tests/consumer/examples/loading-numeric-progress.json",
+          "sha256": "97286a9321ebf32e078a8a1300f2df8f401bd0241aac97adcbc5906252624582"
+        },
+        {
+          "name": "loading-placeholder-shapes",
+          "corePath": "tests/consumer/examples/loading-placeholder-shapes.json",
+          "sha256": "d9f8d5794b8de800df98f35363d15ac2b10c548ffe18e739c36753f64f564b77"
+        },
+        {
+          "name": "supplied-source-reading",
+          "corePath": "tests/consumer/examples/supplied-source-reading.json",
+          "sha256": "1c644eee9a38338695748a98c770a97dd2611a08f30fbc8bca1c0a43cdbba4de"
+        }
+      ]
+    },
+    {
+      "id": "carousel",
+      "script": "tests/consumer/carousel/verify-browser.mjs",
+      "scriptSha256": "fd78c110a9c3c4a9722eb97bc8d07d0b7a767dbe51d635dc9a22fe9f3e0e1732",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "carousel-with-local-controls": "zh-CN",
+        "local-carousel-notes": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "carousel-with-local-controls",
+          "corePath": "tests/consumer/carousel/examples/carousel-with-local-controls.json",
+          "sha256": "f8901d7cf240c5830507fbd2c0a0e0b5cb15a9e6669d11f2144018f955a70cf2"
+        },
+        {
+          "name": "local-carousel-notes",
+          "corePath": "tests/consumer/carousel/examples/local-carousel-notes.json",
+          "sha256": "da6ae89a9e710c89787655763d4b8804071465de2b52c044f57f2c7f7e2a7da3"
+        }
+      ]
+    },
+    {
+      "id": "code",
+      "script": "tests/consumer/code/verify-browser.mjs",
+      "scriptSha256": "b75aff32e24179f22c8b6e817539a9b90ceea55f02b59f8fa5192677e85c1b29",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "local-code-explanation": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "local-code-explanation",
+          "corePath": "tests/consumer/code/examples/local-code-explanation.json",
+          "sha256": "1e0e17ca3ea091d93ff2925489d595080593858f72447f69acd60371a6f24b08"
+        }
+      ]
+    },
+    {
+      "id": "pie",
+      "script": "tests/consumer/pie/verify-browser.mjs",
+      "scriptSha256": "4d89405b0744f4f05dba3bac6b79f589edee8901480baa7ba7359a83d73a84c4",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "known-value-pie": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "known-value-pie",
+          "corePath": "tests/consumer/pie/examples/known-value-pie.json",
+          "sha256": "a7acf9c8fda8b78f0596a9eef959c94ffc237a8bf3e89b1fa6a201aa777b6c87"
+        }
+      ]
+    },
+    {
+      "id": "checkbox",
+      "script": "tests/consumer/checkbox/verify-browser.mjs",
+      "scriptSha256": "b96894914175776cab38fcba2ca27cd2bdbc52e5cfc56f4f4da1ad7fe297e7b5",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "local-checkbox-review": "zh-CN"
+      },
+      "examples": [
+        {
+          "name": "local-checkbox-review",
+          "corePath": "tests/consumer/checkbox/examples/local-checkbox-review.json",
+          "sha256": "03ef8740e85b074de0edafcc75f004a9d50c90d4abe614ae1698b6368f150679"
+        }
+      ]
+    },
+    {
+      "id": "pending",
+      "script": "tests/consumer/pending/verify-browser.mjs",
+      "scriptSha256": "a65c00b4f21283eb5e8d0401dceb2d3906ab9a03b327a63b1b30f6915bcbb56c",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "agenda": "zh-CN",
+        "artist-upcoming-events": "en",
+        "business-gallery": "en",
+        "button-actions": "en",
+        "carousel": "en",
+        "carousel-basic": "zh-CN",
+        "checkbox-practice": "zh-CN",
+        "checklist": "zh-CN",
+        "checklist-form": "zh-CN",
+        "code": "en",
+        "date-practice": "zh-CN",
+        "email-draft": "en",
+        "entity-reviews": "en",
+        "favicon": "zh-CN",
+        "field-labels": "zh-CN",
+        "fill-blank-practice": "zh-CN",
+        "finance-lists": "en",
+        "flight-option": "en",
+        "location-choice-request": "en",
+        "markdown-subset": "en",
+        "motion": "en",
+        "news-article": "zh-CN",
+        "onboarding-selection": "zh-CN",
+        "person-profile": "en",
+        "pie": "en",
+        "prompt-suggestions": "en",
+        "rating": "zh-CN",
+        "reddit-thread-card": "en",
+        "restaurant-availability": "en",
+        "restaurant-menu": "zh-CN",
+        "sentence-builder": "zh-CN",
+        "supplied-trackers": "en",
+        "tabs": "zh-CN",
+        "tabs-local-state": "zh-CN",
+        "task-expansion-card": "en",
+        "vocab-card": "en",
+        "writing-block": "en"
+      },
+      "examples": [
+        {
+          "name": "agenda",
+          "corePath": "tests/consumer/pending/examples/agenda.json",
+          "sha256": "c283ddc5005fa0c7e9465e14ad791628ae598524697e19678a3a9f919302974f"
+        },
+        {
+          "name": "artist-upcoming-events",
+          "corePath": "tests/consumer/pending/examples/artist-upcoming-events.json",
+          "sha256": "5879ebb931a95ffc85b85f864654aa10ef06dc7491c20cd8b540c178b217eb21"
+        },
+        {
+          "name": "business-gallery",
+          "corePath": "tests/consumer/pending/examples/business-gallery.json",
+          "sha256": "e49b06edd496298b8c9413782a8951c660afa371b460bf1bb77abe80942b47a2"
+        },
+        {
+          "name": "button-actions",
+          "corePath": "tests/consumer/pending/examples/button-actions.json",
+          "sha256": "229aa8348b5ca7d13af1b5be91496370e07a5be69015d83cd94989abe42c64d3"
+        },
+        {
+          "name": "carousel",
+          "corePath": "tests/consumer/pending/examples/carousel.json",
+          "sha256": "62b3cac7dcdfcfc6f7687375bb0377ee0ccc51b7b4cb264ba02c325c40e392cc"
+        },
+        {
+          "name": "carousel-basic",
+          "corePath": "tests/consumer/pending/examples/carousel-basic.json",
+          "sha256": "9bdbbbcb68dde0ebe50b5f676952fbaa42f2a4aeb5f2407aa8d9843dad456cfe"
+        },
+        {
+          "name": "checkbox-practice",
+          "corePath": "tests/consumer/pending/examples/checkbox-practice.json",
+          "sha256": "b290013320ebe7560c1e92d3e19d3454852093c62a08000427cca50e1498c297"
+        },
+        {
+          "name": "checklist",
+          "corePath": "tests/consumer/pending/examples/checklist.json",
+          "sha256": "c5570457a098e07012ea4a47c63ae0d627faed11d3ba3a3476edb063eeba53ff"
+        },
+        {
+          "name": "checklist-form",
+          "corePath": "tests/consumer/pending/examples/checklist-form.json",
+          "sha256": "e301430d5ee8df81a1030d4d078fbf7204d8a4ee85e1bd93c5fccd3894574283"
+        },
+        {
+          "name": "code",
+          "corePath": "tests/consumer/pending/examples/code.json",
+          "sha256": "7d25bee2c2f3e8c5f8b70e445d7478203b9e64bf6e647591a606585a6dfbffc7"
+        },
+        {
+          "name": "date-practice",
+          "corePath": "tests/consumer/pending/examples/date-practice.json",
+          "sha256": "8f921053244394ccfe4dac8fc3d8d6528a72dc945a1da90978f5bc4069346ca0"
+        },
+        {
+          "name": "email-draft",
+          "corePath": "tests/consumer/pending/examples/email-draft.json",
+          "sha256": "212e9225d8fab7b93f026d2b3a57be7d498684c6398bdcdebf87b3ca2eb144c5"
+        },
+        {
+          "name": "entity-reviews",
+          "corePath": "tests/consumer/pending/examples/entity-reviews.json",
+          "sha256": "3110ff0a7d7c3f99163c1bc8f91cce56e1180c8cff420a057fc7766fafaba022"
+        },
+        {
+          "name": "favicon",
+          "corePath": "tests/consumer/pending/examples/favicon.json",
+          "sha256": "2efcc04ebf1a220126777e5bd37741b05a8fd9e9dfa3761aa3d2dcd4a93f9d68"
+        },
+        {
+          "name": "field-labels",
+          "corePath": "tests/consumer/pending/examples/field-labels.json",
+          "sha256": "5e880fb34f11dcfd4fa365d5292b8914cc40638a2f1b3d5deb575da9f1a62715"
+        },
+        {
+          "name": "fill-blank-practice",
+          "corePath": "tests/consumer/pending/examples/fill-blank-practice.json",
+          "sha256": "7727b6dc7fc3fb6aee1b1de12a3f13792ea369f5a19b89dfba1abcaaec8d50d4"
+        },
+        {
+          "name": "finance-lists",
+          "corePath": "tests/consumer/pending/examples/finance-lists.json",
+          "sha256": "ab3d9cf84d9e658544d109c50642e88ee7b830c0e56a417daa8d8fc93d6dfd0d"
+        },
+        {
+          "name": "flight-option",
+          "corePath": "tests/consumer/pending/examples/flight-option.json",
+          "sha256": "dd7857589c93dae8c44c10fb6fb15f75239804851b4b03b2198d4c4caad4c726"
+        },
+        {
+          "name": "location-choice-request",
+          "corePath": "tests/consumer/pending/examples/location-choice-request.json",
+          "sha256": "179643391d8c819c10d4fb4680a70dd9b52cba50c32740168a5d506f4e4fcb0a"
+        },
+        {
+          "name": "markdown-subset",
+          "corePath": "tests/consumer/pending/examples/markdown-subset.json",
+          "sha256": "72f06da11ac69bc95214d7c369779f9485f3cdc7f9d1934aceeedf18061b35a5"
+        },
+        {
+          "name": "motion",
+          "corePath": "tests/consumer/pending/examples/motion.json",
+          "sha256": "6507e34ffd1a7a5393cb90ba0071b8d63d0a7d293a9c4161f0daddc9be261094"
+        },
+        {
+          "name": "news-article",
+          "corePath": "tests/consumer/pending/examples/news-article.json",
+          "sha256": "0fe3014f77bb8e8711d9500073edc6d94630c8048123f56bcd72f2a5d10026b2"
+        },
+        {
+          "name": "onboarding-selection",
+          "corePath": "tests/consumer/pending/examples/onboarding-selection.json",
+          "sha256": "defc49a8fee0dd0f1174fbdc5adabd8f153f0c921901bf13f628567a2bcbbe12"
+        },
+        {
+          "name": "person-profile",
+          "corePath": "tests/consumer/pending/examples/person-profile.json",
+          "sha256": "b9953ee7eb878c2ec6701d8122e630757fd9bbfc764d7b4f64408314a356cdf7"
+        },
+        {
+          "name": "pie",
+          "corePath": "tests/consumer/pending/examples/pie.json",
+          "sha256": "c8fd2a6a95706c525be0d5c0c8809873e67c6df9576a5728fe2866d4acc75b6d"
+        },
+        {
+          "name": "prompt-suggestions",
+          "corePath": "tests/consumer/pending/examples/prompt-suggestions.json",
+          "sha256": "30ffba1fedb1ac803933edc7279119ecec1cef5825316a5ea4b416068da0a491"
+        },
+        {
+          "name": "rating",
+          "corePath": "tests/consumer/pending/examples/rating.json",
+          "sha256": "e17dcaca6ebc422b78a692bbc4cc2741fff6517fb9813775563062c97f828b9a"
+        },
+        {
+          "name": "reddit-thread-card",
+          "corePath": "tests/consumer/pending/examples/reddit-thread-card.json",
+          "sha256": "c731fa907f7f7a4ff5d6cbf0c1aff28f8491ee125615e9e6d87b6f86cd8b9d50"
+        },
+        {
+          "name": "restaurant-availability",
+          "corePath": "tests/consumer/pending/examples/restaurant-availability.json",
+          "sha256": "2fdbe7fbf7ba52ab0f9720e0c3178e6619bd635b4a4f0d436d829d5f235b1ec2"
+        },
+        {
+          "name": "restaurant-menu",
+          "corePath": "tests/consumer/pending/examples/restaurant-menu.json",
+          "sha256": "44029f7b482a7f0889efe8301ba65097dc0bb82ef557634721d80430b0ebfe62"
+        },
+        {
+          "name": "sentence-builder",
+          "corePath": "tests/consumer/pending/examples/sentence-builder.json",
+          "sha256": "6b99215fceaafd94681c1930160f764952262eeb4cd2d252f17071bf23963e8d"
+        },
+        {
+          "name": "supplied-trackers",
+          "corePath": "tests/consumer/pending/examples/supplied-trackers.json",
+          "sha256": "7d7591b92dc79c5951779bf39fa2544f2a9c9dee26937744f641925358356d56"
+        },
+        {
+          "name": "tabs",
+          "corePath": "tests/consumer/pending/examples/tabs.json",
+          "sha256": "90452ae01385d959e7b50d152e40f4232350720e4cd335a5b571b822e53455b6"
+        },
+        {
+          "name": "tabs-local-state",
+          "corePath": "tests/consumer/pending/examples/tabs-local-state.json",
+          "sha256": "db58e48630836a73022aedf52fb0e93d4e2c3ecfe1492d89d05d8384c9b2a8c0"
+        },
+        {
+          "name": "task-expansion-card",
+          "corePath": "tests/consumer/pending/examples/task-expansion-card.json",
+          "sha256": "43159c25c41b9a4c21ba949a5066c3bc9584a2740360d529c57e1cd61b4b8ae0"
+        },
+        {
+          "name": "vocab-card",
+          "corePath": "tests/consumer/pending/examples/vocab-card.json",
+          "sha256": "d4c646a2a2b8ee34a0a949f1d3c7a3125dbf9b778245230b8a67a8f0a400ea95"
+        },
+        {
+          "name": "writing-block",
+          "corePath": "tests/consumer/pending/examples/writing-block.json",
+          "sha256": "9a4cb5f85ad658eabb38c9b4ca4c5ec3bee2160228d56615a24fe87c73244cfb"
+        }
+      ]
+    },
+    {
+      "id": "upcoming-eighteen",
+      "script": "tests/consumer/upcoming-eighteen/verify-browser.mjs",
+      "scriptSha256": "9bf04f74131e6533ac5028beaf849b20a210365d659325c2d8161d2c397a44a6",
+      "widths": [
+        390,
+        768,
+        1100
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "exampleLanguages": {
+        "activity-planning": "en",
+        "create-interactive-poll": "en",
+        "decision-cards": "en",
+        "entity-facts": "en",
+        "flight-discovery": "en",
+        "local-places": "en",
+        "mail-files": "en",
+        "related-questions": "en",
+        "source-citations": "en",
+        "vocabulary-tools": "en"
+      },
+      "examples": [
+        {
+          "name": "activity-planning",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/activity-planning.json",
+          "sha256": "94500e6f877965eac78d5413c15077a796f591027f0e009f9757eeba400bf06d"
+        },
+        {
+          "name": "create-interactive-poll",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/create-interactive-poll.json",
+          "sha256": "79410a06d521a1f5ece89ec072dc175ba0069da7bb98653d1e53d2d8af578396"
+        },
+        {
+          "name": "decision-cards",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/decision-cards.json",
+          "sha256": "b8767cfb3e75f551512eafb46fd992bcd3af2eb5596e0054fc5c6c625cd1f4d5"
+        },
+        {
+          "name": "entity-facts",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/entity-facts.json",
+          "sha256": "61a8d260b6876dcc504cb289648fbb857fcdd4701c976a816eb8f48f740c5309"
+        },
+        {
+          "name": "flight-discovery",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/flight-discovery.json",
+          "sha256": "17cfc7e6ab0373a9679288e75c4603cc8b3f266803885db2a142a97d71bcfff1"
+        },
+        {
+          "name": "local-places",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/local-places.json",
+          "sha256": "979dc6ea519b8ef3aeb76de1e413e2cec47bd5dc541d1c3ba4b2d07feca83f3a"
+        },
+        {
+          "name": "mail-files",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/mail-files.json",
+          "sha256": "69e6e96dfa40c5fb06061ae16a6b2fb3d8c4a9e84022eb0ee750897210922cff"
+        },
+        {
+          "name": "related-questions",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/related-questions.json",
+          "sha256": "e07bb1e65e3a2a07c601e8a30f57a5eba9d3a61dbcd89439f325438404883b6a"
+        },
+        {
+          "name": "source-citations",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/source-citations.json",
+          "sha256": "94aea08687c096d173a26c6ea28d2e323121f1e38b6b87a71a8120561fe87c9f"
+        },
+        {
+          "name": "vocabulary-tools",
+          "corePath": "tests/consumer/upcoming-eighteen/examples/vocabulary-tools.json",
+          "sha256": "715d3f999f434c9db2eb1474cf1ae4a0030cf82103e67f8a99a4504fe6f1bf70"
+        }
+      ],
+      "skillManifestPath": "candidates/upcoming-eighteen/consumer-manifest.json",
+      "skillManifestSha256": "1747c712e1204c5a9b9e7932fed90a68189922a3507a0197816856c2dc7017c3"
+    }
+  ],
+  "skillContractPath": "candidates/upcoming-eighteen/library-contract.json",
+  "skillContractSha256": "6b3a9a779b88f1659236a4161ae8f1b2219f85582bdae5c6d1efb60e3be2ea6e",
+  "canonicalBrowser": {
+    "format": "inform-ui-browser-plan/1",
+    "preparedOnly": true,
+    "command": "npm run test:browser",
+    "discovered": {
+      "tests": 691,
+      "files": 78
+    },
+    "requiredRecoveries": [
+      "scripts/prepare-test-font.mjs",
+      "tests/assets/fonts/noto-cjk-sc/NotoSansCJKsc-Regular.otf",
+      "tests/assets/fonts/noto-cjk-sc/OFL.txt",
+      "tests/assets/fonts/noto-cjk-sc/font-lock.json",
+      "tests/browser/pinned-cjk-font.spec.mjs",
+      "tests/native-select-capture.test.mjs",
+      "tests/browser/entity-reviews.spec.mjs",
+      "tests/browser/availability.spec.mjs",
+      "tests/browser/converters.spec.mjs",
+      "tests/browser/agenda.spec.mjs",
+      "tests/browser/sports.spec.mjs",
+      "tests/consumer/pending/verify-browser.mjs"
+    ],
+    "inputSha256": {
+      ".github/workflows/ci.yml": "046cfb8e57efedf1626f05eaff016e4d823ddc99f201c180898346b99625ea9f",
+      "examples/activity-planning.json": "94500e6f877965eac78d5413c15077a796f591027f0e009f9757eeba400bf06d",
+      "examples/agenda.json": "c283ddc5005fa0c7e9465e14ad791628ae598524697e19678a3a9f919302974f",
+      "examples/artist-upcoming-events.json": "5879ebb931a95ffc85b85f864654aa10ef06dc7491c20cd8b540c178b217eb21",
+      "examples/browser/blind/cache-response.delivery.html": "11c1dd646678535a93e820d966374322979135c9d509648ff336835ec2a88c52",
+      "examples/browser/blind/cache-response.delivery.json": "54b4d1b535101c392d79dc6d5893cf253da2347c0ab070c4b8574af481850fc7",
+      "examples/browser/blind/cache-response.first.html": "1ce5200d24d259a29af160ead40059d96fb2ae5db35145533c6a78e6912e67eb",
+      "examples/browser/blind/cache-response.first.json": "04fc211e9f42d49f5e4ff099498639ffbc38470fabf3fd2c42a1cfd236986998",
+      "examples/browser/blind/cache-response.revised.html": "d9dd795c6780751771f98451a5503fe846f7221dc72a96a82d536ace7e90f461",
+      "examples/browser/blind/cache-response.revised.json": "62d45e558efda865000293990c5567702a9c4c3807c602ac1c83b8b8dfd7cbbb",
+      "examples/browser/blind/delivery-cdn-lock.json": "b577fd3efd79ffef63b9368957d14a833b7ff544685c768b6031defc763b9532",
+      "examples/browser/blind/original-cdn-lock.json": "0b3ffc3d089aa56479db90f41fc486f2c161393f061c387d8352d0b3306ac2a6",
+      "examples/browser/cdn-invalid.html": "6e183c12272b4feedb953f7a749acd238c4f5c1ebada3d2a28a34a6022068d23",
+      "examples/browser/cdn-minimal.html": "704aeb1891175d507c9e37e98a3ff29cc680669d0d0d8c9ebcb8f3c35e816667",
+      "examples/browser/component-collection.html": "a93f9ce584f832097a13f91a37ed63dd8939a60a2fc6afbac066d71448796acd",
+      "examples/browser/converters-preview.html": "6896a6a948ad2524629260d79616327b2d26df7368faeda58b1fef8266af5585",
+      "examples/browser/current-components.html": "7f78ba83d4c5d1c32f94fa57db7c580fa91668a0406bce32dc4d684c7d5197cf",
+      "examples/browser/domains-preview.html": "9157ebe601059b668ae2e3f574cf676d67bd796221865808a8dcb8cabd0e3d8c",
+      "examples/browser/finance-preview.html": "72fad870eaae5a990803e0c91825ef3775ad34d3fba4b04a0decf4bcb4a6a8ec",
+      "examples/browser/math-fonts.html": "3ed258f9c1bebcf941b46758a78ec05c647600c1f2baab5d48d43ce695592bc5",
+      "examples/browser/phase-one.html": "72b7b7cc87ef92931948df11789bc58b18902cabf7397c7aab56e96ba5bbe44f",
+      "examples/business-gallery.json": "e49b06edd496298b8c9413782a8951c660afa371b460bf1bb77abe80942b47a2",
+      "examples/button-actions.json": "229aa8348b5ca7d13af1b5be91496370e07a5be69015d83cd94989abe42c64d3",
+      "examples/carousel-basic.json": "9bdbbbcb68dde0ebe50b5f676952fbaa42f2a4aeb5f2407aa8d9843dad456cfe",
+      "examples/carousel-contained.json": "24de77f6d86aa50a21ff70b57ca886de83e8d1ae66f3b8be7f5010d3ce9b04b9",
+      "examples/carousel.json": "62b3cac7dcdfcfc6f7687375bb0377ee0ccc51b7b4cb264ba02c325c40e392cc",
+      "examples/checkbox-practice.json": "b290013320ebe7560c1e92d3e19d3454852093c62a08000427cca50e1498c297",
+      "examples/checklist-form.json": "e301430d5ee8df81a1030d4d078fbf7204d8a4ee85e1bd93c5fccd3894574283",
+      "examples/checklist.json": "c5570457a098e07012ea4a47c63ae0d627faed11d3ba3a3476edb063eeba53ff",
+      "examples/code-contained.json": "149419589a7a05636df91ddfe245a6374d66d13a23dab5f7f72c67c72e07fdcd",
+      "examples/code.json": "7d25bee2c2f3e8c5f8b70e445d7478203b9e64bf6e647591a606585a6dfbffc7",
+      "examples/colors.json": "9f55c81ba341cdb3ee283618a3245bf37079c76bc58adee5e35a9f9d554253c1",
+      "examples/component-collection.json": "983bcc229c356ec39ec0349e360921af239f6cd7f70b79e6435e25abaa0c5fac",
+      "examples/converters.json": "2fcd1748339bd30d1491350f7bde4229b721caa7f127a3962b607a7d1dfd5df9",
+      "examples/converters/states.json": "5c5834c922ae5c3d302742da60d90797248e5a64a5f7113b60ace2ae34e002d4",
+      "examples/create-interactive-poll.json": "79410a06d521a1f5ece89ec072dc175ba0069da7bb98653d1e53d2d8af578396",
+      "examples/current-components.json": "2430957b3a2146b0ce9be775aaf21f11906e7ab66a6ad0b127ce3b101eb6ef44",
+      "examples/date-practice.json": "8f921053244394ccfe4dac8fc3d8d6528a72dc945a1da90978f5bc4069346ca0",
+      "examples/decision-cards.json": "b8767cfb3e75f551512eafb46fd992bcd3af2eb5596e0054fc5c6c625cd1f4d5",
+      "examples/domains-preview.json": "e9b96c6382390f1a3b2921f6cda055df69d3fc7a90b52362df62e957fdb72968",
+      "examples/email-draft.json": "212e9225d8fab7b93f026d2b3a57be7d498684c6398bdcdebf87b3ca2eb144c5",
+      "examples/entity-facts.json": "61a8d260b6876dcc504cb289648fbb857fcdd4701c976a816eb8f48f740c5309",
+      "examples/entity-reviews.json": "3110ff0a7d7c3f99163c1bc8f91cce56e1180c8cff420a057fc7766fafaba022",
+      "examples/favicon.json": "2efcc04ebf1a220126777e5bd37741b05a8fd9e9dfa3761aa3d2dcd4a93f9d68",
+      "examples/field-labels.json": "5e880fb34f11dcfd4fa365d5292b8914cc40638a2f1b3d5deb575da9f1a62715",
+      "examples/fill-blank-practice.json": "7727b6dc7fc3fb6aee1b1de12a3f13792ea369f5a19b89dfba1abcaaec8d50d4",
+      "examples/finance-lists.json": "ab3d9cf84d9e658544d109c50642e88ee7b830c0e56a417daa8d8fc93d6dfd0d",
+      "examples/finance-preview.json": "4b91589c4fe34c7763620669b897be4b80bc516898d5bb1b3879457373085aed",
+      "examples/finance.json": "8c5fd3798fe6256f45ae6aca83ed4e7c2eb448a370a8d49d69f706542c46d0e6",
+      "examples/flight-discovery.json": "17cfc7e6ab0373a9679288e75c4603cc8b3f266803885db2a142a97d71bcfff1",
+      "examples/flight-option.json": "dd7857589c93dae8c44c10fb6fb15f75239804851b4b03b2198d4c4caad4c726",
+      "examples/forms.json": "5a584f481b8fc54780093a23aaaf84d318c721a5256f6d13f888a58c77ebc234",
+      "examples/forms/actions.mjs": "29aac094cd902cb1f4f382602f8c2f1d8c7452154007b7f630caa4645501a5ec",
+      "examples/forms/states.json": "1df2c8d9cfc0f43b38c315eef3ec171d9e4d763508980018a3c4290f8cf282c0",
+      "examples/foundations.json": "13f22b245d9fb0e4f03a36608501ba20d51a3a12ec0a8b1884c313d769635667",
+      "examples/heatmap.json": "06ec4cdd05733c98392efe554d78ae27680928b48257f59b31266c7893e14551",
+      "examples/hpcc.json": "d7b28331bc76bda5d88f5e2320fff024cfcdab50d563481d78f368cf15f29732",
+      "examples/kitchen-sink.json": "80cbd52156be29a626bea2b6b1bdf945b772db4018934c23259456893ee9ba46",
+      "examples/learning.json": "bdb8713f3e9a708b140d3b604987889b78e1824cdb18f28993cc0984bf92f1d4",
+      "examples/learning/states.json": "f1a5cd3d6ab3e5a9e27d98d262d6d501642d84dc64909053d2eb35bbd0538442",
+      "examples/loading-states.json": "27c900dbf44f543e888c51638f4bf5ac1cf839452ceb5667e9b24c1c3cfb9110",
+      "examples/local-places.json": "979dc6ea519b8ef3aeb76de1e413e2cec47bd5dc541d1c3ba4b2d07feca83f3a",
+      "examples/local-status-primitives.json": "133ab06f35b7def7cd2f805ce6a239f7b0087d36432dcfad05de5ad5879794dc",
+      "examples/location-choice-request.json": "179643391d8c819c10d4fb4680a70dd9b52cba50c32740168a5d506f4e4fcb0a",
+      "examples/mail-files.json": "69e6e96dfa40c5fb06061ae16a6b2fb3d8c4a9e84022eb0ee750897210922cff",
+      "examples/markdown-subset.json": "72f06da11ac69bc95214d7c369779f9485f3cdc7f9d1934aceeedf18061b35a5",
+      "examples/math-fonts.json": "0d890ad5810a6edde5a34767604624b4ba368199ad4267aa6cddbc2f7e7f1abb",
+      "examples/motion.json": "6507e34ffd1a7a5393cb90ba0071b8d63d0a7d293a9c4161f0daddc9be261094",
+      "examples/news-article.json": "0fe3014f77bb8e8711d9500073edc6d94630c8048123f56bcd72f2a5d10026b2",
+      "examples/numeric-charts.json": "7ff27d18170428999251af0aab647b174c1f6c5a54531212733985011f0de63f",
+      "examples/onboarding-selection.json": "defc49a8fee0dd0f1174fbdc5adabd8f153f0c921901bf13f628567a2bcbbe12",
+      "examples/overlays.json": "234d14f7bf32bcadc4d143de333c213d6712a13540456f1454eda66aed2acb94",
+      "examples/person-profile.json": "b9953ee7eb878c2ec6701d8122e630757fd9bbfc764d7b4f64408314a356cdf7",
+      "examples/phase-one.json": "1cc7c58d87964260981b84837de50f2473da79a56687ce629b71984080544171",
+      "examples/pie.json": "c8fd2a6a95706c525be0d5c0c8809873e67c6df9576a5728fe2866d4acc75b6d",
+      "examples/primitives-with-form-and-time.json": "43777733e987ee9372d6880a1d1d14d90600a7f8eb12562d3595e05813c90d48",
+      "examples/prompt-suggestions.json": "30ffba1fedb1ac803933edc7279119ecec1cef5825316a5ea4b416068da0a491",
+      "examples/rating.json": "e17dcaca6ebc422b78a692bbc4cc2741fff6517fb9813775563062c97f828b9a",
+      "examples/reddit-thread-card.json": "c731fa907f7f7a4ff5d6cbf0c1aff28f8491ee125615e9e6d87b6f86cd8b9d50",
+      "examples/related-questions.json": "e07bb1e65e3a2a07c601e8a30f57a5eba9d3a61dbcd89439f325438404883b6a",
+      "examples/restaurant-availability.json": "2fdbe7fbf7ba52ab0f9720e0c3178e6619bd635b4a4f0d436d829d5f235b1ec2",
+      "examples/restaurant-menu.json": "44029f7b482a7f0889efe8301ba65097dc0bb82ef557634721d80430b0ebfe62",
+      "examples/rtt.json": "6cf86af14390ec6023773824d04dd68187f4f792a7087ec5d8c6d6ddf9be869f",
+      "examples/sentence-builder.json": "6b99215fceaafd94681c1930160f764952262eeb4cd2d252f17071bf23963e8d",
+      "examples/shortlist.json": "833f447e761c280ca0b413cd6604b3de1f6e4f8802a7c9df156ff64aad653f9c",
+      "examples/source-cards.json": "d299c892eb83fc5b0fff0ad4700a66173ecb011fae7d83fcfe32e5e1ac2041bd",
+      "examples/source-citations.json": "94aea08687c096d173a26c6ea28d2e323121f1e38b6b87a71a8120561fe87c9f",
+      "examples/sports.json": "f0d806e6963a76b16235370970090ec4b545078b39df08dc7523366e79c12b23",
+      "examples/sports/states.json": "7912e4cac5b0cd960b376e39c95174d6d3acef24c8baa0ba289049ed5ef6fa05",
+      "examples/structured-tables.json": "699f21461312a74ddbd64a64a44c3dee064152f8c3ca0089208cb534b8137ec3",
+      "examples/supplied-trackers.json": "7d7591b92dc79c5951779bf39fa2544f2a9c9dee26937744f641925358356d56",
+      "examples/tabs-local-state.json": "db58e48630836a73022aedf52fb0e93d4e2c3ecfe1492d89d05d8384c9b2a8c0",
+      "examples/tabs.json": "90452ae01385d959e7b50d152e40f4232350720e4cd335a5b571b822e53455b6",
+      "examples/task-expansion-card.json": "43159c25c41b9a4c21ba949a5066c3bc9584a2740360d529c57e1cd61b4b8ae0",
+      "examples/time.json": "6dd2344aa8f065db79b72e853c736906e2b7cbefb69b293dae69f6ba098c0c67",
+      "examples/vocab-card.json": "d4c646a2a2b8ee34a0a949f1d3c7a3125dbf9b778245230b8a67a8f0a400ea95",
+      "examples/vocabulary-tools.json": "715d3f999f434c9db2eb1474cf1ae4a0030cf82103e67f8a99a4504fe6f1bf70",
+      "examples/weather.json": "7ff3eeff7905b8d84e8d8aadcefddf9be36599ef4c674863b6695ab2218688be",
+      "examples/weather/states.json": "9991eb11a215357230c83cc9130eba61a99d20a29e8f0507153d6fb02b79701d",
+      "examples/wifi.json": "e36eaec2a8140d0e7731107bafc6dea8e8151a8b35bf2a95701e80c68d0c8c42",
+      "examples/writing-block.json": "9a4cb5f85ad658eabb38c9b4ca4c5ec3bee2160228d56615a24fe87c73244cfb",
+      "package-lock.json": "dd372044338f79973e181a444ac4b2b50650ec7646ab3c2b83fc5700590c1f63",
+      "package.json": "a11a17a40a008c006b3b97bcdd6e99f05a258e8fd58f618a7eccd6162cb69932",
+      "playwright.config.mjs": "b184bd0cc534d9f15a0c2fd3a39faa7952f634c7c02da974f962c535de00d9c6",
+      "scripts/batch-browser-plan.mjs": "8bfbe4d27bdff74437909c1bdd01826d79791ec1c70aee1e1bd04f0a4580c4ae",
+      "scripts/build-examples.mjs": "ba32e41b7a25f9473cbe9ce3a716d4bd11194f944b0bf731d55e556e53cb60c2",
+      "scripts/consumer-skill-inputs.mjs": "20daed5f573de3374c187e78f7c332dd0fe3335c4ae421b197aecc726cff07c5",
+      "scripts/prepare-batch-lock.mjs": "f6cb7053dfc0f72bf60fcd01798d733eef322120394e9e92d328d21dd0b47828",
+      "scripts/prepare-test-font.mjs": "0f0f25d80483ec48c4993d32fe975ac23ce573b1b824b2b41b7567ea4abc8c52",
+      "scripts/run-batch-consumers.mjs": "54918f0a1d2d76f8a5fb6dffb49c842fcdf4d7b912f0bb5d88a498ad6c57465a",
+      "scripts/run-skill-acceptance.mjs": "6520f4514f3d74193bef12fd7df364d6216c91c8182de581f1208d149315d8c9",
+      "scripts/serve-tests.mjs": "8892161026eb95db961d29fedd315d48948b1ed4d474648ed648ee464c614296",
+      "tests/assets/fonts/noto-cjk-sc/font-lock.json": "ef5533bd87c4905d6c445fa690aca4835dacf207019a0864da00f97447871170",
+      "tests/assets/fonts/noto-cjk-sc/NotoSansCJKsc-Regular.otf": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "tests/assets/fonts/noto-cjk-sc/OFL.txt": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+      "tests/assets/fonts/noto-cjk-sc/README.md": "8ad899d6e8924c13026f36e88b458a9c0cdcb1f6417951f01084cf90a2dac024",
+      "tests/browser/activity-planning.spec.mjs": "491994003676c09ac48d282e1d265e5a68be02c9db8e6b963d97cea8fdedceb9",
+      "tests/browser/agenda.spec.mjs": "7df7eef1514cbd473cafc675717f73d4b554a5a2878c33ccc97bdbbf69f00297",
+      "tests/browser/availability.spec.mjs": "81e3d67cc5a5f203026b8062b683ae6b645e832fa51a4e7cb9093300a9c60284",
+      "tests/browser/blind-cache-delivery.spec.mjs": "754c3885e74622ddb285a190a428e722276412c05b19ff30e891fbbc353e6304",
+      "tests/browser/blind-cache-revised.spec.mjs": "2eaf3d536f763c7b92fb666ee51b02eed253d351d5da1ad3e5445fc24d1e9a8f",
+      "tests/browser/blind-cache.spec.mjs": "c9a15874289e60ccb46487cbdb9ecb31c5ec54a5ddbd75dafbb9360120caf06a",
+      "tests/browser/button.spec.mjs": "c2a9c3a29bb82eadd91db07dcef82ef704d0e51a5bebbf28785336b506096c0a",
+      "tests/browser/carousel.spec.mjs": "759dc80ae04d490771fa165dcfc8d7a1f4b635c08cf32f0c600468e92f2cc6bc",
+      "tests/browser/cdn.spec.mjs": "f0bbacef9428731f8675d782017272ed9887a092898c13d12f5033df6925dbd5",
+      "tests/browser/charts.spec.mjs": "ecb85f471ab64a69beecaabb72d5f451e613ca452b2f0c91b63c47917e23fad0",
+      "tests/browser/checkbox.spec.mjs": "b05f1e3316eb154a4c4a9b59a03133a3fae9e5a58f15a5f702118c0cec9fce0b",
+      "tests/browser/checklist.spec.mjs": "1a272ba29ee7de590575b0a92c3d07a4ca9cb276d8c2830b3abe06838bdc55f5",
+      "tests/browser/choice-gallery.spec.mjs": "8f007c4488da676e5b2c7732a8beefde3396997eddf82c3cf027de7a5f7c3e6e",
+      "tests/browser/code.spec.mjs": "0041892c079b6928fae7bffa3b560e0cb2eed271923dcb5b1148c3c327ec0b6a",
+      "tests/browser/colors.spec.mjs": "c0ffa2f70440b114c5b43201d0583de0c5ecb0ab412cfa6d6f0f1ec29169aa88",
+      "tests/browser/component-collection-cdn.spec.mjs": "5a73a605a7a36b45edbc11df73e1d7350b4ad161f8b495ef351cd483c14e740d",
+      "tests/browser/converters-cdn.spec.mjs": "ca86b35604aa6a6a72925b28eff75b0a58d8f252df9f1df578eded081087545c",
+      "tests/browser/converters.spec.mjs": "e6d1bfcd50ef235595691256f12462bcb745f7c8c3259f879efe8f6db9774f28",
+      "tests/browser/current-components-cdn.spec.mjs": "4afd4fb0d7fd8334a08d289cb1dba0672cbb7b8ccc457bf17beae5cc41ff7db1",
+      "tests/browser/current-components.spec.mjs": "e2dfd794aed042d291b6e43647c3142811daf63a017e49ecf149daef5732d86b",
+      "tests/browser/date.spec.mjs": "34125a46200df53e9457b0a62a5b02a57c39ad69477a00e0798d9e9728714fcb",
+      "tests/browser/decision-cards.spec.mjs": "fd1fd488b3a53b8891efdb12f3c8ad9d73b1111ffd168c8a03eb7f41fdf2b898",
+      "tests/browser/domains-cdn.spec.mjs": "8bb5c310868f05778a570948b08fbad47a4a5d5eaeb1422179fbb8014a3102ed",
+      "tests/browser/draft-review.spec.mjs": "562a4d0d056c407a220702eb5637c02ef899463b665888b07eb90611fb4b700a",
+      "tests/browser/entity-facts.spec.mjs": "e4825a5ca27b186dd10e4d2da3d5c7deee8e23d58bc5ba9fcfde73e1a93f9a59",
+      "tests/browser/entity-reviews.spec.mjs": "ccba679627366f54728772520f57e8223614f5bbcda556ef745250b520a3e4c4",
+      "tests/browser/favicon.spec.mjs": "1fbbf4cb533394eededf373ff820d4ef18cacd15d45e6412f42cb43b0b05d19c",
+      "tests/browser/fill-blank.spec.mjs": "a15ee53ffc5cdf54f29343d43e47ee179c6a3345b2c7118dcc33feacbd971464",
+      "tests/browser/finance-cdn.spec.mjs": "bd2ba8fb97a30259213ee7cf346598fbc9d820130d77538382a30b8fb418044d",
+      "tests/browser/finance-lists.spec.mjs": "0c8c83353e356de244c6d8221fc066712b9d8e69978ef7bc3cf54bfd7f86953e",
+      "tests/browser/finance.spec.mjs": "f64c2beb81caea8d73cef9af17174da816fd28c11386a9e285d43a749b4d6f1d",
+      "tests/browser/flight-discovery.spec.mjs": "c6e669c6b2bdfeb8773dfc435674a43fe3f3509b60b53bf1e43d080550c4af4f",
+      "tests/browser/forms-boundaries.spec.mjs": "95d9bc61884c7a11eef9003b9280e6d9636ae92b05d63ca34f60a7efff7fcd88",
+      "tests/browser/forms-inherited-disabled.spec.mjs": "9d0395be2c104873a7589d7b53bf70b41257503c2467a1f1e993b3c3c34b4bc7",
+      "tests/browser/forms.spec.mjs": "83ac4ee186ef0bc16525ae0117712757ec18c5271e180fa7b7df500f3a1d3bf5",
+      "tests/browser/foundations.spec.mjs": "f92a97e0e99a6e747e4ced08cae4d1b752b39b8fe437896af92dfe0a14b69b29",
+      "tests/browser/heatmap-edges.spec.mjs": "b2a465ff4d43b021b0e7605918259f50c847fb02248037c745edd53043047bb5",
+      "tests/browser/heatmap.spec.mjs": "0e6e10bf7acc817c7be68277dd17c2890fccfea18662c230b10a51824ace155e",
+      "tests/browser/helpers/current-demo.mjs": "b8c3e7f3599a6b504bae3a68bad96e38840e401ce3b46890e385294411da80e8",
+      "tests/browser/label.spec.mjs": "373415992fddd6d704854f1b519457dc845dd3db86f72db6c14e1b8b5a72c554",
+      "tests/browser/learning.spec.mjs": "792af523c052428f17ab4ff4652f054d902f1bc785e55bfc9db20b9e96190bc0",
+      "tests/browser/loading.spec.mjs": "57284b71a83b0a18e6d5db993455309929458d1b7daf4d268199fe3c0d56a815",
+      "tests/browser/local-places.spec.mjs": "0517c159061e9cdc0c835eab760646070cb20ba774df1385fc83d297bfb41e2d",
+      "tests/browser/mail-files.spec.mjs": "a7cd441fdea782da07ade9d68a940fb37c69708e500ea4ced1eb5e7d396aa230",
+      "tests/browser/markdown.spec.mjs": "6691ffc6d610721ab2c74d508c4136dd30827daf6a86ea8cb7836d03a79e0adf",
+      "tests/browser/math-cdn.spec.mjs": "0eee75d6508384fcbf3fb309d3622a016d240520f1eebadc00e6e6460260807f",
+      "tests/browser/math-evidence.mjs": "2a997656af3d32b783e41751bd22526222553cf84573f6ff4a3a029314845d96",
+      "tests/browser/math-fonts.spec.mjs": "c5f78357d5947c516a93da937ce822d19674d9c9f0d58f1c5c7951358a9b04b4",
+      "tests/browser/menu.spec.mjs": "0857223ddbb98090d69047c4690791b7ff19e3a29d88a49ba13d151c3be07546",
+      "tests/browser/motion.spec.mjs": "e02707653b6e84dd2ac6f3fcaf22c16bbe69e6f6a63361a8beb46a349ec6ac21",
+      "tests/browser/news.spec.mjs": "91e94443cf917b37eea433a600325cabe27fb7aa1e8b88e76abe60dd5f24d73a",
+      "tests/browser/onboarding-selection.spec.mjs": "975441b4d9a02483332cff7b8baf66ecfc1977b85dc38cd8e3731dac99eab329",
+      "tests/browser/overlays.spec.mjs": "6d72b6732cb22d15f46fc5665dcb4c462b542bb0c2b15bbbaf51342501ce95d5",
+      "tests/browser/person-profile.spec.mjs": "d4c63e1f26570eaebf2636b0288570a19804c0522d1a791e50dcde2edfbf04d8",
+      "tests/browser/phase-one-cdn.spec.mjs": "33a2e1e4d3c639e1c31aae5a394b640ddc38ea46c3b7c3cb3ebc3907c2293b88",
+      "tests/browser/pie.spec.mjs": "bdc335603c33f32c2ca3ad19e55ebf5a446f178944fd8113746f750c3186fc53",
+      "tests/browser/pinned-cjk-font.spec.mjs": "638359ef9632dbe7e92b0f8f33c97e20ba7068d56f077b79d8f172e3e60b0db0",
+      "tests/browser/png-pixels.mjs": "56ea8288cc1a29386f8e5afd4bc823a4bca39a921186d538d922869883dab78e",
+      "tests/browser/poll.spec.mjs": "83396f99a6b96996298dd2f1472973bdb480cb868cbf6e6f41410aa1d29ebc87",
+      "tests/browser/portable.spec.mjs": "fc16de9b4ccde39d9eaf86df1126d4cf288cc602402dcdffe4ae9eaa3e966ca0",
+      "tests/browser/primitives.spec.mjs": "692a8abcb9c81d3fd0c3f49439bdbca30a7d973b7717ff1120aab2aebfa6ca37",
+      "tests/browser/rating.spec.mjs": "dce6149a1d8196ed5ea954940108e0d80a07fe45d757798d1a761efab7159e67",
+      "tests/browser/related-questions.spec.mjs": "0d8575f8e3e90c4dff5fe315fabd921dd72693ed62e2de20df6325bc23a00644",
+      "tests/browser/schema-discovery.spec.mjs": "3a9e017a5b22057f80d772cf42a8aae23a03bd3de6d5e6e9abb20a21b03060c9",
+      "tests/browser/sentence-builder.spec.mjs": "e6b068741ab9b647ce141fffb4d4f47fb9298c99773e7b33c72923c1497b9e76",
+      "tests/browser/source-citations.spec.mjs": "d4dab0948860270f117bb514912a5c3e1539ab15f61504e869ec6303184a8e86",
+      "tests/browser/sources.spec.mjs": "3fa81ad7eec5aabba862e8f79c28dc41c06e9e2ef162c4b8043061845f844622",
+      "tests/browser/sports.spec.mjs": "b3b60e93116f4a141cd840a716078cf9341db1e769dd05ee503561ec90008515",
+      "tests/browser/suggestions.spec.mjs": "83f5951c35061ca6fd813f0391f02e9c8816c428a0ddba8ad299a862398cac5e",
+      "tests/browser/table.spec.mjs": "e039968a617cba478b10a57b8a3d8d6f399885b006caeb3a8d197f2de056309f",
+      "tests/browser/tabs.spec.mjs": "5b41bdf2d159ba4f7f448f2913fbbb6e01dba786a4fb483dde85a4f2c438ffe1",
+      "tests/browser/thread.spec.mjs": "0529cb294c52b13289421fb8a5d43c8cd9d59a5f0be0d557a80513dfaa614c8d",
+      "tests/browser/time.spec.mjs": "b20ea32fdb4104c874dfeaff3ded811327b04e0f1e11e043d9edf34c39fcf427",
+      "tests/browser/tokens.spec.mjs": "8abea72fed5d1394aba6de2e80769629a36aadbce05c87962ef03e3c817f4588",
+      "tests/browser/trackers.spec.mjs": "195b53624d666b9b4e0bcb82a8d72af5b5e7537b9b80b73421fdc0185fc3f999",
+      "tests/browser/travel-events.spec.mjs": "d6ef52e2041f7c9e3fa2d6e99792ad4822a8e21533925021446b2a844c44cfb6",
+      "tests/browser/unicode.spec.mjs": "09c1e21eb3755e669ac6c04c00d3f9a20470b85b31ebc90bd1545ebe33feadd9",
+      "tests/browser/vocab.spec.mjs": "96d7009e93c3d85e687c5ec98aeebfd3fba29a6d2937f07303917336b04a7e3b",
+      "tests/browser/vocabulary-tools.spec.mjs": "ea22902bae5857a4127944b4d0cabb2c735087a5af532506d7539f2ced3a1956",
+      "tests/browser/weather.spec.mjs": "33e0fb4fd04b262f47b8199932c1522e52e903e821526d3db0fdd33f118d6e10",
+      "tests/browser/writing.spec.mjs": "9b62fb8036adab5582e24d57b7360b250847e652da816805c22382964c31af8b",
+      "tests/consumer/pending/verify-browser.mjs": "a65c00b4f21283eb5e8d0401dceb2d3906ab9a03b327a63b1b30f6915bcbb56c",
+      "tests/native-select-capture.test.mjs": "2f176fe8abb3ad914aa8996b60d431e361dfa6128e2f163aeac0cd46e535e094"
+    }
+  }
+}
