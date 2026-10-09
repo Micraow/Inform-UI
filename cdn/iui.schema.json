@@ -1108,6 +1108,224 @@
       ],
       "additionalProperties": false
     },
+    "OnboardingOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "OnboardingSelectionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "onboarding-selection"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OnboardingOption"
+          },
+          "minItems": 2,
+          "maxItems": 12
+        },
+        "mode": {
+          "enum": [
+            "single",
+            "multiple"
+          ]
+        },
+        "initial": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "minimum": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "maximum": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "continueLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "options"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "onboarding-selection"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OnboardingOption"
+              },
+              "minItems": 2,
+              "maxItems": 12
+            },
+            "mode": {
+              "const": "single"
+            },
+            "initial": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+              },
+              "minItems": 0,
+              "maxItems": 1
+            },
+            "minimum": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "maximum": {
+              "const": 1
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "continueLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "onboarding-selection"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OnboardingOption"
+              },
+              "minItems": 2,
+              "maxItems": 12
+            },
+            "mode": {
+              "const": "multiple"
+            },
+            "initial": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+              },
+              "minItems": 0,
+              "maxItems": 12
+            },
+            "minimum": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 12
+            },
+            "maximum": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "continueLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "mode"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
     "LocationChoiceOption": {
       "type": "object",
       "properties": {
@@ -1255,6 +1473,563 @@
         "type",
         "label",
         "images"
+      ],
+      "additionalProperties": false
+    },
+    "TravelEventSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "FlightEndpoint": {
+      "type": "object",
+      "properties": {
+        "airport": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])"
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "airport",
+        "at"
+      ],
+      "additionalProperties": false
+    },
+    "FlightLeg": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "carrier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "number": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "departure": {
+          "$ref": "#/$defs/FlightEndpoint"
+        },
+        "arrival": {
+          "$ref": "#/$defs/FlightEndpoint"
+        },
+        "cabin": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "carrier",
+        "number",
+        "departure",
+        "arrival"
+      ],
+      "additionalProperties": false
+    },
+    "FlightOptionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flight-option"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "optionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "legs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FlightLeg"
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000000
+            },
+            "currency": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$(?![\\s\\S])"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "additionalProperties": false
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "optionId",
+        "legs"
+      ],
+      "additionalProperties": false
+    },
+    "ArtistEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$(?![\\s\\S])",
+          "minLength": 5,
+          "maxLength": 5
+        },
+        "timeZoneLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "date",
+        "venue"
+      ],
+      "additionalProperties": false
+    },
+    "ArtistUpcomingEventsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "artist-upcoming-events"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "artist": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ArtistEvent"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "artist",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "TrackerSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "PackageMilestone": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "state": {
+          "enum": [
+            "complete",
+            "current",
+            "pending"
+          ]
+        },
+        "occurredAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "PackageTrackerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "package-tracker"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "carrier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "trackingId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pre-transit",
+            "in-transit",
+            "out-for-delivery",
+            "delivered",
+            "exception",
+            "unknown"
+          ]
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "destination": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "expectedDelivery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "milestones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PackageMilestone"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "source": {
+          "$ref": "#/$defs/TrackerSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "carrier",
+        "trackingId",
+        "status",
+        "observedAt",
+        "milestones"
+      ],
+      "additionalProperties": false
+    },
+    "TrackedFlightEndpoint": {
+      "type": "object",
+      "properties": {
+        "airport": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "scheduledAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "estimatedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "actualAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "terminal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "gate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "airport",
+        "scheduledAt"
+      ],
+      "additionalProperties": false
+    },
+    "FlightUpdate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "information",
+            "change",
+            "disruption"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "at",
+        "message",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "FlightTrackerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flight-tracker"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "carrier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "flightNumber": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "boarding",
+            "departed",
+            "landed",
+            "cancelled",
+            "diverted",
+            "unknown"
+          ]
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "departure": {
+          "$ref": "#/$defs/TrackedFlightEndpoint"
+        },
+        "arrival": {
+          "$ref": "#/$defs/TrackedFlightEndpoint"
+        },
+        "updates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FlightUpdate"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "source": {
+          "$ref": "#/$defs/TrackerSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "carrier",
+        "flightNumber",
+        "status",
+        "observedAt",
+        "departure",
+        "arrival",
+        "updates"
       ],
       "additionalProperties": false
     },
@@ -7070,6 +7845,216 @@
       ],
       "additionalProperties": false
     },
+    "LedgerSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-\\d{2}-\\d{2}$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "direction": {
+          "enum": [
+            "debit",
+            "credit"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "posted"
+          ]
+        },
+        "counterparty": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "description",
+        "amount",
+        "currency",
+        "direction"
+      ],
+      "additionalProperties": false
+    },
+    "AssetDistributionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "asset-distribution"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "observedAt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerAccount"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "accounts"
+      ],
+      "additionalProperties": false
+    },
+    "TransactionListNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "transaction-list"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerTransaction"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "transactions"
+      ],
+      "additionalProperties": false
+    },
     "UnitConverterNode": {
       "type": "object",
       "properties": {
@@ -7642,10 +8627,25 @@
           "$ref": "#/$defs/RestaurantAvailabilityNode"
         },
         {
+          "$ref": "#/$defs/OnboardingSelectionNode"
+        },
+        {
           "$ref": "#/$defs/LocationChoiceRequestNode"
         },
         {
           "$ref": "#/$defs/BusinessGalleryNode"
+        },
+        {
+          "$ref": "#/$defs/FlightOptionNode"
+        },
+        {
+          "$ref": "#/$defs/ArtistUpcomingEventsNode"
+        },
+        {
+          "$ref": "#/$defs/PackageTrackerNode"
+        },
+        {
+          "$ref": "#/$defs/FlightTrackerNode"
         },
         {
           "$ref": "#/$defs/RedditThreadCardNode"
@@ -7874,6 +8874,12 @@
         },
         {
           "$ref": "#/$defs/FinanceHeatmapNode"
+        },
+        {
+          "$ref": "#/$defs/AssetDistributionNode"
+        },
+        {
+          "$ref": "#/$defs/TransactionListNode"
         },
         {
           "$ref": "#/$defs/UnitConverterNode"

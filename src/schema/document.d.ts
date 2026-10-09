@@ -39,8 +39,13 @@ export type Node =
   | NewsArticleNode
   | EntityReviewsNode
   | RestaurantAvailabilityNode
+  | OnboardingSelectionNode
   | LocationChoiceRequestNode
   | BusinessGalleryNode
+  | FlightOptionNode
+  | ArtistUpcomingEventsNode
+  | PackageTrackerNode
+  | FlightTrackerNode
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
@@ -117,6 +122,8 @@ export type Node =
   | FinanceChartNode
   | FinanceComparisonNode
   | FinanceHeatmapNode
+  | AssetDistributionNode
+  | TransactionListNode
   | UnitConverterNode
   | CurrencyConverterNode
   | SvgNode
@@ -206,6 +213,70 @@ export type AgendaEvent1 =
       description?: string;
       status?: "planned" | "cancelled";
       url?: string;
+    };
+export type OnboardingSelectionNode = {
+  type: "onboarding-selection";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 2
+   * @maxItems 12
+   */
+  options: [OnboardingOption, OnboardingOption, ...OnboardingOption[]];
+  mode?: "single" | "multiple";
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  initial?: string[];
+  minimum?: number;
+  maximum?: number;
+  disabled?: boolean;
+  continueLabel?: string;
+} & OnboardingSelectionNode1;
+export type OnboardingSelectionNode1 =
+  | {
+      type?: "onboarding-selection";
+      id?: string;
+      label?: string;
+      description?: string;
+      /**
+       * @minItems 2
+       * @maxItems 12
+       */
+      options?: [OnboardingOption, OnboardingOption, ...OnboardingOption[]];
+      mode?: "single";
+      /**
+       * @minItems 0
+       * @maxItems 1
+       */
+      initial?: string[];
+      minimum?: number;
+      maximum?: 1;
+      disabled?: boolean;
+      continueLabel?: string;
+    }
+  | {
+      type?: "onboarding-selection";
+      id?: string;
+      label?: string;
+      description?: string;
+      /**
+       * @minItems 2
+       * @maxItems 12
+       */
+      options?: [OnboardingOption, OnboardingOption, ...OnboardingOption[]];
+      mode: "multiple";
+      /**
+       * @minItems 0
+       * @maxItems 12
+       */
+      initial?: string[];
+      minimum?: number;
+      maximum?: number;
+      disabled?: boolean;
+      continueLabel?: string;
     };
 export type CodeNode = {
   type: "code";
@@ -607,6 +678,11 @@ export interface RestaurantAvailabilitySlot {
   time: string;
   available: boolean;
 }
+export interface OnboardingOption {
+  id: string;
+  label: string;
+  description?: string;
+}
 export interface LocationChoiceRequestNode {
   type: "location-choice-request";
   id?: string;
@@ -645,6 +721,129 @@ export interface BusinessGalleryImage {
   src: string;
   alt: string;
   caption?: string;
+}
+export interface FlightOptionNode {
+  type: "flight-option";
+  id?: string;
+  label: string;
+  optionId: string;
+  /**
+   * @minItems 1
+   * @maxItems 8
+   */
+  legs: [FlightLeg, ...FlightLeg[]];
+  description?: string;
+  price?: {
+    amount: number;
+    currency: string;
+  };
+  note?: string;
+  source?: TravelEventSource;
+}
+export interface FlightLeg {
+  id: string;
+  carrier: string;
+  number: string;
+  departure: FlightEndpoint;
+  arrival: FlightEndpoint;
+  cabin?: string;
+}
+export interface FlightEndpoint {
+  airport: string;
+  at: string;
+  name?: string;
+}
+export interface TravelEventSource {
+  label: string;
+  url: string;
+}
+export interface ArtistUpcomingEventsNode {
+  type: "artist-upcoming-events";
+  id?: string;
+  artist: string;
+  label?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  events: ArtistEvent[];
+  description?: string;
+  source?: TravelEventSource;
+}
+export interface ArtistEvent {
+  id: string;
+  title: string;
+  date: string;
+  venue: string;
+  start?: string;
+  timeZoneLabel?: string;
+  location?: string;
+  description?: string;
+  url?: string;
+}
+export interface PackageTrackerNode {
+  type: "package-tracker";
+  id?: string;
+  label: string;
+  description?: string;
+  carrier: string;
+  trackingId: string;
+  status: "pre-transit" | "in-transit" | "out-for-delivery" | "delivered" | "exception" | "unknown";
+  observedAt: string;
+  destination?: string;
+  expectedDelivery?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  milestones: PackageMilestone[];
+  source?: TrackerSource;
+}
+export interface PackageMilestone {
+  id: string;
+  label: string;
+  state: "complete" | "current" | "pending";
+  occurredAt?: string;
+  location?: string;
+  description?: string;
+}
+export interface TrackerSource {
+  label: string;
+  url: string;
+}
+export interface FlightTrackerNode {
+  type: "flight-tracker";
+  id?: string;
+  label: string;
+  description?: string;
+  carrier: string;
+  flightNumber: string;
+  status: "scheduled" | "boarding" | "departed" | "landed" | "cancelled" | "diverted" | "unknown";
+  observedAt: string;
+  departure: TrackedFlightEndpoint;
+  arrival: TrackedFlightEndpoint;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  updates: FlightUpdate[];
+  source?: TrackerSource;
+}
+export interface TrackedFlightEndpoint {
+  airport: string;
+  name?: string;
+  scheduledAt: string;
+  estimatedAt?: string;
+  actualAt?: string;
+  terminal?: string;
+  gate?: string;
+}
+export interface FlightUpdate {
+  id: string;
+  at: string;
+  message: string;
+  kind: "information" | "change" | "disruption";
+  description?: string;
 }
 export interface RedditThreadCardNode {
   type: "reddit-thread-card";
@@ -1873,6 +2072,54 @@ export interface FinanceHeatmapNode {
   initialSector?: string;
   status?: "ready" | "loading" | "error";
   message?: string;
+}
+export interface AssetDistributionNode {
+  type: "asset-distribution";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  observedAt?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  accounts: LedgerAccount[];
+}
+export interface LedgerSource {
+  label: string;
+  url: string;
+}
+export interface LedgerAccount {
+  id: string;
+  name: string;
+  amount: number | null;
+  currency: string;
+  category?: string;
+  note?: string;
+}
+export interface TransactionListNode {
+  type: "transaction-list";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  transactions: LedgerTransaction[];
+}
+export interface LedgerTransaction {
+  id: string;
+  date: string;
+  description: string;
+  amount: number;
+  currency: string;
+  direction: "debit" | "credit";
+  status?: "pending" | "posted";
+  counterparty?: string;
+  note?: string;
 }
 export interface UnitConverterNode {
   type: "unit-converter";
