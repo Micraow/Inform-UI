@@ -2,7 +2,7 @@
 
 `iui/1` is the Intelligent-UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The schema recognizes 46 project-defined node types, including the historical
+ChatGPT services. The schema recognizes 49 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Count: 44 rendered + 1 plain-text fallback + 1 rejected = 46 node types.**
+**Count: 47 rendered + 1 plain-text fallback + 1 rejected = 49 node types.**
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -67,6 +67,7 @@ results from the current revision for those claims.
 | `weather` | Rendered | Supplied provenance/timezone/current/daily/hourly data; local date/unit/metric/chart-table controls; null, loading/empty/error states; explicit percent and DST semantics. No live provider connection. |
 | `sports-schedule` / `sports-scoreboard` / `sports-standings` | Rendered | Shared supplied league/team/game/standing data; local date/team/stage/group filters, disclosures, game selection and stable standings sorting. Explicit score/status/provenance/timezone/null semantics; no live provider or ranking inference. Available in the fixed 46-node CDN; the older 7c490585 pin does not contain these nodes. See sports.md. |
 | `quiz` / `flashcards` | Rendered | Local answer checking, weighted exact-set scoring, explanations/review/retry; flashcard reveal/rating/navigation/summary. Empty/loading/error and keyboard/live feedback. Supplied answers are not secret; no storage, network grading or spaced-repetition scheduler. Available in the fixed 46-node CDN. |
+| `finance-quote` / `finance-chart` / `finance-comparison` | Rendered | Supplied quote/time/status/delay; local history ranges, actual time axes, null gaps and exact common-baseline percentage comparison across currencies. No FX conversion, provider, trading or wall-clock inference. Source increment awaiting browser acceptance; not in fixed f372c71 CDN. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 
@@ -118,4 +119,4 @@ For broader user-visible requirements, see the
 [52-capability assessment](gallery-capabilities.md). For source and media
 boundaries, see [provenance](provenance.md).
 
-Numeric chart increment: [synthetic state fixture](../examples/numeric-charts.json), [axis contract](charts.md). Forms and weather have typed contracts and examples; browser evidence is tracked per commit. Sports schedule/scoreboard/standings are implemented in source; quiz/flashcards are implemented in source; player/event/bracket/racing variants and finance remain pending. See [sports contract](sports.md).
+Numeric chart increment: [synthetic state fixture](../examples/numeric-charts.json), [axis contract](charts.md). Forms and weather have typed contracts and examples; browser evidence is tracked per commit. Sports schedule/scoreboard/standings are implemented in source; quiz/flashcards are implemented in source; finance quote/history/comparison are implemented in source awaiting browser acceptance; heatmap and player/event/bracket/racing variants remain pending. See [sports contract](sports.md).

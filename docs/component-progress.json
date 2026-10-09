@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T01:18:00Z",
+  "as_of_utc": "2026-10-09T01:30:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -9,10 +9,10 @@
     "learning_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936"
   },
   "counts": {
-    "not_implemented": 207,
+    "not_implemented": 205,
     "functionally_verified": 31,
     "partial": 18,
-    "implemented_pending_verification": 0
+    "implemented_pending_verification": 2
   },
   "components": [
     {
@@ -1711,15 +1711,25 @@
       "id": "stock-chart",
       "name": "Stock Chart",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "49节点源码已整合quote/history/comparison；API与类型检查通过，真实浏览器验收待CI。",
+      "tests": [
+        "tests/finance.test.mjs",
+        "tests/finance-validation.test.mjs",
+        "tests/browser/finance.spec.mjs"
+      ]
     },
     {
       "id": "stock-comparison-chart",
       "name": "Stock Comparison Chart",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "49节点源码已整合quote/history/comparison；API与类型检查通过，真实浏览器验收待CI。",
+      "tests": [
+        "tests/finance.test.mjs",
+        "tests/finance-validation.test.mjs",
+        "tests/browser/finance.spec.mjs"
+      ]
     },
     {
       "id": "stock-heatmap",

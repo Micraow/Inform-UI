@@ -214,6 +214,61 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-learning{min-width:0;max-width:100%}.iui-learning-header{display:flex;flex-direction:column;gap:8px}.iui-root .iui-learning-title{font-size:1.25rem}.iui-learning-body{display:flex;flex-direction:column;gap:16px;margin-block:16px}.iui-learning-progress{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:var(--iui-muted)}.iui-learning-progress progress{flex:1 1 120px;max-width:220px;height:6px;accent-color:var(--iui-selection)}.iui-root .iui-learning-heading{font-size:18px;line-height:1.5;overflow-wrap:anywhere}.iui-learning-heading:focus{outline:2px solid var(--iui-focus);outline-offset:4px}.iui-learning-question{min-width:0;margin:0;padding:0;border:0}.iui-learning-question>legend{padding:0;margin-bottom:8px;max-width:100%}.iui-learning-question>.iui-caption{margin-bottom:12px}.iui-learning-choice{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid var(--iui-line);border-radius:8px;margin-block:6px;cursor:pointer;min-width:0}.iui-learning-choice>input{flex:none;margin-top:5px;accent-color:var(--iui-selection)}.iui-learning-choice>span{overflow-wrap:anywhere}.iui-learning-choice:has(input:checked){background:var(--iui-surface-secondary)}.iui-learning-choice[data-correct=true]{border-color:var(--iui-success)}.iui-learning-choice:has(input:disabled){cursor:default}.iui-learning-choice-note{margin-inline-start:auto;flex:none;font-size:12px;color:var(--iui-success)}.iui-learning-feedback{border-inline-start:3px solid var(--iui-warning);padding:8px 12px;display:flex;flex-direction:column;gap:8px}.iui-learning-feedback[data-correct=true]{border-color:var(--iui-success)}.iui-learning-nav,.iui-learning-rating{display:flex;flex-wrap:wrap;gap:8px}.iui-learning-nav button,.iui-learning-rating button{min-height:40px}.iui-learning-rating button[aria-pressed=true]{outline:2px solid var(--iui-focus);outline-offset:2px}.iui-learning-live{font-size:14px;color:var(--iui-muted)}.iui-learning-live:empty{display:none}.iui-learning-result{display:flex;flex-wrap:wrap;gap:12px}.iui-learning-result>:is(h3,p,ol){flex-basis:100%}.iui-learning-score{font-size:24px;font-weight:600}.iui-learning-empty{padding:32px 12px;color:var(--iui-muted);text-align:center}.iui-learning-empty[role=alert]{color:var(--iui-danger)}.iui-learning[aria-busy=true] .iui-learning-empty{min-height:180px;background:var(--iui-surface-secondary)}.iui-flashcard{min-height:240px;padding:20px;border:1px solid var(--iui-line);border-radius:12px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;background:var(--iui-surface-secondary)}.iui-flashcard[data-side=back]{background:var(--iui-surface-primary)}.iui-flashcard-text{font-size:20px;line-height:1.6;overflow-wrap:anywhere}.iui-flashcard .iui-math{max-width:100%}@media(max-width:520px){.iui-learning-choice{padding:10px;gap:8px}.iui-learning-choice-note{flex-shrink:1}.iui-flashcard{padding:16px}.iui-flashcard-text{font-size:18px}}
 
 .iui-sports-standing-table :is(th,td){white-space:nowrap}.iui-sports-standing-table tbody th,.iui-sports-standing-table td:last-child{white-space:normal}
+/* Original financial presentation; only host semantic and categorical series tokens. */
+.iui-finance{container-type:inline-size;min-width:0;max-width:100%;font-variant-numeric:tabular-nums}
+.iui-finance [hidden]{display:none!important}
+.iui-root .iui-finance-title{font-size:1.05rem;line-height:1.45;letter-spacing:-.015em}
+.iui-finance-header{margin-block-end:16px}
+.iui-finance-identity{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.iui-finance-symbol{font-weight:650;letter-spacing:.015em}.iui-finance-name{overflow-wrap:anywhere}
+.iui-finance-name,.iui-finance-exchange,.iui-finance-currency{color:var(--iui-muted);font-size:.82rem}
+.iui-finance-price{font-size:2.1rem;line-height:1.3;font-weight:600;letter-spacing:-.035em;margin-block:8px 4px;overflow-wrap:anywhere}
+.iui-finance-change{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 6px;font-size:.9rem}
+.iui-finance-change[data-direction=up]{color:var(--iui-success)}.iui-finance-change[data-direction=down]{color:var(--iui-danger)}
+.iui-finance-change-label{color:var(--iui-muted);font-size:.76rem;margin-inline-start:4px}
+.iui-root .iui-finance-previous{font-size:.76rem;color:var(--iui-muted);margin-block-start:6px}
+.iui-finance-meta{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 12px;margin-block-start:8px;font-size:.73rem;line-height:1.55;color:var(--iui-muted)}
+.iui-finance-market{font-weight:600}.iui-finance-market[data-market=halted]{color:var(--iui-warning)}
+.iui-finance-baseline{font-size:.84rem;line-height:1.6}.iui-finance-baseline time{font-weight:550}
+.iui-root .iui-finance-note{color:var(--iui-muted);font-size:.76rem;line-height:1.6;margin-block-start:4px}
+.iui-finance-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin-block:16px}
+.iui-finance-legend-row{min-width:0}.iui-root .iui-finance-legend-button{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 7px;padding:8px 10px;text-align:start;min-height:40px;max-width:100%;width:100%;border-radius:8px;background:transparent}
+.iui-root .iui-finance-legend-button[aria-pressed=false]{color:var(--iui-muted);background:var(--iui-surface);border-style:dashed}
+.iui-finance-legend-button[aria-pressed=false] .iui-finance-swatch{opacity:.35}
+.iui-finance-legend-button .iui-finance-name{flex-basis:100%;font-size:.75rem}
+.iui-finance-swatch{display:inline-block;width:18px;height:0;flex:none;border-top:3px solid var(--iui-finance-series);align-self:center}
+.iui-finance-swatch[data-dash='1'],.iui-finance-swatch[data-dash='3'],.iui-finance-swatch[data-dash='4']{border-top-style:dashed}
+.iui-finance-swatch[data-dash='2'],.iui-finance-swatch[data-dash='5']{border-top-style:dotted}
+.iui-finance-legend-row .iui-finance-meta{padding-inline:2px;font-size:.68rem}
+.iui-finance-legend-row .iui-finance-updated{flex-basis:100%}
+.iui-root .iui-finance-incomparable{color:var(--iui-muted);font-size:.73rem;margin-block-start:5px}
+.iui-finance-ranges{display:flex;flex-wrap:wrap;gap:4px;margin-block:18px 8px}
+.iui-root .iui-finance-ranges button{min-height:40px;padding:7px 12px;border-color:transparent;border-radius:8px;font-size:.8rem}
+.iui-root .iui-finance-ranges button[aria-pressed=true]{background:var(--iui-surface);border-color:var(--iui-line);font-weight:600}
+.iui-finance-range-description{font-size:.7rem;color:var(--iui-muted);line-height:1.6}
+.iui-root .iui-finance-axis-title{font-size:.72rem;color:var(--iui-muted);margin-block:12px 3px}
+.iui-finance-chart{display:block;width:100%;height:228px;overflow:hidden;outline-offset:4px}
+.iui-finance-chart:focus-visible,.iui-finance-table-wrap:focus-visible{outline:2px solid var(--iui-focus)}
+.iui-finance-grid{stroke:var(--iui-line);stroke-width:1;stroke-dasharray:3 4}
+.iui-finance-tick{fill:var(--iui-muted);font-family:inherit;font-size:10px}
+.iui-finance-baseline-line{stroke:var(--iui-muted);stroke-width:1;stroke-dasharray:5 4}
+.iui-finance-line{stroke:var(--iui-finance-series);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.iui-finance-point{fill:var(--iui-finance-series);stroke:var(--iui-bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.iui-finance-point-active{stroke:var(--iui-ink);stroke-width:2}.iui-finance-cursor{stroke:var(--iui-muted);stroke-dasharray:2 3;pointer-events:none}
+.iui-finance-readout{display:block;color:var(--iui-muted);font-size:.75rem;line-height:1.6;min-height:2.6em;overflow-wrap:anywhere}
+.iui-finance-empty{padding-block:16px;color:var(--iui-muted);font-size:.82rem}
+.iui-finance-table-details{margin-block-start:12px}.iui-finance-table-details>summary{font-size:.8rem}
+.iui-finance-table-wrap{overflow:auto;max-width:100%;max-height:360px;margin-block-start:8px;overscroll-behavior-inline:contain}
+.iui-root .iui-finance-table{font-size:.75rem}.iui-root .iui-finance-table th,.iui-root .iui-finance-table td{padding:8px 10px;vertical-align:top}
+.iui-root .iui-finance-table tbody th{font-weight:400;background:transparent;min-width:150px}
+.iui-finance-table thead th{min-width:110px}.iui-root .iui-finance-table caption{padding:4px 0 8px;font-size:.7rem}
+.iui-finance-source{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 6px;padding-block-start:12px;margin-block-start:16px;border-block-start:1px solid var(--iui-line);font-size:.72rem;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-finance-synthetic{font-weight:600;margin-inline-start:6px}
+.iui-finance-status{padding:24px 12px;border:1px dashed var(--iui-line);border-radius:8px;color:var(--iui-muted);text-align:center}
+.iui-finance[data-status=loading] .iui-finance-status{min-height:160px;display:grid;place-items:center;background:var(--iui-surface)}
+.iui-finance[data-status=error] .iui-finance-status{color:var(--iui-danger)}
+.iui-finance-visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@container(max-width:400px){.iui-finance-legend{grid-template-columns:1fr;gap:10px}.iui-finance-price{font-size:1.9rem}.iui-finance-meta{gap:3px 8px}.iui-finance-updated{flex-basis:100%}.iui-root .iui-finance-ranges button{padding:7px 10px}.iui-finance-header{margin-block-end:12px}}
 
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).

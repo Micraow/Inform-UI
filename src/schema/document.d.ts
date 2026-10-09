@@ -75,6 +75,9 @@ export type Node =
   | SportsStandingsNode
   | QuizNode
   | FlashcardsNode
+  | FinanceQuoteNode
+  | FinanceChartNode
+  | FinanceComparisonNode
   | SvgNode
   | NativeNode;
 
@@ -849,6 +852,83 @@ export interface Flashcard {
   frontLatex?: string;
   backLatex?: string;
   hint?: string;
+}
+export interface FinanceQuoteNode {
+  type: "finance-quote";
+  id?: string;
+  title?: string;
+  source: FinanceSource;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+  instrument: FinanceInstrument;
+}
+export interface FinanceSource {
+  label: string;
+  synthetic: boolean;
+  url?: string;
+}
+export interface FinanceInstrument {
+  id: string;
+  symbol: string;
+  name: string;
+  currency: string;
+  exchange?: string;
+  timezone: string;
+  asOf: string;
+  marketStatus: "open" | "closed" | "pre" | "post" | "halted" | "unknown";
+  delayMinutes: number;
+  price: number | null;
+  previousClose: number | null;
+  /**
+   * @minItems 0
+   * @maxItems 500
+   */
+  history: {
+    time: string;
+    price: number | null;
+  }[];
+}
+export interface FinanceChartNode {
+  type: "finance-chart";
+  id?: string;
+  title?: string;
+  source: FinanceSource;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+  instrument: FinanceInstrument;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  ranges: FinanceRange[];
+  initialRange?: string;
+}
+export interface FinanceRange {
+  id: string;
+  label: string;
+  from: string;
+  to: string;
+}
+export interface FinanceComparisonNode {
+  type: "finance-comparison";
+  id?: string;
+  title?: string;
+  source: FinanceSource;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+  /**
+   * @minItems 2
+   * @maxItems 6
+   */
+  instruments: [FinanceInstrument, FinanceInstrument, ...FinanceInstrument[]];
+  baselineAt: string;
+  timezone?: string;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  ranges: FinanceRange[];
+  initialRange?: string;
 }
 export interface SvgNode {
   type: "svg";
