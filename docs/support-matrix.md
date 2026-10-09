@@ -149,3 +149,7 @@ Numeric chart increment: [synthetic state fixture](../examples/numeric-charts.js
 The [28-candidate local checkpoint](local-enhancements-88.md) adds [explicit finite motion previews](motion.md) and [local email/plan review cards](draft-review.md). Full Node regression passes 863/863; real-browser acceptance remains pending. No email sending, task execution, provider call or achievement verification is supplied.
 
 The [30-candidate local checkpoint](local-enhancements-90.md) adds supplied location choices and a per-image-consent gallery. Forms inherited-disabled and synchronous adapter lifecycle regressions are closed locally; browser acceptance remains pending.
+
+## Later supplied-results source candidate
+
+`basketball-tournament` and `election-results` have original local supplied-data readers, with bounded schemas, literal sources, local filters, stable ordering and reset. They do not infer winners, calculate results, advance teams or contact a provider. [Contracts and verification boundary](supplied-results.md). These are later source candidates; the historical checkpoints and 53/256 formal accepted count above are unchanged.

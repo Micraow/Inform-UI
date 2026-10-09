@@ -1,0 +1,114 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied tournament fixture",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "basketball-tournament",
+      "id": "tournament",
+      "label": "Supplied fictional tournament",
+      "observedAt": "2028-03-01T15:00Z",
+      "teams": [
+        {
+          "id": "north",
+          "label": "Team North"
+        },
+        {
+          "id": "south",
+          "label": "Team South"
+        },
+        {
+          "id": "east",
+          "label": "Team East"
+        },
+        {
+          "id": "west",
+          "label": "Team West"
+        }
+      ],
+      "rounds": [
+        {
+          "id": "first",
+          "label": "First supplied round",
+          "matches": [
+            {
+              "id": "match-a",
+              "label": "First match",
+              "status": "final",
+              "participants": [
+                {
+                  "teamId": "north",
+                  "score": 84
+                },
+                {
+                  "teamId": "south",
+                  "score": 79
+                }
+              ],
+              "winnerTeamId": "north",
+              "advancesTo": "final",
+              "startsAt": "2028-02-29T10:00Z",
+              "note": "Supplied winner and progression pointer, not calculated.",
+              "source": {
+                "label": "Example match source",
+                "url": "https://example.org/match"
+              }
+            },
+            {
+              "id": "match-b",
+              "label": "Second match",
+              "status": "final",
+              "participants": [
+                {
+                  "teamId": "east",
+                  "score": 70
+                },
+                {
+                  "teamId": "west",
+                  "score": 70
+                }
+              ],
+              "winnerTeamId": null,
+              "advancesTo": "final"
+            }
+          ]
+        },
+        {
+          "id": "final-round",
+          "label": "Supplied final round",
+          "matches": [
+            {
+              "id": "final",
+              "label": "Final match",
+              "status": "scheduled",
+              "participants": [
+                {
+                  "teamId": null,
+                  "placeholder": "Winner of first match",
+                  "score": null
+                },
+                {
+                  "teamId": null,
+                  "placeholder": "Winner of second match",
+                  "score": null
+                }
+              ],
+              "winnerTeamId": null
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "label": "Empty supplied round",
+          "matches": []
+        }
+      ],
+      "source": {
+        "label": "Example tournament source",
+        "url": "https://example.org/tournament"
+      }
+    }
+  ]
+}

@@ -200,3 +200,5 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 后续新增[供数文章](docs/news-article.md)、[供数评论](docs/entity-reviews.md)、[供数时段选择](docs/restaurant-availability.md)与[讨论阅读](docs/reddit-thread-card.md)。[二十四项本地记录](docs/local-enhancements-84.md)保留原始证据。其后新增[显式动画/庆祝](docs/motion.md)与[邮件草稿/计划回顾](docs/draft-review.md)，[二十八项本地冻结](docs/local-enhancements-88.md)全库863项通过，仍未计入真实浏览器验收。
 
 [三十项本地冻结](docs/local-enhancements-90.md)加入供数地点选择与逐图确认画廊，同时修复Forms祖先禁用与同步adapter生命周期边界。28项全库与后续影响面检查的证据分别列出；正式已验仍53项。
+
+后续独立源码候选增加[供数赛事轮次与选举结果](docs/supplied-results.md)：本地筛选、稳定排序与重置，保留并列、零值和未知值，不推断赢家或接入实时来源。浏览器及正式组件验收仍待完成，已验总数不变。
