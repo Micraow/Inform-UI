@@ -1,3 +1,4 @@
+import {renderLocalBusiness,renderRestaurantReviews} from './local-places.js';
 import {renderJobs} from './jobs.js';
 import {renderProductCard} from './product-card.js';
 import {renderEmailPreview} from './email-preview.js';
@@ -166,6 +167,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'local-business':out=renderLocalBusiness(context,n,labels.placesUI);break;
+      case 'restaurant-reviews':out=renderRestaurantReviews(context,n,labels.placesUI);break;
       case 'jobs':out=renderJobs(context,n,labels.decisionUI);break;
       case 'product-card':out=renderProductCard(context,n,labels.decisionUI);break;
       case 'email-preview':out=renderEmailPreview(context,n,labels.mailFilesUI);break;

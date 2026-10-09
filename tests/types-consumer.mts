@@ -184,3 +184,5 @@ import './poll-types-consumer.mjs';
 import './mail-files-types-consumer.mjs';
 
 import './decision-cards-types-consumer.mjs';
+
+import './local-places-types-consumer.mjs';
