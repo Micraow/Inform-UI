@@ -11,6 +11,9 @@ import {renderOverlay} from './overlays.js';
 import {renderTable} from './table.js';
 import {renderHeatmap} from './heatmap.js';
 import {renderFinance} from './finance.js';
+import {renderChecklist} from './checklist.js';
+import {renderFillBlank} from './fill-blank.js';
+import {renderSentenceBuilder} from './sentence-builder.js';
 import {renderLearning} from './learning.js';
 import {renderSports} from './sports.js';
 import {createForms} from './forms.js';
@@ -198,6 +201,9 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'loading':case 'loading-block': out=renderLoading(context,n,labels.loadingUI); break;
       case 'flow':case 'icon':case 'pulse-indicator': out=renderPrimitive(context,n,labels.primitive); break;
       case 'finance-quote': case 'finance-chart': case 'finance-comparison': out=renderFinance(context,n); break;
+      case 'checklist': out=renderChecklist(context,n,labels.checklistUI); break;
+      case 'fill-blank': out=renderFillBlank(context,n); break;
+      case 'sentence-builder': out=renderSentenceBuilder(context,n,labels.sentenceBuilderUI); break;
       case 'quiz': case 'flashcards': out=renderLearning(context,n); break;
       case 'sports-schedule': case 'sports-scoreboard': case 'sports-standings': out=renderSports(context,n);break;
       case 'svg': {out=svg('svg',{viewBox:n.viewBox,role:'img','aria-label':n.label??labels.diagram});out.classList.add('iui-svg');for(const shape of n.shapes){const s=svg(shape.tag,shape.attrs);if(shape.text)s.textContent=shape.text;out.append(s);}break;}

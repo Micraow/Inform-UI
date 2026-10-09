@@ -3,6 +3,9 @@ import {inspectClock} from './time.js';
 import {tableLayout, isTableCellObject, TableLayoutError} from './table.js';
 import {inspectHeatmap} from './heatmap.js';
 import {isFinance,inspectFinance} from './finance.js';
+import {inspectChecklist} from './checklist.js';
+import {inspectFillBlank} from './fill-blank.js';
+import {inspectSentenceBuilder} from './sentence-builder.js';
 import {isLearning,inspectLearning} from './learning.js';
 import {isSports,inspectSports} from './sports.js';
 import {inspectExtension,timestamp,chartXDomain,chartYDomain,isField,fieldTypeIssue} from './extensions.js';
@@ -219,6 +222,7 @@ function nodeValues(node: Node, path: string): [Value, string][] {
   for (const key of ['disabled', 'error'] as const) if (key in node) { const v=(node as unknown as Record<string,Value>)[key]; if(v!==undefined)values.push([v,`${path}/${key}`]); }
   if ('value' in node && node.value !== undefined) values.push([node.value, `${path}/value`]);
   if (node.type === 'loading' && node.progress !== undefined) values.push([node.progress, `${path}/progress`]);
+  if (node.type === 'checklist') node.items.forEach((item,i)=>{if(item.disabled!==undefined)values.push([item.disabled, `${path}/items/${i}/disabled`]);});
   if (node.type === 'text') node.runs?.forEach((run, i) => values.push([run.value, `${path}/runs/${i}/value`]));
   if (node.type === 'list') node.items.forEach((item, i) => { if (!record(item) || !('type' in item)) values.push([item as Value, `${path}/items/${i}`]); });
   if (node.type === 'table') {
@@ -269,6 +273,9 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     inspectExtension(node,path,state,add);
     if(isSports(node))inspectSports(node,path,add,isSafeURL);
     if(isLearning(node))inspectLearning(node,path,add);
+    if(node.type==='fill-blank')inspectFillBlank(node,path,add);
+    if(node.type==='checklist')inspectChecklist(node,path,state,add);
+    if(node.type==='sentence-builder')inspectSentenceBuilder(node,path,add);
     if(isFinance(node))inspectFinance(node,path,add,isSafeURL);
     if(node.type==='finance-heatmap')inspectHeatmap(node,path,add,isSafeURL);
     if(node.type==='unit-converter'||node.type==='currency-converter')inspectConverters(node,path,add,isSafeURL);
@@ -354,7 +361,7 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
   const controls: [Node, string][] = [];
   let largestValueText = 0;
   walkNodes(document, (node, path) => {
-    for (const [value, at] of nodeValues(node, path)) capture(() => { largestValueText = Math.max(largestValueText, textUnits(value)); const resolved=evaluate(value, at); if(at===`${path}/disabled`&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
+    for (const [value, at] of nodeValues(node, path)) capture(() => { largestValueText = Math.max(largestValueText, textUnits(value)); const resolved=evaluate(value, at); if((at===`${path}/disabled`||(node.type==='checklist'&&/^\/items\/\d+\/disabled$/.test(at.slice(path.length))))&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
     if (node.type === 'loading' && node.progress !== undefined) capture(() => {
       const at = `${path}/progress`, value = evaluate(node.progress!, at);
       if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 100) add(issue('LOADING_PROGRESS', at, 'Loading progress must resolve to a finite number from 0 to 100.'));

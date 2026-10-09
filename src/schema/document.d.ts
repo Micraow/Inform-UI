@@ -71,6 +71,7 @@ export type Node =
   | StepsNode
   | CalloutNode
   | SliderNode
+  | ChecklistNode
   | ToggleNode
   | SelectNode
   | InputNode
@@ -91,6 +92,8 @@ export type Node =
   | SportsStandingsNode
   | QuizNode
   | FlashcardsNode
+  | FillBlankNode
+  | SentenceBuilderNode
   | FinanceQuoteNode
   | FinanceChartNode
   | FinanceComparisonNode
@@ -358,6 +361,11 @@ export type ClockNode1 =
       at: string;
       hourCycle?: "h12" | "h23";
       seconds?: boolean;
+    };
+export type FillBlankPart =
+  | string
+  | {
+      blank: string;
     };
 
 /**
@@ -811,6 +819,27 @@ export interface SliderNode {
     value: number;
     label: string;
   }[];
+}
+export interface ChecklistNode {
+  type: "checklist";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 50
+   */
+  items: ChecklistItem[];
+  disabled?: Value;
+  filter?: boolean;
+  bulk?: boolean;
+  emptyText?: string;
+}
+export interface ChecklistItem {
+  id: string;
+  label: string;
+  bind: string;
+  hint?: string;
+  disabled?: Value;
 }
 export interface ToggleNode {
   type: "toggle";
@@ -1268,6 +1297,55 @@ export interface Flashcard {
   frontLatex?: string;
   backLatex?: string;
   hint?: string;
+}
+export interface FillBlankNode {
+  type: "fill-blank";
+  id?: string;
+  title: string;
+  description?: string;
+  /**
+   * @minItems 1
+   * @maxItems 50
+   */
+  parts: [FillBlankPart, ...FillBlankPart[]];
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  blanks: [FillBlankEntry, ...FillBlankEntry[]];
+}
+export interface FillBlankEntry {
+  id: string;
+  label: string;
+  /**
+   * @minItems 1
+   * @maxItems 8
+   */
+  answers: [string, ...string[]];
+  hint?: string;
+  explanation?: string;
+}
+export interface SentenceBuilderNode {
+  type: "sentence-builder";
+  id?: string;
+  title: string;
+  prompt?: string;
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  tokens: [SentenceToken, ...SentenceToken[]];
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  answer: [string, ...string[]];
+  joiner?: " " | "";
+  explanation?: string;
+}
+export interface SentenceToken {
+  id: string;
+  text: string;
 }
 export interface FinanceQuoteNode {
   type: "finance-quote";

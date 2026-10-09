@@ -86,6 +86,8 @@ node('metric-grid', { children: array(ref('Node'), 1, 12), columns: integer(1, 4
 node('steps', { items: array(object({ title: short, detail: string(), latex: string() }, ['title']), 1, 20) }, ['items']);
 node('callout', { value: string(), tone: choice('neutral', 'info', 'caution') }, ['value']);
 node('slider', { label: short, bind: short, min: number, max: number, step: { ...number, exclusiveMinimum: 0 }, unit: short, marks: array(object({ value: number, label: string() }, ['value', 'label']), 0, 30) }, ['label', 'bind', 'min', 'max', 'step']);
+defs.ChecklistItem=object({id:key,label:short,bind:key,hint:string(1000),disabled:ref('Value')},['id','label','bind']);
+node('checklist',{label:short,items:array(ref('ChecklistItem'),0,50),disabled:ref('Value'),filter:bool,bulk:bool,emptyText:string(1000)},['label','items']);
 node('toggle', { label: short, bind: short }, ['label', 'bind']);
 node('select', { label: short, bind: short, options: array(object({ value: { anyOf: [string(), number] }, label: short }, ['value', 'label']), 1, 40) }, ['label', 'bind', 'options']);
 const inputCommon = { label: short, bind: short, hint: string(), error: ref('Value'), required: bool, disabled: ref('Value') };
@@ -136,6 +138,13 @@ defs.QuizQuestion=object({id:key,kind:choice('single','multiple'),prompt:string(
 node('quiz',{title:short,description:string(),questions:array(ref('QuizQuestion'),0,100),status:choice('ready','loading','error'),message:string()},['title','questions'], 'learning');
 defs.Flashcard=object({id:key,front:string(6000,1),back:string(6000,1),frontLatex:string(6000,1),backLatex:string(6000,1),hint:string(2000)},['id','front','back']);
 node('flashcards',{title:short,description:string(),cards:array(ref('Flashcard'),0,100),status:choice('ready','loading','error'),message:string()},['title','cards'], 'learning');
+// Original finite sentence-embedded fill-in practice. Answer data is public teaching material.
+defs.FillBlankPart = { anyOf: [string(2000), object({blank:key}, ['blank'])] };
+defs.FillBlankEntry = object({id:key,label:short,answers:array(string(200,1),1,8),hint:string(1000),explanation:string(2000)},['id','label','answers']);
+node('fill-blank',{title:short,description:string(2000),parts:array(ref('FillBlankPart'),1,50),blanks:array(ref('FillBlankEntry'),1,12)},['title','parts','blanks'],'learning');
+// Original finite local sentence-builder; answers are public authored teaching data.
+defs.SentenceToken=object({id:key,text:short},['id','text']);
+node('sentence-builder',{title:short,prompt:string(2000),tokens:array(ref('SentenceToken'),1,30),answer:array(key,1,30),joiner:choice(' ',''),explanation:string(2000)},['title','tokens','answer'], 'learning');
 // Supplied financial snapshots: no provider connection, trading action or implicit FX conversion.
 const price={anyOf:[{type:'number',minimum:0},{type:'null'}]};
 defs.FinanceSource=object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']);

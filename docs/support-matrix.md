@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 68 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 71 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working candidate source: 67 rendered + 1 rejected =68 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
+**Working candidate source: 70 rendered + 1 rejected =71 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -69,6 +69,8 @@ results from the current revision for those claims.
 | `form` | Rendered | Local validation/submit/cancel; enabled-form-field snapshot, explicit host-action allowlist, busy deduplication, abort and stale-result guards. No implicit storage/network. |
 | `weather` | Rendered | Supplied provenance/timezone/current/daily/hourly data; local date/unit/metric/chart-table controls; null, loading/empty/error states; explicit percent and DST semantics. No live provider connection. |
 | `sports-schedule` / `sports-scoreboard` / `sports-standings` | Rendered | Shared supplied league/team/game/standing data; local date/team/stage/group filters, disclosures, game selection and stable standings sorting. Explicit score/status/provenance/timezone/null semantics; no live provider or ranking inference. Available in the fixed 52-node CDN; the older 7c490585 pin does not contain these nodes. See sports.md. |
+| `checklist` | Rendered candidate | Controlled native checkboxes through the same Forms registry; local All/Open/Done filtering and atomic enabled-item bulk updates. No task provider, reminders or persistence. See [contract](checklist.md). |
+| `fill-blank` / `sentence-builder` | Rendered candidates | Supplied public teaching answers, exact local checking, explicit reference review/retry and retained DOM. No remote grading, hidden answers or form nesting. These are two canonical learning components awaiting combined browser acceptance. |
 | `quiz` / `flashcards` | Rendered | Local answer checking, weighted exact-set scoring, explanations/review/retry; flashcard reveal/rating/navigation/summary. Empty/loading/error and keyboard/live feedback. Supplied answers are not secret; no storage, network grading or spaced-repetition scheduler. Available in the fixed 52-node CDN. |
 | `finance-quote` / `finance-chart` / `finance-comparison` | Rendered | Supplied quote/time/status/delay; local history ranges, actual time axes, null gaps and exact common-baseline percentage comparison across currencies. No FX conversion, provider, trading or wall-clock inference. Source/browser verified at 55bfa57; included in fixed 52-node CDN. |
 | `finance-heatmap` | Rendered | Exact supplied weight areas, signed change colors, sector filter, keyboard item detail and full data table; zero/missing weights never receive fabricated area. Source/browser verified at 8e8908d, included in fixed 52-node CDN. |

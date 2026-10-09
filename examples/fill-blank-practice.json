@@ -1,0 +1,11 @@
+{
+  "version": "iui/1",
+  "title": "用句中填空解释数据边界",
+  "description": "原创合成练习，没有考试、保存或联网服务。",
+  "state": {"unrelated": 1},
+  "body": [
+    {"type":"fill-blank","id":"reading-practice","title":"参考信息与实际结果","description":"填写给定句子中的三个概念。可以修改后重查，也可以单独查看参考答案。","parts":["这是一份",{"blank":"synthetic"},"练习；JSON 中已经包含",{"blank":"reference"},"答案。数据键 HTTP 与 http ",{"blank":"case"},"。"],"blanks":[{"id":"synthetic","label":"练习的数据性质","answers":["合成","原创合成"],"hint":"这些例子不是真实用户记录。","explanation":"练习内容由作者提供，不代表服务返回。"},{"id":"reference","label":"答案的用途","answers":["参考"],"explanation":"本地校对只作学习反馈，不是保密考试。"},{"id":"case","label":"大小写是否相同","answers":["不同","不相同"],"hint":"本练习的比较会区分大小写。"}]},
+    {"type":"button","label":"只更新其他状态","action":{"kind":"set","bind":"unrelated","value":2}},
+    {"type":"metric","label":"不相关状态","value":{"$":"unrelated"}}
+  ]
+}

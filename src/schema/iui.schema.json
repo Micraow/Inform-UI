@@ -2538,6 +2538,82 @@
       ],
       "additionalProperties": false
     },
+    "ChecklistItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "bind"
+      ],
+      "additionalProperties": false
+    },
+    "ChecklistNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "checklist"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ChecklistItem"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "filter": {
+          "type": "boolean"
+        },
+        "bulk": {
+          "type": "boolean"
+        },
+        "emptyText": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "ToggleNode": {
       "type": "object",
       "properties": {
@@ -4735,6 +4811,185 @@
       ],
       "additionalProperties": false
     },
+    "FillBlankPart": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 2000
+        },
+        {
+          "type": "object",
+          "properties": {
+            "blank": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+            }
+          },
+          "required": [
+            "blank"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "FillBlankEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "FillBlankNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "fill-blank"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FillBlankPart"
+          },
+          "minItems": 1,
+          "maxItems": 50
+        },
+        "blanks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FillBlankEntry"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "parts",
+        "blanks"
+      ],
+      "additionalProperties": false
+    },
+    "SentenceToken": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "SentenceBuilderNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "sentence-builder"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SentenceToken"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "answer": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "joiner": {
+          "enum": [
+            " ",
+            ""
+          ]
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "tokens",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
     "FinanceSource": {
       "type": "object",
       "properties": {
@@ -5907,6 +6162,9 @@
           "$ref": "#/$defs/SliderNode"
         },
         {
+          "$ref": "#/$defs/ChecklistNode"
+        },
+        {
           "$ref": "#/$defs/ToggleNode"
         },
         {
@@ -5965,6 +6223,12 @@
         },
         {
           "$ref": "#/$defs/FlashcardsNode"
+        },
+        {
+          "$ref": "#/$defs/FillBlankNode"
+        },
+        {
+          "$ref": "#/$defs/SentenceBuilderNode"
         },
         {
           "$ref": "#/$defs/FinanceQuoteNode"

@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分7，已写待验7，未实现189。
+当前固定分母为256项：功能已验53，部分7，已写待验10，未实现186。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-最近正式验收见[66节点证据](verification-66.md)。七项本地候选见[68节点本地冻结](local-enhancements-68.md)，482项Node通过仍不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
+最近正式验收见[66节点证据](verification-66.md)。十项本地候选见[71节点本地冻结](local-enhancements-71.md)，531项Node通过仍不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -151,7 +151,7 @@
 | calculator-years-algorithm-for-pulmonary-embolism | Calculator Years Algorithm For Pulmonary Embolism | 未实现 | 暂无专门实现证据 |
 | care-provider-results | Care Provider Results | 未实现 | 暂无专门实现证据 |
 | care-provider-sidebar | Care Provider Sidebar | 未实现 | 暂无专门实现证据 |
-| checklist | Checklist | 未实现 | 暂无专门实现证据 |
+| checklist | Checklist | 已写待验 | 原创受控清单复用原生checkbox/Forms，筛选、一次原子批量操作及禁用/取消边界已本地实现；531项整合Node通过，真实浏览器待合批。 |
 | clock | Clock | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | code-cite | Code Cite | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-advice | Conversational Onboarding Advice | 未实现 | 暂无专门实现证据 |
@@ -188,10 +188,10 @@
 | internal-partner-app | Internal Partner App | 未实现 | 暂无专门实现证据 |
 | jobs | Jobs | 未实现 | 暂无专门实现证据 |
 | learning-audio-label-card | Learning Audio Label Card | 未实现 | 暂无专门实现证据 |
-| learning-fill-blank-card | Learning Fill Blank Card | 未实现 | 暂无专门实现证据 |
+| learning-fill-blank-card | Learning Fill Blank Card | 已写待验 | 原创句中填空、精确trim比较、参考回看/重试与独立草稿已本地实现；531项整合Node通过，真实浏览器待合批。 |
 | learning-image-choice-card | Learning Image Choice Card | 未实现 | 暂无专门实现证据 |
 | learning-image-label-card | Learning Image Label Card | 未实现 | 暂无专门实现证据 |
-| learning-sentence-builder-card | Learning Sentence Builder Card | 未实现 | 暂无专门实现证据 |
+| learning-sentence-builder-card | Learning Sentence Builder Card | 已写待验 | 原创身份序列组句、原生追加/重排、参考回看与状态保留已本地实现；531项整合Node通过，真实浏览器待合批。 |
 | learning-speak-card | Learning Speak Card | 未实现 | 暂无专门实现证据 |
 | learning-viz-dil | Learning Viz Dil | 未实现 | 暂无专门实现证据 |
 | learning-vocab-card | Learning Vocab Card | 未实现 | 暂无专门实现证据 |

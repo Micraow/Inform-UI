@@ -634,3 +634,51 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-markdown-code{min-width:0;max-width:100%}.iui-root .iui-markdown-language{color:var(--iui-muted);font-size:.8em;white-space:pre-wrap}
 .iui-root .iui-markdown a{color:var(--iui-accent);text-decoration:underline;text-underline-offset:.15em}.iui-root .iui-markdown a:focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px;border-radius:2px}
 .iui-root .iui-markdown-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* Original finite local learning layout, using existing semantic tokens only. */
+.iui-root .iui-fill-blank{min-inline-size:0;max-inline-size:100%;padding:20px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-bg);overflow-wrap:anywhere}
+.iui-root .iui-fill-blank-title{font-size:1.2rem;line-height:1.4;margin-block:4px 10px}
+.iui-root .iui-fill-blank-description{white-space:pre-wrap;margin-block-end:10px}
+.iui-root .iui-fill-blank-passage{white-space:pre-wrap;line-height:2.9;margin-block:18px}
+.iui-root .iui-fill-blank-slot{display:inline-flex;align-items:center;gap:4px;max-inline-size:100%;vertical-align:middle;white-space:normal;margin-inline:3px}
+.iui-root .iui-fill-blank-number{font-size:.7rem;color:var(--iui-muted);line-height:1.2;flex:none}
+.iui-root .iui-fill-blank-input{font:inherit;font-size:.95rem;line-height:1.4;inline-size:14ch;min-inline-size:0;max-inline-size:100%;box-sizing:border-box;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-block-end:2px solid var(--iui-muted);border-radius:5px;padding:7px 8px}
+.iui-root .iui-fill-blank-input[aria-invalid=true]{border-color:var(--iui-danger)}
+.iui-root .iui-fill-blank-input:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-fill-blank-feedback{margin:0;padding-inline-start:24px;font-size:.85rem}
+.iui-root .iui-fill-blank-row{padding-block:5px;min-inline-size:0}
+.iui-root .iui-fill-blank-label{font-weight:600}
+.iui-root .iui-fill-blank-message,.iui-root .iui-fill-blank-explanation{white-space:pre-wrap;margin-block-start:3px}
+.iui-root .iui-fill-blank-row[data-result=correct] .iui-fill-blank-message{color:var(--iui-success)}
+.iui-root .iui-fill-blank-row:is([data-result=missing],[data-result=too-long],[data-result=incorrect]) .iui-fill-blank-message{color:var(--iui-danger)}
+.iui-root .iui-fill-blank-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block:16px 8px}
+.iui-root .iui-fill-blank-actions button{min-block-size:40px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-fill-blank-actions button:disabled{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root .iui-fill-blank-status{font-size:.875rem;min-block-size:1.5em;margin-block:6px 10px}
+.iui-root .iui-fill-blank [hidden]{display:none!important}
+.iui-root .iui-fill-blank-sr{position:absolute!important;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:520px){.iui-root .iui-fill-blank{padding:14px}.iui-root .iui-fill-blank-input{inline-size:12ch}}
+@media(forced-colors:active){.iui-root .iui-fill-blank-input,.iui-root .iui-fill-blank-actions button{border-color:ButtonText}.iui-root .iui-fill-blank-input[aria-invalid=true]{border-style:double}.iui-root .iui-fill-blank-actions button:disabled{color:GrayText}}
+
+
+/* Original learning-sentence-builder-card. Local tokens preserve their literal content. */
+.iui-root .iui-sentence-builder{display:flex;flex-direction:column;gap:12px;border:1px solid var(--iui-line);border-radius:14px;padding:20px;max-width:100%;background:var(--iui-bg)}.iui-root .iui-sentence-builder [hidden]{display:none!important}.iui-root .iui-sentence-builder-group{display:flex;flex-direction:column;gap:10px;min-width:0}.iui-root .iui-sentence-builder-bank,.iui-root .iui-sentence-builder-controls,.iui-root .iui-sentence-builder-item-actions{display:flex;flex-wrap:wrap;gap:8px}.iui-root .iui-sentence-builder :is(button,.iui-root .iui-sentence-builder-token,.iui-root .iui-sentence-builder-literal){white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%}.iui-root .iui-sentence-builder button{min-height:44px;text-align:start;touch-action:manipulation}.iui-root .iui-sentence-builder button:disabled,.iui-root .iui-sentence-builder button[aria-disabled=true]{color:var(--iui-muted);background:var(--iui-surface);cursor:default}.iui-root .iui-sentence-builder button:not(:disabled):not([aria-disabled=true]):hover{background:var(--iui-hover)}.iui-root .iui-sentence-builder-chosen{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}.iui-root .iui-sentence-builder-item{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px;border:1px solid var(--iui-line);border-radius:10px;background:var(--iui-surface)}.iui-root .iui-sentence-builder-position{font-size:.8rem;color:var(--iui-muted);font-variant-numeric:tabular-nums}.iui-root .iui-sentence-builder-item>.iui-sentence-builder-token{flex:1 1 100px}.iui-root .iui-sentence-builder-item-actions{flex:0 1 auto}.iui-root .iui-sentence-builder-reference{display:flex;flex-direction:column;gap:10px;padding:12px;background:var(--iui-surface);border-inline-start:3px solid var(--iui-info)}.iui-root .iui-sentence-builder-reference-list{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0;padding-inline-start:24px}.iui-root .iui-sentence-builder-feedback{min-height:1.5em}.iui-root .iui-sentence-builder[data-attempt=correct] .iui-sentence-builder-feedback{color:var(--iui-success)}.iui-root .iui-sentence-builder[data-attempt=incorrect] .iui-sentence-builder-feedback{color:var(--iui-danger)}
+@media(max-width:480px){.iui-root .iui-sentence-builder{padding:14px}.iui-root .iui-sentence-builder-item-actions{flex-basis:100%}}
+@media(forced-colors:active){.iui-root .iui-sentence-builder,.iui-root .iui-sentence-builder-item,.iui-root .iui-sentence-builder button{border-color:ButtonText}.iui-root .iui-sentence-builder button:disabled,.iui-root .iui-sentence-builder button[aria-disabled=true]{color:GrayText}.iui-root .iui-sentence-builder .iui-sentence-builder-feedback{color:CanvasText}.iui-root .iui-sentence-builder-reference{border-color:Highlight}}
+
+/* Controlled checklist composes native fields and shared form snapshots. */
+.iui-root .iui-checklist{min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-bg)}
+.iui-root .iui-checklist-label{font-weight:600;padding-inline:6px;overflow-wrap:anywhere}
+.iui-root .iui-checklist-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.iui-root .iui-checklist-count{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.iui-root .iui-checklist-filter{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.iui-root .iui-checklist-filter select{font:inherit;max-inline-size:100%;min-block-size:44px;padding:8px;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:6px}
+.iui-root .iui-checklist button{min-block-size:44px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-checklist button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-checklist-items{list-style:none;margin:14px 0 0;padding:0}
+.iui-root .iui-checklist-item{min-inline-size:0;padding-block:8px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-checklist-item[data-complete=true] .iui-field-label{text-decoration:line-through}
+.iui-root .iui-checklist [hidden]{display:none!important}
+.iui-root .iui-checklist-feedback{min-block-size:1.5em;font-size:.85rem;overflow-wrap:anywhere}
+.iui-root .iui-checklist :is(select,button,input):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(forced-colors:active){.iui-root .iui-checklist,.iui-root .iui-checklist-filter select{border-color:ButtonText}.iui-root .iui-checklist button[aria-disabled=true]{color:GrayText}}

@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T08:36:32.698Z",
+  "as_of_utc": "2026-10-09T09:07:19.392Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -22,13 +22,13 @@
     "fixed_cdn_asset_commit": "d370ffb2df310fce0da9299e6e254a58509ba544",
     "loading_sources_verified_commit": "7db01a63d18d61a59f508e11433877b073ed5a7b",
     "loading_sources_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37898154911",
-    "local_enhancement_checkpoint": "See docs/local-enhancements-68.md; 482 Node tests passed, seven canonical components pending accumulated browser acceptance. No new recommended CDN pin."
+    "local_enhancement_checkpoint": "See docs/local-enhancements-71.md; 531 Node tests passed, ten canonical candidates await accumulated browser acceptance. Recommended CDN pin remains d370."
   },
   "counts": {
-    "not_implemented": 189,
+    "not_implemented": 186,
     "functionally_verified": 53,
-    "implemented_pending_verification": 7,
-    "partial": 7
+    "partial": 7,
+    "implemented_pending_verification": 10
   },
   "components": [
     {
@@ -1044,8 +1044,8 @@
       "id": "checklist",
       "name": "Checklist",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创受控清单复用原生checkbox/Forms，筛选、一次原子批量操作及禁用/取消边界已本地实现；531项整合Node通过，真实浏览器待合批。"
     },
     {
       "id": "clock",
@@ -1303,8 +1303,8 @@
       "id": "learning-fill-blank-card",
       "name": "Learning Fill Blank Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创句中填空、精确trim比较、参考回看/重试与独立草稿已本地实现；531项整合Node通过，真实浏览器待合批。"
     },
     {
       "id": "learning-image-choice-card",
@@ -1324,8 +1324,8 @@
       "id": "learning-sentence-builder-card",
       "name": "Learning Sentence Builder Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创身份序列组句、原生追加/重排、参考回看与状态保留已本地实现；531项整合Node通过，真实浏览器待合批。"
     },
     {
       "id": "learning-speak-card",

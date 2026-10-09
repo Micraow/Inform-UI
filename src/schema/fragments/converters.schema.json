@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c825cddb373b4eb44583d272123825413ea7cb1228c6fbf87cc86238bc142da2:document:base+converters",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:26ec6d1492a1cd4e8374b2496e1f46f08affcb50a9989b46b65136f819f3793e:document:base+converters",
   "title": "Inform UI document subset: base, converters",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -501,6 +501,82 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "ChecklistItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "bind"
+      ],
+      "additionalProperties": false
+    },
+    "ChecklistNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "checklist"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ChecklistItem"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "filter": {
+          "type": "boolean"
+        },
+        "bulk": {
+          "type": "boolean"
+        },
+        "emptyText": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
       ],
       "additionalProperties": false
     },
@@ -1692,6 +1768,9 @@
         },
         {
           "$ref": "#/$defs/SliderNode"
+        },
+        {
+          "$ref": "#/$defs/ChecklistNode"
         },
         {
           "$ref": "#/$defs/ToggleNode"

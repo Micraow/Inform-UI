@@ -1,5 +1,12 @@
 # Changelog
 
+## Local learning/checklist checkpoint (browser pending)
+
+- Add original inline fill-blank and identity-based sentence-building practice, with retained local drafts, explicit reference/retry and form-ownership guards.
+- Add controlled checklist using the existing Forms registry, native filters and atomic enabled-item bulk updates.
+- Prevent authored IDs from shadowing the two new learning modules’ internal label associations.
+- Full local gate531/531 passes. Verified canonical total remains53; ten implemented candidates await the approximately30-component browser batch. Recommended asset pin remains d370.
+
 ## Domain and visual increments (development branch)
 
 - Add complete local quiz/flashcard flows and supplied finance quote/history/common-baseline comparison; preserve nulls, snapshot metadata and local-only actions. Weighted finance heatmap is now in source and awaits browser acceptance.

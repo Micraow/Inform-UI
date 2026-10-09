@@ -29,3 +29,7 @@
 单选与多选采用原生radio/checkbox；翻面和导航是原生按钮。题目切换将焦点移到新题目，提交后移到下一步；反馈有live region，公式使用同一KaTeX/MathML链路。无翻牌动画，支持减少动态效果偏好。文本不会作为HTML执行。
 
 结构错误使用 `SCHEMA`；重复题目/卡片/选项id为 `LEARNING_ID`，答案引用或单选答案数量错误为 `QUIZ_ANSWER`。
+
+## Later local candidates
+
+Source now includes original [sentence-embedded fill-blank](fill-blank.md) and [identity-based sentence builder](sentence-builder.md). Their public answers are teaching material, not hidden assessment secrets. They own local drafts rather than host state and are rejected inside forms. These source candidates await the combined browser batch; the current recommended d370 assets do not include their new nodes.

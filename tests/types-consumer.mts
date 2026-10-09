@@ -56,3 +56,29 @@ const datedNumber:Node={type:'input',kind:'number',label:'Number',bind:'n',maxDa
 // @ts-expect-error date-only bounds do not apply to checkboxes
 const datedCheckbox:Node={type:'input',kind:'checkbox',label:'Check',bind:'check',maxDate:'2024-12-31'};
 void [dateField,numericDate,placeholderDate,lengthDate,datedText,datedNumber,datedCheckbox];
+
+const fillBlank:Node={type:'fill-blank',title:'Practice',parts:['Use ',{blank:'verb'},'.'],blanks:[{id:'verb',label:'Verb',answers:['read']}]};
+void fillBlank;
+// @ts-expect-error blank references have only a blank id, never arbitrary executable content
+const fillBlankRaw:Node={type:'fill-blank',title:'Practice',parts:[{blank:'verb',html:'<input>'}],blanks:[{id:'verb',label:'Verb',answers:['read']}]};
+// @ts-expect-error a finite practice node requires supplied blank definitions
+const fillBlankMissing:Node={type:'fill-blank',title:'Practice',parts:['A sentence']};
+void [fillBlankRaw,fillBlankMissing];
+
+
+// Sentence-builder: finite authored token identities, optional literal joiner.
+const sentenceBuilder: IUIDocument = {version:'iui/1',body:[{type:'sentence-builder',title:'Original practice',tokens:[{id:'one',text:'一'}],answer:['one'],joiner:''}]};
+void sentenceBuilder;
+// @ts-expect-error Sentence-builder cannot bind local practice state to host state.
+const sentenceBuilderBound: IUIDocument = {version:'iui/1',body:[{type:'sentence-builder',title:'Invalid',tokens:[{id:'one',text:'一'}],answer:['one'],bind:'shared'}]};
+void sentenceBuilderBound;
+// @ts-expect-error Joiner only accepts explicit space or empty string.
+const sentenceBuilderJoiner: IUIDocument = {version:'iui/1',body:[{type:'sentence-builder',title:'Invalid',tokens:[{id:'one',text:'一'}],answer:['one'],joiner:'-'}]};
+void sentenceBuilderJoiner;
+const controlledChecklist:Node={type:'checklist',label:'Steps',items:[{id:'one',label:'First',bind:'done'}],disabled:{$:'locked'}};
+void controlledChecklist;
+// @ts-expect-error filters use the finite native local visibility choices, not arbitrary protocol strings
+const checklistFilter:Node={type:'checklist',label:'Steps',items:[],filter:'all'};
+// @ts-expect-error each checklist item requires an explicit declared boolean binding
+const checklistUnbound:Node={type:'checklist',label:'Steps',items:[{id:'one',label:'First'}]};
+void [checklistFilter,checklistUnbound];
