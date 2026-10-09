@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Intelligent-UI 体育与学习组件预览</title>
+<link id="iui-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.css" integrity="sha384-C+dusRekNRJiTU/8pVtFBTI6qqJ60MrvrFkZSGX7DdoE7p9++WfH3OKUE1//MnjD" crossorigin="anonymous">
+</head>
+<body class="iui-page" data-theme="auto" style="margin:0">
+<main id="answer"></main>
+<pre id="status" role="alert"></pre>
+<script id="spec" type="application/json">{
+  "version": "iui/1",
+  "title": "Intelligent-UI 体育与学习组件预览",
+  "description": "原创合成数据；赛程/记分牌/积分榜与本地测验/闪卡。当前固定256项清单中31项功能已验，不是完整库完成声明。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "value": "体育快照与本地学习"
+    },
+    {
+      "type": "caption",
+      "value": "同一套独立JS库；没有实时数据源、OpenAI依赖或成绩存储。"
+    },
+    {
+      "type": "title",
+      "value": "同一份数据，三种体育视图"
+    },
+    {
+      "type": "sports-schedule",
+      "id": "schedule-demo",
+      "data": {
+        "league": {
+          "id": "demo-cup",
+          "name": "星河合成杯",
+          "sport": "football",
+          "season": "2026 合成赛季"
+        },
+        "timezone": "America/Los_Angeles",
+        "updatedAt": "2026-11-01T01:30:00-08:00",
+        "source": {
+          "label": "Intelligent-UI 原创合成数据",
+          "synthetic": true
+        },
+        "teams": [
+          {
+            "id": "a",
+            "name": "天琴队",
+            "shortName": "天琴",
+            "color": "blue"
+          },
+          {
+            "id": "b",
+            "name": "白桦队",
+            "shortName": "白桦",
+            "color": "green"
+          },
+          {
+            "id": "c",
+            "name": "跨越山谷的长队名示例：青色海岸联合队",
+            "shortName": "青岸",
+            "color": "orange"
+          },
+          {
+            "id": "d",
+            "name": "银帆队",
+            "shortName": "银帆",
+            "color": "purple"
+          }
+        ],
+        "games": [
+          {
+            "id": "tomorrow",
+            "startAt": "2026-11-02T02:30:00Z",
+            "homeTeam": "c",
+            "awayTeam": "d",
+            "status": "scheduled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛",
+            "venue": "合成二号场地"
+          },
+          {
+            "id": "live",
+            "startAt": "2026-11-01T01:00:00-07:00",
+            "homeTeam": "a",
+            "awayTeam": "b",
+            "status": "live",
+            "homeScore": 0,
+            "awayScore": 0,
+            "period": "上半场",
+            "clock": "12:34",
+            "stage": "小组赛",
+            "venue": "合成一号场地",
+            "detail": "比赛状态与计时均为提供方的合成快照，本页不会自动计时。",
+            "stats": [
+              {
+                "label": "射门",
+                "home": 0,
+                "away": 1
+              },
+              {
+                "label": "控球率",
+                "home": "48%",
+                "away": "52%"
+              }
+            ]
+          },
+          {
+            "id": "final",
+            "startAt": "2026-11-01T01:00:00-08:00",
+            "homeTeam": "c",
+            "awayTeam": "d",
+            "status": "final",
+            "homeScore": 2,
+            "awayScore": 2,
+            "period": "点球结束",
+            "stage": "淘汰赛",
+            "venue": "合成中立场地",
+            "neutral": true,
+            "winnerTeamId": "c",
+            "detail": "获胜方与点球比分均由调用方明确提供，不由库推算。",
+            "periodScores": [
+              {
+                "label": "上半场",
+                "home": 0,
+                "away": 1
+              },
+              {
+                "label": "下半场",
+                "home": 2,
+                "away": 1
+              }
+            ],
+            "tieBreak": {
+              "label": "点球",
+              "home": 5,
+              "away": 4
+            }
+          },
+          {
+            "id": "postponed",
+            "startAt": "2026-11-02T20:00:00Z",
+            "homeTeam": "a",
+            "awayTeam": "c",
+            "status": "postponed",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛",
+            "detail": "合成延期状态，暂未提供新的开赛时间。"
+          },
+          {
+            "id": "cancelled",
+            "startAt": "2026-11-03T20:00:00Z",
+            "homeTeam": "b",
+            "awayTeam": "d",
+            "status": "cancelled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛"
+          }
+        ],
+        "standings": [
+          {
+            "teamId": "a",
+            "group": "示例组",
+            "rank": 1,
+            "played": 4,
+            "won": 2,
+            "drawn": 2,
+            "lost": 0,
+            "points": 8,
+            "for": 6,
+            "against": 2,
+            "note": "并列名次由数据源提供"
+          },
+          {
+            "teamId": "b",
+            "group": "示例组",
+            "rank": 1,
+            "played": 4,
+            "won": 2,
+            "drawn": 2,
+            "lost": 0,
+            "points": 8,
+            "for": 5,
+            "against": 2
+          },
+          {
+            "teamId": "c",
+            "group": "示例组",
+            "rank": 3,
+            "played": 4,
+            "won": 1,
+            "drawn": 0,
+            "lost": 3,
+            "points": -1,
+            "for": 3,
+            "against": 7,
+            "note": "合成扣分示例；库不重算积分"
+          },
+          {
+            "teamId": "d",
+            "group": "另一组",
+            "rank": 1,
+            "played": null,
+            "won": null,
+            "drawn": null,
+            "lost": null,
+            "points": null,
+            "for": null,
+            "against": null,
+            "note": "缺测不显示成0"
+          }
+        ]
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "sports-scoreboard",
+      "id": "scoreboard-demo",
+      "gameId": "live",
+      "data": {
+        "league": {
+          "id": "demo-cup",
+          "name": "星河合成杯",
+          "sport": "football",
+          "season": "2026 合成赛季"
+        },
+        "timezone": "America/Los_Angeles",
+        "updatedAt": "2026-11-01T01:30:00-08:00",
+        "source": {
+          "label": "Intelligent-UI 原创合成数据",
+          "synthetic": true
+        },
+        "teams": [
+          {
+            "id": "a",
+            "name": "天琴队",
+            "shortName": "天琴",
+            "color": "blue"
+          },
+          {
+            "id": "b",
+            "name": "白桦队",
+            "shortName": "白桦",
+            "color": "green"
+          },
+          {
+            "id": "c",
+            "name": "跨越山谷的长队名示例：青色海岸联合队",
+            "shortName": "青岸",
+            "color": "orange"
+          },
+          {
+            "id": "d",
+            "name": "银帆队",
+            "shortName": "银帆",
+            "color": "purple"
+          }
+        ],
+        "games": [
+          {
+            "id": "tomorrow",
+            "startAt": "2026-11-02T02:30:00Z",
+            "homeTeam": "c",
+            "awayTeam": "d",
+            "status": "scheduled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛",
+            "venue": "合成二号场地"
+          },
+          {
+            "id": "live",
+            "startAt": "2026-11-01T01:00:00-07:00",
+            "homeTeam": "a",
+            "awayTeam": "b",
+            "status": "live",
+            "homeScore": 0,
+            "awayScore": 0,
+            "period": "上半场",
+            "clock": "12:34",
+            "stage": "小组赛",
+            "venue": "合成一号场地",
+            "detail": "比赛状态与计时均为提供方的合成快照，本页不会自动计时。",
+            "stats": [
+              {
+                "label": "射门",
+                "home": 0,
+                "away": 1
+              },
+              {
+                "label": "控球率",
+                "home": "48%",
+                "away": "52%"
+              }
+            ]
+          },
+          {
+            "id": "final",
+            "startAt": "2026-11-01T01:00:00-08:00",
+            "homeTeam": "c",
+            "awayTeam": "d",
+            "status": "final",
+            "homeScore": 2,
+            "awayScore": 2,
+            "period": "点球结束",
+            "stage": "淘汰赛",
+            "venue": "合成中立场地",
+            "neutral": true,
+            "winnerTeamId": "c",
+            "detail": "获胜方与点球比分均由调用方明确提供，不由库推算。",
+            "periodScores": [
+              {
+                "label": "上半场",
+                "home": 0,
+                "away": 1
+              },
+              {
+                "label": "下半场",
+                "home": 2,
+                "away": 1
+              }
+            ],
+            "tieBreak": {
+              "label": "点球",
+              "home": 5,
+              "away": 4
+            }
+          },
+          {
+            "id": "postponed",
+            "startAt": "2026-11-02T20:00:00Z",
+            "homeTeam": "a",
+            "awayTeam": "c",
+            "status": "postponed",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛",
+            "detail": "合成延期状态，暂未提供新的开赛时间。"
+          },
+          {
+            "id": "cancelled",
+            "startAt": "2026-11-03T20:00:00Z",
+            "homeTeam": "b",
+            "awayTeam": "d",
+            "status": "cancelled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛"
+          }
+        ],
+        "standings": [
+          {
+            "teamId": "a",
+            "group": "示例组",
+            "rank": 1,
+            "played": 4,
+            "won": 2,
+            "drawn": 2,
+            "lost": 0,
+            "points": 8,
+            "for": 6,
+            "against": 2,
+            "note": "并列名次由数据源提供"
+          },
+          {
+            "teamId": "b",
+            "group": "示例组",
+            "rank": 1,
+            "played": 4,
+            "won": 2,
+            "drawn": 2,
+            "lost": 0,
+            "points": 8,
+            "for": 5,
+            "against": 2
+          },
+          {
+            "teamId": "c",
+            "group": "示例组",
+            "rank": 3,
+            "played": 4,
+            "won": 1,
+            "drawn": 0,
+            "lost": 3,
+            "points": -1,
+            "for": 3,
+            "against": 7,
+            "note": "合成扣分示例；库不重算积分"
+          },
+          {
+            "teamId": "d",
+            "group": "另一组",
+            "rank": 1,
+            "played": null,
+            "won": null,
+            "drawn": null,
+            "lost": null,
+            "points": null,
+            "for": null,
+            "against": null,
+            "note": "缺测不显示成0"
+          }
+        ]
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "sports-standings",
+      "id": "standings-demo",
+      "data": {
+        "league": {
+          "id": "demo-cup",
+          "name": "星河合成杯",
+          "sport": "football",
+          "season": "2026 合成赛季"
+        },
+        "timezone": "America/Los_Angeles",
+        "updatedAt": "2026-11-01T01:30:00-08:00",
+        "source": {
+          "label": "Intelligent-UI 原创合成数据",
+          "synthetic": true
+        },
+        "teams": [
+          {
+            "id": "a",
+            "name": "天琴队",
+            "shortName": "天琴",
+            "color": "blue"
+          },
+          {
+            "id": "b",
+            "name": "白桦队",
+            "shortName": "白桦",
+            "color": "green"
+          },
+          {
+            "id": "c",
+            "name": "跨越山谷的长队名示例：青色海岸联合队",
+            "shortName": "青岸",
+            "color": "orange"
+          },
+          {
+            "id": "d",
+            "name": "银帆队",
+            "shortName": "银帆",
+            "color": "purple"
+          }
+        ],
+        "games": [
+          {
+            "id": "tomorrow",
+            "startAt": "2026-11-02T02:30:00Z",
+            "homeTeam": "c",
+            "awayTeam": "d",
+            "status": "scheduled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛",
+            "venue": "合成二号场地"
+          },
+          {
+            "id": "live",
+            "startAt": "2026-11-01T01:00:00-07:00",
+            "homeTeam": "a",
+            "awayTeam": "b",
+            "status": "live",
+            "homeScore": 0,
+            "awayScore": 0,
+            "period": "上半场",
+            "clock": "12:34",
+            "stage": "小组赛",
+            "venue": "合成一号场地",
+            "detail": "比赛状态与计时均为提供方的合成快照，本页不会自动计时。",
+            "stats": [
+              {
+                "label": "射门",
+                "home": 0,
+                "away": 1
+              },
+              {
+                "label": "控球率",
+                "home": "48%",
+                "away": "52%"
+              }
+            ]
+          },
+          {
+            "id": "final",
+            "startAt": "2026-11-01T01:00:00-08:00",
+            "homeTeam": "c",
+            "awayTeam": "d",
+            "status": "final",
+            "homeScore": 2,
+            "awayScore": 2,
+            "period": "点球结束",
+            "stage": "淘汰赛",
+            "venue": "合成中立场地",
+            "neutral": true,
+            "winnerTeamId": "c",
+            "detail": "获胜方与点球比分均由调用方明确提供，不由库推算。",
+            "periodScores": [
+              {
+                "label": "上半场",
+                "home": 0,
+                "away": 1
+              },
+              {
+                "label": "下半场",
+                "home": 2,
+                "away": 1
+              }
+            ],
+            "tieBreak": {
+              "label": "点球",
+              "home": 5,
+              "away": 4
+            }
+          },
+          {
+            "id": "postponed",
+            "startAt": "2026-11-02T20:00:00Z",
+            "homeTeam": "a",
+            "awayTeam": "c",
+            "status": "postponed",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛",
+            "detail": "合成延期状态，暂未提供新的开赛时间。"
+          },
+          {
+            "id": "cancelled",
+            "startAt": "2026-11-03T20:00:00Z",
+            "homeTeam": "b",
+            "awayTeam": "d",
+            "status": "cancelled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "小组赛"
+          }
+        ],
+        "standings": [
+          {
+            "teamId": "a",
+            "group": "示例组",
+            "rank": 1,
+            "played": 4,
+            "won": 2,
+            "drawn": 2,
+            "lost": 0,
+            "points": 8,
+            "for": 6,
+            "against": 2,
+            "note": "并列名次由数据源提供"
+          },
+          {
+            "teamId": "b",
+            "group": "示例组",
+            "rank": 1,
+            "played": 4,
+            "won": 2,
+            "drawn": 2,
+            "lost": 0,
+            "points": 8,
+            "for": 5,
+            "against": 2
+          },
+          {
+            "teamId": "c",
+            "group": "示例组",
+            "rank": 3,
+            "played": 4,
+            "won": 1,
+            "drawn": 0,
+            "lost": 3,
+            "points": -1,
+            "for": 3,
+            "against": 7,
+            "note": "合成扣分示例；库不重算积分"
+          },
+          {
+            "teamId": "d",
+            "group": "另一组",
+            "rank": 1,
+            "played": null,
+            "won": null,
+            "drawn": null,
+            "lost": null,
+            "points": null,
+            "for": null,
+            "against": null,
+            "note": "缺测不显示成0"
+          }
+        ]
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "quiz",
+      "title": "缓存与平均延迟：自测",
+      "description": "原创教学题。先作答，再查看解释；本地计分，不保存到服务。",
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "single",
+          "prompt": "命中耗时10 ms、未命中耗时110 ms，命中率80%时，平均耗时是多少？",
+          "latex": "T=ph+(1-p)m",
+          "choices": [
+            {
+              "id": "a",
+              "label": "10 ms"
+            },
+            {
+              "id": "b",
+              "label": "30 ms"
+            },
+            {
+              "id": "c",
+              "label": "88 ms"
+            }
+          ],
+          "correct": [
+            "b"
+          ],
+          "explanation": "平均耗时=0.8×10+0.2×110=30 ms。",
+          "explanationLatex": "T=0.8\\times10+0.2\\times110=30\\,\\mathrm{ms}",
+          "points": 2
+        },
+        {
+          "id": "q2",
+          "kind": "multiple",
+          "prompt": "在命中与未命中耗时固定且前者更小时，哪些结论正确？",
+          "choices": [
+            {
+              "id": "a",
+              "label": "提高命中率会降低平均耗时"
+            },
+            {
+              "id": "b",
+              "label": "100%命中时平均耗时仍为10 ms"
+            },
+            {
+              "id": "c",
+              "label": "命中率为零时平均耗时为零"
+            }
+          ],
+          "correct": [
+            "a",
+            "b"
+          ],
+          "explanation": "全未命中对应110 ms，全命中对应10 ms；平均耗时在两者之间。",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "flashcards",
+      "title": "缓存概念：翻面与自评",
+      "description": "这些掌握标记只用于本轮复习，不代表学习诊断。",
+      "cards": [
+        {
+          "id": "c1",
+          "front": "平均耗时如何组合命中与未命中两条路径？",
+          "back": "按照发生概率加权求和。",
+          "backLatex": "T=ph+(1-p)m",
+          "hint": "先找两种互斥事件的概率。"
+        },
+        {
+          "id": "c2",
+          "front": "加速比的基准是什么？",
+          "back": "必须明确基准：此例以每次均未命中的耗时 m 为基准。",
+          "backLatex": "S=\\frac{m}{T}"
+        }
+      ]
+    }
+  ]
+}</script>
+<script src="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.global.min.js" integrity="sha384-iSRKUQ1PkW22WeAPJV0kUHRGTQMLfhge7BMgMaH2YdfeXAHE+YjrutcGVI9TVJS+" crossorigin="anonymous"></script>
+<script>
+  const target = document.getElementById('answer');
+  const status = document.getElementById('status');
+  try {
+    if (!window.IUI) throw new Error('界面库加载失败，请检查网络或固定版本的 CDN 链接。');
+    if (!document.getElementById('iui-style').sheet) throw new Error('样式加载失败，请检查 CDN 链接。');
+    const result = IUI.validateDocument(JSON.parse(document.getElementById('spec').textContent));
+    if (!result.ok) status.textContent = result.issues.map(i => i.code + ' ' + i.path + ': ' + i.message).join('\n');
+    else IUI.mount(target, result.document, { styles: false });
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : String(error);
+  }
+</script>
+</body>
+</html>

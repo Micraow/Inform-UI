@@ -6,13 +6,13 @@
 
 ## 已固定的公开入口
 
-以下链接固定到包含预构建产物的完整 Git commit `7c490585f3ae4b72999b3dd5db7a0b8ee65ac417`，不随分支变化。
+以下链接固定到包含预构建产物的完整 Git commit `f372c71d31633be85bb228f57fdb07da9e8f2112`，不随分支变化。
 
-- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.global.min.js)，导出 `window.IUI`
-- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
-- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.css)
-- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.schema.json)
-- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/integrity.json)
+- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.global.min.js)，导出 `window.IUI`
+- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
+- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.css)
+- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.schema.json)
+- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/integrity.json)
 
 数学公式使用 KaTeX 可视排版与无障碍 MathML。CSS 会从同一固定提交的 `cdn/fonts/` 下载官方 MIT WOFF2 字体；部署时须保留这个目录。离线编译与默认 DOM 注入则内嵌相同字体。两个脚本格式任选其一，不要同时加载。
 
@@ -29,8 +29,8 @@
   <meta name="referrer" content="no-referrer">
   <title>Intelligent-UI 示例</title>
   <link id="iui-style" rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.css"
-    integrity="sha384-r0zJufAML6IlJGwy3/CCOf9IfetRaVAu0WOIwmVd49QUET9B0brLD+31Rqt3sKuH"
+    href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.css"
+    integrity="sha384-C+dusRekNRJiTU/8pVtFBTI6qqJ60MrvrFkZSGX7DdoE7p9++WfH3OKUE1//MnjD"
     crossorigin="anonymous">
 </head>
 <body class="iui-page" data-theme="auto" style="margin:0">
@@ -49,8 +49,8 @@
   }
   </script>
   <script
-    src="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@7c490585f3ae4b72999b3dd5db7a0b8ee65ac417/cdn/iui.global.min.js"
-    integrity="sha384-aCgRqdVDj8wl8C9Rz3p8JuyEkc606WMjP8ykO1kwjrvUVa/EQ9oH5Ne1ocHzA/CD"
+    src="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f372c71d31633be85bb228f57fdb07da9e8f2112/cdn/iui.global.min.js"
+    integrity="sha384-iSRKUQ1PkW22WeAPJV0kUHRGTQMLfhge7BMgMaH2YdfeXAHE+YjrutcGVI9TVJS+"
     crossorigin="anonymous"></script>
   <script>
     const status = document.getElementById('status');
@@ -99,3 +99,7 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 当前没有 npm 发布或正式 release。使用相同 CSS/JS/Schema 提交，不混搭版本；CDN 暂不可达时会显示加载错误，本地 agent 仍可使用[源码构建方式](../README.md#源码与本地-agent)。
 
 独立文档壳使用 `body.iui-page` 与匹配的 `data-theme`（auto/light/dark），让页面外围背景也跟随主题；嵌入现有网页时不要给宿主添加这个类。`mount` 的样式保持局部作用域，不修改宿主背景。
+
+当前固定46节点资产包含体育、测验/闪卡与校准后的配色，源代码CI：[f372c71](https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936)。[阶段体育与学习预览](../examples/browser/domains-preview.html)只引用该固定JS/CSS/字体，JSON见[组合示例](../examples/domains-preview.json)。新file://实载验收结果以当前PR的CI为准；HTTP200本身不代表浏览器已验收。
+
+源码d294215开始另修自动微量Y轴与提交后再次编辑的状态提示；这两项不在f372c71固定浏览器资产内，使用这些改进请构建源码或等待后续明确升级。金融49节点合同仍隔离开发，不包含在这里。
