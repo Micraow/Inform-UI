@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分5，已写待验30，未实现168。
+固定分母256项：功能已验53，已写待验43，部分5，未实现155。协议节点数103是另一种计数。
 
-功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
+43项本地候选分为37项既有候选和6项后续本地候选。37项最新CI [37955823948](https://github.com/Micraow/Inform-UI/actions/runs/37955823948) 已失败，仍待验收；后续6项为create-interactive-poll、email-preview、file-nav-list、sidebar-people-also-ask、jobs、product-card。两组均未提升功能已验计数。
 
-最近正式验收见[66节点证据](verification-66.md)。三十项本地候选见[90节点本地冻结](local-enhancements-90.md)，本地测试不计真实浏览器验收；本批统一准备远端验收。
+功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。历史正式验收见[66节点证据](verification-66.md)，37项历史冻结见[97节点记录](local-enhancements-97.md)。103节点整合的针对性测试也不等于完整或真实浏览器验收。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -79,19 +79,19 @@
 | email-draft | Draft Email | 已写待验 | 供数收件人/主题与复用writing的本地正文编辑、选择、显式复制已本地实现；不发送邮件/打开账户，真实浏览器待合批。 |
 | task-expansion-card | Task Expansion Card | 已写待验 | 供数计划的原生详情、Reviewed本地勾选及恢复初始标记已本地实现；回顾不代表任务执行，真实浏览器待合批。 |
 | unit-converter | Unit Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
-| asset-distribution | Ledger Account Breakdown | 未实现 | 暂无专门实现证据 |
-| transaction-list | Ledger Recent Transactions | 未实现 | 暂无专门实现证据 |
-| onboarding-selection | Onboarding Selection Card | 未实现 | 暂无专门实现证据 |
+| asset-distribution | Ledger Account Breakdown | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
+| transaction-list | Ledger Recent Transactions | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
+| onboarding-selection | Onboarding Selection Card | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
 | entity-overview | Entity Overview | 未实现 | 暂无专门实现证据 |
 | entity-card | Entity Card | 未实现 | 暂无专门实现证据 |
 | prompt-suggestions | Follow Up | 已写待验 | 原生供数建议选择、可取消显式DOM事件及禁用/重入/清理边界已本地实现；无自动发消息，真实浏览器待合批。 |
 | conversation-suggestions | Conversational Onboarding Follow Up Pills | 未实现 | 暂无专门实现证据 |
 | news-article | News Article | 已写待验 | 供数文章、明确来源/日期与原生全文展开已本地实现；无检索或可信度推断，真实浏览器待合批。 |
-| flight-option | Flight Card | 未实现 | 暂无专门实现证据 |
+| flight-option | Flight Card | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
 | currency-converter | Currency Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
 | code-block | Code Block | 已写待验 | 显式可信复制、有限原生高亮与原文保持已本地实现；真实激活/剪贴板边界及视觉待合批。 |
 | writing-block | Writing Block | 已写待验 | 本地原生草稿、显式可信复制/选择/还原、迟到结果与禁用保护已本地实现；真实剪贴板/输入与视觉待合批。 |
-| artist-upcoming-events | Artist Upcoming Events | 未实现 | 暂无专门实现证据 |
+| artist-upcoming-events | Artist Upcoming Events | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
 | ask-user-details | Ask User Details | 未实现 | 暂无专门实现证据 |
 | ask-user-files | Ask User Files | 未实现 | 暂无专门实现证据 |
 | ask-user-location | Ask User Location | 未实现 | 暂无专门实现证据 |
@@ -159,24 +159,24 @@
 | conversational-onboarding-study | Conversational Onboarding Study | 未实现 | 暂无专门实现证据 |
 | conversational-onboarding-writing | Conversational Onboarding Writing | 未实现 | 暂无专门实现证据 |
 | copy-words | Copy Words | 未实现 | 暂无专门实现证据 |
-| create-interactive-poll | Create Interactive Poll | 未实现 | 暂无专门实现证据 |
+| create-interactive-poll | Create Interactive Poll | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | cricket-match-boxscore | Cricket Match Boxscore | 未实现 | 暂无专门实现证据 |
 | digital-stopwatch | Digital Stopwatch | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | digital-timer | Digital Timer | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | display-automation | Display Automation | 未实现 | 暂无专门实现证据 |
 | election-results | Election Results | 未实现 | 暂无专门实现证据 |
-| email-preview | Email Preview | 未实现 | 暂无专门实现证据 |
+| email-preview | Email Preview | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | entity | Entity | 未实现 | 暂无专门实现证据 |
 | entity-thumbnail-list | Entity Thumbnail List | 未实现 | 暂无专门实现证据 |
 | event-sidebar | Event Sidebar | 未实现 | 暂无专门实现证据 |
 | f1-races | F1 Races | 未实现 | 暂无专门实现证据 |
 | f1-standings | F1 Standings | 未实现 | 暂无专门实现证据 |
 | file-cite | File Cite | 未实现 | 暂无专门实现证据 |
-| file-nav-list | File Nav List | 未实现 | 暂无专门实现证据 |
+| file-nav-list | File Nav List | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | finance-onboarding-suggestions | Finance Onboarding Suggestions | 未实现 | 暂无专门实现证据 |
 | flight-results | Flight Results | 未实现 | 暂无专门实现证据 |
 | flight-search-form | Flight Search Form | 未实现 | 暂无专门实现证据 |
-| flight-tracker | Flight Tracker | 未实现 | 暂无专门实现证据 |
+| flight-tracker | Flight Tracker | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
 | follow-up-action-bar | Follow Up Action Bar | 未实现 | 暂无专门实现证据 |
 | follow-up-card-group | Follow Up Card Group | 未实现 | 暂无专门实现证据 |
 | follow-up-quiz | Follow Up Quiz | 未实现 | 暂无专门实现证据 |
@@ -186,7 +186,7 @@
 | image-grid | Image Grid | 未实现 | 暂无专门实现证据 |
 | instant-suggestions | Instant Suggestions | 未实现 | 暂无专门实现证据 |
 | internal-partner-app | Internal Partner App | 未实现 | 暂无专门实现证据 |
-| jobs | Jobs | 未实现 | 暂无专门实现证据 |
+| jobs | Jobs | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | learning-audio-label-card | Learning Audio Label Card | 未实现 | 暂无专门实现证据 |
 | learning-fill-blank-card | Learning Fill Blank Card | 已写待验 | 原创句中填空、精确trim比较、参考回看/重试与独立草稿已本地实现；531项整合Node通过，真实浏览器待合批。 |
 | learning-image-choice-card | Learning Image Choice Card | 未实现 | 暂无专门实现证据 |
@@ -230,11 +230,11 @@
 | onboarding-starter-tasks | Onboarding Starter Tasks | 未实现 | 暂无专门实现证据 |
 | openai | Openai | 未实现 | 暂无专门实现证据 |
 | open-detail | Open Detail | 未实现 | 暂无专门实现证据 |
-| package-tracker | Package Tracker | 未实现 | 暂无专门实现证据 |
+| package-tracker | Package Tracker | 已写待验 | 已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。 |
 | personality-quiz | Personality Quiz | 未实现 | 暂无专门实现证据 |
 | places-metadata-bar | Places Metadata Bar | 未实现 | 暂无专门实现证据 |
 | plugin-followup | Plugin Followup | 未实现 | 暂无专门实现证据 |
-| product-card | Product Card | 未实现 | 暂无专门实现证据 |
+| product-card | Product Card | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | prompt-checklist | Prompt Checklist | 未实现 | 暂无专门实现证据 |
 | push-drip-series-intro | Push Drip Series Intro | 未实现 | 暂无专门实现证据 |
 | learning-quiz | Learning Quiz | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
@@ -245,7 +245,7 @@
 | restaurant-reviews | Restaurant Reviews | 未实现 | 暂无专门实现证据 |
 | shared-activity-planner | Shared Activity Planner | 未实现 | 暂无专门实现证据 |
 | sidebar-fact-table | Sidebar Fact Table | 未实现 | 暂无专门实现证据 |
-| sidebar-people-also-ask | Sidebar People Also Ask | 未实现 | 暂无专门实现证据 |
+| sidebar-people-also-ask | Sidebar People Also Ask | 已写待验 | 独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。 |
 | soccer-games | Soccer Games | 部分 | 通用scoreboard未覆盖完整足球合同 |
 | speech-synthesizer | Speech Synthesizer | 未实现 | 暂无专门实现证据 |
 | stock-chart | Stock Chart | 功能已验 | 55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。 |

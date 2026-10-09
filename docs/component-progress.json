@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T11:14:07.642248+00:00",
+  "as_of_utc": "2026-10-09T16:23:48Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -22,12 +22,23 @@
     "fixed_cdn_asset_commit": "d370ffb2df310fce0da9299e6e254a58509ba544",
     "loading_sources_verified_commit": "7db01a63d18d61a59f508e11433877b073ed5a7b",
     "loading_sources_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37898154911",
-    "local_enhancement_checkpoint": "See docs/local-enhancements-90.md;30 distinct local candidates await accumulated browser acceptance. Recommended CDN remains d370."
+    "local_enhancement_checkpoint": "See docs/local-enhancements-90.md;30 distinct local candidates await accumulated browser acceptance. Recommended CDN remains d370.",
+    "local_103_source": "47c9d188b451d127a6d4f5b25b387f2f40e0d74b",
+    "pending_37_latest_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37955823948",
+    "pending_37_status": "failed; acceptance pending",
+    "later_6_candidates": [
+      "create-interactive-poll",
+      "email-preview",
+      "file-nav-list",
+      "sidebar-people-also-ask",
+      "jobs",
+      "product-card"
+    ]
   },
   "counts": {
-    "implemented_pending_verification": 30,
+    "implemented_pending_verification": 43,
     "functionally_verified": 53,
-    "not_implemented": 168,
+    "not_implemented": 155,
     "partial": 5
   },
   "components": [
@@ -540,22 +551,22 @@
       "id": "asset-distribution",
       "name": "Ledger Account Breakdown",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "transaction-list",
       "name": "Ledger Recent Transactions",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "onboarding-selection",
       "name": "Onboarding Selection Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "entity-overview",
@@ -596,8 +607,8 @@
       "id": "flight-option",
       "name": "Flight Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "currency-converter",
@@ -624,8 +635,8 @@
       "id": "artist-upcoming-events",
       "name": "Artist Upcoming Events",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "ask-user-details",
@@ -1100,8 +1111,8 @@
       "id": "create-interactive-poll",
       "name": "Create Interactive Poll",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。"
     },
     {
       "id": "cricket-match-boxscore",
@@ -1142,8 +1153,8 @@
       "id": "email-preview",
       "name": "Email Preview",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。"
     },
     {
       "id": "entity",
@@ -1191,8 +1202,8 @@
       "id": "file-nav-list",
       "name": "File Nav List",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。"
     },
     {
       "id": "finance-onboarding-suggestions",
@@ -1219,8 +1230,8 @@
       "id": "flight-tracker",
       "name": "Flight Tracker",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "follow-up-action-bar",
@@ -1289,8 +1300,8 @@
       "id": "jobs",
       "name": "Jobs",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。"
     },
     {
       "id": "learning-audio-label-card",
@@ -1597,8 +1608,8 @@
       "id": "package-tracker",
       "name": "Package Tracker",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "已有独立供数/本地交互实现，属于37项候选批；最新CI37955823948失败，仍待真实浏览器与视觉验收。"
     },
     {
       "id": "personality-quiz",
@@ -1625,8 +1636,8 @@
       "id": "product-card",
       "name": "Product Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。"
     },
     {
       "id": "prompt-checklist",
@@ -1706,8 +1717,8 @@
       "id": "sidebar-people-also-ask",
       "name": "Sidebar People Also Ask",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立后续本地候选；已进入103节点源码整合与针对性验证，不计入37项批次或已验总数。"
     },
     {
       "id": "soccer-games",
