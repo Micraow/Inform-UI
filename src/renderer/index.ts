@@ -1,3 +1,8 @@
+import {renderButton} from './button.js';
+import {renderAgenda} from './agenda.js';
+import {renderFavicon} from './favicon.js';
+import {renderRating} from './rating.js';
+import {renderVocabCard} from './vocab.js';
 import {renderMarkdown} from './markdown.js';
 import {renderTabs} from './tabs.js';
 import {renderCode} from './code.js';
@@ -146,6 +151,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if (!n.href.startsWith('#')) { anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; }
         const target = out; bind(() => target.textContent = text(value(n.value))); break;
       }
+      case 'favicon': out=renderFavicon(context,n,labels.faviconUI); break;
       case 'image': {
         out = element('figure','iui-image'); const target = out;
         const load = () => { const img = element('img'); img.src=n.src; img.alt=n.alt; img.loading='lazy'; img.referrerPolicy='no-referrer';
@@ -186,7 +192,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'slider': {out=element('div','iui-control');const id=prefix+`control-${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;bind(()=>input.checked=state[n.bind]===true);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
-      case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state},'reset');else fromControl({[n.action.bind!]:n.action.value!},'replace');});break;}
+      case 'button': out=renderButton(context,n,labels.buttonUI,current.state??{});break;
       case 'input': case 'textarea': case 'radio': case 'segmented': out=forms.field(n);break;
       case 'field': out=forms.group(n);break;
       case 'form': out=forms.form(n);break;
@@ -201,6 +207,9 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'loading':case 'loading-block': out=renderLoading(context,n,labels.loadingUI); break;
       case 'flow':case 'icon':case 'pulse-indicator': out=renderPrimitive(context,n,labels.primitive); break;
       case 'finance-quote': case 'finance-chart': case 'finance-comparison': out=renderFinance(context,n); break;
+      case 'agenda': out=renderAgenda(context,n,labels.agendaUI); break;
+      case 'rating': out=renderRating(context,n,labels.ratingUI); break;
+      case 'vocab-card': out=renderVocabCard(context,n,labels.vocabUI); break;
       case 'checklist': out=renderChecklist(context,n,labels.checklistUI); break;
       case 'fill-blank': out=renderFillBlank(context,n); break;
       case 'sentence-builder': out=renderSentenceBuilder(context,n,labels.sentenceBuilderUI); break;

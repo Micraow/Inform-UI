@@ -1,3 +1,6 @@
+import {inspectAgenda} from './agenda.js';
+import {ratingValueIssue} from './rating.js';
+import {inspectVocabCard} from './vocab.js';
 import {inspectConverters} from './converters.js';
 import {inspectClock} from './time.js';
 import {tableLayout, isTableCellObject, TableLayoutError} from './table.js';
@@ -273,6 +276,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     inspectExtension(node,path,state,add);
     if(isSports(node))inspectSports(node,path,add,isSafeURL);
     if(isLearning(node))inspectLearning(node,path,add);
+    if(node.type==='vocab-card')inspectVocabCard(node,path,add);
     if(node.type==='fill-blank')inspectFillBlank(node,path,add);
     if(node.type==='checklist')inspectChecklist(node,path,state,add);
     if(node.type==='sentence-builder')inspectSentenceBuilder(node,path,add);
@@ -280,6 +284,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='finance-heatmap')inspectHeatmap(node,path,add,isSafeURL);
     if(node.type==='unit-converter'||node.type==='currency-converter')inspectConverters(node,path,add,isSafeURL);
     if(node.type==='clock')inspectClock(node,path,add);
+    if(node.type==='agenda')inspectAgenda(node,path,add,isSafeURL);
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
     if (node.type === 'citation' || node.type === 'web-link-cards') {
@@ -302,6 +307,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
         if ((node.mobileColSpan ?? 1) > (parent.mobileColumns ?? 1)) add(issue('GRID_SPAN', `${path}/mobileColSpan`, 'Grid item span exceeds its mobile columns.'));
       }
     }
+    if (node.type === 'favicon' && node.src!==undefined && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Favicon requires an explicitly supplied allowed image URL.'));
     if (node.type === 'image' && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Images must use HTTP(S) or base64 PNG, JPEG, GIF or WebP.'));
     if (node.type === 'svg') inspectSvg(node, path, add);
     if (node.type === 'table') try { tableLayout(node); } catch (error) { if (error instanceof TableLayoutError) add(issue(error.code, path + error.path, error.message)); else throw error; }
@@ -310,7 +316,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
       node.nodes.forEach((n, i) => { if (local.has(n.id)) add(issue('DUPLICATE_ID', `${path}/nodes/${i}/id`, `Duplicate topology id: ${n.id}.`)); local.add(n.id); });
       node.links.forEach((link, i) => { for (const key of ['from', 'to'] as const) if (!local.has(link[key])) add(issue('TOPOLOGY_ENDPOINT', `${path}/links/${i}/${key}`, `Unknown topology endpoint: ${link[key]}.`)); });
     }
-    if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select') {
+    if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select' || node.type === 'rating') {
       if (!own(state, node.bind)) add(issue('UNKNOWN_BIND', `${path}/bind`, `Input binding must name initial state: ${node.bind}.`));
       if (node.type === 'slider') {
         if (!(node.min < node.max) || !Number.isFinite(node.max - node.min) || node.step > node.max - node.min || !Number.isFinite((node.max - node.min) / node.step) || (node.max - node.min) / node.step > Number.MAX_SAFE_INTEGER || node.min + node.step === node.min || node.max - node.step === node.max) add(issue('INPUT_RANGE', path, 'Slider needs ordered finite bounds and a usable positive step.'));
@@ -341,6 +347,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
 
 function controlIssue(node: Node, value: Scalar | undefined, path: string): Issue | undefined {
   if (isField(node)) return fieldTypeIssue(node, value, path);
+  if (node.type === 'rating') return ratingValueIssue(node,value,path);
   if (node.type === 'slider') {
     if (typeof value !== 'number') return issue('INPUT_TYPE', path, 'Slider bindings must be numeric.');
     if (value < node.min || value > node.max) return issue('INPUT_RANGE', path, 'Slider value is outside its bounds.');
@@ -366,7 +373,7 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
       const at = `${path}/progress`, value = evaluate(node.progress!, at);
       if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 100) add(issue('LOADING_PROGRESS', at, 'Loading progress must resolve to a finite number from 0 to 100.'));
     });
-    if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select' || isField(node)) {
+    if (node.type === 'slider' || node.type === 'toggle' || node.type === 'select' || node.type === 'rating' || isField(node)) {
       controls.push([node, path]);
       const e = controlIssue(node, state[node.bind], pointer('/state', node.bind)); if (e) add(e);
       if (node.type === 'select') node.options.forEach((option, i) => { if (typeof option.value !== typeof state[node.bind]) add(issue('INPUT_TYPE', `${path}/options/${i}/value`, 'All select options must preserve the initial state type.')); });

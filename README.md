@@ -154,9 +154,9 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 ## 当前支持范围
 
-固定审计清单共256项，目前功能闭环已验53项、部分7项、已写待验10项、未实现186项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
+固定审计清单共256项，目前功能闭环已验53项、部分6项、已写待验15项、未实现182项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
 
-当前本地候选构建识别71种节点：**70种有限渲染合同、历史 `native` 输入明确拒绝**。Markdown为原创有限子集，标签页使用tab-group/tab-panel描述同一个canonical组件；当前推荐d370固定版仍是已验66节点，不能将新候选混作已验组件。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
+当前本地候选构建识别75种节点：**74种有限渲染合同、历史 `native` 输入明确拒绝**。Markdown为原创有限子集，标签页使用tab-group/tab-panel描述同一个canonical组件；当前推荐d370固定版仍是已验66节点，不能将新候选混作已验组件。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
 开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。历史52节点CDN已包含体育、学习、金融与转换器组件，见[体育合同](docs/sports.md)。开发分支也提供本地测验/闪卡；金融快照/历史/比较与热图均已通过源码浏览器及截图验收；固定CDN入口见文档。更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
 
@@ -165,6 +165,8 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 完整边界见 [节点支持表](docs/support-matrix.md) 和 [52 项能力评估](docs/gallery-capabilities.md)。能力目录不代表已经全部实现。公式使用带明确许可的 KaTeX 数学字体，并保留无障碍 MathML。
 
 本地新增[清单](docs/checklist.md)、[句中填空](docs/fill-blank.md)、[组句练习](docs/sentence-builder.md)，同版Schema与公共API已通过本地检查，等累计浏览器验收后再更新推荐CDN。
+
+新增候选还有[本地词汇](docs/vocab-card.md)、[评分](docs/rating.md)、[供图标识](docs/favicon.md)、[供数日程](docs/agenda.md)和[显式宿主按钮动作](docs/button-actions.md)。[本地整合记录](docs/local-enhancements-75.md)保留各项测试边界。
 
 ## 文档
 

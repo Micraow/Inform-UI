@@ -683,6 +683,107 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-checklist :is(select,button,input):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
 @media(forced-colors:active){.iui-root .iui-checklist,.iui-root .iui-checklist-filter select{border-color:ButtonText}.iui-root .iui-checklist button[aria-disabled=true]{color:GrayText}}
 
+
+/* Original finite rating: visible native radios, logical sizing, and no motion. */
+.iui-root .iui-rating{min-inline-size:0;max-inline-size:100%;margin:0;padding:16px;border:1px solid var(--iui-line);border-radius:8px}
+.iui-root .iui-rating-label{font-weight:600;overflow-wrap:anywhere;max-inline-size:100%;padding-inline:4px}
+.iui-root .iui-rating-hint{margin-block:0 8px;overflow-wrap:anywhere}
+.iui-root .iui-rating-options{display:flex;flex-wrap:wrap;gap:6px;min-inline-size:0;max-inline-size:100%}
+.iui-root .iui-rating-choice{display:inline-flex;align-items:center;justify-content:center;gap:5px;box-sizing:border-box;min-block-size:44px;min-inline-size:52px;padding:6px;border:1px solid var(--iui-line);border-radius:6px;cursor:pointer}
+.iui-root .iui-rating-choice input{margin:0;accent-color:var(--iui-accent)}
+.iui-root .iui-rating-star{font-size:1.25rem;line-height:1;color:var(--iui-muted)}
+.iui-root .iui-rating-choice[data-filled=true] .iui-rating-star{color:var(--iui-accent)}
+.iui-root .iui-rating-choice:has(input:checked){border-color:var(--iui-accent);background:var(--iui-surface);font-weight:600}
+.iui-root .iui-rating-number{font-variant-numeric:tabular-nums;font-size:.85rem}
+.iui-root .iui-rating-output{display:block;margin-block:10px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.iui-root .iui-rating-clear{min-block-size:44px;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-rating-clear[aria-disabled=true]{color:var(--iui-muted);cursor:default}
+.iui-root .iui-rating :is(input,button):focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px}
+.iui-root .iui-rating:disabled .iui-rating-choice{cursor:default;opacity:.65}
+.iui-root .iui-rating-feedback{margin-block:10px 0;color:var(--iui-danger);overflow-wrap:anywhere}
+.iui-root .iui-rating-feedback[hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-rating-choice:has(input:checked){border:2px solid Highlight}.iui-root .iui-rating-star,.iui-root .iui-rating-choice[data-filled=true] .iui-rating-star{color:CanvasText}.iui-root .iui-rating :is(input,button):focus-visible{outline-color:Highlight}.iui-root .iui-rating-clear[aria-disabled=true]{color:GrayText}.iui-root .iui-rating-feedback{color:CanvasText}}
+
+/* Original finite vocabulary reference; styles stay inside its component. */
+.iui-root .iui-vocab-card{display:flex;flex-direction:column;gap:16px;max-inline-size:100%;padding:20px;border:1px solid var(--iui-line);border-radius:14px;background:var(--iui-surface-primary);overflow-wrap:anywhere;text-align:start}
+.iui-root .iui-vocab-card [hidden]{display:none!important}
+.iui-root .iui-vocab-term{font-size:1.5rem;line-height:1.4;white-space:pre-wrap}
+.iui-root .iui-vocab-metadata{display:flex;flex-wrap:wrap;gap:12px 24px;margin:0}
+.iui-root .iui-vocab-meta{max-inline-size:100%}
+.iui-root .iui-vocab-meta dt,.iui-root .iui-vocab-label{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-vocab-meta dd{margin:0;white-space:pre-wrap}
+.iui-root .iui-vocab-actions{display:flex;flex-wrap:wrap;gap:8px}
+.iui-root .iui-vocab-actions button{min-block-size:44px;max-inline-size:100%;white-space:normal}
+.iui-root .iui-vocab-actions button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-vocab-actions button[aria-pressed=true]{border-color:var(--iui-ink);background:var(--iui-surface-tertiary);font-weight:650;box-shadow:inset 0 -2px var(--iui-ink)}
+.iui-root .iui-vocab-details{display:flex;flex-direction:column;gap:16px;padding-block-start:16px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-vocab-senses,.iui-root .iui-vocab-examples{margin:0;padding-inline-start:24px}
+.iui-root .iui-vocab-sense+.iui-vocab-sense{margin-block-start:20px}
+.iui-root .iui-vocab-sense>*+*{margin-block-start:8px}
+.iui-root .iui-vocab-meaning,.iui-root .iui-vocab-translation,.iui-root .iui-vocab-examples li{white-space:pre-wrap}
+.iui-root .iui-vocab-examples-title{margin:0;font-size:.9rem;font-weight:600}
+.iui-root .iui-vocab-examples li+li{margin-block-start:8px}
+.iui-root .iui-vocab-rating{display:flex;flex-direction:column;gap:8px}
+.iui-root .iui-vocab-status,.iui-root .iui-vocab-note{font-size:.85rem;line-height:1.6;color:var(--iui-muted)}
+.iui-root .iui-vocab-status:empty{display:none}
+@media(max-width:520px){.iui-root .iui-vocab-card{padding:16px}}
+@media(forced-colors:active){.iui-root .iui-vocab-card,.iui-root .iui-vocab-details{border-color:CanvasText}.iui-root .iui-vocab-actions button[aria-pressed=true]{border-color:Highlight;outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-vocab-actions button:focus-visible{outline-color:Highlight}.iui-root .iui-vocab-note,.iui-root .iui-vocab-status,.iui-root .iui-vocab-label,.iui-root .iui-vocab-meta dt{color:CanvasText}}
+
+/* Supplied icon dimensions remain fixed while optional consent/status wrap. */
+.iui-root .iui-favicon{--iui-favicon-size:32px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;max-inline-size:100%}
+.iui-root .iui-favicon[data-size=sm]{--iui-favicon-size:24px}.iui-root .iui-favicon[data-size=lg]{--iui-favicon-size:48px}
+.iui-root .iui-favicon-visual{display:inline-flex;align-items:center;justify-content:center;flex:0 0 var(--iui-favicon-size);inline-size:var(--iui-favicon-size);block-size:var(--iui-favicon-size);border:1px solid var(--iui-line);border-radius:6px;background:var(--iui-surface);color:var(--iui-ink);font-size:calc(var(--iui-favicon-size)*.4);line-height:1}
+.iui-root .iui-favicon img{inline-size:100%;block-size:100%;object-fit:contain;border-radius:5px}
+.iui-root .iui-favicon [hidden]{display:none!important}
+.iui-root .iui-favicon-controls{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-inline-size:0;flex:1 1 200px}
+.iui-root .iui-favicon button{min-block-size:44px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-favicon button[aria-disabled=true]{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root .iui-favicon-status{font-size:.8rem;color:var(--iui-muted);overflow-wrap:anywhere}
+@media(forced-colors:active){.iui-root .iui-favicon-visual{border-color:CanvasText}.iui-root .iui-favicon button[aria-disabled=true]{color:GrayText}}
+
+
+/* Original finite agenda. Native controls; no animation or external assets. */
+.iui-root .iui-agenda{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-agenda :is(.iui-agenda-label,.iui-agenda-description,.iui-agenda-event-title,.iui-agenda-event-description,.iui-agenda-location-value){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-agenda :is(.iui-agenda-description,.iui-agenda-note){margin-block-start:8px}
+.iui-root .iui-agenda :is(.iui-agenda-note,.iui-agenda-time){color:var(--iui-muted);font-size:.875rem}
+.iui-root .iui-agenda-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-block:16px}
+.iui-root .iui-agenda-filter{font:inherit;color:var(--iui-ink);background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:6px;min-block-size:44px;max-inline-size:100%;padding:8px 12px}
+.iui-root .iui-agenda-filter:disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:not-allowed}
+.iui-root .iui-agenda-date{margin-block-start:20px}
+.iui-root .iui-agenda-date[hidden]{display:none!important}
+.iui-root .iui-agenda-events{padding-inline-start:1.5rem;margin-block:12px 0}
+.iui-root .iui-agenda-event{padding:12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary)}
+.iui-root .iui-agenda-event+.iui-agenda-event{margin-block-start:10px}
+.iui-root .iui-agenda-event-title{font-size:1rem;margin:0;font-weight:650}
+.iui-root .iui-agenda-event>*+*{margin-block-start:8px}
+.iui-root .iui-agenda-time{font-variant-numeric:tabular-nums}
+.iui-root .iui-agenda time{display:inline-block;unicode-bidi:isolate}
+.iui-root .iui-agenda-cancelled{font-weight:600;color:var(--iui-muted)}
+.iui-root .iui-agenda-details>summary{cursor:pointer;min-block-size:44px;padding-block:10px}
+.iui-root .iui-agenda-details>p{margin-block:8px}
+.iui-root .iui-agenda-location-label{font-weight:600}
+.iui-root .iui-agenda-link{display:inline-block;padding-block:10px;min-block-size:44px;max-inline-size:100%}
+.iui-root .iui-agenda :is(select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+@media(forced-colors:active){.iui-root .iui-agenda-filter{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-agenda-filter:disabled{color:GrayText}.iui-root .iui-agenda-event{border-color:CanvasText}.iui-root .iui-agenda-cancelled{color:CanvasText}.iui-root .iui-agenda :focus-visible{outline-color:Highlight}}
+
+
+/* One canonical native button, with optional explicitly configured host action. */
+.iui-root .iui-button,.iui-root .iui-button-cancel{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;text-align:center}
+.iui-root .iui-button-host{min-inline-size:0;max-inline-size:100%;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.iui-root .iui-button-controls{display:flex;flex-wrap:wrap;align-items:center;gap:6px;max-inline-size:100%}
+.iui-root .iui-button-hint,.iui-root .iui-button-status{display:block;font-size:.8rem;line-height:1.45;overflow-wrap:anywhere;max-inline-size:100%;color:var(--iui-muted)}
+.iui-root .iui-button>.iui-button-hint{margin-block-start:4px;color:inherit}
+.iui-root .iui-button[data-tone=primary]:enabled{color:var(--iui-button-solid-text);background:var(--iui-button-solid-bg);border-color:var(--iui-button-solid-bg)}
+.iui-root .iui-button[data-tone=primary]:enabled:hover{background:var(--iui-button-solid-hover);border-color:var(--iui-button-solid-hover)}
+.iui-root .iui-button[data-tone=primary]:enabled:active{background:var(--iui-button-solid-active);border-color:var(--iui-button-solid-active)}
+.iui-root .iui-button[data-tone=danger]:enabled{color:var(--iui-danger-soft-text);background:var(--iui-danger-soft);border-color:currentColor}
+.iui-root .iui-button[aria-disabled=true]:enabled{cursor:progress}
+.iui-root .iui-button-host[data-status=error]>.iui-button-status,.iui-root .iui-button-host[data-status=unavailable]>.iui-button-status{color:var(--iui-danger)}
+.iui-root .iui-button-cancel[hidden]{display:none}
+.iui-root .iui-button-status:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(forced-colors:active){.iui-root .iui-button[data-tone]:enabled{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-button:disabled{color:GrayText;border-color:GrayText}.iui-root .iui-button-status:focus-visible{outline-color:Highlight}}
+
 /*! KaTeX 0.18.2 CSS and unmodified WOFF2 fonts.
 Copyright (c) 2018 Khan Academy (KaTeX fonts).
 The MIT License (MIT)

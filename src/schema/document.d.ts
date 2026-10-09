@@ -34,6 +34,7 @@ export type Node =
   | TextNode
   | TitleNode
   | CaptionNode
+  | AgendaNode
   | MarkdownNode
   | CodeNode
   | MathNode
@@ -41,6 +42,7 @@ export type Node =
   | DividerNode
   | SpacerNode
   | LinkNode
+  | FaviconNode
   | ImageNode
   | BoxNode
   | CardNode
@@ -72,6 +74,7 @@ export type Node =
   | CalloutNode
   | SliderNode
   | ChecklistNode
+  | RatingNode
   | ToggleNode
   | SelectNode
   | InputNode
@@ -94,6 +97,7 @@ export type Node =
   | FlashcardsNode
   | FillBlankNode
   | SentenceBuilderNode
+  | VocabCardNode
   | FinanceQuoteNode
   | FinanceChartNode
   | FinanceComparisonNode
@@ -153,6 +157,40 @@ export type TextNode1 =
       underline?: boolean;
       strike?: boolean;
       shimmer?: boolean;
+    };
+export type AgendaEvent = {
+  id: string;
+  date: string;
+  title: string;
+  start?: string;
+  end?: string;
+  location?: string;
+  description?: string;
+  status?: "planned" | "cancelled";
+  url?: string;
+} & AgendaEvent1;
+export type AgendaEvent1 =
+  | {
+      id?: string;
+      date?: string;
+      title?: string;
+      start: string;
+      end?: string;
+      location?: string;
+      description?: string;
+      status?: "planned" | "cancelled";
+      url?: string;
+    }
+  | {
+      id?: string;
+      date?: string;
+      title?: string;
+      start?: never;
+      end?: never;
+      location?: string;
+      description?: string;
+      status?: "planned" | "cancelled";
+      url?: string;
     };
 export type CodeNode = {
   type: "code";
@@ -332,6 +370,19 @@ export type InputNode1 =
       minLength?: number;
       maxLength?: number;
     };
+export type ButtonAction =
+  | {
+      kind: "reset";
+    }
+  | {
+      kind: "set";
+      bind: string;
+      value: string | number | boolean;
+    }
+  | {
+      kind: "host";
+      name: string;
+    };
 export type ClockNode = {
   type: "clock";
   id?: string;
@@ -422,6 +473,17 @@ export interface CaptionNode {
   strike?: boolean;
   shimmer?: boolean;
 }
+export interface AgendaNode {
+  type: "agenda";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  events: AgendaEvent[];
+}
 export interface MarkdownNode {
   type: "markdown";
   id?: string;
@@ -453,6 +515,14 @@ export interface LinkNode {
   id?: string;
   value: Value;
   href: string;
+}
+export interface FaviconNode {
+  type: "favicon";
+  id?: string;
+  label: string;
+  src?: string;
+  fallback?: string;
+  size?: "sm" | "md" | "lg";
 }
 export interface ImageNode {
   type: "image";
@@ -841,6 +911,16 @@ export interface ChecklistItem {
   hint?: string;
   disabled?: Value;
 }
+export interface RatingNode {
+  type: "rating";
+  id?: string;
+  label: string;
+  bind: string;
+  max?: number;
+  disabled?: Value;
+  clearable?: boolean;
+  hint?: string;
+}
 export interface ToggleNode {
   type: "toggle";
   id?: string;
@@ -965,11 +1045,10 @@ export interface ButtonNode {
   type: "button";
   id?: string;
   label: string;
-  action: {
-    kind: "reset" | "set";
-    bind?: string;
-    value?: string | number | boolean;
-  };
+  action: ButtonAction;
+  disabled?: Value;
+  tone?: "default" | "primary" | "danger";
+  hint?: string;
 }
 export interface TopologyNode {
   type: "topology";
@@ -1346,6 +1425,29 @@ export interface SentenceBuilderNode {
 export interface SentenceToken {
   id: string;
   text: string;
+}
+export interface VocabCardNode {
+  type: "vocab-card";
+  id?: string;
+  term: string;
+  languageLabel?: string;
+  pronunciation?: string;
+  partOfSpeech?: string;
+  /**
+   * @minItems 1
+   * @maxItems 10
+   */
+  senses: [VocabSense, ...VocabSense[]];
+}
+export interface VocabSense {
+  id: string;
+  meaning: string;
+  translation?: string;
+  /**
+   * @minItems 0
+   * @maxItems 5
+   */
+  examples?: string[];
 }
 export interface FinanceQuoteNode {
   type: "finance-quote";

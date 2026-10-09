@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:26ec6d1492a1cd4e8374b2496e1f46f08affcb50a9989b46b65136f819f3793e:document:base+time",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:aa9cebeceaf7795666e9c971fb0ac9b0e254765f8cb45983479413362c40c317:document:base+time",
   "title": "Inform UI document subset: base, time",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -71,6 +71,185 @@
   ],
   "additionalProperties": false,
   "$defs": {
+    "AgendaEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "start": {
+          "type": "string",
+          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "location": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "cancelled"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "title"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+            },
+            "date": {
+              "type": "string",
+              "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "start": {
+              "type": "string",
+              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+            },
+            "end": {
+              "type": "string",
+              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "status": {
+              "enum": [
+                "planned",
+                "cancelled"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "start"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+            },
+            "date": {
+              "type": "string",
+              "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "start": false,
+            "end": false,
+            "location": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "status": {
+              "enum": [
+                "planned",
+                "cancelled"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "AgendaNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "agenda"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AgendaEvent"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "events"
+      ],
+      "additionalProperties": false
+    },
     "BadgeNode": {
       "type": "object",
       "properties": {
@@ -231,30 +410,25 @@
       ],
       "additionalProperties": false
     },
-    "ButtonNode": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "const": "button"
-        },
-        "id": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 200
-        },
-        "label": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 200
-        },
-        "action": {
+    "ButtonAction": {
+      "oneOf": [
+        {
           "type": "object",
           "properties": {
             "kind": {
-              "enum": [
-                "reset",
-                "set"
-              ]
+              "const": "reset"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "set"
             },
             "bind": {
               "type": "string",
@@ -277,9 +451,63 @@
             }
           },
           "required": [
-            "kind"
+            "kind",
+            "bind",
+            "value"
           ],
           "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "host"
+            },
+            "name": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+            }
+          },
+          "required": [
+            "kind",
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ButtonNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "button"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "action": {
+          "$ref": "#/$defs/ButtonAction"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "tone": {
+          "enum": [
+            "default",
+            "primary",
+            "danger"
+          ]
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 1000
         }
       },
       "required": [
@@ -1006,6 +1234,46 @@
       ],
       "additionalProperties": false
     },
+    "FaviconNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "favicon"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2
+        },
+        "size": {
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "FigureNode": {
       "type": "object",
       "properties": {
@@ -1675,6 +1943,9 @@
           "$ref": "#/$defs/CaptionNode"
         },
         {
+          "$ref": "#/$defs/AgendaNode"
+        },
+        {
           "$ref": "#/$defs/MarkdownNode"
         },
         {
@@ -1694,6 +1965,9 @@
         },
         {
           "$ref": "#/$defs/LinkNode"
+        },
+        {
+          "$ref": "#/$defs/FaviconNode"
         },
         {
           "$ref": "#/$defs/ImageNode"
@@ -1787,6 +2061,9 @@
         },
         {
           "$ref": "#/$defs/ChecklistNode"
+        },
+        {
+          "$ref": "#/$defs/RatingNode"
         },
         {
           "$ref": "#/$defs/ToggleNode"
@@ -1884,6 +2161,49 @@
         "type",
         "label",
         "status"
+      ],
+      "additionalProperties": false
+    },
+    "RatingNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "rating"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "bind": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 10
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "clearable": {
+          "type": "boolean"
+        },
+        "hint": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "bind"
       ],
       "additionalProperties": false
     },

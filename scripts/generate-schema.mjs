@@ -35,6 +35,15 @@ defs.TextRun = object({ value: ref('Value'), bold: bool, italic: bool, underline
 node('text', { value: ref('Value'), runs: array(ref('TextRun'), 1, 100), ...textStyle });
 defs.TextNode.oneOf = [object(defs.TextNode.properties, ['value']), object(defs.TextNode.properties, ['runs'])];
 for (const name of ['title', 'caption']) node(name, { value: ref('Value'), ...textStyle, ...(name === 'title' ? { level: integer(1, 3) } : {}) }, ['value']);
+// Finite supplied agenda labels; semantic validation checks real dates and time ordering.
+const agendaDate = { type:'string', pattern:'^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$' };
+const agendaTime = { type:'string', pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$' };
+defs.AgendaEvent = object({ id:key, date:agendaDate, title:short, start:agendaTime, end:agendaTime, location:string(500), description:string(2000), status:choice('planned','cancelled'), url:string(2048,1) }, ['id','date','title']);
+defs.AgendaEvent.oneOf = [
+  object(defs.AgendaEvent.properties, ['start']),
+  object({ ...defs.AgendaEvent.properties, start:false, end:false })
+];
+node('agenda', { label:short, description:string(2000), events:array(ref('AgendaEvent'),0,100) }, ['label','events']);
 node('markdown', { value: string() }, ['value']);
 node('code', { value: string(), language: short, inline: bool, copy: bool, highlight: bool }, ['value']);
 // Inline code cannot opt into block controls. Keep exact disjoint structural
@@ -48,6 +57,7 @@ node('badge', { value: ref('Value'), color }, ['value']);
 node('divider');
 node('spacer', { height: integer(0, 200) });
 node('link', { value: ref('Value'), href: string(2048, 1) }, ['value', 'href']);
+node('favicon',{label:short,src:string(12000,1),fallback:string(2,1),size:choice('sm','md','lg')},['label']);
 node('image', { src: string(500000, 1), alt: string(), aspectRatio: choice('1:1', '4:3', '16:9', '3:4'), fit: choice('cover', 'contain') }, ['src', 'alt']);
 const layout = { gap: integer(0, 16), padding: integer(0, 16), radius: choice('none', 'sm', 'md', 'lg', 'xl', '2xl'), border: bool, background: choice('none', 'surface', 'surface-secondary', 'surface-tertiary', 'success-soft', 'danger-soft', 'info-soft'), align: choice('start', 'center', 'end', 'stretch'), justify: choice('start', 'center', 'end', 'between', 'around'), width: { anyOf: [integer(30, 1400), choice('100%', 'auto')] }, children };
 for (const name of ['box', 'card', 'row', 'col', 'grid']) node(name, { ...layout, ...(name === 'grid' ? { columns: integer(1, 6), mobileColumns: integer(1, 6) } : {}) }, ['children']);
@@ -88,6 +98,7 @@ node('callout', { value: string(), tone: choice('neutral', 'info', 'caution') },
 node('slider', { label: short, bind: short, min: number, max: number, step: { ...number, exclusiveMinimum: 0 }, unit: short, marks: array(object({ value: number, label: string() }, ['value', 'label']), 0, 30) }, ['label', 'bind', 'min', 'max', 'step']);
 defs.ChecklistItem=object({id:key,label:short,bind:key,hint:string(1000),disabled:ref('Value')},['id','label','bind']);
 node('checklist',{label:short,items:array(ref('ChecklistItem'),0,50),disabled:ref('Value'),filter:bool,bulk:bool,emptyText:string(1000)},['label','items']);
+node('rating', { label: short, bind: key, max: integer(2, 10), disabled: ref('Value'), clearable: bool, hint: string(1000) }, ['label', 'bind']);
 node('toggle', { label: short, bind: short }, ['label', 'bind']);
 node('select', { label: short, bind: short, options: array(object({ value: { anyOf: [string(), number] }, label: short }, ['value', 'label']), 1, 40) }, ['label', 'bind', 'options']);
 const inputCommon = { label: short, bind: short, hint: string(), error: ref('Value'), required: bool, disabled: ref('Value') };
@@ -104,7 +115,12 @@ node('textarea', { ...inputCommon, placeholder: string(200), rows: integer(2, 20
 for (const name of ['radio', 'segmented']) node(name, { ...inputCommon, options: inputOptions }, ['label', 'bind', 'options'], 'forms');
 node('field', { label: short, hint: string(), children: array(ref('Node'), 1, 20), disabled: ref('Value') }, ['label', 'children'], 'forms');
 node('form', { label: short, children, submitLabel: short, cancelLabel: short, action: key, disabled: ref('Value'), successMessage: string(), errorMessage: string() }, ['label', 'children'], 'forms');
-node('button', { label: short, action: object({ kind: choice('reset', 'set'), bind: short, value: scalar }, ['kind']) }, ['label', 'action']);
+defs.ButtonAction = { oneOf: [
+  object({ kind: { const: 'reset' } }, ['kind']),
+  object({ kind: { const: 'set' }, bind: short, value: scalar }, ['kind','bind','value']),
+  object({ kind: { const: 'host' }, name: key }, ['kind','name'])
+] };
+node('button', { label: short, action: ref('ButtonAction'), disabled: ref('Value'), tone: choice('default','primary','danger'), hint: string(1000) }, ['label','action']);
 node('topology', { nodes: array(object({ id: short, label: short, subtitle: string() }, ['id', 'label']), 2, 24), links: array(object({ from: short, to: short, label: string(), load: ref('Value') }, ['from', 'to']), 1, 40), highlight: choice('max-load', 'none'), caption: string() }, ['nodes', 'links'], 'graphics');
 node('chart', { kind: choice('line', 'bar', 'scatter', 'area', 'donut', 'pie'), xKey: short, xScale: choice('category', 'linear', 'time'), xLabel: short, xMin: number, xMax: number, timezone: short, data: array({ type: 'object', additionalProperties: ref('Value') }, 0, 300), series: array(object({ key: short, label: short, color: choice('blue', 'green', 'orange', 'red', 'purple', 'gray') }, ['key', 'label']), 1, 6), yMin: number, yMax: number, unit: string(), title: string(), note: string(), status: choice('ready', 'loading', 'error'), message: string() }, ['kind', 'xKey', 'data', 'series'], 'charts');
 const nullableNumber = { anyOf: [number, { type: 'null' }] };
@@ -145,6 +161,9 @@ node('fill-blank',{title:short,description:string(2000),parts:array(ref('FillBla
 // Original finite local sentence-builder; answers are public authored teaching data.
 defs.SentenceToken=object({id:key,text:short},['id','text']);
 node('sentence-builder',{title:short,prompt:string(2000),tokens:array(ref('SentenceToken'),1,30),answer:array(key,1,30),joiner:choice(' ',''),explanation:string(2000)},['title','tokens','answer'], 'learning');
+// Finite supplied vocabulary; no generated meaning or remote lookup.
+defs.VocabSense=object({id:key,meaning:string(2000,1),translation:string(1000),examples:array(string(2000,1),0,5)},['id','meaning']);
+node('vocab-card',{term:short,languageLabel:short,pronunciation:string(500,1),partOfSpeech:short,senses:array(ref('VocabSense'),1,10)},['term','senses'],'learning');
 // Supplied financial snapshots: no provider connection, trading action or implicit FX conversion.
 const price={anyOf:[{type:'number',minimum:0},{type:'null'}]};
 defs.FinanceSource=object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']);

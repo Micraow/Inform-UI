@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 71 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 75 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working candidate source: 70 rendered + 1 rejected =71 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
+**Working candidate source: 74 rendered + 1 rejected =75 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -59,7 +59,7 @@ results from the current revision for those claims.
 | `slider` | Rendered | Labeled native numeric range bound to declared numeric state; minimum, maximum, step, and optional marks. |
 | `toggle` | Rendered | Labeled native checkbox bound to declared boolean state. |
 | `select` | Rendered | Labeled native selector over declared string or numeric choices. No searchable combobox. |
-| `button` | Rendered | Exactly two declarative actions: reset document state, or set one declared state value. No callbacks, network submission, clipboard, or arbitrary commands. |
+| `button` | Rendered | Reset/set retain their native button and field-draft semantics. Candidate adds an explicitly configured host action with whole-state snapshot, busy/cancel/retry and stale-result guards; the library performs no network or arbitrary JSON code. See [contract](button-actions.md). |
 | `topology` | Rendered | Original SVG node/edge diagram with optional maximum-load highlighting and a textual summary. Layout is deterministic, not a general graph-layout engine. |
 | `chart` | Rendered | Line, grouped bar, scatter, area and single-series donut; later candidate adds solid single-series pie ([contract](pie.md)); explicit category/linear/time X axes, typed finite bounds, null gaps, empty/loading/error views, keyboard point readout, series switches and data table. No stacking, brush, zoom, export or chart-kind switch. See charts.md for axis rules and version boundaries. |
 | `input` | Rendered | Native text/number/email with label/hint/error, required/disabled and bounded constraints. Numeric drafts preserve typed state; later checkbox and date candidates bind native boolean/date-only controls through the same form lifecycle. |
@@ -69,6 +69,10 @@ results from the current revision for those claims.
 | `form` | Rendered | Local validation/submit/cancel; enabled-form-field snapshot, explicit host-action allowlist, busy deduplication, abort and stale-result guards. No implicit storage/network. |
 | `weather` | Rendered | Supplied provenance/timezone/current/daily/hourly data; local date/unit/metric/chart-table controls; null, loading/empty/error states; explicit percent and DST semantics. No live provider connection. |
 | `sports-schedule` / `sports-scoreboard` / `sports-standings` | Rendered | Shared supplied league/team/game/standing data; local date/team/stage/group filters, disclosures, game selection and stable standings sorting. Explicit score/status/provenance/timezone/null semantics; no live provider or ranking inference. Available in the fixed 52-node CDN; the older 7c490585 pin does not contain these nodes. See sports.md. |
+| `favicon` | Rendered candidate | Supplied image or local fallback, explicit remote-load action, native error/retry and no icon discovery service. See [contract](favicon.md). |
+| `agenda` | Rendered candidate | Strict supplied floating date/time labels, stable date groups and native date filtering. No calendar service or timezone conversion. See [contract](agenda.md). |
+| `rating` | Rendered candidate | Native integer0..max controlled radio rating with atomic bounds; standalone and explicitly excluded from Forms ownership. See [contract](rating.md). |
+| `vocab-card` | Rendered candidate | Supplied meanings/examples, retained reveal and explicit local self-assessment. No dictionary or verified mastery. See [contract](vocab-card.md). |
 | `checklist` | Rendered candidate | Controlled native checkboxes through the same Forms registry; local All/Open/Done filtering and atomic enabled-item bulk updates. No task provider, reminders or persistence. See [contract](checklist.md). |
 | `fill-blank` / `sentence-builder` | Rendered candidates | Supplied public teaching answers, exact local checking, explicit reference review/retry and retained DOM. No remote grading, hidden answers or form nesting. These are two canonical learning components awaiting combined browser acceptance. |
 | `quiz` / `flashcards` | Rendered | Local answer checking, weighted exact-set scoring, explanations/review/retry; flashcard reveal/rating/navigation/summary. Empty/loading/error and keyboard/live feedback. Supplied answers are not secret; no storage, network grading or spaced-repetition scheduler. Available in the fixed 52-node CDN. |

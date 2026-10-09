@@ -11,3 +11,5 @@ Select all/Clear all applies one atomic state patch to enabled items only. Globa
 A checklist can live within a form because its native fields participate in the same submit values, disabled omission, cancel/reset snapshots and lifecycle as ordinary checkbox inputs. Its own buttons never submit the form. Full document update resets the local view only after validation succeeds. Labels, hints and state are rendered as text; no external tasks, reminders, network or persistence are provided.
 
 See `examples/checklist.json` and `examples/checklist-form.json`. Original public validation/mount/compile tests are in `tests/checklist.test.mjs`; native pointer, keyboard and touch layouts are prepared in `tests/browser/checklist.spec.mjs` for later combined acceptance.
+
+Form ownership means the document's `form` node. Do not wrap a mounted controlled checklist in a separately managed outer HTML form, whose native reset would bypass the renderer snapshot lifecycle. Ordinary inherited disabled fieldsets remain supported.

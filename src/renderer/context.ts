@@ -17,7 +17,7 @@ export interface RendererContext {
   showValue: (target:HTMLElement,value:unknown)=>void;
   getState: ()=>Readonly<Record<string,StateValue>>;
   change: (patch:Record<string,StateValue>)=>void;
-  fromControl: (patch:Record<string,StateValue>)=>void;
+  fromControl: (patch:Record<string,StateValue>, draftPolicy?:'preserve'|'replace'|'reset')=>void;
   render: (node:Node)=>HTMLElement|SVGElement;
   actions: Readonly<Record<string,FormAction>>;
 }

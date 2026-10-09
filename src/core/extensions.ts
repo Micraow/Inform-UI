@@ -42,7 +42,7 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
     }
   }
   if(node.type==='form') {
-    const visit=(n:Node)=>{if(n.type==='fill-blank'||n.type==='sentence-builder')error('LEARNING_FORM','/children','Local practice widgets cannot be nested within forms.');if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if(n.type==='tab-group')error('TAB_FORM','/children','Place a complete form inside a tab panel, rather than splitting one form across hidden panels.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
+    const visit=(n:Node)=>{if(n.type==='rating')error('RATING_FORM','/children','Standalone controlled ratings cannot be nested within forms.');if(n.type==='fill-blank'||n.type==='sentence-builder')error('LEARNING_FORM','/children','Local practice widgets cannot be nested within forms.');if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if(n.type==='tab-group')error('TAB_FORM','/children','Place a complete form inside a tab panel, rather than splitting one form across hidden panels.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
     node.children.forEach(visit);
   }
   if(node.type==='chart') {

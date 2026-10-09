@@ -1,0 +1,24 @@
+/* Original finite vocabulary reference; styles stay inside its component. */
+.iui-root .iui-vocab-card{display:flex;flex-direction:column;gap:16px;max-inline-size:100%;padding:20px;border:1px solid var(--iui-line);border-radius:14px;background:var(--iui-surface-primary);overflow-wrap:anywhere;text-align:start}
+.iui-root .iui-vocab-card [hidden]{display:none!important}
+.iui-root .iui-vocab-term{font-size:1.5rem;line-height:1.4;white-space:pre-wrap}
+.iui-root .iui-vocab-metadata{display:flex;flex-wrap:wrap;gap:12px 24px;margin:0}
+.iui-root .iui-vocab-meta{max-inline-size:100%}
+.iui-root .iui-vocab-meta dt,.iui-root .iui-vocab-label{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-vocab-meta dd{margin:0;white-space:pre-wrap}
+.iui-root .iui-vocab-actions{display:flex;flex-wrap:wrap;gap:8px}
+.iui-root .iui-vocab-actions button{min-block-size:44px;max-inline-size:100%;white-space:normal}
+.iui-root .iui-vocab-actions button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-vocab-actions button[aria-pressed=true]{border-color:var(--iui-ink);background:var(--iui-surface-tertiary);font-weight:650;box-shadow:inset 0 -2px var(--iui-ink)}
+.iui-root .iui-vocab-details{display:flex;flex-direction:column;gap:16px;padding-block-start:16px;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-vocab-senses,.iui-root .iui-vocab-examples{margin:0;padding-inline-start:24px}
+.iui-root .iui-vocab-sense+.iui-vocab-sense{margin-block-start:20px}
+.iui-root .iui-vocab-sense>*+*{margin-block-start:8px}
+.iui-root .iui-vocab-meaning,.iui-root .iui-vocab-translation,.iui-root .iui-vocab-examples li{white-space:pre-wrap}
+.iui-root .iui-vocab-examples-title{margin:0;font-size:.9rem;font-weight:600}
+.iui-root .iui-vocab-examples li+li{margin-block-start:8px}
+.iui-root .iui-vocab-rating{display:flex;flex-direction:column;gap:8px}
+.iui-root .iui-vocab-status,.iui-root .iui-vocab-note{font-size:.85rem;line-height:1.6;color:var(--iui-muted)}
+.iui-root .iui-vocab-status:empty{display:none}
+@media(max-width:520px){.iui-root .iui-vocab-card{padding:16px}}
+@media(forced-colors:active){.iui-root .iui-vocab-card,.iui-root .iui-vocab-details{border-color:CanvasText}.iui-root .iui-vocab-actions button[aria-pressed=true]{border-color:Highlight;outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-vocab-actions button:focus-visible{outline-color:Highlight}.iui-root .iui-vocab-note,.iui-root .iui-vocab-status,.iui-root .iui-vocab-label,.iui-root .iui-vocab-meta dt{color:CanvasText}}

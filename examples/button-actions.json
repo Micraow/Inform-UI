@@ -1,0 +1,13 @@
+{
+  "version": "iui/1",
+  "title": "Explicit local and host-owned actions",
+  "state": { "count": 1, "locked": false, "note": "Whole declared state is supplied to the host handler." },
+  "body": [
+    { "type": "text", "value": "The host action requires an explicitly configured handler. An exported standalone document has no handler." },
+    { "type": "metric", "label": "Count", "value": { "$": "count" } },
+    { "type": "toggle", "label": "Disable actions", "bind": "locked" },
+    { "type": "button", "id": "set-count", "label": "Set count to two", "tone": "default", "disabled": { "$": "locked" }, "action": { "kind": "set", "bind": "count", "value": 2 } },
+    { "type": "button", "id": "host-action", "label": "Run host action", "tone": "primary", "disabled": { "$": "locked" }, "hint": "Host-configured behavior only. Cancel signals the handler; it cannot promise rollback.", "action": { "kind": "host", "name": "run" } },
+    { "type": "button", "id": "reset-state", "label": "Reset document state", "tone": "danger", "hint": "Also resets field drafts.", "action": { "kind": "reset" } }
+  ]
+}

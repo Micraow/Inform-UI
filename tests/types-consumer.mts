@@ -1,3 +1,4 @@
+import "./button-types-consumer.mjs";
 import {compileArtifact,compileHtml,mount,validateDocument,evaluateState} from '../dist/index.js';
 import type {IUIDocument,Node,Value,Controller} from '../dist/index.js';
 const value:Value={op:'add',args:[1,2]};
@@ -82,3 +83,46 @@ const checklistFilter:Node={type:'checklist',label:'Steps',items:[],filter:'all'
 // @ts-expect-error each checklist item requires an explicit declared boolean binding
 const checklistUnbound:Node={type:'checklist',label:'Steps',items:[{id:'one',label:'First'}]};
 void [checklistFilter,checklistUnbound];
+
+
+const rating:Node={type:'rating',label:'Clarity',bind:'clarity',max:5,clearable:true,disabled:{$:'locked'},hint:'Local only'};
+// @ts-expect-error ratings require a controlled binding
+const unboundRating:Node={type:'rating',label:'Clarity'};
+// @ts-expect-error max is a number, never a string
+const stringRatingMax:Node={type:'rating',label:'Clarity',bind:'clarity',max:'5'};
+// @ts-expect-error no fractional step or arbitrary glyph protocol
+const steppedRating:Node={type:'rating',label:'Clarity',bind:'clarity',step:0.5};
+// @ts-expect-error readOnly is not a second rating protocol
+const readonlyRating:Node={type:'rating',label:'Clarity',bind:'clarity',readOnly:true};
+void [rating,unboundRating,stringRatingMax,steppedRating,readonlyRating];
+
+{
+const node:Extract<Node,{type:'vocab-card'}>={type:'vocab-card',term:'resolve',languageLabel:'English',pronunciation:'/rɪˈzɒlv/',partOfSpeech:'verb',senses:[{id:'settle',meaning:'To find a solution.',translation:'解决',examples:['We resolved the issue.']}]};
+const document:IUIDocument={version:'iui/1',body:[node]};
+void document;
+// @ts-expect-error A supplied meaning is literal content, not a state expression.
+const expression:Extract<Node,{type:'vocab-card'}>={type:'vocab-card',term:'x',senses:[{id:'s',meaning:{$:'answer'}}]};
+// @ts-expect-error Network dictionary retrieval is outside this finite node.
+const online:Extract<Node,{type:'vocab-card'}>={type:'vocab-card',term:'x',senses:[{id:'s',meaning:'Meaning'}],dictionaryUrl:'https://example.com'};
+// @ts-expect-error Senses are required.
+const incomplete:Extract<Node,{type:'vocab-card'}>={type:'vocab-card',term:'x'};
+void expression;void online;void incomplete;
+
+}
+const suppliedFavicon:Node={type:'favicon',label:'Site icon',fallback:'UI',size:'md'};
+// @ts-expect-error favicon never looks up a site or accepts arbitrary domain fields
+const lookupFavicon:Node={type:'favicon',label:'Site icon',domain:'example.com'};
+// @ts-expect-error callers must provide an accessible label
+const unnamedFavicon:Node={type:'favicon',src:'https://example.com/icon.png'};
+void [suppliedFavicon,lookupFavicon,unnamedFavicon];
+
+
+const agenda:Node={type:'agenda',label:'Supplied dates',events:[{id:'one',date:'2024-02-29',title:'Reading',start:'09:00',end:'10:00',status:'cancelled'}]};
+const untimedAgenda:Node={type:'agenda',label:'No supplied time',events:[{id:'one',date:'0001-01-01',title:'Note'}]};
+// @ts-expect-error agenda labels are literal strings
+const boundAgenda:Node={type:'agenda',label:{$:'day'},events:[]};
+// @ts-expect-error agenda end requires supplied start
+const missingAgendaStart:Node={type:'agenda',label:'Bad',events:[{id:'one',date:'2024-02-29',title:'Reading',end:'10:00'}]};
+// @ts-expect-error agenda controls are local and cannot bind form values
+const boundAgendaFilter:Node={type:'agenda',label:'Bad',events:[],bind:'day'};
+void [agenda,untimedAgenda,boundAgenda,missingAgendaStart,boundAgendaFilter];

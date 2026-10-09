@@ -1,5 +1,11 @@
 # Changelog
 
+## Local supplied cards and actions checkpoint (browser pending)
+
+- Add finite supplied vocabulary, integer rating, consent-gated supplied favicon and floating-date agenda modules.
+- Extend the existing partial button with explicit allowlisted host actions, immutable whole-state snapshot, cooperative cancel and generation-safe completion while preserving set/reset.
+- Full integrated local gate621/621 passes; fifteen distinct canonical candidates await the approximately30-component browser batch. Verified total remains53 and fixed assets remain d370.
+
 ## Local learning/checklist checkpoint (browser pending)
 
 - Add original inline fill-blank and identity-based sentence-building practice, with retained local drafts, explicit reference/retry and form-ownership guards.

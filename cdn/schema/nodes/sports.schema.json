@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:26ec6d1492a1cd4e8374b2496e1f46f08affcb50a9989b46b65136f819f3793e:node:sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:aa9cebeceaf7795666e9c971fb0ac9b0e254765f8cb45983479413362c40c317:node:sports",
   "title": "Inform UI node subset: sports",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

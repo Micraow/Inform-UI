@@ -1,0 +1,18 @@
+{
+  "version": "iui/1",
+  "description": "原创供数日程示例；只展示本地日期和时间，不连接日历。",
+  "body": [
+    {
+      "type": "agenda",
+      "label": "阅读小组 · 供数日程",
+      "description": "筛选日期查看已提供的记录。没有填写时间的记录不会推断全天时长。",
+      "events": [
+        {"id":"review","date":"2026-10-16","title":"阅读回顾","start":"14:00","end":"14:45","location":"阅览室 B","description":"带上本周的笔记。"},
+        {"id":"notes","date":"2026-10-09","title":"整理阅读笔记","description":"时间由参与者自行安排；此条未提供起止时间。"},
+        {"id":"discussion","date":"2026-10-09","title":"章节讨论","start":"10:00","end":"11:15","location":"阅览室 A","description":"先分享每人的问题，再讨论例题。","url":"https://example.com/reading-group"},
+        {"id":"cancelled","date":"2026-10-09","title":"补充讨论","start":"16:00","status":"cancelled","description":"原记录标注为已取消。"}
+      ]
+    },
+    {"type":"agenda","label":"暂无记录的示例","events":[]}
+  ]
+}

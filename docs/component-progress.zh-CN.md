@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分7，已写待验10，未实现186。
+当前固定分母为256项：功能已验53，部分6，已写待验15，未实现182。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-最近正式验收见[66节点证据](verification-66.md)。十项本地候选见[71节点本地冻结](local-enhancements-71.md)，531项Node通过仍不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
+最近正式验收见[66节点证据](verification-66.md)。十五项本地候选见[75节点本地冻结](local-enhancements-75.md)，621项Node通过仍不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -12,7 +12,7 @@
 | base-badge | 徽章 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-blockquote | 引用块 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-box | 基础容器 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-button | 按钮 | 部分实现 | 仅set/reset动作 |
+| base-button | 按钮 | 已写待验 | 保留set/reset原生身份及草稿语义，新增显式host动作、取消/重试/忙碌及迟到结果防护；621项整合Node通过，真实浏览器待合批。 |
 | base-caption | 说明/图注 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-card | 卡片容器 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-carousel | 轮播 | 已写待验 | 有限原生上一/下一、RTL边界、子状态保留已本地实现；真实浏览器待约30组件合批。 |
@@ -26,7 +26,7 @@
 | base-col | 纵向布局 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-date-picker | 日期选择 | 已写待验 | 原生date字符串与严格公历/范围草稿、Forms生命周期已本地实现；482项整合Node测试通过，原生浏览器待合批。 |
 | base-divider | 分隔线 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-favicon | 网站/来源图标 | 未实现 | 暂无专门实现证据 |
+| base-favicon | 网站/来源图标 | 已写待验 | 显式供图/本地替代标识、远程加载前确认提示与错误重试已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | base-flashcard-flip | 双面翻卡容器 | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | base-flow | 流式铺排 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-form | 表单 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -68,7 +68,7 @@
 | web-link-cards | Web Links Carousel | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
 | citation | Cite | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
-| calendar-agenda | Calendar List | 未实现 | 暂无专门实现证据 |
+| calendar-agenda | Calendar List | 已写待验 | 原创供数日程、严格日期时间、稳定分组/筛选与保留详情已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | person-profile | Person | 未实现 | 暂无专门实现证据 |
 | reddit-thread-card | Reddit | 未实现 | 暂无专门实现证据 |
@@ -194,7 +194,7 @@
 | learning-sentence-builder-card | Learning Sentence Builder Card | 已写待验 | 原创身份序列组句、原生追加/重排、参考回看与状态保留已本地实现；531项整合Node通过，真实浏览器待合批。 |
 | learning-speak-card | Learning Speak Card | 未实现 | 暂无专门实现证据 |
 | learning-viz-dil | Learning Viz Dil | 未实现 | 暂无专门实现证据 |
-| learning-vocab-card | Learning Vocab Card | 未实现 | 暂无专门实现证据 |
+| learning-vocab-card | Learning Vocab Card | 已写待验 | 原创供数词汇卡、显隐/自评/重置与禁用/状态保留已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | learning-voice-mode-launcher-card | Learning Voice Mode Launcher Card | 未实现 | 暂无专门实现证据 |
 | ledger-accounts | Ledger Accounts | 未实现 | 暂无专门实现证据 |
 | ledger-credit-score-detail | Ledger Credit Score Detail | 未实现 | 暂无专门实现证据 |
@@ -238,7 +238,7 @@
 | prompt-checklist | Prompt Checklist | 未实现 | 暂无专门实现证据 |
 | push-drip-series-intro | Push Drip Series Intro | 未实现 | 暂无专门实现证据 |
 | learning-quiz | Learning Quiz | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
-| rating | Rating | 未实现 | 暂无专门实现证据 |
+| rating | Rating | 已写待验 | 原生受控整数评分、0未评分、全局原子校验及键盘/清除边界已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | recommendation-card | Recommendation Card | 未实现 | 暂无专门实现证据 |
 | recommendation-link-card | Recommendation Link Card | 未实现 | 暂无专门实现证据 |
 | reservation-time-pills-ref-carousel | Reservation Time Pills Ref Carousel | 未实现 | 暂无专门实现证据 |
