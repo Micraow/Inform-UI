@@ -138,3 +138,7 @@ test('a queued native reset cannot overwrite a newer explicit local filter chang
 });
 
  test('inert ancestors reject forged flight choice and event filters',()=>{const x=setup();let calls=0;x.host.addEventListener('iui:flight-choice',()=>calls++);x.host.setAttribute('inert','');click(x,x.select);change(x,'2028-03');assert.equal(calls,0);assert.equal(x.filter.value,'');x.host.removeAttribute('inert');x.select.click();assert.equal(calls,1);x.controller.dispose();});
+
+test('hidden/inert event filter ancestry rejects forged changes and queued outer resets',async()=>{for(const flag of ['hidden','inert']){const x=setup(spec(),{},'<form><div id="host"></div></form>'),wrapper=x.filter.parentElement;change(x,'2028-03');wrapper.setAttribute(flag,'');change(x,'2028-02');assert.equal(x.filter.value,'2028-03');assert.deepEqual(visible(x),['march']);x.doc.querySelector('form').reset();await Promise.resolve();assert.equal(x.filter.value,'2028-03');assert.deepEqual(visible(x),['march']);wrapper.removeAttribute(flag);change(x,'2028-02');assert.equal(x.filter.value,'2028-02');x.controller.dispose();}});
+
+test('independently detached or reparented event filters cannot alter mounted event visibility',()=>{for(const reparent of [false,true]){const x=setup();change(x,'2028-03');if(reparent)x.doc.body.append(x.filter);else x.filter.remove();change(x,'2028-02');assert.equal(x.filter.value,'2028-03');assert.deepEqual(visible(x),['march']);x.controller.dispose();}});

@@ -44,7 +44,7 @@ export function renderArtistEvents(c: RendererContext, n: ArtistUpcomingEventsNo
     for (const entry of mounted) {entry.item.hidden=month!==''&&month!==entry.month;if (!entry.item.hidden) visible++;}
     count.textContent=t.count(visible,mounted.length);empty.hidden=visible>0;empty.textContent=mounted.length===0?t.empty:t.noMatch;
   }
-  const blocked = () => !alive || !root.isConnected || !!select?.matches(':disabled') || !!root.closest('[hidden],[inert]');
+  const blocked = () => !alive || !root.isConnected || !!select && (!select.isConnected || !root.contains(select)) || !!select?.matches(':disabled') || !!(select??root).closest('[hidden],[inert]');
   if (select) {
     const filter=select;
     c.on(filter,'change',()=>{
