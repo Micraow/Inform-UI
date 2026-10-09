@@ -136,6 +136,11 @@ defs.ActivityOption=object({id:suppliedKey,label:short,startsAt:flightAt,endsAt:
 node('shared-activity-planner',{label:short,description:string(2000),participants:array(ref('ActivityParticipant'),1,12),options:array(ref('ActivityOption'),0,20),disabled:bool},['label','participants','options']);
 defs.EventAgendaEntry=object({id:suppliedKey,label:short,startsAt:flightAt,endsAt:flightAt,category:short,description:string(3000),speaker:short},['id','label','startsAt','endsAt','category']);
 node('event-sidebar',{eventId:suppliedKey,label:short,organizer:short,location:short,startsAt:flightAt,endsAt:flightAt,description:string(5000),agenda:array(ref('EventAgendaEntry'),0,40),source:ref('TravelEventSource')},['eventId','label','startsAt','endsAt','agenda']);
+// Original supplied vocabulary and explicit local clipboard workflow.
+defs.WordExample=object({text:string(1000,1),translation:string(1000)},['text']);
+node('word-card',{wordId:suppliedKey,term:string(200,1),definition:string(5000,1),pronunciation:short,partOfSpeech:short,translation:string(2000),examples:array(ref('WordExample'),0,8),initiallyRevealed:bool,disabled:bool,source:ref('TravelEventSource')},['wordId','term','definition']);
+defs.CopyWord=object({id:suppliedKey,text:string(200,1),note:string(1000)},['id','text']);
+node('copy-words',{label:short,description:string(2000),words:array(ref('CopyWord'),0,80),initialSelectedIds:array(suppliedKey,0,80),separator:choice('lines','comma','space'),disabled:bool},['label','words']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);
