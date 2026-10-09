@@ -198,7 +198,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   replace(input);
   let resize: ResizeObserver | undefined;
   const RO=doc.defaultView?.ResizeObserver;
-  if(RO){resize=new RO(()=>{if(!disposed)notify();});resize.observe(container);}
+  if(RO){let previousWidth=container.getBoundingClientRect().width;resize=new RO(()=>{if(disposed)return;const width=container.getBoundingClientRect().width;if(width===previousWidth)return;previousWidth=width;notify();});resize.observe(container);}
   return {update:replace,getState:()=>{ensureLive();return Object.freeze({...state});},setState:change,dispose:()=>{if(disposed)return;disposed=true;resize?.disconnect();clear();root.remove();}};
 }
 export {styles};

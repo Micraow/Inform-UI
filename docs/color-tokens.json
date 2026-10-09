@@ -5,8 +5,8 @@
     "license": "MIT"
   },
   "notes": [
-    "Public SDK values, not a complete private Intelligent UI specification.",
-    "Series palettes, link/info mapping and red emphasis role are project choices using public primitive values.",
+    "Public SDK role values plus independently observed non-extension host chart-blue/link/accent chains. Not a complete private Intelligent UI specification.",
+    "Other series palettes and domain-role mapping remain project choices using public primitive values.",
     "Dark soft backgrounds use public alpha variants to retain readable contrast."
   ],
   "light": {
@@ -19,12 +19,12 @@
     "tertiary": "#8f8f8f",
     "line": "rgb(13 13 13 / 10%)",
     "focus": "#0169cc",
-    "link": "#0169cc",
+    "link": "#339cff",
     "info": "#0169cc",
     "success": "#00692a",
     "danger": "#911e1b",
     "warning": "#923b0f",
-    "accent": "#e02e2a",
+    "accent": "#339cff",
     "selection": "#0285ff",
     "hover": "rgb(13 13 13 / 2%)",
     "active": "rgb(13 13 13 / 4%)",
@@ -39,7 +39,7 @@
     "danger-soft-text": "#ba2623",
     "warning-soft": "#ffe7d9",
     "warning-soft-text": "#923b0f",
-    "series-blue": "#0169cc",
+    "series-blue": "#339cff",
     "series-green": "#008635",
     "series-orange": "#b9480d",
     "series-red": "#e02e2a",
@@ -60,12 +60,12 @@
     "tertiary": "#8f8f8f",
     "line": "rgb(255 255 255 / 12%)",
     "focus": "#0285ff",
-    "link": "#66b5ff",
+    "link": "#99ceff",
     "info": "#66b5ff",
     "success": "#04b84c",
     "danger": "#e02e2a",
     "warning": "#e25507",
-    "accent": "#ff6764",
+    "accent": "#99ceff",
     "selection": "#0285ff",
     "hover": "rgb(255 255 255 / 4%)",
     "active": "rgb(255 255 255 / 6%)",
@@ -90,5 +90,12 @@
     "button-solid-hover": "#ededed",
     "button-solid-active": "#dcdcdc",
     "button-solid-text": "#0d0d0d"
+  },
+  "observedRoles": {
+    "series-blue": "Non-extension host charts-blue \u2192 app accent blue \u2192 blue300, both themes.",
+    "link": "Non-extension host text-link-foreground \u2192 app text accent \u2192 blue300 light / blue100 explicit dark.",
+    "accent": "Same app text-accent chain; unrelated to content-blue brand tint.",
+    "focusBoundary": "Captured app border-focus also has blue300 / modern dark blue300 at 70% alpha. This library uses the public SDK control-ring baseline, not that host override.",
+    "contentBlueBoundary": "Captured content-blue maps to brand-blue400 #3566f0 / brand-blue300 #81a6f9, with default l a b channels. It is not used as the chart or link color."
   }
 }

@@ -24,21 +24,21 @@
 
 信息/成功/错误/警告柔和背景亮色分别取公开blue50/green50/red50/orange50。深色采用对应公开alpha50；柔和背景上的文字单独使用SDK soft文本色。深色选择alpha背景是本库可读性选择，不声称与参考站逐像素一致。
 
-## 原创角色映射，不能冒称私有规范
+## 静态观察与原创角色映射
 
 | 角色 | 亮色 | 深色 | 依据与边界 |
 | --- | --- | --- | --- |
-| 链接 `link` | #0169cc | #66b5ff | 本库映射到info文本；公开SDK未给所有IUI链接用途的证据 |
-| 强调 `accent` | #e02e2a | #ff6764 | 参考可见红色强调，采用公开red500/red300；语义映射为近似 |
+| 链接 `link` | #339cff | #99ceff | 静态观察：非extension宿主link-foreground → app text-accent → blue300 / blue100 |
+| 强调 `accent` | #339cff | #99ceff | 同一非extension宿主app text-accent链；不能把原图红色重点推成全局accent |
 | 控件选中 `selection` | #0285ff | #0285ff | 采用公开info-solid蓝；与焦点轮廓分开 |
-| 图表蓝 | #0169cc | #339cff | blue500 / blue300 |
+| 图表蓝 | #339cff | #339cff | 静态观察：非extension宿主charts-blue → app accent-blue → blue300 |
 | 图表绿 | #008635 | #40c977 | green600 / green300 |
 | 图表橙 | #b9480d | #ff8549 | orange600 / orange300 |
 | 图表红 | #e02e2a | #ff6764 | red500 / red300 |
 | 图表紫 | #8046d9 | #ad7bf9 | purple500 / purple300 |
 | 图表灰 | #767676 | #afafaf | gray450亮 / gray700深 |
 
-图表使用公开基础色形成明确的亮暗系列，系列具体色阶/顺序仍是原创近似，未在私有捕获中确证。天气温度用橙、降水用蓝，球队文字标识用系列色；错误、获胜、进行中等状态用语义色。不得把focus蓝替换所有用途。旧 `--iui-blue` 等仅作为系列色别名保留，不再控制链接/错误/聚焦；旧自选 #356fad / #8ab4e7 已从源码移除。
+图表蓝、link和accent有上述非extension宿主条件下的变量链证据；extension分支改用VS Code宿主变量，不在本库模仿范围。其他系列使用公开基础色，具体色阶/顺序仍为原创近似。天气温度用橙、降水用蓝，球队文字标识用系列色；错误、获胜、进行中等状态用语义色。不得把focus蓝替换所有用途。`content-blue`是另一条brand蓝链（亮#3566f0、深#81a6f9，默认l a b通道），并非链接或图表蓝。捕获的app border-focus还有亮blue300、现代浏览器深色blue300 70%透明的宿主覆盖；本库焦点有意采用上表公开SDK控件基线，不宣称它等于所有宿主焦点。旧 `--iui-blue` 等仅作为系列色别名保留，不再控制链接/错误/聚焦；旧自选 #356fad / #8ab4e7 已从源码移除。
 
 [完整机器可读数值表](color-tokens.json)与浏览器computedStyle测试对应。样例同时展示背景、文本、链接、语义状态、六色图表、可聚焦/选中/禁用控件。源码每个主题只有一处token定义，auto深色使用同一组值。
 
