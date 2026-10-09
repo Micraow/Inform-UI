@@ -40,12 +40,15 @@ export type Node =
   | EntityReviewsNode
   | RestaurantAvailabilityNode
   | OnboardingSelectionNode
+  | CreateInteractivePollNode
   | LocationChoiceRequestNode
   | BusinessGalleryNode
   | FlightOptionNode
   | ArtistUpcomingEventsNode
   | PackageTrackerNode
   | FlightTrackerNode
+  | EmailPreviewNode
+  | FileNavListNode
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
@@ -278,6 +281,7 @@ export type OnboardingSelectionNode1 =
       disabled?: boolean;
       continueLabel?: string;
     };
+export type FileNavEntry = FileNavFolder | FileNavFile;
 export type CodeNode = {
   type: "code";
   id?: string;
@@ -683,6 +687,24 @@ export interface OnboardingOption {
   label: string;
   description?: string;
 }
+export interface CreateInteractivePollNode {
+  type: "create-interactive-poll";
+  id?: string;
+  label: string;
+  description?: string;
+  question?: string;
+  /**
+   * @minItems 2
+   * @maxItems 8
+   */
+  options: [PollDraftOption, PollDraftOption, ...PollDraftOption[]];
+  multiple?: boolean;
+  disabled?: boolean;
+}
+export interface PollDraftOption {
+  id: string;
+  label: string;
+}
 export interface LocationChoiceRequestNode {
   type: "location-choice-request";
   id?: string;
@@ -844,6 +866,79 @@ export interface FlightUpdate {
   message: string;
   kind: "information" | "change" | "disruption";
   description?: string;
+}
+export interface EmailPreviewNode {
+  type: "email-preview";
+  id?: string;
+  subject: string;
+  from: EmailPreviewPerson;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  to: EmailPreviewPerson[];
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  cc?: EmailPreviewPerson[];
+  sentAt?: string;
+  body: string;
+  quotedText?: string;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  attachments?: EmailPreviewAttachment[];
+  source?: ReaderSource;
+}
+export interface EmailPreviewPerson {
+  name?: string;
+  address: string;
+}
+export interface EmailPreviewAttachment {
+  id: string;
+  name: string;
+  sizeBytes?: number;
+  mediaType?: string;
+  description?: string;
+  url?: string;
+}
+export interface ReaderSource {
+  label: string;
+  url: string;
+}
+export interface FileNavListNode {
+  type: "file-nav-list";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 120
+   */
+  entries: FileNavEntry[];
+  initialFolderId?: string;
+  source?: ReaderSource;
+}
+export interface FileNavFolder {
+  id: string;
+  name: string;
+  parentId?: string | null;
+  description?: string;
+  kind: "folder";
+}
+export interface FileNavFile {
+  id: string;
+  name: string;
+  parentId?: string | null;
+  description?: string;
+  sizeBytes?: number;
+  mediaType?: string;
+  kind: "file";
+  category?: "document" | "image" | "audio" | "video" | "archive" | "other";
+  modifiedAt?: string;
+  url?: string;
 }
 export interface RedditThreadCardNode {
   type: "reddit-thread-card";

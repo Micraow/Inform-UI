@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:83701bfd56d48109f5d0a3b2b6cc7b2b0d5d7530669a2b7cd80102c912486aeb:document:base+weather",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:ed80c9791b33618f223b97e0315af964f2be4e60451600448b4b1c38ed121d0d:document:base+weather",
   "title": "Inform UI document subset: base, weather",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1299,6 +1299,52 @@
       ],
       "additionalProperties": false
     },
+    "CreateInteractivePollNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "create-interactive-poll"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "question": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PollDraftOption"
+          },
+          "minItems": 2,
+          "maxItems": 8
+        },
+        "multiple": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "options"
+      ],
+      "additionalProperties": false
+    },
     "DetailsNode": {
       "type": "object",
       "properties": {
@@ -1409,6 +1455,133 @@
       ],
       "additionalProperties": false
     },
+    "EmailPreviewAttachment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "EmailPreviewNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "email-preview"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "from": {
+          "$ref": "#/$defs/EmailPreviewPerson"
+        },
+        "to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EmailPreviewPerson"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "cc": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EmailPreviewPerson"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "sentAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "quotedText": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EmailPreviewAttachment"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "source": {
+          "$ref": "#/$defs/ReaderSource"
+        }
+      },
+      "required": [
+        "type",
+        "subject",
+        "from",
+        "to",
+        "body"
+      ],
+      "additionalProperties": false
+    },
+    "EmailPreviewPerson": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "address": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 320
+        }
+      },
+      "required": [
+        "address"
+      ],
+      "additionalProperties": false
+    },
     "EntityReviewsNode": {
       "type": "object",
       "properties": {
@@ -1515,6 +1688,166 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "FileNavEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/FileNavFolder"
+        },
+        {
+          "$ref": "#/$defs/FileNavFile"
+        }
+      ]
+    },
+    "FileNavFile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "const": "file"
+        },
+        "category": {
+          "enum": [
+            "document",
+            "image",
+            "audio",
+            "video",
+            "archive",
+            "other"
+          ]
+        },
+        "modifiedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "FileNavFolder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "kind": {
+          "const": "folder"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "FileNavListNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "file-nav-list"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FileNavEntry"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        },
+        "initialFolderId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "source": {
+          "$ref": "#/$defs/ReaderSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "entries"
       ],
       "additionalProperties": false
     },
@@ -2693,6 +3026,9 @@
           "$ref": "#/$defs/OnboardingSelectionNode"
         },
         {
+          "$ref": "#/$defs/CreateInteractivePollNode"
+        },
+        {
           "$ref": "#/$defs/LocationChoiceRequestNode"
         },
         {
@@ -2709,6 +3045,12 @@
         },
         {
           "$ref": "#/$defs/FlightTrackerNode"
+        },
+        {
+          "$ref": "#/$defs/EmailPreviewNode"
+        },
+        {
+          "$ref": "#/$defs/FileNavListNode"
         },
         {
           "$ref": "#/$defs/RedditThreadCardNode"
@@ -3343,6 +3685,24 @@
       ],
       "additionalProperties": false
     },
+    "PollDraftOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "PopoverNode": {
       "type": "object",
       "properties": {
@@ -3522,6 +3882,26 @@
         "type",
         "label",
         "bind"
+      ],
+      "additionalProperties": false
+    },
+    "ReaderSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
       ],
       "additionalProperties": false
     },
