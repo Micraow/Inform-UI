@@ -1,6 +1,6 @@
 # 体育：调用方供数的赛程、记分牌与积分榜
 
-开发分支新增 `sports-schedule`、`sports-scoreboard`、`sports-standings`，共用一个 `data` 对象。它们是独立的领域视图，支持本地筛选、比赛详情、记分牌切换和积分榜排序。旧7c490585 CDN不含这三个节点；当前固定46节点入口与实际加载验收见[CDN文档](cdn.md)。
+开发分支新增 `sports-schedule`、`sports-scoreboard`、`sports-standings`，共用一个 `data` 对象。它们是独立的领域视图，支持本地筛选、比赛详情、记分牌切换和积分榜排序。旧7c490585 CDN不含这三个节点；当前固定50节点入口与实际加载验收见[CDN文档](cdn.md)。
 
 [完整原创 JSON](../examples/sports.json) · [状态样本](../examples/sports/states.json) · [正式 Schema](../src/schema/iui.schema.json)
 

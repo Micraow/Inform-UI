@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T01:40:00Z",
+  "as_of_utc": "2026-10-09T01:53:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -8,13 +8,15 @@
     "learning_verified_commit": "f372c71d31633be85bb228f57fdb07da9e8f2112",
     "learning_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936",
     "finance_verified_commit": "55bfa57afbf91d41f6cb59db0ae2193c27d9092e",
-    "finance_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183"
+    "finance_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183",
+    "heatmap_verified_commit": "8e8908dc6e4a93758ca5fc154a84d4130577f2e6",
+    "heatmap_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37871441850"
   },
   "counts": {
     "not_implemented": 204,
-    "functionally_verified": 33,
+    "functionally_verified": 34,
     "partial": 18,
-    "implemented_pending_verification": 1
+    "implemented_pending_verification": 0
   },
   "components": [
     {
@@ -1737,8 +1739,8 @@
       "id": "stock-heatmap",
       "name": "Stock Heatmap",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "独立权重面积布局、筛选/键盘/完整表及9项API测试通过，待真实浏览器验收。",
+      "status": "functionally_verified",
+      "note": "8e8908d: 147项API与103浏览器场景通过，亮1100/暗390截图已实看，数字列换行问题已修复。",
       "tests": [
         "tests/heatmap.test.mjs",
         "tests/browser/heatmap.spec.mjs"

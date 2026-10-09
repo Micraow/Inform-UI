@@ -1,6 +1,6 @@
 # 视觉依据、配色角色与不确定项
 
-本库独立运行。颜色采用有明确许可的公开数值，按语义角色原创组织；不引入OpenAI SDK运行时。旧7c490585 CDN保留旧图表蓝色；新表对应固定f372c71的46节点资产，入口与实际CDN验收见[CDN文档](cdn.md)。
+本库独立运行。颜色采用有明确许可的公开数值，按语义角色原创组织；不引入OpenAI SDK运行时。旧7c490585 CDN保留旧图表蓝色；新表对应固定8e8908d的50节点资产（同一配色基线），入口与实际CDN验收见[CDN文档](cdn.md)。
 
 公开参考固定为 Apps SDK UI [0f00143](https://github.com/openai/apps-sdk-ui/tree/0f00143c7a639906f1621fe58e1b6be7b5bea46d)：[semantic](https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/styles/variables-semantic.css)、[primitive](https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/styles/variables-primitive.css)、[MIT许可](https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/LICENSE)。此公开体系不等于私有Intelligent UI全部官方设计规范。
 

@@ -1,6 +1,6 @@
 # 金融热图：面积与颜色分别表达什么
 
-开发分支的 `finance-heatmap` 是独立的领域视图，当前还不在固定f372c71的46节点CDN里。[完整原创合成例子](../examples/heatmap.json)。
+开发分支的 `finance-heatmap` 是独立的领域视图，已在固定8e8908d的50节点CDN里；旧f372c71不包含。[完整原创合成例子](../examples/heatmap.json)。
 
 必填字段：`source:{label,synthetic,url?}`、整体 `asOf` / `timezone`、`weightLabel`、`changeBasis`、`cells`。可选 `title`、`initialSector`、`status:ready|loading|error`、`message`。
 

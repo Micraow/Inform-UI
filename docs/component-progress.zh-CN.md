@@ -1,6 +1,6 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验33，部分18，已写待验1，未实现204。
+当前固定分母为256项：功能已验34，部分18，已写待验0，未实现204。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
@@ -248,7 +248,7 @@
 | speech-synthesizer | Speech Synthesizer | 未实现 | 暂无专门实现证据 |
 | stock-chart | Stock Chart | 功能已验 | 55bfa57通过API/8个金融浏览器场景及亮暗截图复核 |
 | stock-comparison-chart | Stock Comparison Chart | 功能已验 | 55bfa57通过API/8个金融浏览器场景及亮暗截图复核 |
-| stock-heatmap | Stock Heatmap | 已写待验 | 热图真实面积、键盘/筛选/全表及API已通过，等待浏览器CI |
+| stock-heatmap | Stock Heatmap | 功能已验 | 8e8908d通过147 API/103浏览器场景，亮暗截图及数字不换行已复核 |
 | stop-push-drip-series | Stop Push Drip Series | 未实现 | 暂无专门实现证据 |
 | superbowl-riddle | Superbowl Riddle | 未实现 | 暂无专门实现证据 |
 | tabbed-section | Tabbed Section | 未实现 | 暂无专门实现证据 |

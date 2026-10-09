@@ -2,7 +2,7 @@
 
 这是原创、纯本地的数据展示合同。调用方提供来源、时间和市场状态；库不连接行情服务，不推断实时性，不提供交易动作。示例均为合成数据，不构成投资建议。
 
-开发分支新增 `finance-quote`、`finance-chart`、`finance-comparison`。它们尚未包含在固定f372c71的46节点CDN里；源代码构建使用当前49节点Schema。49节点源55bfa57已通过[浏览器CI](https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183)和亮暗截图复核；新的金融CDN入口仍待独立实载验收。
+开发分支新增 `finance-quote`、`finance-chart`、`finance-comparison`。旧f372c71的46节点CDN不含金融；当前固定8e8908d资产使用50节点Schema，包含本页合同和热图。49节点源55bfa57已通过[浏览器CI](https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183)和亮暗截图复核；金融CDN实载记录见[固定入口](cdn.md)。
 
 [完整合成JSON](../examples/finance.json) · [Schema](../src/schema/iui.schema.json)
 
