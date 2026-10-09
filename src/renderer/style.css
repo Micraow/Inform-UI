@@ -974,7 +974,7 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-celebration-shape{position:absolute;inline-size:8px;block-size:8px;border-radius:2px;opacity:.35;transform:none;pointer-events:none}
 .iui-root .iui-celebration-shape:nth-child(even){border-radius:50%}
 .iui-root .iui-motion-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.iui-root .iui-motion-controls button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-motion-controls button{transition:none;min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
 .iui-root .iui-motion-controls button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
 .iui-root .iui-motion-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
 .iui-root .iui-motion-status{min-block-size:1.5em;font-size:.9rem}
