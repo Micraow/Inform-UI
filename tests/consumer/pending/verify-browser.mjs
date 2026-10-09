@@ -15,7 +15,7 @@ import {fileURLToPath, pathToFileURL} from 'node:url';
 
 export const widths = Object.freeze([390, 768, 1100]);
 export const themes = Object.freeze(['light', 'dark']);
-export const sourceRevision = '7978f23da0222ad9122bb0b40daa4f1844b5b9cd';
+export const sourceRevision = '26ec211fa529516af3b1523248f5912c45ec64c6';
 export const executionOwner = 'core:scripts/run-batch-consumers.mjs';
 export const examples = Object.freeze([
   {
@@ -274,8 +274,50 @@ export const examples = Object.freeze([
       "business-gallery"
     ],
     "sha256": "e49b06edd496298b8c9413782a8951c660afa371b460bf1bb77abe80942b47a2"
+  },
+  {
+    "name": "flight-option",
+    "lang": "en",
+    "canonicalIds": [
+      "flight-option"
+    ],
+    "sha256": "dd7857589c93dae8c44c10fb6fb15f75239804851b4b03b2198d4c4caad4c726"
+  },
+  {
+    "name": "artist-upcoming-events",
+    "lang": "en",
+    "canonicalIds": [
+      "artist-upcoming-events"
+    ],
+    "sha256": "5879ebb931a95ffc85b85f864654aa10ef06dc7491c20cd8b540c178b217eb21"
+  },
+  {
+    "name": "finance-lists",
+    "lang": "en",
+    "canonicalIds": [
+      "asset-distribution",
+      "transaction-list"
+    ],
+    "sha256": "ab3d9cf84d9e658544d109c50642e88ee7b830c0e56a417daa8d8fc93d6dfd0d"
+  },
+  {
+    "name": "onboarding-selection",
+    "lang": "zh-CN",
+    "canonicalIds": [
+      "onboarding-selection"
+    ],
+    "sha256": "defc49a8fee0dd0f1174fbdc5adabd8f153f0c921901bf13f628567a2bcbbe12"
+  },
+  {
+    "name": "supplied-trackers",
+    "lang": "en",
+    "canonicalIds": [
+      "package-tracker",
+      "flight-tracker"
+    ],
+    "sha256": "7d7591b92dc79c5951779bf39fa2544f2a9c9dee26937744f641925358356d56"
   }
-].map(Object.freeze));
+]);
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const git = (root, ...args) => {
@@ -705,6 +747,74 @@ export async function smokeExample(page, entry, document, expect) {
       // The smoke never consents to any remote image. Canonical specs separately
       // intercept synthetic media after native consent to test one-item isolation.
       break;
+    }
+    case 'flight-option': {
+      const root=page.locator('.iui-flight-option'), select=root.locator('.iui-flight-select'), clear=root.locator('.iui-flight-clear');
+      await disclosure(page,root.locator('details').first(),expect);
+      await expect(root.locator('time')).toHaveCount(4);
+      expect(await root.locator('time').first().textContent()).toBe(document.body[0].legs[0].departure.at);
+      await page.evaluate(()=>{window.flightChoices=[];document.getElementById('iui').addEventListener('iui:flight-choice',e=>window.flightChoices.push({detail:e.detail,cancelable:e.cancelable,composed:e.composed}));});
+      await key(page,clear,'Space',expect);await nativePointer(page,clear,expect);await expect(root).toHaveAttribute('data-selected','false');
+      await key(page,select,'Enter',expect);await expect(root).toHaveAttribute('data-selected','true');await expect(select).toBeFocused();
+      await page.keyboard.press('Space');await nativePointer(page,select,expect);
+      expect(await page.evaluate(()=>window.flightChoices.length)).toBe(1);
+      await clear.click();await expect(root).toHaveAttribute('data-selected','false');
+      await page.evaluate(()=>document.getElementById('iui').addEventListener('iui:flight-choice',e=>e.preventDefault(),{once:true}));
+      await select.click();await expect(root).toHaveAttribute('data-selected','false');
+      await select.click();await expect(root).toHaveAttribute('data-selected','true');
+      expect(await page.evaluate(()=>window.flightChoices.map(e=>e.detail.optionId))).toEqual([document.body[0].optionId,null,document.body[0].optionId,document.body[0].optionId]);
+      await expect(root.locator('details').first()).toHaveAttribute('open','');break;
+    }
+    case 'artist-upcoming-events': {
+      const root=page.locator('.iui-artist-events').first(),filter=root.locator('select'),details=root.locator('details').first();
+      await disclosure(page,details,expect);await filter.focus();await expect(filter).toBeFocused();
+      await filter.selectOption('2028-02');await expect(root.locator('.iui-events-item:not([hidden])')).toHaveCount(1);
+      await expect(root.locator('[data-event-id=february]')).toBeVisible();
+      await filter.selectOption('2020-01');await expect(root.locator('[data-event-id=historical]')).toBeVisible();
+      await filter.selectOption('');await expect(root.locator('.iui-events-item:not([hidden])')).toHaveCount(3);await expect(details).toHaveAttribute('open','');await expect(filter).toBeFocused();
+      await expect(page.locator('.iui-artist-events').nth(1).locator('.iui-events-empty')).toBeVisible();break;
+    }
+    case 'finance-lists': {
+      const assets=page.locator('.iui-asset-distribution').first(),currency=assets.locator('select');
+      await currency.focus();await currency.selectOption('EUR');await expect(currency).toBeFocused();
+      await expect(assets.locator('.iui-ledger-currency-group:not([hidden])')).toHaveCount(1);
+      await expect(assets.locator('[data-currency=EUR] .iui-ledger-subtotal')).toContainText('0 EUR');
+      await currency.selectOption('USD');await expect(assets.locator('[data-currency=USD] .iui-ledger-subtotal')).toContainText('5001 USD');
+      await expect(assets.locator('[data-currency=USD] .iui-ledger-amount').nth(2)).toContainText('Amount not supplied');
+      await currency.selectOption('');
+      const tx=page.locator('.iui-transaction-list').first(),direction=tx.locator('.iui-ledger-direction-filter'),month=tx.locator('.iui-ledger-month-filter'),reset=tx.locator('.iui-ledger-reset'),details=tx.locator('details').first();
+      await disclosure(page,details,expect);await direction.selectOption('debit');await month.selectOption('2026-09');
+      await expect(tx.locator('tbody tr:not([hidden])')).toHaveCount(1);await expect(tx.locator('tbody tr:not([hidden])')).toHaveAttribute('data-transaction-id','sep-debit');
+      await key(page,reset,'Enter',expect);await expect(tx.locator('tbody tr:not([hidden])')).toHaveCount(4);
+      await page.keyboard.press('Space');await nativePointer(page,reset,expect);await expect(reset).toBeFocused();await expect(details).toHaveAttribute('open','');
+      await expect(page.locator('.iui-asset-distribution').nth(1).locator('.iui-ledger-empty')).toBeVisible();
+      await expect(page.locator('.iui-transaction-list').nth(1).locator('.iui-ledger-empty')).toBeVisible();break;
+    }
+    case 'onboarding-selection': {
+      const root=page.locator('.iui-onboarding'),reading=root.locator('[data-option-id=reading]'),writing=root.locator('[data-option-id=writing]'),reasoning=root.locator('[data-option-id=reasoning]'),proceed=root.locator('.iui-onboarding-continue'),reset=root.locator('.iui-onboarding-reset');
+      await expect(reading).toBeChecked();await key(page,writing,'Space',expect);await expect(writing).toBeChecked();
+      await reasoning.click();await expect(reasoning).not.toBeChecked();await expect(root).toHaveAttribute('data-status','invalid');
+      await page.evaluate(()=>{window.onboardingChoices=[];document.getElementById('iui').addEventListener('iui:onboarding-choice',e=>window.onboardingChoices.push({detail:e.detail,cancelable:e.cancelable}));});
+      await key(page,proceed,'Enter',expect);await expect(root).toHaveAttribute('data-status','ready');
+      expect(await page.evaluate(()=>window.onboardingChoices)).toEqual([{detail:{componentId:'practice-choices',selectedIds:['reading','writing']},cancelable:true}]);
+      await page.getByRole('button',{name:'更改不相关的合成值',exact:true}).click();await expect(reading).toBeChecked();await expect(writing).toBeChecked();
+      await reset.click();await expect(reading).toBeChecked();await expect(writing).not.toBeChecked();
+      await reading.click();await proceed.click();await expect(root).toHaveAttribute('data-status','invalid');await expect(reading).toBeFocused();
+      await page.keyboard.press('Space');await page.evaluate(()=>document.getElementById('iui').addEventListener('iui:onboarding-choice',e=>e.preventDefault(),{once:true}));
+      await proceed.click();await expect(root).toHaveAttribute('data-status','not-accepted');await expect(reading).toBeChecked();
+      await proceed.click();await expect(root).toHaveAttribute('data-status','ready');break;
+    }
+    case 'supplied-trackers': {
+      for(const [selector,value,record]of [['.iui-package-tracker','current','hub'],['.iui-flight-tracker','change','gate']]){
+        const root=page.locator(selector),filter=root.locator('.iui-tracker-filter'),reset=root.locator('.iui-tracker-reset'),details=root.locator('details').first();
+        await disclosure(page,details,expect);await filter.focus();await filter.selectOption(value);await expect(filter).toBeFocused();
+        await expect(root.locator('.iui-tracker-record:not([hidden])')).toHaveCount(1);await expect(root.locator('.iui-tracker-record:not([hidden])')).toHaveAttribute('data-record-id',record);
+        await key(page,reset,'Enter',expect);await page.keyboard.press('Space');await nativePointer(page,reset,expect);
+        await expect(root.locator('.iui-tracker-record:not([hidden])')).toHaveCount(3);await expect(reset).toBeFocused();await expect(details).toHaveAttribute('open','');
+      }
+      await expect(page.locator('.iui-flight-tracker .iui-tracker-missing')).toHaveCount(2);
+      await expect(page.locator('.iui-flight-tracker')).toContainText('2028-02-29T07:20-05:00');
+      await expect(page.locator('.iui-tracker img,.iui-tracker iframe,.iui-tracker [role=progressbar]')).toHaveCount(0);break;
     }
     default: assert.fail('No smoke owner for ' + entry.name);
   }
