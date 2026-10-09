@@ -1,0 +1,14 @@
+{
+  "version": "iui/1",
+  "title": "原生字段的额外标签",
+  "description": "额外标签指向实际字段，原标签和表单规则保持有效。这个例子不提交到任何服务。",
+  "state": {"name": "示例", "consent": false, "gain": 3},
+  "body": [
+    {"type": "label", "text": "点这里也可以编辑示例名称", "target": "name-field"},
+    {"type": "input", "id": "name-field", "kind": "text", "label": "示例名称", "bind": "name"},
+    {"type": "label", "text": "阅读本地说明后可勾选", "target": "consent-field"},
+    {"type": "input", "id": "consent-field", "kind": "checkbox", "label": "已阅读这份示例说明", "bind": "consent"},
+    {"type": "slider", "id": "gain-field", "label": "演示数值", "bind": "gain", "min": 0, "max": 10, "step": 1},
+    {"type": "label", "text": "演示数值的第二个标签", "target": "gain-field"}
+  ]
+}

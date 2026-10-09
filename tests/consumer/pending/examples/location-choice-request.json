@@ -1,0 +1,34 @@
+{
+  "version": "iui/1",
+  "title": "Choose a supplied place",
+  "description": "Original fictional locations. Choosing only informs this page.",
+  "body": [
+    {
+      "type": "location-choice-request",
+      "id": "places",
+      "label": "Meeting place options",
+      "description": "Choose among the supplied labels.",
+      "options": [
+        {
+          "id": "courtyard",
+          "label": "Example courtyard",
+          "address": "1 Example Lane",
+          "description": "Supplied entrance description."
+        },
+        {
+          "id": "terrace",
+          "label": "Example terrace",
+          "address": "2 Example Lane"
+        },
+        {
+          "id": "lobby",
+          "label": "Example lobby"
+        }
+      ],
+      "source": {
+        "label": "Supplied planning notes",
+        "url": "https://example.invalid/notes"
+      }
+    }
+  ]
+}

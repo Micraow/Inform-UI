@@ -1,0 +1,44 @@
+{
+  "version": "iui/1",
+  "title": "Fictional supplied person profiles",
+  "description": "Original synthetic demonstration. Every person, organization and fact in this example is fictional.",
+  "body": [
+    {
+      "type": "person-profile",
+      "name": "Alex River (fictional)",
+      "role": "Workshop coordinator",
+      "organization": "Example Reading Circle (fictional)",
+      "location": "Example City (fictional)",
+      "biography": "Alex is a fictional character in this original UI demonstration.\nThis biography is supplied text, not a retrieved or verified profile.",
+      "facts": [
+        {
+          "id": "focus",
+          "label": "Workshop topic",
+          "value": "Reading and discussion"
+        },
+        {
+          "id": "format",
+          "label": "Format",
+          "value": "Small-group practice"
+        }
+      ],
+      "links": [
+        {
+          "id": "reading",
+          "label": "Example reading page",
+          "url": "https://example.com/reading"
+        }
+      ],
+      "source": {
+        "label": "Original synthetic fixture",
+        "url": "https://example.com/fixture"
+      }
+    },
+    {
+      "type": "person-profile",
+      "name": "Sam Willow (fictional)",
+      "biography": "A second fictional profile for independent native disclosure.",
+      "expanded": true
+    }
+  ]
+}

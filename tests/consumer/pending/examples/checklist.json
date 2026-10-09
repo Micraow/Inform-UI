@@ -1,0 +1,51 @@
+{
+  "version": "iui/1",
+  "title": "本地任务清单",
+  "description": "原创示例。勾选只更新当前页面，不保存任务、不发送提醒。",
+  "state": {
+    "draft": false,
+    "review": false,
+    "archive": false,
+    "locked": false
+  },
+  "body": [
+    {
+      "type": "checklist",
+      "label": "演示交付检查",
+      "items": [
+        {
+          "id": "draft",
+          "label": "准备原创草稿",
+          "bind": "draft",
+          "hint": "此清单没有连接外部任务系统。"
+        },
+        {
+          "id": "review",
+          "label": "人工复核内容",
+          "bind": "review"
+        },
+        {
+          "id": "archive",
+          "label": "只读示例项目",
+          "bind": "archive",
+          "disabled": true
+        }
+      ],
+      "disabled": {
+        "$": "locked"
+      }
+    },
+    {
+      "type": "toggle",
+      "label": "锁定这份清单",
+      "bind": "locked"
+    },
+    {
+      "type": "button",
+      "label": "恢复全部初值",
+      "action": {
+        "kind": "reset"
+      }
+    }
+  ]
+}

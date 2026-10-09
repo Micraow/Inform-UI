@@ -1,0 +1,10 @@
+{
+  "version": "iui/1",
+  "title": "Original bounded Markdown subset",
+  "body": [
+    {
+      "type": "markdown",
+      "value": "# Markdown notes\n\n## Overview\n### Scope\n#### Details\n##### Limits\n###### End\n\nLiteral Unicode 中文 😀 עברית. *Emphasis*, **strong**, _alternate_, __alternate strong__ and `literal <code>`.\n\n- First\n- Second\n\n3. Third\n4. Fourth\n\n> One-level quote\n\n```text\nconst message = \"中文 😀\";\n<not-html>\n```\n\n[Example source](https://example.test/read)\n\n![Images remain literal](https://example.test/no-image.png)"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "version": "iui/1",
+  "title": "作者给定的有限内容集合",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "caption",
+      "value": "以下均为原创合成内容。左右按钮只移动可视区域，没有自动播放、循环或远程获取。"
+    },
+    {
+      "type": "carousel",
+      "id": "authored-items",
+      "label": "三条合成笔记",
+      "children": [
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "title",
+              "value": "第一条",
+              "level": 3
+            },
+            {
+              "type": "text",
+              "value": "按作者顺序保留内容；触屏可直接横向滚动。"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "title",
+              "value": "第二条",
+              "level": 3
+            },
+            {
+              "type": "text",
+              "value": "到达边界后继续激活不会跳回起点。"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "children": [
+            {
+              "type": "title",
+              "value": "第三条",
+              "level": 3
+            },
+            {
+              "type": "text",
+              "value": "内容可选择和阅读；按钮不会切换或复制子组件。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version":"iui/1", "title":"复习练习开关", "state":{"practice":false,"review":true,"locked":false,"server":""},
+  "body":[
+    {"type":"title","value":"复习练习开关"},
+    {"type":"form","label":"练习设置","submitLabel":"保存设置","cancelLabel":"恢复初值","children":[
+      {"type":"input","kind":"checkbox","label":"启用本次练习","bind":"practice","required":true,"hint":"选中后可提交；取消会恢复初值。","error":{"$":"server"}},
+      {"type":"field","label":"复习选项","disabled":{"$":"locked"},"children":[{"type":"input","kind":"checkbox","label":"显示复习提示","bind":"review"}]}
+    ]},
+    {"type":"button","label":"重置全部","action":{"kind":"reset"}}
+  ]
+}

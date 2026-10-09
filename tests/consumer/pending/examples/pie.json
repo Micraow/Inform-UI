@@ -1,0 +1,61 @@
+{
+  "version": "iui/1",
+  "title": "Synthetic categorical proportions",
+  "theme": "auto",
+  "state": {
+    "amount": 1
+  },
+  "body": [
+    {
+      "type": "chart",
+      "kind": "pie",
+      "title": "Known values; synthetic example",
+      "xKey": "category",
+      "series": [
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ],
+      "data": [
+        {
+          "category": "Alpha",
+          "amount": {
+            "$": "amount"
+          }
+        },
+        {
+          "category": "Beta",
+          "amount": 3
+        },
+        {
+          "category": "Zero",
+          "amount": 0
+        },
+        {
+          "category": "Missing",
+          "amount": null
+        }
+      ],
+      "note": "Original demonstration. Missing values are not treated as zero."
+    },
+    {
+      "type": "chart",
+      "kind": "pie",
+      "title": "Single known value",
+      "xKey": "category",
+      "series": [
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ],
+      "data": [
+        {
+          "category": "Only",
+          "amount": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "version": "iui/1",
+  "title": "Original code examples",
+  "state": {
+    "count": 0
+  },
+  "body": [
+    {
+      "type": "code",
+      "id": "legacy",
+      "value": "inline <literal>",
+      "inline": true
+    },
+    {
+      "type": "code",
+      "id": "plain",
+      "value": "Plain block\r\n\tPreserved whitespace",
+      "language": "text"
+    },
+    {
+      "type": "code",
+      "id": "main-code",
+      "value": "const greeting = \"你好 😀\";\r\n\t// exact whitespace\r\nconsole.log(greeting);\n// long line: xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal x",
+      "language": "TypeScript",
+      "copy": true,
+      "highlight": true
+    },
+    {
+      "type": "code",
+      "id": "json-code",
+      "value": "{ \"literal\": \"</script><img src=x>\", \"count\": 3, \"valid\": true }",
+      "language": "json",
+      "highlight": true
+    },
+    {
+      "type": "code",
+      "id": "python-code",
+      "value": "# Original sample\ndef greet(name):\n\treturn f\"Hello {name}\"\n",
+      "language": "python",
+      "copy": true,
+      "highlight": true
+    },
+    {
+      "type": "code",
+      "id": "unknown-code",
+      "value": "<script>never executed</script>\n‮ Literal text",
+      "language": "<unknown>",
+      "copy": true,
+      "highlight": true
+    },
+    {
+      "type": "code",
+      "id": "empty-code",
+      "value": "",
+      "copy": true,
+      "highlight": true
+    },
+    {
+      "type": "code",
+      "id": "copy-only",
+      "value": "Do not infer a language.",
+      "copy": true
+    }
+  ]
+}
