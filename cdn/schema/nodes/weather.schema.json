@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:ed80c9791b33618f223b97e0315af964f2be4e60451600448b4b1c38ed121d0d:node:weather",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:19c525c24bffa31503ea945b6f0535fb8a76eac88f5fe4f33cf49b0687656d5b:node:weather",
   "title": "Inform UI node subset: weather",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:ed80c9791b33618f223b97e0315af964f2be4e60451600448b4b1c38ed121d0d:document:base+forms",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:19c525c24bffa31503ea945b6f0535fb8a76eac88f5fe4f33cf49b0687656d5b:document:base+forms",
   "title": "Inform UI document subset: base, forms",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -3376,6 +3376,9 @@
           "$ref": "#/$defs/FlightTrackerNode"
         },
         {
+          "$ref": "#/$defs/SidebarPeopleAlsoAskNode"
+        },
+        {
           "$ref": "#/$defs/EmailPreviewNode"
         },
         {
@@ -4409,6 +4412,65 @@
       ],
       "additionalProperties": false
     },
+    "RelatedQuestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "answer": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelatedQuestionSource"
+          },
+          "minItems": 0,
+          "maxItems": 5
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "RelatedQuestionSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
     "RestaurantAvailabilityNode": {
       "type": "object",
       "properties": {
@@ -4906,6 +4968,51 @@
         "label",
         "bind",
         "options"
+      ],
+      "additionalProperties": false
+    },
+    "SidebarPeopleAlsoAskNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "sidebar-people-also-ask"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelatedQuestion"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "expanded": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
       ],
       "additionalProperties": false
     },

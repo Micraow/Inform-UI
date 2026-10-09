@@ -47,6 +47,7 @@ export type Node =
   | ArtistUpcomingEventsNode
   | PackageTrackerNode
   | FlightTrackerNode
+  | SidebarPeopleAlsoAskNode
   | EmailPreviewNode
   | FileNavListNode
   | RedditThreadCardNode
@@ -866,6 +867,36 @@ export interface FlightUpdate {
   message: string;
   kind: "information" | "change" | "disruption";
   description?: string;
+}
+export interface SidebarPeopleAlsoAskNode {
+  type: "sidebar-people-also-ask";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  items: RelatedQuestion[];
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  expanded?: string[];
+}
+export interface RelatedQuestion {
+  id: string;
+  question: string;
+  answer: string | null;
+  /**
+   * @minItems 0
+   * @maxItems 5
+   */
+  sources?: RelatedQuestionSource[];
+}
+export interface RelatedQuestionSource {
+  label: string;
+  url: string;
 }
 export interface EmailPreviewNode {
   type: "email-preview";

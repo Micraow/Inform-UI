@@ -2097,6 +2097,110 @@
       ],
       "additionalProperties": false
     },
+    "RelatedQuestionSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "RelatedQuestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "answer": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelatedQuestionSource"
+          },
+          "minItems": 0,
+          "maxItems": 5
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "answer"
+      ],
+      "additionalProperties": false
+    },
+    "SidebarPeopleAlsoAskNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "sidebar-people-also-ask"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RelatedQuestion"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "expanded": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "ReaderSource": {
       "type": "object",
       "properties": {
@@ -9020,6 +9124,9 @@
         },
         {
           "$ref": "#/$defs/FlightTrackerNode"
+        },
+        {
+          "$ref": "#/$defs/SidebarPeopleAlsoAskNode"
         },
         {
           "$ref": "#/$defs/EmailPreviewNode"
