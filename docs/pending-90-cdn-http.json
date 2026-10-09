@@ -1,0 +1,115 @@
+{
+  "commit": "5c7f334a975b75b0a70f58b5570b2ea567aed9dc",
+  "results": [
+    {
+      "name": "iui.global.min.js",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.global.min.js",
+      "status": 200,
+      "sha256": "abc9aad809ae7793f903e469297d7ad97f2874fd6ab17dd62ab635889ece93fd",
+      "sri": "sha384-lzlbbrCDkjA12MkdUPJYeXhFgDwTxOHIkGhav/we5EDEtLyU+OP1Z3gZgxl2K4Qp",
+      "mime": "application/javascript; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "iui.min.js",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.min.js",
+      "status": 200,
+      "sha256": "2361cb802e0c77fe7d9dc78dec6ecaea472e1be40e8b54c283f87ab10c521586",
+      "sri": "sha384-sQ+5+Fm8frZuHnVPQl5Nzi0prXKXySRr/CnBY77pprBtlrvexP5rIO/gShcTPEJ8",
+      "mime": "application/javascript; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "iui.css",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.css",
+      "status": 200,
+      "sha256": "755118050a7a01b20fb797efd23290e2c98545ec9c750c3c21f7f9fc5eedc110",
+      "sri": "sha384-avgiFDwdK1wYMoqev29yNOdp6bpl0DQNVJAlf/2w9Au7yLZTZnJyeqGPHuesglJC",
+      "mime": "text/css; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "iui.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.schema.json",
+      "status": 200,
+      "sha256": "620f7cdca4c4143090167e583cbdb8d9160b1cfcfc35e0afa071f2a8bcdd8785",
+      "sri": "sha384-FB0H6wqigvf6JtaGfX8vMU7LPSxyHw2+WdJ0kZUbrVPhfqrjoaL2qW2ALoOuZp9r",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/index.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/index.json",
+      "status": 200,
+      "sha256": "ca5ee433beba14711a76ca9196fbecf6a0a205824e348840754da2a94aff9585",
+      "sri": "sha384-ZbXBn7c5UWxQzHBSIUFgxBfKFr9X5KUbv+AetxXDfmLtET5yDo95NL6DVbtR0JlH",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/base.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/base.schema.json",
+      "status": 200,
+      "sha256": "f2c205f393501cdd48263cb1310373158baf6f68bba66ed30b0e87c77418cdcf",
+      "sri": "sha384-IycHXwzYdZKUpFwwFOHUCuOx8xgz+PTvsL5FkxB0DE37rAGs+0exWtKUgFpY3utW",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/forms.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/forms.schema.json",
+      "status": 200,
+      "sha256": "143c32aabc7d5190e04fc93f34bef46e81178c1f385b5a8547c5fe016bf8fb4c",
+      "sri": "sha384-sOL4ZIXw6KCTD3NhQy/kgXwF8nydoQpJFGoT8Y9yKghBDqaZ7fSYBGq3Oh19r7B/",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/learning.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/learning.schema.json",
+      "status": 200,
+      "sha256": "cef9bd66439ddc149160ac146b5e0eef410af6342b2e2eda924ee1fa03d50bb2",
+      "sri": "sha384-tcirqbGiIg4viv59w+TQL2Rt843Oydc+uJaC8Eb+EuJMJZPmXYe2MUrwTVjC0q30",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/nodes/base.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/nodes/base.schema.json",
+      "status": 200,
+      "sha256": "e37bd96138efa4ed893ca80cad73ac87b096cf8a01bb99526347104f95d20688",
+      "sri": "sha384-1zbBWMd/Z9ctAFNwfjjDS4bqragxGLF+3DgAb69qIuYUXgHi9ks1P28GZoqM1uI4",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/nodes/forms.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/nodes/forms.schema.json",
+      "status": 200,
+      "sha256": "4739281a14bb00b238624ba5ae31359af473923187b9c3e6aad942902f66be11",
+      "sri": "sha384-pBmXqDzN0ZfIG/ZqvUzLUsde0rv80FpXUjSJFl5DVEhQJcMAsDxAgMOKEoGMAegh",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    },
+    {
+      "name": "schema/nodes/learning.schema.json",
+      "url": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/nodes/learning.schema.json",
+      "status": 200,
+      "sha256": "c288cf8c49b20f5aef8da9a5aaec4ed855079c12f3cd833de63fc6e9fd89a9a0",
+      "sri": "sha384-5xlG2mNuBqCfQ24J7RYJt8nIlMj/xhSIN8LT2JELXeTUqRSjhV9oBgpG7XQA0NQY",
+      "mime": "application/json; charset=utf-8",
+      "cors": "*",
+      "cache": "public, max-age=31536000, s-maxage=31536000, immutable"
+    }
+  ]
+}

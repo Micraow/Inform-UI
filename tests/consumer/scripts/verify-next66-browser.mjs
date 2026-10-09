@@ -70,6 +70,6 @@ try{
   assert.deepEqual(errors,[],label+': browser errors');assert.deepEqual(requests,[],label+': unsolicited requests');
   await page.screenshot({path:path.join(screenshots,label+'.png'),fullPage:true});await page.close();count++;console.log(`PASS ${label}`);
  }
- await writeFile(path.join(screenshots,'RESULTS.json'),JSON.stringify({revision,localCompiledViews:count,widths:[390,768,1100],themes:['light','dark'],browser:'chromium',publicCdn:'not-run',externalLinkActivation:'not-run; consumers do not navigate fictional links',screenReader:'not-run',screenshotReview:'pending-human-review'},null,2)+'\n');
+ await writeFile(path.join(screenshots,'RESULTS.json'),JSON.stringify({revision,exampleLanguages:{"loading-numeric-progress":"zh-CN","loading-placeholder-shapes":"zh-CN","supplied-source-reading":"zh-CN"},localCompiledViews:count,widths:[390,768,1100],themes:['light','dark'],browser:'chromium',publicCdn:'not-run',externalLinkActivation:'not-run; consumers do not navigate fictional links',screenReader:'not-run',screenshotReview:'pending-human-review'},null,2)+'\n');
  console.log(`PASS ${count} inline Chromium views; public CDN, manual screenshot and assistive-technology review are separate.`);
 }finally{await browser?.close();await rm(temporary,{recursive:true,force:true});}

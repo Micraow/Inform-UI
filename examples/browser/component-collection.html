@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Inform UI 组件试用合集</title>
+<link id="iui-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.css" integrity="sha384-avgiFDwdK1wYMoqev29yNOdp6bpl0DQNVJAlf/2w9Au7yLZTZnJyeqGPHuesglJC" crossorigin="anonymous">
+</head>
+<body class="iui-page" data-theme="auto" style="margin:0">
+<main id="answer"></main>
+<pre id="status" role="alert"></pre>
+<script id="spec" type="application/json">{
+  "version": "iui/1",
+  "title": "本地组件试用合集",
+  "description": "原创合成示例。展开每项可试用；数据由页面提供，选择与回顾不会预订、发信或执行任务。显式复制只复制本页文本；远程图片仍需逐项选择加载。",
+  "theme": "auto",
+  "state": {
+    "demo_counter": 0,
+    "d2_count": 0,
+    "d3_amount": 1,
+    "d4_practice": false,
+    "d4_review": true,
+    "d4_locked": false,
+    "d4_server": "",
+    "d6_practiceDate": "2024-02-29",
+    "d6_optionalDate": "",
+    "d6_locked": false,
+    "d7_notes": false,
+    "d8_unrelated": 1,
+    "d10_draft": false,
+    "d10_review": false,
+    "d10_archive": false,
+    "d10_locked": false,
+    "d11_unrelated": 1,
+    "d12_clarity": 0,
+    "d12_confidence": 3,
+    "d12_locked": false,
+    "d13_other": 0,
+    "d15_count": 1,
+    "d15_locked": false,
+    "d15_note": "Whole declared state is supplied to the host handler.",
+    "d16_n": 1,
+    "d18_name": "示例",
+    "d18_consent": false,
+    "d18_gain": 3,
+    "demo_label_text": "点标签可定位这里",
+    "d20_count": 0,
+    "d27_count": 0,
+    "d28_count": 0,
+    "d28_locked": false
+  },
+  "body": [
+    {
+      "type": "callout",
+      "tone": "info",
+      "value": "点击下面的标题展开一个例子。这里的输入与练习只保留在当前页面，刷新会恢复。计数不代表账户、服务或真实完成结果。"
+    },
+    {
+      "type": "details",
+      "id": "demo-section-1",
+      "summary": "01 · 横向阅读",
+      "children": [
+        {
+          "type": "carousel",
+          "id": "d1_authored-items",
+          "label": "三条合成笔记",
+          "children": [
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "title",
+                  "value": "第一条",
+                  "level": 3
+                },
+                {
+                  "type": "text",
+                  "value": "按作者顺序保留内容；触屏可直接横向滚动。"
+                }
+              ]
+            },
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "title",
+                  "value": "第二条",
+                  "level": 3
+                },
+                {
+                  "type": "text",
+                  "value": "到达边界后继续激活不会跳回起点。"
+                }
+              ]
+            },
+            {
+              "type": "card",
+              "children": [
+                {
+                  "type": "title",
+                  "value": "第三条",
+                  "level": 3
+                },
+                {
+                  "type": "text",
+                  "value": "内容可选择和阅读；按钮不会切换或复制子组件。"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-2",
+      "summary": "02 · 代码高亮与复制",
+      "children": [
+        {
+          "type": "code",
+          "id": "d2_main-code",
+          "value": "const greeting = \"你好 😀\";\r\n\t// exact whitespace\r\nconsole.log(greeting);\n// long line: xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal xoriginal x",
+          "language": "TypeScript",
+          "copy": true,
+          "highlight": true
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-3",
+      "summary": "03 · 饼图与精确值",
+      "children": [
+        {
+          "type": "chart",
+          "kind": "pie",
+          "title": "Known values; synthetic example",
+          "xKey": "category",
+          "series": [
+            {
+              "key": "amount",
+              "label": "Amount"
+            }
+          ],
+          "data": [
+            {
+              "category": "Alpha",
+              "amount": {
+                "$": "d3_amount"
+              }
+            },
+            {
+              "category": "Beta",
+              "amount": 3
+            },
+            {
+              "category": "Zero",
+              "amount": 0
+            },
+            {
+              "category": "Missing",
+              "amount": null
+            }
+          ],
+          "note": "Original demonstration. Missing values are not treated as zero."
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-4",
+      "summary": "04 · 复选框",
+      "children": [
+        {
+          "type": "input",
+          "kind": "checkbox",
+          "label": "启用本次练习",
+          "bind": "d4_practice",
+          "required": true,
+          "hint": "选中后可提交；取消会恢复初值。",
+          "error": {
+            "$": "d4_server"
+          }
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-5",
+      "summary": "05 · Markdown阅读",
+      "children": [
+        {
+          "type": "markdown",
+          "value": "# Markdown notes\n\n## Overview\n### Scope\n#### Details\n##### Limits\n###### End\n\nLiteral Unicode 中文 😀 עברית. *Emphasis*, **strong**, _alternate_, __alternate strong__ and `literal \u003ccode>`.\n\n- First\n- Second\n\n3. Third\n4. Fourth\n\n> One-level quote\n\n```text\nconst message = \"中文 😀\";\n\u003cnot-html>\n```\n\n[Example source](https://example.test/read)\n\n![Images remain literal](https://example.test/no-image.png)"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-6",
+      "summary": "06 · 日期输入",
+      "children": [
+        {
+          "type": "input",
+          "kind": "date",
+          "label": "练习日期",
+          "bind": "d6_practiceDate",
+          "required": true,
+          "minDate": "2024-01-01",
+          "maxDate": "2024-12-31",
+          "hint": "请选择 2024 年的日期。原始值使用 YYYY-MM-DD，显示格式由浏览器决定。"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-7",
+      "summary": "07 · 分组页签",
+      "children": [
+        {
+          "type": "tab-group",
+          "id": "d7_demo-tabs",
+          "label": "阅读方式",
+          "children": [
+            {
+              "type": "tab-panel",
+              "id": "d7_overview",
+              "label": "概览",
+              "children": [
+                {
+                  "type": "title",
+                  "value": "本地内容切换",
+                  "level": 2
+                },
+                {
+                  "type": "text",
+                  "value": "使用左右方向键、Home 或 End 切换；不会请求网络。"
+                },
+                {
+                  "type": "toggle",
+                  "label": "附注开关",
+                  "bind": "d7_notes"
+                }
+              ]
+            },
+            {
+              "type": "tab-panel",
+              "id": "d7_unavailable",
+              "label": "暂不可用",
+              "children": [],
+              "disabled": true
+            },
+            {
+              "type": "tab-panel",
+              "id": "d7_reference",
+              "label": "参考与代码",
+              "children": [
+                {
+                  "type": "code",
+                  "language": "json",
+                  "value": "{\"local\":true}"
+                },
+                {
+                  "type": "text",
+                  "value": {
+                    "$": "d7_notes"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-8",
+      "summary": "08 · 句中填空",
+      "children": [
+        {
+          "type": "fill-blank",
+          "id": "d8_reading-practice",
+          "title": "参考信息与实际结果",
+          "description": "填写给定句子中的三个概念。可以修改后重查，也可以单独查看参考答案。",
+          "parts": [
+            "这是一份",
+            {
+              "blank": "synthetic"
+            },
+            "练习；JSON 中已经包含",
+            {
+              "blank": "reference"
+            },
+            "答案。数据键 HTTP 与 http ",
+            {
+              "blank": "case"
+            },
+            "。"
+          ],
+          "blanks": [
+            {
+              "id": "synthetic",
+              "label": "练习的数据性质",
+              "answers": [
+                "合成",
+                "原创合成"
+              ],
+              "hint": "这些例子不是真实用户记录。",
+              "explanation": "练习内容由作者提供，不代表服务返回。"
+            },
+            {
+              "id": "reference",
+              "label": "答案的用途",
+              "answers": [
+                "参考"
+              ],
+              "explanation": "本地校对只作学习反馈，不是保密考试。"
+            },
+            {
+              "id": "case",
+              "label": "大小写是否相同",
+              "answers": [
+                "不同",
+                "不相同"
+              ],
+              "hint": "本练习的比较会区分大小写。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-9",
+      "summary": "09 · 词序练习",
+      "children": [
+        {
+          "type": "sentence-builder",
+          "title": "同一个词，可以出现两次",
+          "prompt": "按参考句的顺序选择词块：I think therefore I am。点击后可以前移、后移或移除。",
+          "tokens": [
+            {
+              "id": "am",
+              "text": "am"
+            },
+            {
+              "id": "i_first",
+              "text": "I"
+            },
+            {
+              "id": "therefore",
+              "text": "therefore"
+            },
+            {
+              "id": "i_second",
+              "text": "I"
+            },
+            {
+              "id": "think",
+              "text": "think"
+            }
+          ],
+          "answer": [
+            "i_first",
+            "think",
+            "therefore",
+            "i_second",
+            "am"
+          ],
+          "explanation": "两个 I 是独立词块；本练习按提供的词块身份和顺序检查，不推断其他合理句子。"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-10",
+      "summary": "10 · 可勾选清单",
+      "children": [
+        {
+          "type": "checklist",
+          "label": "演示交付检查",
+          "items": [
+            {
+              "id": "draft",
+              "label": "准备原创草稿",
+              "bind": "d10_draft",
+              "hint": "此清单没有连接外部任务系统。"
+            },
+            {
+              "id": "review",
+              "label": "人工复核内容",
+              "bind": "d10_review"
+            },
+            {
+              "id": "archive",
+              "label": "只读示例项目",
+              "bind": "d10_archive",
+              "disabled": true
+            }
+          ],
+          "disabled": {
+            "$": "d10_locked"
+          }
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-11",
+      "summary": "11 · 词汇卡片",
+      "children": [
+        {
+          "type": "vocab-card",
+          "id": "d11_vocab-main",
+          "term": "resolve",
+          "languageLabel": "English",
+          "pronunciation": "/rɪˈzɒlv/",
+          "partOfSpeech": "verb",
+          "senses": [
+            {
+              "id": "settle",
+              "meaning": "To find a solution to a problem.",
+              "translation": "解决",
+              "examples": [
+                "We resolved the issue together.",
+                "A clear test can resolve uncertainty."
+              ]
+            },
+            {
+              "id": "decide",
+              "meaning": "To decide firmly on a course of action.",
+              "translation": "决心",
+              "examples": [
+                "They resolved to return."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-12",
+      "summary": "12 · 本地评分",
+      "children": [
+        {
+          "type": "rating",
+          "label": "清晰程度",
+          "bind": "d12_clarity",
+          "hint": "选择整数评分。清除后回到尚未评分。",
+          "disabled": {
+            "$": "d12_locked"
+          }
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-13",
+      "summary": "13 · 网站图标",
+      "children": [
+        {
+          "type": "favicon",
+          "label": "无网络的本地标识",
+          "fallback": "UI",
+          "size": "sm"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-14",
+      "summary": "14 · 供数日程",
+      "children": [
+        {
+          "type": "agenda",
+          "label": "阅读小组 · 供数日程",
+          "description": "筛选日期查看已提供的记录。没有填写时间的记录不会推断全天时长。",
+          "events": [
+            {
+              "id": "review",
+              "date": "2026-10-16",
+              "title": "阅读回顾",
+              "start": "14:00",
+              "end": "14:45",
+              "location": "阅览室 B",
+              "description": "带上本周的笔记。"
+            },
+            {
+              "id": "notes",
+              "date": "2026-10-09",
+              "title": "整理阅读笔记",
+              "description": "时间由参与者自行安排；此条未提供起止时间。"
+            },
+            {
+              "id": "discussion",
+              "date": "2026-10-09",
+              "title": "章节讨论",
+              "start": "10:00",
+              "end": "11:15",
+              "location": "阅览室 A",
+              "description": "先分享每人的问题，再讨论例题。",
+              "url": "https://example.com/reading-group"
+            },
+            {
+              "id": "cancelled",
+              "date": "2026-10-09",
+              "title": "补充讨论",
+              "start": "16:00",
+              "status": "cancelled",
+              "description": "原记录标注为已取消。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-15",
+      "summary": "15 · 原生动作按钮",
+      "children": [
+        {
+          "type": "button",
+          "label": "将本页合成值设为1",
+          "action": {
+            "kind": "set",
+            "bind": "demo_counter",
+            "value": 1
+          }
+        },
+        {
+          "type": "metric",
+          "label": "本页合成计数",
+          "value": {
+            "$": "demo_counter"
+          }
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-16",
+      "summary": "16 · 供数菜单",
+      "children": [
+        {
+          "type": "restaurant-menu",
+          "title": "纸间小馆 · 合成菜单",
+          "description": "有限的提供数据，在本页按名称、描述或标签搜索。",
+          "currency": "CNY",
+          "source": {
+            "label": "原创合成样例",
+            "url": "https://example.invalid/synthetic-menu"
+          },
+          "sections": [
+            {
+              "id": "mains",
+              "title": "主食",
+              "items": [
+                {
+                  "id": "rice",
+                  "name": "香草蔬菜饭",
+                  "description": "带有清香的原创合成主食描述。",
+                  "price": 28.125,
+                  "tags": [
+                    "植物食材",
+                    "香草"
+                  ],
+                  "status": "available"
+                },
+                {
+                  "id": "soup",
+                  "name": "秋日汤",
+                  "description": "这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。这是一份原创合成菜单的长描述。",
+                  "price": null,
+                  "tags": [
+                    "季节样例"
+                  ],
+                  "status": "unavailable"
+                }
+              ]
+            },
+            {
+              "id": "drinks",
+              "title": "饮品",
+              "items": [
+                {
+                  "id": "water",
+                  "name": "饮用水",
+                  "description": "明确标注的零价格示例。",
+                  "price": 0,
+                  "tags": [
+                    "冷饮"
+                  ],
+                  "status": "available"
+                },
+                {
+                  "id": "tea",
+                  "name": "香草茶",
+                  "description": "精确保留极小数值的示例。",
+                  "price": 1e-7,
+                  "tags": [
+                    "香草",
+                    "热饮"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "empty",
+              "title": "暂未提供项目的分类",
+              "items": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-17",
+      "summary": "17 · 提示词选择",
+      "children": [
+        {
+          "type": "prompt-suggestions",
+          "id": "d17_reading-ideas",
+          "label": "Choose a reading topic",
+          "description": "Original sample prompts supplied with this document. The host app decides what to do with an explicit selection.",
+          "initialVisible": 3,
+          "items": [
+            {
+              "id": "outline",
+              "text": "Help me outline the main claims in this article."
+            },
+            {
+              "id": "questions",
+              "text": "Which questions should I keep in mind while reading?"
+            },
+            {
+              "id": "terms",
+              "text": "Make a list of terms I can look up myself."
+            },
+            {
+              "id": "compare",
+              "text": "What evidence would help compare two explanations?"
+            },
+            {
+              "id": "chinese",
+              "text": "请帮我梳理阅读时需要关注的问题。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-18",
+      "summary": "18 · 额外字段标签",
+      "children": [
+        {
+          "type": "label",
+          "text": "额外标签：点击这里聚焦输入",
+          "target": "demo-labelled-input"
+        },
+        {
+          "type": "input",
+          "kind": "text",
+          "id": "demo-labelled-input",
+          "label": "原字段名称",
+          "bind": "demo_label_text"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-19",
+      "summary": "19 · 供数人物卡",
+      "children": [
+        {
+          "type": "person-profile",
+          "name": "Alex River (fictional)",
+          "role": "Workshop coordinator",
+          "organization": "Example Reading Circle (fictional)",
+          "location": "Example City (fictional)",
+          "biography": "Alex is a fictional character in this original UI demonstration.\nThis biography is supplied text, not a retrieved or verified profile.",
+          "facts": [
+            {
+              "id": "focus",
+              "label": "Workshop topic",
+              "value": "Reading and discussion"
+            },
+            {
+              "id": "format",
+              "label": "Format",
+              "value": "Small-group practice"
+            }
+          ],
+          "links": [
+            {
+              "id": "reading",
+              "label": "Example reading page",
+              "url": "https://example.com/reading"
+            }
+          ],
+          "source": {
+            "label": "Original synthetic fixture",
+            "url": "https://example.com/fixture"
+          }
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-20",
+      "summary": "20 · 本地写作草稿",
+      "children": [
+        {
+          "type": "writing-block",
+          "id": "d20_main-draft",
+          "label": "Draft a short update",
+          "value": "This is an original, local example.\r\nEdit this text and copy it when ready. 😀\rNo message is sent.",
+          "note": "Choose Copy to copy the current visible text, or Select text for manual copying."
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-21",
+      "summary": "21 · 供数新闻文章",
+      "children": [
+        {
+          "type": "news-article",
+          "headline": "虚构社区图书角完成纸质目录试验",
+          "source": {
+            "label": "虚构的榆叶社区简报",
+            "url": "https://example.com/synthetic-reading-corner"
+          },
+          "author": "虚构作者林禾",
+          "published": "2024-02-29",
+          "tags": [
+            "合成示例",
+            "阅读",
+            "社区"
+          ],
+          "summary": "在这则原创虚构故事中，社区志愿者用纸质卡片整理了图书角的借阅目录。",
+          "paragraphs": [
+            "这是一则专为界面测试编写的虚构文章。志愿者将书名和编号写在纸质目录卡上，读者可以先查看卡片，再到书架寻找对应书籍。",
+            "试验说明将目录分成文学、自然和手工三个部分。每张卡片都保留原始书名，没有自动排序推荐，也没有收集读者信息。",
+            "故事中的读者提出把字号稍微放大，并在架边增加清楚的分类说明。此处文字仅用于检验完整段落阅读，不代表真实事件或经过核实的报道。"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-22",
+      "summary": "22 · 供数评论筛选",
+      "children": [
+        {
+          "type": "entity-reviews",
+          "label": "Fictional reading-room reviews",
+          "description": "Use the local filters and sort to explore only these supplied records.",
+          "source": {
+            "label": "Synthetic example collection",
+            "url": "https://example.com/reviews"
+          },
+          "items": [
+            {
+              "id": "five",
+              "author": "Fictional reader Aster",
+              "rating": 5,
+              "date": "2026-10-01",
+              "title": "A quiet afternoon",
+              "body": "This synthetic review describes a fictional reading room.\nThe full supplied text stays available here.",
+              "url": "https://example.com/reviews/five"
+            },
+            {
+              "id": "unrated",
+              "author": "Fictional reader Ember",
+              "rating": null,
+              "title": "A note without a score",
+              "body": "This supplied record intentionally has no rating or date. No score is inferred from these words."
+            },
+            {
+              "id": "three",
+              "author": "Fictional reader Birch",
+              "rating": 3,
+              "date": "2024-02-29",
+              "body": "Another clearly fictional example with a supplied calendar date."
+            },
+            {
+              "id": "one",
+              "author": "Fictional reader Moss",
+              "rating": 1,
+              "date": "2026-10-01",
+              "body": "Equal supplied dates retain their original order."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-23",
+      "summary": "23 · 供数时段选择",
+      "children": [
+        {
+          "type": "restaurant-availability",
+          "id": "d23_dinner",
+          "title": "Choose a supplied dinner time",
+          "venue": "Example Garden Kitchen",
+          "partySize": 4,
+          "timeZoneLabel": "Venue wall time (authored label)",
+          "description": "Availability is supplied for this example and has not been checked with a provider.",
+          "source": {
+            "label": "Synthetic example information",
+            "url": "https://example.com/supplied-options"
+          },
+          "slots": [
+            {
+              "id": "next",
+              "date": "2026-10-10",
+              "time": "18:00",
+              "available": true
+            },
+            {
+              "id": "late",
+              "date": "2026-10-09",
+              "time": "19:30",
+              "available": true
+            },
+            {
+              "id": "early",
+              "date": "2026-10-09",
+              "time": "18:00",
+              "available": true
+            },
+            {
+              "id": "unavailable",
+              "date": "2026-10-09",
+              "time": "18:30",
+              "available": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-24",
+      "summary": "24 · 供数讨论串",
+      "children": [
+        {
+          "type": "reddit-thread-card",
+          "title": "Fictional reading-room discussion",
+          "author": "Fictional Mira",
+          "community": "Fictional Field Notes Club",
+          "body": "Synthetic question: which part of the imaginary chapter was clearest?\nThese are supplied example comments, not retrieved posts.",
+          "score": 0,
+          "source": {
+            "label": "Synthetic demonstration source",
+            "url": "https://example.invalid/synthetic-discussion"
+          },
+          "comments": [
+            {
+              "id": "opening",
+              "author": "Fictional Rowan",
+              "body": "Synthetic response: the opening example helped.",
+              "score": 3,
+              "replies": [
+                {
+                  "id": "clarification",
+                  "author": "Fictional Lin",
+                  "body": "Synthetic reply: could you describe what was helpful?",
+                  "score": null,
+                  "replies": [
+                    {
+                      "id": "detail",
+                      "author": "Fictional Rowan",
+                      "body": "Synthetic detail: the labels matched the diagram.",
+                      "score": -1,
+                      "replies": [
+                        {
+                          "id": "thanks",
+                          "author": "Fictional Lin",
+                          "body": "Synthetic final reply: I see the connection now."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "different",
+              "author": "Fictional Sol",
+              "body": "Synthetic response: I would add another example.\n**This text stays literal.**",
+              "score": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-25",
+      "summary": "25 · 显式动画预览",
+      "children": [
+        {
+          "type": "animate",
+          "label": "Read at rest",
+          "effect": "rise",
+          "children": [
+            {
+              "type": "text",
+              "value": "This content stays mounted and readable before, during and after a short preview."
+            },
+            {
+              "type": "details",
+              "summary": "Persistent details",
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Opening this stays unchanged through the preview."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-26",
+      "summary": "26 · 供数庆祝消息",
+      "children": [
+        {
+          "type": "celebration",
+          "label": "A supplied message",
+          "message": "Thank you for taking a look. This message is supplied by the document author."
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-27",
+      "summary": "27 · 本地邮件草稿",
+      "children": [
+        {
+          "type": "email-draft",
+          "id": "d27_main-email",
+          "label": "Fictional email draft",
+          "to": [
+            "Alex \u003calex@example.invalid>",
+            "Sam \u003csam@example.invalid>",
+            "Alex \u003calex@example.invalid>"
+          ],
+          "cc": [
+            "Review \u003creview@example.invalid>"
+          ],
+          "subject": "Review the supplied outline",
+          "body": "Hello,\r\n\r\nHere is the supplied outline for review.\r\nThis is a local example only.\r\n\r\nThank you.",
+          "note": "Fictional addresses. Copy copies only the visible message body."
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-28",
+      "summary": "28 · 计划文字回顾",
+      "children": [
+        {
+          "type": "task-expansion-card",
+          "id": "d28_main-plan",
+          "title": "Review the supplied outline",
+          "summary": "These are supplied plan details for local reading. Nothing here performs a task.",
+          "disabled": {
+            "$": "d28_locked"
+          },
+          "steps": [
+            {
+              "id": "read",
+              "title": "Read the outline",
+              "description": "Read the supplied outline before deciding what to do.",
+              "details": "Compare the stated aim with the listed sections.\nWrite down any questions separately.",
+              "reviewed": true
+            },
+            {
+              "id": "consider",
+              "title": "Consider the examples",
+              "description": "Look at whether the supplied examples are useful.",
+              "details": "This disclosure contains additional supplied text. Opening it does not run anything."
+            },
+            {
+              "id": "decide",
+              "title": "Review the next step",
+              "description": "Decide outside this example whether any real action is needed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-29",
+      "summary": "29 · 供数地点选择",
+      "children": [
+        {
+          "type": "location-choice-request",
+          "id": "d29_places",
+          "label": "Meeting place options",
+          "description": "Choose among the supplied labels.",
+          "options": [
+            {
+              "id": "courtyard",
+              "label": "Example courtyard",
+              "address": "1 Example Lane",
+              "description": "Supplied entrance description."
+            },
+            {
+              "id": "terrace",
+              "label": "Example terrace",
+              "address": "2 Example Lane"
+            },
+            {
+              "id": "lobby",
+              "label": "Example lobby"
+            }
+          ],
+          "source": {
+            "label": "Supplied planning notes",
+            "url": "https://example.invalid/notes"
+          }
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "id": "demo-section-30",
+      "summary": "30 · 供数图片画廊",
+      "children": [
+        {
+          "type": "business-gallery",
+          "label": "Example courtyard photos",
+          "description": "Supplied demonstration media, not a verified business listing.",
+          "images": [
+            {
+              "id": "courtyard",
+              "src": "https://example.invalid/courtyard.png",
+              "alt": "Supplied courtyard photograph",
+              "caption": "Fictional supplied courtyard view."
+            },
+            {
+              "id": "terrace",
+              "src": "https://example.invalid/terrace.png",
+              "alt": "Supplied terrace photograph",
+              "caption": "Fictional supplied terrace view."
+            },
+            {
+              "id": "swatch",
+              "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAFklEQVR4nGOwKEt8eriM4enhMouyRAAtEAZbDWz0hgAAAABJRU5ErkJggg==",
+              "alt": "Original two-color checker swatch",
+              "caption": "Original deterministic 2×2 raster generated by this project."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</script>
+<script src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/iui.global.min.js" integrity="sha384-lzlbbrCDkjA12MkdUPJYeXhFgDwTxOHIkGhav/we5EDEtLyU+OP1Z3gZgxl2K4Qp" crossorigin="anonymous"></script>
+<script>
+  const target = document.getElementById('answer');
+  const status = document.getElementById('status');
+  try {
+    if (!window.IUI) throw new Error('界面库加载失败，请检查网络或固定版本的 CDN 链接。');
+    if (!document.getElementById('iui-style').sheet) throw new Error('样式加载失败，请检查 CDN 链接。');
+    const result = IUI.validateDocument(JSON.parse(document.getElementById('spec').textContent));
+    if (!result.ok) status.textContent = result.issues.map(i => i.code + ' ' + i.path + ': ' + i.message).join('\n');
+    else IUI.mount(target, result.document, { styles: false });
+  } catch (error) {
+    status.textContent = error instanceof Error ? error.message : String(error);
+  }
+</script>
+</body>
+</html>

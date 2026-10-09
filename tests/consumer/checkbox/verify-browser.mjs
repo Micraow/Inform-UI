@@ -20,5 +20,5 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100]){
  await page.keyboard.press('Space');await expect(box).toBeChecked();await page.getByRole('button',{name:'仅检查本页',exact:true}).click();await expect(form).toHaveAttribute('data-status','success');
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),label+': whole-page overflow');assert.deepEqual(errors,[]);assert.deepEqual(external,[]);await page.screenshot({path:path.join(shots,label+'.png'),fullPage:true});await page.close();count++;console.log(`PASS ${label}`);
 }
-await writeFile(path.join(shots,'RESULTS.json'),JSON.stringify({revision,localCompiledViews:count,widths:[390,768,1100],themes:['light','dark'],browser:'chromium',publicCdn:'not-run',screenReader:'not-run',screenshotReview:'pending-human-review'},null,2)+'\n');
+await writeFile(path.join(shots,'RESULTS.json'),JSON.stringify({revision,exampleLanguages:{"local-checkbox-review":"zh-CN"},localCompiledViews:count,widths:[390,768,1100],themes:['light','dark'],browser:'chromium',publicCdn:'not-run',screenReader:'not-run',screenshotReview:'pending-human-review'},null,2)+'\n');
 }finally{await browser?.close();await rm(temporary,{recursive:true,force:true});}

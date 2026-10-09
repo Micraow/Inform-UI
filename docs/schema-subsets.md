@@ -2,7 +2,7 @@
 
 完整 [`iui.schema.json`](../src/schema/iui.schema.json) 仍是唯一协议定义，版本和校验语义保持不变。分片由同一个生成器裁剪，不维护另一套字段定义，也不增加浏览器运行时 API。
 
-固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
+固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@5c7f334a975b75b0a70f58b5570b2ea567aed9dc/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
 
 ## 两种读取目的
 
