@@ -37,7 +37,6 @@ export function createForms(c: RendererContext) {
     if (group) out.append(group);
     const inputs: (HTMLInputElement | HTMLTextAreaElement)[] = [];
     let touched = false;
-    let draftInvalid = false;
     let localError = '';
     let last: StateValue | undefined;
     let committing = false;
@@ -92,9 +91,10 @@ export function createForms(c: RendererContext) {
         localError = '';
         const numeric = n.type === 'input' && n.kind === 'number';
         const next = numeric ? (input as HTMLInputElement).valueAsNumber : input.value;
-        // An empty/partial number is only a DOM draft. Never replace numeric state with '' or NaN.
-        draftInvalid = numeric && (input.validity.badInput || !Number.isFinite(next));
-        if (!draftInvalid) {
+        // Validate the numeric DOM draft before publishing it to shared state.
+        // Finite values outside min/max/step are drafts too: derived metrics must
+        // retain the last accepted value while the user corrects the field.
+        if (!numeric || !numberProblem(input as HTMLInputElement)) {
           committing = true;
           try { c.change({ [n.bind]: next }); }
           catch (failure) { localError = failure instanceof Error ? failure.message : c.labels().formInvalid; }
@@ -104,6 +104,22 @@ export function createForms(c: RendererContext) {
       });
     }
     out.append(hint, error);
+
+    function numberProblem(input: HTMLInputElement): string {
+      if (n.type !== 'input' || n.kind !== 'number') return '';
+      const l = c.labels(), raw = input.value, number = input.valueAsNumber;
+      if (input.validity.badInput || !Number.isFinite(number)) {
+        return !raw && !input.validity.badInput && n.required ? l.required : l.invalidNumber;
+      }
+      if (n.min !== undefined && number < n.min) return l.belowMin;
+      if (n.max !== undefined && number > n.max) return l.aboveMax;
+      if (n.step !== undefined) {
+        const steps = (number - (n.min ?? 0)) / n.step;
+        // Overflowed ratios cannot be proven aligned and must not silently pass.
+        if (!Number.isFinite(steps) || Math.abs(steps - Math.round(steps)) > Number.EPSILON * 16 * Math.max(1, Math.abs(steps))) return l.stepMismatch;
+      }
+      return '';
+    }
 
     function problem(): string {
       if (inputs.every(disabled)) return '';
@@ -119,20 +135,10 @@ export function createForms(c: RendererContext) {
       }
       const input = inputs[0];
       const raw = input.value;
-      if (!(n.type === 'input' && n.kind === 'number') && raw !== String(current)) return l.inputMismatch;
-      if (draftInvalid) return !raw && !input.validity.badInput && n.required ? l.required : l.invalidNumber;
+      if (n.type === 'input' && n.kind === 'number') return numberProblem(input as HTMLInputElement);
+      if (raw !== String(current)) return l.inputMismatch;
       if (n.required && !raw.trim()) return l.required;
-      if (n.type === 'input' && n.kind === 'number') {
-        const number = Number(current);
-        if (!Number.isFinite(number)) return l.invalidNumber;
-        if (n.min !== undefined && number < n.min) return l.belowMin;
-        if (n.max !== undefined && number > n.max) return l.aboveMax;
-        if (n.step !== undefined) {
-          const steps = (number - (n.min ?? 0)) / n.step;
-          // Overflowed ratios cannot be proven aligned and must not silently pass.
-          if (!Number.isFinite(steps) || Math.abs(steps - Math.round(steps)) > Number.EPSILON * 16 * Math.max(1, Math.abs(steps))) return l.stepMismatch;
-        }
-      } else if (raw) {
+      if (raw) {
         if (n.type === 'input' && n.kind === 'email' && input.validity.typeMismatch) return l.invalidEmail;
         // Native HTML minlength/maxlength count UTF-16 code units, including surrogate pairs.
         if (n.minLength !== undefined && raw.length < n.minLength) return l.tooShort;
@@ -150,7 +156,6 @@ export function createForms(c: RendererContext) {
         if (choice) (input as HTMLInputElement).checked = n.options[i].value === current;
         else if (current !== last && !committing) {
           input.value = String(current);
-          draftInvalid = false;
           localError = '';
         }
       });
@@ -169,7 +174,7 @@ export function createForms(c: RendererContext) {
 
     scope?.fields.push({
       validate: () => { touched = true; refresh(); return !problem(); },
-      reset: () => { touched = false; draftInvalid = false; localError = ''; last = undefined; refresh(); },
+      reset: () => { touched = false; localError = ''; last = undefined; refresh(); },
       focus: () => inputs.find(input => !disabled(input))?.focus()
     });
     bind(refresh);

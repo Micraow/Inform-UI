@@ -100,6 +100,43 @@ async function mountHarness(page, mode = 'pending') {
   }, mode);
 }
 
+test('numeric min/max/step drafts never publish invalid budget values and cannot submit stale state', async ({ page }) => {
+  await page.goto('/mount.html'); await page.waitForFunction(() => window.iui);
+  await page.evaluate(() => {
+    document.documentElement.lang = 'en'; window.numericCalls = []; window.numericEvents = [];
+    const host = document.getElementById('host');
+    host.addEventListener('iui:submit', event => window.numericEvents.push(event.detail.values));
+    window.numericController = window.iui.mount(host, {
+      version: 'iui/1', state: { hours: 6, other: 0 },
+      computed: { total: { op: 'mul', args: [{ $: 'hours' }, 4] }, cost: { op: 'mul', args: [{ $: 'total' }, 80] } },
+      body: [{ type: 'form', label: 'Budget validation', action: 'save', children: [
+        { type: 'input', kind: 'number', label: 'Weekly hours', bind: 'hours', min: 0, max: 20, step: .5, required: true },
+        { type: 'metric', label: 'Total hours', value: { $: 'total' } },
+        { type: 'metric', label: 'Cost', value: { $: 'cost' } }
+      ] }]
+    }, { actions: { save: ({ values }) => window.numericCalls.push(values) } });
+  });
+  const form = page.getByRole('form', { name: 'Budget validation' });
+  const field = form.getByRole('spinbutton', { name: 'Weekly hours' });
+  await field.fill('10'); await expect(form.locator('.iui-metric-value')).toHaveText(['40', '3200']);
+  for (const [raw, message] of [['-1', /minimum/], ['21', /maximum/], ['0.1', /step/], ['', /required/]]) {
+    await field.fill(raw);
+    await page.evaluate(() => window.numericController.setState({ other: window.numericController.getState().other + 1 }));
+    await expect(field).toHaveValue(raw); await expect(form.locator('.iui-metric-value')).toHaveText(['40', '3200']);
+    expect(await page.evaluate(() => window.numericController.getState().hours)).toBe(10);
+    await form.getByRole('button', { name: 'Submit', exact: true }).click();
+    await expect(form).toHaveAttribute('data-status', 'invalid'); await expect(field).toBeFocused();
+    await expect(form.locator('.iui-field-error')).toHaveText(message);
+    expect(await page.evaluate(() => ({ calls: window.numericCalls, events: window.numericEvents }))).toEqual({ calls: [], events: [] });
+  }
+  await field.fill('12.5'); await expect(form.locator('.iui-metric-value')).toHaveText(['50', '4000']);
+  await form.getByRole('button', { name: 'Submit', exact: true }).click(); await expect(form).toHaveAttribute('data-status', 'success');
+  expect(await page.evaluate(() => ({ calls: window.numericCalls, events: window.numericEvents }))).toEqual({ calls: [{ hours: 12.5 }], events: [{ hours: 12.5 }] });
+  await field.fill('-1'); await expect(form).toHaveAttribute('data-status', 'idle');
+  await form.getByRole('button', { name: 'Cancel', exact: true }).click(); await expect(field).toHaveValue('6');
+  await expect(form.locator('.iui-metric-value')).toHaveText(['24', '1920']);
+});
+
 test('forms: pending action, repeated submit, cancel, retry and stale completion', async ({ page }) => {
   await mountHarness(page);
   const form = page.getByRole('form', { name: 'Action form' });

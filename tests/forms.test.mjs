@@ -88,13 +88,14 @@ test('optional empty and invalid number drafts cannot silently submit the previo
   ctx.controller.dispose();
 });
 
-test('numeric bounds and steps validate on blur/submit with exact typed state', () => {
+test('numeric bounds and steps keep invalid drafts out of shared state while validating the visible draft', () => {
   const ctx = setup(spec({ amount: 1 }, [number({ min: 1, max: 5, step: .5 })]));
   for (const [value, message] of [['0', 'minimum'], ['6', 'maximum'], ['1.2', 'step']]) {
     const control = fill(ctx, 'input', value);
     dispatch(ctx, control, 'blur');
     assert.match(error(ctx), new RegExp(message));
-    assert.equal(ctx.controller.getState().amount, Number(value));
+    assert.equal(control.value, value);
+    assert.equal(ctx.controller.getState().amount, 1);
     submit(ctx);
     assert.equal(ctx.form.dataset.status, 'invalid');
   }
@@ -103,6 +104,46 @@ test('numeric bounds and steps validate on blur/submit with exact typed state', 
   assert.throws(() => ctx.controller.setState({ amount: '1.5' }));
   assert.throws(() => ctx.controller.setState({ amount: NaN }));
   assert.equal(ctx.controller.getState().amount, 1.5);
+  ctx.controller.dispose();
+});
+
+test('invalid numeric drafts preserve derived budgets and cannot invoke actions or emit submission snapshots', async () => {
+  let calls = 0, events = 0, payload;
+  const document = {
+    version: 'iui/1', state: { hours: 6, weeks: 4, rate: 80, other: 0 },
+    computed: { cost: { op: 'mul', args: [{ $: 'hours' }, { $: 'weeks' }, { $: 'rate' }] } },
+    body: [form([input('hours', { kind: 'number', min: 0, max: 20, step: .5, required: true }), { type: 'metric', label: 'Cost', value: { $: 'cost' } }], { action: 'save' })]
+  };
+  const ctx = setup(document, { actions: { save: ({ values }) => { calls++; payload = values; } } });
+  ctx.form.addEventListener('iui:submit', () => events++);
+  const control = fill(ctx, 'input', '10');
+  assert.equal(ctx.host.querySelector('.iui-metric-value').textContent, '3200');
+  for (const [raw, message] of [['-1', /minimum/], ['21', /maximum/], ['0.1', /step/], ['', /required/]]) {
+    fill(ctx, 'input', raw); ctx.controller.setState({ other: ctx.controller.getState().other + 1 });
+    assert.equal(control.value, raw); assert.equal(ctx.controller.getState().hours, 10);
+    assert.equal(ctx.host.querySelector('.iui-metric-value').textContent, '3200');
+    submit(ctx); await settle();
+    assert.match(error(ctx), message); assert.equal(ctx.form.dataset.status, 'invalid');
+    assert.equal(ctx.dom.window.document.activeElement, control); assert.equal(calls, 0); assert.equal(events, 0);
+  }
+  fill(ctx, 'input', '12.5'); submit(ctx); await settle();
+  assert.equal(ctx.controller.getState().hours, 12.5); assert.equal(ctx.host.querySelector('.iui-metric-value').textContent, '4000');
+  assert.deepEqual(payload, { hours: 12.5 }); assert.equal(calls, 1); assert.equal(events, 1);
+  fill(ctx, 'input', '-1'); assert.equal(ctx.form.dataset.status, 'idle');
+  ctx.form.reset(); assert.equal(control.value, '6'); assert.equal(ctx.controller.getState().hours, 6);
+  assert.equal(ctx.host.querySelector('.iui-metric-value').textContent, '1920');
+  ctx.controller.dispose();
+});
+
+test('host numeric state remains authoritative but invalid host values still block form submission', async () => {
+  let calls = 0;
+  const ctx = setup(spec({ amount: 1, other: 0 }, [number({ min: 0, max: 5, step: .5 })], { action: 'save' }), { actions: { save: () => calls++ } });
+  const control = fill(ctx, 'input', '-1');
+  ctx.controller.setState({ amount: 2 }); assert.equal(control.value, '2');
+  submit(ctx); await settle(); assert.equal(calls, 1);
+  ctx.controller.setState({ amount: -2 }); assert.equal(control.value, '-2');
+  submit(ctx); await settle(); assert.match(error(ctx), /minimum/); assert.equal(calls, 1);
+  fill(ctx, 'input', '1.5'); assert.equal(ctx.controller.getState().amount, 1.5);
   ctx.controller.dispose();
 });
 
