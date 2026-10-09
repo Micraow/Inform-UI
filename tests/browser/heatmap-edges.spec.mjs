@@ -1,0 +1,23 @@
+import{test,expect}from'@playwright/test';import{readFile,writeFile}from'node:fs/promises';import{pngPixels}from'./png-pixels.mjs';
+const fixture=JSON.parse(await readFile(new URL('../../examples/heatmap.json',import.meta.url)));
+function edgeWidths(png,bounds,dpr,color){
+ const same=rgb=>rgb.every((v,i)=>Math.abs(v-color[i])<=1),result={left:[],right:[],top:[],bottom:[]};
+ for(const t of [.25,.5,.75])for(const side of Object.keys(result)){
+  const vertical=side==='left'||side==='right',x=(vertical?(side==='left'?bounds.x:bounds.x+bounds.width):bounds.x+bounds.width*t)*dpr,y=(vertical?bounds.y+bounds.height*t:(side==='top'?bounds.y:bounds.y+bounds.height))*dpr;
+  let count=0;for(let offset=-5*dpr;offset<=5*dpr;offset++)if(same(png.rgb(Math.floor(x)+(vertical?offset:0),Math.floor(y)+(vertical?0:offset))))count++;
+  result[side].push(count);
+ }return result;
+}
+for(const theme of ['light','dark'])for(const dpr of [1,2])for(const width of [390,768.375,1100.5])test(`heatmap pixel edges ${theme} DPR${dpr} width${width}`,async({browser})=>{
+ const context=await browser.newContext({viewport:{width:Math.ceil(width),height:1200},deviceScaleFactor:dpr,colorScheme:theme}),page=await context.newPage();
+ try{
+  await page.goto('/mount.html');await page.waitForFunction(()=>window.iui);await page.evaluate(({spec,theme,width})=>{document.documentElement.lang='zh-CN';document.body.style.margin='0';const host=document.getElementById('host');host.style.width=(width-24)+'px';host.style.marginLeft=(Number.isInteger(width)?12:12.125)+'px';window.heatmapPixel=window.iui.mount(host,{...spec,theme});Object.assign(host.querySelector('.iui-root').style,{width:'100%',maxWidth:'none'});},{spec:fixture,theme,width});
+  const root=page.locator('.iui-heatmap'),svg=root.locator('svg'),selection=root.locator('.iui-heatmap-selection');await expect(root.locator('.iui-heatmap-tile')).toHaveCount(6);await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  const initial=await root.locator('.iui-heatmap-tile').evaluateAll(nodes=>nodes.map(n=>['x','y','width','height'].map(a=>n.getAttribute(a)))),ids=await root.locator('[data-heatmap-cell]').evaluateAll(nodes=>nodes.map(n=>n.dataset.heatmapCell)),records=[];
+  for(const id of ids){await root.locator(`[data-heatmap-cell="${id}"]`).click();await expect(selection).toHaveAttribute('data-selected-cell',id);await expect(svg).toHaveCSS('outline-style','none');expect(await selection.evaluate(n=>n===n.parentNode.lastElementChild)).toBe(true);const bounds=await selection.boundingBox();expect(bounds).not.toBeNull();const png=pngPixels(await page.screenshot()),edges=edgeWidths(png,bounds,dpr,[2,133,255]);for(const values of Object.values(edges))expect(values).toEqual([2*dpr,2*dpr,2*dpr]);records.push({id,bounds,edges});if(id==='delta')await page.screenshot({path:`test-results/heatmap-edges-pointer-${theme}-${dpr}-${width}.png`});}
+  expect(await root.locator('.iui-heatmap-tile').evaluateAll(nodes=>nodes.map(n=>['x','y','width','height'].map(a=>n.getAttribute(a))))).toEqual(initial);
+  await root.getByRole('combobox',{name:'行业'}).focus();await page.keyboard.press('Tab');await expect(svg).toBeFocused();await page.keyboard.press('Home');for(let i=0;i<3;i++)await page.keyboard.press('ArrowRight');await expect(selection).toHaveAttribute('data-selected-cell','delta');await expect(svg).toHaveCSS('outline-style','none');const bounds=await selection.boundingBox(),keyboardEdges=edgeWidths(pngPixels(await page.screenshot()),bounds,dpr,theme==='light'?[1,105,204]:[2,133,255]);for(const values of Object.values(keyboardEdges))expect(values).toEqual([3*dpr,3*dpr,3*dpr]);await page.screenshot({path:`test-results/heatmap-edges-keyboard-${theme}-${dpr}-${width}.png`});
+  await page.keyboard.press('End');await expect(root.locator('output')).toContainText('Missing');await expect(selection).toBeHidden();await expect(svg).toHaveCSS('outline-style','solid');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await writeFile(`test-results/heatmap-edges-${theme}-${dpr}-${width}.json`,JSON.stringify({dpr,width,theme,records,keyboardEdges,weightedRectanglesUnchanged:true},null,2));
+ }finally{await context.close();}
+});
