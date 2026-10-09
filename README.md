@@ -150,9 +150,9 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 ## 当前支持范围
 
-固定审计清单共256项，目前功能闭环已验34项、部分18项、未实现204项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
+固定审计清单共256项，目前功能闭环已验34项、部分18项、已写待验2项、未实现202项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
 
-目前开发分支识别 50 种节点：**48 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
+目前开发分支识别 52 种节点：**50 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
 开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。当前固定50节点CDN包含体育、学习和金融组件，见[体育合同](docs/sports.md)。开发分支也提供本地测验/闪卡；金融快照/历史/比较与热图均已通过源码浏览器及截图验收；固定CDN入口见文档。更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
 
@@ -178,3 +178,5 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 源码采用 **[MIT License](LICENSE)**，第三方依赖保留各自许可，见 [Third-party notices](THIRD_PARTY_NOTICES.md)。`package.json` 的 `private: true` 仅防止误发 npm，不限制这份公开源码的使用。
 
 项目现名为 Inform UI。为兼容现有文档，`iui/1`、全局 `IUI`、CLI `iui` 和既有 CSS 类保持不变；[品牌与协议兼容说明](docs/branding.md)。
+
+开发分支新增[九类单位与汇率快照换算](docs/converters.md)，含温差/绝对温度、互换、重置、缺测和来源时间。源码与本地测试已就绪，浏览器CI待验；当前064ab51固定CDN仍为50节点，不能加载这两个新增节点。

@@ -79,6 +79,8 @@ export type Node =
   | FinanceChartNode
   | FinanceComparisonNode
   | FinanceHeatmapNode
+  | UnitConverterNode
+  | CurrencyConverterNode
   | SvgNode
   | NativeNode;
 
@@ -958,6 +960,160 @@ export interface FinanceHeatmapNode {
     delayMinutes: number;
   }[];
   initialSector?: string;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+}
+export interface UnitConverterNode {
+  type: "unit-converter";
+  id?: string;
+  title?: string;
+  category: "length" | "mass" | "temperature" | "speed" | "area" | "volume" | "time" | "pressure" | "data";
+  amount: number;
+  /**
+   * length: m, cm, mm, km, in, ft, yd, mi, nmi; mass: kg, g, mg, t, lb, oz; temperature: K, C, F; speed: m-s, km-h, ft-s, mph, kn; area: m2, cm2, km2, ft2, ha, acre; volume: L, mL, m3, gal-us, gal-imp; time: s, ms, min, h, d; pressure: Pa, kPa, MPa, bar, atm, psi; data: B, bit, kB, MB, GB, KiB, MiB, GiB
+   */
+  from:
+    | "m"
+    | "cm"
+    | "mm"
+    | "km"
+    | "in"
+    | "ft"
+    | "yd"
+    | "mi"
+    | "nmi"
+    | "kg"
+    | "g"
+    | "mg"
+    | "t"
+    | "lb"
+    | "oz"
+    | "K"
+    | "C"
+    | "F"
+    | "m-s"
+    | "km-h"
+    | "ft-s"
+    | "mph"
+    | "kn"
+    | "m2"
+    | "cm2"
+    | "km2"
+    | "ft2"
+    | "ha"
+    | "acre"
+    | "L"
+    | "mL"
+    | "m3"
+    | "gal-us"
+    | "gal-imp"
+    | "s"
+    | "ms"
+    | "min"
+    | "h"
+    | "d"
+    | "Pa"
+    | "kPa"
+    | "MPa"
+    | "bar"
+    | "atm"
+    | "psi"
+    | "B"
+    | "bit"
+    | "kB"
+    | "MB"
+    | "GB"
+    | "KiB"
+    | "MiB"
+    | "GiB";
+  /**
+   * length: m, cm, mm, km, in, ft, yd, mi, nmi; mass: kg, g, mg, t, lb, oz; temperature: K, C, F; speed: m-s, km-h, ft-s, mph, kn; area: m2, cm2, km2, ft2, ha, acre; volume: L, mL, m3, gal-us, gal-imp; time: s, ms, min, h, d; pressure: Pa, kPa, MPa, bar, atm, psi; data: B, bit, kB, MB, GB, KiB, MiB, GiB
+   */
+  to:
+    | "m"
+    | "cm"
+    | "mm"
+    | "km"
+    | "in"
+    | "ft"
+    | "yd"
+    | "mi"
+    | "nmi"
+    | "kg"
+    | "g"
+    | "mg"
+    | "t"
+    | "lb"
+    | "oz"
+    | "K"
+    | "C"
+    | "F"
+    | "m-s"
+    | "km-h"
+    | "ft-s"
+    | "mph"
+    | "kn"
+    | "m2"
+    | "cm2"
+    | "km2"
+    | "ft2"
+    | "ha"
+    | "acre"
+    | "L"
+    | "mL"
+    | "m3"
+    | "gal-us"
+    | "gal-imp"
+    | "s"
+    | "ms"
+    | "min"
+    | "h"
+    | "d"
+    | "Pa"
+    | "kPa"
+    | "MPa"
+    | "bar"
+    | "atm"
+    | "psi"
+    | "B"
+    | "bit"
+    | "kB"
+    | "MB"
+    | "GB"
+    | "KiB"
+    | "MiB"
+    | "GiB";
+  /**
+   * Maximum significant digits, default 8; raw values are retained.
+   */
+  precision?: number;
+  /**
+   * Temperature only. Absolute includes scale offsets and must be >= 0 K; difference converts signed intervals without offsets.
+   */
+  temperatureMode?: "absolute" | "difference";
+}
+export interface CurrencyConverterNode {
+  type: "currency-converter";
+  id?: string;
+  title?: string;
+  source: FinanceSource;
+  asOf: string;
+  base: string;
+  /**
+   * @minItems 0
+   * @maxItems 200
+   */
+  rates: {
+    currency: string;
+    /**
+     * Units of this currency per one base-currency unit; null means unavailable.
+     */
+    rate: number | null;
+  }[];
+  amount: number;
+  from?: string;
+  to?: string;
+  precision?: number;
   status?: "ready" | "loading" | "error";
   message?: string;
 }

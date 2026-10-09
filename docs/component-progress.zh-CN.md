@@ -1,6 +1,6 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验34，部分18，已写待验0，未实现204。
+当前固定分母为256项：功能已验34，部分18，已写待验2，未实现202。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
@@ -25,7 +25,7 @@
 | base-date-picker | 日期选择 | 未实现 | 暂无专门实现证据 |
 | base-divider | 分隔线 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-favicon | 网站/来源图标 | 未实现 | 暂无专门实现证据 |
-| base-flashcard-flip | 双面翻卡容器 | 功能已验 | f372c71已通过完整CI与学习亮暗截图复核 |
+| base-flashcard-flip | 双面翻卡容器 | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | base-flow | 流式铺排 | 未实现 | 暂无专门实现证据 |
 | base-form | 表单 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-grid | 网格 | 部分实现 | 无独立grid-item/span |
@@ -67,7 +67,7 @@
 | business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
 | citation | Cite | 未实现 | 暂无专门实现证据 |
 | calendar-agenda | Calendar List | 未实现 | 暂无专门实现证据 |
-| learning-flashcards | Learning Flashcards | 功能已验 | f372c71已通过完整CI与学习亮暗截图复核 |
+| learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | person-profile | Person | 未实现 | 暂无专门实现证据 |
 | reddit-thread-card | Reddit | 未实现 | 暂无专门实现证据 |
 | restaurant-menu | Restaurant Menu | 未实现 | 暂无专门实现证据 |
@@ -76,7 +76,7 @@
 | scheduled-task-suggestion | Offer Scheduled Prompt | 未实现 | 暂无专门实现证据 |
 | email-draft | Draft Email | 未实现 | 暂无专门实现证据 |
 | task-expansion-card | Task Expansion Card | 未实现 | 暂无专门实现证据 |
-| unit-converter | Unit Converter | 未实现 | 暂无专门实现证据 |
+| unit-converter | Unit Converter | 已写待验 | 原创schema/语义校验/renderer/示例已整合；18项专门Node用例及166项全库检查通过，亮暗键盘浏览器矩阵待CI |
 | asset-distribution | Ledger Account Breakdown | 未实现 | 暂无专门实现证据 |
 | transaction-list | Ledger Recent Transactions | 未实现 | 暂无专门实现证据 |
 | onboarding-selection | Onboarding Selection Card | 未实现 | 暂无专门实现证据 |
@@ -86,7 +86,7 @@
 | conversation-suggestions | Conversational Onboarding Follow Up Pills | 未实现 | 暂无专门实现证据 |
 | news-article | News Article | 未实现 | 暂无专门实现证据 |
 | flight-option | Flight Card | 未实现 | 暂无专门实现证据 |
-| currency-converter | Currency Converter | 未实现 | 暂无专门实现证据 |
+| currency-converter | Currency Converter | 已写待验 | 原创schema/语义校验/renderer/示例已整合；18项专门Node用例及166项全库检查通过，亮暗键盘浏览器矩阵待CI |
 | code-block | Code Block | 部分实现 | 无copy/高亮等领域功能 |
 | writing-block | Writing Block | 未实现 | 暂无专门实现证据 |
 | artist-upcoming-events | Artist Upcoming Events | 未实现 | 暂无专门实现证据 |
@@ -235,7 +235,7 @@
 | product-card | Product Card | 未实现 | 暂无专门实现证据 |
 | prompt-checklist | Prompt Checklist | 未实现 | 暂无专门实现证据 |
 | push-drip-series-intro | Push Drip Series Intro | 未实现 | 暂无专门实现证据 |
-| learning-quiz | Learning Quiz | 功能已验 | f372c71已通过完整CI与学习亮暗截图复核 |
+| learning-quiz | Learning Quiz | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | rating | Rating | 未实现 | 暂无专门实现证据 |
 | recommendation-card | Recommendation Card | 未实现 | 暂无专门实现证据 |
 | recommendation-link-card | Recommendation Link Card | 未实现 | 暂无专门实现证据 |
@@ -246,9 +246,9 @@
 | sidebar-people-also-ask | Sidebar People Also Ask | 未实现 | 暂无专门实现证据 |
 | soccer-games | Soccer Games | 部分实现 | 通用scoreboard未覆盖完整足球合同 |
 | speech-synthesizer | Speech Synthesizer | 未实现 | 暂无专门实现证据 |
-| stock-chart | Stock Chart | 功能已验 | 55bfa57通过API/8个金融浏览器场景及亮暗截图复核 |
-| stock-comparison-chart | Stock Comparison Chart | 功能已验 | 55bfa57通过API/8个金融浏览器场景及亮暗截图复核 |
-| stock-heatmap | Stock Heatmap | 功能已验 | 8e8908d通过147 API/103浏览器场景，亮暗截图及数字不换行已复核 |
+| stock-chart | Stock Chart | 功能已验 | 55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。 |
+| stock-comparison-chart | Stock Comparison Chart | 功能已验 | 55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。 |
+| stock-heatmap | Stock Heatmap | 功能已验 | 8e8908d: 147项API与103浏览器场景通过，亮1100/暗390截图已实看，数字列换行问题已修复。 |
 | stop-push-drip-series | Stop Push Drip Series | 未实现 | 暂无专门实现证据 |
 | superbowl-riddle | Superbowl Riddle | 未实现 | 暂无专门实现证据 |
 | tabbed-section | Tabbed Section | 未实现 | 暂无专门实现证据 |
@@ -262,5 +262,3 @@
 | whats-new-capability-search | Whats New Capability Search | 未实现 | 暂无专门实现证据 |
 | whats-new-capability-welcome | Whats New Capability Welcome | 未实现 | 暂无专门实现证据 |
 | word-card | Word Card | 未实现 | 暂无专门实现证据 |
-
-学习验收：[f372c71 CI](https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936)。该矩阵按组件功能合同统计；配色角色来源与像素一致性边界另见design-tokens.md。

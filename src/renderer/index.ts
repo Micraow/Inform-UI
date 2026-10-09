@@ -1,3 +1,4 @@
+import {renderConverter} from './converters.js';
 import {renderHeatmap} from './heatmap.js';
 import {renderFinance} from './finance.js';
 import {renderLearning} from './learning.js';
@@ -162,6 +163,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'chart': out=renderChart(context,n);break;
       case 'weather': out=renderWeather(context,n);break;
       case 'finance-heatmap': out=renderHeatmap(context,n); break;
+      case 'unit-converter':case 'currency-converter': out=renderConverter(context,n); break;
       case 'finance-quote': case 'finance-chart': case 'finance-comparison': out=renderFinance(context,n); break;
       case 'quiz': case 'flashcards': out=renderLearning(context,n); break;
       case 'sports-schedule': case 'sports-scoreboard': case 'sports-standings': out=renderSports(context,n);break;

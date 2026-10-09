@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The schema recognizes 50 project-defined node types, including the historical
+ChatGPT services. The schema recognizes 52 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Count: 48 rendered + 1 plain-text fallback + 1 rejected = 50 node types.**
+**Count: 50 rendered + 1 plain-text fallback + 1 rejected = 52 node types.**
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -69,6 +69,7 @@ results from the current revision for those claims.
 | `quiz` / `flashcards` | Rendered | Local answer checking, weighted exact-set scoring, explanations/review/retry; flashcard reveal/rating/navigation/summary. Empty/loading/error and keyboard/live feedback. Supplied answers are not secret; no storage, network grading or spaced-repetition scheduler. Available in the fixed 50-node CDN. |
 | `finance-quote` / `finance-chart` / `finance-comparison` | Rendered | Supplied quote/time/status/delay; local history ranges, actual time axes, null gaps and exact common-baseline percentage comparison across currencies. No FX conversion, provider, trading or wall-clock inference. Source/browser verified at 55bfa57; included in fixed 50-node CDN. |
 | `finance-heatmap` | Rendered | Exact supplied weight areas, signed change colors, sector filter, keyboard item detail and full data table; zero/missing weights never receive fabricated area. Source/browser verified at 8e8908d, included in fixed 50-node CDN. |
+| `unit-converter` / `currency-converter` | Source implementation; browser CI pending | Nine unit categories, absolute/difference temperature, local draft validation/swap/reset; supplied FX snapshots with explicit missing values, exact source/time and stable extreme ratios. No live provider or transaction. Not included in the current fixed 50-node CDN; see converters.md. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 

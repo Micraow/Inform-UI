@@ -1,0 +1,125 @@
+{
+  "ready": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "currency-converter",
+        "title": "调用方提供的汇率快照",
+        "amount": 100,
+        "base": "USD",
+        "from": "USD",
+        "to": "EUR",
+        "precision": 8,
+        "source": {
+          "label": "Inform UI 原创合成汇率",
+          "synthetic": true
+        },
+        "asOf": "2026-10-09T09:00:00+08:00",
+        "rates": [
+          {
+            "currency": "EUR",
+            "rate": 0.8
+          },
+          {
+            "currency": "JPY",
+            "rate": 160
+          },
+          {
+            "currency": "GBP",
+            "rate": null
+          }
+        ],
+        "status": "ready"
+      }
+    ]
+  },
+  "loading": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "currency-converter",
+        "title": "调用方提供的汇率快照",
+        "amount": 100,
+        "base": "USD",
+        "from": "USD",
+        "to": "EUR",
+        "precision": 8,
+        "source": {
+          "label": "Inform UI 原创合成汇率",
+          "synthetic": true
+        },
+        "asOf": "2026-10-09T09:00:00+08:00",
+        "rates": [
+          {
+            "currency": "EUR",
+            "rate": 0.8
+          },
+          {
+            "currency": "JPY",
+            "rate": 160
+          },
+          {
+            "currency": "GBP",
+            "rate": null
+          }
+        ],
+        "status": "loading"
+      }
+    ]
+  },
+  "error": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "currency-converter",
+        "title": "调用方提供的汇率快照",
+        "amount": 100,
+        "base": "USD",
+        "from": "USD",
+        "to": "EUR",
+        "precision": 8,
+        "source": {
+          "label": "Inform UI 原创合成汇率",
+          "synthetic": true
+        },
+        "asOf": "2026-10-09T09:00:00+08:00",
+        "rates": [
+          {
+            "currency": "EUR",
+            "rate": 0.8
+          },
+          {
+            "currency": "JPY",
+            "rate": 160
+          },
+          {
+            "currency": "GBP",
+            "rate": null
+          }
+        ],
+        "status": "error",
+        "message": "调用方声明：这份合成快照暂不可用，请稍后提供新快照。"
+      }
+    ]
+  },
+  "empty": {
+    "version": "iui/1",
+    "body": [
+      {
+        "type": "currency-converter",
+        "title": "调用方提供的汇率快照",
+        "amount": 100,
+        "base": "USD",
+        "from": "USD",
+        "to": "USD",
+        "precision": 8,
+        "source": {
+          "label": "Inform UI 原创合成汇率",
+          "synthetic": true
+        },
+        "asOf": "2026-10-09T09:00:00+08:00",
+        "rates": []
+      }
+    ]
+  }
+}
