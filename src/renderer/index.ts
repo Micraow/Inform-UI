@@ -1,3 +1,7 @@
+import {renderOnboarding} from './onboarding.js';
+import {renderFlightOption} from './flight-option.js';
+import {renderArtistEvents} from './artist-events.js';
+import {renderLedger} from './ledger.js';
 import {renderLocationChoice,renderBusinessGallery} from './choice-gallery.js';
 import {renderEmailDraft} from './email-draft.js';
 import {renderTaskExpansionCard} from './task-expansion-card.js';
@@ -155,6 +159,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if ('shimmer' in n && n.shimmer) out.classList.add('iui-text-shimmer');
         break;
       }
+      case 'onboarding-selection':out=renderOnboarding(context,n,labels.onboardingUI);break;
+      case 'asset-distribution':case 'transaction-list':out=renderLedger(context,n,labels.ledgerUI);break;
       case 'location-choice-request':out=renderLocationChoice(context,n,labels.choiceGalleryUI);break;
       case 'business-gallery':out=renderBusinessGallery(context,n,labels.choiceGalleryUI);break;
       case 'restaurant-menu':out=renderMenu(context,n,labels.menuUI);break;
@@ -253,6 +259,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'finance-quote': case 'finance-chart': case 'finance-comparison': out=renderFinance(context,n); break;
       case 'news-article':out=renderNewsArticle(context,n,labels.newsUI);break;
       case 'entity-reviews':out=renderEntityReviews(context,n,labels.reviewsUI);break;
+      case 'flight-option':out=renderFlightOption(context,n,labels.travelEventsUI);break;
+      case 'artist-upcoming-events':out=renderArtistEvents(context,n,labels.travelEventsUI);break;
       case 'restaurant-availability':out=renderAvailability(context,n,labels.availabilityUI);break;
       case 'reddit-thread-card':out=renderThread(context,n,labels.threadUI);break;
       case 'agenda': out=renderAgenda(context,n,labels.agendaUI); break;

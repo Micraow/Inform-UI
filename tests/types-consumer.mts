@@ -171,3 +171,8 @@ import './entity-reviews-types-consumer.mjs';
 import "./availability-types-consumer.mjs";
 
 import './thread-types-consumer.mjs';
+
+import './onboarding-types-consumer.mjs';
+import "./finance-lists-types-consumer.mjs";
+
+import './travel-events-types-consumer.mjs';

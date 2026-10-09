@@ -1,3 +1,6 @@
+import {onboardingEnglish,onboardingChinese} from './onboarding-labels.js';
+import {travelEventsEnglish,travelEventsChinese} from './travel-events-labels.js';
+import {ledgerEnglish,ledgerChinese} from './ledger-labels.js';
 import {choiceGalleryEnglish,choiceGalleryChinese} from './choice-gallery-labels.js';
 import {motionEnglish,motionChinese} from './motion-labels.js';
 import {availabilityEnglish,availabilityChinese} from './availability-labels.js';
@@ -38,6 +41,9 @@ export function formatNumber(value: number): string {
 
 import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
+  onboardingUI:onboardingEnglish,
+  travelEventsUI:travelEventsEnglish,
+  ledgerUI:ledgerEnglish,
   choiceGalleryUI:choiceGalleryEnglish,
   motionUI:motionEnglish,
   availabilityUI:availabilityEnglish,threadUI:threadEnglish,
@@ -71,6 +77,9 @@ const english = {
   loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', invalidDate:'Enter a valid date.', beforeMinDate:'The date is before the earliest allowed date.', afterMaxDate:'The date is after the latest allowed date.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
+  onboardingUI:onboardingChinese,
+  travelEventsUI:travelEventsChinese,
+  ledgerUI:ledgerChinese,
   choiceGalleryUI:choiceGalleryChinese,
   motionUI:motionChinese,
   availabilityUI:availabilityChinese,threadUI:threadChinese,

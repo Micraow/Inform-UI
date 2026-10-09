@@ -8,5 +8,8 @@ export type {FormAction,FormActionContext} from './renderer/context.js';
 export type {SuggestionDetail} from './renderer/suggestions.js';
 
 
+export type {FlightChoiceDetail} from './renderer/flight-option.js';
 export type {LocationChoiceDetail} from './renderer/choice-gallery.js';
 export type {ReservationChoiceDetail} from './renderer/availability.js';
+
+export type {OnboardingChoiceDetail} from './renderer/onboarding.js';
