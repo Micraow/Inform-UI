@@ -24,3 +24,5 @@ export type {FlightSearchDetail,FlightResultDetail} from './renderer/flight-disc
 export type {ActivityPlanDetail,EventReviewDetail} from './renderer/activity-planning.js';
 
 export type {WordMarkDetail,WordsCopyDetail} from './renderer/vocabulary.js';
+
+export type {EntityThumbnailDetail} from './renderer/entity-facts.js';

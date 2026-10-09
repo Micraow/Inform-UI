@@ -1,3 +1,4 @@
+import {renderFactTable,renderEntityThumbnails} from './entity-facts.js';
 import {renderCodeCite,renderFileCite} from './source-citations.js';
 import {renderWordCard,renderCopyWords} from './vocabulary.js';
 import {renderActivityPlanner,renderEventSidebar} from './activity-planning.js';
@@ -171,6 +172,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'sidebar-fact-table':out=renderFactTable(context,n,labels.entityFactsUI);break;
+      case 'entity-thumbnail-list':out=renderEntityThumbnails(context,n,labels.entityFactsUI);break;
       case 'code-cite':out=renderCodeCite(context,n,labels.citationUI);break;
       case 'file-cite':out=renderFileCite(context,n,labels.citationUI);break;
       case 'word-card':out=renderWordCard(context,n,labels.vocabularyUI);break;
