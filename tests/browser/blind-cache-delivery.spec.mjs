@@ -1,5 +1,5 @@
 import{test,expect}from'@playwright/test';import{readFile,writeFile,mkdir}from'node:fs/promises';import{resolve}from'node:path';import{pathToFileURL}from'node:url';import{createHash}from'node:crypto';
-const fixture='examples/browser/blind/cache-response.delivery.html',expectedHash='b71efb0c55646cb343558dc918242a3ad58e89ddd0aea31e4d3ac3d1ec899640',lock=JSON.parse(await readFile('cdn-lock.json','utf8'));
+const fixture='examples/browser/blind/cache-response.delivery.html',expectedHash='e29fe35db54432651a6db7b73dfbf446f822441f58725ac0e5536832a13ddc7b',lock=JSON.parse(await readFile('cdn-lock.json','utf8'));
 const fontUrls=Object.keys(lock.integrity).filter(name=>name.endsWith('.woff2')).map(name=>new URL(name,lock.css).href),allowed=[lock.js,lock.css,...fontUrls];
 const states=[[80,100],[0,100],[100,100],[5,100],[37,20],[25,20],[10,50],[2,250],[63,400],[100,400],[0,20]];
 test.use({serviceWorkers:'block'});
