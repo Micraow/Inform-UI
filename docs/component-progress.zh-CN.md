@@ -1,6 +1,6 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验34，部分18，已写待验2，未实现202。
+当前固定分母为256项：功能已验36，部分18，已写待验0，未实现202。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
@@ -76,7 +76,7 @@
 | scheduled-task-suggestion | Offer Scheduled Prompt | 未实现 | 暂无专门实现证据 |
 | email-draft | Draft Email | 未实现 | 暂无专门实现证据 |
 | task-expansion-card | Task Expansion Card | 未实现 | 暂无专门实现证据 |
-| unit-converter | Unit Converter | 已写待验 | 原创schema/语义校验/renderer/示例已整合；18项专门Node用例及166项全库检查通过，亮暗键盘浏览器矩阵待CI |
+| unit-converter | Unit Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
 | asset-distribution | Ledger Account Breakdown | 未实现 | 暂无专门实现证据 |
 | transaction-list | Ledger Recent Transactions | 未实现 | 暂无专门实现证据 |
 | onboarding-selection | Onboarding Selection Card | 未实现 | 暂无专门实现证据 |
@@ -86,7 +86,7 @@
 | conversation-suggestions | Conversational Onboarding Follow Up Pills | 未实现 | 暂无专门实现证据 |
 | news-article | News Article | 未实现 | 暂无专门实现证据 |
 | flight-option | Flight Card | 未实现 | 暂无专门实现证据 |
-| currency-converter | Currency Converter | 已写待验 | 原创schema/语义校验/renderer/示例已整合；18项专门Node用例及166项全库检查通过，亮暗键盘浏览器矩阵待CI |
+| currency-converter | Currency Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
 | code-block | Code Block | 部分实现 | 无copy/高亮等领域功能 |
 | writing-block | Writing Block | 未实现 | 暂无专门实现证据 |
 | artist-upcoming-events | Artist Upcoming Events | 未实现 | 暂无专门实现证据 |

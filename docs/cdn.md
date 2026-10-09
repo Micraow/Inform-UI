@@ -100,7 +100,7 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 独立文档壳使用 `body.iui-page` 与匹配的 `data-theme`（auto/light/dark），让页面外围背景也跟随主题；嵌入现有网页时不要给宿主添加这个类。`mount` 的样式保持局部作用域，不修改宿主背景。
 
-当前固定52节点候选资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[11a5dac](https://github.com/Micraow/Inform-UI/actions/runs/37876233005)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
+当前固定52节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[b5664a8](https://github.com/Micraow/Inform-UI/actions/runs/37878019661)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
 
 - [体育与学习HTML](../examples/browser/domains-preview.html) · [JSON](../examples/domains-preview.json)
 - [金融组件HTML](../examples/browser/finance-preview.html) · [JSON](../examples/finance-preview.json)
@@ -109,6 +109,6 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 热图选中框独立绘制在最上层并内缩，鼠标为2px；键盘使用同一块的3px focus色内框，无合适可见面积时才显示整图备用焦点。12组DPR1/2、亮暗和整数/分数尺寸已执行逐边像素检查，图块权重面积保持不变。此前50节点的数据合同向后兼容。
 
-候选4b6c1f0还包含两类转换器及键盘→鼠标连续输入方式修复；新CDN完整浏览器验收仍在进行，不能把HTTP成功当作交互通过。Inform-UI新仓库的固定global/ESM/CSS/Schema路径已实际取得HTTP200并核对MIME、CORS与SHA-256；不依赖对旧仓库重定向的假设。新的file://验证仍以当前CI结果为准。
+4b6c1f0包含两类转换器及键盘→鼠标连续输入方式修复；新CDN已在[run37878019661](https://github.com/Micraow/Inform-UI/actions/runs/37878019661)完成真实file://与像素验收。Inform-UI新仓库的固定global/ESM/CSS/Schema路径已实际取得HTTP200并核对MIME、CORS与SHA-256；不依赖对旧仓库重定向的假设。该CI共通过167项Node与136项浏览器用例，亮暗金融与转换器截图已人工复核。
 
 [单位与汇率换算HTML](../examples/browser/converters-preview.html) · [JSON](../examples/converters.json)

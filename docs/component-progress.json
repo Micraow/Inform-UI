@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T03:01:00Z",
+  "as_of_utc": "2026-10-09T03:14:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -10,13 +10,15 @@
     "finance_verified_commit": "55bfa57afbf91d41f6cb59db0ae2193c27d9092e",
     "finance_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183",
     "heatmap_verified_commit": "8e8908dc6e4a93758ca5fc154a84d4130577f2e6",
-    "heatmap_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37871441850"
+    "heatmap_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37871441850",
+    "converters_verified_commit": "b5664a8b94222f0cdb2952ac26d4592c68a92146",
+    "converters_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37878019661"
   },
   "counts": {
     "not_implemented": 202,
-    "functionally_verified": 34,
+    "functionally_verified": 36,
     "partial": 18,
-    "implemented_pending_verification": 2
+    "implemented_pending_verification": 0
   },
   "components": [
     {
@@ -521,8 +523,8 @@
       "id": "unit-converter",
       "name": "Unit Converter",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "原创schema/语义校验/renderer/示例已整合；18项专门Node用例及166项全库检查通过，亮暗键盘浏览器矩阵待CI"
+      "status": "functionally_verified",
+      "note": "b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核"
     },
     {
       "id": "asset-distribution",
@@ -591,8 +593,8 @@
       "id": "currency-converter",
       "name": "Currency Converter",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "原创schema/语义校验/renderer/示例已整合；18项专门Node用例及166项全库检查通过，亮暗键盘浏览器矩阵待CI"
+      "status": "functionally_verified",
+      "note": "b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核"
     },
     {
       "id": "code-block",
