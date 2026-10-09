@@ -1,0 +1,36 @@
+{
+  "version": "iui/1",
+  "title": "Supplied amounts and transactions",
+  "description": "Original synthetic ledger fixtures. No real accounts, transactions, balance feeds or currency conversion.",
+  "body": [
+    {
+      "type": "asset-distribution",
+      "label": "Synthetic supplied account amounts",
+      "description": "Known amounts are grouped by their supplied currency codes. An unknown amount stays unknown.",
+      "observedAt": "Illustrative snapshot label: 2026-10-09, as supplied",
+      "source": {"label": "Inform UI original synthetic ledger fixture", "url": "https://example.org/synthetic-ledger"},
+      "accounts": [
+        {"id": "cash", "name": "Everyday example", "amount": 1250.25, "currency": "USD", "category": "Cash", "note": "Synthetic amount, not an account connection."},
+        {"id": "reserve", "name": "Reserve example", "amount": 3750.75, "currency": "USD", "category": "Savings"},
+        {"id": "unknown", "name": "Amount not supplied", "amount": null, "currency": "USD", "note": "No amount was supplied for this example."},
+        {"id": "zero", "name": "Zero is supplied", "amount": 0, "currency": "EUR", "category": "Cash"},
+        {"id": "unknown-eur", "name": "Another unknown", "amount": null, "currency": "EUR"},
+        {"id": "jpy", "name": "Separate currency example", "amount": 24000, "currency": "JPY"}
+      ]
+    },
+    {
+      "type": "transaction-list",
+      "label": "Synthetic supplied transactions",
+      "description": "Dates, magnitudes, directions and statuses are authored examples, preserved in supplied order.",
+      "source": {"label": "Inform UI original synthetic ledger fixture", "url": "https://example.org/synthetic-ledger"},
+      "transactions": [
+        {"id": "oct-debit", "date": "2026-10-09", "description": "Example supplies", "amount": 32.5, "currency": "USD", "direction": "debit", "status": "posted", "counterparty": "Example shop", "note": "Original synthetic record; no payment occurred."},
+        {"id": "sep-credit", "date": "2026-09-30", "description": "Example credit", "amount": 100, "currency": "EUR", "direction": "credit", "status": "pending", "note": "Pending is a supplied label, not a settlement prediction."},
+        {"id": "oct-credit", "date": "2026-10-01", "description": "Zero magnitude example", "amount": 0, "currency": "USD", "direction": "credit"},
+        {"id": "sep-debit", "date": "2026-09-30", "description": "Separate currency example", "amount": 1400, "currency": "JPY", "direction": "debit", "status": "posted"}
+      ]
+    },
+    {"type": "asset-distribution", "label": "Empty supplied amounts", "accounts": []},
+    {"type": "transaction-list", "label": "Empty supplied transactions", "transactions": []}
+  ]
+}
