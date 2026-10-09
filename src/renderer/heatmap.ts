@@ -16,12 +16,12 @@ export function renderHeatmap(c:RendererContext,n:FinanceHeatmapNode):HTMLElemen
  let filtered:FinanceHeatmapNode['cells']=[],currentTiles:Tile[]=[],chartWidth=640;
  const selection=svg('rect',{class:'iui-heatmap-selection',fill:'none','pointer-events':'none','aria-hidden':'true'});
  const drawSelection=()=>{
-  const tile=currentTiles.find(tile=>filtered[tile.index]?.id===activeId),bounds=graphic.getBoundingClientRect(),scale=bounds.width>0?bounds.width/chartWidth:1,dpr=c.doc.defaultView?.devicePixelRatio||1,keyboard=graphic.matches(':focus-visible'),thickness=keyboard?3:2;
+  const tile=currentTiles.find(tile=>filtered[tile.index]?.id===activeId),bounds=graphic.getBoundingClientRect(),fallbackScale=bounds.width>0?bounds.width/chartWidth:1,matrix=(graphic as SVGSVGElement).getScreenCTM?.(),scaleX=matrix?.a??fallbackScale,scaleY=matrix?.d??fallbackScale,originX=matrix?.e??bounds.left,originY=matrix?.f??bounds.top,dpr=c.doc.defaultView?.devicePixelRatio||1,keyboard=graphic.matches(':focus-visible'),thickness=keyboard?3:2;
   graphic.dataset.activeTile='false';selection.style.display='none';if(!tile)return;
   // Snap the independent final overlay to device pixels inside the tile. Data rectangles remain unchanged.
-  const left=Math.ceil((bounds.left+tile.x*scale+2)*dpr)/dpr,right=Math.floor((bounds.left+(tile.x+tile.width)*scale-2)*dpr)/dpr,top=Math.ceil((bounds.top+tile.y*scale+2)*dpr)/dpr,bottom=Math.floor((bounds.top+(tile.y+tile.height)*scale-2)*dpr)/dpr;
+  const left=Math.ceil((originX+tile.x*scaleX+2)*dpr)/dpr,right=Math.floor((originX+(tile.x+tile.width)*scaleX-2)*dpr)/dpr,top=Math.ceil((originY+tile.y*scaleY+2)*dpr)/dpr,bottom=Math.floor((originY+(tile.y+tile.height)*scaleY-2)*dpr)/dpr;
   if(right-left<=thickness||bottom-top<=thickness)return;
-  for(const[key,value]of Object.entries({x:(left+thickness/2-bounds.left)/scale,y:(top+thickness/2-bounds.top)/scale,width:(right-left-thickness)/scale,height:(bottom-top-thickness)/scale,'stroke-width':thickness}))selection.setAttribute(key,String(value));
+  for(const[key,value]of Object.entries({x:(left+thickness/2-originX)/scaleX,y:(top+thickness/2-originY)/scaleY,width:(right-left-thickness)/scaleX,height:(bottom-top-thickness)/scaleY,'stroke-width':thickness}))selection.setAttribute(key,String(value));
   selection.style.display='block';selection.setAttribute('data-selected-cell',activeId!);graphic.dataset.activeTile='true';
  };
  const fmt=(v:number|null)=>v===null?l.missing:c.display(v),percent=(v:number|null)=>v===null?l.missing:`${v>0?'+':''}${c.display(v)}%`,describe=(cell:FinanceHeatmapNode['cells'][number])=>`${cell.symbol} · ${cell.name} · ${cell.sector} · ${n.weightLabel}: ${fmt(cell.weight)} · ${t.price}: ${fmt(cell.price)} ${cell.currency} · ${percent(cell.changePercent)} (${n.changeBasis}) · ${t[cell.marketStatus]} · ${t.delay} ${cell.delayMinutes} ${t.minutes} · ${time.format(new Date(cell.asOf))}`;
