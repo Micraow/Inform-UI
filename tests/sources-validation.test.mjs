@@ -48,3 +48,16 @@ test('multiple hosts and foreign ownerDocument own all labels, nodes and IDs ind
 test('source compilation is deterministic and supports offline source content without retrieval',async()=>{
   const html=await compileHtml(fixture);assert.equal(html,await compileHtml(fixture));assert.ok(html.includes('connect-src'));assert.ok(html.includes('example.invalid'));assert.equal(validateDocument(doc([{type:'made-up-source',title:'Synthetic'}])).ok,false);
 });
+
+test('RTL browser fixture supplies actual first visible Arabic text, not only metadata or host language',async()=>{
+ const input=JSON.parse(await readFile('tests/fixtures/source-rtl.json','utf8'));
+ assert.equal(validateDocument(input).ok,true);
+ const {host,controller}=setup(input),root=host.querySelector('.iui-root');
+ assert.equal(root.dir,'auto');assert.equal(root.querySelector('.iui-description').textContent,input.description);
+ assert.match(input.description,/^\p{Script=Arabic}/u);
+ // Browser bidi uses rendered text. aria-label/title and lang alone cannot make
+ // the original English-leading fixture RTL. Real computed direction remains
+ // explicitly asserted before any native scrolling in the Chromium scenario.
+ assert.equal(root.querySelector(':scope > .iui-description').nextElementSibling.className,'iui-body');
+ controller.dispose();
+});
