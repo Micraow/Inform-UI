@@ -19,9 +19,9 @@ const types = value => {
 };
 
 test('every canonical node has one group; generated references are closed and metrics match bytes', async () => {
-  assert.equal(assertOwners(full, owners).length, 116);
-  assert.equal(new Set(index.groups.flatMap(g => g.ownedNodeTypes)).size, 116);
-  assert.equal(index.groups.reduce((n, g) => n + g.ownedNodeTypes.length, 0), 116);
+  assert.equal(assertOwners(full, owners).length, 118);
+  assert.equal(new Set(index.groups.flatMap(g => g.ownedNodeTypes)).size, 118);
+  assert.equal(index.groups.reduce((n, g) => n + g.ownedNodeTypes.length, 0), 118);
   assert.equal(index.fullSchema.sha256, createHash('sha256').update(fullText).digest('hex'));
   assert.deepEqual(schemaMetrics(fullText), Object.fromEntries(Object.entries(index.fullSchema).filter(([k]) => k !== 'path')));
   assert.match(index.tokenEstimateMethod, /rough.*not measured/); assert.equal(index.nodeSupportExceptions.native, 'rejected');
@@ -103,7 +103,7 @@ test('generation is deterministic, never mutates the full schema, and CLI unions
   assert.equal(encodeSchema(a), await readFile('src/schema/fragments/finance.schema.json', 'utf8'));
   assert.equal(execFileSync(process.execPath, ['scripts/schema-subset.mjs', '--groups', 'finance,base'], { encoding: 'utf8' }), encodeSchema(a));
   assert.equal(spawnSync(process.execPath, ['scripts/schema-subset.mjs', '--groups', 'unknown'], { encoding: 'utf8' }).status, 2);
-  const all = createSchemaSubset(full, owners, Object.keys(SCHEMA_GROUPS)); assert.equal(nodeInventory(all).length, 116); const validate = compile(all);
+  const all = createSchemaSubset(full, owners, Object.keys(SCHEMA_GROUPS)); assert.equal(nodeInventory(all).length, 118); const validate = compile(all);
   for (const file of (await readdir('examples')).filter(name => name.endsWith('.json'))) { const input = await example('examples/' + file); assert.equal(validate(input), fullValidate(input)); }
 });
 

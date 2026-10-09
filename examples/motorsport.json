@@ -1,0 +1,148 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied motorsport examples",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "f1-races",
+      "id": "races",
+      "label": "Supplied fictional race weekends",
+      "races": [
+        {
+          "id": "harbor",
+          "label": "Harbor Weekend",
+          "season": 2028,
+          "round": 1,
+          "circuit": "Example Harbor Circuit",
+          "location": "Example Coast",
+          "sessions": [
+            {
+              "id": "qualifying",
+              "label": "Qualifying session",
+              "kind": "qualifying",
+              "status": "complete",
+              "startsAt": "2028-02-29T10:00Z",
+              "endsAt": "2028-02-29T11:00Z"
+            },
+            {
+              "id": "race",
+              "label": "Main race",
+              "kind": "race",
+              "status": "scheduled",
+              "startsAt": "2028-03-01T12:00+02:00",
+              "note": "Synthetic supplied timetable, not a live race."
+            }
+          ],
+          "source": {
+            "label": "Example timetable",
+            "url": "https://example.org/timetable"
+          }
+        },
+        {
+          "id": "ridge",
+          "label": "Ridge Weekend",
+          "season": 2028,
+          "round": 2,
+          "circuit": "Example Ridge Circuit",
+          "location": "Example Hills",
+          "sessions": [
+            {
+              "id": "sprint",
+              "label": "Sprint session",
+              "kind": "sprint",
+              "status": "postponed",
+              "startsAt": null
+            },
+            {
+              "id": "race",
+              "label": "Race session",
+              "kind": "race",
+              "status": "unknown",
+              "startsAt": null
+            }
+          ]
+        },
+        {
+          "id": "prior",
+          "label": "Earlier season weekend",
+          "season": 2027,
+          "round": 1,
+          "circuit": "Example Circuit",
+          "location": "Example City",
+          "sessions": []
+        }
+      ]
+    },
+    {
+      "type": "f1-standings",
+      "id": "standings",
+      "label": "Supplied fictional standings",
+      "season": 2028,
+      "observedAt": "2028-03-01T15:00Z",
+      "standings": [
+        {
+          "id": "b",
+          "label": "Blake Example",
+          "kind": "driver",
+          "team": "Team North",
+          "rank": 2,
+          "points": 18,
+          "wins": 0,
+          "note": "Supplied tie rank retained."
+        },
+        {
+          "id": "a",
+          "label": "Alex Example",
+          "kind": "driver",
+          "team": "Team South",
+          "rank": 1,
+          "points": 25,
+          "wins": 1,
+          "source": {
+            "label": "Example standings",
+            "url": "https://example.org/standings"
+          }
+        },
+        {
+          "id": "c",
+          "label": "Casey Example",
+          "kind": "driver",
+          "team": "Team North",
+          "rank": 2,
+          "points": 18,
+          "wins": null
+        },
+        {
+          "id": "u",
+          "label": "Unknown Example",
+          "kind": "driver",
+          "rank": null,
+          "points": null
+        },
+        {
+          "id": "negative",
+          "label": "Penalty Example",
+          "kind": "driver",
+          "rank": 5,
+          "points": -0.5
+        },
+        {
+          "id": "north",
+          "label": "Team North",
+          "kind": "constructor",
+          "rank": 1,
+          "points": 36
+        },
+        {
+          "id": "south",
+          "label": "Team South",
+          "kind": "constructor",
+          "rank": 2,
+          "points": 25
+        }
+      ]
+    }
+  ]
+}

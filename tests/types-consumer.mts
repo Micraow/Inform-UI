@@ -198,3 +198,5 @@ import './source-citations-types-consumer.mjs';
 import './entity-facts-types-consumer.mjs';
 
 import './ledger-records-types-consumer.mjs';
+
+import './motorsport-types-consumer.mjs';
