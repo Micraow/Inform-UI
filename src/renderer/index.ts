@@ -1,4 +1,5 @@
 import {renderRelatedQuestions} from './related-questions.js';
+import {renderActivityPlanner,renderEventSidebar} from './activity-planning.js';
 import {renderFlightSearch,renderFlightResults} from './flight-discovery.js';
 import {renderLocalBusiness,renderRestaurantReviews} from './local-places.js';
 import {renderJobs} from './jobs.js';
@@ -170,6 +171,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
       case 'sidebar-people-also-ask':out=renderRelatedQuestions(context,n,labels.questionsUI);break;
+      case 'shared-activity-planner':out=renderActivityPlanner(context,n,labels.activityUI);break;
+      case 'event-sidebar':out=renderEventSidebar(context,n,labels.activityUI);break;
       case 'flight-search-form':out=renderFlightSearch(context,n,labels.discoveryUI);break;
       case 'flight-results':out=renderFlightResults(context,n,labels.discoveryUI);break;
       case 'local-business':out=renderLocalBusiness(context,n,labels.placesUI);break;

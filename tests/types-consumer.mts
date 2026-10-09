@@ -189,3 +189,5 @@ import './decision-cards-types-consumer.mjs';
 import './local-places-types-consumer.mjs';
 
 import './flight-discovery-types-consumer.mjs';
+
+import './activity-planning-types-consumer.mjs';

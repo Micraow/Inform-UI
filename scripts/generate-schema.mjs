@@ -129,6 +129,13 @@ defs.DiscoveryAirport=object({code:discoveryAirport,label:short},['code','label'
 node('flight-search-form',{label:short,description:string(2000),airports:array(ref('DiscoveryAirport'),2,80),initialOrigin:discoveryAirport,initialDestination:discoveryAirport,initialDepartureDate:travelDate,initialReturnDate:travelDate,initialTravelers:integer(1,9),disabled:bool},['label','airports']);
 defs.DiscoveryFlightResult=object({id:suppliedKey,label:short,legs:array(ref('FlightLeg'),1,8),price:ref('SuppliedPrice'),note:string(2000),source:ref('TravelEventSource')},['id','label','legs']);
 node('flight-results',{label:short,description:string(2000),results:array(ref('DiscoveryFlightResult'),0,40),source:ref('TravelEventSource')},['label','results']);
+// Original supplied activity preference matrix and event agenda sidebar.
+defs.ActivityParticipant=object({id:suppliedKey,label:short},['id','label']);
+defs.ActivityAvailability=object({participantId:suppliedKey,status:choice('available','unavailable','unknown')},['participantId','status']);
+defs.ActivityOption=object({id:suppliedKey,label:short,startsAt:flightAt,endsAt:flightAt,location:short,description:string(3000),availability:array(ref('ActivityAvailability'),0,12),source:ref('TravelEventSource')},['id','label','startsAt','endsAt','availability']);
+node('shared-activity-planner',{label:short,description:string(2000),participants:array(ref('ActivityParticipant'),1,12),options:array(ref('ActivityOption'),0,20),disabled:bool},['label','participants','options']);
+defs.EventAgendaEntry=object({id:suppliedKey,label:short,startsAt:flightAt,endsAt:flightAt,category:short,description:string(3000),speaker:short},['id','label','startsAt','endsAt','category']);
+node('event-sidebar',{eventId:suppliedKey,label:short,organizer:short,location:short,startsAt:flightAt,endsAt:flightAt,description:string(5000),agenda:array(ref('EventAgendaEntry'),0,40),source:ref('TravelEventSource')},['eventId','label','startsAt','endsAt','agenda']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);
