@@ -111,7 +111,7 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-field-label { display: block; margin-block-end: 2px; }
 .iui-root .iui-field-group > legend { margin-block-end: 8px; }
 .iui-root .iui-field-required { color: var(--iui-danger); }
-.iui-root .iui-field > :is(input, textarea) {
+.iui-root .iui-field > :is(input:not([type=checkbox]), textarea) {
   display: block;
   width: 100%;
   min-height: 44px;
@@ -124,6 +124,10 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
   font-size: 1rem;
   line-height: 1.5;
 }
+.iui-root .iui-field-checkbox { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: 10px; align-items: center; }
+.iui-root .iui-field-checkbox > input[type=checkbox] { margin: 0; width: 18px; height: 18px; }
+.iui-root .iui-field-checkbox > .iui-field-label { display: flex; align-items: center; min-height: 44px; margin: 0; cursor: pointer; }
+.iui-root .iui-field-checkbox > :is(.iui-field-hint, .iui-field-error) { grid-column: 2; }
 .iui-root .iui-field > textarea { resize: vertical; min-height: 100px; }
 .iui-root .iui-field > :is(input, textarea)::placeholder { color: var(--iui-muted); opacity: 1; }
 .iui-root .iui-field > :is(input, textarea):hover:enabled { border-color: var(--iui-muted); }
@@ -597,3 +601,12 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-code-token-keyword{color:var(--iui-info);font-weight:600}
 @media(forced-colors:active){.iui-code-copy{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-code-block>.iui-code{border-color:CanvasText}.iui-code-block [class*=iui-code-token-]{color:CanvasText}.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline-color:Highlight}}
 /* No animation, transitions, fonts, assets, network or motion to reduce. */
+
+/* Append to renderer/style.css; both runtime mount and compiler already consume it. */
+.iui-pie{min-inline-size:0;max-inline-size:100%}
+.iui-pie .iui-chart-key{min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-pie .iui-chart-title,.iui-pie .iui-caption{overflow-wrap:anywhere}
+.iui-pie path.iui-point-active{stroke:var(--iui-ink);stroke-width:2;stroke-linejoin:round}
+@media(forced-colors:active){.iui-pie path{stroke:CanvasText;stroke-width:1;forced-color-adjust:none}.iui-pie path.iui-point-active{stroke:Highlight;stroke-width:4}.iui-pie svg:focus-visible{outline-color:Highlight}}
+
+.iui-pie .iui-pie-key-active{outline:1px solid var(--iui-focus);outline-offset:3px;border-radius:2px}

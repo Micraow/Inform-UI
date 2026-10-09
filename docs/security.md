@@ -10,7 +10,7 @@ The JSON Schema is generated from `scripts/generate-schema.mjs`. TypeScript decl
 
 `evaluateValue(value,state,computed)` evaluates a constrained expression and throws on invalid input. `evaluateState(document,override)` returns validated, frozen state/computed results or issues. Controller state updates use this checked path. Numeric operators do not coerce strings. `if` is lazy at evaluation but both branches are inspected for references and types; runtime arithmetic errors still reject the state transition.
 
-Limits include 64 JSON nesting levels, 2,000 node-like objects, 50,000 values, a two-million-character text budget, and schema-specific row/series/child limits. These limits reduce resource exhaustion; they are not a promise of fixed latency for every valid document.
+Limits include 64 JSON nesting levels, 2,000 node-like objects, 50,000 values, a two-million-UTF-16-code-unit text budget (including JSON keys, retained across merged state updates), and schema-specific row/series/child limits. These limits reduce resource exhaustion; they are not a promise of fixed latency for every valid document.
 
 ## Browser boundary
 
@@ -27,3 +27,5 @@ Compiled inline HTML applies a CSP containing the exact SHA-256 of its runtime. 
 Controllers isolate state. `update` validates the complete next document and resets state. `setState` merges a scalar patch, verifies all bindings and derived values, then updates existing nodes without replacing focused controls. `dispose` is idempotent and removes its owned elements, listeners, and resize observer. External DOM edits by the embedding host are outside this contract.
 
 The library does not authenticate users, persist documents, store credentials, run simulations as scientific truth, fetch sources, or verify model-generated facts. Applications remain responsible for provenance, permissions, and their host threat model.
+
+JSON Schema string `maxLength` and evaluated Value/state string maxima use Unicode code points. A Value string accepts at most 12,000 code points, including astral characters, while the independent whole-document resource budget still counts UTF-16 storage units. The resolved evaluation context (state, computed scalars and the evaluated Value) is checked against the same storage budget before DOM creation or refresh; accepted documents therefore do not defer that rejection until rendering. Native form minLength/maxLength constraints retain HTML UTF-16 semantics; they do not redefine the global string contract.

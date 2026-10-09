@@ -16,7 +16,9 @@ export function formatNumber(value: number): string {
     : String(value);
 }
 
+import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
+  pieUI:pieEnglish,
   codeUI: codeEnglish,
   carouselUI: carouselEnglish,
   sources: sourceEnglish,
@@ -34,6 +36,7 @@ const english = {
   loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
+  pieUI:pieChinese,
   codeUI: codeChinese,
   carouselUI: carouselChinese,
   sources: sourceChinese,

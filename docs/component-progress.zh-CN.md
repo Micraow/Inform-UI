@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验49，部分12，已写待验4，未实现191。
+当前固定分母为256项：功能已验53，部分8，已写待验4，未实现191。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-本轮13项按固定CDN与源码同版验收后计入；[批次证据与边界](verification-62.md)。
+此前13项见[62节点批次](verification-62.md)；加载/占位/引用/链接卡4项见[66节点验收](verification-66.md)。新4项仅为[本地冻结候选](local-enhancements-20261009.md)，累计约30个实际组件再合并远端CI；不提前计入功能已验。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -15,13 +15,13 @@
 | base-button | 按钮 | 部分实现 | 仅set/reset动作 |
 | base-caption | 说明/图注 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-card | 卡片容器 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-carousel | 轮播 | 部分实现 | 仅滚动，缺完整轮播控制 |
+| base-carousel | 轮播 | 已写待验 | 有限原生上一/下一、RTL边界、子状态保留已本地实现；真实浏览器待约30组件合批。 |
 | base-celebration | 完成庆祝反馈 | 未实现 | 暂无专门实现证据 |
 | base-line-chart | 折线图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-bar-chart | 柱状图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-area-chart | 面积图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-scatter-chart | 散点图 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-checkbox | 复选框 | 部分实现 | 仅toggle基础绑定，缺独立required/disabled合同 |
+| base-checkbox | 复选框 | 已写待验 | 原生boolean字段已接入required/disabled/fieldset及同一Forms生命周期；本地通过，真实浏览器待合批。 |
 | base-code | 行内代码 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-col | 纵向布局 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-date-picker | 日期选择 | 未实现 | 暂无专门实现证据 |
@@ -38,12 +38,12 @@
 | base-label | 字段标签 | 部分实现 | 仅字段内部label |
 | base-link | 链接 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-list | 列表 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-loading | 加载指示 | 已写待验 | 独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。 |
-| base-loading-block | 骨架/加载占位 | 已写待验 | 独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。 |
+| base-loading | 加载指示 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
+| base-loading-block | 骨架/加载占位 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | base-lottie | Lottie动画 | 未实现 | 暂无专门实现证据 |
 | base-markdown | Markdown | 部分实现 | 纯文本降级 |
 | base-math | 数学公式 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-pie-chart | 饼图/环图 | 部分实现 | 只有donut |
+| base-pie-chart | 饼图/环图 | 已写待验 | 单序列实心饼图、缺测/零值及精确表格已本地实现；真实SVG/触摸/视觉待合批。 |
 | base-popover | 弹出层 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-pressable | 可点击内容区 | 未实现 | 暂无专门实现证据 |
 | base-pulse-indicator | 脉冲状态指示 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
@@ -65,9 +65,9 @@
 | sports-standings | Epl Standings | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | american-football-games | Cfb Games | 部分实现 | 通用scoreboard未覆盖完整橄榄球合同 |
 | location-choice-request | Ask User Location V2 | 未实现 | 暂无专门实现证据 |
-| web-link-cards | Web Links Carousel | 已写待验 | 原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。 |
+| web-link-cards | Web Links Carousel | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
-| citation | Cite | 已写待验 | 原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。 |
+| citation | Cite | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | calendar-agenda | Calendar List | 未实现 | 暂无专门实现证据 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | person-profile | Person | 未实现 | 暂无专门实现证据 |
@@ -89,7 +89,7 @@
 | news-article | News Article | 未实现 | 暂无专门实现证据 |
 | flight-option | Flight Card | 未实现 | 暂无专门实现证据 |
 | currency-converter | Currency Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
-| code-block | Code Block | 部分实现 | 无copy/高亮等领域功能 |
+| code-block | Code Block | 已写待验 | 显式可信复制、有限原生高亮与原文保持已本地实现；真实激活/剪贴板边界及视觉待合批。 |
 | writing-block | Writing Block | 未实现 | 暂无专门实现证据 |
 | artist-upcoming-events | Artist Upcoming Events | 未实现 | 暂无专门实现证据 |
 | ask-user-details | Ask User Details | 未实现 | 暂无专门实现证据 |

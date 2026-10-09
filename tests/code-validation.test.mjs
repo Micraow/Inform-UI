@@ -39,3 +39,7 @@ test('public compiler emits self-contained escaped literal script-looking code',
  const value='</script><img src="https://evil.invalid/pixel" onerror="bad()">\r\n\t😀',spec=doc([code({value,language:'<script>',copy:true,highlight:true})]);
  const html=await compileHtml(spec);assert.ok(html.includes('\\u003c/script\\u003e'));assert.ok(!html.includes('<img src="https://evil.invalid/pixel"'));
 });
+
+test('code RTL scenario supplies actual Arabic leading content; header and LTR pre remain separate surfaces',()=>{
+ const d={...fixture,description:'مثال برمجي أصلي للاختبار.'};assert.equal(validateDocument(d).ok,true);const el=host(),c=mount(el,d),root=el.querySelector('.iui-root');assert.equal(root.dir,'auto');assert.match(root.querySelector('.iui-description').textContent,/^\p{Script=Arabic}/u);assert.ok(root.querySelector('.iui-code-header'));assert.equal(root.querySelector('.iui-code-block pre code').textContent,fixture.body.find(n=>n.id==='main-code').value);c.dispose();
+});

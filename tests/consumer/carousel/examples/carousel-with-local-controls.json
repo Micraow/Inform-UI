@@ -1,0 +1,93 @@
+{
+  "version": "iui/1",
+  "title": "滚动不会销毁子组件状态",
+  "description": "原创本地合成练习；无联网、保存或系统提醒。",
+  "theme": "auto",
+  "state": {
+    "samples": 2,
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "caption",
+      "value": "原创合成示例：子表单和计时器彼此独立。请勿把滚动离屏当成暂停或取消。"
+    },
+    {
+      "type": "title",
+      "level": 1,
+      "value": "观察草稿、计时与滚动是不同状态"
+    },
+    {
+      "type": "carousel",
+      "id": "local-controls",
+      "label": "本地输入、计时与解释",
+      "children": [
+        {
+          "type": "form",
+          "label": "偶数样本数试算",
+          "submitLabel": "检查样本数",
+          "cancelLabel": "恢复样本数",
+          "children": [
+            {
+              "type": "input",
+              "kind": "number",
+              "label": "合成偶数样本数",
+              "bind": "samples",
+              "min": 2,
+              "max": 8,
+              "step": 2,
+              "required": true
+            }
+          ]
+        },
+        {
+          "type": "timer",
+          "title": "页内一分钟练习",
+          "durationMs": 60000
+        },
+        {
+          "type": "popover",
+          "label": "为什么滚动不会重置？",
+          "title": "容器和子组件的生命周期",
+          "children": [
+            {
+              "type": "text",
+              "value": "每个子组件挂载一次。不相关state更新保留草稿和计时；update新文档才会重建。"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "value": "翻页按钮是浮层外部点击，可能关闭浮层；原生滚动本身不会重建这些子节点。"
+        }
+      ]
+    },
+    {
+      "type": "metric",
+      "label": "当前已接受样本数",
+      "value": {
+        "$": "samples"
+      }
+    },
+    {
+      "type": "button",
+      "label": "只更新无关状态",
+      "action": {
+        "kind": "set",
+        "bind": "other",
+        "value": 1
+      }
+    },
+    {
+      "type": "button",
+      "label": "恢复文档初始state",
+      "action": {
+        "kind": "reset"
+      }
+    },
+    {
+      "type": "caption",
+      "value": "本例需要base＋forms＋time。无效数字草稿不进入state；恢复文档state也不等于时间控件的Reset。"
+    }
+  ]
+}

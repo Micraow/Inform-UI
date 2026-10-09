@@ -19,14 +19,15 @@ async function pointer(page,b){await b.scrollIntoViewIfNeeded();const rect=await
 async function repeatBusyPointer(page,b){const rect=await b.boundingBox();await page.mouse.click(rect.x+rect.width/2,rect.y+rect.height/2);}
 test.beforeEach(async({page})=>{page.__codeErrors=[];page.on('pageerror',e=>page.__codeErrors.push(e.message));});
 test.afterEach(async({page})=>expect(page.__codeErrors).toEqual([]));
-for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`code ${theme} ${width}: local overflow, exact native selection, keyboard focus`,async({page},info)=>{
+for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`code ${theme} ${width}: local overflow, full-code native selection, keyboard focus`,async({page},info)=>{
  await page.setViewportSize({width,height:1000});await page.emulateMedia({colorScheme:theme,reducedMotion:'reduce'});await mount(page,{...fixture,theme});
  const out=byId(page,'main-code'),pre=out.locator('pre');expect(await pre.locator('code').textContent()).toBe(source);
  expect(await pre.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await pre.focus();await expect(pre).toBeFocused();await page.keyboard.press('ArrowRight');await expect.poll(()=>pre.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
  expect(await pre.evaluate(el=>getComputedStyle(el).outlineStyle)).toBe('solid');
- // Native DOM Range selection, not OS clipboard verification.
- expect(await pre.locator('code').evaluate(el=>{const s=el.ownerDocument.getSelection(),r=el.ownerDocument.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);return s.toString();})).toBe(source);
+ // Select the entire native DOM range. Its source text is exact; the browser
+ // may normalize line endings in rendered Selection.toString()/OS copying.
+ expect(await pre.locator('code').evaluate(el=>{const s=el.ownerDocument.getSelection(),r=el.ownerDocument.createRange();r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);if(s.isCollapsed||s.rangeCount!==1)throw Error('Full selection missing');return s.getRangeAt(0).toString();})).toBe(source);
  await page.screenshot({path:info.outputPath(`code-${theme}-${width}.png`),fullPage:true});
 });
 test('contained cards/grid never create body overflow; reduced motion and forced colors',async({page})=>{
@@ -53,8 +54,8 @@ for(const action of ['update','dispose'])for(const result of ['resolve','reject'
  if(action==='update')await expect(byId(page,'main-code').getByRole('status')).toHaveText('');
 });
 test('Chinese/RTL labels stay literal and header follows surrounding direction',async({page})=>{
- await mount(page,fixture,'zh-CN');const out=byId(page,'main-code');await expect(out.getByRole('button')).toHaveText('复制代码');
- await page.evaluate(()=>{document.getElementById('host').dir='rtl';});expect(await out.locator('.iui-code-header').evaluate(el=>getComputedStyle(el).direction)).toBe('rtl');expect(await out.locator('pre').evaluate(el=>getComputedStyle(el).direction)).toBe('ltr');
+ await mount(page,{...fixture,description:'مثال برمجي أصلي للاختبار.'},'zh-CN');const out=byId(page,'main-code');await expect(out.getByRole('button')).toHaveText('复制代码');
+ expect(await out.locator('.iui-code-header').evaluate(el=>getComputedStyle(el).direction)).toBe('rtl');expect(await out.locator('pre').evaluate(el=>getComputedStyle(el).direction)).toBe('ltr');
  const unknown=byId(page,'unknown-code');await expect(unknown.locator('.iui-code-language')).toHaveText('<unknown>');expect(await unknown.locator('code').textContent()).toBe(fixture.body.find(n=>n.id==='unknown-code').value);await expect(unknown.locator('script,img')).toHaveCount(0);
 });
 test('STUB: owner iframe clipboard is used, parent clipboard is untouched',async({page})=>{

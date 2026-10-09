@@ -31,6 +31,12 @@ jobs:
       - name: Verify loading and source consumers in Chromium
         if: ${{ !cancelled() && steps.check.outcome == 'success' }}
         run: node tests/consumer/scripts/verify-next66-browser.mjs --library "$PWD" --revision "$(git rev-parse HEAD)" --screenshots "$PWD/test-results/skill-consumer-66"
+      - name: Verify accumulated enhancement consumers in Chromium
+        if: ${{ !cancelled() && steps.check.outcome == 'success' }}
+        run: |
+          for domain in carousel code pie checkbox; do
+            node "tests/consumer/$domain/verify-browser.mjs" --library "$PWD" --revision "$(git rev-parse HEAD)" --screenshots "$PWD/test-results/skill-consumer-$domain"
+          done
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working source: 64 rendered + 1 plain-text fallback + 1 rejected = 66 node types.** The recommended fixed CDN is the verified 62-node 01ae batch, including foundations, time, overlays and finite primitives. Loading and source-link nodes are later source candidates pending browser/CDN acceptance. See [executed 62-node evidence](verification-62.md) and [loading contract](loading.md).
+**Working source: 64 rendered + 1 plain-text fallback + 1 rejected = 66 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Current carousel/code/pie/checkbox enhancements are later candidates pending combined browser/CDN acceptance; they extend existing nodes and do not increase the 66-node total.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -31,7 +31,7 @@ results from the current revision for those claims.
 | `title` | Rendered | Heading levels 1–3, with the same safe values and emphasis options. |
 | `caption` | Rendered | Lower-emphasis explanatory text; no source lookup. |
 | `markdown` | Plain-text fallback | Original characters are displayed as text. Formatting, embedded HTML, images, and Markdown links are not parsed. |
-| `code` | Rendered | Escaped preformatted or explicit inline code with optional language label. No execution, syntax highlighting, copy action, or editor. |
+| `code` | Rendered | Escaped preformatted or inline code; later candidate adds explicit trusted copy action and finite syntax highlighting for non-inline code only. No execution or editor. See [code contract](code.md). |
 | `math` | Rendered | KaTeX generates visible HTML plus accessible MathML with trust disabled. Unsupported syntax remains formula source with an accessibility label; offline output embeds official MIT WOFF2 fonts; CDN CSS loads the same fonts from its pinned asset directory. No remote equation service is used. |
 | `badge` | Rendered | Compact text and semantic color. Size and arbitrary visual variants are not configurable. |
 | `divider` | Rendered | A semantic horizontal separator. |
@@ -60,8 +60,8 @@ results from the current revision for those claims.
 | `select` | Rendered | Labeled native selector over declared string or numeric choices. No searchable combobox. |
 | `button` | Rendered | Exactly two declarative actions: reset document state, or set one declared state value. No callbacks, network submission, clipboard, or arbitrary commands. |
 | `topology` | Rendered | Original SVG node/edge diagram with optional maximum-load highlighting and a textual summary. Layout is deterministic, not a general graph-layout engine. |
-| `chart` | Rendered | Line, grouped bar, scatter, area and single-series donut; explicit category/linear/time X axes, typed finite bounds, null gaps, empty/loading/error views, keyboard point readout, series switches and data table. No stacking, brush, zoom, export or chart-kind switch. See charts.md for axis rules and version boundaries. |
-| `input` | Rendered | Native text/number/email with label/hint/error, required/disabled and bounded constraints. Numeric drafts preserve typed state. |
+| `chart` | Rendered | Line, grouped bar, scatter, area and single-series donut; later candidate adds solid single-series pie ([contract](pie.md)); explicit category/linear/time X axes, typed finite bounds, null gaps, empty/loading/error views, keyboard point readout, series switches and data table. No stacking, brush, zoom, export or chart-kind switch. See charts.md for axis rules and version boundaries. |
+| `input` | Rendered | Native text/number/email with label/hint/error, required/disabled and bounded constraints. Numeric drafts preserve typed state; later checkbox candidate binds native boolean checks through the same form lifecycle. |
 | `textarea` | Rendered | Native multiline text with label, constraints and keyboard editing. |
 | `radio` / `segmented` | Rendered | Native radio options, roving browser keyboard behavior, disabled options and required selection. |
 | `field` | Rendered | Native fieldset and legend with inherited disabled behavior. |
@@ -75,8 +75,8 @@ results from the current revision for those claims.
 | `clock` / `stopwatch` / `timer` | Rendered | Explicit live/snapshot time zones and local monotonic duration controls with pause/resume/reset, bounded laps and one completion status. No OS alarm, notification, persistence or time service. See [time contract](time.md). |
 | `tooltip` / `popover` | Rendered | Inert text tips and nonmodal child panels; keyboard, dismiss/return-focus, viewport-aware native top layer or explicit inline fallback. See [overlay contract](overlays.md). |
 | `flow` / `icon` / `pulse-indicator` | Rendered | DOM-order wrapping, ten finite original semantic glyphs, supplied explicit status with reduced motion. No arbitrary icon loading or inferred service status. See [primitive contract](primitives.md); [batch acceptance passed](verification-62.md). |
-| `loading` / `loading-block` | Rendered candidate | Explicit supplied progress or honestly indeterminate spinner; finite text/card/circle placeholders, no network/task observation or live/busy claims. Dynamic range validation is atomic. See [loading contract](loading.md); later batch browser/CDN pending. |
-| `citation` / `web-link-cards` | Rendered candidate | Caller-authored literal references and secure native HTTP(S) links; finite cards with bounded previous/next scrolling, RTL normalization and stable focus. No retrieval, ranking or support verification. See [source contract](source-cards.md); later browser/CDN pending. |
+| `loading` / `loading-block` | Rendered | Explicit supplied progress or honestly indeterminate spinner; finite text/card/circle placeholders, no network/task observation or live/busy claims. Dynamic range validation is atomic. See [loading contract](loading.md) and [executed evidence](verification-66.md). |
+| `citation` / `web-link-cards` | Rendered | Caller-authored literal references and secure native HTTP(S) links; finite cards with bounded previous/next scrolling, RTL normalization and stable focus. No retrieval, ranking or support verification. See [source contract](source-cards.md) and [executed evidence](verification-66.md). |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 

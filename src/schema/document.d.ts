@@ -765,7 +765,7 @@ export interface InputNode {
   error?: Value;
   required?: boolean;
   disabled?: Value;
-  kind: "text" | "number" | "email";
+  kind: "text" | "number" | "email" | "checkbox";
   placeholder?: string;
   min?: number;
   max?: number;
@@ -925,7 +925,7 @@ export interface TopologyNode {
 export interface ChartNode {
   type: "chart";
   id?: string;
-  kind: "line" | "bar" | "scatter" | "area" | "donut";
+  kind: "line" | "bar" | "scatter" | "area" | "donut" | "pie";
   xKey: string;
   xScale?: "category" | "linear" | "time";
   xLabel?: string;

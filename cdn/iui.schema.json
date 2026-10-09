@@ -2593,7 +2593,8 @@
           "enum": [
             "text",
             "number",
-            "email"
+            "email",
+            "checkbox"
           ]
         },
         "placeholder": {
@@ -2627,7 +2628,27 @@
         "bind",
         "kind"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "checkbox"
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "placeholder": false,
+          "min": false,
+          "max": false,
+          "step": false,
+          "minLength": false,
+          "maxLength": false
+        }
+      }
     },
     "TextareaNode": {
       "type": "object",
@@ -3105,7 +3126,8 @@
             "bar",
             "scatter",
             "area",
-            "donut"
+            "donut",
+            "pie"
           ]
         },
         "xKey": {

@@ -27,6 +27,8 @@ export function createForms(c: RendererContext) {
     error.setAttribute('aria-live', 'polite');
     error.setAttribute('aria-atomic', 'true');
     const choice = n.type === 'radio' || n.type === 'segmented';
+    const checkbox = n.type === 'input' && n.kind === 'checkbox';
+    if (checkbox) out.classList.add('iui-field-checkbox');
     const group = choice ? e('fieldset', `iui-choices${n.type === 'segmented' ? ' iui-segmented' : ''}`) : undefined;
     const label = choice ? e('legend', 'iui-field-label', n.label) : e('label', 'iui-field-label', n.label);
     if (!choice) (label as HTMLLabelElement).htmlFor = id;
@@ -96,12 +98,14 @@ export function createForms(c: RendererContext) {
         input.setAttribute('step', String(n.step ?? 'any'));
       }
       setupInput(input);
-      out.append(input);
-      on(input, 'input', () => {
+      if (checkbox) out.insertBefore(input, label);
+      else out.append(input);
+      on(input, checkbox ? 'change' : 'input', () => {
         if (disabled(input)) { last = undefined; refresh(); return; }
         localError = '';
         const numeric = n.type === 'input' && n.kind === 'number';
-        const next = numeric ? (input as HTMLInputElement).valueAsNumber : input.value;
+        const next = checkbox ? (input as HTMLInputElement).checked : numeric ? (input as HTMLInputElement).valueAsNumber : input.value;
+        if (checkbox) touched = true;
         // Validate the numeric DOM draft before publishing it to shared state.
         // Finite values outside min/max/step are drafts too: derived metrics must
         // retain the last accepted value while the user corrects the field.
@@ -148,6 +152,10 @@ export function createForms(c: RendererContext) {
         return selected.disabled ? l.invalidChoice : '';
       }
       const input = inputs[0];
+      if (checkbox) {
+        if ((input as HTMLInputElement).checked !== current) return l.inputMismatch;
+        return n.required && current !== true ? l.required : '';
+      }
       const raw = input.value;
       if (n.type === 'input' && n.kind === 'number') return numberProblem(input as HTMLInputElement);
       if (raw !== String(current)) return l.inputMismatch;
@@ -168,11 +176,13 @@ export function createForms(c: RendererContext) {
       inputs.forEach((input, i) => {
         input.disabled = off || (choice && !!n.options[i].disabled);
         if (choice) (input as HTMLInputElement).checked = n.options[i].value === current;
+        else if (checkbox) (input as HTMLInputElement).checked = current === true;
         else if (current !== last && !committing) {
           input.value = String(current);
           localError = '';
         }
       });
+      if (checkbox && current !== last && !committing) localError = '';
       last = current;
       const provided = n.error === undefined ? '' : c.display(c.value(n.error));
       const message = inputs.every(disabled) ? '' : touched ? problem() : provided;

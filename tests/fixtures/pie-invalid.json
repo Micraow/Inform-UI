@@ -1,0 +1,108 @@
+[
+  {
+    "name": "negative",
+    "document": {
+      "version": "iui/1",
+      "body": [
+        {
+          "type": "chart",
+          "kind": "pie",
+          "xKey": "category",
+          "series": [
+            {
+              "key": "amount",
+              "label": "Amount"
+            }
+          ],
+          "data": [
+            {
+              "category": "A",
+              "amount": -1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "cartesian-scale",
+    "document": {
+      "version": "iui/1",
+      "body": [
+        {
+          "type": "chart",
+          "kind": "pie",
+          "xKey": "category",
+          "series": [
+            {
+              "key": "amount",
+              "label": "Amount"
+            }
+          ],
+          "data": [
+            {
+              "category": "A",
+              "amount": 1
+            }
+          ],
+          "xScale": "linear"
+        }
+      ]
+    }
+  },
+  {
+    "name": "cartesian-bounds",
+    "document": {
+      "version": "iui/1",
+      "body": [
+        {
+          "type": "chart",
+          "kind": "pie",
+          "xKey": "category",
+          "series": [
+            {
+              "key": "amount",
+              "label": "Amount"
+            }
+          ],
+          "data": [
+            {
+              "category": "A",
+              "amount": 1
+            }
+          ],
+          "yMin": 0
+        }
+      ]
+    }
+  },
+  {
+    "name": "two-series",
+    "document": {
+      "version": "iui/1",
+      "body": [
+        {
+          "type": "chart",
+          "kind": "pie",
+          "xKey": "category",
+          "series": [
+            {
+              "key": "amount",
+              "label": "Amount"
+            },
+            {
+              "key": "other",
+              "label": "Other"
+            }
+          ],
+          "data": [
+            {
+              "category": "A",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

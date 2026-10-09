@@ -1,0 +1,92 @@
+{
+  "version": "iui/1",
+  "title": "本地复选框与数字草稿",
+  "description": "原创合成练习；没有法律同意、后台提交或偏好保存。",
+  "theme": "auto",
+  "state": {
+    "ready": false,
+    "extras": true,
+    "samples": 2
+  },
+  "computed": {
+    "readyLabel": {
+      "op": "if",
+      "args": [
+        {
+          "$": "ready"
+        },
+        "true（已勾选）",
+        "false（未勾选）"
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "level": 1,
+      "value": "布尔选择立即生效，数字草稿另有边界"
+    },
+    {
+      "type": "form",
+      "id": "checkbox-practice",
+      "label": "合成本地检查",
+      "submitLabel": "仅检查本页",
+      "cancelLabel": "恢复表单初值",
+      "children": [
+        {
+          "type": "input",
+          "id": "ready-check",
+          "kind": "checkbox",
+          "label": "本地练习开关（提交时须勾选）",
+          "bind": "ready",
+          "required": true,
+          "hint": "这是合成字段校验，不是同意条款或已完成证明。"
+        },
+        {
+          "type": "input",
+          "kind": "checkbox",
+          "label": "包含演示附注",
+          "bind": "extras",
+          "hint": "切换只改变本页boolean state。"
+        },
+        {
+          "type": "input",
+          "kind": "number",
+          "label": "合成偶数样本数",
+          "bind": "samples",
+          "min": 2,
+          "max": 8,
+          "step": 2,
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "metric",
+      "label": "即时布尔状态",
+      "value": {
+        "$": "readyLabel"
+      }
+    },
+    {
+      "type": "metric",
+      "label": "最后接受的合成数字",
+      "value": {
+        "$": "samples"
+      }
+    },
+    {
+      "type": "button",
+      "label": "宿主明确写回false",
+      "action": {
+        "kind": "set",
+        "bind": "ready",
+        "value": false
+      }
+    },
+    {
+      "type": "caption",
+      "value": "required不禁止宿主写false；false仍可能使表单未通过。输入数字3只留草稿；checkbox直接写true/false。此例需要base+forms。"
+    }
+  ]
+}

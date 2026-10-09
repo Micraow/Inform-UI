@@ -14,6 +14,7 @@ import {renderSports} from './sports.js';
 import {createForms} from './forms.js';
 import {renderWeather} from './weather.js';
 import {renderChart} from './charts.js';
+import {renderPie} from './pie.js';
 import type {RendererContext,FormAction} from './context.js';
 import katex from 'katex';
 import { evaluateState, evaluateValue, validateDocument } from '../core/index.js';
@@ -183,7 +184,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'field': out=forms.group(n);break;
       case 'form': out=forms.form(n);break;
       case 'topology': out=topology(n);break;
-      case 'chart': out=renderChart(context,n);break;
+      case 'chart': out=n.kind==='pie'?renderPie(context,n,labels.pieUI):renderChart(context,n);break;
       case 'weather': out=renderWeather(context,n);break;
       case 'finance-heatmap': out=renderHeatmap(context,n); break;
       case 'unit-converter':case 'currency-converter': out=renderConverter(context,n); break;

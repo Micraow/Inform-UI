@@ -20,6 +20,7 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
     if(node.type==='input'||node.type==='textarea') {
       if(node.minLength!==undefined&&node.maxLength!==undefined&&node.minLength>node.maxLength) error('FIELD_CONSTRAINT','','minLength must not exceed maxLength.');
       if(node.type==='input') {
+        if(node.kind==='checkbox' && [node.placeholder,node.minLength,node.maxLength,node.min,node.max,node.step].some(value=>value!==undefined)) error('FIELD_CONSTRAINT','','Checkbox does not support text or numeric constraints.');
         if(node.kind==='number') {
           if(node.min!==undefined&&node.max!==undefined&&(node.min>node.max||!Number.isFinite(node.max-node.min))) error('FIELD_CONSTRAINT','','Numeric bounds must be ordered with a finite span.');
           if(node.minLength!==undefined||node.maxLength!==undefined) error('FIELD_CONSTRAINT','','Numeric inputs use min/max/step rather than text lengths.');
@@ -43,7 +44,7 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
     if(scale==='category'&&(node.xMin!==undefined||node.xMax!==undefined)) error('CHART_AXIS','','Category axes cannot have numeric bounds.');
     if(node.timezone&&!validTimezone(node.timezone)) error('TIMEZONE','/timezone','Use a recognized IANA time zone.');
     if(node.kind==='scatter'&&scale==='category') error('CHART_AXIS','/xScale','Scatter requires an explicit linear or time xScale.');
-    if(node.kind==='donut'&&(node.series.length!==1||scale!=='category'||node.xMin!==undefined||node.xMax!==undefined||node.yMin!==undefined||node.yMax!==undefined)) error('CHART_DONUT','','Donut uses one nonnegative series, category labels and no Cartesian bounds.');
+    if((node.kind==='donut'||node.kind==='pie')&&(node.series.length!==1||scale!=='category'||node.xMin!==undefined||node.xMax!==undefined||node.yMin!==undefined||node.yMax!==undefined)) error(node.kind==='pie'?'CHART_PIE':'CHART_DONUT','',`${node.kind==='pie'?'Pie':'Donut'} uses one nonnegative series, category labels and no Cartesian bounds.`);
   }
   if(node.type==='weather') {
     if(!validTimezone(node.location.timezone)) error('TIMEZONE','/location/timezone','Use a recognized IANA time zone.');
@@ -71,7 +72,7 @@ export function chartXDomain(values:readonly number[],min?:number,max?:number,ti
 }
 
 export function fieldTypeIssue(node: FieldNode, value: Scalar|undefined, path:string):Issue|undefined {
-  const expected=node.type==='input'&&node.kind==='number'?'number':node.type==='radio'||node.type==='segmented'?typeof node.options[0].value:'string';
+  const expected=node.type==='input'&&node.kind==='checkbox'?'boolean':node.type==='input'&&node.kind==='number'?'number':node.type==='radio'||node.type==='segmented'?typeof node.options[0].value:'string';
   if(typeof value!==expected) return {code:'INPUT_TYPE',path,message:`Field binding must be ${expected}.`};
   if((node.type==='radio'||node.type==='segmented')&&value!==''&&!node.options.some(o=>o.value===value)) return {code:'INPUT_OPTION',path,message:'Choice binding must match an option or an empty string.'};
 }

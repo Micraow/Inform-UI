@@ -28,6 +28,26 @@ export class EvaluationError extends Error {
   constructor(code: string, path: string, message: string) { super(message); this.name = 'EvaluationError'; this.code = code; this.path = path; }
 }
 const fail = (code: string, path: string, message: string): never => { throw new EvaluationError(code, path, message); };
+/** JSON Schema maxLength counts Unicode code points, not UTF-16 code units.
+ * Fast-path BMP text; scan only the bounded ambiguous range without allocating
+ * a code-point array. Unpaired surrogates count once, matching schema traversal. */
+function withinValueTextLimit(value: string): boolean {
+  if (value.length <= 12000) return true;
+  if (value.length > 24000) return false;
+  let count = 0;
+  for (const _point of value) if (++count > 12000) return false;
+  return true;
+}
+/** Resource budget is deliberately different: UTF-16 storage units, including
+ * keys. Only called on already-inspected JSON clones, never untrusted getters. */
+function textUnits(value: unknown): number {
+  if (typeof value === 'string') return value.length;
+  if (!value || typeof value !== 'object') return 0;
+  let total = 0;
+  for (const [key, child] of Object.entries(value)) total += key.length + textUnits(child);
+  return total;
+}
+
 const toIssue = (error: unknown): Issue => error instanceof EvaluationError ? issue(error.code, error.path, error.message) : issue('INVALID_INPUT', '', 'Input could not be safely inspected.');
 
 /** Clone only JSON data; reject accessors, custom prototypes, cycles and oversized inputs before schema traversal. */
@@ -88,7 +108,7 @@ function createEvaluator(state: Readonly<Record<string, Scalar>>, computed: Read
   const valueOf = (value: unknown, path = '', depth = 0): Scalar => {
     if (depth > LIMITS.depth) fail('DEPTH_LIMIT', path, 'Expression nesting is too deep.');
     if (value === null || typeof value === 'boolean') return value;
-    if (typeof value === 'string') { if (value.length > 12000) fail('TEXT_LIMIT', path, 'Value strings are limited to 12000 characters.'); return value; }
+    if (typeof value === 'string') { if (!withinValueTextLimit(value)) fail('TEXT_LIMIT', path, 'Value strings are limited to 12000 Unicode code points.'); return value; }
     if (typeof value === 'number') { if (!Number.isFinite(value)) fail('NON_FINITE', path, 'Numbers must be finite.'); return value; }
     if (!record(value)) fail('EXPRESSION_SHAPE', path, 'Expected a scalar or an expression.');
     const object = value as Record<string, unknown>;
@@ -326,8 +346,9 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
   const evaluate = createEvaluator(state, document.computed ?? {});
   for (const key of Object.keys(document.computed ?? {})) capture(() => { computed[key] = evaluate({ $: key }, pointer('/computed', key)); });
   const controls: [Node, string][] = [];
+  let largestValueText = 0;
   walkNodes(document, (node, path) => {
-    for (const [value, at] of nodeValues(node, path)) capture(() => { const resolved=evaluate(value, at); if(at===`${path}/disabled`&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
+    for (const [value, at] of nodeValues(node, path)) capture(() => { largestValueText = Math.max(largestValueText, textUnits(value)); const resolved=evaluate(value, at); if(at===`${path}/disabled`&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
     if (node.type === 'loading' && node.progress !== undefined) capture(() => {
       const at = `${path}/progress`, value = evaluate(node.progress!, at);
       if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 100) add(issue('LOADING_PROGRESS', at, 'Loading progress must resolve to a finite number from 0 to 100.'));
@@ -349,11 +370,11 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
         node.series.forEach((series) => capture(() => {
           const at = pointer(`${path}/data/${i}`, series.key), value = evaluate(row[series.key], at);
           if (value !== null && typeof value !== 'number') add(issue('CHART_VALUE', at, 'Chart y values must be numbers or explicit null gaps.'));
-          if (typeof value === 'number') { if(node.kind==='donut'&&value<0)add(issue('CHART_DONUT',at,'Donut values must be nonnegative.')); observations++; numeric.push(value); if ((node.yMin !== undefined && value < node.yMin) || (node.yMax !== undefined && value > node.yMax)) add(issue('CHART_BOUNDS', at, 'Observation lies outside the stated y bounds.')); }
+          if (typeof value === 'number') { if((node.kind==='donut'||node.kind==='pie')&&value<0)add(issue(node.kind==='pie'?'CHART_PIE':'CHART_DONUT',at,`${node.kind==='pie'?'Pie':'Donut'} values must be nonnegative.`)); observations++; numeric.push(value); if ((node.yMin !== undefined && value < node.yMin) || (node.yMax !== undefined && value > node.yMax)) add(issue('CHART_BOUNDS', at, 'Observation lies outside the stated y bounds.')); }
         }));
       });
       if(xs.length&&(()=>{const [a,b]=chartXDomain(xs,node.xMin,node.xMax,scale==='time');return !(a<b)||!Number.isFinite(b-a)||(scale==='time'&&(Math.abs(a)>8.64e15||Math.abs(b)>8.64e15));})())add(issue('CHART_BOUNDS',`${path}/data`,'X domain span must be finite.'));
-      if(node.kind==='donut'&&!Number.isFinite(numeric.reduce((a,b)=>a+b,0)))add(issue('CHART_DONUT',`${path}/data`,'Donut total must be finite.'));
+      if((node.kind==='donut'||node.kind==='pie')&&!Number.isFinite(numeric.reduce((a,b)=>a+b,0)))add(issue(node.kind==='pie'?'CHART_PIE':'CHART_DONUT',`${path}/data`,`${node.kind==='pie'?'Pie':'Donut'} total must be finite.`));
       if (numeric.length) {
         const [low,high] = chartYDomain(numeric,node.yMin,node.yMax);
         if (!(low < high) || !Number.isFinite(high - low)) add(issue('CHART_BOUNDS', `${path}/data`, 'The effective chart domain must have an ordered, positive finite span.'));
@@ -364,10 +385,16 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
     if (node.type !== 'button' || node.action.kind !== 'set' || !node.action.bind) return;
     for (const [control] of controls) if ('bind' in control && control.bind === node.action.bind) { const e = controlIssue(control, node.action.value, `${path}/action/value`); if (e) add(e); }
   });
+  // The public evaluator inspects {value,state,computed}. Validate the same
+  // bounded resolved context before mount/refresh, rather than accepting a
+  // document which fails only after DOM rendering begins. No budget increase.
+  if (textUnits({ state, computed }) + 'value'.length + largestValueText > LIMITS.text) add(issue('TEXT_LIMIT', '/computed', 'The resolved evaluation text budget was exceeded.'));
   return issues.length ? { ok: false, issues } : { ok: true, state: freeze({ ...state }) as Readonly<Record<string, StateValue>>, computed: freeze(computed) };
 }
 
-const trusted = new WeakSet<object>();
+// Cache immutable non-state text cost; state transitions cannot enlarge the
+// existing whole-document resource budget by replacing one small value at a time.
+const trusted = new WeakMap<object, number>();
 function schemaIssues(input: unknown): Issue[] {
   if (validateSchema(input)) return [];
   const all = validateSchema.errors ?? [];
@@ -392,7 +419,9 @@ export function validateDocument(input: unknown): ValidationResult {
   if (semantic.length) return { ok: false, issues: semantic };
   const evaluated = resolveState(document, document.state);
   if (!evaluated.ok) return evaluated;
-  freeze(document); trusted.add(document);
+  const fixedText = textUnits(document) - textUnits(document.state);
+  if (fixedText + textUnits(document.state) > LIMITS.text) return { ok: false, issues: [issue('TEXT_LIMIT', '', 'The total text budget was exceeded.')] };
+  freeze(document); trusted.set(document, fixedText);
   return { ok: true, document };
 }
 
@@ -412,8 +441,9 @@ export function evaluateState(document: IUIDocument, stateOverride: Readonly<Rec
     const path = pointer('/state', key);
     if (!own(initial, key)) return { ok: false, issues: [issue('UNKNOWN_BIND', path, 'State override contains an unknown binding.')] };
     if (typeof value !== typeof initial[key] || value === null || typeof value === 'object') return { ok: false, issues: [issue('INPUT_TYPE', path, 'State override must preserve the initial primitive type.')] };
-    if (typeof value === 'string' && value.length > 12000) return { ok: false, issues: [issue('TEXT_LIMIT', path, 'State strings are limited to 12000 characters.')] };
+    if (typeof value === 'string' && !withinValueTextLimit(value)) return { ok: false, issues: [issue('TEXT_LIMIT', path, 'State strings are limited to 12000 Unicode code points.')] };
     state[key] = value as Scalar;
   }
+  if (trusted.get(document)! + textUnits(state) > LIMITS.text) return { ok: false, issues: [issue('TEXT_LIMIT', '/state', 'The total text budget was exceeded.')] };
   return resolveState(document, state);
 }

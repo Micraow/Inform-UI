@@ -6,7 +6,7 @@
 {"type":"code","language":"javascript","value":"const sample = 7;\n","copy":true,"highlight":true}
 ```
 
-`value` 必须是字面字符串，最多12000 Unicode码点；language为1–200字符。高亮只识别大小写不敏感的精确别名js/javascript、ts/typescript、json、py/python。缺失/未知语言保留纯文本。原创有限词法着色不是语法验证器；不解析完整正则、模板插值、JSX、装饰器或f-string等语法。文本、换行、CRLF、tab和Unicode保持原样，无执行/网络功能。
+`value` 必须是字面字符串，最多12000 Unicode码点（例如12000个emoji）；language为1–200码点。独立的整份文档资源预算仍为2,000,000个UTF-16存储单元，合并state更新也必须满足，未被此修复放宽。高亮只识别大小写不敏感的精确别名js/javascript、ts/typescript、json、py/python。缺失/未知语言保留纯文本。原创有限词法着色不是语法验证器；不解析完整正则、模板插值、JSX、装饰器或f-string等语法。文本、换行、CRLF、tab和Unicode保持原样，无执行/网络功能。
 
 复制只由明确的原生可信按钮激活触发，向当前ownerDocument的Clipboard API提交原始字符串；浏览器/OS决定最终系统剪贴板编码。不读剪贴板，不申请权限，也不自动复制。缺失/不安全/拒绝/失败时显示手动选择复制提示。忙态保持按钮焦点、只允许一个请求；下一次明确点击可重试。卸载/更新后的旧promise不会改动旧或新UI。
 

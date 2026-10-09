@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T06:38:00Z",
+  "as_of_utc": "2026-10-09T08:01:55.635Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -19,13 +19,16 @@
     "forms_boundary_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37887521690",
     "foundation_time_overlay_primitive_verified_commit": "3d2c0ce23dd1532f2a6acd7f2c5ac6c697d08323",
     "foundation_time_overlay_primitive_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37892705931",
-    "fixed_cdn_asset_commit": "01ae9d870b221208b31e9da437ae87fdef265cec"
+    "fixed_cdn_asset_commit": "d370ffb2df310fce0da9299e6e254a58509ba544",
+    "loading_sources_verified_commit": "7db01a63d18d61a59f508e11433877b073ed5a7b",
+    "loading_sources_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37898154911",
+    "local_enhancement_checkpoint": "See docs/local-enhancements-20261009.md; no browser/CI acceptance and no new recommended CDN pin."
   },
   "counts": {
     "not_implemented": 191,
-    "functionally_verified": 49,
+    "functionally_verified": 53,
     "implemented_pending_verification": 4,
-    "partial": 12
+    "partial": 8
   },
   "components": [
     {
@@ -81,8 +84,8 @@
       "id": "base-carousel",
       "name": "轮播",
       "layer": "primitive",
-      "status": "partial",
-      "note": "仅滚动，缺完整轮播控制"
+      "status": "implemented_pending_verification",
+      "note": "有限原生上一/下一、RTL边界、子状态保留已本地实现；真实浏览器待约30组件合批。"
     },
     {
       "id": "base-celebration",
@@ -123,8 +126,8 @@
       "id": "base-checkbox",
       "name": "复选框",
       "layer": "primitive",
-      "status": "partial",
-      "note": "仅toggle基础绑定，缺独立required/disabled合同"
+      "status": "implemented_pending_verification",
+      "note": "原生boolean字段已接入required/disabled/fieldset及同一Forms生命周期；本地通过，真实浏览器待合批。"
     },
     {
       "id": "base-code",
@@ -246,15 +249,15 @@
       "id": "base-loading",
       "name": "加载指示",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。"
+      "status": "functionally_verified",
+      "note": "7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。"
     },
     {
       "id": "base-loading-block",
       "name": "骨架/加载占位",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。"
+      "status": "functionally_verified",
+      "note": "7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。"
     },
     {
       "id": "base-lottie",
@@ -281,8 +284,8 @@
       "id": "base-pie-chart",
       "name": "饼图/环图",
       "layer": "primitive",
-      "status": "partial",
-      "note": "只有donut"
+      "status": "implemented_pending_verification",
+      "note": "单序列实心饼图、缺测/零值及精确表格已本地实现；真实SVG/触摸/视觉待合批。"
     },
     {
       "id": "base-popover",
@@ -435,8 +438,8 @@
       "id": "web-link-cards",
       "name": "Web Links Carousel",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。"
+      "status": "functionally_verified",
+      "note": "7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。"
     },
     {
       "id": "business-gallery",
@@ -449,8 +452,8 @@
       "id": "citation",
       "name": "Cite",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。"
+      "status": "functionally_verified",
+      "note": "7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。"
     },
     {
       "id": "calendar-agenda",
@@ -607,8 +610,8 @@
       "id": "code-block",
       "name": "Code Block",
       "layer": "domain",
-      "status": "partial",
-      "note": "无copy/高亮等领域功能"
+      "status": "implemented_pending_verification",
+      "note": "显式可信复制、有限原生高亮与原文保持已本地实现；真实激活/剪贴板边界及视觉待合批。"
     },
     {
       "id": "writing-block",

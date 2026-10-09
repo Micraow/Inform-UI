@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:e0aa25de9b8ea9be22b489c0556f57ceb1871f3918a3f85cd091d3f38300ff7d:node:time",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:3b11198fefbcceda5fd5b9cd43275c6cb0bcf2465c6801867028e8036a627e8f:node:time",
   "title": "Inform UI node subset: time",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

@@ -4,7 +4,7 @@
 
 | 节点 | 行为 |
 | --- | --- |
-| `input` | `kind: text / number / email`；`label`、`bind` 必填 |
+| `input` | `kind: text / number / email / checkbox`；`label`、`bind` 必填 |
 | `textarea` | 长文本，`rows` 控制初始高度 |
 | `radio` / `segmented` | 原生单选行为，键盘切换；`options` 值为同一类型的字符串或数字 |
 | `field` | 带 `label`、可选 `hint` 的原生 fieldset 分组，可以整体禁用 |
@@ -18,7 +18,9 @@
 
 指针按下提交/取消或文档 set/reset 按钮时，相关失焦错误布局延后到该手势结束，避免插入错误行把正在点击的按钮推走。取消手势、拖出后释放或窗口失焦会恢复校验；键盘 Tab、Enter 和程序焦点操作不等待指针动作。
 
-开关继续使用已有 `toggle`。禁用字段不阻止提交，也不进入提交快照。
+`input.kind: checkbox` 是带表单 hint/error/required 生命周期的原生复选框，绑定必须为 boolean。点击标签或按 Space 即时写入 true/false；required 只约束提交时必须勾选，false 仍可作为有效共享 state。宿主覆盖、取消、原生 reset 和文档 reset 复用现有表单生命周期；被全局计算校验拒绝的修改会恢复勾选状态并保留焦点。它不接受 placeholder、min/max/step、minLength/maxLength 或 indeterminate。禁用和 fieldset 继承禁用的字段不阻止提交，也不进入提交快照。轻量开关仍可用已有 `toggle`。
+
+复选框示例：[checkbox-practice.json](../examples/checkbox-practice.json)。本轮复选框增强尚待集中浏览器/CDN 验收；此前 d370 固定版不接受 checkbox kind。
 
 ## 纯 JSON 默认行为
 

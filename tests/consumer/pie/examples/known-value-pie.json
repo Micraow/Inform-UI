@@ -1,0 +1,118 @@
+{
+  "version": "iui/1",
+  "title": "合成组成：只计算已知值",
+  "description": "原创合成教学数据；不是测量、实时统计或完整总体。",
+  "theme": "auto",
+  "state": {
+    "first": 1
+  },
+  "computed": {
+    "knownTotal": {
+      "op": "add",
+      "args": [
+        {
+          "$": "first"
+        },
+        2,
+        3
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "level": 1,
+      "value": "先说明分母，再看扇区"
+    },
+    {
+      "type": "text",
+      "value": "两个甲标签按作者顺序保留，不自动归并。零是已知数值；缺测不能填成零。改变滑块只改变这份合成数据。"
+    },
+    {
+      "type": "slider",
+      "label": "第一行甲的合成份数",
+      "bind": "first",
+      "min": 0,
+      "max": 6,
+      "step": 1
+    },
+    {
+      "type": "metric",
+      "label": "已知份数之和",
+      "value": {
+        "$": "knownTotal"
+      },
+      "unit": "份"
+    },
+    {
+      "type": "chart",
+      "id": "known-pie",
+      "kind": "pie",
+      "title": "重复标签、零与缺测同时保留",
+      "xKey": "category",
+      "series": [
+        {
+          "key": "amount",
+          "label": "合成份数"
+        }
+      ],
+      "unit": "份",
+      "data": [
+        {
+          "category": "甲",
+          "amount": {
+            "$": "first"
+          }
+        },
+        {
+          "category": "甲",
+          "amount": 2
+        },
+        {
+          "category": "乙",
+          "amount": 3
+        },
+        {
+          "category": "已知零",
+          "amount": 0
+        },
+        {
+          "category": "未提供",
+          "amount": null
+        }
+      ],
+      "note": "分母只含已知值。图例和数据表保留全部5行；箭头导航也包含零和缺测。"
+    },
+    {
+      "type": "chart",
+      "id": "empty-pie",
+      "kind": "pie",
+      "title": "没有正值可画时保留原始表",
+      "xKey": "category",
+      "series": [
+        {
+          "key": "amount",
+          "label": "合成份数"
+        }
+      ],
+      "data": [
+        {
+          "category": "已知零",
+          "amount": 0
+        },
+        {
+          "category": "缺测",
+          "amount": null
+        }
+      ],
+      "note": "此处不能凭空画一个完整圆或假100%。"
+    },
+    {
+      "type": "button",
+      "label": "恢复合成初值",
+      "action": {
+        "kind": "reset"
+      }
+    }
+  ]
+}

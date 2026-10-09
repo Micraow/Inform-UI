@@ -5,8 +5,8 @@ import { join } from 'node:path';
 // Discovery metadata only. The canonical generator owns every node definition and group assignment.
 export const SCHEMA_GROUPS = Object.freeze({
   base: { title: '基础内容、布局与联动控件', examples: ['examples/wifi.json', 'examples/shortlist.json', 'examples/math-fonts.json', 'examples/foundations.json', 'examples/structured-tables.json', 'examples/local-status-primitives.json', 'examples/loading-states.json', 'examples/source-cards.json', 'examples/carousel-basic.json', 'examples/code.json'] },
-  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json'] },
-  charts: { title: '通用图表与数值/时间坐标', examples: ['examples/rtt.json', 'examples/numeric-charts.json'] },
+  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json', 'examples/checkbox-practice.json'] },
+  charts: { title: '通用图表与数值/时间坐标', examples: ['examples/rtt.json', 'examples/numeric-charts.json', 'examples/pie.json'] },
   graphics: { title: '拓扑与受限SVG', examples: ['examples/hpcc.json'] },
   weather: { title: '天气供数视图', examples: ['examples/weather.json'] },
   sports: { title: '体育赛程、记分牌与积分榜', examples: ['examples/sports.json'] },
