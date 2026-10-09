@@ -141,6 +141,10 @@ defs.WordExample=object({text:string(1000,1),translation:string(1000)},['text'])
 node('word-card',{wordId:suppliedKey,term:string(200,1),definition:string(5000,1),pronunciation:short,partOfSpeech:short,translation:string(2000),examples:array(ref('WordExample'),0,8),initiallyRevealed:bool,disabled:bool,source:ref('TravelEventSource')},['wordId','term','definition']);
 defs.CopyWord=object({id:suppliedKey,text:string(200,1),note:string(1000)},['id','text']);
 node('copy-words',{label:short,description:string(2000),words:array(ref('CopyWord'),0,80),initialSelectedIds:array(suppliedKey,0,80),separator:choice('lines','comma','space'),disabled:bool},['label','words']);
+// Original supplied code-line and document-page citation readers.
+node('code-cite',{label:short,fileName:short,language:short,startLine:integer(1,10000000),lines:array(string(2000),1,120),citedStart:integer(1,10000000),citedEnd:integer(1,10000000),source:ref('TravelEventSource')},['label','fileName','startLine','lines']);
+defs.CitedFilePage=object({number:integer(1,10000000),label:short,text:string(6000,1),source:ref('TravelEventSource')},['number','text']);
+node('file-cite',{label:short,fileName:short,mediaType:short,totalPages:integer(1,10000000),pages:array(ref('CitedFilePage'),1,30),initialPage:integer(1,10000000),source:ref('TravelEventSource')},['label','fileName','pages']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);

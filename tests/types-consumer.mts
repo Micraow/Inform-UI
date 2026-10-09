@@ -193,3 +193,5 @@ import './flight-discovery-types-consumer.mjs';
 import './activity-planning-types-consumer.mjs';
 
 import './vocabulary-tools-types-consumer.mjs';
+
+import './source-citations-types-consumer.mjs';
