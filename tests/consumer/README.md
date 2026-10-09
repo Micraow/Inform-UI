@@ -1,6 +1,6 @@
 # Original Inform UI consumer browser candidate
 
-Seven original synthetic JSON examples and a standalone local-compiled Chromium regression. No private captures, historical blind fixtures or external services are included. The script has been syntax-checked; its browser execution has not yet run.
+Seven original synthetic JSON examples and a standalone local-compiled Chromium regression. No private captures, historical blind fixtures or external services are included. All 42 views passed Chromium in CI run 37892705931. See docs/verification-62.md for the exact tested merge tree, asset pin and review limits.
 
 Use a built, frozen Inform UI checkout with its locked @playwright/test 1.56.1 and installed Chromium. No package additions or copied implementation code are required. Run from any directory:
 

@@ -114,6 +114,8 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 [单位与汇率换算HTML](../examples/browser/converters-preview.html) · [JSON](../examples/converters.json)
 
-当前62节点固定候选01ae9d8包含22个闭包分片（新增time Document/Node）与同版索引。真实file://浏览器发现和同版time/finance示例渲染由schema-discovery.spec.mjs回归。
+当前62节点固定资产01ae9d8包含22个闭包分片（新增time Document/Node）与同版索引。真实file://浏览器发现和同版time/finance示例渲染由schema-discovery.spec.mjs回归。
 
-新增[当前组合HTML](../examples/browser/current-components.html)与[原生JSON](../examples/current-components.json)包含富文本、结构化表格、时钟、秒表、倒计时、提示/面板、流式布局、有限图标、显式状态及数字草稿保护。无效min/max/step/空草稿不覆盖最后有效数字state；旧6797盲测页面和JSON保持原哈希，作为历史记录使用其独立delivery-cdn-lock。新的current-components-cdn回归以禁缓存的实际file://交互及资产哈希核验本轮候选，不以HTTP200替代渲染。
+新增[当前组合HTML](../examples/browser/current-components.html)与[原生JSON](../examples/current-components.json)包含富文本、结构化表格、时钟、秒表、倒计时、提示/面板、流式布局、有限图标、显式状态及数字草稿保护。无效min/max/step/空草稿不覆盖最后有效数字state；旧6797盲测页面和JSON保持原哈希，作为历史记录使用其独立delivery-cdn-lock。新的current-components-cdn回归以禁缓存的实际file://交互及资产哈希核验本轮固定版本，不以HTTP200替代渲染。
+
+本批已验：292项Node、216项Chromium、42消费者视图全部通过；原始CI合并树与验收提交整树一致，源码/CDN构建字节与资产pin一致。实际截图已复核；[完整证据与有限范围](verification-62.md)。

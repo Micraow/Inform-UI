@@ -1,6 +1,6 @@
 # 工具提示与非模态面板
 
-`tooltip` 和 `popover` 属于62节点协议的base组。当前固定CDN候选为01ae9d8，完整SHA与SRI见[浏览器入口](cdn.md)；源码、实际浏览器和新固定CDN分别验收。
+`tooltip` 和 `popover` 属于62节点协议的base组。当前固定CDN为01ae9d8，完整SHA与SRI见[浏览器入口](cdn.md)；源码、实际浏览器、新固定CDN与消费者已整批验收；[证据与边界](verification-62.md)。
 
 ## 合同
 

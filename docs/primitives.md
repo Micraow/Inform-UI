@@ -1,6 +1,6 @@
 # 流式布局、有限图标与显式状态
 
-这是本轮62节点源码的base增强，处于整合候选阶段。当前已验计数不因新增Schema节点自动增加；固定CDN和浏览器证据按批次记录。
+这是62节点协议的base增强，已通过源码、固定CDN与消费者整批验收。按canonical合同计入flow/icon/pulse-indicator三项；[验收证据与范围](verification-62.md)。
 
 ## Flow
 

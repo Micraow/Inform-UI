@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T06:05:00Z",
+  "as_of_utc": "2026-10-09T06:26:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -16,12 +16,15 @@
     "foundation_source_verified_commit": "3ca90cd6f0111dad3c889ab7ed180aac7dcce6c4",
     "foundation_source_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37885593941",
     "forms_boundary_verified_commit": "8fe02551ab98bb84d36f295b6f06537ceed3636f",
-    "forms_boundary_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37887521690"
+    "forms_boundary_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37887521690",
+    "foundation_time_overlay_primitive_verified_commit": "3d2c0ce23dd1532f2a6acd7f2c5ac6c697d08323",
+    "foundation_time_overlay_primitive_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37892705931",
+    "fixed_cdn_asset_commit": "01ae9d870b221208b31e9da437ae87fdef265cec"
   },
   "counts": {
     "not_implemented": 193,
-    "functionally_verified": 36,
-    "implemented_pending_verification": 13,
+    "functionally_verified": 49,
+    "implemented_pending_verification": 0,
     "partial": 14
   },
   "components": [
@@ -43,8 +46,8 @@
       "id": "base-blockquote",
       "name": "引用块",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-box",
@@ -127,8 +130,8 @@
       "id": "base-code",
       "name": "行内代码",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-col",
@@ -173,8 +176,8 @@
       "id": "base-flow",
       "name": "流式铺排",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "原创有限基础合同已实现并通过本地模块检查；公共整合/真实浏览器/同版CDN批次验收仍待完成。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-form",
@@ -187,8 +190,8 @@
       "id": "base-grid",
       "name": "网格",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-html-view",
@@ -201,8 +204,8 @@
       "id": "base-icon",
       "name": "图标",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "原创有限基础合同已实现并通过本地模块检查；公共整合/真实浏览器/同版CDN批次验收仍待完成。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-image",
@@ -285,8 +288,8 @@
       "id": "base-popover",
       "name": "弹出层",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-pressable",
@@ -299,8 +302,8 @@
       "id": "base-pulse-indicator",
       "name": "脉冲状态指示",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "原创有限基础合同已实现并通过本地模块检查；公共整合/真实浏览器/同版CDN批次验收仍待完成。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-radio-group",
@@ -362,15 +365,15 @@
       "id": "base-table",
       "name": "表格",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-text",
       "name": "文本",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "基础源码浏览器及亮暗截图已验证（3ca90cd）；新固定CDN和整批集成验收仍待完成，暂不计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-textarea",
@@ -390,8 +393,8 @@
       "id": "base-tooltip",
       "name": "工具提示",
       "layer": "primitive",
-      "status": "implemented_pending_verification",
-      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "base-youtube",
@@ -1045,8 +1048,8 @@
       "id": "clock",
       "name": "Clock",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "code-cite",
@@ -1108,15 +1111,15 @@
       "id": "digital-stopwatch",
       "name": "Digital Stopwatch",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "digital-timer",
       "name": "Digital Timer",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "独立源码、合同与本地测试已接入；整批真实浏览器、截图和新固定CDN仍待验收，未计入已验功能。"
+      "status": "functionally_verified",
+      "note": "3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。"
     },
     {
       "id": "display-automation",
