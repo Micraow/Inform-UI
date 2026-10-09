@@ -1,6 +1,6 @@
 {
   "version": "iui/1",
-  "title": "Intelligent-UI 体育与学习组件预览",
+  "title": "Inform UI 体育与学习组件预览",
   "description": "原创合成数据；赛程/记分牌/积分榜与本地测验/闪卡。当前固定256项清单中34项功能已验，不是完整库完成声明。",
   "theme": "auto",
   "body": [
@@ -29,7 +29,7 @@
         "timezone": "America/Los_Angeles",
         "updatedAt": "2026-11-01T01:30:00-08:00",
         "source": {
-          "label": "Intelligent-UI 原创合成数据",
+          "label": "Inform UI 原创合成数据",
           "synthetic": true
         },
         "teams": [
@@ -222,7 +222,7 @@
         "timezone": "America/Los_Angeles",
         "updatedAt": "2026-11-01T01:30:00-08:00",
         "source": {
-          "label": "Intelligent-UI 原创合成数据",
+          "label": "Inform UI 原创合成数据",
           "synthetic": true
         },
         "teams": [
@@ -414,7 +414,7 @@
         "timezone": "America/Los_Angeles",
         "updatedAt": "2026-11-01T01:30:00-08:00",
         "source": {
-          "label": "Intelligent-UI 原创合成数据",
+          "label": "Inform UI 原创合成数据",
           "synthetic": true
         },
         "teams": [

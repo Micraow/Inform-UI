@@ -1,10 +1,10 @@
-<h1 align="center">Intelligent-UI</h1>
+<h1 align="center">Inform UI</h1>
 
 <p align="center"><strong>让简短的 JSON，变成可阅读、可交互的科学解释。</strong></p>
 <p align="center">正文 · 公式 · 图表 · 拓扑 · 联动控件</p>
 
 <p align="center">
-  <a href="https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml"><img src="https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml/badge.svg?branch=feat%2Fportable-core-20261008&amp;event=pull_request" alt="GitHub Actions CI"></a>
+  <a href="https://github.com/Micraow/Inform-UI/actions/workflows/ci.yml"><img src="https://github.com/Micraow/Inform-UI/actions/workflows/ci.yml/badge.svg?branch=feat%2Fportable-core-20261008&amp;event=pull_request" alt="GitHub Actions CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License"></a>
   <a href="tsconfig.json"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&amp;logoColor=white" alt="TypeScript 5.9"></a>
   <a href="package.json"><img src="https://img.shields.io/badge/Node.js-%E2%89%A522-339933?logo=node.js&amp;logoColor=white" alt="Node.js 22 or newer"></a>
@@ -17,9 +17,15 @@
   <a href="#文档">文档</a>
 </p>
 
-Intelligent-UI 是一套 **独立、开源的 JavaScript / TypeScript 界面库**。模型、应用或人只需提供结构化内容，库负责排版、公式、图表与交互。适合技术说明、教学演示、研究笔记，以及需要图文混排的 AI 回答。
+Inform UI 是一套 **独立、开源的 JavaScript / TypeScript 界面库**。模型、应用或人只需提供结构化内容，库负责排版、公式、图表与交互。适合技术说明、教学演示、研究笔记，以及需要图文混排的 AI 回答。
 
 **不需要 OpenAI 账号、API、服务或运行时。** 同一套库既能生成离线 HTML，也能嵌入你的网页。项目追求克制、清晰的编辑式科学表达。
+
+## 独立项目声明 · Independence
+
+Inform UI 是独立、非官方的社区实现，目标是高保真复刻 OpenAI Intelligent UI 的视觉与交互体验。本项目不由 OpenAI 开发、维护、赞助或认可。OpenAI、ChatGPT、Intelligent UI 等名称仅用于说明原始参考对象，不表示官方关联。第三方素材与代码仍受各自许可证和知识产权规定约束；本声明不代表获得了任何必要的第三方授权。
+
+Inform UI is an independent, unofficial community implementation aiming to faithfully reproduce the visual and interactive experience of OpenAI Intelligent UI. It is not developed, maintained, sponsored, or endorsed by OpenAI. The names OpenAI, ChatGPT, and Intelligent UI identify the original reference only and do not imply an official affiliation. Third-party materials and code remain subject to their own licenses and intellectual property rights. This disclaimer does not provide any required third-party authorization.
 
 ## 看看效果
 
@@ -63,8 +69,8 @@ Intelligent-UI 是一套 **独立、开源的 JavaScript / TypeScript 界面库*
 > 当前是源码开发预览，尚未发布 npm 包。以下命令使用已有实现的开发分支，不需要寻找同名 npm 包。
 
 ```sh
-git clone --branch feat/portable-core-20261008 https://github.com/Micraow/Intelligent-UI.git
-cd Intelligent-UI
+git clone --branch feat/portable-core-20261008 https://github.com/Micraow/Inform-UI.git
+cd Inform-UI
 npm ci --ignore-scripts
 npm run build
 
@@ -140,7 +146,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 | [金融热图](examples/heatmap.json) | 真实权重面积、行业筛选、涨跌色阶与完整表（源码增量） |
 | [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
-想让 AI 生成这类 JSON，可搭配独立维护的 [Intelligent-UI-skill](https://github.com/Micraow/Intelligent-UI-skill)。核心库也可以单独使用。
+想让 AI 生成这类 JSON，可搭配独立维护的 [Inform-UI-skill](https://github.com/Micraow/Inform-UI-skill)。核心库也可以单独使用。
 
 ## 当前支持范围
 
@@ -167,6 +173,8 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 ## 参与与许可
 
-欢迎通过 [Issue](https://github.com/Micraow/Intelligent-UI/issues) 提交问题、示例和改进建议。开始修改前请阅读[开发指南](docs/development.md)。
+欢迎通过 [Issue](https://github.com/Micraow/Inform-UI/issues) 提交问题、示例和改进建议。开始修改前请阅读[开发指南](docs/development.md)。
 
 源码采用 **[MIT License](LICENSE)**，第三方依赖保留各自许可，见 [Third-party notices](THIRD_PARTY_NOTICES.md)。`package.json` 的 `private: true` 仅防止误发 npm，不限制这份公开源码的使用。
+
+项目现名为 Inform UI。为兼容现有文档，`iui/1`、全局 `IUI`、CLI `iui` 和既有 CSS 类保持不变；[品牌与协议兼容说明](docs/branding.md)。

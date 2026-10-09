@@ -1,6 +1,6 @@
 # Independent library: `iui/1` support
 
-`iui/1` is the Intelligent-UI project's versioned document format. It is not an
+`iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
 ChatGPT services. The schema recognizes 50 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.

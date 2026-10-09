@@ -2,7 +2,7 @@
 
 ## What this project is
 
-Intelligent-UI is an independently implemented JavaScript/TypeScript renderer
+Inform UI is an independently implemented JavaScript/TypeScript renderer
 for the project-defined `iui/1` JSON document contract. It aims for clear,
 portable scientific explanations with constrained interaction. It is not an
 official OpenAI component package, a ChatGPT client, or a copy of a private

@@ -2,7 +2,7 @@
 
 网页聊天模型不需要读取库的实现，也不需要终端。它只需知道 `iui/1` 内容协议和下面的固定调用壳：填写 JSON，调用 `IUI.validateDocument`，再由 `IUI.mount` 渲染真正的 HTML DOM。
 
-这是同一套 Intelligent-UI 库，不是另一种产品版本。首次加载需要网络；不需要 Node、构建工具、OpenAI 账号或服务。
+这是同一套 Inform UI 库，不是另一种产品版本。首次加载需要网络；不需要 Node、构建工具、OpenAI 账号或服务。
 
 ## 已固定的公开入口
 
@@ -27,7 +27,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <title>Intelligent-UI 示例</title>
+  <title>Inform UI 示例</title>
   <link id="iui-style" rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@f35e33b146c266ecf16371733c51064129afaec3/cdn/iui.css"
     integrity="sha384-R+ybWEp3LYtcukj5okG9CNtbw1tj9iz5/gmk1gujU5Tyg9G8pF5LIBP+WSJ1TmfH"
@@ -88,7 +88,7 @@
 
 固定提交的两个 JS、CSS、Schema 已分别取回并核对 SHA-256：均为 HTTP 200，MIME 分别为 JavaScript/CSS/JSON，`Access-Control-Allow-Origin: *`，缓存为一年 `immutable`。机器可读锁定信息见 [`cdn-lock.json`](../cdn-lock.json)。
 
-真实浏览器是否通过，以 `tests/browser/cdn.spec.mjs` 对应的 [GitHub Actions](https://github.com/Micraow/Intelligent-UI/actions/workflows/ci.yml) 结果为准。该测试从新上下文打开本地 `file://` HTML，禁用浏览器缓存并阻止 service worker，只允许固定 CDN JS/CSS/Schema 及字体，不注入本地运行库；另外验证计算、重置、MathML、错误提示和网络字节哈希。HTTP 200 本身不算渲染通过。
+真实浏览器是否通过，以 `tests/browser/cdn.spec.mjs` 对应的 [GitHub Actions](https://github.com/Micraow/Inform-UI/actions/workflows/ci.yml) 结果为准。该测试从新上下文打开本地 `file://` HTML，禁用浏览器缓存并阻止 service worker，只允许固定 CDN JS/CSS/Schema 及字体，不注入本地运行库；另外验证计算、重置、MathML、错误提示和网络字节哈希。HTTP 200 本身不算渲染通过。
 
 普通网页聊天是否能够凭 Skill/Schema 独立生成合适的新页面，是另一层作者使用验收；基础 CDN smoke test 不代替这项测试。
 
@@ -100,7 +100,7 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 独立文档壳使用 `body.iui-page` 与匹配的 `data-theme`（auto/light/dark），让页面外围背景也跟随主题；嵌入现有网页时不要给宿主添加这个类。`mount` 的样式保持局部作用域，不修改宿主背景。
 
-当前固定50节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[f35e33b](https://github.com/Micraow/Intelligent-UI/actions/runs/37873911247)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
+当前固定50节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[f35e33b](https://github.com/Micraow/Inform-UI/actions/runs/37873911247)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
 
 - [体育与学习HTML](../examples/browser/domains-preview.html) · [JSON](../examples/domains-preview.json)
 - [金融组件HTML](../examples/browser/finance-preview.html) · [JSON](../examples/finance-preview.json)

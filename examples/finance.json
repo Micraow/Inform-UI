@@ -9,7 +9,7 @@
       "id": "quote",
       "title": "行情快照",
       "source": {
-        "label": "Intelligent-UI original synthetic market fixture",
+        "label": "Inform UI original synthetic market fixture",
         "synthetic": true
       },
       "instrument": {
@@ -57,7 +57,7 @@
       "id": "history",
       "title": "带缺测的价格历史",
       "source": {
-        "label": "Intelligent-UI original synthetic market fixture",
+        "label": "Inform UI original synthetic market fixture",
         "synthetic": true
       },
       "instrument": {
@@ -132,7 +132,7 @@
       "id": "comparison",
       "title": "同一时刻为基准的相对表现",
       "source": {
-        "label": "Intelligent-UI original synthetic market fixture",
+        "label": "Inform UI original synthetic market fixture",
         "synthetic": true
       },
       "instruments": [

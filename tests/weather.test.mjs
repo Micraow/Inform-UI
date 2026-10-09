@@ -47,7 +47,7 @@ test('weather chart keeps missing gaps, zero precipitation and actual elapsed-ti
 });
 test('weather compile is deterministic and includes synthetic provenance without external assets', async () => {
   const a = await compileHtml(input()), b = await compileHtml(input()); assert.equal(a, b);
-  assert.match(a, /Intelligent-UI synthetic fixture/); assert.match(a, /sha256-/);
+  assert.match(a, /Inform UI synthetic fixture/); assert.match(a, /sha256-/);
 });
 test('weather date selection uses location calendar days across UTC offsets and spring DST', () => {
   const spec = input(), node = spec.body[0];

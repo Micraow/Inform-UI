@@ -1,6 +1,6 @@
 {
   "version": "iui/1",
-  "title": "Intelligent-UI 第一阶段交互预览",
+  "title": "Inform UI 第一阶段交互预览",
   "description": "原创合成示例：本地表单、天气视图、真实坐标图表。这是当前阶段预览，不是所有领域组件完成声明。",
   "theme": "auto",
   "state": {
@@ -260,7 +260,7 @@
           },
           "updatedAt": "2026-11-01T00:30:00-07:00",
           "source": {
-            "label": "Intelligent-UI synthetic fixture",
+            "label": "Inform UI synthetic fixture",
             "synthetic": true
           },
           "units": {

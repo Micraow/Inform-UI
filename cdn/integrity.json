@@ -34,9 +34,9 @@
       "integrity": "sha384-E/ed30yneQu6zIc4uvrWltgtWoCJkfoP0ONWyppoA01Ha4hwSbrUeCAKZVyuT3zt"
     },
     "LICENSE.txt": {
-      "bytes": 1084,
-      "sha256": "a1359998b30fa53107555eb85ed312f993ea7c2c699db6125fe05ab0b66e6cf0",
-      "integrity": "sha384-fs/9yk2tITTI05uA/l7TfVsFa1fkyu3jR1JRbkjKSTgGbaV6otuGIdTf7lBGQY/E"
+      "bytes": 1079,
+      "sha256": "788e3c7b655a094e85c0ca86fbc3f0715048e17d3c02c929a301c9dfafbc9378",
+      "integrity": "sha384-FElLYDX2xy4uLIFf7hoCHty9os4S3JDABrw32zn+ByyJAC+R6C7yPwT8Ep7LrVmS"
     },
     "THIRD_PARTY_NOTICES.md": {
       "bytes": 3928,
