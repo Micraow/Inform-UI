@@ -1,0 +1,93 @@
+{
+  "version": "iui/1",
+  "title": "数字草稿和已经接受的数值",
+  "description": "原创合成教学示例；仅在页面内运行，不联网、不保存、不发通知。",
+  "theme": "auto",
+  "state": {
+    "samples": 6,
+    "note": "合成记录"
+  },
+  "body": [
+    {
+      "type": "title",
+      "level": 2,
+      "value": "输入错误时，已接受的数值保持稳定"
+    },
+    {
+      "type": "text",
+      "value": "请试着把数字输入改成3、留空，或改成超出范围的值。数字草稿不写入 state；下方指标不是当前草稿有效性的证明。文字备注仍即时绑定，即使必填或长度约束尚未满足。"
+    },
+    {
+      "type": "popover",
+      "label": "编辑本地试算输入",
+      "title": "仅本地校验",
+      "children": [
+        {
+          "type": "form",
+          "id": "sample-form",
+          "label": "本地试算",
+          "submitLabel": "检查输入",
+          "cancelLabel": "恢复表单初值",
+          "children": [
+            {
+              "type": "input",
+              "kind": "number",
+              "label": "偶数样本数",
+              "bind": "samples",
+              "min": 2,
+              "max": 20,
+              "step": 2,
+              "required": true
+            },
+            {
+              "type": "input",
+              "kind": "text",
+              "label": "备注",
+              "bind": "note",
+              "required": true,
+              "minLength": 2
+            },
+            {
+              "type": "text",
+              "value": "点击检查只校验本页数据；不会发送或保存。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "metric",
+      "label": "已接受的样本数",
+      "value": {
+        "$": "samples"
+      },
+      "unit": "个"
+    },
+    {
+      "type": "text",
+      "value": {
+        "$": "note"
+      }
+    },
+    {
+      "type": "button",
+      "label": "明确写回6（也覆盖同值数字草稿）",
+      "action": {
+        "kind": "set",
+        "bind": "samples",
+        "value": 6
+      }
+    },
+    {
+      "type": "button",
+      "label": "恢复文档输入初值",
+      "action": {
+        "kind": "reset"
+      }
+    },
+    {
+      "type": "caption",
+      "value": "关闭面板不会取消或重置表单。表单取消只处理本表单；文档重置不等于秒表或倒计时的重置。"
+    }
+  ]
+}

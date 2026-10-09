@@ -1,0 +1,80 @@
+{
+  "version": "iui/1",
+  "title": "按需说明应保持可读和可关闭",
+  "description": "原创合成教学示例；仅在页面内运行，不联网、不保存、不发通知。",
+  "theme": "auto",
+  "state": {
+    "showDetail": false
+  },
+  "body": [
+    {
+      "type": "title",
+      "level": 2,
+      "value": "术语用短提示，交互内容用面板"
+    },
+    {
+      "type": "text",
+      "value": "关键限制留在正文：说明面板不阻塞背景，也不会替你确认、提交或加载资料。"
+    },
+    {
+      "type": "tooltip",
+      "label": "什么是合成示例？",
+      "value": "由作者虚构的教学数据，只用于说明组件行为，不代表实测结果。"
+    },
+    {
+      "type": "popover",
+      "id": "explanation-panel",
+      "label": "展开补充说明",
+      "title": "局部查看，随时返回",
+      "children": [
+        {
+          "type": "text",
+          "value": "此面板可以包含普通节点；关闭后重新打开，不会重新建立子节点。"
+        },
+        {
+          "type": "toggle",
+          "label": "展示补充解释",
+          "bind": "showDetail"
+        },
+        {
+          "type": "text",
+          "value": {
+            "op": "if",
+            "args": [
+              {
+                "$": "showDetail"
+              },
+              "补充：按 Escape 关闭最深一层面板。",
+              "已隐藏补充解释。"
+            ]
+          }
+        },
+        {
+          "type": "popover",
+          "label": "查看嵌套面板的规则",
+          "title": "一步关闭一层",
+          "children": [
+            {
+              "type": "text",
+              "value": "关闭当前层会把焦点还给这一层的触发器；外层仍然打开。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "popover",
+      "label": "打开另一份说明",
+      "children": [
+        {
+          "type": "text",
+          "value": "同级面板只保持一个分支；打开这里会关闭先前的分支。"
+        }
+      ]
+    },
+    {
+      "type": "caption",
+      "value": "没有原生顶层 API 时使用流式展开。Tab 可以离开面板；外部点击不会被关闭动作抢走焦点。"
+    }
+  ]
+}

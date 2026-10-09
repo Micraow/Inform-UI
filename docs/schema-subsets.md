@@ -2,16 +2,16 @@
 
 完整 [`iui.schema.json`](../src/schema/iui.schema.json) 仍是唯一协议定义，版本和校验语义保持不变。分片由同一个生成器裁剪，不维护另一套字段定义，也不增加浏览器运行时 API。
 
-固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
+固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
 
 ## 两种读取目的
 
 - **准备写一页内容或结构校验**：选择 [`index.json`](../cdn/schema/index.json) 中该组的 `documentSchema`。领域 Document bundle 默认包含 `base` 与该领域，因此金融页可以直接含标题、正文、row、card、指标和基础联动控件。
 - **已经掌握基础，只查询某类字段**：读取该组的 `nodeSchema`。它是较小的 Node 子集，不是 Document；没有文档 state/computed，递归子节点也限制在本组。不能用它代替整页校验。
 
-`includedGroups` 明示 Document 包含哪些组，`ownedNodeTypes` 只列这一组拥有的类型；每个类型只有一个 owner。`forms`、`charts`、`graphics`、`weather`、`sports`、`learning`、`finance`、`converters` 分别拥有自己的节点。`compatibility` 仅记录历史 `native` 的结构，运行时始终拒绝，不属于可用组件。
+`includedGroups` 明示 Document 包含哪些组，`ownedNodeTypes` 只列这一组拥有的类型；每个类型只有一个 owner。`forms`、`charts`、`graphics`、`weather`、`sports`、`learning`、`finance`、`converters`、`time` 分别拥有自己的节点。`compatibility` 仅记录历史 `native` 的结构，运行时始终拒绝，不属于可用组件。
 
-62节点开发源码另有 `time` 领域（clock/stopwatch/timer），工具提示与非模态面板仍归 `base`。这批源码候选尚未替换上方6797固定入口。只含提示和普通文本的面板使用base即可；含input的面板使用base+forms；[当前组合示例](../examples/current-components.json)需base+forms+time或完整Schema。选择领域由实际子节点决定，不能把popover当作跨域校验的绕行入口。
+62节点协议新增 `time` 领域（clock/stopwatch/timer），工具提示、非模态面板、flow、icon与pulse-indicator归 `base`。上方固定候选01ae9d8包含同版本运行库与分片；真实file://验收以本轮CI为准。只含提示和普通文本的面板使用base即可；含input的面板使用base+forms；[当前组合示例](../examples/current-components.json)需base+forms+time或完整Schema。选择领域由实际子节点决定，不能把popover当作跨域校验的绕行入口。
 
 示例路径 `groups[].examples[].path` 相对 **CDN 的 index.json URL** 解析，例如 `../../examples/finance-preview.json`。本地 checkout 使用 `repositoryPath`。完整 Schema 的 `fullSchema.path` 同样相对该索引，指向 `../iui.schema.json`。
 

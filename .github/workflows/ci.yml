@@ -16,7 +16,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm run check
+      - id: check
+        run: npm run check
       - run: npm audit --omit=dev
       - run: node scripts/check-generated.mjs
       - run: npx playwright install --with-deps chromium
@@ -24,6 +25,9 @@ jobs:
         timeout-minutes: 4
         run: sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y --no-install-recommends fonts-noto-cjk
       - run: npm run test:browser
+      - name: Verify original Skill consumer examples in Chromium
+        if: ${{ !cancelled() && steps.check.outcome == 'success' }}
+        run: node tests/consumer/scripts/verify-next-browser.mjs --library "$PWD" --revision "$(git rev-parse HEAD)" --screenshots "$PWD/test-results/skill-consumer"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -4,16 +4,16 @@
 
 这是同一套 Inform UI 库，不是另一种产品版本。首次加载需要网络；不需要 Node、构建工具、OpenAI 账号或服务。
 
-## 已固定的公开入口
+## 固定的公开入口
 
-以下链接固定到包含预构建产物的完整 Git commit `6797f7f7755f483db6c3be3831aa03433b7c4696`，不随分支变化。
+以下链接固定到包含预构建产物的完整 Git commit `01ae9d870b221208b31e9da437ae87fdef265cec`，不随分支变化。
 
-- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.global.min.js)，导出 `window.IUI`
-- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
-- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.css)
-- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.schema.json)
-- [按需Schema索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/index.json)：默认领域Document包含base；查询片与跨域组合见[分片指南](schema-subsets.md)
-- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/integrity.json)
+- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/iui.global.min.js)，导出 `window.IUI`
+- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
+- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/iui.css)
+- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/iui.schema.json)
+- [按需Schema索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/index.json)：默认领域Document包含base；查询片与跨域组合见[分片指南](schema-subsets.md)
+- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/integrity.json)
 
 数学公式使用 KaTeX 可视排版与无障碍 MathML。CSS 会从同一固定提交的 `cdn/fonts/` 下载官方 MIT WOFF2 字体；部署时须保留这个目录。离线编译与默认 DOM 注入则内嵌相同字体。两个脚本格式任选其一，不要同时加载。
 
@@ -30,8 +30,8 @@
   <meta name="referrer" content="no-referrer">
   <title>Inform UI 示例</title>
   <link id="iui-style" rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.css"
-    integrity="sha384-LHkRYrW+gjyqnUp86CgtLDWvOrTbN3oncoJv80YTzEHuGnfZadFBbc4HgBPMNQz2"
+    href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/iui.css"
+    integrity="sha384-qNWPFoy6Ymjw326+NVax/jDhejs64mwImn+qdIzX44lT5LB9RHqPifXo8AHYIC2v"
     crossorigin="anonymous">
 </head>
 <body class="iui-page" data-theme="auto" style="margin:0">
@@ -50,8 +50,8 @@
   }
   </script>
   <script
-    src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.global.min.js"
-    integrity="sha384-tvz7phydYNWyvO3Sz/W+xhrMv0sp+UOlR1p/b3+w9E9M9Hmjff+bGzjaUAglOWd9"
+    src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/iui.global.min.js"
+    integrity="sha384-kCdDypduBjoPeuXDsQ+Jh87xRL4aVxFlSy0DyPQ9xoEtvQfucAYKVVodpT0TvuxN"
     crossorigin="anonymous"></script>
   <script>
     const status = document.getElementById('status');
@@ -101,7 +101,7 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 独立文档壳使用 `body.iui-page` 与匹配的 `data-theme`（auto/light/dark），让页面外围背景也跟随主题；嵌入现有网页时不要给宿主添加这个类。`mount` 的样式保持局部作用域，不修改宿主背景。
 
-当前固定52节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[b5664a8](https://github.com/Micraow/Inform-UI/actions/runs/37878019661)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
+历史6797固定52节点资产包含体育、测验/闪卡、金融快照/历史/共同基准比较/热图及校准后的配色，源代码CI：[b5664a8](https://github.com/Micraow/Inform-UI/actions/runs/37878019661)。本次也包含微量自动Y域与编辑后清理旧表单成功提示。旧f372c71固定46节点页面仍可用，不会自动随新分支升级。
 
 - [体育与学习HTML](../examples/browser/domains-preview.html) · [JSON](../examples/domains-preview.json)
 - [金融组件HTML](../examples/browser/finance-preview.html) · [JSON](../examples/finance-preview.json)
@@ -114,4 +114,6 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 [单位与汇率换算HTML](../examples/browser/converters-preview.html) · [JSON](../examples/converters.json)
 
-新增索引与20个闭包分片固定到6797f7f，与本页运行库/完整Schema同一提交；HTTP实际核对通过。真实file://浏览器发现和同版示例渲染由schema-discovery.spec.mjs回归。
+当前62节点固定候选01ae9d8包含22个闭包分片（新增time Document/Node）与同版索引。真实file://浏览器发现和同版time/finance示例渲染由schema-discovery.spec.mjs回归。
+
+新增[当前组合HTML](../examples/browser/current-components.html)与[原生JSON](../examples/current-components.json)包含富文本、结构化表格、时钟、秒表、倒计时、提示/面板、流式布局、有限图标、显式状态及数字草稿保护。无效min/max/step/空草稿不覆盖最后有效数字state；旧6797盲测页面和JSON保持原哈希，作为历史记录使用其独立delivery-cdn-lock。新的current-components-cdn回归以禁缓存的实际file://交互及资产哈希核验本轮候选，不以HTTP200替代渲染。

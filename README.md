@@ -156,9 +156,9 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 固定审计清单共256项，目前功能闭环已验36项、部分14项、已写待验13项、未实现193项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
 
-当前已验固定入口识别 52 种节点：**50 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
+当前构建识别 62 种节点：**60 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
-开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。当前固定52节点CDN包含体育、学习、金融与转换器组件，见[体育合同](docs/sports.md)。开发分支也提供本地测验/闪卡；金融快照/历史/比较与热图均已通过源码浏览器及截图验收；固定CDN入口见文档。更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
+开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。历史52节点CDN已包含体育、学习、金融与转换器组件，见[体育合同](docs/sports.md)。开发分支也提供本地测验/闪卡；金融快照/历史/比较与热图均已通过源码浏览器及截图验收；固定CDN入口见文档。更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
 
 `portable` 是现有 API 中的渲染方式名称；HTML 与嵌入网页是同一套库的用法，不是不同产品版本。后续能力沿独立公开实现扩展，历史私有桥接不属于产品路线。外部数据可来自本地或你选择的服务商。
 
@@ -185,4 +185,4 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 开发分支新增[九类单位与汇率快照换算](docs/converters.md)，含温差/绝对温度、互换、重置、缺测和来源时间。167项Node与136项浏览器检查已通过，包含52节点固定CDN的实际file://载入、六组转换器交互，以及亮暗截图复核。
 
-下一组[富文本、网格跨度、引用与结构化表格](docs/foundations.md)已形成54节点本地候选，正在验收；当前52节点固定CDN尚不支持这些新增字段。
+[富文本、网格跨度、引用与结构化表格](docs/foundations.md)、[时间控件](docs/time.md)、[提示/说明面板](docs/overlays.md)与[流式布局、图标和状态](docs/primitives.md)已形成62节点整合候选。新的[当前组合HTML](examples/browser/current-components.html)与[JSON](examples/current-components.json)使用含有效数字草稿修复的固定CDN候选；浏览器与分发验收结论见[浏览器文档](docs/cdn.md)。

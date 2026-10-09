@@ -1,0 +1,135 @@
+{
+  "version": "iui/1",
+  "title": "计划试算和独立页内计时",
+  "description": "原创合成教学示例；仅在页面内运行，不联网、不保存、不发通知。",
+  "theme": "auto",
+  "state": {
+    "sets": 3,
+    "reps": 8
+  },
+  "computed": {
+    "total": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "sets"
+        },
+        {
+          "$": "reps"
+        }
+      ]
+    }
+  },
+  "body": [
+    {
+      "type": "title",
+      "level": 2,
+      "value": "估算练习量，再自行启动两分钟计时"
+    },
+    {
+      "type": "text",
+      "value": "每组次数与组数只驱动计划总量；倒计时固定为两分钟，不会因输入变化自动改变或开始。下图是合成计划值，不是实际训练结果。"
+    },
+    {
+      "type": "form",
+      "id": "plan-form",
+      "label": "本地计划",
+      "submitLabel": "检查计划",
+      "cancelLabel": "恢复计划初值",
+      "children": [
+        {
+          "type": "input",
+          "kind": "number",
+          "label": "组数",
+          "bind": "sets",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "required": true
+        },
+        {
+          "type": "input",
+          "kind": "number",
+          "label": "每组次数",
+          "bind": "reps",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "metric",
+      "label": "计划总次数",
+      "value": {
+        "$": "total"
+      },
+      "unit": "次"
+    },
+    {
+      "type": "chart",
+      "kind": "bar",
+      "xScale": "category",
+      "xKey": "item",
+      "title": "同一计划的组成",
+      "unit": "次",
+      "data": [
+        {
+          "item": "一组",
+          "count": {
+            "$": "reps"
+          }
+        },
+        {
+          "item": "总计",
+          "count": {
+            "$": "total"
+          }
+        }
+      ],
+      "series": [
+        {
+          "key": "count",
+          "label": "合成计划值"
+        }
+      ],
+      "note": "分类柱图；不把组数或模拟值称为实测成绩。"
+    },
+    {
+      "type": "timer",
+      "id": "independent-timer",
+      "title": "两分钟页内计时",
+      "durationMs": 120000
+    },
+    {
+      "type": "stopwatch",
+      "id": "independent-stopwatch",
+      "title": "另行记录实际经过时间",
+      "laps": true
+    },
+    {
+      "type": "popover",
+      "label": "查看计时与表单的关系",
+      "title": "互相独立的状态",
+      "children": [
+        {
+          "type": "text",
+          "value": "表单改变文档 state，计时控件持有独立的本地状态。重置输入不会停止计时；请使用对应的暂停或重置按钮。"
+        },
+        {
+          "type": "tooltip",
+          "label": "关闭页面以后会提醒吗？",
+          "value": "不会。计时没有系统闹钟、声音、推送或持久化。"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "恢复计划输入初值",
+      "action": {
+        "kind": "reset"
+      }
+    }
+  ]
+}

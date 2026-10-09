@@ -1,0 +1,58 @@
+{
+  "version": "iui/1",
+  "title": "在指定时区读时间，或记录页内时长",
+  "description": "原创合成教学示例；仅在页面内运行，不联网、不保存、不发通知。",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "title",
+      "level": 2,
+      "value": "先分清瞬间、经过时间和剩余时间"
+    },
+    {
+      "type": "text",
+      "value": "下方固定时刻是合成示例。当前时钟读取此设备时间，不是网络校时结果。秒表和倒计时需要你主动开始。"
+    },
+    {
+      "type": "clock",
+      "id": "fixed-clock",
+      "title": "同一个固定瞬间的上海时间",
+      "mode": "snapshot",
+      "timezone": "Asia/Shanghai",
+      "at": "2026-10-09T00:00:00Z",
+      "hourCycle": "h23",
+      "seconds": false
+    },
+    {
+      "type": "clock",
+      "id": "live-clock",
+      "title": "纽约当前设备时间",
+      "mode": "live",
+      "timezone": "America/New_York",
+      "hourCycle": "h12",
+      "seconds": true
+    },
+    {
+      "type": "stopwatch",
+      "id": "practice-stopwatch",
+      "title": "记录练习经过时间",
+      "elapsedMs": 0,
+      "laps": true
+    },
+    {
+      "type": "timer",
+      "id": "practice-timer",
+      "title": "两分钟练习",
+      "durationMs": 120000
+    },
+    {
+      "type": "tooltip",
+      "label": "能在关闭页面后提醒我吗？",
+      "value": "不能。这些是页内组件，没有声音、系统通知或持久化；设备挂起时不保证计时准确。"
+    },
+    {
+      "type": "caption",
+      "value": "单位是毫秒：120000 ms = 2 min。刷新或成功更新文档会重置本地计时。"
+    }
+  ]
+}
