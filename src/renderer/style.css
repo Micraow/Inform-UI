@@ -1032,3 +1032,92 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
   .iui-root :is(.iui-location-choice,.iui-business-gallery) button:focus-visible{outline:2px solid Highlight;outline-offset:3px}
   .iui-root .iui-business-gallery-item .iui-image-content{border:1px solid CanvasText}
 }
+
+/* Local onboarding choices retain native radios/checkboxes and logical layout. */
+.iui-root .iui-onboarding{min-inline-size:0;margin:0;padding:1rem;border:1px solid var(--iui-line);border-radius:16px;background:var(--iui-surface)}
+.iui-root .iui-onboarding-title{font-weight:700;padding-inline:.25rem;overflow-wrap:anywhere}
+.iui-root .iui-onboarding-description,.iui-root .iui-onboarding-note,.iui-root .iui-onboarding-guidance,.iui-root .iui-onboarding-count,.iui-root .iui-onboarding-status{margin-block:.5rem;overflow-wrap:anywhere}
+.iui-root .iui-onboarding-note,.iui-root .iui-onboarding-option-description{font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-onboarding-options{display:grid;gap:.625rem;margin-block:1rem}
+.iui-root .iui-onboarding-option{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem;border:1px solid var(--iui-line);border-radius:12px;cursor:pointer;min-inline-size:0}
+.iui-root .iui-onboarding-option[data-selected=true]{border-color:var(--iui-accent);background:var(--iui-surface-secondary)}
+.iui-root .iui-onboarding-option input{flex:0 0 auto;inline-size:1.1rem;block-size:1.1rem;margin:.15rem 0 0;accent-color:var(--iui-accent)}
+.iui-root .iui-onboarding-option-body{display:grid;gap:.25rem;min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-onboarding-option-title{font-weight:600}
+.iui-root .iui-onboarding-option:focus-within{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-onboarding-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.iui-root .iui-onboarding-status{min-block-size:1.5em}
+.iui-root .iui-onboarding[data-status=invalid] .iui-onboarding-status,.iui-root .iui-onboarding[data-status=error] .iui-onboarding-status{color:var(--iui-danger)}
+.iui-root .iui-onboarding-option:has(input:disabled){cursor:default;opacity:.65}
+@media(forced-colors:active){.iui-root .iui-onboarding-option[data-selected=true]{border:2px solid Highlight}.iui-root .iui-onboarding-option:focus-within{outline-color:Highlight}}
+
+/* Original finite supplied travel/events readers. No remote images or motion. */
+.iui-root :is(.iui-flight-option,.iui-artist-events){box-sizing:border-box;min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root :is(.iui-flight-option,.iui-artist-events)>*+*{margin-block-start:12px}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(h2,h3,p,dd,dt){white-space:pre-wrap;overflow-wrap:anywhere;min-inline-size:0}
+.iui-root :is(.iui-flight-title,.iui-events-artist){font-size:1.15rem;line-height:1.5;margin:0}
+.iui-root :is(.iui-flight-carrier,.iui-events-title){font-size:1rem;line-height:1.5;margin:0}
+.iui-root :is(.iui-travel-disclosure,.iui-flight-note,.iui-events-time-zone,.iui-events-count){font-size:.875rem;color:var(--iui-muted)}
+.iui-root :is(.iui-flight-legs,.iui-events-list){display:grid;gap:12px;min-inline-size:0;list-style:none;margin:0;padding:0}
+.iui-root :is(.iui-flight-leg,.iui-events-item){min-inline-size:0;padding-block:12px;border-block-start:1px solid var(--iui-line)}
+.iui-root :is(.iui-flight-leg,.iui-events-item)>*+*{margin-block-start:8px}
+.iui-root :is(.iui-flight-time,.iui-flight-route,.iui-events-date,.iui-events-time,.iui-flight-price bdi){font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.iui-root .iui-flight-facts{display:grid;gap:8px;margin:8px 0}
+.iui-root .iui-flight-facts>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px 12px}
+.iui-root .iui-flight-facts dt{font-weight:600}
+.iui-root .iui-flight-facts dd{margin:0}
+.iui-root :is(.iui-flight-controls,.iui-events-controls){display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-inline-size:0}
+.iui-root :is(.iui-flight-controls button,.iui-events-filter){min-block-size:44px;max-inline-size:100%;min-inline-size:0;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation;transition:none;animation:none}
+.iui-root .iui-events-filter{padding:8px 12px;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:8px;font:inherit}
+.iui-root .iui-flight-select[aria-pressed=true]{border-color:var(--iui-focus);box-shadow:inset 0 0 0 1px var(--iui-focus);font-weight:650}
+.iui-root .iui-flight-controls button[aria-disabled=true]{cursor:default;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(button,select):disabled{cursor:not-allowed;color:var(--iui-disabled-text);background:var(--iui-disabled-bg)}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(summary,a){display:block;box-sizing:border-box;min-block-size:44px;max-inline-size:100%;padding-block:10px}
+.iui-root :is(.iui-flight-option,.iui-artist-events) summary{display:list-item;cursor:pointer}
+.iui-root :is(.iui-flight-option,.iui-artist-events) :is(button,select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-flight-status:empty{display:none}
+.iui-root .iui-events-item[hidden]{display:none}
+@media(max-width:520px){.iui-root :is(.iui-flight-option,.iui-artist-events){padding:12px}.iui-root .iui-flight-facts>div{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media(forced-colors:active){.iui-root :is(.iui-flight-option,.iui-artist-events,.iui-flight-leg,.iui-events-item){border-color:CanvasText}.iui-root :is(.iui-travel-disclosure,.iui-flight-note,.iui-events-time-zone,.iui-events-count){color:CanvasText}.iui-root .iui-flight-select[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-4px;box-shadow:none}.iui-root .iui-flight-controls button[aria-disabled=true],.iui-root :is(.iui-flight-option,.iui-artist-events) :is(button,select):disabled{color:GrayText}.iui-root :is(.iui-flight-option,.iui-artist-events) :focus-visible{outline-color:Highlight}}
+
+/* Original supplied ledger views: exact readable values, bounded decorative shares. */
+.iui-root .iui-ledger{box-sizing:border-box;min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root .iui-ledger>*+*{margin-block-start:12px}
+.iui-root .iui-ledger :is(h2,h3,p){margin-block-end:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-ledger-title{font-size:1.15rem;line-height:1.5}
+.iui-root .iui-ledger-currency{font-size:1.05rem}
+.iui-root :is(.iui-ledger-note,.iui-ledger-observed,.iui-ledger-counts,.iui-ledger-group-counts,.iui-ledger-source,.iui-ledger-empty,.iui-ledger-shares-undefined){font-size:.875rem;line-height:1.5;color:var(--iui-muted)}
+.iui-root .iui-ledger-description{unicode-bidi:plaintext}
+.iui-root .iui-ledger-filters{display:flex;flex-wrap:wrap;gap:12px;align-items:end;min-inline-size:0}
+.iui-root .iui-ledger-filter{display:grid;gap:4px;min-inline-size:0;max-inline-size:100%}
+.iui-root .iui-ledger-filters :is(select,button){box-sizing:border-box;min-block-size:44px;max-inline-size:100%;min-inline-size:0;font:inherit;color:var(--iui-text);border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);padding:8px 12px;touch-action:manipulation}
+.iui-root .iui-ledger-filters button{white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-ledger-reset[aria-disabled=true]{color:var(--iui-muted);cursor:default}
+.iui-root .iui-ledger-filters :disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-ledger :is(select,button,summary,a,.iui-ledger-table-wrap):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-ledger-currency-group{min-inline-size:0;border-block-start:1px solid var(--iui-line);padding-block-start:12px}
+.iui-root .iui-ledger-currency-group>*+*{margin-block-start:10px}
+.iui-root .iui-ledger-subtotal{font-weight:600;font-variant-numeric:tabular-nums}
+.iui-root .iui-ledger-distribution{display:flex;inline-size:100%;block-size:12px;border-radius:6px;overflow:hidden;background:var(--iui-line)}
+.iui-root .iui-ledger-segment{display:block;flex:none;height:100%}
+.iui-root .iui-ledger-segment[data-color=blue]{background:var(--iui-series-blue)}
+.iui-root .iui-ledger-segment[data-color=green]{background:var(--iui-series-green)}
+.iui-root .iui-ledger-segment[data-color=orange]{background:var(--iui-series-orange)}
+.iui-root .iui-ledger-segment[data-color=purple]{background:var(--iui-series-purple)}
+.iui-root .iui-ledger-segment[data-color=red]{background:var(--iui-series-red)}
+.iui-root .iui-ledger-segment[data-color=gray]{background:var(--iui-series-gray)}
+.iui-root .iui-ledger-table-wrap{max-inline-size:100%;min-inline-size:0;overflow-x:auto;overscroll-behavior-inline:contain}
+.iui-root .iui-ledger-table{inline-size:100%;border-collapse:collapse;table-layout:fixed;min-inline-size:28rem;font-size:.9rem;line-height:1.5}
+.iui-root .iui-transaction-list .iui-ledger-table{min-inline-size:40rem}
+.iui-root .iui-ledger-table caption{text-align:start;font-weight:600;padding-block:8px;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-ledger-table :is(th,td){padding:10px 8px;text-align:start;vertical-align:top;border-block-end:1px solid var(--iui-line);white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-ledger-table th[scope=row]{font-weight:500;unicode-bidi:plaintext}
+.iui-root .iui-ledger-table thead{color:var(--iui-muted)}
+.iui-root .iui-ledger-amount{font-variant-numeric:tabular-nums}
+.iui-root .iui-ledger-details>summary{box-sizing:border-box;min-block-size:44px;padding-block:10px;cursor:pointer;font-weight:500}
+.iui-root .iui-ledger-details :is(dt,dd){margin:0;white-space:pre-wrap;unicode-bidi:plaintext;overflow-wrap:anywhere}
+.iui-root .iui-ledger-details dt{font-weight:600;margin-block-start:8px}
+.iui-root .iui-ledger-source a{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-ledger [hidden]{display:none!important}
+@media(max-width:480px){.iui-root .iui-ledger{padding:12px}.iui-root .iui-ledger-filter{flex:1 1 10rem}.iui-root .iui-ledger-filters select{inline-size:100%}}
+@media(forced-colors:active){.iui-root .iui-ledger,.iui-root .iui-ledger-currency-group,.iui-root .iui-ledger-table :is(th,td){border-color:CanvasText}.iui-root .iui-ledger :is(p,thead){color:CanvasText}.iui-root .iui-ledger-segment{background:Highlight!important;border-inline-end:1px solid Canvas}.iui-root .iui-ledger-filters :disabled,.iui-root .iui-ledger-reset[aria-disabled=true]{color:GrayText}.iui-root .iui-ledger :focus-visible{outline-color:Highlight}.iui-root .iui-ledger a{color:LinkText}}

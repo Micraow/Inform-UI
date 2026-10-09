@@ -1,4 +1,7 @@
+import {inspectOnboarding} from './onboarding.js';
+import {inspectFlightOption,inspectArtistEvents} from './travel-events.js';
 import {inspectLocationChoice,inspectBusinessGallery} from './choice-gallery.js';
+import {inspectLedger} from './ledger.js';
 import {inspectAvailability} from './availability.js';
 import {inspectThread} from './thread.js';
 import {inspectNewsArticle} from './news.js';
@@ -300,14 +303,18 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='checklist')inspectChecklist(node,path,state,add);
     if(node.type==='sentence-builder')inspectSentenceBuilder(node,path,add);
     if(isFinance(node))inspectFinance(node,path,add,isSafeURL);
+    if(node.type==='asset-distribution'||node.type==='transaction-list')inspectLedger(node,path,add,isSafeURL);
     if(node.type==='finance-heatmap')inspectHeatmap(node,path,add,isSafeURL);
     if(node.type==='unit-converter'||node.type==='currency-converter')inspectConverters(node,path,add,isSafeURL);
     if(node.type==='clock')inspectClock(node,path,add);
     if(node.type==='person-profile')inspectPersonProfile(node,path,add,isSafeURL);
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
+    if(node.type==='onboarding-selection')inspectOnboarding(node,path,add);
     if(node.type==='location-choice-request')inspectLocationChoice(node,path,add,isSafeURL);
     if(node.type==='business-gallery')inspectBusinessGallery(node,path,add,url=>isSafeURL(url,'image'));
+    if(node.type==='flight-option')inspectFlightOption(node,path,add,isSafeURL);
+    if(node.type==='artist-upcoming-events')inspectArtistEvents(node,path,add,isSafeURL);
     if(node.type==='restaurant-availability')inspectAvailability(node,path,add,isSafeURL);
     if(node.type==='reddit-thread-card')inspectThread(node,path,add,isSafeURL);
     if(node.type==='agenda')inspectAgenda(node,path,add,isSafeURL);

@@ -59,6 +59,10 @@ node('entity-reviews', {label:short,description:string(2000),source:ref('ReviewS
 defs.RestaurantAvailabilitySlot = object({id:key,date:{...agendaDate,minLength:10,maxLength:10},time:{...agendaTime,minLength:5,maxLength:5},available:bool},['id','date','time','available']);
 defs.RestaurantAvailabilitySource = object({label:short,url:string(2048,1)},['label']);
 node('restaurant-availability',{title:short,venue:short,partySize:integer(1,20),timeZoneLabel:string(100,1),description:string(2000),source:ref('RestaurantAvailabilitySource'),slots:array(ref('RestaurantAvailabilitySlot'),0,100)},['title','venue','partySize','timeZoneLabel','slots']);
+// Original bounded local onboarding selection; no account/provider action.
+defs.OnboardingOption = object({id:{...key,pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'},label:short,description:string(1000)},['id','label']);
+node('onboarding-selection',{label:short,description:string(2000),options:array(ref('OnboardingOption'),2,12),mode:choice('single','multiple'),initial:array(key,0,12),minimum:integer(0,12),maximum:integer(1,12),disabled:bool,continueLabel:short},['label','options']);
+defs.OnboardingSelectionNode.oneOf=[object({...defs.OnboardingSelectionNode.properties,mode:{const:'single'},initial:array(key,0,1),minimum:integer(0,1),maximum:{const:1}}),object({...defs.OnboardingSelectionNode.properties,mode:{const:'multiple'}},['mode'])];
 // Original finite supplied-place and media contracts; no lookup or location services.
 const suppliedKey = {...key, pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'};
 defs.LocationChoiceOption = object({id:suppliedKey,label:short,address:string(1000),description:string(1000)},['id','label']);
@@ -66,6 +70,16 @@ defs.LocationChoiceSource = object({label:short,url:string(2048,1)},['label']);
 node('location-choice-request',{label:short,description:string(2000),options:array(ref('LocationChoiceOption'),1,12),source:ref('LocationChoiceSource')},['label','options']);
 defs.BusinessGalleryImage = object({id:suppliedKey,src:string(500000,1),alt:string(2000,1),caption:string(2000)},['id','src','alt']);
 node('business-gallery',{label:short,description:string(2000),images:array(ref('BusinessGalleryImage'),1,12)},['label','images']);
+// Original supplied travel/events contracts. Civil validity and instant ordering are semantic.
+const travelDate = {type:'string',pattern:'^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])',minLength:10,maxLength:10};
+const travelTime = {type:'string',pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$(?![\\s\\S])',minLength:5,maxLength:5};
+const flightAt = {type:'string',pattern:'^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])',minLength:17,maxLength:22};
+defs.TravelEventSource = object({label:short,url:string(2048,1)},['label','url']);
+defs.FlightEndpoint = object({airport:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])'},at:flightAt,name:short},['airport','at']);
+defs.FlightLeg = object({id:suppliedKey,carrier:short,number:short,departure:ref('FlightEndpoint'),arrival:ref('FlightEndpoint'),cabin:short},['id','carrier','number','departure','arrival']);
+node('flight-option',{label:short,optionId:suppliedKey,legs:array(ref('FlightLeg'),1,8),description:string(2000),price:object({amount:{type:'number',minimum:0,maximum:1e12},currency:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])'}},['amount','currency']),note:string(2000),source:ref('TravelEventSource')},['label','optionId','legs']);
+defs.ArtistEvent = object({id:suppliedKey,title:short,date:travelDate,venue:short,start:travelTime,timeZoneLabel:short,location:short,description:string(2000),url:string(2048,1)},['id','title','date','venue']);
+node('artist-upcoming-events',{artist:short,label:short,events:array(ref('ArtistEvent'),0,40),description:string(2000),source:ref('TravelEventSource')},['artist','events']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);
@@ -216,6 +230,15 @@ node('finance-quote',{...financeCommon,instrument:ref('FinanceInstrument')},['so
 node('finance-chart',{...financeCommon,instrument:ref('FinanceInstrument'),ranges:array(ref('FinanceRange'),0,12),initialRange:key},['source','instrument','ranges'], 'finance');
 node('finance-comparison',{...financeCommon,instruments:array(ref('FinanceInstrument'),2,6),baselineAt:timestamp,timezone:short,ranges:array(ref('FinanceRange'),0,12),initialRange:key},['source','instruments','baselineAt','ranges'], 'finance');
 node('finance-heatmap',{title:short,source:ref('FinanceSource'),asOf:timestamp,timezone:short,weightLabel:short,changeBasis:short,cells:array(object({id:key,symbol:short,name:short,sector:short,weight:price,price,currency:{type:'string',pattern:'^[A-Z]{3}$'},changePercent:nullableNumber,asOf:timestamp,marketStatus:choice('open','closed','pre','post','halted','unknown'),delayMinutes:integer(0,10080)},['id','symbol','name','sector','weight','price','currency','changePercent','asOf','marketStatus','delayMinutes']),0,200),initialSector:short,status:choice('ready','loading','error'),message:string()},['source','asOf','timezone','weightLabel','changeBasis','cells'], 'finance');
+// Bounded, supplied ledger views. No provider/account operations or implicit FX.
+const ledgerAmount = {type:'number',minimum:0,maximum:1e12};
+const ledgerCurrency = {type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3};
+defs.LedgerSource = object({label:short,url:string(2048,1)},['label','url']);
+defs.LedgerAccount = object({id:key,name:short,amount:{anyOf:[ledgerAmount,{type:'null'}]},currency:ledgerCurrency,category:short,note:string(2000)},['id','name','amount','currency']);
+defs.LedgerTransaction = object({id:key,date:{type:'string',pattern:'^[1-9]\\d{3}-\\d{2}-\\d{2}$'},description:string(1000,1),amount:ledgerAmount,currency:ledgerCurrency,direction:choice('debit','credit'),status:choice('pending','posted'),counterparty:short,note:string(2000)},['id','date','description','amount','currency','direction']);
+const ledgerCommon = {label:short,description:string(2000),source:ref('LedgerSource')};
+node('asset-distribution',{...ledgerCommon,observedAt:short,accounts:array(ref('LedgerAccount'),0,40)},['label','accounts'],'finance');
+node('transaction-list',{...ledgerCommon,transactions:array(ref('LedgerTransaction'),0,100)},['label','transactions'],'finance');
 // Local conversion controls use factual unit definitions and caller-supplied exchange snapshots.
 const unitRegistry=JSON.parse(await readFile(new URL('../src/data/units.json',import.meta.url),'utf8'));
 const unitCode={enum:[...new Set(Object.values(unitRegistry).flatMap(category=>category.units.map(unit=>unit.id)))],description:Object.entries(unitRegistry).map(([name,category])=>name+': '+category.units.map(unit=>unit.id).join(', ')).join('; ')};

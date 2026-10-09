@@ -27,7 +27,7 @@ test('all original examples validate; public contract contains 90 node types', a
   }
   const schema = JSON.parse(await readFile(new URL('../src/schema/iui.schema.json', import.meta.url), 'utf8'));
   assert.equal(schema.$schema, 'https://json-schema.org/draft/2020-12/schema');
-  assert.equal(schema.$defs.Node.oneOf.length, 90);
+  assert.equal(schema.$defs.Node.oneOf.length, 95);
 });
 
 test('successful validation clones, normalizes and deeply freezes data', () => {
