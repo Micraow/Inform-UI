@@ -1,10 +1,10 @@
 {
   "format": "inform-ui-batch-lock/1",
-  "assetRevision": "5c7f334a975b75b0a70f58b5570b2ea567aed9dc",
-  "assetTree": "c2c1dbdea5b6b7dd39ce9617eaa88883318c9452",
-  "skillRevision": "5b83f9d5aba392cae6897ee3f9053184f3405ff4",
-  "skillTree": "1587900ffb4f654e48a572db3bd5b7c20c7a1f0e",
-  "integritySha256": "6498767b3f7a34083bb69fffe25618665aaae6e1bb47e0440630f211563b5129",
+  "assetRevision": "7978f23da0222ad9122bb0b40daa4f1844b5b9cd",
+  "assetTree": "7a8796cd9cc1ce1026ae1a225716847e1d408d62",
+  "skillRevision": "1ac13720d8dfb5fc9c516e2221e7d87f4ed7b433",
+  "skillTree": "87698e5ea05dd35a6cb2dbe937d75ab225b1ba56",
+  "integritySha256": "13f0a9e071379f5b3b70767badf43fc4de5a09fdd80f9967fd50ce1502cfd6a9",
   "schemaSha256": "620f7cdca4c4143090167e583cbdb8d9160b1cfcfc35e0afa071f2a8bcdd8785",
   "consumers": [
     {
@@ -208,7 +208,7 @@
     {
       "id": "pending",
       "script": "tests/consumer/pending/verify-browser.mjs",
-      "scriptSha256": "b3f8910808d2b132c262a8b70dd790bd65a226510c37e95e2a70c91b952183b9",
+      "scriptSha256": "0b2e18da9d00af81d98ec421bcec20bce329f1756051ada136fc06c97c441b4b",
       "widths": [
         390,
         768,
