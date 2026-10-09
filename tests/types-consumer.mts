@@ -33,3 +33,11 @@ const missingDuration:Node={type:'timer'};
 // @ts-expect-error tooltip contents are inert text, not child nodes
 const interactiveTooltip:Node={type:'tooltip',label:'Help',value:'Text',children:[timer]};
 void [missingInstant,missingDuration,interactiveTooltip];
+
+const flow:Node={type:"flow",gap:"sm",children:[{type:"icon",name:"check",label:"Ready"},{type:"pulse-indicator",label:"Local example",status:"idle",animate:false}]};
+void flow;
+// @ts-expect-error icons have a fixed original vocabulary, not raw SVG or external URLs
+const remoteIcon:Node={type:"icon",name:"downloaded-unknown",src:"https://example.com/icon.svg"};
+// @ts-expect-error status is always explicit
+const missingPulseStatus:Node={type:"pulse-indicator",label:"Local example"};
+void [remoteIcon,missingPulseStatus];

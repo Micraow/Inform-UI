@@ -1432,6 +1432,145 @@
       ],
       "additionalProperties": false
     },
+    "FlowNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flow"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 50
+        },
+        "gap": {
+          "enum": [
+            "none",
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "align": {
+          "enum": [
+            "start",
+            "center",
+            "end"
+          ]
+        },
+        "justify": {
+          "enum": [
+            "start",
+            "center",
+            "end",
+            "between"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "IconNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "icon"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "enum": [
+            "info",
+            "check",
+            "warning",
+            "error",
+            "plus",
+            "minus",
+            "arrow-left",
+            "arrow-right",
+            "external-link",
+            "clock"
+          ]
+        },
+        "size": {
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "tone": {
+          "enum": [
+            "default",
+            "muted",
+            "info",
+            "success",
+            "warning",
+            "danger"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "PulseIndicatorNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "pulse-indicator"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "idle",
+            "busy",
+            "success",
+            "warning",
+            "error"
+          ]
+        },
+        "animate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "status"
+      ],
+      "additionalProperties": false
+    },
     "CarouselNode": {
       "type": "object",
       "properties": {
@@ -5154,6 +5293,15 @@
         },
         {
           "$ref": "#/$defs/PopoverNode"
+        },
+        {
+          "$ref": "#/$defs/FlowNode"
+        },
+        {
+          "$ref": "#/$defs/IconNode"
+        },
+        {
+          "$ref": "#/$defs/PulseIndicatorNode"
         },
         {
           "$ref": "#/$defs/CarouselNode"

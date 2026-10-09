@@ -11,7 +11,7 @@
 
 `includedGroups` 明示 Document 包含哪些组，`ownedNodeTypes` 只列这一组拥有的类型；每个类型只有一个 owner。`forms`、`charts`、`graphics`、`weather`、`sports`、`learning`、`finance`、`converters` 分别拥有自己的节点。`compatibility` 仅记录历史 `native` 的结构，运行时始终拒绝，不属于可用组件。
 
-59节点开发源码另有 `time` 领域（clock/stopwatch/timer），工具提示与非模态面板仍归 `base`。这批源码候选尚未替换上方6797固定入口。只含提示和普通文本的面板使用base即可；含input的面板使用base+forms；[当前组合示例](../examples/current-components.json)需base+forms+time或完整Schema。选择领域由实际子节点决定，不能把popover当作跨域校验的绕行入口。
+62节点开发源码另有 `time` 领域（clock/stopwatch/timer），工具提示与非模态面板仍归 `base`。这批源码候选尚未替换上方6797固定入口。只含提示和普通文本的面板使用base即可；含input的面板使用base+forms；[当前组合示例](../examples/current-components.json)需base+forms+time或完整Schema。选择领域由实际子节点决定，不能把popover当作跨域校验的绕行入口。
 
 示例路径 `groups[].examples[].path` 相对 **CDN 的 index.json URL** 解析，例如 `../../examples/finance-preview.json`。本地 checkout 使用 `repositoryPath`。完整 Schema 的 `fullSchema.path` 同样相对该索引，指向 `../iui.schema.json`。
 

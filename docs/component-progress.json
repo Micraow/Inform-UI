@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T05:21:00Z",
+  "as_of_utc": "2026-10-09T06:05:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -19,10 +19,10 @@
     "forms_boundary_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37887521690"
   },
   "counts": {
-    "not_implemented": 196,
+    "not_implemented": 193,
     "functionally_verified": 36,
-    "partial": 14,
-    "implemented_pending_verification": 10
+    "implemented_pending_verification": 13,
+    "partial": 14
   },
   "components": [
     {
@@ -173,8 +173,8 @@
       "id": "base-flow",
       "name": "流式铺排",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创有限基础合同已实现并通过本地模块检查；公共整合/真实浏览器/同版CDN批次验收仍待完成。"
     },
     {
       "id": "base-form",
@@ -201,8 +201,8 @@
       "id": "base-icon",
       "name": "图标",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创有限基础合同已实现并通过本地模块检查；公共整合/真实浏览器/同版CDN批次验收仍待完成。"
     },
     {
       "id": "base-image",
@@ -299,8 +299,8 @@
       "id": "base-pulse-indicator",
       "name": "脉冲状态指示",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创有限基础合同已实现并通过本地模块检查；公共整合/真实浏览器/同版CDN批次验收仍待完成。"
     },
     {
       "id": "base-radio-group",

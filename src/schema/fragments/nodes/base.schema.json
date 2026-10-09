@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:f88f3568394d7d33ccfedee94c48e2d7af0991ee7d060181fd6a5691940790aa:node:base",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:15b96401d69a0edff3560bf19af97c0a71292876b23e098156b3e7934edf100d:node:base",
   "title": "Inform UI node subset: base",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -631,6 +631,55 @@
       ],
       "additionalProperties": false
     },
+    "FlowNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "flow"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 50
+        },
+        "gap": {
+          "enum": [
+            "none",
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "align": {
+          "enum": [
+            "start",
+            "center",
+            "end"
+          ]
+        },
+        "justify": {
+          "enum": [
+            "start",
+            "center",
+            "end",
+            "between"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": false
+    },
     "GridItemNode": {
       "type": "object",
       "properties": {
@@ -771,6 +820,60 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "IconNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "icon"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "enum": [
+            "info",
+            "check",
+            "warning",
+            "error",
+            "plus",
+            "minus",
+            "arrow-left",
+            "arrow-right",
+            "external-link",
+            "clock"
+          ]
+        },
+        "size": {
+          "enum": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "tone": {
+          "enum": [
+            "default",
+            "muted",
+            "info",
+            "success",
+            "warning",
+            "danger"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "name"
       ],
       "additionalProperties": false
     },
@@ -1089,6 +1192,15 @@
           "$ref": "#/$defs/PopoverNode"
         },
         {
+          "$ref": "#/$defs/FlowNode"
+        },
+        {
+          "$ref": "#/$defs/IconNode"
+        },
+        {
+          "$ref": "#/$defs/PulseIndicatorNode"
+        },
+        {
           "$ref": "#/$defs/CarouselNode"
         },
         {
@@ -1163,6 +1275,42 @@
         "type",
         "label",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "PulseIndicatorNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "pulse-indicator"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "idle",
+            "busy",
+            "success",
+            "warning",
+            "error"
+          ]
+        },
+        "animate": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "status"
       ],
       "additionalProperties": false
     },

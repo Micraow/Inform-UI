@@ -375,3 +375,78 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root :is(.iui-overlay-trigger,.iui-overlay-close):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.iui-root .iui-overlay-surface{animation:none;transition:none;scroll-behavior:auto}}
 @media(forced-colors:active){.iui-root .iui-overlay-surface{border:1px solid CanvasText;box-shadow:none}}
+/* Original finite primitives. All rules stay inside a host and use its palette. */
+.iui-root .iui-flow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+.iui-root .iui-flow > * { flex: 0 1 auto; min-inline-size: 0; max-inline-size: 100%; }
+/* These existing modules use inline-size containment, so auto has no
+   content-derived flex basis. Ordinary children keep their natural auto basis. */
+.iui-root .iui-flow > :is(.iui-time, .iui-weather, .iui-finance, .iui-converter) { flex-basis: min(20rem, 100%); }
+.iui-root .iui-flow[data-gap=none] { gap: 0; }
+.iui-root .iui-flow[data-gap=sm] { gap: 4px; }
+.iui-root .iui-flow[data-gap=lg] { gap: 16px; }
+.iui-root .iui-flow[data-align=start] { align-items: flex-start; }
+.iui-root .iui-flow[data-align=end] { align-items: flex-end; }
+.iui-root .iui-flow[data-justify=center] { justify-content: center; }
+.iui-root .iui-flow[data-justify=end] { justify-content: flex-end; }
+.iui-root .iui-flow[data-justify=between] { justify-content: space-between; }
+.iui-root .iui-icon {
+  display: inline-block;
+  flex: none;
+  inline-size: 20px;
+  block-size: 20px;
+  vertical-align: -.2em;
+  overflow: hidden;
+  color: var(--iui-ink);
+}
+.iui-root .iui-icon[data-size=sm] { inline-size: 16px; block-size: 16px; }
+.iui-root .iui-icon[data-size=lg] { inline-size: 24px; block-size: 24px; }
+.iui-root .iui-icon[data-tone=muted] { color: var(--iui-muted); }
+.iui-root .iui-icon[data-tone=info] { color: var(--iui-info); }
+.iui-root .iui-icon[data-tone=success] { color: var(--iui-success); }
+.iui-root .iui-icon[data-tone=warning] { color: var(--iui-warning); }
+.iui-root .iui-icon[data-tone=danger] { color: var(--iui-danger); }
+.iui-root .iui-pulse-indicator {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  color: var(--iui-ink);
+  font-size: .875rem;
+  line-height: 1.5;
+  vertical-align: baseline;
+}
+.iui-root .iui-pulse-content { display: flex; flex-wrap: wrap; gap: 2px 8px; min-inline-size: 0; overflow-wrap: anywhere; }
+.iui-root .iui-pulse-label { min-inline-size: 0; max-inline-size: 100%; }
+.iui-root .iui-pulse-status { color: var(--iui-muted); }
+.iui-root .iui-pulse-dot {
+  display: inline-block;
+  flex: none;
+  inline-size: 8px;
+  block-size: 8px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--iui-muted);
+}
+.iui-root .iui-pulse-indicator[data-status=busy] .iui-pulse-dot { color: var(--iui-info); }
+.iui-root .iui-pulse-indicator[data-status=success] .iui-pulse-dot { color: var(--iui-success); }
+.iui-root .iui-pulse-indicator[data-status=warning] .iui-pulse-dot { color: var(--iui-warning); }
+.iui-root .iui-pulse-indicator[data-status=error] .iui-pulse-dot { color: var(--iui-danger); }
+.iui-root .iui-pulse-indicator[data-status=busy][data-animate=true] .iui-pulse-dot { animation: iui-primitive-busy-pulse 1.8s ease-in-out infinite; }
+@keyframes iui-primitive-busy-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) {
+  .iui-root .iui-pulse-indicator[data-status=busy][data-animate=true] .iui-pulse-dot { animation: none; opacity: 1; }
+}
+@media (forced-colors: active) {
+  .iui-root .iui-pulse-dot { color: CanvasText; }
+}

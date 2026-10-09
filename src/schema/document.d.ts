@@ -54,6 +54,9 @@ export type Node =
   | DetailsNode
   | TooltipNode
   | PopoverNode
+  | FlowNode
+  | IconNode
+  | PulseIndicatorNode
   | CarouselNode
   | ListNode
   | TableNode
@@ -505,6 +508,43 @@ export interface PopoverNode {
    */
   children: [Node, ...Node[]];
   placement?: "top" | "bottom";
+}
+export interface FlowNode {
+  type: "flow";
+  id?: string;
+  /**
+   * @minItems 1
+   * @maxItems 50
+   */
+  children: [Node, ...Node[]];
+  gap?: "none" | "sm" | "md" | "lg";
+  align?: "start" | "center" | "end";
+  justify?: "start" | "center" | "end" | "between";
+}
+export interface IconNode {
+  type: "icon";
+  id?: string;
+  name:
+    | "info"
+    | "check"
+    | "warning"
+    | "error"
+    | "plus"
+    | "minus"
+    | "arrow-left"
+    | "arrow-right"
+    | "external-link"
+    | "clock";
+  size?: "sm" | "md" | "lg";
+  tone?: "default" | "muted" | "info" | "success" | "warning" | "danger";
+  label?: string;
+}
+export interface PulseIndicatorNode {
+  type: "pulse-indicator";
+  id?: string;
+  label: string;
+  status: "idle" | "busy" | "success" | "warning" | "error";
+  animate?: boolean;
 }
 export interface CarouselNode {
   type: "carousel";

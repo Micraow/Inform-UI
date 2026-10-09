@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 59 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 62 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working source: 57 rendered + 1 plain-text fallback + 1 rejected = 59 node types.** The recommended fixed CDN remains at52; the foundation, time and overlay additions are source candidates awaiting combined browser/CDN acceptance. See [contract and examples](foundations.md).
+**Working source: 60 rendered + 1 plain-text fallback + 1 rejected = 62 node types.** The recommended fixed CDN remains at52; the foundation, time, overlay and finite primitive additions are source candidates awaiting combined browser/CDN acceptance. See [contract and examples](foundations.md).
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -74,6 +74,7 @@ results from the current revision for those claims.
 | `unit-converter` / `currency-converter` | Rendered | Nine unit categories, absolute/difference temperature, local draft validation/swap/reset; supplied FX snapshots with explicit missing values, exact source/time and stable extreme ratios. No live provider or transaction. Nine source browser scenarios and six fresh file:// CDN views passed in run37878019661; included in the fixed 52-node CDN. See converters.md. |
 | `clock` / `stopwatch` / `timer` | Rendered candidate | Explicit live/snapshot time zones and local monotonic duration controls with pause/resume/reset, bounded laps and one completion status. No OS alarm, notification, persistence or time service. See [time contract](time.md). |
 | `tooltip` / `popover` | Rendered candidate | Inert text tips and nonmodal child panels; keyboard, dismiss/return-focus, viewport-aware native top layer or explicit inline fallback. See [overlay contract](overlays.md). |
+| `flow` / `icon` / `pulse-indicator` | Rendered candidate | DOM-order wrapping, ten finite original semantic glyphs, supplied explicit status with reduced motion. No arbitrary icon loading or inferred service status. See [primitive contract](primitives.md); browser/CDN batch acceptance pending. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 
