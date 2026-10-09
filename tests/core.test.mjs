@@ -18,7 +18,7 @@ const slider = { type: 'slider', label: 'Gain', bind: 'gain', min: 0, max: 10, s
 const chart = { type: 'chart', kind: 'line', xKey: 'x', data: [{ x: 'A', y: 1 }, { x: 'B', y: null }], series: [{ key: 'y', label: 'Value' }] };
 const svg = (attrs) => ({ type: 'svg', viewBox: '0 0 100 100', shapes: [{ tag: 'rect', attrs }] });
 
-test('all original examples validate; public contract contains 100 node types', async () => {
+test('all original examples validate; public contract contains 102 node types', async () => {
   for (const file of await readdir(new URL('../examples/', import.meta.url))) {
     if (!file.endsWith('.json')) continue;
     const input = JSON.parse(await readFile(new URL(`../examples/${file}`, import.meta.url), 'utf8'));
@@ -27,7 +27,7 @@ test('all original examples validate; public contract contains 100 node types', 
   }
   const schema = JSON.parse(await readFile(new URL('../src/schema/iui.schema.json', import.meta.url), 'utf8'));
   assert.equal(schema.$schema, 'https://json-schema.org/draft/2020-12/schema');
-  assert.equal(schema.$defs.Node.oneOf.length, 100);
+  assert.equal(schema.$defs.Node.oneOf.length, 102);
 });
 
 test('successful validation clones, normalizes and deeply freezes data', () => {

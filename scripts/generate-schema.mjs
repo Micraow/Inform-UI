@@ -101,6 +101,14 @@ defs.FileNavFolder=object({...fileEntryCommon,kind:{const:'folder'}},['id','name
 defs.FileNavFile=object({...fileEntryCommon,...readerMetadata,kind:{const:'file'},category:choice('document','image','audio','video','archive','other'),modifiedAt:flightAt,url:string(2048,1)},['id','name','kind']);
 defs.FileNavEntry={oneOf:[ref('FileNavFolder'),ref('FileNavFile')]};
 node('file-nav-list',{label:short,description:string(2000),entries:array(ref('FileNavEntry'),0,120),initialFolderId:suppliedKey,source:ref('ReaderSource')},['label','entries']);
+// Original supplied job and product decision cards; all actions are explicitly local.
+defs.DecisionSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.SuppliedPrice=object({amount:{type:'number',minimum:0,maximum:1e12},currency:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3}},['amount','currency']);
+defs.JobSalary=object({minimum:{type:'number',minimum:0,maximum:1e12},maximum:{type:'number',minimum:0,maximum:1e12},currency:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3},period:choice('hour','month','year')},['minimum','maximum','currency','period']);
+defs.SuppliedJob=object({id:suppliedKey,title:short,organization:short,location:short,workplace:choice('remote','hybrid','onsite','unknown'),employment:choice('full-time','part-time','contract','internship','unknown'),description:string(5000),salary:ref('JobSalary'),postedDate:travelDate,deadlineDate:travelDate,url:string(2048,1)},['id','title','organization','location','workplace','employment']);
+node('jobs',{label:short,description:string(2000),jobs:array(ref('SuppliedJob'),0,40),source:ref('DecisionSource')},['label','jobs']);
+defs.ProductVariant=object({id:suppliedKey,label:short,availability:choice('available','unavailable','unknown'),price:ref('SuppliedPrice')},['id','label','availability']);
+node('product-card',{productId:suppliedKey,name:short,brand:short,seller:short,description:string(5000),availability:choice('available','unavailable','unknown'),price:ref('SuppliedPrice'),variants:array(ref('ProductVariant'),0,12),initialVariantId:suppliedKey,initialQuantity:integer(1,20),disabled:bool,image:object({src:string(300000,1),alt:string(2000,1)},['src','alt']),source:ref('DecisionSource')},['productId','name','availability']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);

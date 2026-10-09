@@ -1,3 +1,5 @@
+import {renderJobs} from './jobs.js';
+import {renderProductCard} from './product-card.js';
 import {renderEmailPreview} from './email-preview.js';
 import {renderFileNav} from './file-nav.js';
 import {renderPoll} from './poll.js';
@@ -164,6 +166,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'jobs':out=renderJobs(context,n,labels.decisionUI);break;
+      case 'product-card':out=renderProductCard(context,n,labels.decisionUI);break;
       case 'email-preview':out=renderEmailPreview(context,n,labels.mailFilesUI);break;
       case 'file-nav-list':out=renderFileNav(context,n,labels.mailFilesUI);break;
       case 'create-interactive-poll':out=renderPoll(context,n,labels.pollUI);break;

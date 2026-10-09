@@ -17,3 +17,6 @@ export type {ReservationChoiceDetail} from './renderer/availability.js';
 export type {OnboardingChoiceDetail} from './renderer/onboarding.js';
 
 export type {PollReadyDetail} from './renderer/poll.js';
+
+export type {JobShortlistDetail} from './renderer/jobs.js';
+export type {ProductChoiceDetail} from './renderer/product-card.js';

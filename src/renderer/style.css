@@ -1238,3 +1238,49 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-supplied-reader [hidden]{display:none!important}
 @media(max-width:480px){.iui-root .iui-supplied-reader{padding:12px}.iui-root .iui-reader-toolbar label{flex-basis:100%}.iui-root .iui-reader-search{inline-size:100%}.iui-root .iui-reader-file{padding:10px}}
 @media(forced-colors:active){.iui-root .iui-supplied-reader,.iui-root .iui-supplied-reader :is(button,input,select,.iui-reader-file,.iui-file-icon){border-color:CanvasText}.iui-root .iui-supplied-reader :is(.iui-reader-note,.iui-reader-count,dt,.iui-file-kind){color:CanvasText}.iui-root .iui-supplied-reader :focus-visible{outline-color:Highlight}}
+
+/* Original supplied job/product decision cards. No provider, cart or application actions. */
+.iui-root .iui-decision-card{border:1px solid var(--iui-line);border-radius:16px;padding:20px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-decision-card :is(h2,h3,p){margin:0}
+.iui-root .iui-decision-card h2{font-size:1.2rem;line-height:1.4}
+.iui-root .iui-decision-description{white-space:pre-wrap;line-height:1.65}
+.iui-root .iui-decision-note{font-size:.9rem;color:var(--iui-muted);margin-block:12px!important;line-height:1.6}
+.iui-root .iui-decision-card summary{min-block-size:44px;box-sizing:border-box;padding-block:12px;cursor:pointer}
+.iui-root .iui-decision-card :is(button,select,input[type=search],input[type=number]){font:inherit;min-block-size:44px;max-inline-size:100%;box-sizing:border-box;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;color:inherit;background:var(--iui-bg);transition:none}
+.iui-root .iui-decision-card button{cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-decision-card button[aria-disabled=true]{opacity:.65}
+.iui-root .iui-decision-card :is(button,input,select,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-decision-card a{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-decision-card [hidden]{display:none!important}
+.iui-root .iui-jobs-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block:12px}
+.iui-root .iui-jobs-search{flex:1 1 14rem;min-inline-size:0}
+.iui-root .iui-jobs-only{display:flex;align-items:center;gap:8px;min-block-size:44px}
+.iui-root .iui-jobs-only input{inline-size:20px;block-size:20px;accent-color:var(--iui-focus)}
+.iui-root .iui-jobs-count{font-size:.9rem;color:var(--iui-muted)}
+.iui-root .iui-jobs-list{list-style:none;padding:0;display:grid;gap:14px;margin-block:14px}
+.iui-root .iui-job{padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-secondary);min-inline-size:0}
+.iui-root .iui-job-title{font-size:1.05rem;line-height:1.5}
+.iui-root .iui-job-organization{font-weight:600;margin-block:4px!important}
+.iui-root .iui-job-location,.iui-root .iui-job-date{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-job-badges{display:flex;flex-wrap:wrap;gap:6px;margin-block:10px!important}
+.iui-root .iui-job-badges span{padding:3px 8px;border:1px solid var(--iui-line);border-radius:999px;font-size:.85rem}
+.iui-root .iui-job-pay{font-variant-numeric:tabular-nums;margin-block:8px!important}
+.iui-root .iui-job-shortlist{margin-inline-end:10px}
+.iui-root .iui-job-shortlist[aria-pressed=true]{border-color:var(--iui-focus);font-weight:650}
+.iui-root .iui-jobs-status,.iui-root .iui-product-status{min-block-size:1.5em;margin-block-start:12px!important}
+.iui-root .iui-jobs-empty{padding-block:20px}
+.iui-root .iui-product-image{display:block;max-inline-size:100%;inline-size:100%;block-size:220px;object-fit:contain;background:var(--iui-surface-secondary);border-radius:12px;margin-block:12px}
+.iui-root .iui-product-brand{font-weight:600;margin-block:6px!important}
+.iui-root .iui-product-seller,.iui-root .iui-product-availability{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-product-price{font-weight:700;font-size:1.2rem;font-variant-numeric:tabular-nums;margin-block:12px 4px!important}
+.iui-root .iui-product-controls{border:1px solid var(--iui-line);border-radius:12px;padding:14px;margin-block-start:18px;min-inline-size:0}
+.iui-root .iui-product-controls legend{padding-inline:6px;font-weight:600}
+.iui-root .iui-product-controls>label{display:block;margin-block:10px 6px;font-weight:550}
+.iui-root .iui-product-variant{inline-size:100%}
+.iui-root .iui-product-counter{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.iui-root .iui-product-quantity{inline-size:6rem;min-inline-size:0}
+.iui-root .iui-product-subtotal{margin-block-start:14px!important;font-weight:600;font-variant-numeric:tabular-nums}
+.iui-root .iui-product-review{margin-inline-end:8px}
+.iui-root .iui-product-quantity[aria-invalid=true]{border-color:var(--iui-danger)}
+@media(max-width:480px){.iui-root .iui-decision-card{padding:12px}.iui-root .iui-job{padding:12px}.iui-root .iui-jobs-toolbar>label:not(.iui-jobs-only){flex-basis:100%}.iui-root .iui-jobs-toolbar>select{flex:1;min-inline-size:0}.iui-root .iui-product-counter button{flex:1 1 7rem}}
+@media(forced-colors:active){.iui-root .iui-decision-card,.iui-root .iui-decision-card :is(button,select,input,fieldset,.iui-job,.iui-job-badges span){border-color:CanvasText}.iui-root .iui-decision-card :is(.iui-decision-note,.iui-jobs-count,.iui-job-date,.iui-product-availability){color:CanvasText}.iui-root .iui-job-shortlist[aria-pressed=true]{border-color:Highlight}.iui-root .iui-decision-card :focus-visible{outline-color:Highlight}}

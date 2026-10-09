@@ -182,3 +182,5 @@ import './trackers-types-consumer.mjs';
 import './poll-types-consumer.mjs';
 
 import './mail-files-types-consumer.mjs';
+
+import './decision-cards-types-consumer.mjs';
