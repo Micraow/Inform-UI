@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验49，部分12，已写待验4，未实现191。
+当前固定分母为256项：功能已验53，部分12，已写待验0，未实现191。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-本轮13项按固定CDN与源码同版验收后计入；[批次证据与边界](verification-62.md)。
+此前13项见[62节点批次](verification-62.md)；新增加载/占位/引用/链接卡4项已按同版固定CDN验收，[最新证据与边界](verification-66.md)。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -38,8 +38,8 @@
 | base-label | 字段标签 | 部分实现 | 仅字段内部label |
 | base-link | 链接 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-list | 列表 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-loading | 加载指示 | 已写待验 | 独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。 |
-| base-loading-block | 骨架/加载占位 | 已写待验 | 独立原创加载/占位合同已接入，公共单源校验与原子state本地测试通过；真实浏览器和同版CDN留下一批验收，未计入49项已验。 |
+| base-loading | 加载指示 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
+| base-loading-block | 骨架/加载占位 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | base-lottie | Lottie动画 | 未实现 | 暂无专门实现证据 |
 | base-markdown | Markdown | 部分实现 | 纯文本降级 |
 | base-math | 数学公式 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
@@ -65,9 +65,9 @@
 | sports-standings | Epl Standings | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | american-football-games | Cfb Games | 部分实现 | 通用scoreboard未覆盖完整橄榄球合同 |
 | location-choice-request | Ask User Location V2 | 未实现 | 暂无专门实现证据 |
-| web-link-cards | Web Links Carousel | 已写待验 | 原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。 |
+| web-link-cards | Web Links Carousel | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
-| citation | Cite | 已写待验 | 原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。 |
+| citation | Cite | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | calendar-agenda | Calendar List | 未实现 | 暂无专门实现证据 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | person-profile | Person | 未实现 | 暂无专门实现证据 |

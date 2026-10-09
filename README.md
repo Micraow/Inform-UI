@@ -146,15 +146,15 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 | [本地学习](examples/learning.json) | 单选/多选、解释计分与重试，闪卡翻面、自评与总结 |
 | [金融快照](examples/finance.json) | 明确来源/时间、真实时间轴、相对共同基准比较（源码增量） |
 | [金融热图](examples/heatmap.json) | 真实权重面积、行业筛选、涨跌色阶与完整表（源码增量） |
-| [本地时间控件](examples/time.json) | 时区快照/设备时钟、秒表分圈、页内倒计时（源码候选） |
-| [提示与说明面板](examples/overlays.json) | 文本提示、非模态嵌套面板、焦点与关闭（源码候选） |
+| [本地时间控件](examples/time.json) | 时区快照/设备时钟、秒表分圈、页内倒计时 |
+| [提示与说明面板](examples/overlays.json) | 文本提示、非模态嵌套面板、焦点与关闭 |
 | [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
 想让 AI 生成这类 JSON，可搭配独立维护的 [Inform-UI-skill](https://github.com/Micraow/Inform-UI-skill)。核心库也可以单独使用。
 
 ## 当前支持范围
 
-固定审计清单共256项，目前功能闭环已验49项、部分12项、已写待验4项、未实现191项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
+固定审计清单共256项，目前功能闭环已验53项、部分12项、已写待验0项、未实现191项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
 
 当前构建识别 66 种节点：**64 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
@@ -185,6 +185,6 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 开发分支新增[九类单位与汇率快照换算](docs/converters.md)，含温差/绝对温度、互换、重置、缺测和来源时间。167项Node与136项浏览器检查已通过，包含52节点固定CDN的实际file://载入、六组转换器交互，以及亮暗截图复核。
 
-[富文本、网格跨度、引用与结构化表格](docs/foundations.md)、[时间控件](docs/time.md)、[提示/说明面板](docs/overlays.md)与[流式布局、图标和状态](docs/primitives.md)已通过62节点整合批次验收（292项Node、216项Chromium、42消费者视图）。[已验62节点组合页](https://github.com/Micraow/Inform-UI/blob/3d2c0ce23dd1532f2a6acd7f2c5ac6c697d08323/examples/browser/current-components.html)保持冻结。[当前组合HTML](examples/browser/current-components.html)与[JSON](examples/current-components.json)已接新66节点候选，待同版浏览器与分发验收，见[浏览器文档](docs/cdn.md)。
+[富文本、网格跨度、引用与结构化表格](docs/foundations.md)、[时间控件](docs/time.md)、[提示/说明面板](docs/overlays.md)与[流式布局、图标和状态](docs/primitives.md)已通过62节点整合批次验收（292项Node、216项Chromium、42消费者视图）。[已验62节点组合页](https://github.com/Micraow/Inform-UI/blob/3d2c0ce23dd1532f2a6acd7f2c5ac6c697d08323/examples/browser/current-components.html)保持冻结。[当前组合HTML](examples/browser/current-components.html)与[JSON](examples/current-components.json)已通过新66节点同版浏览器与分发验收，见[浏览器文档](docs/cdn.md)。
 
-后批[加载与占位](docs/loading.md)及[来源与链接卡](docs/source-cards.md)形成66节点源码候选；推荐固定CDN仍是已验62节点01ae版本，暂不支持这四个新节点。后批集中浏览器/CDN验收前不增加49项已验计数。
+[加载与占位](docs/loading.md)及[来源与链接卡](docs/source-cards.md)已通过338项Node、241项Chromium及42+18消费者视图；推荐固定CDN为d370的66节点版本。这四项计入53/256功能已验，[完整证据](docs/verification-66.md)。

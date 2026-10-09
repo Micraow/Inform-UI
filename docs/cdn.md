@@ -4,9 +4,9 @@
 
 这是同一套 Inform UI 库，不是另一种产品版本。首次加载需要网络；不需要 Node、构建工具、OpenAI 账号或服务。
 
-## 66节点固定候选入口
+## 66节点固定公开入口
 
-下方为新增loading/source四项的候选，真实file://批次验收仍待完成。上一批已验62节点资产和结论见[冻结记录](verification-62.md)。以下链接固定到包含预构建产物的完整 Git commit `d370ffb2df310fce0da9299e6e254a58509ba544`，不随分支变化。
+下方包含已验loading/source四项，真实file://批次与[完整验收](verification-66.md)已通过。上一批已验62节点资产和结论见[冻结记录](verification-62.md)。以下链接固定到包含预构建产物的完整 Git commit `d370ffb2df310fce0da9299e6e254a58509ba544`，不随分支变化。
 
 - [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/iui.global.min.js)，导出 `window.IUI`
 - [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
@@ -114,10 +114,10 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 
 [单位与汇率换算HTML](../examples/browser/converters-preview.html) · [JSON](../examples/converters.json)
 
-当前66节点固定候选d370ffb包含22个闭包分片（新增time Document/Node）与同版索引。真实file://浏览器发现和同版loading/source/time/finance示例渲染由schema-discovery.spec.mjs回归。
+当前66节点固定资产d370ffb包含22个闭包分片（新增time Document/Node）与同版索引。真实file://浏览器发现和同版loading/source/time/finance示例渲染由schema-discovery.spec.mjs回归。
 
 新增[当前组合HTML](../examples/browser/current-components.html)与[原生JSON](../examples/current-components.json)包含富文本、结构化表格、时钟、秒表、倒计时、提示/面板、流式布局、有限图标、显式状态、调用方给定进度/占位、虚构来源卡及数字草稿保护。无效min/max/step/空草稿不覆盖最后有效数字state；旧6797盲测页面和JSON保持原哈希，作为历史记录使用其独立delivery-cdn-lock。新的current-components-cdn回归以禁缓存的实际file://交互及资产哈希核验本轮固定版本，不以HTTP200替代渲染。
 
-上一批62节点已验：292项Node、216项Chromium、42消费者视图全部通过；其CI整树与资产字节关系及实际截图复核见[冻结证据与有限范围](verification-62.md)。新66节点候选暂未继承这项浏览器验收结论。
+上一批62节点已验：292项Node、216项Chromium、42消费者视图全部通过；其CI整树与资产字节关系及实际截图复核见[冻结证据与有限范围](verification-62.md)。新66节点的独立验收见[本批证据](verification-66.md)。
 
-66节点候选已在实际HTTP响应上核对11项脚本、样式、完整/索引及base/time/finance分片的SHA256、SHA384 SRI、CORS与immutable缓存头；本地337项Node通过。真实浏览器、42+18消费者视图仍待本轮集中CI。
+66节点已在实际HTTP响应上核对11项脚本、样式、完整/索引及base/time/finance分片的SHA256、SHA384 SRI、CORS与immutable缓存头；338项Node、241项真实Chromium浏览器、42+18消费者视图通过；实际原图已复核。
