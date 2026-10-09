@@ -90,6 +90,10 @@ node('package-tracker',{label:short,description:string(2000),carrier:short,track
 defs.TrackedFlightEndpoint=object({airport:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3},name:short,scheduledAt:flightAt,estimatedAt:flightAt,actualAt:flightAt,terminal:short,gate:short},['airport','scheduledAt']);
 defs.FlightUpdate=object({id:suppliedKey,at:flightAt,message:short,kind:choice('information','change','disruption'),description:string(2000)},['id','at','message','kind']);
 node('flight-tracker',{label:short,description:string(2000),carrier:short,flightNumber:short,status:choice('scheduled','boarding','departed','landed','cancelled','diverted','unknown'),observedAt:flightAt,departure:ref('TrackedFlightEndpoint'),arrival:ref('TrackedFlightEndpoint'),updates:array(ref('FlightUpdate'),0,40),source:ref('TrackerSource')},['label','carrier','flightNumber','status','observedAt','departure','arrival','updates']);
+// Original supplied related-question reader, explicitly distinct from answer generation.
+defs.RelatedQuestionSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.RelatedQuestion=object({id:suppliedKey,question:string(500,1),answer:{anyOf:[string(10000),{type:'null'}]},sources:array(ref('RelatedQuestionSource'),0,5)},['id','question','answer']);
+node('sidebar-people-also-ask',{label:short,description:string(2000),items:array(ref('RelatedQuestion'),0,40),expanded:array(suppliedKey,0,40)},['label','items']);
 // Original supplied plain-text mail and finite file navigation; no provider/filesystem access.
 defs.ReaderSource=object({label:short,url:string(2048,1)},['label','url']);
 defs.EmailPreviewPerson=object({name:short,address:string(320,1)},['address']);

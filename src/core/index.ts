@@ -1,3 +1,4 @@
+import {inspectRelatedQuestions} from './related-questions.js';
 import {inspectMailFiles} from './mail-files.js';
 import {inspectPoll} from './poll.js';
 import {inspectTracker} from './trackers.js';
@@ -314,6 +315,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
+    if(node.type==='sidebar-people-also-ask')inspectRelatedQuestions(node,path,add,isSafeURL);
     if(node.type==='email-preview'||node.type==='file-nav-list')inspectMailFiles(node,path,add,isSafeURL);
     if(node.type==='create-interactive-poll')inspectPoll(node,path,add);
     if(node.type==='onboarding-selection')inspectOnboarding(node,path,add);
