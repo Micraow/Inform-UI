@@ -41,3 +41,18 @@ const remoteIcon:Node={type:"icon",name:"downloaded-unknown",src:"https://exampl
 // @ts-expect-error status is always explicit
 const missingPulseStatus:Node={type:"pulse-indicator",label:"Local example"};
 void [remoteIcon,missingPulseStatus];
+
+const dateField:Node={type:'input',kind:'date',label:'Practice date',bind:'day',minDate:'0001-01-01',maxDate:'9999-12-31',required:true};
+// @ts-expect-error a native date has date-only bounds, never numeric min
+const numericDate:Node={type:'input',kind:'date',label:'Practice date',bind:'day',min:0};
+// @ts-expect-error native date inputs do not support placeholder
+const placeholderDate:Node={type:'input',kind:'date',label:'Practice date',bind:'day',placeholder:'YYYY-MM-DD'};
+// @ts-expect-error native date inputs do not support text lengths
+const lengthDate:Node={type:'input',kind:'date',label:'Practice date',bind:'day',maxLength:10};
+// @ts-expect-error date-only bounds do not apply to text inputs
+const datedText:Node={type:'input',kind:'text',label:'Text',bind:'text',minDate:'2024-01-01'};
+// @ts-expect-error date-only bounds do not apply to numeric inputs
+const datedNumber:Node={type:'input',kind:'number',label:'Number',bind:'n',maxDate:'2024-12-31'};
+// @ts-expect-error date-only bounds do not apply to checkboxes
+const datedCheckbox:Node={type:'input',kind:'checkbox',label:'Check',bind:'check',maxDate:'2024-12-31'};
+void [dateField,numericDate,placeholderDate,lengthDate,datedText,datedNumber,datedCheckbox];

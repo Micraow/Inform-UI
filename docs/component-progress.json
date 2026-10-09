@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T08:01:55.635Z",
+  "as_of_utc": "2026-10-09T08:36:32.698Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -22,13 +22,13 @@
     "fixed_cdn_asset_commit": "d370ffb2df310fce0da9299e6e254a58509ba544",
     "loading_sources_verified_commit": "7db01a63d18d61a59f508e11433877b073ed5a7b",
     "loading_sources_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37898154911",
-    "local_enhancement_checkpoint": "See docs/local-enhancements-20261009.md; no browser/CI acceptance and no new recommended CDN pin."
+    "local_enhancement_checkpoint": "See docs/local-enhancements-68.md; 482 Node tests passed, seven canonical components pending accumulated browser acceptance. No new recommended CDN pin."
   },
   "counts": {
-    "not_implemented": 191,
+    "not_implemented": 189,
     "functionally_verified": 53,
-    "implemented_pending_verification": 4,
-    "partial": 8
+    "implemented_pending_verification": 7,
+    "partial": 7
   },
   "components": [
     {
@@ -147,8 +147,8 @@
       "id": "base-date-picker",
       "name": "日期选择",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原生date字符串与严格公历/范围草稿、Forms生命周期已本地实现；482项整合Node测试通过，原生浏览器待合批。"
     },
     {
       "id": "base-divider",
@@ -270,8 +270,8 @@
       "id": "base-markdown",
       "name": "Markdown",
       "layer": "primitive",
-      "status": "partial",
-      "note": "纯文本降级"
+      "status": "implemented_pending_verification",
+      "note": "原创有限Markdown子集、安全链接与无损资源回退已本地实现；482项整合Node测试通过，真实浏览器待合批。"
     },
     {
       "id": "base-math",
@@ -1783,8 +1783,8 @@
       "id": "tab-group",
       "name": "Tab Group",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原生ARIA标签页、RTL键盘、本地滚动与隐藏内容状态保持已本地实现；482项整合Node测试通过，真实浏览器待合批。"
     },
     {
       "id": "task-autopause-card",

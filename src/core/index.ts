@@ -282,6 +282,12 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
     if (node.type === 'text') node.runs?.forEach((run, i) => { if (run.href && !isSafeURL(run.href)) add(issue('UNSAFE_URL', `${path}/runs/${i}/href`, 'Inline link URL is outside the allowed policy.')); });
     if (node.type === 'blockquote' && node.cite && !isSafeURL(node.cite)) add(issue('UNSAFE_URL', `${path}/cite`, 'Quote source URL is outside the allowed policy.'));
+    if (node.type === 'tab-panel' && parent?.type !== 'tab-group') add(issue('TAB_PARENT', path, 'tab-panel must be a direct child of tab-group.'));
+    if (node.type === 'tab-group') {
+      const enabled = node.children.filter(child => !child.disabled);
+      if (!enabled.length) add(issue('TAB_SELECTION', path + '/children', 'A tab group needs at least one enabled panel.'));
+      if (node.initial !== undefined && !enabled.some(child => child.id === node.initial)) add(issue('TAB_SELECTION', path + '/initial', 'Initial tab must name an enabled direct panel.'));
+    }
     if (node.type === 'grid-item') {
       if (parent?.type !== 'grid') add(issue('GRID_ITEM_PARENT', path, 'grid-item must be a direct child of grid.'));
       else {

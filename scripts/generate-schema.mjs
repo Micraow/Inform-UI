@@ -73,6 +73,8 @@ defs.SourceRecord = object(sourceFields, ['title','url']);
 node('citation', { ...sourceFields, number: integer(1,999) }, ['title','url']);
 node('web-link-cards', { label: short, items: array(ref('SourceRecord'),1,20) }, ['label','items']);
 node('carousel', { children, label: short, controls: bool }, ['children']);
+node('tab-panel', { label: short, disabled: bool, children }, ['id','label','children']);
+node('tab-group', { label: short, initial: short, children: array(ref('TabPanelNode'),1,20) }, ['label','children']);
 node('list', { ordered: bool, items: array({ anyOf: [ref('Value'), ref('Node')] }, 0, 100) }, ['items']);
 defs.TableCellObject = object({ value: ref('Value'), rowSpan: integer(1, 200), colSpan: integer(1, 20), header: bool, scope: choice('row', 'col', 'rowgroup'), align }, ['value']);
 defs.TableCell = { anyOf: [ref('Value'), ref('TableCellObject')] };
@@ -88,7 +90,12 @@ node('toggle', { label: short, bind: short }, ['label', 'bind']);
 node('select', { label: short, bind: short, options: array(object({ value: { anyOf: [string(), number] }, label: short }, ['value', 'label']), 1, 40) }, ['label', 'bind', 'options']);
 const inputCommon = { label: short, bind: short, hint: string(), error: ref('Value'), required: bool, disabled: ref('Value') };
 const inputOptions = array(object({ value: { anyOf: [string(), number] }, label: short, disabled: bool }, ['value', 'label']), 1, 40);
-node('input', { ...inputCommon, kind: choice('text', 'number', 'email', 'checkbox'), placeholder: string(200), min: number, max: number, step: { ...number, exclusiveMinimum: 0 }, minLength: integer(0, 12000), maxLength: integer(1, 12000) }, ['label', 'bind', 'kind'], 'forms');
+node('input', { ...inputCommon, kind: choice('text', 'number', 'email', 'checkbox', 'date'), minDate: { type: 'string', pattern: '^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$' }, maxDate: { type: 'string', pattern: '^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$' }, placeholder: string(200), min: number, max: number, step: { ...number, exclusiveMinimum: 0 }, minLength: integer(0, 12000), maxLength: integer(1, 12000) }, ['label', 'bind', 'kind'], 'forms');
+// Date-only constraints remain separate from numeric/text constraints in schema and types.
+defs.InputNode.oneOf = [
+  object({ ...defs.InputNode.properties, kind: { const: 'date' }, ...Object.fromEntries(['placeholder', 'min', 'max', 'step', 'minLength', 'maxLength'].map(name => [name, false])) }),
+  object({ ...defs.InputNode.properties, kind: choice('text', 'number', 'email', 'checkbox'), minDate: false, maxDate: false })
+];
 defs.InputNode.if = { properties: { kind: { const: 'checkbox' } }, required: ['kind'] };
 defs.InputNode.then = { properties: Object.fromEntries(['placeholder', 'min', 'max', 'step', 'minLength', 'maxLength'].map(name => [name, false])) };
 node('textarea', { ...inputCommon, placeholder: string(200), rows: integer(2, 20), minLength: integer(0, 12000), maxLength: integer(1, 12000) }, ['label', 'bind'], 'forms');

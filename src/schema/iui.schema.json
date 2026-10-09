@@ -1925,6 +1925,79 @@
       ],
       "additionalProperties": false
     },
+    "TabPanelNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tab-panel"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 500
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "label",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "TabGroupNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tab-group"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TabPanelNode"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "children"
+      ],
+      "additionalProperties": false
+    },
     "ListNode": {
       "type": "object",
       "properties": {
@@ -2594,8 +2667,17 @@
             "text",
             "number",
             "email",
-            "checkbox"
+            "checkbox",
+            "date"
           ]
+        },
+        "minDate": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+        },
+        "maxDate": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
         },
         "placeholder": {
           "type": "string",
@@ -2629,6 +2711,135 @@
         "kind"
       ],
       "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "input"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "bind": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "hint": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "error": {
+              "$ref": "#/$defs/Value"
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "disabled": {
+              "$ref": "#/$defs/Value"
+            },
+            "kind": {
+              "const": "date"
+            },
+            "minDate": {
+              "type": "string",
+              "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+            },
+            "maxDate": {
+              "type": "string",
+              "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+            },
+            "placeholder": false,
+            "min": false,
+            "max": false,
+            "step": false,
+            "minLength": false,
+            "maxLength": false
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "input"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "bind": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "hint": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "error": {
+              "$ref": "#/$defs/Value"
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "disabled": {
+              "$ref": "#/$defs/Value"
+            },
+            "kind": {
+              "enum": [
+                "text",
+                "number",
+                "email",
+                "checkbox"
+              ]
+            },
+            "minDate": false,
+            "maxDate": false,
+            "placeholder": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "step": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "minLength": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 12000
+            },
+            "maxLength": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12000
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ],
       "if": {
         "properties": {
           "kind": {
@@ -5667,6 +5878,12 @@
         },
         {
           "$ref": "#/$defs/CarouselNode"
+        },
+        {
+          "$ref": "#/$defs/TabPanelNode"
+        },
+        {
+          "$ref": "#/$defs/TabGroupNode"
         },
         {
           "$ref": "#/$defs/ListNode"

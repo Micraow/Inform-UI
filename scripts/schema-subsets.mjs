@@ -4,8 +4,8 @@ import { join } from 'node:path';
 
 // Discovery metadata only. The canonical generator owns every node definition and group assignment.
 export const SCHEMA_GROUPS = Object.freeze({
-  base: { title: '基础内容、布局与联动控件', examples: ['examples/wifi.json', 'examples/shortlist.json', 'examples/math-fonts.json', 'examples/foundations.json', 'examples/structured-tables.json', 'examples/local-status-primitives.json', 'examples/loading-states.json', 'examples/source-cards.json', 'examples/carousel-basic.json', 'examples/code.json'] },
-  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json', 'examples/checkbox-practice.json'] },
+  base: { title: '基础内容、布局与联动控件', examples: ['examples/wifi.json', 'examples/shortlist.json', 'examples/math-fonts.json', 'examples/foundations.json', 'examples/structured-tables.json', 'examples/local-status-primitives.json', 'examples/loading-states.json', 'examples/source-cards.json', 'examples/carousel-basic.json', 'examples/code.json', 'examples/markdown-subset.json', 'examples/tabs.json'] },
+  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json', 'examples/checkbox-practice.json', 'examples/date-practice.json'] },
   charts: { title: '通用图表与数值/时间坐标', examples: ['examples/rtt.json', 'examples/numeric-charts.json', 'examples/pie.json'] },
   graphics: { title: '拓扑与受限SVG', examples: ['examples/hpcc.json'] },
   weather: { title: '天气供数视图', examples: ['examples/weather.json'] },
@@ -116,7 +116,7 @@ export async function emitSchemaSubsets(full, owners, directory) {
     recommendedForAuthoring: 'Use groups[].documentSchema. Node files are field-lookup subsets; recursive Node children are limited to the owned group and document state is absent.',
     examplesBase: 'Paths are relative to this CDN index URL; repositoryPath is supplied for local checkouts.',
     nodeOwners: Object.fromEntries(Object.entries(owners).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)),
-    nodeSupportExceptions: { markdown: 'plain-text fallback', native: 'rejected' }, groups: [],
+    nodeSupportExceptions: { native: 'rejected' }, nodeSupportNotes: { markdown: 'Bounded original Markdown subset, not CommonMark; unsupported syntax remains literal.' }, groups: [],
   };
   for (const [id, metadata] of Object.entries(SCHEMA_GROUPS)) {
     const includedGroups = id === 'base' ? ['base'] : ['base', id];

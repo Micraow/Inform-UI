@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分8，已写待验4，未实现191。
+当前固定分母为256项：功能已验53，部分7，已写待验7，未实现189。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-此前13项见[62节点批次](verification-62.md)；加载/占位/引用/链接卡4项见[66节点验收](verification-66.md)。新4项仅为[本地冻结候选](local-enhancements-20261009.md)，累计约30个实际组件再合并远端CI；不提前计入功能已验。
+最近正式验收见[66节点证据](verification-66.md)。七项本地候选见[68节点本地冻结](local-enhancements-68.md)，482项Node通过仍不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -24,7 +24,7 @@
 | base-checkbox | 复选框 | 已写待验 | 原生boolean字段已接入required/disabled/fieldset及同一Forms生命周期；本地通过，真实浏览器待合批。 |
 | base-code | 行内代码 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-col | 纵向布局 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-date-picker | 日期选择 | 未实现 | 暂无专门实现证据 |
+| base-date-picker | 日期选择 | 已写待验 | 原生date字符串与严格公历/范围草稿、Forms生命周期已本地实现；482项整合Node测试通过，原生浏览器待合批。 |
 | base-divider | 分隔线 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-favicon | 网站/来源图标 | 未实现 | 暂无专门实现证据 |
 | base-flashcard-flip | 双面翻卡容器 | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
@@ -41,7 +41,7 @@
 | base-loading | 加载指示 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | base-loading-block | 骨架/加载占位 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | base-lottie | Lottie动画 | 未实现 | 暂无专门实现证据 |
-| base-markdown | Markdown | 部分实现 | 纯文本降级 |
+| base-markdown | Markdown | 已写待验 | 原创有限Markdown子集、安全链接与无损资源回退已本地实现；482项整合Node测试通过，真实浏览器待合批。 |
 | base-math | 数学公式 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-pie-chart | 饼图/环图 | 已写待验 | 单序列实心饼图、缺测/零值及精确表格已本地实现；真实SVG/触摸/视觉待合批。 |
 | base-popover | 弹出层 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
@@ -254,7 +254,7 @@
 | stop-push-drip-series | Stop Push Drip Series | 未实现 | 暂无专门实现证据 |
 | superbowl-riddle | Superbowl Riddle | 未实现 | 暂无专门实现证据 |
 | tabbed-section | Tabbed Section | 未实现 | 暂无专门实现证据 |
-| tab-group | Tab Group | 未实现 | 暂无专门实现证据 |
+| tab-group | Tab Group | 已写待验 | 原生ARIA标签页、RTL键盘、本地滚动与隐藏内容状态保持已本地实现；482项整合Node测试通过，真实浏览器待合批。 |
 | task-autopause-card | Task Autopause Card | 未实现 | 暂无专门实现证据 |
 | tennis-player-summary | Tennis Player Summary | 未实现 | 暂无专门实现证据 |
 | visual-card-carousel | Visual Card Carousel | 未实现 | 暂无专门实现证据 |

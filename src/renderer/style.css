@@ -610,3 +610,27 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 @media(forced-colors:active){.iui-pie path{stroke:CanvasText;stroke-width:1;forced-color-adjust:none}.iui-pie path.iui-point-active{stroke:Highlight;stroke-width:4}.iui-pie svg:focus-visible{outline-color:Highlight}}
 
 .iui-pie .iui-pie-key-active{outline:1px solid var(--iui-focus);outline-offset:3px;border-radius:2px}
+
+/* Finite tabs preserve the actual child tree; only panel visibility changes. */
+.iui-root .iui-tab-group { min-width:0; max-width:100%; }
+.iui-root .iui-tab-list { display:flex; gap:4px; max-width:100%; min-width:0; overflow-x:auto; overscroll-behavior-inline:contain; padding:4px; border-block-end:1px solid var(--iui-line); }
+.iui-root .iui-tab-list > button { flex:0 0 auto; max-width:100%; white-space:normal; overflow-wrap:anywhere; min-height:44px; border:1px solid transparent; border-radius:6px 6px 0 0; padding:8px 12px; background:transparent; color:var(--iui-muted); }
+.iui-root .iui-tab-list > button[aria-selected=true] { color:var(--iui-ink); background:var(--iui-surface); border-color:var(--iui-line); border-block-end:3px solid var(--iui-accent); }
+.iui-root .iui-tab-list > button:disabled { opacity:.5; cursor:not-allowed; }
+.iui-root .iui-tab-panel { min-width:0; max-width:100%; padding-block:16px; }
+.iui-root .iui-tab-panel[hidden] { display:none!important; }
+.iui-root .iui-tab-group :is([role=tab], [role=tabpanel]):focus-visible { outline:2px solid var(--iui-accent); outline-offset:2px; }
+@media (forced-colors:active) { .iui-root .iui-tab-list > button[aria-selected=true] { border-color:ButtonText; border-block-end-color:Highlight; } }
+
+/* Append after shared styles. No global selectors or external resources. */
+.iui-root .iui-markdown{white-space:normal;min-width:0;max-width:100%;overflow-wrap:anywhere;line-height:1.65}
+.iui-root .iui-markdown :where(p,li,blockquote,h1,h2,h3,h4,h5,h6){white-space:pre-wrap}
+.iui-root .iui-markdown> :first-child{margin-block-start:0}.iui-root .iui-markdown> :last-child{margin-block-end:0}
+.iui-root .iui-markdown p{margin-block:.75em}.iui-root .iui-markdown :where(h1,h2,h3,h4,h5,h6){line-height:1.3;margin-block:1.2em .5em}
+.iui-root .iui-markdown :where(ul,ol){padding-inline-start:1.7em;margin-block:.75em}.iui-root .iui-markdown li+li{margin-block-start:.3em}
+.iui-root .iui-markdown blockquote{margin-inline:0;padding-inline:1em;border-inline-start:3px solid var(--iui-line);color:var(--iui-muted)}
+.iui-root .iui-markdown :not(pre)>code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--iui-surface);padding:.1em .3em;border-radius:4px}
+.iui-root .iui-markdown .iui-code{box-sizing:border-box;min-width:0;max-width:100%;overflow:auto;overflow-wrap:normal;white-space:pre;margin-block:.75em}
+.iui-root .iui-markdown-code{min-width:0;max-width:100%}.iui-root .iui-markdown-language{color:var(--iui-muted);font-size:.8em;white-space:pre-wrap}
+.iui-root .iui-markdown a{color:var(--iui-accent);text-decoration:underline;text-underline-offset:.15em}.iui-root .iui-markdown a:focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px;border-radius:2px}
+.iui-root .iui-markdown-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}

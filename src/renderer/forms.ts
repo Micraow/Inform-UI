@@ -1,6 +1,6 @@
 import type { Node } from '../schema/document.js';
 import type { StateValue } from '../core/index.js';
-import type { FieldNode } from '../core/extensions.js';
+import { validInputDate, type FieldNode } from '../core/extensions.js';
 import type { RendererContext } from './context.js';
 
 interface FieldHandle { validate: () => boolean; reset: () => void; overwrite: () => void; focus: () => void }
@@ -27,6 +27,7 @@ export function createForms(c: RendererContext) {
     error.setAttribute('aria-live', 'polite');
     error.setAttribute('aria-atomic', 'true');
     const choice = n.type === 'radio' || n.type === 'segmented';
+    const date = n.type === 'input' && n.kind === 'date';
     const checkbox = n.type === 'input' && n.kind === 'checkbox';
     if (checkbox) out.classList.add('iui-field-checkbox');
     const group = choice ? e('fieldset', `iui-choices${n.type === 'segmented' ? ' iui-segmented' : ''}`) : undefined;
@@ -97,6 +98,10 @@ export function createForms(c: RendererContext) {
         if (n.max !== undefined) input.setAttribute('max', String(n.max));
         input.setAttribute('step', String(n.step ?? 'any'));
       }
+      if (date) {
+        if (n.minDate !== undefined) input.setAttribute('min', n.minDate);
+        if (n.maxDate !== undefined) input.setAttribute('max', n.maxDate);
+      }
       setupInput(input);
       if (checkbox) out.insertBefore(input, label);
       else out.append(input);
@@ -109,7 +114,7 @@ export function createForms(c: RendererContext) {
         // Validate the numeric DOM draft before publishing it to shared state.
         // Finite values outside min/max/step are drafts too: derived metrics must
         // retain the last accepted value while the user corrects the field.
-        if (!numeric || !numberProblem(input as HTMLInputElement)) {
+        if ((!numeric || !numberProblem(input as HTMLInputElement)) && (!date || !dateProblem(input as HTMLInputElement))) {
           committing = true;
           try { c.change({ [n.bind]: next }); }
           catch (failure) { localError = failure instanceof Error ? failure.message : c.labels().formInvalid; }
@@ -139,6 +144,19 @@ export function createForms(c: RendererContext) {
       return '';
     }
 
+    function dateProblem(input: HTMLInputElement): string {
+      if (!date) return '';
+      const l = c.labels(), raw = input.value;
+      // Incomplete native segment edits can have an empty public value and
+      // badInput=true. They must not publish an accepted optional empty value.
+      if (input.validity.badInput) return l.invalidDate;
+      if (!raw) return n.required ? l.required : '';
+      if (!validInputDate(raw)) return l.invalidDate;
+      if (n.minDate !== undefined && raw < n.minDate) return l.beforeMinDate;
+      if (n.maxDate !== undefined && raw > n.maxDate) return l.afterMaxDate;
+      return '';
+    }
+
     function problem(): string {
       if (inputs.every(disabled)) return '';
       const l = c.labels();
@@ -158,6 +176,7 @@ export function createForms(c: RendererContext) {
       }
       const raw = input.value;
       if (n.type === 'input' && n.kind === 'number') return numberProblem(input as HTMLInputElement);
+      if (date) return dateProblem(input as HTMLInputElement) || (raw !== current ? l.invalidDate : '');
       if (raw !== String(current)) return l.inputMismatch;
       if (n.required && !raw.trim()) return l.required;
       if (raw) {
@@ -280,10 +299,11 @@ export function createForms(c: RendererContext) {
     // cannot leave the field's blur feedback pending indefinitely.
     on(c.doc, 'pointerdown', (event: Event) => {
       const pointer = event as PointerEvent;
-      if (pointer.button !== 0) return;
+      if (pointer.button !== 0 || pointer.isPrimary === false || pointer.defaultPrevented) return;
+      if (pointerAction && pointer.pointerId !== pointerId) return;
       const target = (pointer.target as Element | null)?.closest?.('button');
-      const documentAction = target?.dataset.iui === 'button' && target.closest('.iui-root') === out.closest('.iui-root');
-      if (!target || target.disabled || target !== submit && target !== cancel && !documentAction) return;
+      const localAction = target?.closest('.iui-root') === out.closest('.iui-root');
+      if (!target || target.disabled || !localAction) return;
       flushPointerBlur(); pointerAction = target; pointerId = pointer.pointerId;
     });
     on(c.doc, 'pointerup', (event: Event) => {
@@ -295,6 +315,7 @@ export function createForms(c: RendererContext) {
       if ((event as PointerEvent).pointerId === pointerId) flushPointerBlur();
     });
     if (c.doc.defaultView) on(c.doc.defaultView, 'blur', () => flushPointerBlur());
+    on(c.doc, 'visibilitychange', () => { if (c.doc.hidden) flushPointerBlur(); });
     // Includes the established slider/toggle/select controls as well as new fields.
     const controls = [...fieldset.querySelectorAll<Control>('input[data-bind], textarea[data-bind], select[data-bind]')];
     const bindings = [...new Set(controls.map(control => control.dataset.bind!))];

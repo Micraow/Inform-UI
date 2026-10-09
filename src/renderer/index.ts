@@ -1,3 +1,5 @@
+import {renderMarkdown} from './markdown.js';
+import {renderTabs} from './tabs.js';
 import {renderCode} from './code.js';
 import {renderCarousel} from './carousel.js';
 import {renderSource} from './sources.js';
@@ -131,7 +133,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if ('shimmer' in n && n.shimmer) out.classList.add('iui-text-shimmer');
         break;
       }
-      case 'markdown': out = element('div'); out.dataset.fallback = 'plain-text'; out.append(element('p','iui-caption',labels.plainText),element('p','iui-markdown',n.value)); break;
+      case 'markdown': out=renderMarkdown(context,n,labels.markdownUI);break;
       case 'code': out=renderCode(context,n,labels);break;
       case 'math': out = formula(n.latex,n.block ?? true); break;
       case 'divider': out = element('hr'); break;
@@ -170,6 +172,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'figure': out=element('figure','iui-layout');out.dataset.semanticGap='true'; children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
       case 'carousel': out=renderCarousel(context,n,labels.carouselUI);break;
+      case 'tab-group': out=renderTabs(context,n);break;
+      case 'tab-panel': out=element('div','iui-tab-panel iui-layout');children(out,n.children);break;
       case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>showValue(li,value(item as Value)));out.append(li);}break;
       case 'table': out=renderTable(context,n);break;
       case 'metric': {out=element('div','iui-metric');out.dataset.variant=n.variant??'plain';out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):display(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}

@@ -1,3 +1,4 @@
+import {markdownEnglish,markdownChinese} from './markdown-labels.js';
 import {codeEnglish,codeChinese} from './code-labels.js';
 import {carouselEnglish,carouselChinese} from './carousel-labels.js';
 import {sourceEnglish,sourceChinese} from './source-labels.js';
@@ -18,6 +19,7 @@ export function formatNumber(value: number): string {
 
 import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
+  markdownUI:markdownEnglish,
   pieUI:pieEnglish,
   codeUI: codeEnglish,
   carouselUI: carouselEnglish,
@@ -33,9 +35,10 @@ const english = {
   imageDisclosure: (hostname: string) => `Loading shares your IP address with ${hostname}.`,
   collection: 'Scrollable collection', diagram: 'Diagram', topology: 'Network topology',
   maximumLoad: 'Maximum load', to: 'to',
-  loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
+  loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', invalidDate:'Enter a valid date.', beforeMinDate:'The date is before the earliest allowed date.', afterMaxDate:'The date is after the latest allowed date.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
+  markdownUI:markdownChinese,
   pieUI:pieChinese,
   codeUI: codeChinese,
   carouselUI: carouselChinese,
@@ -51,7 +54,7 @@ const chinese: typeof english = {
   imageDisclosure: (hostname: string) => `加载图片会向 ${hostname} 提供你的 IP 地址。`,
   collection: '可横向滚动的内容', diagram: '示意图', topology: '网络拓扑',
   maximumLoad: '最大负载', to: '到',
-  loading:'正在加载…', empty:'暂无数据', loadError:'数据暂不可用', temperature:'温度', precipitation:'降水概率', hourly:'逐小时预报', daily:'逐日预报', updated:'更新时间', synthetic:'合成演示', source:'数据来源', current:'当前', feelsLike:'体感', humidity:'湿度', chartView:'图表', tableView:'表格', submit:'提交', cancel:'取消', submitted:'已完成本地提交', submitting:'正在提交…', cancelled:'已取消', submitError:'提交失败，请重试。', required:'请填写此项。', inputMismatch:'输入含已被控件清理的换行或空白，请编辑后重新提交。',invalidEmail:'请输入有效的邮箱地址。', invalidNumber:'请输入有效数字。', tooShort:'内容未达到最小长度。', tooLong:'内容超过最大长度。', belowMin:'数值低于下限。', aboveMax:'数值超过上限。', stepMismatch:'数值不符合步长要求。', invalidChoice:'请选择可用选项。', formInvalid:'请检查标出的字段。', noAdapter:'此操作尚未配置。', total:'合计'
+  loading:'正在加载…', empty:'暂无数据', loadError:'数据暂不可用', temperature:'温度', precipitation:'降水概率', hourly:'逐小时预报', daily:'逐日预报', updated:'更新时间', synthetic:'合成演示', source:'数据来源', current:'当前', feelsLike:'体感', humidity:'湿度', chartView:'图表', tableView:'表格', submit:'提交', cancel:'取消', submitted:'已完成本地提交', submitting:'正在提交…', cancelled:'已取消', submitError:'提交失败，请重试。', required:'请填写此项。', inputMismatch:'输入含已被控件清理的换行或空白，请编辑后重新提交。',invalidEmail:'请输入有效的邮箱地址。', invalidNumber:'请输入有效数字。', invalidDate:'请输入有效日期。', beforeMinDate:'日期早于允许的最早日期。', afterMaxDate:'日期晚于允许的最晚日期。', tooShort:'内容未达到最小长度。', tooLong:'内容超过最大长度。', belowMin:'数值低于下限。', aboveMax:'数值超过上限。', stepMismatch:'数值不符合步长要求。', invalidChoice:'请选择可用选项。', formInvalid:'请检查标出的字段。', noAdapter:'此操作尚未配置。', total:'合计'
 };
 
 /** Built-in labels follow the nearest host language; unsupported languages use English. */

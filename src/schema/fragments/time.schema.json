@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:3b11198fefbcceda5fd5b9cd43275c6cb0bcf2465c6801867028e8036a627e8f:document:base+time",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:c825cddb373b4eb44583d272123825413ea7cb1228c6fbf87cc86238bc142da2:document:base+time",
   "title": "Inform UI document subset: base, time",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1683,6 +1683,12 @@
           "$ref": "#/$defs/CarouselNode"
         },
         {
+          "$ref": "#/$defs/TabPanelNode"
+        },
+        {
+          "$ref": "#/$defs/TabGroupNode"
+        },
+        {
           "$ref": "#/$defs/ListNode"
         },
         {
@@ -2178,6 +2184,79 @@
       },
       "required": [
         "type"
+      ],
+      "additionalProperties": false
+    },
+    "TabGroupNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tab-group"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TabPanelNode"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "TabPanelNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tab-panel"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 500
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "label",
+        "children"
       ],
       "additionalProperties": false
     },

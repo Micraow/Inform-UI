@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 66 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 68 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,14 +23,14 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working source: 64 rendered + 1 plain-text fallback + 1 rejected = 66 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Current carousel/code/pie/checkbox enhancements are later candidates pending combined browser/CDN acceptance; they extend existing nodes and do not increase the 66-node total.
+**Working candidate source: 67 rendered + 1 rejected =68 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
 | `text` | Rendered | Escaped value or explicit rich-text runs, safe inline links/code, semantic color/weight/alignment and decoration. No inline HTML. |
 | `title` | Rendered | Heading levels 1–3, with the same safe values and emphasis options. |
 | `caption` | Rendered | Lower-emphasis explanatory text; no source lookup. |
-| `markdown` | Plain-text fallback | Original characters are displayed as text. Formatting, embedded HTML, images, and Markdown links are not parsed. |
+| `markdown` | Rendered candidate | Bounded original paragraphs/headings/lists/quotes/fences/flat inline formatting and core-policy links. Unsupported syntax stays literal; no raw HTML execution, fetched images or full CommonMark claim. The accepted d370 version retains its historical plain-text fallback. [Contract](markdown.md). |
 | `code` | Rendered | Escaped preformatted or inline code; later candidate adds explicit trusted copy action and finite syntax highlighting for non-inline code only. No execution or editor. See [code contract](code.md). |
 | `math` | Rendered | KaTeX generates visible HTML plus accessible MathML with trust disabled. Unsupported syntax remains formula source with an accessibility label; offline output embeds official MIT WOFF2 fonts; CDN CSS loads the same fonts from its pinned asset directory. No remote equation service is used. |
 | `badge` | Rendered | Compact text and semantic color. Size and arbitrary visual variants are not configurable. |
@@ -48,6 +48,7 @@ results from the current revision for those claims.
 | `section` | Rendered | Optional heading followed by child nodes. |
 | `figure` | Rendered | Grouped content and an optional figure caption. |
 | `details` | Rendered | Native disclosure with a summary and expandable child content. Not a hover popup. |
+| `tab-group` / `tab-panel` | Rendered candidate | Native roving tab buttons and persistent hidden panels; RTL keys, local overflow and complete forms within individual panels. No lazy loading, automatic rotation or cross-panel form. One canonical component. [Contract](tabs.md). |
 | `carousel` | Rendered | Finite native scrolling with optional label/previous-next controls; exact boundary no-op, retained child state. No autoplay, looping or cloning. Later candidate, browser acceptance pending. |
 | `list` | Rendered | Ordered or unordered items containing safe values or supported nodes. No separate description-list schema. |
 | `table` | Rendered | Native multi-section and merged-cell tables with shared occupancy validation, explicit header associations and local keyboard scroll. Legacy rows preserved. No sorting, editing or remote pagination. |
@@ -61,7 +62,7 @@ results from the current revision for those claims.
 | `button` | Rendered | Exactly two declarative actions: reset document state, or set one declared state value. No callbacks, network submission, clipboard, or arbitrary commands. |
 | `topology` | Rendered | Original SVG node/edge diagram with optional maximum-load highlighting and a textual summary. Layout is deterministic, not a general graph-layout engine. |
 | `chart` | Rendered | Line, grouped bar, scatter, area and single-series donut; later candidate adds solid single-series pie ([contract](pie.md)); explicit category/linear/time X axes, typed finite bounds, null gaps, empty/loading/error views, keyboard point readout, series switches and data table. No stacking, brush, zoom, export or chart-kind switch. See charts.md for axis rules and version boundaries. |
-| `input` | Rendered | Native text/number/email with label/hint/error, required/disabled and bounded constraints. Numeric drafts preserve typed state; later checkbox candidate binds native boolean checks through the same form lifecycle. |
+| `input` | Rendered | Native text/number/email with label/hint/error, required/disabled and bounded constraints. Numeric drafts preserve typed state; later checkbox and date candidates bind native boolean/date-only controls through the same form lifecycle. |
 | `textarea` | Rendered | Native multiline text with label, constraints and keyboard editing. |
 | `radio` / `segmented` | Rendered | Native radio options, roving browser keyboard behavior, disabled options and required selection. |
 | `field` | Rendered | Native fieldset and legend with inherited disabled behavior. |
@@ -118,7 +119,7 @@ Consult the current validator for the complete error-code vocabulary.
 | [`rtt.json`](../examples/rtt.json) | Two-series line chart | Original synthetic relative-time sequence in milliseconds. The `00:03` row has explicit nulls, requiring a visible gap. Series switches change visibility only. |
 | [`wifi.json`](../examples/wifi.json) | Compact metrics | A fictional wireless snapshot with stated units. It does not read the user's device, infer current connectivity, or equate PHY rate with throughput. |
 | [`shortlist.json`](../examples/shortlist.json) | Illustrated reading list | Three fictional tools, original geometric PNG thumbnails, and links to the demonstration domain `example.com`. No live recommendations, rankings, or GitHub statistics. |
-| [`kitchen-sink.json`](../examples/kitchen-sink.json) | Accepted-node composition | An original synthetic sensor lesson combining the original general-purpose nodes, including the deliberate Markdown fallback. It also exercises a bar chart, selection, a boolean control, reset, and set actions. |
+| [`kitchen-sink.json`](../examples/kitchen-sink.json) | Accepted-node composition | An original synthetic sensor lesson combining the original general-purpose nodes, including bounded Markdown in the candidate (plain-text fallback in older fixed assets). It also exercises a bar chart, selection, a boolean control, reset, and set actions. |
 
 Example presence is coverage of input vocabulary, not proof of rendering or
 interaction correctness. The rejected `native` case belongs in negative tests,

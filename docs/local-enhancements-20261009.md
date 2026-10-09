@@ -1,6 +1,6 @@
 # Four local enhancements awaiting combined acceptance
 
-This is a local implementation checkpoint, not a new browser/CDN acceptance. The verified total remains53/256; four canonical components are implemented pending verification, eight remain partial and191 unimplemented. There are still66 protocol node names: these changes extend existing carousel/code/chart/input nodes.
+Snapshot: ed3c64c4253dc77b7db1ca1bec67d7a270b1a8bd. Current accumulated candidates are tracked in [the next local checkpoint](local-enhancements-68.md). This is a local implementation checkpoint, not a new browser/CDN acceptance. The verified total remains53/256; four canonical components are implemented pending verification, eight remain partial and191 unimplemented. There are still66 protocol node names: these changes extend existing carousel/code/chart/input nodes.
 
 - base-carousel: bounded native navigation and stable child DOM/state. [Contract](carousel.md).
 - code-block: explicit trusted copy, original finite highlighting and exact source text. [Contract](code.md).

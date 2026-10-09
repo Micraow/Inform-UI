@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:3b11198fefbcceda5fd5b9cd43275c6cb0bcf2465c6801867028e8036a627e8f:node:forms",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:c825cddb373b4eb44583d272123825413ea7cb1228c6fbf87cc86238bc142da2:node:forms",
   "title": "Inform UI node subset: forms",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -140,8 +140,17 @@
             "text",
             "number",
             "email",
-            "checkbox"
+            "checkbox",
+            "date"
           ]
+        },
+        "minDate": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+        },
+        "maxDate": {
+          "type": "string",
+          "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
         },
         "placeholder": {
           "type": "string",
@@ -175,6 +184,135 @@
         "kind"
       ],
       "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "input"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "bind": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "hint": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "error": {
+              "$ref": "#/$defs/Value"
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "disabled": {
+              "$ref": "#/$defs/Value"
+            },
+            "kind": {
+              "const": "date"
+            },
+            "minDate": {
+              "type": "string",
+              "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+            },
+            "maxDate": {
+              "type": "string",
+              "pattern": "^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$"
+            },
+            "placeholder": false,
+            "min": false,
+            "max": false,
+            "step": false,
+            "minLength": false,
+            "maxLength": false
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "input"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "bind": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "hint": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "error": {
+              "$ref": "#/$defs/Value"
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "disabled": {
+              "$ref": "#/$defs/Value"
+            },
+            "kind": {
+              "enum": [
+                "text",
+                "number",
+                "email",
+                "checkbox"
+              ]
+            },
+            "minDate": false,
+            "maxDate": false,
+            "placeholder": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "step": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "minLength": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 12000
+            },
+            "maxLength": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12000
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      ],
       "if": {
         "properties": {
           "kind": {

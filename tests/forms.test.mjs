@@ -494,3 +494,26 @@ test('native string normalization cannot make a different bound value pass submi
 
 test('editing submitted values clears stale success, including invalid drafts and host state updates',async()=>{const ctx=setup(spec({amount:10,other:0},[number()]));submit(ctx);await settle();assert.equal(ctx.form.dataset.status,'success');ctx.controller.setState({other:1});assert.equal(ctx.form.dataset.status,'success');ctx.controller.setState({amount:20});assert.equal(ctx.form.dataset.status,'idle');submit(ctx);await settle();assert.equal(ctx.form.dataset.status,'success');fill(ctx,'input','');assert.equal(ctx.form.dataset.status,'idle');assert.equal(ctx.form.querySelector('.iui-form-status').textContent,'');assert.equal(ctx.controller.getState().amount,20);ctx.controller.dispose();});
 test('late successful adapter results do not claim newly changed host values were submitted',async()=>{const pending=deferred(),ctx=setup(spec({title:'before'},[input()],{action:'submit'}),{actions:{submit:()=>pending.promise}});submit(ctx);ctx.controller.setState({title:'after'});pending.resolve();await settle();assert.equal(ctx.form.dataset.status,'idle');assert.equal(ctx.controller.getState().title,'after');ctx.controller.dispose();});
+
+test('pointer blur protection also covers native component buttons outside the form but inside the same UI root',async()=>{
+ const document=spec({amount:6},[number({min:0})]);document.body.push({type:'timer',durationMs:1000});const ctx=setup(document),control=ctx.host.querySelector('input'),button=ctx.host.querySelector('[data-time-action=start]');
+ const pointer=(target,type)=>{const event=new ctx.dom.window.Event(type,{bubbles:true});Object.defineProperties(event,{pointerId:{value:1},button:{value:0}});target.dispatchEvent(event);};
+ try{fill(ctx,'input','-1');pointer(button,'pointerdown');control.dispatchEvent(new ctx.dom.window.FocusEvent('blur',{relatedTarget:button}));assert.equal(error(ctx),'','protect the genuine component click from an inserted error row');button.click();assert.equal(ctx.host.querySelector('.iui-time').dataset.status,'running');pointer(ctx.dom.window.document,'pointerup');await new Promise(r=>ctx.dom.window.setTimeout(r,1));assert.match(error(ctx),/minimum/);
+ ctx.form.reset();fill(ctx,'input','-1');const pause=ctx.host.querySelector('[data-time-action=pause]');pointer(pause,'pointerdown');control.dispatchEvent(new ctx.dom.window.FocusEvent('blur',{relatedTarget:pause}));assert.equal(error(ctx),'');pointer(ctx.dom.window.document,'pointercancel');assert.match(error(ctx),/minimum/);
+ }finally{ctx.controller.dispose();ctx.dom.window.close();}
+});
+
+test('pointer blur deferral rejects external, disabled and prevented gestures; secondary pointers cannot replace its owner',async()=>{
+ const ctx=setup(spec({amount:6},[number({min:0})])),control=ctx.host.querySelector('input'),local=ctx.dom.window.document.createElement('button'),outside=ctx.dom.window.document.createElement('button');ctx.host.querySelector('.iui-root').append(local);ctx.dom.window.document.body.append(outside);
+ const pointer=(target,type,id=1,extra={})=>{const event=new ctx.dom.window.Event(type,{bubbles:true,cancelable:true});Object.defineProperties(event,{pointerId:{value:id},button:{value:0},...Object.fromEntries(Object.entries(extra).map(([k,v])=>[k,{value:v}]))});target.dispatchEvent(event);};
+ const fresh=()=>{ctx.form.reset();fill(ctx,'input','-1');};const blur=target=>control.dispatchEvent(new ctx.dom.window.FocusEvent('blur',{relatedTarget:target}));
+ try{
+ fresh();pointer(outside,'pointerdown');blur(outside);assert.match(error(ctx),/minimum/);
+ fresh();local.disabled=true;pointer(local,'pointerdown');blur(local);assert.match(error(ctx),/minimum/);local.disabled=false;
+ fresh();const prevent=e=>e.preventDefault();local.addEventListener('pointerdown',prevent);pointer(local,'pointerdown');blur(local);assert.match(error(ctx),/minimum/);local.removeEventListener('pointerdown',prevent);
+ fresh();pointer(local,'pointerdown');blur(local);assert.equal(error(ctx),'');pointer(outside,'pointerdown',2,{isPrimary:false});pointer(outside,'pointerup',2);assert.equal(error(ctx),'');pointer(ctx.dom.window.document,'pointercancel',1);assert.match(error(ctx),/minimum/);
+ fresh();pointer(local,'pointerdown',1);blur(local);pointer(outside,'pointerdown',2,{isPrimary:true});pointer(ctx.dom.window.document,'pointerup',1);await new Promise(r=>ctx.dom.window.setTimeout(r,1));assert.match(error(ctx),/minimum/);
+ fresh();blur(local);assert.match(error(ctx),/minimum/,'keyboard/programmatic focus is immediate');
+ fresh();pointer(local,'pointerdown');blur(local);assert.equal(error(ctx),'');Object.defineProperty(ctx.dom.window.document,'hidden',{value:true,configurable:true});ctx.dom.window.document.dispatchEvent(new ctx.dom.window.Event('visibilitychange'));assert.match(error(ctx),/minimum/);
+ }finally{ctx.controller.dispose();ctx.dom.window.close();}
+});

@@ -62,6 +62,8 @@ export type Node =
   | CitationNode
   | WebLinkCardsNode
   | CarouselNode
+  | TabPanelNode
+  | TabGroupNode
   | ListNode
   | TableNode
   | MetricNode
@@ -268,6 +270,64 @@ export type TableNode1 =
       caption?: string;
       status?: "ready" | "loading" | "error";
       message?: string;
+    };
+export type InputNode = {
+  type: "input";
+  id?: string;
+  label: string;
+  bind: string;
+  hint?: string;
+  error?: Value;
+  required?: boolean;
+  disabled?: Value;
+  kind: "text" | "number" | "email" | "checkbox" | "date";
+  minDate?: string;
+  maxDate?: string;
+  placeholder?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  minLength?: number;
+  maxLength?: number;
+} & InputNode1;
+export type InputNode1 =
+  | {
+      type?: "input";
+      id?: string;
+      label?: string;
+      bind?: string;
+      hint?: string;
+      error?: Value;
+      required?: boolean;
+      disabled?: Value;
+      kind?: "date";
+      minDate?: string;
+      maxDate?: string;
+      placeholder?: never;
+      min?: never;
+      max?: never;
+      step?: never;
+      minLength?: never;
+      maxLength?: never;
+    }
+  | {
+      type?: "input";
+      id?: string;
+      label?: string;
+      bind?: string;
+      hint?: string;
+      error?: Value;
+      required?: boolean;
+      disabled?: Value;
+      kind?: "text" | "number" | "email" | "checkbox";
+      minDate?: never;
+      maxDate?: never;
+      placeholder?: string;
+      min?: number;
+      max?: number;
+      step?: number;
+      minLength?: number;
+      maxLength?: number;
     };
 export type ClockNode = {
   type: "clock";
@@ -639,6 +699,28 @@ export interface CarouselNode {
   label?: string;
   controls?: boolean;
 }
+export interface TabPanelNode {
+  type: "tab-panel";
+  id: string;
+  label: string;
+  disabled?: boolean;
+  /**
+   * @minItems 0
+   * @maxItems 500
+   */
+  children: Node[];
+}
+export interface TabGroupNode {
+  type: "tab-group";
+  id?: string;
+  label: string;
+  initial?: string;
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  children: [TabPanelNode, ...TabPanelNode[]];
+}
 export interface ListNode {
   type: "list";
   id?: string;
@@ -755,23 +837,6 @@ export interface SelectNode {
       label: string;
     }[]
   ];
-}
-export interface InputNode {
-  type: "input";
-  id?: string;
-  label: string;
-  bind: string;
-  hint?: string;
-  error?: Value;
-  required?: boolean;
-  disabled?: Value;
-  kind: "text" | "number" | "email" | "checkbox";
-  placeholder?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-  minLength?: number;
-  maxLength?: number;
 }
 export interface TextareaNode {
   type: "textarea";

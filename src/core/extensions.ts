@@ -3,6 +3,8 @@ import type {Issue,Scalar} from './index.js';
 export type FieldNode = Extract<Node, { type: 'input'|'textarea'|'radio'|'segmented' }>;
 export const isField = (node: Node): node is FieldNode => ['input','textarea','radio','segmented'].includes(node.type);
 export function validDate(date: string): boolean { return /^\d{4}-\d{2}-\d{2}$/.test(date) && Number.isFinite(Date.parse(date)) && new Date(date).toISOString().slice(0,10) === date; }
+/** Native date fields expose only Gregorian date strings in the browser's supported year range. */
+export function validInputDate(date: string): boolean { return !date.startsWith('0000') && validDate(date); }
 export function timestamp(value: unknown): number {
   if (typeof value === 'number') return Math.abs(value) <= 8.64e15 ? value : NaN;
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,3})?)?(?:Z|[+-]\d{2}:\d{2})$/.test(value) || !validDate(value.slice(0,10))) return NaN;
@@ -20,6 +22,11 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
     if(node.type==='input'||node.type==='textarea') {
       if(node.minLength!==undefined&&node.maxLength!==undefined&&node.minLength>node.maxLength) error('FIELD_CONSTRAINT','','minLength must not exceed maxLength.');
       if(node.type==='input') {
+        if(node.kind==='date') {
+          if([node.placeholder,node.minLength,node.maxLength,node.min,node.max,node.step].some(value=>value!==undefined)) error('FIELD_CONSTRAINT','','Date inputs do not support text or numeric constraints.');
+          for(const bound of ['minDate','maxDate'] as const) if(node[bound]!==undefined&&!validInputDate(node[bound])) error('FIELD_CONSTRAINT','/'+bound,'Date bounds must be real Gregorian dates in YYYY-MM-DD format, years 0001–9999.');
+          if(node.minDate!==undefined&&node.maxDate!==undefined&&node.minDate>node.maxDate) error('FIELD_CONSTRAINT','','minDate must not exceed maxDate.');
+        } else if(node.minDate!==undefined||node.maxDate!==undefined) error('FIELD_CONSTRAINT','','Only date inputs use minDate/maxDate.');
         if(node.kind==='checkbox' && [node.placeholder,node.minLength,node.maxLength,node.min,node.max,node.step].some(value=>value!==undefined)) error('FIELD_CONSTRAINT','','Checkbox does not support text or numeric constraints.');
         if(node.kind==='number') {
           if(node.min!==undefined&&node.max!==undefined&&(node.min>node.max||!Number.isFinite(node.max-node.min))) error('FIELD_CONSTRAINT','','Numeric bounds must be ordered with a finite span.');
@@ -35,7 +42,7 @@ export function inspectExtension(node:Node,path:string,state:Record<string,Scala
     }
   }
   if(node.type==='form') {
-    const visit=(n:Node)=>{if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
+    const visit=(n:Node)=>{if(n.type==='form')error('NESTED_FORM','/children','Forms cannot be nested.');if(n.type==='tab-group')error('TAB_FORM','/children','Place a complete form inside a tab panel, rather than splitting one form across hidden panels.');if('children'in n)n.children.forEach(visit);if(n.type==='list')n.items.forEach(x=>{if(x&&typeof x==='object'&&'type'in x)visit(x as Node);});};
     node.children.forEach(visit);
   }
   if(node.type==='chart') {
@@ -74,6 +81,7 @@ export function chartXDomain(values:readonly number[],min?:number,max?:number,ti
 export function fieldTypeIssue(node: FieldNode, value: Scalar|undefined, path:string):Issue|undefined {
   const expected=node.type==='input'&&node.kind==='checkbox'?'boolean':node.type==='input'&&node.kind==='number'?'number':node.type==='radio'||node.type==='segmented'?typeof node.options[0].value:'string';
   if(typeof value!==expected) return {code:'INPUT_TYPE',path,message:`Field binding must be ${expected}.`};
+  if(node.type==='input'&&node.kind==='date'&&value!==''&&!validInputDate(value as string)) return {code:'INPUT_DATE',path,message:'Date binding must be empty or a real Gregorian date in YYYY-MM-DD format, years 0001–9999.'};
   if((node.type==='radio'||node.type==='segmented')&&value!==''&&!node.options.some(o=>o.value===value)) return {code:'INPUT_OPTION',path,message:'Choice binding must match an option or an empty string.'};
 }
 
