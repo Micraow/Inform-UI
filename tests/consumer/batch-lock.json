@@ -1,11 +1,11 @@
 {
   "format": "inform-ui-batch-lock/1",
-  "assetRevision": "7978f23da0222ad9122bb0b40daa4f1844b5b9cd",
-  "assetTree": "7a8796cd9cc1ce1026ae1a225716847e1d408d62",
-  "skillRevision": "1ac13720d8dfb5fc9c516e2221e7d87f4ed7b433",
-  "skillTree": "87698e5ea05dd35a6cb2dbe937d75ab225b1ba56",
-  "integritySha256": "13f0a9e071379f5b3b70767badf43fc4de5a09fdd80f9967fd50ce1502cfd6a9",
-  "schemaSha256": "620f7cdca4c4143090167e583cbdb8d9160b1cfcfc35e0afa071f2a8bcdd8785",
+  "assetRevision": "26ec211fa529516af3b1523248f5912c45ec64c6",
+  "assetTree": "24dbdb12e9e1b557025cea4ad03f8aa5cebd5322",
+  "skillRevision": "e286789f4c5d75c1a12e5103314eb9926b81822c",
+  "skillTree": "698fc66f1c9c4d8cc2f953bd7e912e0498862986",
+  "integritySha256": "53a9a3dfa3f41bf5d66a1c7a22a73df936b6313d2859d7127347a89e15e4fd2c",
+  "schemaSha256": "83701bfd56d48109f5d0a3b2b6cc7b2b0d5d7530669a2b7cd80102c912486aeb",
   "consumers": [
     {
       "id": "foundation",
@@ -208,7 +208,7 @@
     {
       "id": "pending",
       "script": "tests/consumer/pending/verify-browser.mjs",
-      "scriptSha256": "0b2e18da9d00af81d98ec421bcec20bce329f1756051ada136fc06c97c441b4b",
+      "scriptSha256": "f2d9d512694dfbcc851c6c0d31a3768699b46282cd06159981073b9ab9285c16",
       "widths": [
         390,
         768,
@@ -220,6 +220,7 @@
       ],
       "exampleLanguages": {
         "agenda": "zh-CN",
+        "artist-upcoming-events": "en",
         "business-gallery": "en",
         "button-actions": "en",
         "carousel": "en",
@@ -234,10 +235,13 @@
         "favicon": "zh-CN",
         "field-labels": "zh-CN",
         "fill-blank-practice": "zh-CN",
+        "finance-lists": "en",
+        "flight-option": "en",
         "location-choice-request": "en",
         "markdown-subset": "en",
         "motion": "en",
         "news-article": "zh-CN",
+        "onboarding-selection": "zh-CN",
         "person-profile": "en",
         "pie": "en",
         "prompt-suggestions": "en",
@@ -246,6 +250,7 @@
         "restaurant-availability": "en",
         "restaurant-menu": "zh-CN",
         "sentence-builder": "zh-CN",
+        "supplied-trackers": "en",
         "tabs": "zh-CN",
         "tabs-local-state": "zh-CN",
         "task-expansion-card": "en",
@@ -257,6 +262,11 @@
           "name": "agenda",
           "corePath": "tests/consumer/pending/examples/agenda.json",
           "sha256": "c283ddc5005fa0c7e9465e14ad791628ae598524697e19678a3a9f919302974f"
+        },
+        {
+          "name": "artist-upcoming-events",
+          "corePath": "tests/consumer/pending/examples/artist-upcoming-events.json",
+          "sha256": "5879ebb931a95ffc85b85f864654aa10ef06dc7491c20cd8b540c178b217eb21"
         },
         {
           "name": "business-gallery",
@@ -329,6 +339,16 @@
           "sha256": "7727b6dc7fc3fb6aee1b1de12a3f13792ea369f5a19b89dfba1abcaaec8d50d4"
         },
         {
+          "name": "finance-lists",
+          "corePath": "tests/consumer/pending/examples/finance-lists.json",
+          "sha256": "ab3d9cf84d9e658544d109c50642e88ee7b830c0e56a417daa8d8fc93d6dfd0d"
+        },
+        {
+          "name": "flight-option",
+          "corePath": "tests/consumer/pending/examples/flight-option.json",
+          "sha256": "dd7857589c93dae8c44c10fb6fb15f75239804851b4b03b2198d4c4caad4c726"
+        },
+        {
           "name": "location-choice-request",
           "corePath": "tests/consumer/pending/examples/location-choice-request.json",
           "sha256": "179643391d8c819c10d4fb4680a70dd9b52cba50c32740168a5d506f4e4fcb0a"
@@ -347,6 +367,11 @@
           "name": "news-article",
           "corePath": "tests/consumer/pending/examples/news-article.json",
           "sha256": "0fe3014f77bb8e8711d9500073edc6d94630c8048123f56bcd72f2a5d10026b2"
+        },
+        {
+          "name": "onboarding-selection",
+          "corePath": "tests/consumer/pending/examples/onboarding-selection.json",
+          "sha256": "defc49a8fee0dd0f1174fbdc5adabd8f153f0c921901bf13f628567a2bcbbe12"
         },
         {
           "name": "person-profile",
@@ -387,6 +412,11 @@
           "name": "sentence-builder",
           "corePath": "tests/consumer/pending/examples/sentence-builder.json",
           "sha256": "6b99215fceaafd94681c1930160f764952262eeb4cd2d252f17071bf23963e8d"
+        },
+        {
+          "name": "supplied-trackers",
+          "corePath": "tests/consumer/pending/examples/supplied-trackers.json",
+          "sha256": "7d7591b92dc79c5951779bf39fa2544f2a9c9dee26937744f641925358356d56"
         },
         {
           "name": "tabs",

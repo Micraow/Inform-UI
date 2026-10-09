@@ -31,7 +31,7 @@ Use `consumer-batch/pending/<example>-<theme>-<width>.png`, beginning with each 
 - `onboarding-selection`
 - `supplied-trackers`
 
-Also compare repaired `motion`, `carousel`, `agenda`, and `suggestions` consumer examples when their exact names are present in the receipt. The receipt, rather than an assumed filename, is authoritative. Inspect the current Skill/CDN screenshots under `skill/artifacts/examples/` to establish that the public entrypoint matches the same theme and layout; do not treat inline evidence alone as CDN acceptance.
+Also compare repaired `motion`, `carousel`, `agenda`, and `prompt-suggestions` consumer examples when their exact names are present in the receipt. The receipt, rather than an assumed filename, is authoritative. Inspect the current Skill/CDN screenshots under `skill/artifacts/examples/` to establish that the public entrypoint matches the same theme and layout; do not treat inline evidence alone as CDN acceptance.
 
 ## Human inspection checklist
 
