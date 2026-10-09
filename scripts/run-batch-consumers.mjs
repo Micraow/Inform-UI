@@ -1,3 +1,4 @@
+import {resolveSkillConsumerPlan} from './consumer-skill-inputs.mjs';
 /** Original exact-input inline consumer runner. No workflow is activated by this module. */
 import assert from 'node:assert/strict';
 import {readFile,writeFile,lstat,mkdir,readdir,copyFile,symlink,realpath,stat} from 'node:fs/promises';
@@ -72,9 +73,11 @@ export async function runBatchConsumers({coreRoot,assetRoot,skillRoot,coreRevisi
  assert.ok(Array.isArray(lock.consumers)&&lock.consumers.length>0);const names=new Set(),ids=new Set();
  // Validate the whole batch before running any script or writing evidence.
  for(const plan of lock.consumers){assert.match(plan.id??'',/^[a-z0-9-]{1,80}$/);assert.ok(!ids.has(plan.id),'Duplicate consumer');ids.add(plan.id);assert.ok(plan.script.startsWith('tests/consumer/'));hex(plan.scriptSha256,64);equal(hash(await readFile(await tracked(coreRoot,plan.script))),plan.scriptSha256,'Consumer script changed');equal(plan.widths,[390,768,1100]);equal(plan.themes,['light','dark']);assert.ok(Array.isArray(plan.examples)&&plan.examples.length>0);
+  const skillInput=resolveSkillConsumerPlan(plan,{legacyLanguages:exampleLanguages,assetRevision:lock.assetRevision,manifestBytes:plan.id==='upcoming-eighteen'?await readFile(await tracked(skillRoot,'candidates/upcoming-eighteen/consumer-manifest.json')):undefined});
+  if(plan.id==='upcoming-eighteen')equal(plan.scriptSha256,hash(await readFile(await tracked(skillRoot,'candidates/upcoming-eighteen/consumer.source.mjs'))),'Candidate runner differs from Skill source');
   assert.ok(plan.exampleLanguages&&typeof plan.exampleLanguages==='object'&&!Array.isArray(plan.exampleLanguages),'Consumer locale map required');equal(Object.keys(plan.exampleLanguages).sort(),plan.examples.map(e=>e.name).sort(),'Consumer locale names differ');
-  for(const [name,lang]of Object.entries(plan.exampleLanguages)){assert.ok(['en','zh-CN'].includes(lang),'Unsupported consumer locale');equal(lang,exampleLanguages[name],'Skill consumer locale differs: '+name);}
-  for(const example of plan.examples){assert.match(example.name??'',/^[a-z0-9-]{1,100}$/);assert.ok(!names.has(example.name),'Duplicate example');names.add(example.name);assert.ok(example.corePath.startsWith('tests/consumer/'));hex(example.sha256,64);equal(hash(await readFile(await tracked(coreRoot,example.corePath))),example.sha256,'Core example changed');equal(hash(await readFile(await tracked(skillRoot,'examples/'+example.name+'.json'))),example.sha256,'Skill example changed');}
+  for(const [name,lang]of Object.entries(plan.exampleLanguages)){assert.ok(['en','zh-CN'].includes(lang),'Unsupported consumer locale');equal(lang,skillInput.languages[name],'Skill consumer locale differs: '+name);}
+  for(const example of plan.examples){assert.match(example.name??'',/^[a-z0-9-]{1,100}$/);assert.ok(!names.has(example.name),'Duplicate example');names.add(example.name);assert.ok(example.corePath.startsWith('tests/consumer/'));hex(example.sha256,64);equal(hash(await readFile(await tracked(coreRoot,example.corePath))),example.sha256,'Core example changed');equal(hash(await readFile(await tracked(skillRoot,skillInput.directory+'/'+example.name+'.json'))),example.sha256,'Skill example changed');}
  }
  const proof=await proveAndReuseBuild(coreRoot,assetRoot);
  const unchangedBuild=async()=>{for(const root of [coreRoot,assetRoot])equal(await files(root,'dist'),proof.distSha256,'Ignored runtime changed after equivalence');};

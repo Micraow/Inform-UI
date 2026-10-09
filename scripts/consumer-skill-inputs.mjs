@@ -1,0 +1,12 @@
+/** Exact, bounded Skill input scope for historical groups and the separate 115 candidate. */
+import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+export const candidateManifestPath='candidates/upcoming-eighteen/consumer-manifest.json';
+export function resolveSkillConsumerPlan(plan,{legacyLanguages,manifestBytes,assetRevision}){
+ if(plan.id!=='upcoming-eighteen')return{languages:legacyLanguages,directory:'examples'};
+ assert.match(assetRevision,/^[a-f0-9]{40}$/);assert.equal(plan.skillManifestPath,candidateManifestPath,'Wrong candidate manifest path');assert.match(plan.skillManifestSha256??'',/^[a-f0-9]{64}$/);assert.ok(Buffer.isBuffer(manifestBytes),'Candidate manifest bytes required');assert.equal(createHash('sha256').update(manifestBytes).digest('hex'),plan.skillManifestSha256,'Candidate manifest changed');
+ const manifest=JSON.parse(manifestBytes);assert.equal(manifest.format,'inform-upcoming-eighteen-consumers/1');assert.equal(manifest.runner,'consumer.source.mjs');assert.equal(manifest.sourceRevision,assetRevision,'Candidate source revision differs');assert.equal(manifest.executionOwner,'core:scripts/run-batch-consumers.mjs');assert.deepEqual(manifest.widths,[390,768,1100]);assert.deepEqual(manifest.themes,['light','dark']);assert.equal(manifest.exampleCount,10);assert.equal(manifest.canonicalCount,18);assert.equal(manifest.plannedViews,60);assert.equal(manifest.examples.length,10);
+ const names=new Set(),canonical=[];for(const entry of manifest.examples){assert.match(entry.name??'',/^[a-z0-9-]{1,100}$/);assert.ok(!names.has(entry.name),'Duplicate candidate name');names.add(entry.name);assert.ok(['en','zh-CN'].includes(entry.lang));assert.match(entry.sha256??'',/^[a-f0-9]{64}$/);assert.ok(Array.isArray(entry.canonicalIds)&&entry.canonicalIds.length);for(const id of entry.canonicalIds){assert.match(id,/^[a-z0-9-]{1,100}$/);canonical.push(id);}}
+ assert.equal(canonical.length,18);assert.equal(new Set(canonical).size,18);const entries=items=>items.map(({name,sha256})=>({name,sha256})).sort((a,b)=>a.name.localeCompare(b.name));assert.deepEqual(entries(plan.examples),entries(manifest.examples),'Candidate example plan differs');
+ const languages=Object.fromEntries(manifest.examples.map(e=>[e.name,e.lang]));assert.deepEqual(plan.exampleLanguages,languages,'Candidate languages differ');
+ return{languages,directory:'candidates/upcoming-eighteen/examples'};
+}

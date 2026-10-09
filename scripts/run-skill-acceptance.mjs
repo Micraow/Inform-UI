@@ -1,13 +1,19 @@
 /** Run only the current Skill contract and unique browser checks against one proven asset build. */
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFile,readdir,writeFile,mkdir} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import path from 'node:path';
 import {pathToFileURL,fileURLToPath} from 'node:url';
 const git=(root,args)=>{const r=spawnSync('git',['-C',root,...args],{encoding:'utf8'});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
-export function acceptanceCommands({assetRoot,coreRoot,coreRevision,lockPath,receiptPath,assetRevision,testFiles}){
+export function acceptanceCommands({assetRoot,coreRoot,coreRevision,lockPath,receiptPath,assetRevision,testFiles,includeUpcomingEighteen=false}){
  const lib=['--library',assetRoot],pinned=[...lib,'--revision',assetRevision];
  assert.ok(testFiles.length>0&&testFiles.every(f=>/^tests\/[A-Za-z0-9._-]+\.test\.mjs$/.test(f)));
+ if(includeUpcomingEighteen)return [
+  {id:'skill-tests',args:['--test',...testFiles]},
+  {id:'upcoming-eighteen-source',args:['scripts/verify-upcoming-eighteen-source.mjs',...lib]},
+  {id:'candidate115-cdn-browser',browser:true,args:['candidates/upcoming-eighteen/verify-cdn-browser.mjs',...pinned,'--screenshots','artifacts/candidate115-cdn']},
+ ];
  return [
   {id:'skill-tests',args:['--test',...testFiles]},
   {id:'public-api-cli-and-literals',args:['scripts/validate-examples.mjs',...lib]},
@@ -26,11 +32,13 @@ export async function runSkillAcceptance({skillRoot,assetRoot,coreRoot,coreRevis
  for(const r of [skillRoot,assetRoot,coreRoot])assert.equal(git(r,['status','--porcelain']),'','Clean frozen checkout required');
  const lock=JSON.parse(await readFile(lockPath,'utf8'));assert.equal(lock.format,'inform-ui-batch-lock/1');
  assert.equal(git(coreRoot,['rev-parse','HEAD']),coreRevision);assert.equal(git(assetRoot,['rev-parse','HEAD']),lock.assetRevision);assert.equal(git(skillRoot,['rev-parse','HEAD']),lock.skillRevision);assert.equal(git(skillRoot,['rev-parse','HEAD^{tree}']),lock.skillTree);
- const contract=JSON.parse(await readFile(path.join(skillRoot,'library-contract.json'),'utf8'));assert.equal(contract.revision,lock.assetRevision,'Skill must use the exact immutable asset checkout');
+ const upcoming=lock.consumers.some(plan=>plan.id==='upcoming-eighteen'),contractPath=upcoming?'candidates/upcoming-eighteen/library-contract.json':'library-contract.json',contractBytes=await readFile(path.join(skillRoot,contractPath));
+ if(upcoming){assert.equal(lock.skillContractPath,contractPath);assert.equal(lock.skillContractSha256,createHash('sha256').update(contractBytes).digest('hex'),'Candidate contract changed');}
+ const contract=JSON.parse(contractBytes);assert.equal(contract.revision,lock.assetRevision,'Skill must use the exact immutable asset checkout');
  const {verifyConsumerReuse}=await import(pathToFileURL(path.join(skillRoot,'scripts/verify-consumer-reuse.mjs')).href);
  await verifyConsumerReuse({receiptPath,lockPath,coreRoot,coreRevision,libraryRoot:assetRoot,skillRoot});
  const testFiles=(await readdir(path.join(skillRoot,'tests'))).filter(f=>f.endsWith('.test.mjs')).sort().map(f=>'tests/'+f);
- const commands=acceptanceCommands({assetRoot,coreRoot,coreRevision,lockPath,receiptPath,assetRevision:lock.assetRevision,testFiles});
+ const commands=acceptanceCommands({assetRoot,coreRoot,coreRevision,lockPath,receiptPath,assetRevision:lock.assetRevision,testFiles,includeUpcomingEighteen:upcoming});
  const results=[];const report=path.join(skillRoot,'artifacts/batch-acceptance.json');await mkdir(path.dirname(report),{recursive:true});
  try{
   for(const command of commands){
@@ -44,7 +52,7 @@ export async function runSkillAcceptance({skillRoot,assetRoot,coreRoot,coreRevis
   // Includes ignored build digests: a clean tracked tree alone is insufficient.
   await verifyConsumerReuse({receiptPath,lockPath,coreRoot,coreRevision,libraryRoot:assetRoot,skillRoot});
  }finally{
-  await writeFile(report,JSON.stringify({format:'inform-ui-skill-batch-acceptance/1',coreRevision,coreTree:git(coreRoot,['rev-parse','HEAD^{tree}']),assetRevision:lock.assetRevision,skillRevision:lock.skillRevision,skillTree:lock.skillTree,results,historicalBlindInputs:'Retained byte-lock checks; unchanged historical runtimes/browser outputs retain their separate prior acceptance evidence.'},null,2)+'\n');
+  await writeFile(report,JSON.stringify({format:'inform-ui-skill-batch-acceptance/1',coreRevision,coreTree:git(coreRoot,['rev-parse','HEAD^{tree}']),assetRevision:lock.assetRevision,skillRevision:lock.skillRevision,skillTree:lock.skillTree,results,historicalBlindInputs:upcoming?'Historical root97 contract/CDN and original37 lock remain separate; this candidate115 run does not promote or relabel them.':'Retained byte-lock checks; unchanged historical runtimes/browser outputs retain their separate prior acceptance evidence.'},null,2)+'\n');
  }
  return results;
 }

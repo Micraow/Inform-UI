@@ -9,7 +9,7 @@ permissions:
 jobs:
   contracts:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     defaults:
       run:
         working-directory: library
@@ -26,7 +26,7 @@ jobs:
       - name: Read reviewed batch revisions
         id: batch
         run: |
-          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('tests/consumer/batch-lock.json')); if(p.format!=='inform-ui-batch-lock/1') throw Error('Wrong batch lock'); for(const k of ['assetRevision','skillRevision']) { if(!/^[a-f0-9]{40}$/.test(p[k])) throw Error('Expected immutable '+k); fs.appendFileSync(process.env.GITHUB_OUTPUT,k+'='+p[k]+'\n'); }"
+          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('tests/consumer/batch-lock-115.json')); if(p.format!=='inform-ui-batch-lock/1') throw Error('Wrong batch lock'); for(const k of ['assetRevision','skillRevision']) { if(!/^[a-f0-9]{40}$/.test(p[k])) throw Error('Expected immutable '+k); fs.appendFileSync(process.env.GITHUB_OUTPUT,k+'='+p[k]+'\n'); }"
       - uses: actions/checkout@v4
         with:
           repository: Micraow/Inform-UI-skill
@@ -35,6 +35,8 @@ jobs:
       - name: Prepare exact asset worktree
         run: git worktree add --detach ../asset '${{ steps.batch.outputs.assetRevision }}'
       - run: npm ci --ignore-scripts
+      - name: Verify exact accumulated browser plan without executing it
+        run: node scripts/batch-browser-plan.mjs --lock tests/consumer/batch-lock-115.json
       - id: check
         run: npm run check
       - run: npm audit --omit=dev
@@ -51,11 +53,11 @@ jobs:
         if: ${{ !cancelled() && steps.check.outcome == 'success' }}
         run: |
           mkdir -p test-results
-          node scripts/run-batch-consumers.mjs --core "$PWD" --asset "$PWD/../asset" --skill "$PWD/../skill" --revision "$(git rev-parse HEAD)" --lock tests/consumer/batch-lock.json --evidence "$PWD/test-results/consumer-batch"
+          node scripts/run-batch-consumers.mjs --core "$PWD" --asset "$PWD/../asset" --skill "$PWD/../skill" --revision "$(git rev-parse HEAD)" --lock tests/consumer/batch-lock-115.json --evidence "$PWD/test-results/consumer-batch"
       - name: Verify Skill-only contracts and CDN entrypoints
         if: ${{ !cancelled() && steps.check.outcome == 'success' }}
         # Unique Skill/CDN checks remain; only exact same-mode inline duplicates reuse evidence.
-        run: node scripts/run-skill-acceptance.mjs --skill "$PWD/../skill" --asset "$PWD/../asset" --core "$PWD" --revision "$(git rev-parse HEAD)" --lock tests/consumer/batch-lock.json --receipt "$PWD/test-results/consumer-batch/RECEIPT.json"
+        run: node scripts/run-skill-acceptance.mjs --skill "$PWD/../skill" --asset "$PWD/../asset" --core "$PWD" --revision "$(git rev-parse HEAD)" --lock tests/consumer/batch-lock-115.json --receipt "$PWD/test-results/consumer-batch/RECEIPT.json"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
