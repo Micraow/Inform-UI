@@ -1,9 +1,9 @@
 {
-  "commit": "4b6c1f0df72cede2e2528a3c5838b5622a45215d",
-  "js": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.global.min.js",
-  "esm": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.min.js",
-  "css": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.css",
-  "schema": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.schema.json",
+  "commit": "6797f7f7755f483db6c3be3831aa03433b7c4696",
+  "js": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.global.min.js",
+  "esm": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.min.js",
+  "css": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.css",
+  "schema": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.schema.json",
   "integrity": {
     "iui.min.js": {
       "bytes": 1406309,
@@ -149,7 +149,113 @@
       "bytes": 13568,
       "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
       "integrity": "sha384-EwGF1si4JOX2592vVUMe7CnToRBlq2lo+w+8tVWLrJW5ZiwBuSry7Ozgs+cGHjmB"
+    },
+    "schema/base.schema.json": {
+      "bytes": 33485,
+      "sha256": "effdcc0005e1742c5c86673bad6418a94014da8b9fc7a25390d47931a8431543",
+      "integrity": "sha384-qW+XRd5uVcVikrtehgKosyQlkDnPAaTKvbQvbt/WD3KhTqipAabbpqP8Dz6pp4ao"
+    },
+    "schema/charts.schema.json": {
+      "bytes": 36400,
+      "sha256": "beba4159cdf1833a0aace3751aea5ba3960a684056624f53b93a255a5d78b40c",
+      "integrity": "sha384-Zzb5y2S2ZD5LDBrg0ycexVtHQ4wlO/ApI23+CCEV1Z1PKw/yNcj+72A+6dEbMqsC"
+    },
+    "schema/compatibility.schema.json": {
+      "bytes": 38245,
+      "sha256": "b96f3915261252e9cddabae64f8bad0fad2380cb068f78864304922248308af2",
+      "integrity": "sha384-WiM52aH/2zcnZtMuy0HtxN0HnQK1Lil0nYg2whapUErsQHQc/RjDr4cYkWcm6e3z"
+    },
+    "schema/converters.schema.json": {
+      "bytes": 40450,
+      "sha256": "e064fe5496f92ec2fccfbe6d6d3310dd239f06cf397883b764dd222fe6e1b7f2",
+      "integrity": "sha384-6mOgVgtT4FHd6jtsVafkfSUGQXtRVLq3rdu8PFaRl2cjvHrPQZAH31tX8IB54pMS"
+    },
+    "schema/finance.schema.json": {
+      "bytes": 45706,
+      "sha256": "50a03dd32d54d53692c73d006cc62aa71ebd9ae9ee62f5a4bd273a4692e330bc",
+      "integrity": "sha384-7XAARvGBoXv6GzHaJ498AU5dVnuGPNhi5ZLMVne77WozhfR9UVgCFr02wHqnlT9i"
+    },
+    "schema/forms.schema.json": {
+      "bytes": 42165,
+      "sha256": "8b910d8f11db065160a9dc771528a87da2abb12723c29beab6a2a2e8fd24638a",
+      "integrity": "sha384-lrxFeH196BhrLZAVli4PG6ygRTW4pLM2DulPiSSO0wenRu2UhnkdAfPbXbOD48qQ"
+    },
+    "schema/graphics.schema.json": {
+      "bytes": 37437,
+      "sha256": "a4d2f92a5bf4c334dc9dbbb6a8cb9079bfdaeba4d67d0fc6813cdf4c9759572e",
+      "integrity": "sha384-CxDKy8FmihuB8SjDvePTl71FhJ8U80gKEsxuLzaQGQ6wBgs7G9xYwPPIkM8/KzB3"
+    },
+    "schema/index.json": {
+      "bytes": 12811,
+      "sha256": "9143c76432fca3521a94aea8ca87f583d56737db44f4300216ea37e224f36782",
+      "integrity": "sha384-rJ8+PmyP6GAZ6y4BfYV60EP90g/fUroCW0xgD9efMIGypToaPSIxu2Rj7BUPu45E"
+    },
+    "schema/learning.schema.json": {
+      "bytes": 38274,
+      "sha256": "e9c333c5e03c7ac29894bed4114dcb79e2c8977fc1cea6f2c3c893a075206ad6",
+      "integrity": "sha384-Rb0npakfxZOaG9SFo1npOq8S9KB2VVsNbxxXE9/cxHz5T4fUxYklindSG19xqQdu"
+    },
+    "schema/nodes/base.schema.json": {
+      "bytes": 32236,
+      "sha256": "b1c6945ef3bb0c4c05f33cc7a39ea1cbf9d0f3e2859574127a6381541e9cc091",
+      "integrity": "sha384-vtRUapVdN5xK5S9qBxxYxjg1JwMYDmvgkxXA47GEpRnXtb72F7i7mcTRtTNau80b"
+    },
+    "schema/nodes/charts.schema.json": {
+      "bytes": 4783,
+      "sha256": "a6a3749d56262e3532f7e7f93494ab4af0d99add6ba41e29850a60feea297240",
+      "integrity": "sha384-Oy88TOM1H0ulJjlmjHXYGJHQuUw6ZX/vXlIxqdo0/e1OgJKPhun6A6qS9TmOcPvc"
+    },
+    "schema/nodes/compatibility.schema.json": {
+      "bytes": 5218,
+      "sha256": "3861edaae74c38f457f8f05a5e2831f01fdb86c92c8a86589cce8ccfe4148046",
+      "integrity": "sha384-dGfccYZWp9szQUoFHe62y5CWE5U4HMMsZanLzx636llzjiqFfrHDYZLNU2gD9FKn"
+    },
+    "schema/nodes/converters.schema.json": {
+      "bytes": 7423,
+      "sha256": "239aa90f3d890ebe92fee63dc01e922bd9189c472a9278911919c0894810db01",
+      "integrity": "sha384-MDHlSsGaofzHPOHCr45kO0fB4t4oCEwSDHh8ESPwb4JyFeswjSDyr6K1GqFRILT2"
+    },
+    "schema/nodes/finance.schema.json": {
+      "bytes": 12679,
+      "sha256": "628229459a077f0443103439625551523c9f7a314fe8003a3eea42b343fda66f",
+      "integrity": "sha384-gPwso6FKrlXzc4I6sptHS3hn5A9EwtLVDjsD4Gi6aUJ7o0wt7FutBdAGvJKGYDMn"
+    },
+    "schema/nodes/forms.schema.json": {
+      "bytes": 10548,
+      "sha256": "4b41e92a3c5d46f6b6ee255ca70f6b70daf3906b9f0fd8f3c4e62b2c65943bc2",
+      "integrity": "sha384-tyJTAxJErCHU1m1DwiqiP9pQc//zO2niXM88XA/kHFzCVOPsEmrqPFlgLzRRdUUd"
+    },
+    "schema/nodes/graphics.schema.json": {
+      "bytes": 5820,
+      "sha256": "66e3b083f20606b6f322cfd3e3511ad17714df2ad47d7dd58b26ae775125b700",
+      "integrity": "sha384-juINJWiep+EiEMKqdKblZA1JM6wJ8Y4BWr1A3/4fARp9jhbWH3ijQLaKfmOIiPNv"
+    },
+    "schema/nodes/learning.schema.json": {
+      "bytes": 5247,
+      "sha256": "0d8c042d8a845e6c8e69195de3088895ef2b84140e303364c90c2eb07f118d6b",
+      "integrity": "sha384-ejlnQdDp4tFGsvWTO4ucxJ6DL6gfjL6iP4fm4/TvXllM1i0ic4fH5RmCdgZjprgH"
+    },
+    "schema/nodes/sports.schema.json": {
+      "bytes": 14292,
+      "sha256": "53395f1b5e5e8bef35eefcf5fe4d8625f4906ddcae7bc2333efc747b43f6349f",
+      "integrity": "sha384-sjo/dqC28Q9tb54/s+fS4GcQ2kXDmzcHSlq3N29b3bLFcrN6Sqr5kV8zcFOCHTl7"
+    },
+    "schema/nodes/weather.schema.json": {
+      "bytes": 7218,
+      "sha256": "ee688ca6b1dce9ef120ab2886a14c17c69f09fedcb45f526b1b168bff5e64dd6",
+      "integrity": "sha384-wutqYydxhMLfvxCfJshuDEX+7phC/6qmzNks1Iw2EWK1vk1ny1lKyVy2ei3YC8+y"
+    },
+    "schema/sports.schema.json": {
+      "bytes": 47319,
+      "sha256": "4c6cac70aa086a1481308a9dd8d1a15e7d12b41fd1b85f1f9af98034f17c8c69",
+      "integrity": "sha384-2SjMc78eJZYVGoWpgRZCAJ18oNSVpZVc2WaCljzU6/Yy0EM4qTyjqmnAdHy+kcvD"
+    },
+    "schema/weather.schema.json": {
+      "bytes": 40245,
+      "sha256": "483c98b8677d7e2421cb485a3c65fde890c0468941d9e5c5806573806027aa37",
+      "integrity": "sha384-80Z7/IbIdfc8ADIMAOc16ppLkb+Svg1ynn9mSpoRremmE0F5kYeMWYrCTcVou+6F"
     }
   },
-  "nodeCount": 52
+  "nodeCount": 52,
+  "schemaIndex": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/index.json"
 }

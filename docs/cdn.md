@@ -6,13 +6,14 @@
 
 ## 已固定的公开入口
 
-以下链接固定到包含预构建产物的完整 Git commit `4b6c1f0df72cede2e2528a3c5838b5622a45215d`，不随分支变化。
+以下链接固定到包含预构建产物的完整 Git commit `6797f7f7755f483db6c3be3831aa03433b7c4696`，不随分支变化。
 
-- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.global.min.js)，导出 `window.IUI`
-- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
-- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.css)
-- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.schema.json)
-- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/integrity.json)
+- [普通脚本：iui.global.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.global.min.js)，导出 `window.IUI`
+- [ES module：iui.min.js](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.min.js)，支持 `import { mount, validateDocument }`
+- [同版本样式：iui.css](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.css)
+- [完整 JSON Schema](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.schema.json)
+- [按需Schema索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/index.json)：默认领域Document包含base；查询片与跨域组合见[分片指南](schema-subsets.md)
+- [字节哈希与 SRI 清单](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/integrity.json)
 
 数学公式使用 KaTeX 可视排版与无障碍 MathML。CSS 会从同一固定提交的 `cdn/fonts/` 下载官方 MIT WOFF2 字体；部署时须保留这个目录。离线编译与默认 DOM 注入则内嵌相同字体。两个脚本格式任选其一，不要同时加载。
 
@@ -29,7 +30,7 @@
   <meta name="referrer" content="no-referrer">
   <title>Inform UI 示例</title>
   <link id="iui-style" rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.css"
+    href="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.css"
     integrity="sha384-LHkRYrW+gjyqnUp86CgtLDWvOrTbN3oncoJv80YTzEHuGnfZadFBbc4HgBPMNQz2"
     crossorigin="anonymous">
 </head>
@@ -49,7 +50,7 @@
   }
   </script>
   <script
-    src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@4b6c1f0df72cede2e2528a3c5838b5622a45215d/cdn/iui.global.min.js"
+    src="https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/iui.global.min.js"
     integrity="sha384-tvz7phydYNWyvO3Sz/W+xhrMv0sp+UOlR1p/b3+w9E9M9Hmjff+bGzjaUAglOWd9"
     crossorigin="anonymous"></script>
   <script>
@@ -112,3 +113,5 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 4b6c1f0包含两类转换器及键盘→鼠标连续输入方式修复；新CDN已在[run37878019661](https://github.com/Micraow/Inform-UI/actions/runs/37878019661)完成真实file://与像素验收。Inform-UI新仓库的固定global/ESM/CSS/Schema路径已实际取得HTTP200并核对MIME、CORS与SHA-256；不依赖对旧仓库重定向的假设。该CI共通过167项Node与136项浏览器用例，亮暗金融与转换器截图已人工复核。
 
 [单位与汇率换算HTML](../examples/browser/converters-preview.html) · [JSON](../examples/converters.json)
+
+新增索引与20个闭包分片固定到6797f7f，与本页运行库/完整Schema同一提交；HTTP实际核对通过。真实file://浏览器发现和同版示例渲染由schema-discovery.spec.mjs回归。

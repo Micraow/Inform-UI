@@ -1,3 +1,4 @@
+import {assertSchemaDirectoryContents} from './schema-subsets.mjs';
 import {generateMathStyle,writeExternalMath} from './math-assets.mjs';
 await generateMathStyle();
 import {build} from 'esbuild';
@@ -25,7 +26,10 @@ async function copySchemaDirectory(relative=''){
     else throw Error('Unexpected generated schema file: '+name);
   }
 }
+await mkdir('cdn/schema/nodes',{recursive:true});
+await assertSchemaDirectoryContents('cdn/schema');
 await copySchemaDirectory();
+await assertSchemaDirectoryContents('cdn/schema',{complete:true});
 const manifest={schema:'iui/1',libraryVersion:JSON.parse(await readFile('package.json','utf8')).version,fonts:'KaTeX 0.18.2: official MIT WOFF2 assets, relative to this CSS. HTML visual output and accessible MathML.',files:{}};
 for(const name of ['iui.min.js','iui.min.js.map','iui.global.min.js','iui.global.min.js.map','iui.css','iui.schema.json','LICENSE.txt','THIRD_PARTY_NOTICES.md','fonts/LICENSE.txt',...math.fonts.map(name=>'fonts/'+name),...schemaFiles]){
   const bytes=await readFile(`cdn/${name}`);manifest.files[name]={bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),integrity:'sha384-'+createHash('sha384').update(bytes).digest('base64')};

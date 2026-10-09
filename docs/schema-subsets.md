@@ -2,6 +2,8 @@
 
 完整 [`iui.schema.json`](../src/schema/iui.schema.json) 仍是唯一协议定义，版本和校验语义保持不变。分片由同一个生成器裁剪，不维护另一套字段定义，也不增加浏览器运行时 API。
 
+固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@6797f7f7755f483db6c3be3831aa03433b7c4696/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
+
 ## 两种读取目的
 
 - **准备写一页内容或结构校验**：选择 [`index.json`](../cdn/schema/index.json) 中该组的 `documentSchema`。领域 Document bundle 默认包含 `base` 与该领域，因此金融页可以直接含标题、正文、row、card、指标和基础联动控件。

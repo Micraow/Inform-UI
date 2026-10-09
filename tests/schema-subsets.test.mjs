@@ -1,11 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile, readdir, mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import Ajv2020 from 'ajv/dist/2020.js';
 import { validateDocument } from '../dist/index.js';
-import { assertClosedReferences, assertOwners, createSchemaSubset, encodeSchema, nodeInventory, schemaMetrics, SCHEMA_GROUPS } from '../scripts/schema-subsets.mjs';
+import { assertClosedReferences, assertOwners, assertSchemaDirectoryContents, createSchemaSubset, encodeSchema, nodeInventory, schemaMetrics, SCHEMA_GROUPS } from '../scripts/schema-subsets.mjs';
 const fullText = await readFile('src/schema/iui.schema.json', 'utf8'), full = JSON.parse(fullText);
 const index = JSON.parse(await readFile('src/schema/fragments/index.json', 'utf8')), owners = index.nodeOwners;
 const compile = schema => new Ajv2020({ strict: true, allErrors: false }).compile(schema), fullValidate = compile(full);
@@ -110,4 +112,17 @@ test('CDN discovery index and all closed bundles are byte-identical to generated
   for (const group of index.groups) for (const kind of ['documentSchema', 'nodeSchema']) {
     const path = group[kind].path; assert.equal(await readFile('cdn/schema/' + path, 'utf8'), await readFile('src/schema/fragments/' + path, 'utf8'));
   }
+});
+
+test('generated directories reject stale, missing or unexpected files rather than publishing silent drift', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'inform-schema-inventory-'));
+  try {
+    await mkdir(join(directory, 'nodes'));
+    await assertSchemaDirectoryContents(directory);
+    await assert.rejects(assertSchemaDirectoryContents(directory, { complete: true }), /Missing generated/);
+    await writeFile(join(directory, 'retired.schema.json'), '{}');
+    await assert.rejects(assertSchemaDirectoryContents(directory), /Unexpected generated/);
+    await assertSchemaDirectoryContents('src/schema/fragments', { complete: true });
+    await assertSchemaDirectoryContents('cdn/schema', { complete: true });
+  } finally { await rm(directory, { recursive: true, force: true }); }
 });

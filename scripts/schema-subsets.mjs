@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 
 // Discovery metadata only. The canonical generator owns every node definition and group assignment.
@@ -89,9 +89,24 @@ export function createSchemaSubset(full, owners, groups, { rootKind = 'document'
   return schema;
 }
 
+export async function assertSchemaDirectoryContents(directory, { complete = false } = {}) {
+  const expected = new Set(['index.json', ...Object.keys(SCHEMA_GROUPS).flatMap(id => [`${id}.schema.json`, `nodes/${id}.schema.json`])]), found = new Set();
+  const walk = async relative => {
+    for (const entry of await readdir(join(directory, relative), { withFileTypes: true })) {
+      const name = relative ? `${relative}/${entry.name}` : entry.name;
+      if (entry.isDirectory() && name === 'nodes') await walk(name);
+      else if (entry.isFile() && expected.has(name)) found.add(name);
+      else throw Error(`Unexpected generated schema entry: ${name}`);
+    }
+  };
+  await walk('');
+  if (complete) for (const name of expected) if (!found.has(name)) throw Error(`Missing generated schema entry: ${name}`);
+}
+
 export async function emitSchemaSubsets(full, owners, directory) {
   assertOwners(full, owners); assertClosedReferences(full);
   await mkdir(join(directory, 'nodes'), { recursive: true });
+  await assertSchemaDirectoryContents(directory);
   const index = {
     schemaVersion: 'iui/1', format: 'inform-ui-schema-index/1',
     fullSchema: { path: '../iui.schema.json', ...schemaMetrics(encodeSchema(full)) },
@@ -117,5 +132,6 @@ export async function emitSchemaSubsets(full, owners, directory) {
     });
   }
   await writeFile(join(directory, 'index.json'), encodeSchema(index));
+  await assertSchemaDirectoryContents(directory, { complete: true });
   return index;
 }

@@ -20,6 +20,10 @@ npm run test:browser
 
 Playwright 使用原创合成示例，覆盖明暗主题、390px/桌面宽度、CSP、输入与重置、图表缺测、共享资源、实例生命周期等。JSDOM 测试不能替代实际布局验证，截图也不等于逐像素复刻结论。当前状态以 [GitHub Actions](https://github.com/Micraow/Inform-UI/actions/workflows/ci.yml) 和[验证记录](verification.md)为准。
 
+## 控制 CI 用量
+
+先在本地完成相关脚本、类型和 Node 测试，再合批运行完整浏览器验收。纯文档或备份检查点提交可以使用 `[skip ci]`，并明确注明尚未经过远端验收；功能交付前必须有一次不跳过检查的集成提交，核对该提交及其固定 CDN 版本。跳过不等于通过，不能作为合并或交付依据。GitHub 对跳过工作流的必需检查可能保持 Pending，详见[官方说明](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs)。
+
 ## 目录
 
 | 路径 | 职责 |
