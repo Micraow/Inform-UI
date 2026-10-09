@@ -145,6 +145,12 @@ node('copy-words',{label:short,description:string(2000),words:array(ref('CopyWor
 node('code-cite',{label:short,fileName:short,language:short,startLine:integer(1,10000000),lines:array(string(2000),1,120),citedStart:integer(1,10000000),citedEnd:integer(1,10000000),source:ref('TravelEventSource')},['label','fileName','startLine','lines']);
 defs.CitedFilePage=object({number:integer(1,10000000),label:short,text:string(6000,1),source:ref('TravelEventSource')},['number','text']);
 node('file-cite',{label:short,fileName:short,mediaType:short,totalPages:integer(1,10000000),pages:array(ref('CitedFilePage'),1,30),initialPage:integer(1,10000000),source:ref('TravelEventSource')},['label','fileName','pages']);
+// Original supplied attributed facts and local entity-thumbnail detail selection.
+defs.SidebarFact=object({id:suppliedKey,label:short,value:{anyOf:[string(2000),{type:'null'}]},unit:short,group:short,note:string(3000),observedAt:flightAt,source:ref('TravelEventSource')},['id','label','value']);
+node('sidebar-fact-table',{label:short,description:string(2000),facts:array(ref('SidebarFact'),0,80),source:ref('TravelEventSource')},['label','facts']);
+defs.EntityThumbnailField=object({label:short,value:string(2000)},['label','value']);
+defs.EntityThumbnailRecord=object({id:suppliedKey,label:short,category:short,description:string(3000),fields:array(ref('EntityThumbnailField'),0,8),image:object({src:string(140000,1),alt:string(2000,1)},['src','alt']),source:ref('TravelEventSource')},['id','label','category']);
+node('entity-thumbnail-list',{label:short,description:string(2000),entities:array(ref('EntityThumbnailRecord'),0,24),initialSelectedId:suppliedKey,disabled:bool},['label','entities']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);

@@ -1,4 +1,5 @@
 import {inspectRelatedQuestions} from './related-questions.js';
+import {inspectEntityFacts} from './entity-facts.js';
 import {inspectSourceCitation} from './source-citations.js';
 import {inspectVocabulary} from './vocabulary.js';
 import {inspectActivityPlanning} from './activity-planning.js';
@@ -322,6 +323,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
     if(node.type==='sidebar-people-also-ask')inspectRelatedQuestions(node,path,add,isSafeURL);
+    if(node.type==='sidebar-fact-table'||node.type==='entity-thumbnail-list')inspectEntityFacts(node,path,add,isSafeURL,url=>isSafeURL(url,'image'));
     if(node.type==='code-cite'||node.type==='file-cite')inspectSourceCitation(node,path,add,isSafeURL);
     if(node.type==='word-card'||node.type==='copy-words')inspectVocabulary(node,path,add,isSafeURL);
     if(node.type==='shared-activity-planner'||node.type==='event-sidebar')inspectActivityPlanning(node,path,add,isSafeURL);

@@ -1,4 +1,5 @@
 import {questionsEnglish,questionsChinese} from './related-questions-labels.js';
+import {entityFactsEnglish,entityFactsChinese} from './entity-facts-labels.js';
 import {citationEnglish,citationChinese} from './citation-labels.js';
 import {vocabularyEnglish,vocabularyChinese} from './vocabulary-labels.js';
 import {activityEnglish,activityChinese} from './activity-labels.js';
@@ -58,6 +59,7 @@ const english = {
   activityUI:activityEnglish,
   vocabularyUI:vocabularyEnglish,
   citationUI:citationEnglish,
+  entityFactsUI:entityFactsEnglish,
   mailFilesUI:mailFilesEnglish,
   pollUI:pollEnglish,
   trackerUI:trackerEnglish,
@@ -104,6 +106,7 @@ const chinese: typeof english = {
   activityUI:activityChinese,
   vocabularyUI:vocabularyChinese,
   citationUI:citationChinese,
+  entityFactsUI:entityFactsChinese,
   mailFilesUI:mailFilesChinese,
   pollUI:pollChinese,
   trackerUI:trackerChinese,
