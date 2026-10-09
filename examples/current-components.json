@@ -32,6 +32,15 @@
           "$": "cost"
         }
       ]
+    },
+    "practiceScale": {
+      "op": "mul",
+      "args": [
+        {
+          "$": "hours"
+        },
+        5
+      ]
     }
   },
   "body": [
@@ -241,6 +250,73 @@
         {
           "type": "text",
           "value": "先明确数据来源、输入边界和状态，再解释界面给出的结果。"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "调用方提供的进度与占位",
+      "children": [
+        {
+          "type": "caption",
+          "value": "这里把最后有效小时数乘5映射到0–100，只是合成数值，不观察计时器或后台任务。"
+        },
+        {
+          "type": "loading",
+          "label": "作者给定的练习强度比例",
+          "progress": {
+            "$": "practiceScale"
+          }
+        },
+        {
+          "type": "loading",
+          "label": "另一项合成任务：未提供进度"
+        },
+        {
+          "type": "loading-block",
+          "label": "形状占位演示，不表示正在发送请求",
+          "shape": "text",
+          "lines": 3,
+          "animate": false
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "heading": "作者给定的虚构资料",
+      "children": [
+        {
+          "type": "caption",
+          "value": "以下地址均为example.invalid，仅演示结构；标题和来源未经过检索，不要把它们当作真实证据。"
+        },
+        {
+          "type": "citation",
+          "number": 1,
+          "title": "虚构方法说明（仅格式示例）",
+          "url": "https://example.invalid/method",
+          "publisher": "合成出版方",
+          "description": "引用编号由作者给定；组件不判断资料是否支持页面中的结论。"
+        },
+        {
+          "type": "web-link-cards",
+          "label": "三个虚构资料条目",
+          "items": [
+            {
+              "title": "合成资料甲：输入与数值",
+              "url": "https://example.invalid/input",
+              "description": "演示说明文字、目标域名和原生外链，不会自动读取页面。"
+            },
+            {
+              "title": "合成资料乙：时间边界",
+              "url": "https://example.invalid/time",
+              "description": "卡片保持作者顺序，可用前后按钮、键盘或触摸原生滚动。"
+            },
+            {
+              "title": "合成资料丙：缺失进度",
+              "url": "https://example.invalid/progress",
+              "description": "没有给出进度时不会伪造为零，也不会宣称任务完成。"
+            }
+          ]
         }
       ]
     }

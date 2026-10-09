@@ -2,7 +2,7 @@
 
 完整 [`iui.schema.json`](../src/schema/iui.schema.json) 仍是唯一协议定义，版本和校验语义保持不变。分片由同一个生成器裁剪，不维护另一套字段定义，也不增加浏览器运行时 API。
 
-固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@01ae9d870b221208b31e9da437ae87fdef265cec/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
+固定入口：[索引](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/index.json) · [base Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/base.schema.json) · [base+finance Document](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/finance.schema.json) · [finance Node查询](https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@d370ffb2df310fce0da9299e6e254a58509ba544/cdn/schema/nodes/finance.schema.json)。这些路径与同提交的完整Schema/运行库已实际取回并核对哈希、MIME与CORS。
 
 ## 两种读取目的
 
@@ -11,7 +11,7 @@
 
 `includedGroups` 明示 Document 包含哪些组，`ownedNodeTypes` 只列这一组拥有的类型；每个类型只有一个 owner。`forms`、`charts`、`graphics`、`weather`、`sports`、`learning`、`finance`、`converters`、`time` 分别拥有自己的节点。`compatibility` 仅记录历史 `native` 的结构，运行时始终拒绝，不属于可用组件。
 
-62节点协议新增 `time` 领域（clock/stopwatch/timer），工具提示、非模态面板、flow、icon与pulse-indicator归 `base`。上方固定入口01ae9d8包含同版本运行库与分片；真实file://及同版分片发现已通过[本轮CI](verification-62.md)。只含提示和普通文本的面板使用base即可；含input的面板使用base+forms；[当前组合示例](../examples/current-components.json)需base+forms+time或完整Schema。选择领域由实际子节点决定，不能把popover当作跨域校验的绕行入口。
+66节点协议包含 `time` 领域（clock/stopwatch/timer），工具提示、非模态面板、flow、icon、pulse-indicator、loading、loading-block、citation与web-link-cards归 `base`。上方固定候选d370ffb包含同版本运行库与分片；上一批62节点真实file://及同版分片发现通过[已验CI](verification-62.md)；新66候选的真实分发验收仍待执行。只含提示和普通文本的面板使用base即可；含input的面板使用base+forms；[当前组合示例](../examples/current-components.json)需base+forms+time或完整Schema。选择领域由实际子节点决定，不能把popover当作跨域校验的绕行入口。
 
 示例路径 `groups[].examples[].path` 相对 **CDN 的 index.json URL** 解析，例如 `../../examples/finance-preview.json`。本地 checkout 使用 `repositoryPath`。完整 Schema 的 `fullSchema.path` 同样相对该索引，指向 `../iui.schema.json`。
 

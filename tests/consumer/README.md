@@ -15,3 +15,5 @@ Covered behavior: start/pause/reset/completion and frozen snapshot, keyboard ove
 This script tests local compiled assets. It is not a public-CDN/SRI verification, manual screenshot review, screen-reader test or cross-browser conformance claim. After any test fix or source change, rerun against the final frozen commit. Avoid adding its output screenshots to source control unless intentionally authorized as public project artifacts.
 
 The two primitive examples additionally cover finite icon naming/decorative semantics, literal pulse status without autonomous transitions, reduced motion, flow reading order and form/time state isolation. They require the integrated flow/icon/pulse-indicator schema; earlier 59-node candidates reject them.
+
+A separate later-batch script verify-next66-browser.mjs covers three loading/source examples in 18 additional views at the same widths/themes. It preserves the explicit frozen revision and writes to a separate skill-consumer-66 directory. These 18 views are prepared, not yet executed; the previously accepted 42-view evidence remains tied to its original run.

@@ -185,6 +185,6 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 
 开发分支新增[九类单位与汇率快照换算](docs/converters.md)，含温差/绝对温度、互换、重置、缺测和来源时间。167项Node与136项浏览器检查已通过，包含52节点固定CDN的实际file://载入、六组转换器交互，以及亮暗截图复核。
 
-[富文本、网格跨度、引用与结构化表格](docs/foundations.md)、[时间控件](docs/time.md)、[提示/说明面板](docs/overlays.md)与[流式布局、图标和状态](docs/primitives.md)已通过62节点整合批次验收（292项Node、216项Chromium、42消费者视图）。新的[当前组合HTML](examples/browser/current-components.html)与[JSON](examples/current-components.json)使用含有效数字草稿修复的固定CDN；浏览器与分发验收结论见[浏览器文档](docs/cdn.md)。
+[富文本、网格跨度、引用与结构化表格](docs/foundations.md)、[时间控件](docs/time.md)、[提示/说明面板](docs/overlays.md)与[流式布局、图标和状态](docs/primitives.md)已通过62节点整合批次验收（292项Node、216项Chromium、42消费者视图）。[已验62节点组合页](https://github.com/Micraow/Inform-UI/blob/3d2c0ce23dd1532f2a6acd7f2c5ac6c697d08323/examples/browser/current-components.html)保持冻结。[当前组合HTML](examples/browser/current-components.html)与[JSON](examples/current-components.json)已接新66节点候选，待同版浏览器与分发验收，见[浏览器文档](docs/cdn.md)。
 
 后批[加载与占位](docs/loading.md)及[来源与链接卡](docs/source-cards.md)形成66节点源码候选；推荐固定CDN仍是已验62节点01ae版本，暂不支持这四个新节点。后批集中浏览器/CDN验收前不增加49项已验计数。

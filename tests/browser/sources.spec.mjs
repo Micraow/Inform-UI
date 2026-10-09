@@ -17,11 +17,19 @@ async function beginScroll(rail){
   await rail.evaluate(el=>{el.__sourceScrollDone=new Promise(resolve=>{const end=()=>{el.removeEventListener('scrollend',end);resolve(el.scrollLeft);};el.addEventListener('scrollend',end);});});
 }
 async function endScroll(rail){await rail.evaluate(el=>el.__sourceScrollDone);}
+async function pointerButton(button,touch=false){
+  // aria-disabled retains native focus/click semantics, but Playwright locator
+  // actionability refuses it. Exercise a real visible pointer hit instead.
+  await button.scrollIntoViewIfNeeded();const rect=await button.boundingBox();expect(rect).not.toBeNull();
+  const point={x:rect.x+rect.width/2,y:rect.y+rect.height/2};
+  expect(await button.evaluate((el,p)=>el.ownerDocument.elementFromPoint(p.x,p.y)?.closest('button')===el,point)).toBe(true);
+  if(touch)await button.page().touchscreen.tap(point.x,point.y);else await button.page().mouse.click(point.x,point.y);
+}
 async function activate(rail,button,key){
   const canMove=await button.getAttribute('aria-disabled')==='false';
   const before=await rail.evaluate(el=>el.scrollLeft);
   await button.focus();if(canMove)await beginScroll(rail);
-  if(key)await button.press(key);else await button.click();
+  if(key)await button.press(key);else if(canMove)await button.click();else await pointerButton(button);
   if(canMove)await endScroll(rail);else expect(await rail.evaluate(el=>el.scrollLeft)).toBe(before);
   await expect(button).toBeFocused();
 }
@@ -119,7 +127,7 @@ test('touch buttons and native rail swipes preserve bounded link-card navigation
     await expect(next).toHaveAttribute('aria-disabled','false');
     await beginScroll(rail);await next.tap();await endScroll(rail);expect(await rail.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
     await beginScroll(rail);await previous.tap();await endScroll(rail);expect(await rail.evaluate(el=>el.scrollLeft)).toBe(0);
-    await previous.tap();expect(await rail.evaluate(el=>el.scrollLeft)).toBe(0);
+    await pointerButton(previous,true);expect(await rail.evaluate(el=>el.scrollLeft)).toBe(0);
     await rail.scrollIntoViewIfNeeded();const bounds=await rail.boundingBox(),start={x:bounds.x+bounds.width*.8,y:bounds.y+Math.min(50,bounds.height/2)};
     const cdp=await context.newCDPSession(page);await beginScroll(rail);
     await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[start]});
@@ -127,7 +135,7 @@ test('touch buttons and native rail swipes preserve bounded link-card navigation
     await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await endScroll(rail);
     expect(await rail.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);await expect(previous).toHaveAttribute('aria-disabled','false');
     const single=byId(page,'single-link'),smallRail=single.locator('ul'),still=await smallRail.evaluate(el=>el.scrollLeft);
-    await single.getByRole('button',{name:'Next links'}).tap();expect(await smallRail.evaluate(el=>el.scrollLeft)).toBe(still);
+    await pointerButton(single.getByRole('button',{name:'Next links'}),true);expect(await smallRail.evaluate(el=>el.scrollLeft)).toBe(still);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(requests).toEqual([]);expect(errors).toEqual([]);
   }finally{await context.close();}
 });

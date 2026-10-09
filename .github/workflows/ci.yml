@@ -28,6 +28,9 @@ jobs:
       - name: Verify original Skill consumer examples in Chromium
         if: ${{ !cancelled() && steps.check.outcome == 'success' }}
         run: node tests/consumer/scripts/verify-next-browser.mjs --library "$PWD" --revision "$(git rev-parse HEAD)" --screenshots "$PWD/test-results/skill-consumer"
+      - name: Verify loading and source consumers in Chromium
+        if: ${{ !cancelled() && steps.check.outcome == 'success' }}
+        run: node tests/consumer/scripts/verify-next66-browser.mjs --library "$PWD" --revision "$(git rev-parse HEAD)" --screenshots "$PWD/test-results/skill-consumer-66"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
