@@ -1,0 +1,1823 @@
+{
+  "as_of_utc": "2026-10-09T01:18:00Z",
+  "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
+  "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
+  "basis": {
+    "core_verified_commit": "c00d3aba3689694fa77e1ec89e4e3adb19c7df6a",
+    "core_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37866118350",
+    "learning_verified_commit": "f372c71d31633be85bb228f57fdb07da9e8f2112",
+    "learning_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936"
+  },
+  "counts": {
+    "not_implemented": 207,
+    "functionally_verified": 31,
+    "partial": 18,
+    "implemented_pending_verification": 0
+  },
+  "components": [
+    {
+      "id": "base-animate",
+      "name": "动画/过渡与组编排",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-badge",
+      "name": "徽章",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-blockquote",
+      "name": "引用块",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-box",
+      "name": "基础容器",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-button",
+      "name": "按钮",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "仅set/reset动作"
+    },
+    {
+      "id": "base-caption",
+      "name": "说明/图注",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-card",
+      "name": "卡片容器",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-carousel",
+      "name": "轮播",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "仅滚动，缺完整轮播控制"
+    },
+    {
+      "id": "base-celebration",
+      "name": "完成庆祝反馈",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-line-chart",
+      "name": "折线图",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-bar-chart",
+      "name": "柱状图",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-area-chart",
+      "name": "面积图",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-scatter-chart",
+      "name": "散点图",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-checkbox",
+      "name": "复选框",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "仅toggle基础绑定，缺独立required/disabled合同"
+    },
+    {
+      "id": "base-code",
+      "name": "行内代码",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "无行内代码"
+    },
+    {
+      "id": "base-col",
+      "name": "纵向布局",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-date-picker",
+      "name": "日期选择",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-divider",
+      "name": "分隔线",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-favicon",
+      "name": "网站/来源图标",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-flashcard-flip",
+      "name": "双面翻卡容器",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。",
+      "tests": [
+        "tests/learning.test.mjs",
+        "tests/browser/learning.spec.mjs"
+      ]
+    },
+    {
+      "id": "base-flow",
+      "name": "流式铺排",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-form",
+      "name": "表单",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-grid",
+      "name": "网格",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "无独立grid-item/span"
+    },
+    {
+      "id": "base-html-view",
+      "name": "隔离HTML视图",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-icon",
+      "name": "图标",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-image",
+      "name": "图片",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-input",
+      "name": "单行输入",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-label",
+      "name": "字段标签",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "仅字段内部label"
+    },
+    {
+      "id": "base-link",
+      "name": "链接",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-list",
+      "name": "列表",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-loading",
+      "name": "加载指示",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "仅领域局部状态"
+    },
+    {
+      "id": "base-loading-block",
+      "name": "骨架/加载占位",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "仅领域局部状态"
+    },
+    {
+      "id": "base-lottie",
+      "name": "Lottie动画",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-markdown",
+      "name": "Markdown",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "纯文本降级"
+    },
+    {
+      "id": "base-math",
+      "name": "数学公式",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-pie-chart",
+      "name": "饼图/环图",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "只有donut"
+    },
+    {
+      "id": "base-popover",
+      "name": "弹出层",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-pressable",
+      "name": "可点击内容区",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-pulse-indicator",
+      "name": "脉冲状态指示",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-radio-group",
+      "name": "单选组",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-row",
+      "name": "横向布局",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-search-image",
+      "name": "检索图片媒体",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-segmented-control",
+      "name": "分段选择",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-select",
+      "name": "下拉选择",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-slider",
+      "name": "滑块",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-spacer",
+      "name": "间隔占位",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-svg",
+      "name": "SVG矢量图",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-table",
+      "name": "表格",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "无section/合并单元格"
+    },
+    {
+      "id": "base-text",
+      "name": "文本",
+      "layer": "primitive",
+      "status": "partial",
+      "note": "缺italic/underline/strike/shimmer"
+    },
+    {
+      "id": "base-textarea",
+      "name": "多行输入",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-title",
+      "name": "标题",
+      "layer": "primitive",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "base-tooltip",
+      "name": "工具提示",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "base-youtube",
+      "name": "YouTube播放器",
+      "layer": "primitive",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "sports-schedule",
+      "name": "Epl Schedule",
+      "layer": "domain",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "sports-standings",
+      "name": "Epl Standings",
+      "layer": "domain",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "american-football-games",
+      "name": "Cfb Games",
+      "layer": "domain",
+      "status": "partial",
+      "note": "通用scoreboard未覆盖完整橄榄球合同"
+    },
+    {
+      "id": "location-choice-request",
+      "name": "Ask User Location V2",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "web-link-cards",
+      "name": "Web Links Carousel",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "business-gallery",
+      "name": "Business Gallery",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "citation",
+      "name": "Cite",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calendar-agenda",
+      "name": "Calendar List",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-flashcards",
+      "name": "Learning Flashcards",
+      "layer": "domain",
+      "status": "functionally_verified",
+      "note": "f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。",
+      "tests": [
+        "tests/learning.test.mjs",
+        "tests/browser/learning.spec.mjs"
+      ]
+    },
+    {
+      "id": "person-profile",
+      "name": "Person",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "reddit-thread-card",
+      "name": "Reddit",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "restaurant-menu",
+      "name": "Restaurant Menu",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "entity-reviews",
+      "name": "Entity Reviews",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "restaurant-availability",
+      "name": "Reservation Time Pills Ref",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "scheduled-task-suggestion",
+      "name": "Offer Scheduled Prompt",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "email-draft",
+      "name": "Draft Email",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "task-expansion-card",
+      "name": "Task Expansion Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "unit-converter",
+      "name": "Unit Converter",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "asset-distribution",
+      "name": "Ledger Account Breakdown",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "transaction-list",
+      "name": "Ledger Recent Transactions",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "onboarding-selection",
+      "name": "Onboarding Selection Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "entity-overview",
+      "name": "Entity Overview",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "entity-card",
+      "name": "Entity Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "prompt-suggestions",
+      "name": "Follow Up",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "conversation-suggestions",
+      "name": "Conversational Onboarding Follow Up Pills",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "news-article",
+      "name": "News Article",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "flight-option",
+      "name": "Flight Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "currency-converter",
+      "name": "Currency Converter",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "code-block",
+      "name": "Code Block",
+      "layer": "domain",
+      "status": "partial",
+      "note": "无copy/高亮等领域功能"
+    },
+    {
+      "id": "writing-block",
+      "name": "Writing Block",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "artist-upcoming-events",
+      "name": "Artist Upcoming Events",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ask-user-details",
+      "name": "Ask User Details",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ask-user-files",
+      "name": "Ask User Files",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ask-user-location",
+      "name": "Ask User Location",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "async-image",
+      "name": "Async Image",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "async-image-group",
+      "name": "Async Image Group",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "async-video-carousel",
+      "name": "Async Video Carousel",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "automation-plan-summary",
+      "name": "Automation Plan Summary",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "basketball-tournament",
+      "name": "Basketball Tournament",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "bento",
+      "name": "Bento",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-abcd2-score-for-transient-ischemic-attack",
+      "name": "Calculator Abcd2 Score For Transient Ischemic Attack",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-apache-ii-score",
+      "name": "Calculator Apache Ii Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-apgar-score",
+      "name": "Calculator Apgar Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-asa-physical-status-classification",
+      "name": "Calculator Asa Physical Status Classification",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-bilitool",
+      "name": "Calculator Bilitool",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-bisap-score-for-pancreatitis",
+      "name": "Calculator Bisap Score For Pancreatitis",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-bishop-score-for-cervical-ripening",
+      "name": "Calculator Bishop Score For Cervical Ripening",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-canadian-ct-head-rule",
+      "name": "Calculator Canadian Ct Head Rule",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-cha2ds2-vasc-score-for-atrial-fibrillation-stroke-risk",
+      "name": "Calculator Cha2ds2 Vasc Score For Atrial Fibrillation Stroke Risk",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-child-pugh-score-for-cirrhosis",
+      "name": "Calculator Child Pugh Score For Cirrhosis",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-corrected-adjusted-age-of-preterm-infants",
+      "name": "Calculator Corrected Adjusted Age Of Preterm Infants",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-curb65-score-for-pneumonia",
+      "name": "Calculator Curb65 Score For Pneumonia",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-duke-treadmill-score",
+      "name": "Calculator Duke Treadmill Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-four-tscore-for-heparin-induced-thrombocytopenia",
+      "name": "Calculator Four TScore For Heparin Induced Thrombocytopenia",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-glasgow-blatchford-score-for-upper-gi-bleeding",
+      "name": "Calculator Glasgow Blatchford Score For Upper Gi Bleeding",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-glasgow-coma-scale-gcs",
+      "name": "Calculator Glasgow Coma Scale Gcs",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-grace-score-for-acute-coronary-syndrome",
+      "name": "Calculator Grace Score For Acute Coronary Syndrome",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-has-bled-score-for-major-bleeding-risk",
+      "name": "Calculator Has Bled Score For Major Bleeding Risk",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-heart-score-for-major-cardiac-events",
+      "name": "Calculator Heart Score For Major Cardiac Events",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-hunt-and-hess-score-for-subarachnoid-hemorrhage",
+      "name": "Calculator Hunt And Hess Score For Subarachnoid Hemorrhage",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-ich-score",
+      "name": "Calculator Ich Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-isth-dic-score",
+      "name": "Calculator Isth Dic Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-modified-rankin-scale",
+      "name": "Calculator Modified Rankin Scale",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-nexus-cervical-spine-rule",
+      "name": "Calculator Nexus Cervical Spine Rule",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-nih-stroke-scale-nihss",
+      "name": "Calculator Nih Stroke Scale Nihss",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-ottawa-ankle-rule",
+      "name": "Calculator Ottawa Ankle Rule",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-ottawa-knee-rule",
+      "name": "Calculator Ottawa Knee Rule",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-padua-prediction-score-for-venous-thromboembolism-risk",
+      "name": "Calculator Padua Prediction Score For Venous Thromboembolism Risk",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-pecarn-pediatric-head-injury-rule",
+      "name": "Calculator Pecarn Pediatric Head Injury Rule",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-pediatric-early-warning-score-pews",
+      "name": "Calculator Pediatric Early Warning Score Pews",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-perc-rule-for-pulmonary-embolism",
+      "name": "Calculator Perc Rule For Pulmonary Embolism",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-pneumonia-severity-index-psi-port",
+      "name": "Calculator Pneumonia Severity Index Psi Port",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-qsofa-score",
+      "name": "Calculator Qsofa Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-ranson-criteria-for-pancreatitis",
+      "name": "Calculator Ranson Criteria For Pancreatitis",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-revised-cardiac-risk-index-rcri",
+      "name": "Calculator Revised Cardiac Risk Index Rcri",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-revised-geneva-score-for-pulmonary-embolism",
+      "name": "Calculator Revised Geneva Score For Pulmonary Embolism",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-rochester-criteria-for-febrile-infants",
+      "name": "Calculator Rochester Criteria For Febrile Infants",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-rockall-score-for-upper-gi-bleeding",
+      "name": "Calculator Rockall Score For Upper Gi Bleeding",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-rox-index-for-high-flow-nasal-cannula",
+      "name": "Calculator Rox Index For High Flow Nasal Cannula",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-sirs-criteria",
+      "name": "Calculator Sirs Criteria",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-sofa-score",
+      "name": "Calculator Sofa Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-stop-bang-score-for-obstructive-sleep-apnea",
+      "name": "Calculator Stop Bang Score For Obstructive Sleep Apnea",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-surgical-apgar-score",
+      "name": "Calculator Surgical Apgar Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-timi-risk",
+      "name": "Calculator Timi Risk",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-wells-score-for-deep-vein-thrombosis",
+      "name": "Calculator Wells Score For Deep Vein Thrombosis",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-wells-score-for-pulmonary-embolism",
+      "name": "Calculator Wells Score For Pulmonary Embolism",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-westley-croup-severity-score",
+      "name": "Calculator Westley Croup Severity Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "calculator-years-algorithm-for-pulmonary-embolism",
+      "name": "Calculator Years Algorithm For Pulmonary Embolism",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "care-provider-results",
+      "name": "Care Provider Results",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "care-provider-sidebar",
+      "name": "Care Provider Sidebar",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "checklist",
+      "name": "Checklist",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "clock",
+      "name": "Clock",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "code-cite",
+      "name": "Code Cite",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "conversational-onboarding-advice",
+      "name": "Conversational Onboarding Advice",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "conversational-onboarding-search",
+      "name": "Conversational Onboarding Search",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "conversational-onboarding-study",
+      "name": "Conversational Onboarding Study",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "conversational-onboarding-writing",
+      "name": "Conversational Onboarding Writing",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "copy-words",
+      "name": "Copy Words",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "create-interactive-poll",
+      "name": "Create Interactive Poll",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "cricket-match-boxscore",
+      "name": "Cricket Match Boxscore",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "digital-stopwatch",
+      "name": "Digital Stopwatch",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "digital-timer",
+      "name": "Digital Timer",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "display-automation",
+      "name": "Display Automation",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "election-results",
+      "name": "Election Results",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "email-preview",
+      "name": "Email Preview",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "entity",
+      "name": "Entity",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "entity-thumbnail-list",
+      "name": "Entity Thumbnail List",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "event-sidebar",
+      "name": "Event Sidebar",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "f1-races",
+      "name": "F1 Races",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "f1-standings",
+      "name": "F1 Standings",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "file-cite",
+      "name": "File Cite",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "file-nav-list",
+      "name": "File Nav List",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "finance-onboarding-suggestions",
+      "name": "Finance Onboarding Suggestions",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "flight-results",
+      "name": "Flight Results",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "flight-search-form",
+      "name": "Flight Search Form",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "flight-tracker",
+      "name": "Flight Tracker",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "follow-up-action-bar",
+      "name": "Follow Up Action Bar",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "follow-up-card-group",
+      "name": "Follow Up Card Group",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "follow-up-quiz",
+      "name": "Follow Up Quiz",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "gen-image",
+      "name": "Gen Image",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "homework-helper-v2",
+      "name": "Homework Helper V2",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "image-gen",
+      "name": "Image Gen",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "image-grid",
+      "name": "Image Grid",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "instant-suggestions",
+      "name": "Instant Suggestions",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "internal-partner-app",
+      "name": "Internal Partner App",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "jobs",
+      "name": "Jobs",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-audio-label-card",
+      "name": "Learning Audio Label Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-fill-blank-card",
+      "name": "Learning Fill Blank Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-image-choice-card",
+      "name": "Learning Image Choice Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-image-label-card",
+      "name": "Learning Image Label Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-sentence-builder-card",
+      "name": "Learning Sentence Builder Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-speak-card",
+      "name": "Learning Speak Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-viz-dil",
+      "name": "Learning Viz Dil",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-vocab-card",
+      "name": "Learning Vocab Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-voice-mode-launcher-card",
+      "name": "Learning Voice Mode Launcher Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-accounts",
+      "name": "Ledger Accounts",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-credit-score-detail",
+      "name": "Ledger Credit Score Detail",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-credit-score",
+      "name": "Ledger Credit Score",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-equity-updates",
+      "name": "Ledger Equity Updates",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-fee-interest-paid",
+      "name": "Ledger Fee Interest Paid",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-finance-onboarding",
+      "name": "Ledger Finance Onboarding",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-finance-status-banner",
+      "name": "Ledger Finance Status Banner",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-income-tracker",
+      "name": "Ledger Income Tracker",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-low-confidence-category-correction",
+      "name": "Ledger Low Confidence Category Correction",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-low-confidence-category-correction-legacy",
+      "name": "Ledger Low Confidence Category Correction Legacy",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-net-worth",
+      "name": "Ledger Net Worth",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-recurring-transactions",
+      "name": "Ledger Recurring Transactions",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-repair-bank-connection",
+      "name": "Ledger Repair Bank Connection",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-spend-by-category-detail",
+      "name": "Ledger Spend By Category Detail",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-spend-by-category-recent-transactions",
+      "name": "Ledger Spend By Category Recent Transactions",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-spend-by-category",
+      "name": "Ledger Spend By Category",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-spend-so-far-this-month",
+      "name": "Ledger Spend So Far This Month",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-transaction-detail",
+      "name": "Ledger Transaction Detail",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-upcoming-activity",
+      "name": "Ledger Upcoming Activity",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "ledger-watchlist",
+      "name": "Ledger Watchlist",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "link",
+      "name": "Link",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "link-card",
+      "name": "Link Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "list-automations",
+      "name": "List Automations",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "local-business",
+      "name": "Local Business",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "multiple-choice-block-v2",
+      "name": "Multiple Choice Block V2",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "nba-game-boxscore",
+      "name": "Nba Game Boxscore",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "nba-player-summary",
+      "name": "Nba Player Summary",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "nba-scores",
+      "name": "Nba Scores",
+      "layer": "domain",
+      "status": "partial",
+      "note": "通用scoreboard未覆盖完整NBA合同"
+    },
+    {
+      "id": "offer-voice-conversation",
+      "name": "Offer Voice Conversation",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "onboarding-feature-card",
+      "name": "Onboarding Feature Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "onboarding-plugin-suggestions",
+      "name": "Onboarding Plugin Suggestions",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "onboarding-starter-tasks",
+      "name": "Onboarding Starter Tasks",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "openai",
+      "name": "Openai",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "open-detail",
+      "name": "Open Detail",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "package-tracker",
+      "name": "Package Tracker",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "personality-quiz",
+      "name": "Personality Quiz",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "places-metadata-bar",
+      "name": "Places Metadata Bar",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "plugin-followup",
+      "name": "Plugin Followup",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "product-card",
+      "name": "Product Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "prompt-checklist",
+      "name": "Prompt Checklist",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "push-drip-series-intro",
+      "name": "Push Drip Series Intro",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "learning-quiz",
+      "name": "Learning Quiz",
+      "layer": "domain",
+      "status": "functionally_verified",
+      "note": "f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。",
+      "tests": [
+        "tests/learning.test.mjs",
+        "tests/browser/learning.spec.mjs"
+      ]
+    },
+    {
+      "id": "rating",
+      "name": "Rating",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "recommendation-card",
+      "name": "Recommendation Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "recommendation-link-card",
+      "name": "Recommendation Link Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "reservation-time-pills-ref-carousel",
+      "name": "Reservation Time Pills Ref Carousel",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "restaurant-reviews",
+      "name": "Restaurant Reviews",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "shared-activity-planner",
+      "name": "Shared Activity Planner",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "sidebar-fact-table",
+      "name": "Sidebar Fact Table",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "sidebar-people-also-ask",
+      "name": "Sidebar People Also Ask",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "soccer-games",
+      "name": "Soccer Games",
+      "layer": "domain",
+      "status": "partial",
+      "note": "通用scoreboard未覆盖完整足球合同"
+    },
+    {
+      "id": "speech-synthesizer",
+      "name": "Speech Synthesizer",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "stock-chart",
+      "name": "Stock Chart",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "stock-comparison-chart",
+      "name": "Stock Comparison Chart",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "stock-heatmap",
+      "name": "Stock Heatmap",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "stop-push-drip-series",
+      "name": "Stop Push Drip Series",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "superbowl-riddle",
+      "name": "Superbowl Riddle",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "tabbed-section",
+      "name": "Tabbed Section",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "tab-group",
+      "name": "Tab Group",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "task-autopause-card",
+      "name": "Task Autopause Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "tennis-player-summary",
+      "name": "Tennis Player Summary",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "visual-card-carousel",
+      "name": "Visual Card Carousel",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "weather-sidebar-title",
+      "name": "Weather Sidebar Title",
+      "layer": "domain",
+      "status": "partial",
+      "note": "仅weather内标题，非独立组件"
+    },
+    {
+      "id": "weather",
+      "name": "Weather",
+      "layer": "domain",
+      "status": "partial",
+      "note": "旧天气变体行为未完整核对"
+    },
+    {
+      "id": "weather-widget-v3",
+      "name": "Weather Widget V3",
+      "layer": "domain",
+      "status": "functionally_verified",
+      "note": "功能与现有回归通过；不代表像素级配色复刻通过"
+    },
+    {
+      "id": "whats-new-capability-search",
+      "name": "Whats New Capability Search",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "whats-new-capability-welcome",
+      "name": "Whats New Capability Welcome",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    },
+    {
+      "id": "word-card",
+      "name": "Word Card",
+      "layer": "domain",
+      "status": "not_implemented",
+      "note": "暂无专门实现证据"
+    }
+  ]
+}

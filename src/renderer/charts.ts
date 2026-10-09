@@ -1,5 +1,5 @@
 import type { Node,Value } from '../schema/document.js';
-import { timestamp,chartXDomain } from '../core/extensions.js';
+import { timestamp,chartXDomain,chartYDomain } from '../core/extensions.js';
 import type { RendererContext } from './context.js';
 const colors=['blue','green','orange','red','purple','gray'] as const;
 const palette={blue:'var(--iui-series-blue)',green:'var(--iui-series-green)',orange:'var(--iui-series-orange)',red:'var(--iui-series-red)',purple:'var(--iui-series-purple)',gray:'var(--iui-series-gray)'};
@@ -31,10 +31,10 @@ export function renderChart(c:RendererContext,n:Extract<Node,{type:'chart'}>):HT
           const slice=svg('path',{d:path,fill:palette[colors[i%colors.length]],'fill-rule':'evenodd','data-point':i,'data-value':v,'data-share':v/total});const title=svg('title');title.textContent=`${c.display(row.x)}: ${c.display(v)} (${(v/total*100).toFixed(1)}%)`;slice.append(title);graphic.append(slice);angle=end;
         });const number=svg('text',{x:cx,y:cy,'text-anchor':'middle','font-size':24,'font-weight':600});number.textContent=c.display(total);const label=svg('text',{x:cx,y:cy+23,'text-anchor':'middle','font-size':12});label.textContent=l.total+(n.unit?` (${n.unit})`:'');graphic.append(number,label);xPositions=[];
       } else {
-        const min=n.yMin??Math.min(0,...nums),max=n.yMax??Math.max(1,...nums),span=max-min||1,y=(v:number)=>pad.t+(1-(v-min)/span)*plotH;
+        const [min,max]=chartYDomain(nums,n.yMin,n.yMax),span=max-min||1,y=(v:number)=>pad.t+(1-(v-min)/span)*plotH;
         const xs=rows.map((row,i)=>scale==='category'?i:scale==='time'?timestamp(row.x):row.x as number);const [low,high]=chartXDomain(xs,n.xMin,n.xMax,scale==='time');
         const x=(i:number)=>scale==='category'?pad.l+(n.kind==='bar'?plotW*(i+.5)/rows.length:rows.length===1?plotW/2:i/(rows.length-1)*plotW):pad.l+(xs[i]-low)/(high-low)*plotW;
-        xPositions=rows.map((_,i)=>x(i));figure.dataset.xScale=scale;figure.dataset.xMin=String(low);figure.dataset.xMax=String(high);
+        xPositions=rows.map((_,i)=>x(i));figure.dataset.xScale=scale;figure.dataset.xMin=String(low);figure.dataset.xMax=String(high);figure.dataset.yMin=String(min);figure.dataset.yMax=String(max);
         for(let tick=0;tick<=4;tick++){const v=min+span*(tick/4),yy=y(v);graphic.append(svg('line',{x1:pad.l,x2:width-pad.r,y1:yy,y2:yy,stroke:'var(--iui-line)','stroke-dasharray':'3 4'}));const label=svg('text',{x:pad.l-8,y:yy+4,'text-anchor':'end','font-size':11});const step=span/4||Number.MIN_VALUE,precision=v===0?1:Math.max(1,Math.min(17,Math.floor(Math.log10(Math.abs(v)))-Math.floor(Math.log10(step))+2));label.textContent=c.display(Number(v.toPrecision(precision)));graphic.append(label);}
         const ticks=scale==='category'?rows.map((row,i)=>({x:x(i),label:formatX(row.x),i})).filter(t=>t.i%Math.max(1,Math.ceil(rows.length/(width<400?4:7)))===0||t.i===rows.length-1):Array.from({length:width<400?3:5},(_,i)=>{const tickCount=width<400?3:5,value=low+(high-low)*(i/(tickCount-1));return {x:pad.l+plotW*i/(tickCount-1),label:formatX(scale==='time'?value:Number(value.toPrecision(5))),i};});
         ticks.forEach((tick,i)=>{const label=svg('text',{x:tick.x,y:height-8,'text-anchor':i===0?'start':i===ticks.length-1?'end':'middle','font-size':11});label.textContent=shorten(tick.label);const tip=svg('title');tip.textContent=tick.label;label.append(tip);graphic.append(label);});

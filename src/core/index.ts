@@ -1,6 +1,6 @@
 import {isLearning,inspectLearning} from './learning.js';
 import {isSports,inspectSports} from './sports.js';
-import {inspectExtension,timestamp,chartXDomain,isField,fieldTypeIssue} from './extensions.js';
+import {inspectExtension,timestamp,chartXDomain,chartYDomain,isField,fieldTypeIssue} from './extensions.js';
 import validateSchema from '../schema/validator.cjs';
 import type { IUIDocument, Node, Value } from '../schema/document.js';
 export type { IUIDocument, Node, Value } from '../schema/document.js';
@@ -324,8 +324,7 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
       if(xs.length&&(()=>{const [a,b]=chartXDomain(xs,node.xMin,node.xMax,scale==='time');return !(a<b)||!Number.isFinite(b-a)||(scale==='time'&&(Math.abs(a)>8.64e15||Math.abs(b)>8.64e15));})())add(issue('CHART_BOUNDS',`${path}/data`,'X domain span must be finite.'));
       if(node.kind==='donut'&&!Number.isFinite(numeric.reduce((a,b)=>a+b,0)))add(issue('CHART_DONUT',`${path}/data`,'Donut total must be finite.'));
       if (numeric.length) {
-        const low = node.yMin ?? Math.min(0, ...numeric);
-        const high = node.yMax ?? Math.max(1, ...numeric);
+        const [low,high] = chartYDomain(numeric,node.yMin,node.yMax);
         if (!(low < high) || !Number.isFinite(high - low)) add(issue('CHART_BOUNDS', `${path}/data`, 'The effective chart domain must have an ordered, positive finite span.'));
       }
     }

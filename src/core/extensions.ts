@@ -75,3 +75,9 @@ export function fieldTypeIssue(node: FieldNode, value: Scalar|undefined, path:st
   if(typeof value!==expected) return {code:'INPUT_TYPE',path,message:`Field binding must be ${expected}.`};
   if((node.type==='radio'||node.type==='segmented')&&value!==''&&!node.options.some(o=>o.value===value)) return {code:'INPUT_OPTION',path,message:'Choice binding must match an option or an empty string.'};
 }
+
+/** Y starts at zero by default without imposing an arbitrary one-unit minimum span. */
+export function chartYDomain(values:readonly number[],min?:number,max?:number):[number,number]{
+ const low=min??Math.min(0,...values),high=max??Math.max(0,...values);
+ return low===0&&high===0&&min===undefined&&max===undefined?[0,1]:[low,high];
+}

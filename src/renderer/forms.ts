@@ -238,6 +238,11 @@ export function createForms(c: RendererContext) {
       status.textContent = text;
       status.dataset.error = String(state === 'error' || state === 'invalid');
     };
+    let observed = Object.fromEntries(bindings.map(key => [key, c.getState()[key]]));
+    const clearSuccess = () => { if (!busy && out.dataset.status === 'success') setStatus('idle', ''); };
+    bind(() => { const current = c.getState(); if (bindings.some(key => !Object.is(current[key], observed[key]))) clearSuccess(); observed = Object.fromEntries(bindings.map(key => [key, current[key]])); });
+    // Draft-only edits (for example an empty number input) also invalidate a prior success label.
+    on(out, 'input', clearSuccess); on(out, 'change', clearSuccess);
     const reset = () => {
       generation++;
       const pending = abort;
@@ -287,7 +292,8 @@ export function createForms(c: RendererContext) {
         busy = false;
         abort = undefined;
         paint();
-        setStatus('success', n.successMessage ?? c.labels().submitted);
+        if ([...enabled].every(key => Object.is(c.getState()[key], values[key]))) setStatus('success', n.successMessage ?? c.labels().submitted);
+        else setStatus('idle', '');
         const CustomEvent = c.doc.defaultView?.CustomEvent;
         if (CustomEvent) out.dispatchEvent(new CustomEvent('iui:submit', { bubbles: true, detail: { id: n.id ?? null, values } }));
       }, () => {
