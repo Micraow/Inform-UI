@@ -187,3 +187,5 @@ import './related-questions-types-consumer.mjs';
 import './decision-cards-types-consumer.mjs';
 
 import './local-places-types-consumer.mjs';
+
+import './flight-discovery-types-consumer.mjs';

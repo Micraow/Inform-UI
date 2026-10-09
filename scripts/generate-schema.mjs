@@ -123,6 +123,12 @@ node('local-business',{name:short,category:short,address:string(1000,1),descript
 const diningScore={type:'number',minimum:0,maximum:5};
 defs.DiningReview=object({id:suppliedKey,author:short,text:string(6000,1),rating:diningScore,food:diningScore,service:diningScore,atmosphere:diningScore,visitDate:travelDate,occasion:choice('breakfast','lunch','dinner','other','unknown'),dishes:array(short,0,12),source:ref('PlaceSource')},['id','author','text','occasion']);
 node('restaurant-reviews',{label:short,restaurantName:short,reviews:array(ref('DiningReview'),0,60),description:string(2000),source:ref('PlaceSource')},['label','restaurantName','reviews']);
+// Original local flight search intent and supplied result exploration.
+const discoveryAirport={type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3};
+defs.DiscoveryAirport=object({code:discoveryAirport,label:short},['code','label']);
+node('flight-search-form',{label:short,description:string(2000),airports:array(ref('DiscoveryAirport'),2,80),initialOrigin:discoveryAirport,initialDestination:discoveryAirport,initialDepartureDate:travelDate,initialReturnDate:travelDate,initialTravelers:integer(1,9),disabled:bool},['label','airports']);
+defs.DiscoveryFlightResult=object({id:suppliedKey,label:short,legs:array(ref('FlightLeg'),1,8),price:ref('SuppliedPrice'),note:string(2000),source:ref('TravelEventSource')},['id','label','legs']);
+node('flight-results',{label:short,description:string(2000),results:array(ref('DiscoveryFlightResult'),0,40),source:ref('TravelEventSource')},['label','results']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);

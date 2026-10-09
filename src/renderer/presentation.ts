@@ -1,4 +1,5 @@
 import {questionsEnglish,questionsChinese} from './related-questions-labels.js';
+import {discoveryEnglish,discoveryChinese} from './discovery-labels.js';
 import {placesEnglish,placesChinese} from './places-labels.js';
 import {decisionEnglish,decisionChinese} from './decision-labels.js';
 import {mailFilesEnglish,mailFilesChinese} from './mail-files-labels.js';
@@ -49,7 +50,8 @@ import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
   questionsUI:questionsEnglish,
   decisionUI:decisionEnglish,
-  placesUI:placesEnglish,decisionUI:decisionEnglish,
+  placesUI:placesEnglish,
+  discoveryUI:discoveryEnglish,
   mailFilesUI:mailFilesEnglish,
   pollUI:pollEnglish,
   trackerUI:trackerEnglish,
@@ -91,7 +93,8 @@ const english = {
 const chinese: typeof english = {
   questionsUI:questionsChinese,
   decisionUI:decisionChinese,
-  placesUI:placesChinese,decisionUI:decisionChinese,
+  placesUI:placesChinese,
+  discoveryUI:discoveryChinese,
   mailFilesUI:mailFilesChinese,
   pollUI:pollChinese,
   trackerUI:trackerChinese,

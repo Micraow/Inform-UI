@@ -1,4 +1,5 @@
 import {inspectRelatedQuestions} from './related-questions.js';
+import {inspectFlightDiscovery} from './flight-discovery.js';
 import {inspectLocalPlace} from './local-places.js';
 import {inspectDecisionCard} from './decision-cards.js';
 import {inspectMailFiles} from './mail-files.js';
@@ -318,6 +319,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
     if(node.type==='sidebar-people-also-ask')inspectRelatedQuestions(node,path,add,isSafeURL);
+    if(node.type==='flight-search-form'||node.type==='flight-results')inspectFlightDiscovery(node,path,add,isSafeURL);
     if(node.type==='local-business'||node.type==='restaurant-reviews')inspectLocalPlace(node,path,add,isSafeURL);
     if(node.type==='jobs'||node.type==='product-card')inspectDecisionCard(node,path,add,isSafeURL,url=>isSafeURL(url,'image'));
     if(node.type==='email-preview'||node.type==='file-nav-list')inspectMailFiles(node,path,add,isSafeURL);
