@@ -70,6 +70,9 @@ export type Node =
   | TopologyNode
   | ChartNode
   | WeatherNode
+  | SportsScheduleNode
+  | SportsScoreboardNode
+  | SportsStandingsNode
   | SvgNode
   | NativeNode;
 
@@ -663,6 +666,121 @@ export interface WeatherNode {
   initialDate?: string;
   status?: "ready" | "loading" | "error";
   message?: string;
+}
+export interface SportsScheduleNode {
+  type: "sports-schedule";
+  id?: string;
+  data: SportsData;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+  initialDate?: string;
+  initialTeamId?: string;
+  initialStage?: string;
+}
+export interface SportsData {
+  league: {
+    id: string;
+    name: string;
+    sport: "football" | "basketball" | "baseball" | "hockey" | "other";
+    season?: string;
+  };
+  timezone: string;
+  updatedAt: string;
+  source: {
+    label: string;
+    synthetic: boolean;
+    url?: string;
+  };
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  teams: SportsTeam[];
+  /**
+   * @minItems 0
+   * @maxItems 300
+   */
+  games: SportsGame[];
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  standings?: SportsStanding[];
+}
+export interface SportsTeam {
+  id: string;
+  name: string;
+  shortName?: string;
+  color?: "blue" | "green" | "orange" | "red" | "purple" | "gray";
+}
+export interface SportsGame {
+  id: string;
+  startAt: string;
+  homeTeam: string;
+  awayTeam: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled";
+  homeScore: number | null;
+  awayScore: number | null;
+  period?: string;
+  clock?: string;
+  stage?: string;
+  venue?: string;
+  neutral?: boolean;
+  winnerTeamId?: string;
+  detail?: string;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  periodScores?: {
+    label: string;
+    home: number | null;
+    away: number | null;
+  }[];
+  tieBreak?: {
+    label: string;
+    home: number | null;
+    away: number | null;
+  };
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  stats?: {
+    label: string;
+    home: string | number | null;
+    away: string | number | null;
+  }[];
+}
+export interface SportsStanding {
+  teamId: string;
+  group?: string;
+  rank: number;
+  played: number | null;
+  won: number | null;
+  drawn: number | null;
+  lost: number | null;
+  points: number | null;
+  for?: number | null;
+  against?: number | null;
+  note?: string;
+}
+export interface SportsScoreboardNode {
+  type: "sports-scoreboard";
+  id?: string;
+  data: SportsData;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+  gameId?: string;
+}
+export interface SportsStandingsNode {
+  type: "sports-standings";
+  id?: string;
+  data: SportsData;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+  initialTeamId?: string;
+  initialGroup?: string;
 }
 export interface SvgNode {
   type: "svg";

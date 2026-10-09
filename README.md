@@ -134,15 +134,16 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 | [本地表单](examples/forms.json) | 输入/长文本/单选/分段控件、字段约束、提交与取消 |
 | [天气领域视图](examples/weather.json) | 调用方供数、当地日期/℃℉/温度降水/图表表格切换 |
 | [真实数值坐标](examples/numeric-charts.json) | 不等距/时间采样、五种图形与空/加载/错误状态 |
+| [体育数据快照](examples/sports.json) | 当地日期赛程、比赛详情与记分牌、保留并列名次的积分排序 |
 | [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
 想让 AI 生成这类 JSON，可搭配独立维护的 [Intelligent-UI-skill](https://github.com/Micraow/Intelligent-UI-skill)。核心库也可以单独使用。
 
 ## 当前支持范围
 
-目前开发分支识别 41 种节点：**39 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
+目前开发分支识别 44 种节点：**42 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
-表单、数值图表与天气是当前阶段的完整实现目标；体育、测验/闪卡、金融等领域组件仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
+开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。体育新节点尚未包含在固定 7c490585 CDN 中，见[体育合同](docs/sports.md)。测验/闪卡、金融及更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
 
 `portable` 是现有 API 中的渲染方式名称；HTML 与嵌入网页是同一套库的用法，不是不同产品版本。后续能力沿独立公开实现扩展，历史私有桥接不属于产品路线。外部数据可来自本地或你选择的服务商。
 
@@ -154,7 +155,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 - [API 与 CLI 使用](docs/api.md)
 - [JSON Schema](src/schema/iui.schema.json) · [TypeScript 文档类型](src/schema/document.d.ts)
 - [节点支持表](docs/support-matrix.md) · [能力评估](docs/gallery-capabilities.md)
-- [数值图表](docs/charts.md) · [天气数据契约](docs/weather.md) · [表单与操作契约](docs/forms.md) · [视觉依据](docs/design-tokens.md)
+- [数值图表](docs/charts.md) · [天气数据契约](docs/weather.md) · [表单与操作契约](docs/forms.md) · [体育数据契约](docs/sports.md) · [视觉依据](docs/design-tokens.md)
 - [安全与资源策略](docs/security.md)
 - [开发指南](docs/development.md) · [架构决策](docs/architecture.md) · [验证记录](docs/verification.md)
 - [更新日志](CHANGELOG.md) · [来源与素材说明](docs/provenance.md)
