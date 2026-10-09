@@ -65,6 +65,9 @@ node('onboarding-selection',{label:short,description:string(2000),options:array(
 defs.OnboardingSelectionNode.oneOf=[object({...defs.OnboardingSelectionNode.properties,mode:{const:'single'},initial:array(key,0,1),minimum:integer(0,1),maximum:{const:1}}),object({...defs.OnboardingSelectionNode.properties,mode:{const:'multiple'}},['mode'])];
 // Original finite supplied-place and media contracts; no lookup or location services.
 const suppliedKey = {...key, pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'};
+// Original bounded local poll composer; incomplete text is a valid initial draft.
+defs.PollDraftOption=object({id:suppliedKey,label:string(200)},['id','label']);
+node('create-interactive-poll',{label:short,description:string(2000),question:string(500),options:array(ref('PollDraftOption'),2,8),multiple:bool,disabled:bool},['label','options']);
 defs.LocationChoiceOption = object({id:suppliedKey,label:short,address:string(1000),description:string(1000)},['id','label']);
 defs.LocationChoiceSource = object({label:short,url:string(2048,1)},['label']);
 node('location-choice-request',{label:short,description:string(2000),options:array(ref('LocationChoiceOption'),1,12),source:ref('LocationChoiceSource')},['label','options']);
