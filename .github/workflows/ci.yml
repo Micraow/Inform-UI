@@ -18,7 +18,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm audit --omit=dev
-      - run: git diff --exit-code -- src/schema src/renderer/math-style.css cdn
+      - run: node scripts/check-generated.mjs
       - run: npx playwright install --with-deps chromium
       - name: Install CJK test font with bounded network retries
         timeout-minutes: 4

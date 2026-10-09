@@ -1,0 +1,454 @@
+{
+  "schemaVersion": "iui/1",
+  "format": "inform-ui-schema-index/1",
+  "fullSchema": {
+    "path": "../iui.schema.json",
+    "utf8Bytes": 97708,
+    "unicodeCodePoints": 97708,
+    "estimatedTokens": 24427,
+    "sha256": "2a1f61103276751a736453ec66d47a53ce4eaafba156ee8c2e259b19d8e14c04"
+  },
+  "semantics": "All bundles perform structural validation only. The unchanged full validateDocument also checks state references, ranges, dates, URLs, native rejection and other semantic rules.",
+  "tokenEstimateMethod": "ceil(Unicode code points / 4), a rough model-independent heuristic; not measured model tokens or a guaranteed saving.",
+  "recommendedForAuthoring": "Use groups[].documentSchema. Node files are field-lookup subsets; recursive Node children are limited to the owned group and document state is absent.",
+  "examplesBase": "Paths are relative to this CDN index URL; repositoryPath is supplied for local checkouts.",
+  "nodeOwners": {
+    "badge": "base",
+    "box": "base",
+    "button": "base",
+    "callout": "base",
+    "caption": "base",
+    "card": "base",
+    "carousel": "base",
+    "chart": "charts",
+    "code": "base",
+    "col": "base",
+    "currency-converter": "converters",
+    "details": "base",
+    "divider": "base",
+    "field": "forms",
+    "figure": "base",
+    "finance-chart": "finance",
+    "finance-comparison": "finance",
+    "finance-heatmap": "finance",
+    "finance-quote": "finance",
+    "flashcards": "learning",
+    "form": "forms",
+    "grid": "base",
+    "image": "base",
+    "input": "forms",
+    "link": "base",
+    "list": "base",
+    "markdown": "base",
+    "math": "base",
+    "metric": "base",
+    "metric-grid": "base",
+    "native": "compatibility",
+    "quiz": "learning",
+    "radio": "forms",
+    "row": "base",
+    "section": "base",
+    "segmented": "forms",
+    "select": "base",
+    "slider": "base",
+    "spacer": "base",
+    "sports-schedule": "sports",
+    "sports-scoreboard": "sports",
+    "sports-standings": "sports",
+    "steps": "base",
+    "svg": "graphics",
+    "table": "base",
+    "text": "base",
+    "textarea": "forms",
+    "title": "base",
+    "toggle": "base",
+    "topology": "graphics",
+    "unit-converter": "converters",
+    "weather": "weather"
+  },
+  "nodeSupportExceptions": {
+    "markdown": "plain-text fallback",
+    "native": "rejected"
+  },
+  "groups": [
+    {
+      "id": "base",
+      "title": "基础内容、布局与联动控件",
+      "includedGroups": [
+        "base"
+      ],
+      "ownedNodeTypes": [
+        "text",
+        "title",
+        "caption",
+        "markdown",
+        "code",
+        "math",
+        "badge",
+        "divider",
+        "spacer",
+        "link",
+        "image",
+        "box",
+        "card",
+        "row",
+        "col",
+        "grid",
+        "section",
+        "figure",
+        "details",
+        "carousel",
+        "list",
+        "table",
+        "metric",
+        "metric-grid",
+        "steps",
+        "callout",
+        "slider",
+        "toggle",
+        "select",
+        "button"
+      ],
+      "documentSchema": {
+        "path": "base.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 33485,
+        "unicodeCodePoints": 33485,
+        "estimatedTokens": 8372,
+        "sha256": "effdcc0005e1742c5c86673bad6418a94014da8b9fc7a25390d47931a8431543"
+      },
+      "nodeSchema": {
+        "path": "nodes/base.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 32236,
+        "unicodeCodePoints": 32236,
+        "estimatedTokens": 8059,
+        "sha256": "b1c6945ef3bb0c4c05f33cc7a39ea1cbf9d0f3e2859574127a6381541e9cc091"
+      },
+      "examples": [
+        {
+          "path": "../../examples/wifi.json",
+          "repositoryPath": "examples/wifi.json"
+        },
+        {
+          "path": "../../examples/shortlist.json",
+          "repositoryPath": "examples/shortlist.json"
+        },
+        {
+          "path": "../../examples/math-fonts.json",
+          "repositoryPath": "examples/math-fonts.json"
+        }
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "表单与字段",
+      "includedGroups": [
+        "base",
+        "forms"
+      ],
+      "ownedNodeTypes": [
+        "input",
+        "textarea",
+        "radio",
+        "segmented",
+        "field",
+        "form"
+      ],
+      "documentSchema": {
+        "path": "forms.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 42165,
+        "unicodeCodePoints": 42165,
+        "estimatedTokens": 10542,
+        "sha256": "8b910d8f11db065160a9dc771528a87da2abb12723c29beab6a2a2e8fd24638a"
+      },
+      "nodeSchema": {
+        "path": "nodes/forms.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 10548,
+        "unicodeCodePoints": 10548,
+        "estimatedTokens": 2637,
+        "sha256": "4b41e92a3c5d46f6b6ee255ca70f6b70daf3906b9f0fd8f3c4e62b2c65943bc2"
+      },
+      "examples": [
+        {
+          "path": "../../examples/forms.json",
+          "repositoryPath": "examples/forms.json"
+        }
+      ]
+    },
+    {
+      "id": "charts",
+      "title": "通用图表与数值/时间坐标",
+      "includedGroups": [
+        "base",
+        "charts"
+      ],
+      "ownedNodeTypes": [
+        "chart"
+      ],
+      "documentSchema": {
+        "path": "charts.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 36400,
+        "unicodeCodePoints": 36400,
+        "estimatedTokens": 9100,
+        "sha256": "beba4159cdf1833a0aace3751aea5ba3960a684056624f53b93a255a5d78b40c"
+      },
+      "nodeSchema": {
+        "path": "nodes/charts.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 4783,
+        "unicodeCodePoints": 4783,
+        "estimatedTokens": 1196,
+        "sha256": "a6a3749d56262e3532f7e7f93494ab4af0d99add6ba41e29850a60feea297240"
+      },
+      "examples": [
+        {
+          "path": "../../examples/rtt.json",
+          "repositoryPath": "examples/rtt.json"
+        },
+        {
+          "path": "../../examples/numeric-charts.json",
+          "repositoryPath": "examples/numeric-charts.json"
+        }
+      ]
+    },
+    {
+      "id": "graphics",
+      "title": "拓扑与受限SVG",
+      "includedGroups": [
+        "base",
+        "graphics"
+      ],
+      "ownedNodeTypes": [
+        "topology",
+        "svg"
+      ],
+      "documentSchema": {
+        "path": "graphics.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 37437,
+        "unicodeCodePoints": 37437,
+        "estimatedTokens": 9360,
+        "sha256": "a4d2f92a5bf4c334dc9dbbb6a8cb9079bfdaeba4d67d0fc6813cdf4c9759572e"
+      },
+      "nodeSchema": {
+        "path": "nodes/graphics.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 5820,
+        "unicodeCodePoints": 5820,
+        "estimatedTokens": 1455,
+        "sha256": "66e3b083f20606b6f322cfd3e3511ad17714df2ad47d7dd58b26ae775125b700"
+      },
+      "examples": [
+        {
+          "path": "../../examples/hpcc.json",
+          "repositoryPath": "examples/hpcc.json"
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "title": "天气供数视图",
+      "includedGroups": [
+        "base",
+        "weather"
+      ],
+      "ownedNodeTypes": [
+        "weather"
+      ],
+      "documentSchema": {
+        "path": "weather.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 40245,
+        "unicodeCodePoints": 40245,
+        "estimatedTokens": 10062,
+        "sha256": "483c98b8677d7e2421cb485a3c65fde890c0468941d9e5c5806573806027aa37"
+      },
+      "nodeSchema": {
+        "path": "nodes/weather.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 7218,
+        "unicodeCodePoints": 7218,
+        "estimatedTokens": 1805,
+        "sha256": "ee688ca6b1dce9ef120ab2886a14c17c69f09fedcb45f526b1b168bff5e64dd6"
+      },
+      "examples": [
+        {
+          "path": "../../examples/weather.json",
+          "repositoryPath": "examples/weather.json"
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "title": "体育赛程、记分牌与积分榜",
+      "includedGroups": [
+        "base",
+        "sports"
+      ],
+      "ownedNodeTypes": [
+        "sports-schedule",
+        "sports-scoreboard",
+        "sports-standings"
+      ],
+      "documentSchema": {
+        "path": "sports.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 47319,
+        "unicodeCodePoints": 47319,
+        "estimatedTokens": 11830,
+        "sha256": "4c6cac70aa086a1481308a9dd8d1a15e7d12b41fd1b85f1f9af98034f17c8c69"
+      },
+      "nodeSchema": {
+        "path": "nodes/sports.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 14292,
+        "unicodeCodePoints": 14292,
+        "estimatedTokens": 3573,
+        "sha256": "53395f1b5e5e8bef35eefcf5fe4d8625f4906ddcae7bc2333efc747b43f6349f"
+      },
+      "examples": [
+        {
+          "path": "../../examples/sports.json",
+          "repositoryPath": "examples/sports.json"
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "title": "测验与闪卡",
+      "includedGroups": [
+        "base",
+        "learning"
+      ],
+      "ownedNodeTypes": [
+        "quiz",
+        "flashcards"
+      ],
+      "documentSchema": {
+        "path": "learning.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 38274,
+        "unicodeCodePoints": 38274,
+        "estimatedTokens": 9569,
+        "sha256": "e9c333c5e03c7ac29894bed4114dcb79e2c8977fc1cea6f2c3c893a075206ad6"
+      },
+      "nodeSchema": {
+        "path": "nodes/learning.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 5247,
+        "unicodeCodePoints": 5247,
+        "estimatedTokens": 1312,
+        "sha256": "0d8c042d8a845e6c8e69195de3088895ef2b84140e303364c90c2eb07f118d6b"
+      },
+      "examples": [
+        {
+          "path": "../../examples/learning.json",
+          "repositoryPath": "examples/learning.json"
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "title": "金融快照、历史、比较与热图",
+      "includedGroups": [
+        "base",
+        "finance"
+      ],
+      "ownedNodeTypes": [
+        "finance-quote",
+        "finance-chart",
+        "finance-comparison",
+        "finance-heatmap"
+      ],
+      "documentSchema": {
+        "path": "finance.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 45706,
+        "unicodeCodePoints": 45706,
+        "estimatedTokens": 11427,
+        "sha256": "50a03dd32d54d53692c73d006cc62aa71ebd9ae9ee62f5a4bd273a4692e330bc"
+      },
+      "nodeSchema": {
+        "path": "nodes/finance.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 12679,
+        "unicodeCodePoints": 12679,
+        "estimatedTokens": 3170,
+        "sha256": "628229459a077f0443103439625551523c9f7a314fe8003a3eea42b343fda66f"
+      },
+      "examples": [
+        {
+          "path": "../../examples/finance-preview.json",
+          "repositoryPath": "examples/finance-preview.json"
+        }
+      ]
+    },
+    {
+      "id": "converters",
+      "title": "单位与汇率换算",
+      "includedGroups": [
+        "base",
+        "converters"
+      ],
+      "ownedNodeTypes": [
+        "unit-converter",
+        "currency-converter"
+      ],
+      "documentSchema": {
+        "path": "converters.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 40450,
+        "unicodeCodePoints": 40450,
+        "estimatedTokens": 10113,
+        "sha256": "e064fe5496f92ec2fccfbe6d6d3310dd239f06cf397883b764dd222fe6e1b7f2"
+      },
+      "nodeSchema": {
+        "path": "nodes/converters.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 7423,
+        "unicodeCodePoints": 7423,
+        "estimatedTokens": 1856,
+        "sha256": "239aa90f3d890ebe92fee63dc01e922bd9189c472a9278911919c0894810db01"
+      },
+      "examples": [
+        {
+          "path": "../../examples/converters.json",
+          "repositoryPath": "examples/converters.json"
+        }
+      ]
+    },
+    {
+      "id": "compatibility",
+      "title": "仅识别的历史输入边界",
+      "includedGroups": [
+        "base",
+        "compatibility"
+      ],
+      "ownedNodeTypes": [
+        "native"
+      ],
+      "documentSchema": {
+        "path": "compatibility.schema.json",
+        "rootKind": "document",
+        "utf8Bytes": 38245,
+        "unicodeCodePoints": 38245,
+        "estimatedTokens": 9562,
+        "sha256": "b96f3915261252e9cddabae64f8bad0fad2380cb068f78864304922248308af2"
+      },
+      "nodeSchema": {
+        "path": "nodes/compatibility.schema.json",
+        "rootKind": "node",
+        "utf8Bytes": 5218,
+        "unicodeCodePoints": 5218,
+        "estimatedTokens": 1305,
+        "sha256": "3861edaae74c38f457f8f05a5e2831f01fdb86c92c8a86589cce8ccfe4148046"
+      },
+      "examples": [],
+      "warning": "native is structurally recognized but always rejected by validateDocument; it is not a supported renderer."
+    }
+  ]
+}

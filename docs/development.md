@@ -44,3 +44,5 @@ Schema 的生成源是 `scripts/generate-schema.mjs`，不要只修改生成结�
 - 合并、npm 发布、正式 release 和部署需要相应授权，开发提交不自动包含这些操作。
 
 更多背景：[架构决策](architecture.md)、[安全策略](security.md)、[素材来源](provenance.md)。
+
+Schema分片同样由 `npm run generate` 生成，详见[分组、闭包与组合](schema-subsets.md)。CI用 `node scripts/check-generated.mjs` 同时检查跟踪文件漂移和遗漏的新增生成文件。

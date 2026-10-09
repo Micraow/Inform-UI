@@ -62,6 +62,8 @@ Inform UI is an independent, unofficial community implementation aiming to faith
 
 → [固定 CDN 链接、最小 HTML 壳与错误处理](docs/cdn.md)
 
+Schema 也提供[按基础/领域读取的索引与闭包分片](docs/schema-subsets.md)：完整协议保留，常见领域包自动包含基础布局，混合领域可生成 union。
+
 ### 源码与本地 agent
 
 需要 **Node.js 22+** 构建和使用 CLI。生成后的单文件 HTML 不需要 Node.js。
