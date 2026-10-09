@@ -137,17 +137,18 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 | [体育数据快照](examples/sports.json) | 当地日期赛程、比赛详情与记分牌、保留并列名次的积分排序 |
 | [本地学习](examples/learning.json) | 单选/多选、解释计分与重试，闪卡翻面、自评与总结 |
 | [金融快照](examples/finance.json) | 明确来源/时间、真实时间轴、相对共同基准比较（源码增量） |
+| [金融热图](examples/heatmap.json) | 真实权重面积、行业筛选、涨跌色阶与完整表（源码增量） |
 | [组件组合](examples/kitchen-sink.json) | 当前接受节点的综合示例 |
 
 想让 AI 生成这类 JSON，可搭配独立维护的 [Intelligent-UI-skill](https://github.com/Micraow/Intelligent-UI-skill)。核心库也可以单独使用。
 
 ## 当前支持范围
 
-固定审计清单共256项，目前功能闭环已验31项、部分18项、已写待验2项、未实现205项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
+固定审计清单共256项，目前功能闭环已验33项、部分18项、已写待验1项、未实现204项；这不是全部组件完成声明，也不等于像素/全平台验收。[逐项进度与依据](docs/component-progress.zh-CN.md)
 
-目前开发分支识别 49 种节点：**47 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
+目前开发分支识别 50 种节点：**48 种渲染、Markdown 明示纯文本降级、历史 `native` 输入明确拒绝**。开发分支图表新增数值/时间轴、散点、面积与环图，见[图表合同和版本边界](docs/charts.md)；地图、实时搜索、媒体服务和通用脚本应用尚未提供。
 
-开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。当前固定46节点CDN包含体育与学习组件，见[体育合同](docs/sports.md)。开发分支也提供本地测验/闪卡；金融快照/历史/比较已进入源码验收，当前46节点CDN不含金融；热图与更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
+开发分支已实现表单、数值图表、天气，以及体育赛程/记分牌/积分榜。当前固定46节点CDN包含体育与学习组件，见[体育合同](docs/sports.md)。开发分支也提供本地测验/闪卡；金融快照/历史/比较已通过源码浏览器验收，热图已进入源码验收；当前46节点CDN不含金融。更多领域变体仍待实现。这里不是全部 Intelligent UI 能力的完成声明。
 
 `portable` 是现有 API 中的渲染方式名称；HTML 与嵌入网页是同一套库的用法，不是不同产品版本。后续能力沿独立公开实现扩展，历史私有桥接不属于产品路线。外部数据可来自本地或你选择的服务商。
 
@@ -159,7 +160,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 - [API 与 CLI 使用](docs/api.md)
 - [JSON Schema](src/schema/iui.schema.json) · [TypeScript 文档类型](src/schema/document.d.ts)
 - [节点支持表](docs/support-matrix.md) · [能力评估](docs/gallery-capabilities.md)
-- [数值图表](docs/charts.md) · [天气数据契约](docs/weather.md) · [表单与操作契约](docs/forms.md) · [体育数据契约](docs/sports.md) · [测验与闪卡](docs/learning.md) · [金融数据契约](docs/finance.md) · [视觉依据](docs/design-tokens.md)
+- [数值图表](docs/charts.md) · [天气数据契约](docs/weather.md) · [表单与操作契约](docs/forms.md) · [体育数据契约](docs/sports.md) · [测验与闪卡](docs/learning.md) · [金融数据契约](docs/finance.md) · [热图](docs/heatmap.md) · [视觉依据](docs/design-tokens.md)
 - [安全与资源策略](docs/security.md)
 - [开发指南](docs/development.md) · [架构决策](docs/architecture.md) · [验证记录](docs/verification.md)
 - [更新日志](CHANGELOG.md) · [来源与素材说明](docs/provenance.md)

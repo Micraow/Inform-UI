@@ -78,6 +78,7 @@ export type Node =
   | FinanceQuoteNode
   | FinanceChartNode
   | FinanceComparisonNode
+  | FinanceHeatmapNode
   | SvgNode
   | NativeNode;
 
@@ -929,6 +930,36 @@ export interface FinanceComparisonNode {
    */
   ranges: FinanceRange[];
   initialRange?: string;
+}
+export interface FinanceHeatmapNode {
+  type: "finance-heatmap";
+  id?: string;
+  title?: string;
+  source: FinanceSource;
+  asOf: string;
+  timezone: string;
+  weightLabel: string;
+  changeBasis: string;
+  /**
+   * @minItems 0
+   * @maxItems 200
+   */
+  cells: {
+    id: string;
+    symbol: string;
+    name: string;
+    sector: string;
+    weight: number | null;
+    price: number | null;
+    currency: string;
+    changePercent: number | null;
+    asOf: string;
+    marketStatus: "open" | "closed" | "pre" | "post" | "halted" | "unknown";
+    delayMinutes: number;
+  }[];
+  initialSector?: string;
+  status?: "ready" | "loading" | "error";
+  message?: string;
 }
 export interface SvgNode {
   type: "svg";

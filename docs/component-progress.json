@@ -1,18 +1,20 @@
 {
-  "as_of_utc": "2026-10-09T01:30:00Z",
+  "as_of_utc": "2026-10-09T01:40:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
     "core_verified_commit": "c00d3aba3689694fa77e1ec89e4e3adb19c7df6a",
     "core_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37866118350",
     "learning_verified_commit": "f372c71d31633be85bb228f57fdb07da9e8f2112",
-    "learning_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936"
+    "learning_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37868547936",
+    "finance_verified_commit": "55bfa57afbf91d41f6cb59db0ae2193c27d9092e",
+    "finance_verified_ci": "https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183"
   },
   "counts": {
-    "not_implemented": 205,
-    "functionally_verified": 31,
+    "not_implemented": 204,
+    "functionally_verified": 33,
     "partial": 18,
-    "implemented_pending_verification": 2
+    "implemented_pending_verification": 1
   },
   "components": [
     {
@@ -1711,8 +1713,8 @@
       "id": "stock-chart",
       "name": "Stock Chart",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "49节点源码已整合quote/history/comparison；API与类型检查通过，真实浏览器验收待CI。",
+      "status": "functionally_verified",
+      "note": "55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。",
       "tests": [
         "tests/finance.test.mjs",
         "tests/finance-validation.test.mjs",
@@ -1723,8 +1725,8 @@
       "id": "stock-comparison-chart",
       "name": "Stock Comparison Chart",
       "layer": "domain",
-      "status": "implemented_pending_verification",
-      "note": "49节点源码已整合quote/history/comparison；API与类型检查通过，真实浏览器验收待CI。",
+      "status": "functionally_verified",
+      "note": "55bfa57: 137项API及8个新增金融浏览器场景通过，亮1100/暗390截图已实看。",
       "tests": [
         "tests/finance.test.mjs",
         "tests/finance-validation.test.mjs",
@@ -1735,8 +1737,12 @@
       "id": "stock-heatmap",
       "name": "Stock Heatmap",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "独立权重面积布局、筛选/键盘/完整表及9项API测试通过，待真实浏览器验收。",
+      "tests": [
+        "tests/heatmap.test.mjs",
+        "tests/browser/heatmap.spec.mjs"
+      ]
     },
     {
       "id": "stop-push-drip-series",

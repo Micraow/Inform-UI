@@ -1,5 +1,12 @@
 # Changelog
 
+## Domain and visual increments (development branch)
+
+- Add complete local quiz/flashcard flows and supplied finance quote/history/common-baseline comparison; preserve nulls, snapshot metadata and local-only actions. Weighted finance heatmap is now in source and awaits browser acceptance.
+- Separate chart/link/accent/focus/status color roles with public-token and conditional-host evidence; retain keyboard focus across resizing.
+- Pin browser assets to verified 46-node f372c71 with real CDN-only domain previews. Later finance and quality improvements are explicitly source-only until the next verified pin.
+- Track all 256 canonical component targets by ID; node count is not a completion percentage.
+
 ## Sports source increment
 
 - Add original schedule, scoreboard and standings nodes over one supplied sports contract, with source/timezone/null/status semantics, accessible local controls and semantic validation.

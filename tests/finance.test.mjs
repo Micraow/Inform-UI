@@ -216,3 +216,5 @@ test('finance compilation is deterministic and preserves synthetic provenance', 
   const first = await compileHtml(input()), second = await compileHtml(input());
   assert.equal(first, second); assert.match(first, /Intelligent-UI original synthetic market fixture/); assert.match(first, /sha256-/);
 });
+
+test('subsecond observations remain distinguishable in complete tables and keyboard readouts',()=>{const{root,dom,controller}=setup(only(1,n=>{n.ranges=[];delete n.initialRange;n.instrument.timezone='UTC';n.instrument.history=[{time:'2026-11-01T00:00:00.001Z',price:1},{time:'2026-11-01T00:00:00.002Z',price:2}];}));const times=[...root.querySelectorAll('tbody time')].map(e=>e.textContent);assert.match(times[0],/00:00:00\.001/);assert.match(times[1],/00:00:00\.002/);key(dom,root.querySelector('svg'),'End');assert.match(root.querySelector('output').value,/00:00:00\.002/);controller.dispose();});

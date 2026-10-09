@@ -52,9 +52,10 @@ export function renderFinance(c: RendererContext, n: FinanceNode): HTMLElement {
   const signed = (value: number) => `${value > 0 ? '+' : ''}${number.format(Object.is(value, -0) ? 0 : value)}`;
   const percent = (value: number | null) => value === null ? l.missing : `${value > 0 ? '+' : ''}${percentNumber.format(Object.is(value, -0) ? 0 : value)}%`;
   const price = (value: number | null, currency: string) => value === null ? l.missing : `${number.format(value)} ${currency}`;
+  const subsecond = instruments.some(item => [item.asOf,...item.history.map(point=>point.time)].some(value=>Date.parse(value)%1000!==0)) || (n.type==='finance-comparison'&&Date.parse(n.baselineAt)%1000!==0) || (n.type!=='finance-quote'&&n.ranges.some(range=>[range.from,range.to].some(value=>Date.parse(value)%1000!==0)));
   const dateFormat = (timeZone: string, short = false) => new Intl.DateTimeFormat(locale, {
     timeZone, ...(short ? {} : { year: 'numeric' as const }), month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
-    second: '2-digit', hourCycle: 'h23', timeZoneName: 'shortOffset',
+    second: '2-digit', ...(subsecond?{fractionalSecondDigits:3 as const}:{}), hourCycle: 'h23', timeZoneName: 'shortOffset',
   });
   const fullTime = dateFormat(zone), tickTime = new Intl.DateTimeFormat(locale, { timeZone: zone, month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
   const id = `${c.prefix}finance-${++financeId}`, root = e('section', 'iui-finance');

@@ -3583,6 +3583,172 @@
       ],
       "additionalProperties": false
     },
+    "FinanceHeatmapNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-heatmap"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/FinanceSource"
+        },
+        "asOf": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "maxLength": 40
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "weightLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "changeBasis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "sector": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "weight": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "price": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "currency": {
+                "type": "string",
+                "pattern": "^[A-Z]{3}$"
+              },
+              "changePercent": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "asOf": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+                "maxLength": 40
+              },
+              "marketStatus": {
+                "enum": [
+                  "open",
+                  "closed",
+                  "pre",
+                  "post",
+                  "halted",
+                  "unknown"
+                ]
+              },
+              "delayMinutes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10080
+              }
+            },
+            "required": [
+              "id",
+              "symbol",
+              "name",
+              "sector",
+              "weight",
+              "price",
+              "currency",
+              "changePercent",
+              "asOf",
+              "marketStatus",
+              "delayMinutes"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 200
+        },
+        "initialSector": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      },
+      "required": [
+        "type",
+        "source",
+        "asOf",
+        "timezone",
+        "weightLabel",
+        "changeBasis",
+        "cells"
+      ],
+      "additionalProperties": false
+    },
     "SvgNode": {
       "type": "object",
       "properties": {
@@ -4002,6 +4168,9 @@
         },
         {
           "$ref": "#/$defs/FinanceComparisonNode"
+        },
+        {
+          "$ref": "#/$defs/FinanceHeatmapNode"
         },
         {
           "$ref": "#/$defs/SvgNode"

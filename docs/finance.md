@@ -2,7 +2,7 @@
 
 这是原创、纯本地的数据展示合同。调用方提供来源、时间和市场状态；库不连接行情服务，不推断实时性，不提供交易动作。示例均为合成数据，不构成投资建议。
 
-开发分支新增 `finance-quote`、`finance-chart`、`finance-comparison`。它们尚未包含在固定f372c71的46节点CDN里；源代码构建使用当前49节点Schema。浏览器验收通过后才另行推广新固定CDN。
+开发分支新增 `finance-quote`、`finance-chart`、`finance-comparison`。它们尚未包含在固定f372c71的46节点CDN里；源代码构建使用当前49节点Schema。49节点源55bfa57已通过[浏览器CI](https://github.com/Micraow/Intelligent-UI/actions/runs/37870264183)和亮暗截图复核；新的金融CDN入口仍待独立实载验收。
 
 [完整合成JSON](../examples/finance.json) · [Schema](../src/schema/iui.schema.json)
 
@@ -33,6 +33,6 @@
 
 范围按钮、系列开关、本地键盘游标及完整数据表由库实现；X轴按真实时间距离，不按索引等距。隐藏系列不删数据表里的观测。未知值、空数据、只有一个点、所有系列隐藏、加载和错误分别有可读状态。来源、合成标记、asOf、市场状态与延迟可见。窗口宽度变化、重复交互保留焦点；update重建快照，dispose清理事件。
 
-当前不包含K线、成交量双轴、技术指标、交易下单、外汇换算或热图。热图独立推进，不能把这些折线比较视为热图完成。
+当前不包含K线、成交量双轴、技术指标、交易下单或外汇换算。[热图](heatmap.md)使用独立合同推进验收，不把折线比较视为热图完成。
 
 语义错误包括 `FINANCE_DATE`、`FINANCE_ORDER`、`FINANCE_ID`、`FINANCE_RANGE`、`FINANCE_VALUE`，并沿用 `TIMEZONE` / `UNSAFE_URL` 和结构错误 `SCHEMA`。
