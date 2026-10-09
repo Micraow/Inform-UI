@@ -1,6 +1,6 @@
 # 单位与货币换算
 
-开发分支新增 `unit-converter` 与 `currency-converter`。源码已接入，浏览器矩阵待本提交的 CI；当前固定 064ab51 CDN 仍为50节点，不包含这两个新增节点。
+开发分支新增 `unit-converter` 与 `currency-converter`。源码已接入，九个浏览器场景通过；52节点候选固定CDN为4b6c1f0，真实file://验收仍以当前CI为准。
 
 两个组件都在本地运行，不写入文档 state，不请求报价，不执行交易。[完整教学 JSON](../examples/converters.json) 与 [状态 fixture](../examples/converters/states.json) 可用于本地编译及统一组件 Demo。
 
