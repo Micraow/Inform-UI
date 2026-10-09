@@ -38,7 +38,21 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100]){
     expect(await table.locator('thead th').first().evaluate(cell=>getComputedStyle(cell).backgroundColor)).toBe(theme==='dark'?'rgb(24, 24, 24)':'rgb(249, 249, 249)');
     await scroll(page).focus();await expect(scroll(page)).toBeFocused();
     const overflow=await scroll(page).evaluate(node=>node.scrollWidth>node.clientWidth+1);
-    if(overflow){await expect(first(page).locator('.iui-table-scroll-hint')).toBeVisible();await expect(scroll(page)).toHaveAttribute('aria-describedby',/hint/);await page.keyboard.press('ArrowRight');await expect.poll(()=>scroll(page).evaluate(node=>node.scrollLeft)).toBeGreaterThan(0);}
+    if(overflow){
+      await expect(first(page).locator('.iui-table-scroll-hint')).toBeVisible();await expect(scroll(page)).toHaveAttribute('aria-describedby',/hint/);
+      // ArrowRight scrolls asynchronously in Chromium, even with reduced motion.
+      // Register before the key press and await completion so the state-update
+      // assertion below measures preservation, not an in-flight native scroll.
+      const start=await scroll(page).evaluate(node=>{
+        window.tableScrollEnded=false;
+        node.addEventListener('scrollend',()=>{window.tableScrollEnded=true;},{once:true});
+        return {left:node.scrollLeft,max:node.scrollWidth-node.clientWidth};
+      });
+      // Move away from an existing boundary instead of awaiting a no-op key.
+      await page.keyboard.press(start.left<start.max?'ArrowRight':'ArrowLeft');
+      await page.waitForFunction(()=>window.tableScrollEnded,{},{timeout:5000});
+      expect(await scroll(page).evaluate(node=>node.scrollLeft)).not.toBe(start.left);
+    }
     else await expect(first(page).locator('.iui-table-scroll-hint')).toBeHidden();
     if(width===390)expect(overflow).toBe(true);
     const before=await scroll(page).evaluate(node=>node.scrollLeft);
