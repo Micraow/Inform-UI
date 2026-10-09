@@ -4,29 +4,29 @@
   "fonts": "KaTeX 0.18.2: official MIT WOFF2 assets, relative to this CSS. HTML visual output and accessible MathML.",
   "files": {
     "iui.min.js": {
-      "bytes": 1406002,
-      "sha256": "7818ba07b7eee76342f8c06ccb14f254370dee9b25d455143be1a0a2bb54e3ce",
-      "integrity": "sha384-1amDussH9mYFODDtp2g6PHw1gFpJDs5mo8T2QbAHf4c1S5OfkgN1N5V34m3puMh6"
+      "bytes": 1406309,
+      "sha256": "a070360914027d281d2e38254d88651fe3ecf97bf2c98c9cd173a243c363785e",
+      "integrity": "sha384-mzE2JKGbkNKV5GJ/qgl0toCiLNcsuBOpvGHmf14kRwPbjYj6X0lJZWAPU1NhKb6k"
     },
     "iui.min.js.map": {
-      "bytes": 1086004,
-      "sha256": "997257322f8ebca18eef3d6ffd90f5f02ea9994855e2ac00bc9b0995fbeabbdd",
-      "integrity": "sha384-0whNDiiBfSvFaIvoTaLXTy5yBygQ5niX061VaX9gtYGIsQOXkB4CsHx3g5EsXz6k"
+      "bytes": 1086272,
+      "sha256": "60c1e1205723742574acdadd1e11f836e3eaf255daef8b5c2d2309c10acc0165",
+      "integrity": "sha384-/qOiKu9xYzseT67yBe7pbAGd39xzQny3HvDGAMfc+vjGs3Ba8+dFi+p44pEz8QPk"
     },
     "iui.global.min.js": {
-      "bytes": 1406164,
-      "sha256": "5db67f173db26eb013cb71b13ae67ab54311dd2c759aa2c42482b4aa7026c0bf",
-      "integrity": "sha384-r0OP/OYeU1ch8DFLleYCQaMZejn2jabCIli8FNo9o8dgXt1cLrA4UVeOJ8Hh5568"
+      "bytes": 1406471,
+      "sha256": "42557a57e424642b68ef0cf716fbaa8dd709791dd70a5912f10d0fa911cc54f9",
+      "integrity": "sha384-tvz7phydYNWyvO3Sz/W+xhrMv0sp+UOlR1p/b3+w9E9M9Hmjff+bGzjaUAglOWd9"
     },
     "iui.global.min.js.map": {
-      "bytes": 1086251,
-      "sha256": "3a7fc397798a89a917637cfe504bd069cbb9176af600d769dc005298b1393ea7",
-      "integrity": "sha384-W4fpzIP55tNitUuhUoxq6rGACx0F7JPgkrRTnWCZcUw1BArPNP9MZW7h4aVxeEj4"
+      "bytes": 1086519,
+      "sha256": "875829f8f99b46661b2ed86df6801ccdf5b275d1b7218c7b052facf5fd3232f9",
+      "integrity": "sha384-fWZ7Lffho1UQUs3o8sbDiX3dSMZAdnXHgpJbceNUlJoKXLdl0m/0gGuzquu/zy69"
     },
     "iui.css": {
-      "bytes": 72981,
-      "sha256": "fc2e1f5d74145f1202018c2fda4c467151d0ed01cd631387ec875154668d8447",
-      "integrity": "sha384-FxVlIuGdwDf9CIpRK7EimhQIkZBAUI3/6kElDH0czHsDq7URnvCE8a4rO53HW9Ci"
+      "bytes": 73017,
+      "sha256": "82b122cff885f8bfb1903366358fb07d342da467f6def7a0f9a9e3234de7fe85",
+      "integrity": "sha384-LHkRYrW+gjyqnUp86CgtLDWvOrTbN3oncoJv80YTzEHuGnfZadFBbc4HgBPMNQz2"
     },
     "iui.schema.json": {
       "bytes": 97708,
