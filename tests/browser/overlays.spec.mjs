@@ -78,7 +78,11 @@ test('overlays: hover gap, leave, blur, and hover-only Escape preserve unrelated
 });
 
 test('overlays: nested Escape, ancestor closure, siblings, outside focus and repeated clicks',async({page})=>{
-  await mount(page);await trigger(page).click();const innerTrigger=panel(page).getByRole('button',{name:'Inner details',exact:true});
+  await mount(page);
+  // Give this sibling a genuinely exposed hit target; a native top-layer panel
+  // is expected to cover ordinary content placed immediately beneath its anchor.
+  await page.getByRole('button',{name:'Other details',exact:true}).evaluate(el=>{el.closest('.iui-overlay').style.cssText='position:fixed;right:16px;top:16px';});
+  await trigger(page).click();const innerTrigger=panel(page).getByRole('button',{name:'Inner details',exact:true});
   await innerTrigger.click();const inner=page.getByRole('dialog',{name:'Inner dialog',exact:true});await expect(inner).toBeVisible();
   await page.keyboard.press('Escape');await expect(inner).toBeHidden();await expect(innerTrigger).toBeFocused();await expect(panel(page)).toBeVisible();
   await innerTrigger.click();await panel(page).getByRole('button',{name:'Close',exact:true}).first().click();await expect(visibleSurfaces(page)).toHaveCount(0);await expect(trigger(page)).toBeFocused();

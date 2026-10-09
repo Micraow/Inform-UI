@@ -141,3 +141,12 @@ test('returning focus to a nonmodal trigger keeps its branch open until focus le
   const h=setup(),p=parts(h.mount(popover())),outside=h.doc.createElement('button');h.doc.body.append(outside);
   p.trigger.click();p.trigger.focus();assert.equal(p.surface.hidden,false);outside.focus();assert.equal(p.surface.hidden,true);assert.equal(h.doc.activeElement,outside);h.dispose();
 });
+for(const native of [false,true])test(`hover-only Escape allows a later fresh focus without a prior tooltip blur (${native?'native shim':'inline'})`,()=>{
+  const h=setup({native}),p=parts(h.mount(tooltip())),outside=h.doc.createElement('button');h.doc.body.append(outside);outside.focus();
+  h.event(p.trigger,'pointerenter',{pointerType:'mouse'});assert.equal(p.surface.hidden,false);
+  h.event(outside,'keydown',{key:'Escape'});assert.equal(p.surface.hidden,true);assert.equal(h.doc.activeElement,outside);
+  h.event(p.trigger,'pointerleave',{pointerType:'mouse'});p.trigger.focus();assert.equal(p.surface.hidden,false);
+  h.event(p.trigger,'keydown',{key:'Escape'});assert.equal(p.surface.hidden,true);p.trigger.focus();h.setState({unrelated:7});
+  assert.equal(p.surface.hidden,true,'retaining the same actual focus must not reopen an Escape-dismissed tooltip');
+  outside.focus();p.trigger.focus();assert.equal(p.surface.hidden,false);h.dispose();
+});

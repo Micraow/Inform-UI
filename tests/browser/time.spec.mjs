@@ -75,7 +75,10 @@ for (const theme of ['light', 'dark']) for (const width of [390, 768, 1100]) {
     const stopwatch = kind(page, 'stopwatch'); await action(stopwatch, 'start').click();
     for (let i = 0; i < 4; i++) { await page.clock.runFor(250); await action(stopwatch, 'lap').click(); }
     await action(stopwatch, 'pause').click();
-    const region = stopwatch.getByRole('region', { name: 'Laps', exact: true }); await region.focus(); await expect(region).toBeFocused();
+    const region = stopwatch.getByRole('region', { name: 'Laps', exact: true });
+    // Pointer activation does not establish :focus-visible. Reach the region via
+    // real keyboard navigation, then require its unchanged visible-focus rule.
+    await action(stopwatch, 'reset').focus(); await page.keyboard.press('Tab'); await expect(region).toBeFocused();
     expect(await region.evaluate(node => getComputedStyle(node).outlineStyle)).toBe('solid');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const fit = await page.locator('.iui-time-digits').evaluateAll(nodes => nodes.every(node => node.scrollWidth <= node.clientWidth + 1)); expect(fit).toBe(true);

@@ -101,7 +101,7 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   root.append(trigger, surface);
   const manager = coordinator(doc);
   let opened = false, disposed = false, hoverTrigger = false, hoverSurface = false, focused = false;
-  let pinned = false, suppressed = false, beforePointerOpen: boolean | undefined;
+  let pinned = false, beforePointerOpen: boolean | undefined;
   const setTimer = (fn: () => void, delay: number) => win ? win.setTimeout(fn, delay) : globalThis.setTimeout(fn, delay);
   const clearTimer = (timer: ReturnType<typeof setTimer>) => {
     if (win) win.clearTimeout(timer as number);
@@ -130,7 +130,7 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   };
   const hide = (reason: CloseReason) => {
     if (!opened) return;
-    opened = false; root.dataset.open = 'false'; pinned = false; suppressed = true;
+    opened = false; root.dataset.open = 'false'; pinned = false;
     cancelLeave(); cancelPointer(); beforePointerOpen = undefined; stopWatching();
     if (n.type === 'popover') trigger.setAttribute('aria-expanded', 'false');
     // Mark closed first: the platform may synchronously issue beforetoggle while hiding.
@@ -179,7 +179,7 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   };
   const open = () => {
     if (disposed || opened || !visibleAnchor()) return;
-    suppressed = false; cancelLeave(); surface.hidden = false; surface.removeAttribute('inert');
+    cancelLeave(); surface.hidden = false; surface.removeAttribute('inert');
     if (native) {
       try {
         surface.showPopover();
@@ -206,13 +206,16 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   if (n.type === 'tooltip') {
     c.on(trigger, 'pointerenter', (event: Event) => {
       if ((event as PointerEvent).pointerType === 'touch') return;
-      hoverTrigger = true; suppressed = false; open();
+      hoverTrigger = true; open();
     });
     c.on(trigger, 'pointerleave', () => { hoverTrigger = false; delayedLeave(); });
     c.on(surface, 'pointerenter', () => { hoverSurface = true; cancelLeave(); });
     c.on(surface, 'pointerleave', () => { hoverSurface = false; delayedLeave(); });
-    c.on(trigger, 'focus', () => { focused = true; if (!suppressed) open(); });
-    c.on(trigger, 'blur', () => { focused = false; pinned = false; suppressed = false; beforePointerOpen = undefined; cancelPointer(); delayedLeave(); });
+    // A fresh focus event starts a new interaction, including after hover-only
+    // Escape. Calling focus() on an already-focused trigger emits no new event,
+    // so dismissal stays closed until the user actually leaves and returns.
+    c.on(trigger, 'focus', () => { focused = true; open(); });
+    c.on(trigger, 'blur', () => { focused = false; pinned = false; beforePointerOpen = undefined; cancelPointer(); delayedLeave(); });
     c.on(trigger, 'pointerdown', (event: Event) => {
       cancelPointer(); beforePointerOpen = opened;
       const pointerId = (event as PointerEvent).pointerId;
@@ -233,7 +236,7 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
     if (win) c.on(win, 'blur', () => { beforePointerOpen = undefined; cancelPointer(); close('leave'); });
     c.on(trigger, 'click', () => {
       const wasOpen = beforePointerOpen ?? opened; beforePointerOpen = undefined; cancelPointer();
-      if (wasOpen) close('toggle'); else { pinned = true; suppressed = false; open(); }
+      if (wasOpen) close('toggle'); else { pinned = true; open(); }
     });
   } else {
     c.on(trigger, 'click', () => { if (opened) close('toggle'); else open(); });
