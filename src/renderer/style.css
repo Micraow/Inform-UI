@@ -1190,3 +1190,51 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-poll [hidden]{display:none!important}
 @media(max-width:480px){.iui-root .iui-poll{padding:12px}.iui-root .iui-poll-option{padding:10px}.iui-root .iui-poll-option-actions button{flex:1 1 auto}}
 @media(forced-colors:active){.iui-root .iui-poll,.iui-root .iui-poll :is(.iui-poll-option,.iui-poll-preview,input,textarea,button){border-color:CanvasText}.iui-root .iui-poll :is(.iui-poll-note,.iui-poll-count,.iui-poll-status){color:CanvasText}.iui-root .iui-poll :focus-visible{outline-color:Highlight}}
+
+/* Original supplied email reader and file navigator; no remote thumbnails or previews. */
+.iui-root .iui-supplied-reader{min-inline-size:0;border:1px solid var(--iui-line);border-radius:16px;padding:20px;background:var(--iui-surface-primary);overflow-wrap:anywhere}
+.iui-root .iui-supplied-reader :is(h2,h3,h4,p,ul,dl,dd){margin:0}
+.iui-root .iui-supplied-reader h2{font-size:1.2rem;line-height:1.4}
+.iui-root .iui-reader-note{font-size:.9rem;color:var(--iui-muted);margin-block:10px 16px!important;line-height:1.6}
+.iui-root .iui-reader-description,.iui-root .iui-reader-name{white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-reader-time,.iui-root .iui-email-address{unicode-bidi:isolate;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.iui-root .iui-email-from,.iui-root .iui-email-sent{margin-block:8px!important}
+.iui-root .iui-email-person-name{font-weight:600}
+.iui-root .iui-email-sent{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-supplied-reader summary{min-block-size:44px;box-sizing:border-box;cursor:pointer;padding-block:12px}
+.iui-root .iui-email-recipients{border-block:1px solid var(--iui-line);margin-block:14px}
+.iui-root .iui-email-recipients h3{font-size:.9rem;color:var(--iui-muted)}
+.iui-root .iui-email-recipients ul{padding-inline-start:20px;margin-block:6px 14px}
+.iui-root .iui-email-recipients li{padding-block:3px}
+.iui-root .iui-email-body-title,.iui-root .iui-email-attachments-title{font-size:1rem;margin-block:18px 10px!important}
+.iui-root .iui-email-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}
+.iui-root .iui-email-quoted{margin-block:14px;padding-inline:14px;border-inline-start:3px solid var(--iui-line);background:var(--iui-surface-secondary)}
+.iui-root .iui-reader-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block:12px}
+.iui-root .iui-reader-toolbar label{font-size:.9rem;font-weight:550}
+.iui-root .iui-reader-search{flex:1 1 12rem;min-inline-size:0}
+.iui-root .iui-supplied-reader :is(button,select,input[type=search]){font:inherit;box-sizing:border-box;min-block-size:44px;max-inline-size:100%;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);color:inherit;transition:none}
+.iui-root .iui-supplied-reader button{cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-supplied-reader button[aria-disabled=true]{opacity:.65}
+.iui-root .iui-reader-count,.iui-root .iui-file-kind{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-reader-empty{padding-block:20px}
+.iui-root .iui-reader-files{list-style:none;padding:0;margin-block:10px!important;display:grid;gap:10px}
+.iui-root .iui-reader-file{min-inline-size:0;border:1px solid var(--iui-line);border-radius:10px;padding:14px;background:var(--iui-surface-secondary)}
+.iui-root .iui-reader-name{font-size:1rem;line-height:1.5}
+.iui-root .iui-reader-details dl{display:grid;gap:8px;padding-block:4px 10px}
+.iui-root .iui-reader-details dt{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-reader-details dd,.iui-root .iui-reader-details p{white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-reader-link{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-reader-source{margin-block-start:12px!important}
+.iui-root .iui-file-breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-block:12px}
+.iui-root .iui-file-crumb[aria-current=page]{font-weight:700;border-color:var(--iui-ink)}
+.iui-root .iui-file-folder-title{font-size:1.05rem;margin-block:16px 10px!important}
+.iui-root .iui-file-nav .iui-reader-file{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px}
+.iui-root .iui-file-icon{inline-size:20px;block-size:26px;box-sizing:border-box;border:2px solid var(--iui-muted);border-radius:3px;margin-block-start:5px}
+.iui-root .iui-reader-file[data-kind=folder] .iui-file-icon{block-size:18px;margin-block-start:14px;border-radius:3px 3px 5px 5px;position:relative}
+.iui-root .iui-reader-file[data-kind=folder] .iui-file-icon::before{content:'';position:absolute;inline-size:10px;block-size:5px;inset-inline-start:-2px;inset-block-start:-7px;border:2px solid var(--iui-muted);border-block-end:0;border-radius:3px 3px 0 0}
+.iui-root .iui-file-open-folder{text-align:start;font-weight:650!important}
+.iui-root .iui-file-kind{display:block;margin-block:6px}
+.iui-root .iui-supplied-reader :is(button,input,select,summary,a,[tabindex]):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-supplied-reader [hidden]{display:none!important}
+@media(max-width:480px){.iui-root .iui-supplied-reader{padding:12px}.iui-root .iui-reader-toolbar label{flex-basis:100%}.iui-root .iui-reader-search{inline-size:100%}.iui-root .iui-reader-file{padding:10px}}
+@media(forced-colors:active){.iui-root .iui-supplied-reader,.iui-root .iui-supplied-reader :is(button,input,select,.iui-reader-file,.iui-file-icon){border-color:CanvasText}.iui-root .iui-supplied-reader :is(.iui-reader-note,.iui-reader-count,dt,.iui-file-kind){color:CanvasText}.iui-root .iui-supplied-reader :focus-visible{outline-color:Highlight}}

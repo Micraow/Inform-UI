@@ -180,3 +180,5 @@ import './travel-events-types-consumer.mjs';
 import './trackers-types-consumer.mjs';
 
 import './poll-types-consumer.mjs';
+
+import './mail-files-types-consumer.mjs';
