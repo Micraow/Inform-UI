@@ -4,8 +4,8 @@ import { join } from 'node:path';
 
 // Discovery metadata only. The canonical generator owns every node definition and group assignment.
 export const SCHEMA_GROUPS = Object.freeze({
-  base: { title: '基础内容、布局与联动控件', examples: ['examples/wifi.json', 'examples/shortlist.json', 'examples/math-fonts.json', 'examples/foundations.json', 'examples/structured-tables.json', 'examples/local-status-primitives.json', 'examples/loading-states.json', 'examples/source-cards.json', 'examples/carousel-basic.json', 'examples/code.json', 'examples/markdown-subset.json', 'examples/tabs.json', 'examples/checklist.json', 'examples/rating.json', 'examples/favicon.json', 'examples/agenda.json', 'examples/button-actions.json'] },
-  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json', 'examples/checkbox-practice.json', 'examples/date-practice.json', 'examples/checklist-form.json'] },
+  base: { title: '基础内容、布局与联动控件', examples: ['examples/wifi.json', 'examples/shortlist.json', 'examples/math-fonts.json', 'examples/foundations.json', 'examples/structured-tables.json', 'examples/local-status-primitives.json', 'examples/loading-states.json', 'examples/source-cards.json', 'examples/carousel-basic.json', 'examples/code.json', 'examples/markdown-subset.json', 'examples/tabs.json', 'examples/checklist.json', 'examples/prompt-suggestions.json', 'examples/restaurant-menu.json', 'examples/writing-block.json', 'examples/person-profile.json', 'examples/rating.json', 'examples/favicon.json', 'examples/agenda.json', 'examples/button-actions.json'] },
+  forms: { title: '表单与字段', examples: ['examples/forms.json', 'examples/overlays.json', 'examples/checkbox-practice.json', 'examples/date-practice.json', 'examples/checklist-form.json', 'examples/field-labels.json'] },
   charts: { title: '通用图表与数值/时间坐标', examples: ['examples/rtt.json', 'examples/numeric-charts.json', 'examples/pie.json'] },
   graphics: { title: '拓扑与受限SVG', examples: ['examples/hpcc.json'] },
   weather: { title: '天气供数视图', examples: ['examples/weather.json'] },

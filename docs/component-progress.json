@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T09:32:53.976Z",
+  "as_of_utc": "2026-10-09T10:04:32.219Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -22,13 +22,13 @@
     "fixed_cdn_asset_commit": "d370ffb2df310fce0da9299e6e254a58509ba544",
     "loading_sources_verified_commit": "7db01a63d18d61a59f508e11433877b073ed5a7b",
     "loading_sources_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37898154911",
-    "local_enhancement_checkpoint": "See docs/local-enhancements-75.md; 621 Node tests passed, fifteen distinct canonical candidates await accumulated browser acceptance. Recommended CDN pin remains d370."
+    "local_enhancement_checkpoint": "See docs/local-enhancements-80.md: full Node737/738 plus8/8 metadata correction regression, runtime hashes unchanged and all final stages passed; twenty canonical candidates await accumulated browser acceptance. Recommended CDN remains d370."
   },
   "counts": {
-    "not_implemented": 182,
+    "not_implemented": 178,
     "functionally_verified": 53,
-    "implemented_pending_verification": 15,
-    "partial": 6
+    "implemented_pending_verification": 20,
+    "partial": 5
   },
   "components": [
     {
@@ -228,8 +228,8 @@
       "id": "base-label",
       "name": "字段标签",
       "layer": "primitive",
-      "status": "partial",
-      "note": "仅字段内部label"
+      "status": "implemented_pending_verification",
+      "note": "额外原生标签精确关联实际字段，保留原标签并修复滑块内部ID碰撞；真实指针/触摸待合批。"
     },
     {
       "id": "base-link",
@@ -477,8 +477,8 @@
       "id": "person-profile",
       "name": "Person",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供数档案、原生详情与安全来源阅读已本地实现；不作身份核验，真实浏览器待合批。"
     },
     {
       "id": "reddit-thread-card",
@@ -491,8 +491,8 @@
       "id": "restaurant-menu",
       "name": "Restaurant Menu",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "供数菜单的原生搜索/分类与精确零值/缺价、持久详情已本地实现；真实浏览器待合批。"
     },
     {
       "id": "entity-reviews",
@@ -575,8 +575,8 @@
       "id": "prompt-suggestions",
       "name": "Follow Up",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原生供数建议选择、可取消显式DOM事件及禁用/重入/清理边界已本地实现；无自动发消息，真实浏览器待合批。"
     },
     {
       "id": "conversation-suggestions",
@@ -617,8 +617,8 @@
       "id": "writing-block",
       "name": "Writing Block",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "本地原生草稿、显式可信复制/选择/还原、迟到结果与禁用保护已本地实现；真实剪贴板/输入与视觉待合批。"
     },
     {
       "id": "artist-upcoming-events",

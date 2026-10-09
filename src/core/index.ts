@@ -1,3 +1,4 @@
+import {inspectPersonProfile} from './person-profile.js';
 import {inspectAgenda} from './agenda.js';
 import {ratingValueIssue} from './rating.js';
 import {inspectVocabCard} from './vocab.js';
@@ -6,6 +7,8 @@ import {inspectClock} from './time.js';
 import {tableLayout, isTableCellObject, TableLayoutError} from './table.js';
 import {inspectHeatmap} from './heatmap.js';
 import {isFinance,inspectFinance} from './finance.js';
+import {inspectMenu} from './menu.js';
+import {inspectSuggestions} from './suggestions.js';
 import {inspectChecklist} from './checklist.js';
 import {inspectFillBlank} from './fill-blank.js';
 import {inspectSentenceBuilder} from './sentence-builder.js';
@@ -269,14 +272,25 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     return op === 'format' ? 'string' : op === 'gt' || op === 'lt' ? 'boolean' : 'number';
   };
   for (const [key, value] of Object.entries(computed)) if (value !== undefined) capture(() => { infer(value, pointer('/computed', key)); });
+  // Index the whole document before checking references, including hidden and
+  // later siblings. Authored IDs are exact strings, never DOM selectors.
+  const idNodes = new Map<string, Node>();
+  walkNodes(document, node => { if (node.id) idNodes.set(node.id, node); });
   const ids = new Set<string>();
   walkNodes(document, (node, path, parent) => {
     if (node.id) { if (ids.has(node.id)) add(issue('DUPLICATE_ID', `${path}/id`, `Duplicate node id: ${node.id}.`)); ids.add(node.id); }
+    if (node.type === 'label') {
+      const target = idNodes.get(node.target);
+      if (!target) add(issue('LABEL_TARGET', `${path}/target`, 'Label target must name an authored node ID in this document.'));
+      else if (!['input', 'textarea', 'slider', 'toggle', 'select'].includes(target.type)) add(issue('LABEL_TARGET_TYPE', `${path}/target`, 'Label target must be a supported native single control.'));
+    }
     for (const [value, at] of nodeValues(node, path)) capture(() => { infer(value, at); });
     inspectExtension(node,path,state,add);
     if(isSports(node))inspectSports(node,path,add,isSafeURL);
     if(isLearning(node))inspectLearning(node,path,add);
     if(node.type==='vocab-card')inspectVocabCard(node,path,add);
+    if(node.type==='restaurant-menu')inspectMenu(node,path,add,isSafeURL);
+    if(node.type==='prompt-suggestions')inspectSuggestions(node,path,add);
     if(node.type==='fill-blank')inspectFillBlank(node,path,add);
     if(node.type==='checklist')inspectChecklist(node,path,state,add);
     if(node.type==='sentence-builder')inspectSentenceBuilder(node,path,add);
@@ -284,6 +298,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='finance-heatmap')inspectHeatmap(node,path,add,isSafeURL);
     if(node.type==='unit-converter'||node.type==='currency-converter')inspectConverters(node,path,add,isSafeURL);
     if(node.type==='clock')inspectClock(node,path,add);
+    if(node.type==='person-profile')inspectPersonProfile(node,path,add,isSafeURL);
     if(node.type==='agenda')inspectAgenda(node,path,add,isSafeURL);
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));

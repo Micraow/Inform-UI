@@ -1,0 +1,10 @@
+{
+ "version":"iui/1",
+ "title":"Local writing drafts",
+ "state":{"count":0},
+ "body":[
+  {"type":"writing-block","id":"main-draft","label":"Draft a short update","value":"This is an original, local example.\r\nEdit this text and copy it when ready. 😀\rNo message is sent.","note":"Choose Copy to copy the current visible text, or Select text for manual copying."},
+  {"type":"writing-block","id":"readonly-draft","label":"Read-only reference","value":"This supplied text remains selectable.","editable":false},
+  {"type":"button","label":"Unrelated shared state","action":{"kind":"set","bind":"count","value":1}}
+ ]
+}

@@ -1,0 +1,23 @@
+# Writing block: local candidate, browser acceptance pending
+
+`writing-block` is one canonical base node, separate from `code`, form `input`, and form `textarea`.
+
+```json
+{"type":"writing-block","label":"Draft an update","value":"An original draft.\r\nSecond line.","editable":true,"note":"Optional literal context."}
+```
+
+Required `label` has 1–200 Unicode code points; required `value` is a literal string with at most 12000 code points (empty is allowed). Optional `editable` is a literal boolean, default true; false makes the native textarea read-only, while retaining selection and Copy. Optional literal `note` has at most 1000 code points. No recipients, send, save, upload/export, state binding, rich-text interpretation, AI writing service, custom spellchecking service, or persistence is provided. Browser-native text editing behavior remains native.
+
+CRLF and standalone CR in the initial value explicitly normalize to LF, matching native textarea editing. The caller's document is unchanged. The local editing value, Revert target, visible character count, and requested Clipboard payload all use the normalized visible text; this applies equally to mount and compiled hydration. Unicode is not otherwise normalized. Counts are code points, not grapheme clusters or bytes. The document-wide resource budget is unchanged.
+
+The textarea's native `maxlength` is 24000 UTF-16 units so all valid 12000-codepoint strings fit, including astral emoji. Explicit codepoint validation marks overlength drafts and prevents Copy without truncating the visible draft. Count and dirty state update locally. Unrelated host state and shared reset actions do not repaint this textarea, move focus, or change its selection. An external native form reset preserves the current local draft by aligning `defaultValue` on each local input; this does not reset another field. Every action is a native `type=button`; the textarea has no form submission name. Document form descendants reject with `WRITING_FORM`, including deep layout/list/popover descendants.
+
+Copy follows the existing code component's trust boundary: actual trusted click only, secure owner-window Clipboard `writeText`, write-only, no startup access, read, permission request/query, `execCommand`, automatic copy, or synthetic success. A click captures the exact current normalized visible string once. Copy remains single-flight even while the user edits or reverts. On success, the feedback claims the current draft was copied only if it still equals that snapshot; otherwise it explicitly says an earlier version was copied. A failure or unavailable API gives manual-selection guidance. Select text creates a native textarea range and never claims to copy. Clipboard/OS encoding is controlled by the browser; a previously issued write cannot be canceled on disposal.
+
+Pending and final feedback use guarded `aria-disabled`, leaving Copy focusable rather than native-disabled. Async completion never moves focus. Only explicit Select text or Revert moves focus to the textarea. Guards also handle host reentrancy from secure-context/Clipboard/method getters and from focus listeners. Updated/disposed mounts ignore obsolete promise completions and retained handlers. Valid document updates intentionally replace the local draft; invalid updates remain atomic.
+
+Markup is literal and owner-document native. Internal IDs cannot overlap the authored mount prefix. CSS uses root-scoped existing tokens, proportional text, logical layout, wrapping, minimum 44px actions, and forced-color/focus styling. No animation or network request is added.
+
+Local JSDOM public/negative/lifecycle tests and clearly labeled captured-handler Clipboard test doubles cover the contract. These doubles are not trusted browser events and are not evidence of OS clipboard writes. `tests/browser/writing.spec.mjs` is prepared and unexecuted, including real mouse/keyboard/touch with writeText-only local stubs, theme/narrow/RTL/forced-color, iframe, external reset, and offline compiler cases. No browser run, CI, publish, or whole-suite aggregate is claimed for this isolated handoff. Owner integration should regenerate schema/types/validators/subsets and aggregate the pending canonical count once.
+
+Native inherited disabled fieldsets suppress every local action, including forged events; read-only or disabled input events restore the retained draft. Enabled standalone read-only content still supports explicit selection, copy and revert. A local captured-handler Clipboard test is a test double; it does not certify real browser permission or an OS Clipboard write.

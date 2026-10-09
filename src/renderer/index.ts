@@ -1,3 +1,8 @@
+import {renderWriting} from './writing.js';
+import {renderPersonProfile} from './person-profile.js';
+import {renderMenu} from './menu.js';
+import {renderSuggestions} from './suggestions.js';
+import {createLabels} from './labels.js';
 import {renderButton} from './button.js';
 import {renderAgenda} from './agenda.js';
 import {renderFavicon} from './favicon.js';
@@ -111,6 +116,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   function ensureLive() { if (disposed) throw new Error('This UI controller has been disposed'); }
   const context:RendererContext={doc,prefix,labels:()=>labels,element,svg,on,bind,cleanup:fn=>removers.push(fn),value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{}};
   const forms=createForms(context);
+  const fieldLabels=createLabels(context);
   const children = (parent: HTMLElement, nodes: readonly Node[]) => { for (const node of nodes) parent.append(render(node)); };
   function formula(latex: string, block = true) {
     const target = element(block ? 'div' : 'span', 'iui-math');
@@ -141,6 +147,11 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if ('shimmer' in n && n.shimmer) out.classList.add('iui-text-shimmer');
         break;
       }
+      case 'restaurant-menu':out=renderMenu(context,n,labels.menuUI);break;
+      case 'prompt-suggestions':out=renderSuggestions(context,n,labels.suggestionsUI);break;
+      case 'label':out=fieldLabels.render(n);break;
+      case 'person-profile':out=renderPersonProfile(context,n,labels.personUI);break;
+      case 'writing-block':out=renderWriting(context,n,labels.writingUI);break;
       case 'markdown': out=renderMarkdown(context,n,labels.markdownUI);break;
       case 'code': out=renderCode(context,n,labels);break;
       case 'math': out = formula(n.latex,n.block ?? true); break;
@@ -189,7 +200,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'metric-grid': out=element('div','iui-layout iui-metric-grid');out.style.setProperty('--iui-columns',String(n.columns??2));out.style.setProperty('--iui-mobile-columns',String(Math.min(2,n.columns??2)));children(out,n.children);break;
       case 'steps': out=element('ol','iui-steps');for(const item of n.items){const li=element('li');li.append(element('strong','',item.title));if(item.detail)li.append(element('p','',item.detail));if(item.latex)li.append(formula(item.latex));out.append(li);}break;
       case 'callout': out=element('aside','iui-callout',n.value);out.dataset.tone=n.tone??'neutral';break;
-      case 'slider': {out=element('div','iui-control');const id=prefix+`control-${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
+      case 'slider': {out=element('div','iui-control');const id=`iui-control-internal-${prefix}${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;bind(()=>input.checked=state[n.bind]===true);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
       case 'button': out=renderButton(context,n,labels.buttonUI,current.state??{});break;
@@ -219,7 +230,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'native': throw new Error('Native runtime is not supported');
       default: {const impossible: never=n;throw new Error(`Unsupported node: ${JSON.stringify(impossible)}`);}
     }
-    out.dataset.iui=n.type;if(n.id)out.id=prefix+n.id;return out;
+    out.dataset.iui=n.type;if(n.id)out.id=prefix+n.id;fieldLabels.registerTarget(n,out);return out;
   }
   function topology(n: Extract<Node,{type:'topology'}>) {
     const figure=element('figure','iui-topology'),graphic=svg('svg',{role:'img','aria-label':n.caption??labels.topology});figure.append(graphic);

@@ -1,5 +1,11 @@
 # Changelog
 
+## Local reading and draft checkpoint (browser pending)
+
+- Add supplied menu, explicit suggestion handoff, extra native field labels, supplied person profile and local writing draft.
+- Harden native label IDs, disabled writing actions and menu JSON numeric consistency without counting regression fixes as extra components.
+- Full Node run737/738 plus corrected discovery metadata and8/8 subset regressions; runtime hashes unchanged, final build/type/boundary gates pass. Twenty distinct candidates remain pending; see [exact evidence](docs/local-enhancements-80.md).
+
 ## Local supplied cards and actions checkpoint (browser pending)
 
 - Add finite supplied vocabulary, integer rating, consent-gated supplied favicon and floating-date agenda modules.

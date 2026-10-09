@@ -6,3 +6,5 @@ export type {Controller,MountOptions} from './renderer/index.js';
 export type {IUIDocument,Node,Value} from './schema/document.js';
 
 export type {FormAction,FormActionContext} from './renderer/context.js';
+
+export type {SuggestionDetail} from './renderer/suggestions.js';

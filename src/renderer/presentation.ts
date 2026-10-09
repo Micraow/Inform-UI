@@ -1,3 +1,6 @@
+import {personEnglish,personChinese} from './person-labels.js';
+import {menuEnglish,menuChinese} from './menu-labels.js';
+import {suggestionsEnglish,suggestionsChinese} from './suggestions-labels.js';
 import {buttonEnglish,buttonChinese} from './button-labels.js';
 import {agendaEnglish,agendaChinese} from './agenda-labels.js';
 import {faviconEnglish,faviconChinese} from './favicon-labels.js';
@@ -8,6 +11,7 @@ import {fillBlankEnglish,fillBlankChinese} from './fill-blank-labels.js';
 import {sentenceBuilderEnglish,sentenceBuilderChinese} from './sentence-builder-labels.js';
 import {markdownEnglish,markdownChinese} from './markdown-labels.js';
 import {codeEnglish,codeChinese} from './code-labels.js';
+import {writingEnglish,writingChinese} from './writing-labels.js';
 import {carouselEnglish,carouselChinese} from './carousel-labels.js';
 import {sourceEnglish,sourceChinese} from './source-labels.js';
 import {loadingEnglish,loadingChinese} from './loading-labels.js';
@@ -27,6 +31,8 @@ export function formatNumber(value: number): string {
 
 import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
+  personUI:personEnglish,
+  menuUI:menuEnglish,suggestionsUI:suggestionsEnglish,
   buttonUI:buttonEnglish,
   agendaUI:agendaEnglish,
   faviconUI:faviconEnglish,
@@ -36,6 +42,7 @@ const english = {
   markdownUI:markdownEnglish,
   pieUI:pieEnglish,
   codeUI: codeEnglish,
+  writingUI: writingEnglish,
   carouselUI: carouselEnglish,
   sources: sourceEnglish,
   loadingUI: loadingEnglish,
@@ -52,6 +59,8 @@ const english = {
   loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', invalidDate:'Enter a valid date.', beforeMinDate:'The date is before the earliest allowed date.', afterMaxDate:'The date is after the latest allowed date.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
+  personUI:personChinese,
+  menuUI:menuChinese,suggestionsUI:suggestionsChinese,
   buttonUI:buttonChinese,
   agendaUI:agendaChinese,
   faviconUI:faviconChinese,
@@ -61,6 +70,7 @@ const chinese: typeof english = {
   markdownUI:markdownChinese,
   pieUI:pieChinese,
   codeUI: codeChinese,
+  writingUI: writingChinese,
   carouselUI: carouselChinese,
   sources: sourceChinese,
   loadingUI: loadingChinese,

@@ -126,3 +126,37 @@ const missingAgendaStart:Node={type:'agenda',label:'Bad',events:[{id:'one',date:
 // @ts-expect-error agenda controls are local and cannot bind form values
 const boundAgendaFilter:Node={type:'agenda',label:'Bad',events:[],bind:'day'};
 void [agenda,untimedAgenda,boundAgenda,missingAgendaStart,boundAgendaFilter];
+
+
+import type {SuggestionDetail} from '../dist/index.js';
+import type {SuggestionDetail as BrowserSuggestionDetail} from '../dist/browser.js';
+const suggestions:Node={type:'prompt-suggestions',label:'Ideas',items:[{id:'one',text:'Literal supplied text'}],initialVisible:1};
+const suggestionDetail:SuggestionDetail={componentId:null,suggestionId:'one',text:'Exact supplied text'};
+const browserSuggestionDetail:BrowserSuggestionDetail=suggestionDetail;
+// @ts-expect-error event detail is readonly
+suggestionDetail.text='mutated';
+// @ts-expect-error label is required
+const missingSuggestionLabel:Node={type:'prompt-suggestions',items:[{id:'one',text:'Text'}]};
+// @ts-expect-error arbitrary host callbacks are not part of the authored node
+const automaticSuggestion:Node={type:'prompt-suggestions',label:'Ideas',items:[{id:'one',text:'Text'}],onSelect:()=>{}};
+// @ts-expect-error no alternate conversation alias
+const conversationSuggestion:Node={type:'conversation-suggestions',label:'Ideas',items:[{id:'one',text:'Text'}]};
+void [suggestions,browserSuggestionDetail,missingSuggestionLabel,automaticSuggestion,conversationSuggestion];
+
+import './label-types-consumer.mjs';
+
+
+const writing:Node={type:'writing-block',label:'Local draft',value:'Literal text',editable:true,note:'Optional plain text'};
+void writing;
+// @ts-expect-error writing-block requires an explicit label
+const writingMissingLabel:Node={type:'writing-block',value:'Text'};
+// @ts-expect-error local writing values cannot bind to host state
+const writingBinding:Node={type:'writing-block',label:'Draft',value:{$:'draft'}};
+// @ts-expect-error no recipient, send or persistence action exists
+const writingSend:Node={type:'writing-block',label:'Draft',value:'Text',send:true};
+// @ts-expect-error editable is a literal boolean, not a state expression
+const writingEditable:Node={type:'writing-block',label:'Draft',value:'Text',editable:{$:'enabled'}};
+void [writingMissingLabel,writingBinding,writingSend,writingEditable];
+
+import './person-profile-types-consumer.mjs';
+import './types-menu.mjs';

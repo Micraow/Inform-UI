@@ -18,7 +18,7 @@ const slider = { type: 'slider', label: 'Gain', bind: 'gain', min: 0, max: 10, s
 const chart = { type: 'chart', kind: 'line', xKey: 'x', data: [{ x: 'A', y: 1 }, { x: 'B', y: null }], series: [{ key: 'y', label: 'Value' }] };
 const svg = (attrs) => ({ type: 'svg', viewBox: '0 0 100 100', shapes: [{ tag: 'rect', attrs }] });
 
-test('all original examples validate; public contract contains 75 node types', async () => {
+test('all original examples validate; public contract contains 80 node types', async () => {
   for (const file of await readdir(new URL('../examples/', import.meta.url))) {
     if (!file.endsWith('.json')) continue;
     const input = JSON.parse(await readFile(new URL(`../examples/${file}`, import.meta.url), 'utf8'));
@@ -27,7 +27,7 @@ test('all original examples validate; public contract contains 75 node types', a
   }
   const schema = JSON.parse(await readFile(new URL('../src/schema/iui.schema.json', import.meta.url), 'utf8'));
   assert.equal(schema.$schema, 'https://json-schema.org/draft/2020-12/schema');
-  assert.equal(schema.$defs.Node.oneOf.length, 75);
+  assert.equal(schema.$defs.Node.oneOf.length, 80);
 });
 
 test('successful validation clones, normalizes and deeply freezes data', () => {
@@ -73,7 +73,7 @@ test('does not execute getters and rejects sparse arrays and custom prototypes',
 
 test('enforces nesting, node, text and aggregate budgets before Ajv recursion', () => {
   let nested = { type: 'text', value: 'x' };
-  for (let i = 0; i < 75; i++) nested = { type: 'box', children: [nested] };
+  for (let i = 0; i < 80; i++) nested = { type: 'box', children: [nested] };
   invalid(doc([nested]), 'DEPTH_LIMIT');
   const nodes = Array.from({ length: 5 }, () => ({ type: 'box', children: Array.from({ length: 500 }, () => ({ type: 'divider' })) }));
   invalid(doc(nodes), 'NODE_LIMIT');

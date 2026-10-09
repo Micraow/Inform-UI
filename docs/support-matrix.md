@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 75 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 80 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working candidate source: 74 rendered + 1 rejected =75 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
+**Working candidate source: 79 rendered + 1 rejected =80 node types.** The recommended fixed CDN is the verified 66-node d370 batch, including loading and source-link nodes. See [executed 66-node evidence](verification-66.md). Carousel/code/pie/checkbox/Markdown/date enhancements and the one tabs component remain later candidates pending combined browser/CDN acceptance. Tabs adds two structural node names for one canonical component.
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -69,6 +69,11 @@ results from the current revision for those claims.
 | `form` | Rendered | Local validation/submit/cancel; enabled-form-field snapshot, explicit host-action allowlist, busy deduplication, abort and stale-result guards. No implicit storage/network. |
 | `weather` | Rendered | Supplied provenance/timezone/current/daily/hourly data; local date/unit/metric/chart-table controls; null, loading/empty/error states; explicit percent and DST semantics. No live provider connection. |
 | `sports-schedule` / `sports-scoreboard` / `sports-standings` | Rendered | Shared supplied league/team/game/standing data; local date/team/stage/group filters, disclosures, game selection and stable standings sorting. Explicit score/status/provenance/timezone/null semantics; no live provider or ranking inference. Available in the fixed 52-node CDN; the older 7c490585 pin does not contain these nodes. See sports.md. |
+| `restaurant-menu` | Rendered candidate | Supplied prices/statuses, local literal search and section filter; no provider, dietary verification, order or payment. [Contract](restaurant-menu.md). |
+| `prompt-suggestions` | Rendered candidate | Supplied choices with explicit cancelable DOM handoff; no automatic chat or network operation. [Contract](prompt-suggestions.md). |
+| `label` | Rendered candidate | Native extra label associated with a declared supported control, including forward references. [Contract](label.md). |
+| `person-profile` | Rendered candidate | Supplied literal facts and native biography disclosure; no identity verification or retrieval. [Contract](person-profile.md). |
+| `writing-block` | Rendered candidate | Local textarea draft with explicit trusted copy/selection/revert and honest stale-copy status. No sending or persistence. [Contract](writing-block.md). |
 | `favicon` | Rendered candidate | Supplied image or local fallback, explicit remote-load action, native error/retry and no icon discovery service. See [contract](favicon.md). |
 | `agenda` | Rendered candidate | Strict supplied floating date/time labels, stable date groups and native date filtering. No calendar service or timezone conversion. See [contract](agenda.md). |
 | `rating` | Rendered candidate | Native integer0..max controlled radio rating with atomic bounds; standalone and explicitly excluded from Forms ownership. See [contract](rating.md). |

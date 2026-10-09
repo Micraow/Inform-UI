@@ -44,7 +44,13 @@ defs.AgendaEvent.oneOf = [
   object({ ...defs.AgendaEvent.properties, start:false, end:false })
 ];
 node('agenda', { label:short, description:string(2000), events:array(ref('AgendaEvent'),0,100) }, ['label','events']);
+// Supplied, literal person information only; semantic checks own IDs and URL policy.
+defs.PersonFact = object({ id:key, label:short, value:string(2000,1) }, ['id','label','value']);
+defs.PersonLink = object({ id:key, label:short, url:string(2048,1) }, ['id','label','url']);
+defs.PersonSource = object({ label:short, url:string(2048,1) }, ['label']);
+node('person-profile', { name:short, role:short, organization:short, location:short, biography:string(6000), expanded:bool, facts:array(ref('PersonFact'),0,12), links:array(ref('PersonLink'),0,8), source:ref('PersonSource') }, ['name']);
 node('markdown', { value: string() }, ['value']);
+node('writing-block', { label: short, value: string(), editable: bool, note: string(1000) }, ['label','value']);
 node('code', { value: string(), language: short, inline: bool, copy: bool, highlight: bool }, ['value']);
 // Inline code cannot opt into block controls. Keep exact disjoint structural
 // branches so validator, generated public types and all domain subsets agree.
@@ -82,6 +88,9 @@ const sourceFields = { title: string(300,1), url: string(2048,1), publisher: str
 defs.SourceRecord = object(sourceFields, ['title','url']);
 node('citation', { ...sourceFields, number: integer(1,999) }, ['title','url']);
 node('web-link-cards', { label: short, items: array(ref('SourceRecord'),1,20) }, ['label','items']);
+// Original supplied prompt suggestions: explicit DOM handoff, no generated/chat content.
+defs.PromptSuggestion=object({id:key,text:string(2000,1)},['id','text']);
+node('prompt-suggestions',{label:short,description:string(1000),items:array(ref('PromptSuggestion'),1,12),initialVisible:integer(1,12)},['label','items']);
 node('carousel', { children, label: short, controls: bool }, ['children']);
 node('tab-panel', { label: short, disabled: bool, children }, ['id','label','children']);
 node('tab-group', { label: short, initial: short, children: array(ref('TabPanelNode'),1,20) }, ['label','children']);
@@ -89,12 +98,17 @@ node('list', { ordered: bool, items: array({ anyOf: [ref('Value'), ref('Node')] 
 defs.TableCellObject = object({ value: ref('Value'), rowSpan: integer(1, 200), colSpan: integer(1, 20), header: bool, scope: choice('row', 'col', 'rowgroup'), align }, ['value']);
 defs.TableCell = { anyOf: [ref('Value'), ref('TableCellObject')] };
 defs.TableSection = object({ kind: choice('head', 'body', 'foot'), rows: array(array(ref('TableCell'), 0, 20), 0, 200) }, ['kind', 'rows']);
+// Original supplied-data menu. All records are finite, local and strictly declarative.
+defs.MenuItem = object({id:key,name:short,description:string(2000),price:{anyOf:[{type:'number',minimum:0},{type:'null'}]},tags:array(string(40,1),0,8),status:choice('available','unavailable')},['id','name','price']);
+defs.MenuSection = object({id:key,title:short,items:array(ref('MenuItem'),0,40)},['id','title','items']);
+node('restaurant-menu',{title:short,description:string(2000),currency:{type:'string',pattern:'^[A-Z]{3}$'},source:object({label:short,url:string(2048,1)},['label']),sections:array(ref('MenuSection'),0,20)},['title','currency','sections']);
 node('table', { columns: array(short, 1, 20), rows: array(array(ref('TableCell'), 0, 20), 0, 200), sections: array(ref('TableSection'), 1, 12), caption: string(), status: choice('ready', 'loading', 'error'), message: string() }, ['columns']);
 defs.TableNode.oneOf = [object(defs.TableNode.properties, ['rows']), object(defs.TableNode.properties, ['sections'])];
 node('metric', { variant: choice('plain', 'card'), label: short, value: ref('Value'), unit: short, hint: string(), precision: integer(0, 6), color }, ['label', 'value']);
 node('metric-grid', { children: array(ref('Node'), 1, 12), columns: integer(1, 4) }, ['children']);
 node('steps', { items: array(object({ title: short, detail: string(), latex: string() }, ['title']), 1, 20) }, ['items']);
 node('callout', { value: string(), tone: choice('neutral', 'info', 'caution') }, ['value']);
+node('label', { text: short, target: short }, ['text', 'target']);
 node('slider', { label: short, bind: short, min: number, max: number, step: { ...number, exclusiveMinimum: 0 }, unit: short, marks: array(object({ value: number, label: string() }, ['value', 'label']), 0, 30) }, ['label', 'bind', 'min', 'max', 'step']);
 defs.ChecklistItem=object({id:key,label:short,bind:key,hint:string(1000),disabled:ref('Value')},['id','label','bind']);
 node('checklist',{label:short,items:array(ref('ChecklistItem'),0,50),disabled:ref('Value'),filter:bool,bulk:bool,emptyText:string(1000)},['label','items']);

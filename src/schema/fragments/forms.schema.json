@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:aa9cebeceaf7795666e9c971fb0ac9b0e254765f8cb45983479413362c40c317:document:base+forms",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b06a7e9087799f851146d3992d937e43eea8e77b59b6fea194ca2b55bf6fcb79:document:base+forms",
   "title": "Inform UI document subset: base, forms",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1786,6 +1786,35 @@
         }
       }
     },
+    "LabelNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "label"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "text",
+        "target"
+      ],
+      "additionalProperties": false
+    },
     "LinkNode": {
       "type": "object",
       "properties": {
@@ -2035,6 +2064,85 @@
       ],
       "additionalProperties": false
     },
+    "MenuItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "status": {
+          "enum": [
+            "available",
+            "unavailable"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "price"
+      ],
+      "additionalProperties": false
+    },
+    "MenuSection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MenuItem"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "MetricGridNode": {
       "type": "object",
       "properties": {
@@ -2140,7 +2248,13 @@
           "$ref": "#/$defs/AgendaNode"
         },
         {
+          "$ref": "#/$defs/PersonProfileNode"
+        },
+        {
           "$ref": "#/$defs/MarkdownNode"
+        },
+        {
+          "$ref": "#/$defs/WritingBlockNode"
         },
         {
           "$ref": "#/$defs/CodeNode"
@@ -2224,6 +2338,9 @@
           "$ref": "#/$defs/WebLinkCardsNode"
         },
         {
+          "$ref": "#/$defs/PromptSuggestionsNode"
+        },
+        {
           "$ref": "#/$defs/CarouselNode"
         },
         {
@@ -2234,6 +2351,9 @@
         },
         {
           "$ref": "#/$defs/ListNode"
+        },
+        {
+          "$ref": "#/$defs/RestaurantMenuNode"
         },
         {
           "$ref": "#/$defs/TableNode"
@@ -2249,6 +2369,9 @@
         },
         {
           "$ref": "#/$defs/CalloutNode"
+        },
+        {
+          "$ref": "#/$defs/LabelNode"
         },
         {
           "$ref": "#/$defs/SliderNode"
@@ -2287,6 +2410,139 @@
           "$ref": "#/$defs/ButtonNode"
         }
       ]
+    },
+    "PersonFact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "PersonLink": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "PersonProfileNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "person-profile"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "organization": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "biography": {
+          "type": "string",
+          "maxLength": 6000
+        },
+        "expanded": {
+          "type": "boolean"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PersonFact"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PersonLink"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "source": {
+          "$ref": "#/$defs/PersonSource"
+        }
+      },
+      "required": [
+        "type",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "PersonSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "additionalProperties": false
     },
     "PopoverNode": {
       "type": "object",
@@ -2328,6 +2584,66 @@
         "type",
         "label",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "PromptSuggestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "PromptSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "prompt-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PromptSuggestion"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
+        "initialVisible": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
       ],
       "additionalProperties": false
     },
@@ -2484,6 +2800,66 @@
         "type",
         "label",
         "bind"
+      ],
+      "additionalProperties": false
+    },
+    "RestaurantMenuNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "restaurant-menu"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "label"
+          ],
+          "additionalProperties": false
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MenuSection"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "currency",
+        "sections"
       ],
       "additionalProperties": false
     },
@@ -3777,6 +4153,41 @@
         "type",
         "label",
         "items"
+      ],
+      "additionalProperties": false
+    },
+    "WritingBlockNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "writing-block"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "editable": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "value"
       ],
       "additionalProperties": false
     }

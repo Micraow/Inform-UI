@@ -1,10 +1,10 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验53，部分6，已写待验15，未实现182。
+当前固定分母为256项：功能已验53，部分5，已写待验20，未实现178。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
-最近正式验收见[66节点证据](verification-66.md)。十五项本地候选见[75节点本地冻结](local-enhancements-75.md)，621项Node通过仍不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
+最近正式验收见[66节点证据](verification-66.md)。二十项本地候选见[80节点本地冻结](local-enhancements-80.md)，本地测试不计真实浏览器验收；累计约30个实际canonical组件再合并远端CI。
 
 | ID | 组件 | 状态 | 说明 |
 |---|---|---|---|
@@ -35,7 +35,7 @@
 | base-icon | 图标 | 功能已验 | 3d2c0ce批次：292项Node、216项Chromium及42消费者视图通过；01ae9d8同版固定CDN/SRI与真实file://交互通过，亮暗390/1100截图复核。有限合同与验收边界见docs/verification-62.md。 |
 | base-image | 图片 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-input | 单行输入 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
-| base-label | 字段标签 | 部分实现 | 仅字段内部label |
+| base-label | 字段标签 | 已写待验 | 额外原生标签精确关联实际字段，保留原标签并修复滑块内部ID碰撞；真实指针/触摸待合批。 |
 | base-link | 链接 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-list | 列表 | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | base-loading | 加载指示 | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
@@ -70,9 +70,9 @@
 | citation | Cite | 功能已验 | 7db01a6批次：338项Node、241项Chromium、42+18消费者视图通过；d370固定CDN真实file://与SRI/同版Schema发现通过；亮暗窄宽原图复核。有限合同与证据见docs/verification-66.md。 |
 | calendar-agenda | Calendar List | 已写待验 | 原创供数日程、严格日期时间、稳定分组/筛选与保留详情已本地实现；621项整合Node通过，真实浏览器待合批。 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
-| person-profile | Person | 未实现 | 暂无专门实现证据 |
+| person-profile | Person | 已写待验 | 供数档案、原生详情与安全来源阅读已本地实现；不作身份核验，真实浏览器待合批。 |
 | reddit-thread-card | Reddit | 未实现 | 暂无专门实现证据 |
-| restaurant-menu | Restaurant Menu | 未实现 | 暂无专门实现证据 |
+| restaurant-menu | Restaurant Menu | 已写待验 | 供数菜单的原生搜索/分类与精确零值/缺价、持久详情已本地实现；真实浏览器待合批。 |
 | entity-reviews | Entity Reviews | 未实现 | 暂无专门实现证据 |
 | restaurant-availability | Reservation Time Pills Ref | 未实现 | 暂无专门实现证据 |
 | scheduled-task-suggestion | Offer Scheduled Prompt | 未实现 | 暂无专门实现证据 |
@@ -84,13 +84,13 @@
 | onboarding-selection | Onboarding Selection Card | 未实现 | 暂无专门实现证据 |
 | entity-overview | Entity Overview | 未实现 | 暂无专门实现证据 |
 | entity-card | Entity Card | 未实现 | 暂无专门实现证据 |
-| prompt-suggestions | Follow Up | 未实现 | 暂无专门实现证据 |
+| prompt-suggestions | Follow Up | 已写待验 | 原生供数建议选择、可取消显式DOM事件及禁用/重入/清理边界已本地实现；无自动发消息，真实浏览器待合批。 |
 | conversation-suggestions | Conversational Onboarding Follow Up Pills | 未实现 | 暂无专门实现证据 |
 | news-article | News Article | 未实现 | 暂无专门实现证据 |
 | flight-option | Flight Card | 未实现 | 暂无专门实现证据 |
 | currency-converter | Currency Converter | 功能已验 | b5664a8完整CI：167项Node、136项浏览器；转换器9个source场景及6个实际CDN视图通过，中文亮暗截图已复核 |
 | code-block | Code Block | 已写待验 | 显式可信复制、有限原生高亮与原文保持已本地实现；真实激活/剪贴板边界及视觉待合批。 |
-| writing-block | Writing Block | 未实现 | 暂无专门实现证据 |
+| writing-block | Writing Block | 已写待验 | 本地原生草稿、显式可信复制/选择/还原、迟到结果与禁用保护已本地实现；真实剪贴板/输入与视觉待合批。 |
 | artist-upcoming-events | Artist Upcoming Events | 未实现 | 暂无专门实现证据 |
 | ask-user-details | Ask User Details | 未实现 | 暂无专门实现证据 |
 | ask-user-files | Ask User Files | 未实现 | 暂无专门实现证据 |

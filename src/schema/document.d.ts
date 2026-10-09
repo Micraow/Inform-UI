@@ -35,7 +35,9 @@ export type Node =
   | TitleNode
   | CaptionNode
   | AgendaNode
+  | PersonProfileNode
   | MarkdownNode
+  | WritingBlockNode
   | CodeNode
   | MathNode
   | BadgeNode
@@ -63,15 +65,18 @@ export type Node =
   | LoadingBlockNode
   | CitationNode
   | WebLinkCardsNode
+  | PromptSuggestionsNode
   | CarouselNode
   | TabPanelNode
   | TabGroupNode
   | ListNode
+  | RestaurantMenuNode
   | TableNode
   | MetricNode
   | MetricGridNode
   | StepsNode
   | CalloutNode
+  | LabelNode
   | SliderNode
   | ChecklistNode
   | RatingNode
@@ -484,10 +489,53 @@ export interface AgendaNode {
    */
   events: AgendaEvent[];
 }
+export interface PersonProfileNode {
+  type: "person-profile";
+  id?: string;
+  name: string;
+  role?: string;
+  organization?: string;
+  location?: string;
+  biography?: string;
+  expanded?: boolean;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  facts?: PersonFact[];
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  links?: PersonLink[];
+  source?: PersonSource;
+}
+export interface PersonFact {
+  id: string;
+  label: string;
+  value: string;
+}
+export interface PersonLink {
+  id: string;
+  label: string;
+  url: string;
+}
+export interface PersonSource {
+  label: string;
+  url?: string;
+}
 export interface MarkdownNode {
   type: "markdown";
   id?: string;
   value: string;
+}
+export interface WritingBlockNode {
+  type: "writing-block";
+  id?: string;
+  label: string;
+  value: string;
+  editable?: boolean;
+  note?: string;
 }
 export interface MathNode {
   type: "math";
@@ -766,6 +814,22 @@ export interface SourceRecord {
   publisher?: string;
   description?: string;
 }
+export interface PromptSuggestionsNode {
+  type: "prompt-suggestions";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  items: [PromptSuggestion, ...PromptSuggestion[]];
+  initialVisible?: number;
+}
+export interface PromptSuggestion {
+  id: string;
+  text: string;
+}
 export interface CarouselNode {
   type: "carousel";
   id?: string;
@@ -808,6 +872,43 @@ export interface ListNode {
    * @maxItems 100
    */
   items: (Value | Node)[];
+}
+export interface RestaurantMenuNode {
+  type: "restaurant-menu";
+  id?: string;
+  title: string;
+  description?: string;
+  currency: string;
+  source?: {
+    label: string;
+    url?: string;
+  };
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  sections: MenuSection[];
+}
+export interface MenuSection {
+  id: string;
+  title: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  items: MenuItem[];
+}
+export interface MenuItem {
+  id: string;
+  name: string;
+  description?: string;
+  price: number | null;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  tags?: string[];
+  status?: "available" | "unavailable";
 }
 export interface TableCellObject {
   value: Value;
@@ -871,6 +972,12 @@ export interface CalloutNode {
   id?: string;
   value: string;
   tone?: "neutral" | "info" | "caution";
+}
+export interface LabelNode {
+  type: "label";
+  id?: string;
+  text: string;
+  target: string;
 }
 export interface SliderNode {
   type: "slider";

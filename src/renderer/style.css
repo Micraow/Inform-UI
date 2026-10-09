@@ -783,3 +783,87 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-button-cancel[hidden]{display:none}
 .iui-root .iui-button-status:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
 @media(forced-colors:active){.iui-root .iui-button[data-tone]:enabled{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-root .iui-button:disabled{color:GrayText;border-color:GrayText}.iui-root .iui-button-status:focus-visible{outline-color:Highlight}}
+
+
+/* Original finite menu, responsive local controls and literal supplied data. */
+.iui-root .iui-menu{display:flex;flex-direction:column;gap:12px;max-inline-size:100%;min-inline-size:0}
+.iui-root .iui-menu-controls{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
+.iui-root .iui-menu-control{display:flex;flex:1 1 190px;flex-direction:column;gap:5px;max-inline-size:100%;font-size:.875rem}
+.iui-root .iui-menu :is(input,select,button){min-block-size:44px;max-inline-size:100%;font:inherit}
+.iui-root .iui-menu :is(input,select){inline-size:100%;padding:8px 12px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-bg);color:var(--iui-ink)}
+.iui-root .iui-menu button{white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-menu :is(input,select,button):disabled{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-menu-count{font-size:.875rem;font-variant-numeric:tabular-nums;color:var(--iui-muted)}
+.iui-root .iui-menu-limit{color:var(--iui-danger);font-size:.875rem}
+.iui-root .iui-menu-empty{padding:20px;border:1px dashed var(--iui-line);border-radius:8px;color:var(--iui-muted)}
+.iui-root .iui-menu-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;list-style:none;padding:0;margin:10px 0 0}
+.iui-root .iui-menu-item{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--iui-line);border-radius:10px;background:var(--iui-surface)}
+.iui-root .iui-menu-item-heading{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;align-items:baseline}
+.iui-root .iui-menu-name{font-size:1rem;line-height:1.5;font-weight:600;margin:0;flex:1 1 130px}
+.iui-root .iui-menu-price{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.iui-root .iui-menu-description{white-space:pre-wrap;font-size:.925rem}
+.iui-root .iui-menu-item-status{font-size:.8rem;color:var(--iui-muted)}
+.iui-root .iui-menu-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.iui-root .iui-menu-tag{font-size:.8rem;white-space:pre-wrap;border:1px solid var(--iui-line);border-radius:6px;padding:2px 7px}
+.iui-root .iui-menu-details summary{padding-block:8px;min-block-size:44px}
+.iui-root .iui-menu-details .iui-menu-description{margin-block-start:8px}
+.iui-root .iui-menu [hidden]{display:none!important}
+.iui-root .iui-menu :is(input,select,button,summary,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(forced-colors:active){.iui-root .iui-menu :is(input,select,button),.iui-root .iui-menu-item,.iui-root .iui-menu-tag,.iui-root .iui-menu-empty{border-color:ButtonText}.iui-root .iui-menu-limit{color:CanvasText}.iui-root .iui-menu :is(input,select,button):disabled{color:GrayText}}
+
+
+/* Supplied local suggestions; all selectors stay inside the owning renderer. */
+.iui-root .iui-suggestions{display:flex;flex-direction:column;gap:12px;max-inline-size:100%;min-inline-size:0}
+.iui-root .iui-suggestions :is(.iui-suggestions-title,.iui-suggestions-description,.iui-suggestions-choice){white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-suggestions-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;list-style:none;padding:0;margin:0}
+.iui-root .iui-suggestions-list>li{display:flex;min-inline-size:0}
+.iui-root .iui-suggestions-choice{inline-size:100%;min-block-size:44px;text-align:start;padding:12px 14px;background:var(--iui-surface);border:1px solid var(--iui-line);line-height:1.5}
+.iui-root .iui-suggestions-choice[aria-pressed=true]{border-color:var(--iui-focus);box-shadow:inset 0 0 0 1px var(--iui-focus);font-weight:600}
+.iui-root .iui-suggestions-actions{display:flex;flex-wrap:wrap;gap:10px}
+.iui-root .iui-suggestions-actions button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-suggestions button:disabled,.iui-root .iui-suggestions button[aria-disabled=true]{color:var(--iui-muted);cursor:default}
+.iui-root .iui-suggestions-status{font-size:.875rem;min-block-size:1.5em;overflow-wrap:anywhere}
+.iui-root .iui-suggestions [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-suggestions-choice[aria-pressed=true]{outline:2px solid Highlight;outline-offset:-4px;border-color:Highlight}.iui-root .iui-suggestions button:disabled,.iui-root .iui-suggestions button[aria-disabled=true]{color:GrayText}}
+
+/* Additional native labels keep author text and inherited direction intact. */
+.iui-root .iui-label{display:block;box-sizing:border-box;min-inline-size:0;max-inline-size:100%;min-block-size:44px;padding-block:8px;font-weight:600;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+
+
+
+/* Independent literal writing drafts, with native textarea editing/selection. */
+.iui-root .iui-writing-block{display:flex;flex-direction:column;gap:10px;min-inline-size:0;max-inline-size:100%;padding:16px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-bg)}
+.iui-root .iui-writing-label{font-weight:600;overflow-wrap:anywhere}
+.iui-root .iui-writing-draft{box-sizing:border-box;inline-size:100%;min-inline-size:0;max-inline-size:100%;min-block-size:180px;resize:vertical;font:inherit;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;color:var(--iui-ink);background:var(--iui-surface);border:1px solid var(--iui-line);border-radius:8px}
+.iui-root .iui-writing-meta,.iui-root .iui-writing-controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.iui-root .iui-writing-count{font-variant-numeric:tabular-nums}
+.iui-root .iui-writing-meta,.iui-root .iui-writing-note{color:var(--iui-muted);font-size:.85rem;overflow-wrap:anywhere}
+.iui-root .iui-writing-block p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.iui-root .iui-writing-limit{color:var(--iui-danger)}
+.iui-root .iui-writing-status{min-block-size:1.5em;font-size:.9rem}
+.iui-root .iui-writing-controls button{min-block-size:44px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;touch-action:manipulation}
+.iui-root .iui-writing-controls button[aria-disabled=true]{color:var(--iui-disabled-text);background:var(--iui-disabled-bg);cursor:default}
+.iui-root .iui-writing-block :is(textarea,button):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-writing-block [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-writing-block,.iui-root .iui-writing-draft,.iui-root .iui-writing-controls button{border-color:ButtonText}.iui-root .iui-writing-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-writing-limit{color:CanvasText}}
+
+
+
+/* Supplied person records: text only, native disclosure, no remote media. */
+.iui-root .iui-person-profile{min-inline-size:0;max-inline-size:100%;padding:18px;border:1px solid var(--iui-line);border-radius:12px;background:var(--iui-surface-primary);overflow-wrap:anywhere}
+.iui-root .iui-person-profile :is(.iui-person-name,.iui-person-field-value,.iui-person-biography-text,.iui-person-link-label,.iui-person-source-label,dt,dd){white-space:pre-wrap;unicode-bidi:plaintext}
+.iui-root .iui-person-profile>*+*{margin-block-start:10px}
+.iui-root .iui-person-name{font-size:1.3rem;line-height:1.35}
+.iui-root .iui-person-field-label,.iui-root .iui-person-facts dt{font-weight:600}
+.iui-root .iui-person-note,.iui-root .iui-person-link-hint{font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-person-facts{margin-inline:0;padding:0}
+.iui-root .iui-person-fact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:6px 14px;padding-block:8px;border-block-end:1px solid var(--iui-line)}
+.iui-root .iui-person-facts :is(dt,dd){min-inline-size:0;margin:0}
+.iui-root .iui-person-biography>summary{cursor:pointer;min-block-size:44px;padding-block:10px}
+.iui-root .iui-person-biography-text{margin-block:8px}
+.iui-root .iui-person-links-title{font-size:1rem}
+.iui-root .iui-person-links ul{padding-inline-start:1.5rem;margin-block:4px 0}
+.iui-root .iui-person-link{display:inline-block;max-inline-size:100%;min-block-size:44px;padding-block:10px}
+.iui-root .iui-person-profile :is(a,summary):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+@media(max-width:520px){.iui-root .iui-person-profile{padding:14px}.iui-root .iui-person-fact{grid-template-columns:minmax(0,1fr);gap:4px}}
+@media(forced-colors:active){.iui-root .iui-person-profile,.iui-root .iui-person-fact{border-color:CanvasText}.iui-root .iui-person-note,.iui-root .iui-person-link-hint{color:CanvasText}.iui-root .iui-person-profile :focus-visible{outline-color:Highlight}}

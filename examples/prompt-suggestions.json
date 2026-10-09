@@ -1,0 +1,21 @@
+{
+  "version": "iui/1",
+  "title": "Supplied reading suggestions",
+  "theme": "auto",
+  "body": [
+    {
+      "type": "prompt-suggestions",
+      "id": "reading-ideas",
+      "label": "Choose a reading topic",
+      "description": "Original sample prompts supplied with this document. The host app decides what to do with an explicit selection.",
+      "initialVisible": 3,
+      "items": [
+        {"id": "outline", "text": "Help me outline the main claims in this article."},
+        {"id": "questions", "text": "Which questions should I keep in mind while reading?"},
+        {"id": "terms", "text": "Make a list of terms I can look up myself."},
+        {"id": "compare", "text": "What evidence would help compare two explanations?"},
+        {"id": "chinese", "text": "请帮我梳理阅读时需要关注的问题。"}
+      ]
+    }
+  ]
+}
