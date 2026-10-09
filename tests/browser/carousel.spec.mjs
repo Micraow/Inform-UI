@@ -65,6 +65,7 @@ test('nested overlay uses top layer without clipping and survives unrelated stat
  await mount(page);const block=byId(page,'main-rail');await block.getByRole('button',{name:'Open details',exact:true}).click();await block.getByRole('button',{name:'Nested details',exact:true}).click();const panel=block.getByRole('dialog',{name:'Nested details',exact:true,includeHidden:true});await expect(panel).toBeVisible();
  expect(await panel.evaluate(el=>el.matches(':popover-open'))).toBe(true);await page.evaluate(()=>window.carouselController.setState({count:2}));await expect(panel).toBeVisible();
  const box=await panel.boundingBox();expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth));
+ await page.screenshot({path:'test-results/carousel-nested-open.png'});
  await page.keyboard.press('Escape');await expect(block.getByRole('button',{name:'Nested details',exact:true})).toBeFocused();
  // Scrolling is a separate lifecycle condition: an offscreen ancestor anchor
  // must dismiss its whole branch, as required by the overlay contract.

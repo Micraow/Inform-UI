@@ -27,6 +27,7 @@ test('real WAAPI is initially idle, pointer preview is single-flight, Stop is pe
   await pointer(page,preview(page));await expect(preview(page)).toBeFocused();expect(await running(page)).toBe(1);
   await page.evaluate(()=>window.savedMotion=document.querySelector('.iui-motion-content').getAnimations()[0]);await page.keyboard.press('Enter');await page.keyboard.press('Space');
   expect(await page.evaluate(()=>document.querySelector('.iui-motion-content').getAnimations()[0]===window.savedMotion)).toBe(true);
+  await root(page).evaluate(el=>el.getAnimations({subtree:true}).forEach(a=>{a.currentTime=Number(a.effect.getComputedTiming().duration)/2;}));await page.screenshot({path:'test-results/motion-animate-controlled-midphase.png'});
   await page.keyboard.press('Tab');await expect(stop(page)).toBeFocused();await page.keyboard.press('Space');await expect(root(page)).toHaveAttribute('data-status','stopped');expect(await running(page)).toBe(0);await expect(stop(page)).toBeFocused();
   await page.keyboard.press('Shift+Tab');await expect(preview(page)).toBeFocused();await page.keyboard.press('Enter');await expect(root(page)).toHaveAttribute('data-status','playing');
   await root(page).evaluate(el=>el.getAnimations({subtree:true}).forEach(animation=>animation.finish()));
@@ -36,7 +37,7 @@ test('real WAAPI is initially idle, pointer preview is single-flight, Stop is pe
 
 test('real celebration uses six local animations, controlled finish, explicit native cancellation and supplied-message note',async({page})=>{
   await mount(page,longFixture());await expect(root(page,'celebration').locator('.iui-motion-note')).toContainText('not a verified achievement');expect(await running(page,'celebration')).toBe(0);
-  await pointer(page,preview(page,'celebration'));expect(await running(page,'celebration')).toBe(6);await root(page,'celebration').evaluate(el=>el.getAnimations({subtree:true}).forEach(animation=>animation.finish()));await expect(root(page,'celebration')).toHaveAttribute('data-status','completed');expect(await running(page,'celebration')).toBe(0);
+  await pointer(page,preview(page,'celebration'));expect(await running(page,'celebration')).toBe(6);await root(page,'celebration').evaluate(el=>el.getAnimations({subtree:true}).forEach(a=>{a.currentTime=Number(a.effect.getComputedTiming().duration)/2;}));await page.screenshot({path:'test-results/motion-celebration-controlled-midphase.png'});await root(page,'celebration').evaluate(el=>el.getAnimations({subtree:true}).forEach(animation=>animation.finish()));await expect(root(page,'celebration')).toHaveAttribute('data-status','completed');expect(await running(page,'celebration')).toBe(0);
   await preview(page,'celebration').focus();await page.keyboard.press('Space');await pointer(page,stop(page,'celebration'));await expect(root(page,'celebration')).toHaveAttribute('data-status','stopped');
   const layer=root(page,'celebration').locator('.iui-celebration-decoration');await expect(layer).toHaveAttribute('aria-hidden','true');expect(await layer.evaluate(el=>getComputedStyle(el).overflow)).toBe('hidden');expect(await layer.evaluate(el=>getComputedStyle(el).pointerEvents)).toBe('none');
   expect(await root(page,'celebration').evaluate(el=>getComputedStyle(el).overflow)).toBe('visible');

@@ -13,6 +13,7 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`onbo
  await page.keyboard.press('Space');await root.getByText('Beta',{exact:true}).click();await boxes.nth(2).focus();await page.keyboard.press('Space');await expect(boxes.nth(2)).not.toBeChecked();await expect(boxes.nth(2)).toBeFocused();
  await page.evaluate(()=>window.cancelChoice=true);await proceed.click();await expect(root).toHaveAttribute('data-status','not-accepted');await expect(boxes.first()).toBeChecked();
  await page.evaluate(()=>{window.cancelChoice=false;window.controller.setState({other:1});});await proceed.focus();await page.keyboard.press('Enter');await page.keyboard.press('Space');await expect(root).toHaveAttribute('data-status','ready');expect(await page.evaluate(()=>window.choices)).toHaveLength(3);
+ await page.screenshot({path:`test-results/onboarding-selected-${theme}-${width}.png`,fullPage:true});
  await root.locator('.iui-onboarding-reset').click();await expect(boxes.first()).not.toBeChecked();await expect(root).toHaveAttribute('data-status','idle');expect(requests).toEqual([]);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.screenshot({path:`test-results/onboarding-${theme}-${width}.png`,fullPage:true});
 });
