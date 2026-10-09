@@ -1121,3 +1121,44 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-ledger [hidden]{display:none!important}
 @media(max-width:480px){.iui-root .iui-ledger{padding:12px}.iui-root .iui-ledger-filter{flex:1 1 10rem}.iui-root .iui-ledger-filters select{inline-size:100%}}
 @media(forced-colors:active){.iui-root .iui-ledger,.iui-root .iui-ledger-currency-group,.iui-root .iui-ledger-table :is(th,td){border-color:CanvasText}.iui-root .iui-ledger :is(p,thead){color:CanvasText}.iui-root .iui-ledger-segment{background:Highlight!important;border-inline-end:1px solid Canvas}.iui-root .iui-ledger-filters :disabled,.iui-root .iui-ledger-reset[aria-disabled=true]{color:GrayText}.iui-root .iui-ledger :focus-visible{outline-color:Highlight}.iui-root .iui-ledger a{color:LinkText}}
+
+/* Original supplied shipment and flight snapshots; no geographic/live progress animation. */
+.iui-root .iui-tracker{border:1px solid var(--iui-line);border-radius:16px;padding:20px;background:var(--iui-surface);min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-tracker :is(h2,h3,h4,p,dl,dd){margin:0}
+.iui-root .iui-tracker-title{font-size:1.2rem;line-height:1.4}
+.iui-root .iui-tracker :is(.iui-tracker-description,.iui-tracker-note,.iui-tracker-observed,.iui-tracker-source){margin-block-start:10px;line-height:1.6;white-space:pre-wrap}
+.iui-root .iui-tracker-note,.iui-root .iui-tracker-observed,.iui-root .iui-tracker-missing{color:var(--iui-muted)}
+.iui-root .iui-tracker-status{display:inline-block;margin-block:14px 8px;padding:5px 12px;border:1px solid var(--iui-line);border-radius:999px;font-weight:650;background:var(--iui-surface-tertiary)}
+.iui-root .iui-tracker-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:12px;margin-block:14px}
+.iui-root .iui-tracker-facts dt,.iui-root .iui-tracker-slots dt{font-size:.85rem;color:var(--iui-muted)}
+.iui-root .iui-tracker-facts dd{font-weight:550;white-space:pre-wrap}
+.iui-root .iui-tracker-route{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-block:16px}
+.iui-root .iui-tracker-endpoint{border:1px solid var(--iui-line);border-radius:12px;padding:16px;min-inline-size:0}
+.iui-root .iui-tracker-airport{font-size:2rem;letter-spacing:.08em;font-weight:700;line-height:1.5}
+.iui-root .iui-tracker-slots{display:grid;gap:12px;margin-block:12px}
+.iui-root .iui-tracker-time{display:inline-block;font-variant-numeric:tabular-nums;unicode-bidi:isolate;overflow-wrap:anywhere}
+.iui-root .iui-tracker-records-title{margin-block-start:20px;font-size:1.05rem}
+.iui-root .iui-tracker-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block:12px}
+.iui-root .iui-tracker-toolbar :is(select,button){font:inherit;min-block-size:44px;max-inline-size:100%;border:1px solid var(--iui-line);border-radius:8px;padding:8px 12px;background:var(--iui-surface);color:inherit}
+.iui-root .iui-tracker-toolbar button{cursor:pointer}
+.iui-root .iui-tracker-reset[aria-disabled=true]{opacity:.65}
+.iui-root .iui-tracker-toolbar :disabled{cursor:not-allowed;opacity:.6}
+.iui-root .iui-tracker-count{color:var(--iui-muted);font-size:.9rem}
+.iui-root .iui-tracker-empty{padding-block:20px}
+.iui-root .iui-tracker-timeline{list-style:none;padding:0;margin:16px 0 0}
+.iui-root .iui-tracker-record{display:grid;grid-template-columns:18px minmax(0,1fr);gap:12px;position:relative;padding-block:0 20px}
+.iui-root .iui-tracker-record:not(:last-child)::before{content:'';position:absolute;inset-inline-start:7px;inset-block:18px 0;border-inline-start:2px solid var(--iui-line)}
+.iui-root .iui-tracker-dot{box-sizing:border-box;inline-size:16px;block-size:16px;border:2px solid currentColor;border-radius:50%;margin-block-start:3px;color:var(--iui-muted)}
+.iui-root .iui-tracker-record[data-category=complete] .iui-tracker-dot{background:currentColor}
+.iui-root .iui-tracker-record:is([data-category=current],[data-category=disruption]) .iui-tracker-dot{border-radius:3px;color:var(--iui-ink);border-width:4px}
+.iui-root .iui-tracker-record-kind{display:block;font-size:.85rem;font-weight:650;color:var(--iui-muted);margin-block-end:4px}
+.iui-root .iui-tracker-record h4{font-size:1rem;line-height:1.5;white-space:pre-wrap}
+.iui-root .iui-tracker-record :is(time,.iui-tracker-location){margin-block-start:6px;font-size:.9rem}
+.iui-root .iui-tracker-details{margin-block-start:4px}
+.iui-root .iui-tracker-details summary{cursor:pointer;min-block-size:44px;box-sizing:border-box;padding-block:12px}
+.iui-root .iui-tracker-details p{white-space:pre-wrap;line-height:1.6;padding-block:4px 12px}
+.iui-root .iui-tracker-source a{display:inline-block;min-block-size:44px;box-sizing:border-box;padding-block:10px}
+.iui-root .iui-tracker :is(select,button,summary,a):focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.iui-root .iui-tracker [hidden]{display:none!important}
+@media(max-width:600px){.iui-root .iui-tracker{padding:14px}.iui-root .iui-tracker-route{grid-template-columns:1fr}.iui-root .iui-tracker-toolbar label{flex-basis:100%}.iui-root .iui-tracker-toolbar select{flex:1;min-inline-size:0}}
+@media(forced-colors:active){.iui-root .iui-tracker,.iui-root .iui-tracker :is(.iui-tracker-endpoint,.iui-tracker-status,select,button){border-color:CanvasText}.iui-root .iui-tracker :is(.iui-tracker-dot,.iui-tracker-note,.iui-tracker-count,dt){color:CanvasText}.iui-root .iui-tracker-record::before{border-color:CanvasText}.iui-root .iui-tracker-record[data-category=complete] .iui-tracker-dot{background:CanvasText}}

@@ -1,3 +1,4 @@
+import {renderTracker} from './trackers.js';
 import {renderOnboarding} from './onboarding.js';
 import {renderFlightOption} from './flight-option.js';
 import {renderArtistEvents} from './artist-events.js';
@@ -159,6 +160,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if ('shimmer' in n && n.shimmer) out.classList.add('iui-text-shimmer');
         break;
       }
+      case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
       case 'onboarding-selection':out=renderOnboarding(context,n,labels.onboardingUI);break;
       case 'asset-distribution':case 'transaction-list':out=renderLedger(context,n,labels.ledgerUI);break;
       case 'location-choice-request':out=renderLocationChoice(context,n,labels.choiceGalleryUI);break;

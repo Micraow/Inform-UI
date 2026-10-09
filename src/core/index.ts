@@ -1,3 +1,4 @@
+import {inspectTracker} from './trackers.js';
 import {inspectOnboarding} from './onboarding.js';
 import {inspectFlightOption,inspectArtistEvents} from './travel-events.js';
 import {inspectLocationChoice,inspectBusinessGallery} from './choice-gallery.js';
@@ -310,6 +311,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='person-profile')inspectPersonProfile(node,path,add,isSafeURL);
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
+    if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
     if(node.type==='onboarding-selection')inspectOnboarding(node,path,add);
     if(node.type==='location-choice-request')inspectLocationChoice(node,path,add,isSafeURL);
     if(node.type==='business-gallery')inspectBusinessGallery(node,path,add,url=>isSafeURL(url,'image'));

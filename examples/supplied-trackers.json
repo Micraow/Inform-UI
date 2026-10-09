@@ -1,0 +1,14 @@
+{
+ "version":"iui/1","title":"Original synthetic supplied trackers","description":"Fictional offline fixtures, no real shipment or flight information.","state":{"other":0},"body":[
+  {"type":"package-tracker","label":"Example shipment","carrier":"Example Parcel","trackingId":"SYNTHETIC-PARCEL-001","status":"in-transit","observedAt":"2028-02-29T10:15+01:00","destination":"Example destination city","expectedDelivery":"March 2, as supplied; not guaranteed","source":{"label":"Synthetic source","url":"https://example.org/package"},"milestones":[
+   {"id":"label","label":"Shipping label created","state":"complete","occurredAt":"2028-02-28T15:00+01:00"},
+   {"id":"hub","label":"At supplied transit hub","state":"current","occurredAt":"2028-02-29T08:00+01:00","location":"Example hub","description":"This is an original illustrative tracking milestone."},
+   {"id":"delivery","label":"Delivery milestone","state":"pending"}
+  ]},
+  {"type":"flight-tracker","label":"Example flight snapshot","carrier":"Example Air","flightNumber":"EX 101","status":"boarding","observedAt":"2028-02-29T08:30Z","departure":{"airport":"LHR","name":"Example departure","scheduledAt":"2028-02-29T09:00Z","estimatedAt":"2028-02-29T09:20Z","terminal":"Example T1","gate":"Example A2"},"arrival":{"airport":"JFK","name":"Example arrival","scheduledAt":"2028-02-29T07:00-05:00","estimatedAt":"2028-02-29T07:20-05:00"},"source":{"label":"Synthetic source","url":"https://example.org/flight"},"updates":[
+   {"id":"boarding","at":"2028-02-29T08:30Z","message":"Boarding status supplied","kind":"information"},
+   {"id":"gate","at":"2028-02-29T08:10Z","message":"Gate label updated","kind":"change","description":"The source supplied gate Example A2. No airport feed is connected."},
+   {"id":"delay","at":"2028-02-29T08:00Z","message":"Estimate changed","kind":"disruption"}
+  ]}
+ ]
+}

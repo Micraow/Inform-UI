@@ -176,3 +176,5 @@ import './onboarding-types-consumer.mjs';
 import "./finance-lists-types-consumer.mjs";
 
 import './travel-events-types-consumer.mjs';
+
+import './trackers-types-consumer.mjs';
