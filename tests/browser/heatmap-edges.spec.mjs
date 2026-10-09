@@ -9,7 +9,7 @@ function edgeWidths(png,bounds,dpr,color){
  }return result;
 }
 for(const theme of ['light','dark'])for(const dpr of [1,2])for(const width of [390,768.375,1100.5])test(`heatmap pixel edges ${theme} DPR${dpr} width${width}`,async({browser})=>{
- const context=await browser.newContext({viewport:{width:Math.ceil(width),height:1200},deviceScaleFactor:dpr,colorScheme:theme}),page=await context.newPage();
+ const context=await browser.newContext({baseURL:'http://127.0.0.1:4173',viewport:{width:Math.ceil(width),height:1200},deviceScaleFactor:dpr,colorScheme:theme}),page=await context.newPage();
  try{
   await page.goto('/mount.html');await page.waitForFunction(()=>window.iui);await page.evaluate(({spec,theme,width})=>{document.documentElement.lang='zh-CN';document.body.style.margin='0';const host=document.getElementById('host');host.style.width=(width-24)+'px';host.style.marginLeft=(Number.isInteger(width)?12:12.125)+'px';window.heatmapPixel=window.iui.mount(host,{...spec,theme});Object.assign(host.querySelector('.iui-root').style,{width:'100%',maxWidth:'none'});},{spec:fixture,theme,width});
   const root=page.locator('.iui-heatmap'),svg=root.locator('svg'),selection=root.locator('.iui-heatmap-selection');await expect(root.locator('.iui-heatmap-tile')).toHaveCount(6);await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
