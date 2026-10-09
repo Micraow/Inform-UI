@@ -1709,6 +1709,112 @@
         }
       ]
     },
+    "SourceRecord": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "title",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "CitationNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "citation"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "WebLinkCardsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "web-link-cards"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceRecord"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
     "CarouselNode": {
       "type": "object",
       "properties": {
@@ -5446,6 +5552,12 @@
         },
         {
           "$ref": "#/$defs/LoadingBlockNode"
+        },
+        {
+          "$ref": "#/$defs/CitationNode"
+        },
+        {
+          "$ref": "#/$defs/WebLinkCardsNode"
         },
         {
           "$ref": "#/$defs/CarouselNode"

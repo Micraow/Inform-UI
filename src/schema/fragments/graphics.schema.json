@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:7ba84deb92beaac902b061e92d93557e8d5106aef5cbfe66491af2e0d625a99b:document:base+graphics",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:e21597b642848d76fe792c57ca088074d45e328a86278a9fbbddbc3ba05a9862:document:base+graphics",
   "title": "Inform UI document subset: base, graphics",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -493,6 +493,50 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "CitationNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "citation"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "url"
       ],
       "additionalProperties": false
     },
@@ -1411,6 +1455,12 @@
           "$ref": "#/$defs/LoadingBlockNode"
         },
         {
+          "$ref": "#/$defs/CitationNode"
+        },
+        {
+          "$ref": "#/$defs/WebLinkCardsNode"
+        },
+        {
           "$ref": "#/$defs/CarouselNode"
         },
         {
@@ -1779,6 +1829,36 @@
         "min",
         "max",
         "step"
+      ],
+      "additionalProperties": false
+    },
+    "SourceRecord": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "title",
+        "url"
       ],
       "additionalProperties": false
     },
@@ -2711,6 +2791,38 @@
           "additionalProperties": false
         }
       ]
+    },
+    "WebLinkCardsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "web-link-cards"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceRecord"
+          },
+          "minItems": 1,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
     }
   }
 }

@@ -118,7 +118,9 @@ test('authored strings are literal data, without network elements or live/busy c
 });
 
 test('production source and CSS contain scoped motion fallback and no autonomous activity or external assets', async () => {
-  const source = await readFile(new URL('../src/renderer/loading.ts', import.meta.url), 'utf8'), css = (await readFile(new URL('../src/renderer/style.css', import.meta.url), 'utf8')).split('/* Original finite loading geometry.')[1];
+  const source = await readFile(new URL('../src/renderer/loading.ts', import.meta.url), 'utf8'), shared = await readFile(new URL('../src/renderer/style.css', import.meta.url), 'utf8');
+  const start = shared.indexOf('/* Original finite loading geometry.'); assert.ok(start >= 0);
+  const tail = shared.slice(start), end = tail.indexOf('\n/* Original', 1), css = end < 0 ? tail : tail.slice(0, end);
   // Type-only module paths such as schema/document.js are not global DOM access.
   assert.doesNotMatch(source.replace(/^import type .*;$/gm, ''), /\b(?:setTimeout|setInterval|requestAnimationFrame|fetch|XMLHttpRequest|WebSocket|Date)\s*\(|\bMath\.random|\b(?:window|document)\s*\./);
   assert.doesNotMatch(css, /url\s*\(|@import/); assert.match(css, /@media \(prefers-reduced-motion: reduce\)/); assert.match(css, /@media \(forced-colors: active\)/);

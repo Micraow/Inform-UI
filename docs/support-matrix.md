@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The working schema recognizes 64 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 66 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,7 +23,7 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Working source: 62 rendered + 1 plain-text fallback + 1 rejected = 64 node types.** The recommended fixed CDN is the verified 62-node 01ae batch, including foundations, time, overlays and finite primitives. Loading nodes are a later source candidate pending browser/CDN acceptance. See [executed 62-node evidence](verification-62.md) and [loading contract](loading.md).
+**Working source: 64 rendered + 1 plain-text fallback + 1 rejected = 66 node types.** The recommended fixed CDN is the verified 62-node 01ae batch, including foundations, time, overlays and finite primitives. Loading and source-link nodes are later source candidates pending browser/CDN acceptance. See [executed 62-node evidence](verification-62.md) and [loading contract](loading.md).
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
@@ -76,6 +76,7 @@ results from the current revision for those claims.
 | `tooltip` / `popover` | Rendered | Inert text tips and nonmodal child panels; keyboard, dismiss/return-focus, viewport-aware native top layer or explicit inline fallback. See [overlay contract](overlays.md). |
 | `flow` / `icon` / `pulse-indicator` | Rendered | DOM-order wrapping, ten finite original semantic glyphs, supplied explicit status with reduced motion. No arbitrary icon loading or inferred service status. See [primitive contract](primitives.md); [batch acceptance passed](verification-62.md). |
 | `loading` / `loading-block` | Rendered candidate | Explicit supplied progress or honestly indeterminate spinner; finite text/card/circle placeholders, no network/task observation or live/busy claims. Dynamic range validation is atomic. See [loading contract](loading.md); later batch browser/CDN pending. |
+| `citation` / `web-link-cards` | Rendered candidate | Caller-authored literal references and secure native HTTP(S) links; finite cards with bounded previous/next scrolling, RTL normalization and stable focus. No retrieval, ranking or support verification. See [source contract](source-cards.md); later browser/CDN pending. |
 | `svg` | Rendered | Validated `rect`, `line`, `circle`, `path`, `text`, `polyline`, and `polygon` shapes. Attribute restrictions apply; raw SVG markup, scripts, foreign objects, events, and arbitrary resource references are not accepted. |
 | `native` | Rejected | Historical bridge-shaped input is recognized only for a clear error. It is not another product edition or a planned OpenAI adapter. Use the independently implemented nodes in this table. |
 

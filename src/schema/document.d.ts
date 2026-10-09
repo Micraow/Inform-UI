@@ -59,6 +59,8 @@ export type Node =
   | PulseIndicatorNode
   | LoadingNode
   | LoadingBlockNode
+  | CitationNode
+  | WebLinkCardsNode
   | CarouselNode
   | ListNode
   | TableNode
@@ -579,6 +581,31 @@ export interface LoadingNode {
   progress?: Value;
   size?: "sm" | "md" | "lg";
   showValue?: boolean;
+}
+export interface CitationNode {
+  type: "citation";
+  id?: string;
+  title: string;
+  url: string;
+  publisher?: string;
+  description?: string;
+  number?: number;
+}
+export interface WebLinkCardsNode {
+  type: "web-link-cards";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  items: [SourceRecord, ...SourceRecord[]];
+}
+export interface SourceRecord {
+  title: string;
+  url: string;
+  publisher?: string;
+  description?: string;
 }
 export interface CarouselNode {
   type: "carousel";

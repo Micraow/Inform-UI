@@ -1,3 +1,4 @@
+import {renderSource} from './sources.js';
 import {renderLoading} from './loading.js';
 import {renderPrimitive} from './primitives.js';
 import {renderConverter} from './converters.js';
@@ -186,6 +187,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'unit-converter':case 'currency-converter': out=renderConverter(context,n); break;
       case 'clock':case 'stopwatch':case 'timer': out=renderTime(context,n,labels.time); break;
       case 'tooltip':case 'popover': out=renderOverlay(context,n,labels.overlay); break;
+      case 'citation':case 'web-link-cards': out=renderSource(context,n,labels.sources); break;
       case 'loading':case 'loading-block': out=renderLoading(context,n,labels.loadingUI); break;
       case 'flow':case 'icon':case 'pulse-indicator': out=renderPrimitive(context,n,labels.primitive); break;
       case 'finance-quote': case 'finance-chart': case 'finance-comparison': out=renderFinance(context,n); break;

@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T06:30:00Z",
+  "as_of_utc": "2026-10-09T06:38:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -22,9 +22,9 @@
     "fixed_cdn_asset_commit": "01ae9d870b221208b31e9da437ae87fdef265cec"
   },
   "counts": {
-    "not_implemented": 193,
+    "not_implemented": 191,
     "functionally_verified": 49,
-    "implemented_pending_verification": 2,
+    "implemented_pending_verification": 4,
     "partial": 12
   },
   "components": [
@@ -435,8 +435,8 @@
       "id": "web-link-cards",
       "name": "Web Links Carousel",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。"
     },
     {
       "id": "business-gallery",
@@ -449,8 +449,8 @@
       "id": "citation",
       "name": "Cite",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。"
     },
     {
       "id": "calendar-agenda",

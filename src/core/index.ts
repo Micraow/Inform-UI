@@ -255,6 +255,10 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='clock')inspectClock(node,path,add);
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
+    if (node.type === 'citation' || node.type === 'web-link-cards') {
+      const links = node.type === 'citation' ? [[node.url, `${path}/url`]] : node.items.map((item, i) => [item.url, `${path}/items/${i}/url`]);
+      for (const [url, at] of links) if (!/^https?:\/\//i.test(url) || !isSafeURL(url, 'link')) add(issue('UNSAFE_URL', at, 'Source URLs require allowed absolute HTTP(S) destinations.'));
+    }
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
     if (node.type === 'text') node.runs?.forEach((run, i) => { if (run.href && !isSafeURL(run.href)) add(issue('UNSAFE_URL', `${path}/runs/${i}/href`, 'Inline link URL is outside the allowed policy.')); });
     if (node.type === 'blockquote' && node.cite && !isSafeURL(node.cite)) add(issue('UNSAFE_URL', `${path}/cite`, 'Quote source URL is outside the allowed policy.'));

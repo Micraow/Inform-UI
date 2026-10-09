@@ -62,6 +62,10 @@ defs.LoadingBlockNode.oneOf = [
   object({ ...defs.LoadingBlockNode.properties, shape: { const: 'text' } }),
   object({ ...nonTextLoadingBlock, shape: choice('card','circle') }, ['shape'])
 ];
+const sourceFields = { title: string(300,1), url: string(2048,1), publisher: string(200,1), description: string(1000,1) };
+defs.SourceRecord = object(sourceFields, ['title','url']);
+node('citation', { ...sourceFields, number: integer(1,999) }, ['title','url']);
+node('web-link-cards', { label: short, items: array(ref('SourceRecord'),1,20) }, ['label','items']);
 node('carousel', { children }, ['children']);
 node('list', { ordered: bool, items: array({ anyOf: [ref('Value'), ref('Node')] }, 0, 100) }, ['items']);
 defs.TableCellObject = object({ value: ref('Value'), rowSpan: integer(1, 200), colSpan: integer(1, 20), header: bool, scope: choice('row', 'col', 'rowgroup'), align }, ['value']);

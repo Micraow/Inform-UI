@@ -1,6 +1,6 @@
 # 组件实现进度
 
-当前固定分母为256项：功能已验49，部分12，已写待验2，未实现193。
+当前固定分母为256项：功能已验49，部分12，已写待验4，未实现191。
 
 功能已验不代表像素级复刻、全部浏览器或无障碍验收完成。Schema节点数与组件合同数量不是同一计数。
 
@@ -65,9 +65,9 @@
 | sports-standings | Epl Standings | 功能已验 | 功能与现有回归通过；不代表像素级配色复刻通过 |
 | american-football-games | Cfb Games | 部分实现 | 通用scoreboard未覆盖完整橄榄球合同 |
 | location-choice-request | Ask User Location V2 | 未实现 | 暂无专门实现证据 |
-| web-link-cards | Web Links Carousel | 未实现 | 暂无专门实现证据 |
+| web-link-cards | Web Links Carousel | 已写待验 | 原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。 |
 | business-gallery | Business Gallery | 未实现 | 暂无专门实现证据 |
-| citation | Cite | 未实现 | 暂无专门实现证据 |
+| citation | Cite | 已写待验 | 原创有限引用/安全链接卡合同已接入，公共单源校验与21项模块/DOM测试通过；真实浏览器与同版CDN留后批，未计入49项已验。 |
 | calendar-agenda | Calendar List | 未实现 | 暂无专门实现证据 |
 | learning-flashcards | Learning Flashcards | 功能已验 | f372c71: 完整答题/翻面流程、键盘与真实尺寸变化焦点、重试，CI80场景通过并实看亮暗390/1100截图。 |
 | person-profile | Person | 未实现 | 暂无专门实现证据 |

@@ -1,0 +1,11 @@
+[
+  {"reason": "Non-web URI", "node": {"type": "citation", "title": "Invalid example", "url": "mailto:sample@example.invalid"}},
+  {"reason": "Relative link", "node": {"type": "citation", "title": "Invalid example", "url": "/relative"}},
+  {"reason": "Credential-bearing link", "node": {"type": "citation", "title": "Invalid example", "url": "https://user:synthetic@example.invalid"}},
+  {"reason": "Empty title", "node": {"type": "citation", "title": "", "url": "https://example.invalid"}},
+  {"reason": "Zero citation number", "node": {"type": "citation", "title": "Invalid example", "url": "https://example.invalid", "number": 0}},
+  {"reason": "Unsupported remote media", "node": {"type": "citation", "title": "Invalid example", "url": "https://example.invalid", "favicon": "https://example.invalid/icon.png"}},
+  {"reason": "Empty source list", "node": {"type": "web-link-cards", "label": "Invalid list", "items": []}},
+  {"reason": "No automatic data source", "node": {"type": "web-link-cards", "label": "Invalid list", "items": [{"title": "Sample", "url": "https://example.invalid"}], "query": "example query"}},
+  {"reason": "Card number unsupported", "node": {"type": "web-link-cards", "label": "Invalid list", "items": [{"title": "Sample", "url": "https://example.invalid", "number": 1}]}}
+]

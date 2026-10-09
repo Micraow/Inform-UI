@@ -540,3 +540,26 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
   .iui-root .iui-loading-block[data-animate=true] .iui-loading-block-piece { background: Canvas; border-color: CanvasText; animation: none; opacity: 1; }
   .iui-root .iui-loading-block[data-shape=card] .iui-loading-block-shapes { border-color: CanvasText; }
 }
+
+/* Original, host-scoped source presentation. The rail alone may scroll. */
+.iui-root .iui-citation,.iui-root .iui-web-link-cards{max-inline-size:100%;min-inline-size:0;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-citation{border-inline-start:3px solid var(--iui-line);padding:10px 14px;background:var(--iui-surface);border-radius:6px}
+.iui-root .iui-source-heading{display:flex;align-items:baseline;gap:8px;min-inline-size:0}
+.iui-root .iui-source-number{flex:none;color:var(--iui-muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.iui-root .iui-source-title{color:var(--iui-ink);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;overflow-wrap:anywhere;min-inline-size:0}
+.iui-root .iui-source-title:hover{color:var(--iui-focus)}
+.iui-root .iui-source-meta{display:flex;flex-wrap:wrap;gap:4px 10px;margin-block-start:6px;color:var(--iui-muted);font-size:.75rem;line-height:1.5}
+.iui-root .iui-source-domain{overflow-wrap:anywhere;min-inline-size:0}
+.iui-root .iui-source-description{margin-block-start:8px;font-size:.875rem;line-height:1.6;white-space:pre-wrap}
+.iui-root .iui-source-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;margin-block-end:8px}
+.iui-root .iui-source-label{font-weight:600;flex:1 1 12rem;min-inline-size:0}
+.iui-root .iui-source-controls{display:flex;flex-wrap:wrap;gap:8px;min-inline-size:0}
+.iui-root .iui-source-controls button{min-block-size:40px;max-inline-size:100%;white-space:normal;overflow-wrap:anywhere;font-size:.8rem}
+.iui-root .iui-source-controls button[aria-disabled=true]{color:var(--iui-muted);background:var(--iui-surface);cursor:default}
+.iui-root .iui-source-rail{display:flex;align-items:stretch;gap:12px;max-inline-size:100%;margin:0;padding:4px 4px 12px;list-style:none;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;scroll-behavior:auto}
+.iui-root .iui-source-card{flex:0 0 min(85%,20rem);min-inline-size:0;border:1px solid var(--iui-line);border-radius:12px;padding:14px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-root .iui-source-card:only-child{flex-basis:min(100%,30rem)}
+.iui-root .iui-source-position{min-block-size:1.5em;margin-block-start:5px;font-size:.75rem;color:var(--iui-muted);font-variant-numeric:tabular-nums}
+.iui-root .iui-source-rail:focus-visible,.iui-root .iui-source-title:focus-visible,.iui-root .iui-source-controls button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-source-sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(forced-colors:active){.iui-root .iui-citation,.iui-root .iui-source-card{border-color:CanvasText}.iui-root .iui-source-title{color:LinkText}.iui-root .iui-source-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-source-rail:focus-visible,.iui-root .iui-source-title:focus-visible,.iui-root .iui-source-controls button:focus-visible{outline-color:Highlight}}
