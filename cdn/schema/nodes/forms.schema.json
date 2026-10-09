@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:19c525c24bffa31503ea945b6f0535fb8a76eac88f5fe4f33cf49b0687656d5b:node:forms",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b649df68e1bec1399eec1bd07f19ec798039fee78d0e9180f3c41af941b7f889:node:forms",
   "title": "Inform UI node subset: forms",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

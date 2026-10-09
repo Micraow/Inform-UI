@@ -50,6 +50,8 @@ export type Node =
   | SidebarPeopleAlsoAskNode
   | EmailPreviewNode
   | FileNavListNode
+  | JobsNode
+  | ProductCardNode
   | RedditThreadCardNode
   | MarkdownNode
   | WritingBlockNode
@@ -970,6 +972,75 @@ export interface FileNavFile {
   category?: "document" | "image" | "audio" | "video" | "archive" | "other";
   modifiedAt?: string;
   url?: string;
+}
+export interface JobsNode {
+  type: "jobs";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  jobs: SuppliedJob[];
+  source?: DecisionSource;
+}
+export interface SuppliedJob {
+  id: string;
+  title: string;
+  organization: string;
+  location: string;
+  workplace: "remote" | "hybrid" | "onsite" | "unknown";
+  employment: "full-time" | "part-time" | "contract" | "internship" | "unknown";
+  description?: string;
+  salary?: JobSalary;
+  postedDate?: string;
+  deadlineDate?: string;
+  url?: string;
+}
+export interface JobSalary {
+  minimum: number;
+  maximum: number;
+  currency: string;
+  period: "hour" | "month" | "year";
+}
+export interface DecisionSource {
+  label: string;
+  url: string;
+}
+export interface ProductCardNode {
+  type: "product-card";
+  id?: string;
+  productId: string;
+  name: string;
+  brand?: string;
+  seller?: string;
+  description?: string;
+  availability: "available" | "unavailable" | "unknown";
+  price?: SuppliedPrice;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  variants?: ProductVariant[];
+  initialVariantId?: string;
+  initialQuantity?: number;
+  disabled?: boolean;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  source?: DecisionSource;
+}
+export interface SuppliedPrice {
+  amount: number;
+  currency: string;
+}
+export interface ProductVariant {
+  id: string;
+  label: string;
+  availability: "available" | "unavailable" | "unknown";
+  price?: SuppliedPrice;
 }
 export interface RedditThreadCardNode {
   type: "reddit-thread-card";

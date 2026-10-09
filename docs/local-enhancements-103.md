@@ -1,0 +1,9 @@
+# Combined 103-node local checkpoint
+
+Canonical inventory is 53 verified, 43 locally implemented pending, 5 partial and155 unimplemented, from the fixed256 targets. The37-candidate acceptance batch failed run37955823948 and remains pending. Six later candidates (poll composer, email preview, file navigator, related questions, jobs and product card) are locally implemented and have not joined a successful acceptance run. Protocol node count103 is a separate measure.
+
+This source combines the corrected100-node poll/reader runtime, the related-question contract and jobs/product source. Additive integration conflicts retained every dispatch, validator, label table, fixture, type contract and CSS block. Existing reviewed poll/reader/flight/onboarding/related-question modules and incoming decision modules were byte-compared with their source checkpoints. Exact core and schema-owner counts are103.
+
+One combined nine-file affected run passed211/211 tests with no failures or skips. Four selected schema closure/determinism/CLI/CDN/stale-directory checks passed. Build, CDN, TypeScript/public type consumers and source-boundary checks passed. The separate native-select fixture recovery source checks passed7/7 after integration; this is not browser evidence. Browser discovery lists647 cases in71 files.
+
+The exact current production/build snapshot is in local-enhancements-103.json. Historical100/101 evidence remains separate. No unchanged full aggregate was rerun. Before future acceptance, resolve CJK font installation without losing glyph coverage, pin the matching Skill and asset revisions, copy exact current consumer bytes, and prepare a new immutable batch lock. The inherited37 lock is historical and must not be used as acceptance of this newer runtime. Actual browsers, generated screenshots, visual review, the full aggregate and unique Skill/CDN entrypoints remain pending.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:19c525c24bffa31503ea945b6f0535fb8a76eac88f5fe4f33cf49b0687656d5b:document:base+graphics",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:b649df68e1bec1399eec1bd07f19ec798039fee78d0e9180f3c41af941b7f889:document:base+graphics",
   "title": "Inform UI document subset: base, graphics",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1345,6 +1345,26 @@
       ],
       "additionalProperties": false
     },
+    "DecisionSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
     "DetailsNode": {
       "type": "object",
       "properties": {
@@ -2385,6 +2405,80 @@
       ],
       "additionalProperties": false
     },
+    "JobSalary": {
+      "type": "object",
+      "properties": {
+        "minimum": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "maximum": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "period": {
+          "enum": [
+            "hour",
+            "month",
+            "year"
+          ]
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum",
+        "currency",
+        "period"
+      ],
+      "additionalProperties": false
+    },
+    "JobsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "jobs"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SuppliedJob"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "source": {
+          "$ref": "#/$defs/DecisionSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "jobs"
+      ],
+      "additionalProperties": false
+    },
     "LabelNode": {
       "type": "object",
       "properties": {
@@ -3054,6 +3148,12 @@
         },
         {
           "$ref": "#/$defs/FileNavListNode"
+        },
+        {
+          "$ref": "#/$defs/JobsNode"
+        },
+        {
+          "$ref": "#/$defs/ProductCardNode"
         },
         {
           "$ref": "#/$defs/RedditThreadCardNode"
@@ -3749,6 +3849,132 @@
         "type",
         "label",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "ProductCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "product-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "productId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "brand": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "seller": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "availability": {
+          "enum": [
+            "available",
+            "unavailable",
+            "unknown"
+          ]
+        },
+        "price": {
+          "$ref": "#/$defs/SuppliedPrice"
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ProductVariant"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "initialVariantId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "initialQuantity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300000
+            },
+            "alt": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "src",
+            "alt"
+          ],
+          "additionalProperties": false
+        },
+        "source": {
+          "$ref": "#/$defs/DecisionSource"
+        }
+      },
+      "required": [
+        "type",
+        "productId",
+        "name",
+        "availability"
+      ],
+      "additionalProperties": false
+    },
+    "ProductVariant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "availability": {
+          "enum": [
+            "available",
+            "unavailable",
+            "unknown"
+          ]
+        },
+        "price": {
+          "$ref": "#/$defs/SuppliedPrice"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "availability"
       ],
       "additionalProperties": false
     },
@@ -4684,6 +4910,101 @@
       "required": [
         "type",
         "items"
+      ],
+      "additionalProperties": false
+    },
+    "SuppliedJob": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "organization": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "workplace": {
+          "enum": [
+            "remote",
+            "hybrid",
+            "onsite",
+            "unknown"
+          ]
+        },
+        "employment": {
+          "enum": [
+            "full-time",
+            "part-time",
+            "contract",
+            "internship",
+            "unknown"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "salary": {
+          "$ref": "#/$defs/JobSalary"
+        },
+        "postedDate": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "deadlineDate": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "organization",
+        "location",
+        "workplace",
+        "employment"
+      ],
+      "additionalProperties": false
+    },
+    "SuppliedPrice": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
       ],
       "additionalProperties": false
     },
