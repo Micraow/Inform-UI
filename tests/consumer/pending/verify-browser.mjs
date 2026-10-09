@@ -15,7 +15,7 @@ import {fileURLToPath, pathToFileURL} from 'node:url';
 
 export const widths = Object.freeze([390, 768, 1100]);
 export const themes = Object.freeze(['light', 'dark']);
-export const sourceRevision = '5c7f334a975b75b0a70f58b5570b2ea567aed9dc';
+export const sourceRevision = '7978f23da0222ad9122bb0b40daa4f1844b5b9cd';
 export const executionOwner = 'core:scripts/run-batch-consumers.mjs';
 export const examples = Object.freeze([
   {
