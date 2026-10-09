@@ -1,3 +1,4 @@
+import {renderLedgerAccounts,renderLedgerRecurring} from './ledger-records.js';
 import {renderFactTable,renderEntityThumbnails} from './entity-facts.js';
 import {renderCodeCite,renderFileCite} from './source-citations.js';
 import {renderWordCard,renderCopyWords} from './vocabulary.js';
@@ -172,6 +173,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'ledger-accounts':out=renderLedgerAccounts(context,n,labels.ledgerRecordsUI);break;
+      case 'ledger-recurring-transactions':out=renderLedgerRecurring(context,n,labels.ledgerRecordsUI);break;
       case 'sidebar-fact-table':out=renderFactTable(context,n,labels.entityFactsUI);break;
       case 'entity-thumbnail-list':out=renderEntityThumbnails(context,n,labels.entityFactsUI);break;
       case 'code-cite':out=renderCodeCite(context,n,labels.citationUI);break;

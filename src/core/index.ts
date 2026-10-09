@@ -1,3 +1,4 @@
+import {inspectLedgerRecords} from './ledger-records.js';
 import {inspectEntityFacts} from './entity-facts.js';
 import {inspectSourceCitation} from './source-citations.js';
 import {inspectVocabulary} from './vocabulary.js';
@@ -321,6 +322,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
+    if(node.type==='ledger-accounts'||node.type==='ledger-recurring-transactions')inspectLedgerRecords(node,path,add,isSafeURL);
     if(node.type==='sidebar-fact-table'||node.type==='entity-thumbnail-list')inspectEntityFacts(node,path,add,isSafeURL,url=>isSafeURL(url,'image'));
     if(node.type==='code-cite'||node.type==='file-cite')inspectSourceCitation(node,path,add,isSafeURL);
     if(node.type==='word-card'||node.type==='copy-words')inspectVocabulary(node,path,add,isSafeURL);

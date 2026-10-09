@@ -11,7 +11,7 @@ export const SCHEMA_GROUPS = Object.freeze({
   weather: { title: '天气供数视图', examples: ['examples/weather.json'] },
   sports: { title: '体育赛程、记分牌与积分榜', examples: ['examples/sports.json'] },
   learning: { title: '本地学习练习', examples: ['examples/learning.json', 'examples/fill-blank-practice.json', 'examples/sentence-builder.json', 'examples/vocab-card.json'] },
-  finance: { title: '金融快照、历史、比较与热图', examples: ['examples/finance-preview.json', 'examples/finance-lists.json'] },
+  finance: { title: '金融快照、历史、比较与热图', examples: ['examples/finance-preview.json', 'examples/finance-lists.json', 'examples/ledger-records.json'] },
   converters: { title: '单位与汇率换算', examples: ['examples/converters.json'] },
   time: { title: '本地时钟、秒表与倒计时', examples: ['examples/time.json'] },
   compatibility: { title: '仅识别的历史输入边界', examples: [], warning: 'native is structurally recognized but always rejected by validateDocument; it is not a supported renderer.' },

@@ -1,3 +1,4 @@
+import {ledgerRecordsEnglish,ledgerRecordsChinese} from './ledger-records-labels.js';
 import {entityFactsEnglish,entityFactsChinese} from './entity-facts-labels.js';
 import {citationEnglish,citationChinese} from './citation-labels.js';
 import {vocabularyEnglish,vocabularyChinese} from './vocabulary-labels.js';
@@ -51,7 +52,7 @@ export function formatNumber(value: number): string {
 
 import {pieEnglish,pieChinese} from './pie-labels.js';
 const english = {
-  entityFactsUI:entityFactsEnglish,citationUI:citationEnglish,vocabularyUI:vocabularyEnglish,activityUI:activityEnglish,discoveryUI:discoveryEnglish,placesUI:placesEnglish,decisionUI:decisionEnglish,
+  ledgerRecordsUI:ledgerRecordsEnglish,entityFactsUI:entityFactsEnglish,citationUI:citationEnglish,vocabularyUI:vocabularyEnglish,activityUI:activityEnglish,discoveryUI:discoveryEnglish,placesUI:placesEnglish,decisionUI:decisionEnglish,
   mailFilesUI:mailFilesEnglish,
   pollUI:pollEnglish,
   trackerUI:trackerEnglish,
@@ -91,7 +92,7 @@ const english = {
   loading:'Loading…', empty:'No data available', loadError:'Data is unavailable', temperature:'Temperature', precipitation:'Precipitation probability', hourly:'Hourly forecast', daily:'Daily forecast', updated:'Updated', synthetic:'Synthetic demonstration', source:'Source', current:'Current', feelsLike:'Feels like', humidity:'Humidity', chartView:'Chart', tableView:'Table', submit:'Submit', cancel:'Cancel', submitted:'Submitted locally', submitting:'Submitting…', cancelled:'Cancelled', submitError:'Submission failed. Try again.', required:'This field is required.', inputMismatch:'The field normalized invisible characters or whitespace. Edit it before submitting.',invalidEmail:'Enter a valid email address.', invalidNumber:'Enter a valid number.', invalidDate:'Enter a valid date.', beforeMinDate:'The date is before the earliest allowed date.', afterMaxDate:'The date is after the latest allowed date.', tooShort:'The text is too short.', tooLong:'The text is too long.', belowMin:'The value is below the minimum.', aboveMax:'The value is above the maximum.', stepMismatch:'The value does not match the required step.', invalidChoice:'Choose an available option.', formInvalid:'Check the highlighted fields.', noAdapter:'The requested action is not configured.', total:'Total'
 };
 const chinese: typeof english = {
-  entityFactsUI:entityFactsChinese,citationUI:citationChinese,vocabularyUI:vocabularyChinese,activityUI:activityChinese,discoveryUI:discoveryChinese,placesUI:placesChinese,decisionUI:decisionChinese,
+  ledgerRecordsUI:ledgerRecordsChinese,entityFactsUI:entityFactsChinese,citationUI:citationChinese,vocabularyUI:vocabularyChinese,activityUI:activityChinese,discoveryUI:discoveryChinese,placesUI:placesChinese,decisionUI:decisionChinese,
   mailFilesUI:mailFilesChinese,
   pollUI:pollChinese,
   trackerUI:trackerChinese,

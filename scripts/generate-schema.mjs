@@ -306,6 +306,12 @@ defs.LedgerTransaction = object({id:key,date:{type:'string',pattern:'^[1-9]\\d{3
 const ledgerCommon = {label:short,description:string(2000),source:ref('LedgerSource')};
 node('asset-distribution',{...ledgerCommon,observedAt:short,accounts:array(ref('LedgerAccount'),0,40)},['label','accounts'],'finance');
 node('transaction-list',{...ledgerCommon,transactions:array(ref('LedgerTransaction'),0,100)},['label','transactions'],'finance');
+// Supplied exact-text account and recurring record readers; no provider or financial action.
+defs.LedgerExactMoney=object({amount:{anyOf:[{type:'string',pattern:'^-?(?:0|[1-9][0-9]{0,17})(?:\\.[0-9]{1,18})?$(?![\\s\\S])',minLength:1,maxLength:40},{type:'null'}]},currency:ledgerCurrency},['amount','currency']);
+defs.LedgerAccountSnapshot=object({id:suppliedKey,label:short,institution:short,kind:choice('cash','credit','investment','loan','other','unknown'),status:choice('active','closed','unknown'),suffix:{type:'string',pattern:'^[A-Za-z0-9]{1,4}$(?![\\s\\S])'},balance:ref('LedgerExactMoney'),observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','institution','kind','status']);
+node('ledger-accounts',{...ledgerCommon,accounts:array(ref('LedgerAccountSnapshot'),0,40),initiallyRevealed:bool},['label','accounts'],'finance');
+defs.LedgerRecurringRecord=object({id:suppliedKey,label:short,counterparty:short,cadence:choice('weekly','monthly','yearly','other','unknown'),status:choice('scheduled','paused','unknown'),direction:choice('incoming','outgoing','unknown'),estimatedAmount:ref('LedgerExactMoney'),nextDate:travelDate,observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','cadence','status','direction']);
+node('ledger-recurring-transactions',{...ledgerCommon,records:array(ref('LedgerRecurringRecord'),0,60),initialReviewedIds:array(suppliedKey,0,60)},['label','records'],'finance');
 // Local conversion controls use factual unit definitions and caller-supplied exchange snapshots.
 const unitRegistry=JSON.parse(await readFile(new URL('../src/data/units.json',import.meta.url),'utf8'));
 const unitCode={enum:[...new Set(Object.values(unitRegistry).flatMap(category=>category.units.map(unit=>unit.id)))],description:Object.entries(unitRegistry).map(([name,category])=>name+': '+category.units.map(unit=>unit.id).join(', ')).join('; ')};

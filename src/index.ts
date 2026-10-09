@@ -28,3 +28,5 @@ export type {ActivityPlanDetail,EventReviewDetail} from './renderer/activity-pla
 export type {WordMarkDetail,WordsCopyDetail} from './renderer/vocabulary.js';
 
 export type {EntityThumbnailDetail} from './renderer/entity-facts.js';
+
+export type {RecurringReviewDetail} from './renderer/ledger-records.js';
