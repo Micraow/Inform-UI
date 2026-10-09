@@ -147,6 +147,60 @@ test('host numeric state remains authoritative but invalid host values still blo
   ctx.controller.dispose();
 });
 
+test('explicit same-value host and document set/reset actions overwrite only their numeric drafts', () => {
+  const document = spec({ amount: 6, second: 4 }, [number({ min: 0 }), input('second', { kind: 'number', min: 0 }),
+    { type: 'button', label: 'Set amount', action: { kind: 'set', bind: 'amount', value: 6 } },
+    { type: 'button', label: 'Reset document', action: { kind: 'reset' } }]);
+  const ctx = setup(document), amount = ctx.host.querySelector('[data-bind=amount]'), second = ctx.host.querySelector('[data-bind=second]');
+  for (const overwrite of [() => ctx.controller.setState({ amount: 6 }), () => [...ctx.host.querySelectorAll('button')].find(button => button.textContent === 'Set amount').click()]) {
+    fill(ctx, '[data-bind=amount]', '-1'); fill(ctx, '[data-bind=second]', '-2'); dispatch(ctx, amount, 'blur');
+    overwrite(); assert.equal(amount.value, '6'); assert.equal(second.value, '-2'); assert.equal(error(ctx), '');
+  }
+  fill(ctx, '[data-bind=amount]', '-1');
+  [...ctx.host.querySelectorAll('button')].find(button => button.textContent === 'Reset document').click();
+  assert.equal(amount.value, '6'); assert.equal(second.value, '4'); assert.equal(error(ctx), '');
+  fill(ctx, '[data-bind=amount]', '-1'); dispatch(ctx, amount, 'blur');
+  assert.throws(() => ctx.controller.setState({ amount: Infinity })); assert.equal(amount.value, '-1'); assert.match(error(ctx), /minimum/);
+  ctx.controller.setState({ amount: -3 }); assert.equal(amount.value, '-3'); assert.match(error(ctx), /minimum/);
+  ctx.controller.update(document); ctx.form = ctx.host.querySelector('form');
+  fill(ctx, '[data-bind=amount]', '-1'); ctx.controller.setState({ amount: 6 }); assert.equal(ctx.host.querySelector('[data-bind=amount]').value, '6');
+  assert.equal(amount.value, '-3', 'detached old fields must no longer receive overwrite notifications');
+  ctx.controller.dispose();
+});
+
+test('numeric step tolerance cannot grow into a meaningful fraction of a step at large values', () => {
+  const ctx = setup(spec({ amount: 10 }, [number({ min: 0, max: 1e15, step: 1 })]));
+  const control = fill(ctx, 'input', '100000000000000.25');
+  assert.equal(control.validity.stepMismatch, true); assert.equal(ctx.controller.getState().amount, 10);
+  submit(ctx); assert.match(error(ctx), /step/);
+  fill(ctx, 'input', '100000000000000'); assert.equal(ctx.controller.getState().amount, 100000000000000);
+  ctx.controller.update(spec({ amount: .1 }, [number({ min: .1, step: .2 })])); ctx.form = ctx.host.querySelector('form');
+  fill(ctx, 'input', '.7'); assert.equal(ctx.controller.getState().amount, .7); submit(ctx); assert.equal(error(ctx), '');
+  ctx.controller.dispose();
+});
+
+test('blur validation waits only for a live action-button pointer gesture and flushes cancelled gestures', async () => {
+  const ctx = setup(spec({ amount: 6 }, [number({ min: 0 })]));
+  const control = ctx.host.querySelector('input'), button = ctx.host.querySelector('button[type=submit]');
+  const pointer = (target, type, pointerId = 1) => {
+    const event = new ctx.dom.window.Event(type, { bubbles: true }); Object.defineProperties(event, { pointerId: { value: pointerId }, button: { value: 0 } }); target.dispatchEvent(event);
+  };
+  fill(ctx, 'input', '-1');
+  pointer(button, 'pointerdown'); control.dispatchEvent(new ctx.dom.window.FocusEvent('blur', { relatedTarget: button }));
+  assert.equal(error(ctx), '', 'no error-row layout shift while the click is still held');
+  pointer(ctx.dom.window.document, 'pointercancel'); assert.match(error(ctx), /minimum/);
+  ctx.form.reset(); fill(ctx, 'input', '-1');
+  control.dispatchEvent(new ctx.dom.window.FocusEvent('blur', { relatedTarget: button }));
+  assert.match(error(ctx), /minimum/, 'keyboard/programmatic focus validates without waiting for a click');
+  ctx.form.reset(); fill(ctx, 'input', '-1'); pointer(button, 'pointerdown');
+  control.dispatchEvent(new ctx.dom.window.FocusEvent('blur', { relatedTarget: button })); pointer(ctx.dom.window.document, 'pointerup');
+  await new Promise(resolve => ctx.dom.window.setTimeout(resolve, 1)); assert.match(error(ctx), /minimum/);
+  ctx.form.reset(); fill(ctx, 'input', '-1'); pointer(button, 'pointerdown');
+  control.dispatchEvent(new ctx.dom.window.FocusEvent('blur', { relatedTarget: button }));
+  ctx.dom.window.dispatchEvent(new ctx.dom.window.Event('blur')); assert.match(error(ctx), /minimum/);
+  ctx.controller.dispose();
+});
+
 test('empty required email, malformed email, and corrected values use native validity', () => {
   const ctx = setup(spec({ title: '' }, [input('title', { kind: 'email', required: true })]));
   submit(ctx); assert.match(error(ctx), /required/);

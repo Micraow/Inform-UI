@@ -3,18 +3,20 @@ import type { StateValue } from '../core/index.js';
 import type { FieldNode } from '../core/extensions.js';
 import type { RendererContext } from './context.js';
 
-interface FieldHandle { validate: () => boolean; reset: () => void; focus: () => void }
-interface FormScope { fields: FieldHandle[] }
+interface FieldHandle { validate: () => boolean; reset: () => void; overwrite: () => void; focus: () => void }
+interface FormScope { fields: FieldHandle[]; deferPointerBlur: (next: EventTarget | null, refresh: () => void) => boolean }
 type Control = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 /** Native controls, local validation, and explicitly allowlisted host actions. Never performs network I/O. */
 export function createForms(c: RendererContext) {
   let scope: FormScope | undefined;
   let serial = 0;
+  const fields = new Map<string, Set<FieldHandle>>();
   const { element: e, on, bind } = c;
   const disabled = (control: Control) => control.matches(':disabled');
 
   function field(n: FieldNode): HTMLElement {
+    const fieldScope = scope;
     const id = `iui-form-internal-${c.prefix}field-${++serial}`;
     const out = e('div', 'iui-field');
     const hint = e('p', 'iui-caption iui-field-hint', n.hint);
@@ -47,7 +49,16 @@ export function createForms(c: RendererContext) {
       input.setAttribute('aria-describedby', describedBy);
       input.setAttribute('aria-required', String(!!n.required));
       inputs.push(input);
-      on(input, 'blur', () => { if (!disabled(input)) { touched = true; refresh(); } });
+      on(input, 'blur', (event: Event) => {
+        if (disabled(input)) return;
+        touched = true;
+        const next = (event as FocusEvent).relatedTarget;
+        // Let submit/cancel perform its validation/reset after the click. Showing
+        // an error between pointerdown and pointerup can move that button away
+        // and swallow the user's first click, leaving a stale idle form status.
+        if (fieldScope?.deferPointerBlur(next, refresh)) return;
+        refresh();
+      });
     };
 
     if (choice) {
@@ -115,8 +126,11 @@ export function createForms(c: RendererContext) {
       if (n.max !== undefined && number > n.max) return l.aboveMax;
       if (n.step !== undefined) {
         const steps = (number - (n.min ?? 0)) / n.step;
-        // Overflowed ratios cannot be proven aligned and must not silently pass.
-        if (!Number.isFinite(steps) || Math.abs(steps - Math.round(steps)) > Number.EPSILON * 16 * Math.max(1, Math.abs(steps))) return l.stepMismatch;
+        // Browser validity is authoritative for representable off-grid values.
+        // The arithmetic guard may forgive tiny rounding only, never a growing
+        // fraction of a step merely because the quotient is a large number.
+        const tolerance = Math.min(1e-7, Number.EPSILON * 16 * Math.max(1, Math.abs(steps)));
+        if (input.validity.stepMismatch || !Number.isFinite(steps) || Math.abs(steps - Math.round(steps)) > tolerance) return l.stepMismatch;
       }
       return '';
     }
@@ -172,11 +186,16 @@ export function createForms(c: RendererContext) {
       }
     }
 
-    scope?.fields.push({
+    const handle: FieldHandle = {
       validate: () => { touched = true; refresh(); return !problem(); },
       reset: () => { touched = false; localError = ''; last = undefined; refresh(); },
+      overwrite: () => { localError = ''; last = undefined; refresh(); },
       focus: () => inputs.find(input => !disabled(input))?.focus()
-    });
+    };
+    scope?.fields.push(handle);
+    const bound = fields.get(n.bind) ?? new Set<FieldHandle>();
+    bound.add(handle); fields.set(n.bind, bound);
+    c.cleanup(() => { bound.delete(handle); if (!bound.size) fields.delete(n.bind); });
     bind(refresh);
     return out;
   }
@@ -203,7 +222,19 @@ export function createForms(c: RendererContext) {
     const actions = e('div', 'iui-form-actions');
     const submit = e('button', 'iui-button-primary');
     const cancel = e('button');
-    const local: FormScope = { fields: [] };
+    let pointerAction: HTMLButtonElement | undefined, pointerId: number | undefined;
+    let blurTask: number | undefined;
+    const deferredBlur = new Set<() => void>();
+    const flushPointerBlur = (refresh = true) => {
+      if (blurTask !== undefined) c.doc.defaultView?.clearTimeout(blurTask);
+      blurTask = undefined; pointerAction = undefined; pointerId = undefined;
+      const callbacks = [...deferredBlur]; deferredBlur.clear();
+      if (refresh) callbacks.forEach(callback => callback());
+    };
+    const local: FormScope = { fields: [], deferPointerBlur: (next, refresh) => {
+      if (!pointerAction || next !== pointerAction) return false;
+      deferredBlur.add(refresh); return true;
+    } };
     let busy = false;
     let generation = 0;
     let abort: AbortController | undefined;
@@ -234,6 +265,26 @@ export function createForms(c: RendererContext) {
     finally { scope = previous; }
     actions.append(submit, cancel);
     out.append(fieldset, actions, status);
+    // Hold layout only during an actual action-button pointer gesture. Keyboard
+    // Tab/programmatic focus still validates immediately; cancelled gestures
+    // cannot leave the field's blur feedback pending indefinitely.
+    on(c.doc, 'pointerdown', (event: Event) => {
+      const pointer = event as PointerEvent;
+      if (pointer.button !== 0) return;
+      const target = (pointer.target as Element | null)?.closest?.('button');
+      const documentAction = target?.dataset.iui === 'button' && target.closest('.iui-root') === out.closest('.iui-root');
+      if (!target || target.disabled || target !== submit && target !== cancel && !documentAction) return;
+      flushPointerBlur(); pointerAction = target; pointerId = pointer.pointerId;
+    });
+    on(c.doc, 'pointerup', (event: Event) => {
+      if (!pointerAction || (event as PointerEvent).pointerId !== pointerId) return;
+      // A task after pointerup runs after its native click, unlike a microtask.
+      blurTask = c.doc.defaultView?.setTimeout(() => flushPointerBlur(), 0);
+    });
+    on(c.doc, 'pointercancel', (event: Event) => {
+      if ((event as PointerEvent).pointerId === pointerId) flushPointerBlur();
+    });
+    if (c.doc.defaultView) on(c.doc.defaultView, 'blur', () => flushPointerBlur());
     // Includes the established slider/toggle/select controls as well as new fields.
     const controls = [...fieldset.querySelectorAll<Control>('input[data-bind], textarea[data-bind], select[data-bind]')];
     const bindings = [...new Set(controls.map(control => control.dataset.bind!))];
@@ -249,6 +300,7 @@ export function createForms(c: RendererContext) {
     // Draft-only edits (for example an empty number input) also invalidate a prior success label.
     on(out, 'input', clearSuccess); on(out, 'change', clearSuccess);
     const reset = () => {
+      flushPointerBlur(false);
       generation++;
       const pending = abort;
       abort = undefined;
@@ -268,6 +320,7 @@ export function createForms(c: RendererContext) {
 
     on(out, 'submit', (event: Event) => {
       event.preventDefault();
+      flushPointerBlur(false);
       if (!alive || busy || submit.disabled) return;
       const invalid = local.fields.filter(field => !field.validate());
       if (invalid.length) {
@@ -311,9 +364,14 @@ export function createForms(c: RendererContext) {
     });
     on(cancel, 'click', () => { if (!cancel.disabled) reset(); });
     on(out, 'reset', (event: Event) => { event.preventDefault(); if (alive && !cancel.disabled) reset(); });
-    c.cleanup(() => { alive = false; generation++; abort?.abort(); abort = undefined; });
+    c.cleanup(() => { alive = false; generation++; abort?.abort(); abort = undefined; flushPointerBlur(false); });
     out.dataset.status = 'idle';
     return out;
   }
-  return { field, group, form };
+  const syncDrafts = (bindings: Iterable<string>, reset = false) => {
+    for (const binding of bindings) for (const handle of fields.get(binding) ?? []) {
+      if (reset) handle.reset(); else handle.overwrite();
+    }
+  };
+  return { field, group, form, syncDrafts };
 }

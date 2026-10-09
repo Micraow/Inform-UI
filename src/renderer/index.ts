@@ -77,15 +77,18 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   const clear = () => { for (const remove of removers) remove(); removers = []; refreshers = []; };
   const notify = () => { for (const fn of refreshers) fn(); };
   const fail = (e: unknown) => { error.textContent = e instanceof Error ? e.message : String(e); };
-  function change(patch: Record<string, string | number | boolean>) {
+  type DraftPolicy = 'preserve' | 'replace' | 'reset';
+  function change(patch: Record<string, string | number | boolean>, draftPolicy: DraftPolicy = 'preserve') {
     ensureLive();
     const candidate = evaluateState({...current,state}, patch);
     if (!candidate.ok) throw new InvalidDocumentError(candidate.issues);
     state = {...candidate.state}; computed = {...candidate.computed};
-    error.textContent = ''; notify();
+    error.textContent = '';
+    if (draftPolicy !== 'preserve') forms.syncDrafts(Object.keys(patch), draftPolicy === 'reset');
+    notify();
   }
-  function fromControl(patch: Record<string, string | number | boolean>) {
-    try { change(patch); } catch(e) { notify(); fail(e); }
+  function fromControl(patch: Record<string, string | number | boolean>, draftPolicy: DraftPolicy = 'preserve') {
+    try { change(patch, draftPolicy); } catch(e) { notify(); fail(e); }
   }
   function ensureLive() { if (disposed) throw new Error('This UI controller has been disposed'); }
   const context:RendererContext={doc,prefix,labels:()=>labels,element,svg,on,bind,cleanup:fn=>removers.push(fn),value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{}};
@@ -168,7 +171,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'slider': {out=element('div','iui-control');const id=prefix+`control-${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;bind(()=>input.checked=state[n.bind]===true);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
-      case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state});else fromControl({[n.action.bind!]:n.action.value!});});break;}
+      case 'button': {out=element('button','',n.label);out.setAttribute('type','button');on(out,'click',()=>{if(n.action.kind==='reset')fromControl({...current.state},'reset');else fromControl({[n.action.bind!]:n.action.value!},'replace');});break;}
       case 'input': case 'textarea': case 'radio': case 'segmented': out=forms.field(n);break;
       case 'field': out=forms.group(n);break;
       case 'form': out=forms.form(n);break;
@@ -218,6 +221,6 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   let resize: ResizeObserver | undefined;
   const RO=doc.defaultView?.ResizeObserver;
   if(RO){let previousWidth=container.getBoundingClientRect().width;resize=new RO(()=>{if(disposed)return;const width=container.getBoundingClientRect().width;if(width===previousWidth)return;previousWidth=width;notify();});resize.observe(container);}
-  return {update:replace,getState:()=>{ensureLive();return Object.freeze({...state});},setState:change,dispose:()=>{if(disposed)return;disposed=true;resize?.disconnect();clear();root.remove();}};
+  return {update:replace,getState:()=>{ensureLive();return Object.freeze({...state});},setState:patch=>change(patch,'replace'),dispose:()=>{if(disposed)return;disposed=true;resize?.disconnect();clear();root.remove();}};
 }
 export {styles};
