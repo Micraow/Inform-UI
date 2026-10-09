@@ -15,3 +15,5 @@ export type {LocationChoiceDetail} from './renderer/choice-gallery.js';
 export type {ReservationChoiceDetail} from './renderer/availability.js';
 
 export type {OnboardingChoiceDetail} from './renderer/onboarding.js';
+
+export type {PollReadyDetail} from './renderer/poll.js';
