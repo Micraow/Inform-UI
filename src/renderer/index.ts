@@ -1,4 +1,5 @@
 import {renderConverter} from './converters.js';
+import {renderTable} from './table.js';
 import {renderHeatmap} from './heatmap.js';
 import {renderFinance} from './finance.js';
 import {renderLearning} from './learning.js';
@@ -103,14 +104,24 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         const tag = n.type === 'title' ? (`h${n.level ?? (hasHeading ? 2 : 1)}` as 'h1'|'h2'|'h3') : n.type === 'badge' ? 'span' : 'p';
         if(n.type==='title')hasHeading=true;
         out = element(tag, `iui-${n.type}`); const target = out;
-        bind(() => showValue(target, value(n.value)));
+        if (n.type === 'text' && n.runs) {
+          for (const run of n.runs) {
+            let parent: HTMLElement = target;
+            if (run.href) { const a = element('a'); a.href = run.href.startsWith('#') ? `#${prefix}${run.href.slice(1)}` : run.href; if (!run.href.startsWith('#')) { a.target = '_blank'; a.rel = 'noopener noreferrer'; } parent.append(a); parent = a; }
+            for (const [enabled, runTag] of [[run.bold,'strong'],[run.italic,'em'],[run.underline,'u'],[run.strike,'s'],[run.code,'code']] as const) if (enabled) { const span = element(runTag, runTag === 'code' ? 'iui-inline-code' : ''); parent.append(span); parent = span; }
+            const content = element('span'); parent.append(content); bind(() => showValue(content, value(run.value)));
+          }
+        } else if (n.value !== undefined) bind(() => showValue(target, value(n.value!)));
         if ('color' in n && n.color) out.dataset.color = n.color;
         if ('weight' in n && n.weight) out.style.fontWeight = ({normal:'400',medium:'500',semibold:'600',bold:'700'})[n.weight];
         if ('align' in n && n.align) out.style.textAlign = n.align;
+        if ('italic' in n && n.italic) out.style.fontStyle = 'italic';
+        if ('underline' in n || 'strike' in n) out.style.textDecorationLine = [('underline' in n && n.underline) ? 'underline' : '', ('strike' in n && n.strike) ? 'line-through' : ''].filter(Boolean).join(' ') || 'none';
+        if ('shimmer' in n && n.shimmer) out.classList.add('iui-text-shimmer');
         break;
       }
       case 'markdown': out = element('div'); out.dataset.fallback = 'plain-text'; out.append(element('p','iui-caption',labels.plainText),element('p','iui-markdown',n.value)); break;
-      case 'code': { out = element('pre','iui-code'); out.append(element('code','',n.value)); if (n.language) out.setAttribute('aria-label',`${n.language} ${labels.code}`); break; }
+      case 'code': { if (n.inline) out = element('code', 'iui-inline-code', n.value); else { out = element('pre','iui-code'); out.append(element('code','',n.value)); } if (n.language) out.setAttribute('aria-label',`${n.language} ${labels.code}`); break; }
       case 'math': out = formula(n.latex,n.block ?? true); break;
       case 'divider': out = element('hr'); break;
       case 'spacer': out = element('div'); out.style.height = `${n.height ?? 16}px`; out.setAttribute('aria-hidden','true'); break;
@@ -134,7 +145,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         out=element('div',`iui-layout iui-${n.type}`);if(n.gap===undefined&&['box','card','col'].includes(n.type))out.dataset.semanticGap='true';
         if(n.gap !== undefined) out.style.setProperty('--iui-gap',String(n.gap));
         if(n.padding !== undefined) out.style.setProperty('--iui-padding',String(n.padding));
-        if(n.type==='grid') out.style.setProperty('--iui-columns',String(n.columns??2));
+        if(n.type==='grid') { out.style.setProperty('--iui-columns',String(n.columns??2)); out.style.setProperty('--iui-grid-mobile-columns',String(n.mobileColumns??1)); }
         if(n.width) out.style.width=typeof n.width==='number'?`${n.width}px`:n.width;
         if(n.align) out.style.alignItems=({start:'flex-start',center:'center',end:'flex-end',stretch:'stretch'})[n.align];
         if(n.justify) out.style.justifyContent=({start:'flex-start',center:'center',end:'flex-end',between:'space-between',around:'space-around'})[n.justify];
@@ -142,12 +153,14 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         if(n.border!==undefined) out.dataset.border=String(n.border); if(n.background) out.dataset.background=n.background;
         children(out,n.children); break;
       }
+      case 'grid-item': out=element('div','iui-grid-item');out.style.setProperty('--iui-col-span',String(n.colSpan??1));out.style.setProperty('--iui-row-span',String(n.rowSpan??1));out.style.setProperty('--iui-mobile-col-span',String(n.mobileColSpan??1));children(out,n.children);break;
+      case 'blockquote': { const quote=element('blockquote','iui-blockquote');if(n.cite)quote.cite=n.cite;children(quote,n.children);out=quote;if(n.attribution){const footer=element('footer','iui-quote-attribution');if(n.cite){const a=element('a','',n.attribution);a.href=n.cite.startsWith('#')?`#${prefix}${n.cite.slice(1)}`:n.cite;if(!n.cite.startsWith('#')){a.target='_blank';a.rel='noopener noreferrer';}footer.append(a);}else footer.textContent=n.attribution;quote.append(footer);}break; }
       case 'section': out=element('section','iui-layout');out.dataset.semanticGap='true'; if(n.heading)out.append(element('h2','',n.heading)); children(out,n.children); break;
       case 'figure': out=element('figure','iui-layout');out.dataset.semanticGap='true'; children(out,n.children); if(n.caption)out.append(element('figcaption','iui-caption',n.caption)); break;
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
       case 'carousel': out=element('div','iui-carousel'); out.tabIndex=0;out.setAttribute('role','region');out.setAttribute('aria-label',labels.collection);children(out,n.children);break;
       case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>showValue(li,value(item as Value)));out.append(li);}break;
-      case 'table': {out=element('div','iui-table-wrap');const table=element('table');if(n.caption)table.append(element('caption','',n.caption));const head=element('thead'),tr=element('tr');for(const c of n.columns){const th=element('th','',c);th.scope='col';tr.append(th);}head.append(tr);table.append(head);const body=element('tbody');for(const row of n.rows){const r=element('tr');for(const cell of row){const td=element('td');bind(()=>showValue(td,value(cell)));r.append(td);}body.append(r);}table.append(body);out.append(table);break;}
+      case 'table': out=renderTable(context,n);break;
       case 'metric': {out=element('div','iui-metric');out.dataset.variant=n.variant??'plain';out.append(element('div','iui-metric-label',n.label));const number=element('div','iui-metric-value');const span=element('span');number.append(span);if(n.color)number.dataset.color=n.color;bind(()=>{const v=value(n.value);span.textContent=typeof v==='number'&&n.precision!==undefined?v.toFixed(n.precision):display(v);});if(n.unit)number.append(element('span','iui-unit',n.unit));out.append(number);if(n.hint)out.append(element('div','iui-caption',n.hint));break;}
       case 'metric-grid': out=element('div','iui-layout iui-metric-grid');out.style.setProperty('--iui-columns',String(n.columns??2));out.style.setProperty('--iui-mobile-columns',String(Math.min(2,n.columns??2)));children(out,n.children);break;
       case 'steps': out=element('ol','iui-steps');for(const item of n.items){const li=element('li');li.append(element('strong','',item.title));if(item.detail)li.append(element('p','',item.detail));if(item.latex)li.append(formula(item.latex));out.append(li);}break;

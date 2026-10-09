@@ -2,7 +2,7 @@
 
 `iui/1` is the Inform UI project's versioned document format. It is not an
 OpenAI model-output protocol, a recovered private schema, or an entitlement to
-ChatGPT services. The schema recognizes 52 project-defined node types, including the historical
+ChatGPT services. The working schema recognizes 54 project-defined node types, including the historical
 `native` input that is explicitly rejected. New domain nodes are original contracts.
 
 This is the support matrix for one independent, public library. The API's
@@ -23,15 +23,15 @@ results from the current revision for those claims.
 - **Rejected:** recognized for diagnostics but refused by semantic validation;
   there is no hidden download, private bridge, or silent substitution.
 
-**Count: 50 rendered + 1 plain-text fallback + 1 rejected = 52 node types.**
+**Working source: 52 rendered + 1 plain-text fallback + 1 rejected = 54 node types.** The fixed CDN remains at52; the foundation extensions below are a candidate awaiting browser/CDN acceptance. See [contract and examples](foundations.md).
 
 | Node | Status | Portable behavior and boundary |
 | --- | --- | --- |
-| `text` | Rendered | Escaped text; literal or declared expression value; semantic color, weight, alignment. No inline HTML. |
+| `text` | Rendered | Escaped value or explicit rich-text runs, safe inline links/code, semantic color/weight/alignment and decoration. No inline HTML. New fields await browser/CDN acceptance. |
 | `title` | Rendered | Heading levels 1–3, with the same safe values and emphasis options. |
 | `caption` | Rendered | Lower-emphasis explanatory text; no source lookup. |
 | `markdown` | Plain-text fallback | Original characters are displayed as text. Formatting, embedded HTML, images, and Markdown links are not parsed. |
-| `code` | Rendered | Escaped preformatted code with optional language label. No execution, syntax highlighting, copy action, or editor. |
+| `code` | Rendered | Escaped preformatted or explicit inline code with optional language label. No execution, syntax highlighting, copy action, or editor. |
 | `math` | Rendered | KaTeX generates visible HTML plus accessible MathML with trust disabled. Unsupported syntax remains formula source with an accessibility label; offline output embeds official MIT WOFF2 fonts; CDN CSS loads the same fonts from its pinned asset directory. No remote equation service is used. |
 | `badge` | Rendered | Compact text and semantic color. Size and arbitrary visual variants are not configurable. |
 | `divider` | Rendered | A semantic horizontal separator. |
@@ -42,13 +42,15 @@ results from the current revision for those claims.
 | `card` | Rendered | Bordered, padded grouping using renderer-owned visual defaults. |
 | `row` | Rendered | Horizontal flex grouping that can wrap; not absolute positioning. |
 | `col` | Rendered | Vertical flex grouping. |
-| `grid` | Rendered | One to six equal-width columns with narrow-screen reflow. No cell spanning or masonry algorithm. |
+| `grid` | Rendered | One to six equal-width columns; candidate desktop/mobile grid-item spans and explicit narrow-screen columns. No dense reorder or masonry. |
+| `grid-item` | Rendered candidate | Direct grid child with validated desktop/mobile column span and desktop row span. |
+| `blockquote` | Rendered candidate | Safe child content, supplied attribution and validated citation URL. No source retrieval. |
 | `section` | Rendered | Optional heading followed by child nodes. |
 | `figure` | Rendered | Grouped content and an optional figure caption. |
 | `details` | Rendered | Native disclosure with a summary and expandable child content. Not a hover popup. |
 | `carousel` | Rendered | Focusable horizontal scroll-snap collection. No autoplay, looping, or previous/next buttons. |
 | `list` | Rendered | Ordered or unordered items containing safe values or supported nodes. No separate description-list schema. |
-| `table` | Rendered | Column headers, caption, and rectangular rows of safe values, inside an overflow container. No merged cells, sorting, editing, or remote pagination. |
+| `table` | Rendered | Candidate native multi-section and merged-cell tables with shared occupancy validation, explicit header associations and local keyboard scroll. Legacy rows preserved. No sorting, editing or remote pagination. |
 | `metric` | Rendered | Label, value, optional unit, precision, hint, and semantic color. Formatting does not establish data provenance. |
 | `metric-grid` | Rendered | Compact responsive metric grouping, with one to four requested columns. |
 | `steps` | Rendered | Ordered titled steps, optional explanation, and optional formula per step. No automatic algorithm execution. |

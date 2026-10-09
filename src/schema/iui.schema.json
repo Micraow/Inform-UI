@@ -138,6 +138,38 @@
         }
       ]
     },
+    "TextRun": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/Value"
+        },
+        "bold": {
+          "type": "boolean"
+        },
+        "italic": {
+          "type": "boolean"
+        },
+        "underline": {
+          "type": "boolean"
+        },
+        "strike": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "additionalProperties": false
+    },
     "TextNode": {
       "type": "object",
       "properties": {
@@ -151,6 +183,14 @@
         },
         "value": {
           "$ref": "#/$defs/Value"
+        },
+        "runs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TextRun"
+          },
+          "minItems": 1,
+          "maxItems": 100
         },
         "color": {
           "enum": [
@@ -178,13 +218,160 @@
             "center",
             "end"
           ]
+        },
+        "italic": {
+          "type": "boolean"
+        },
+        "underline": {
+          "type": "boolean"
+        },
+        "strike": {
+          "type": "boolean"
+        },
+        "shimmer": {
+          "type": "boolean"
         }
       },
       "required": [
-        "type",
-        "value"
+        "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "$ref": "#/$defs/Value"
+            },
+            "runs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TextRun"
+              },
+              "minItems": 1,
+              "maxItems": 100
+            },
+            "color": {
+              "enum": [
+                "default",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "accent"
+              ]
+            },
+            "weight": {
+              "enum": [
+                "normal",
+                "medium",
+                "semibold",
+                "bold"
+              ]
+            },
+            "align": {
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            },
+            "italic": {
+              "type": "boolean"
+            },
+            "underline": {
+              "type": "boolean"
+            },
+            "strike": {
+              "type": "boolean"
+            },
+            "shimmer": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "text"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "$ref": "#/$defs/Value"
+            },
+            "runs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TextRun"
+              },
+              "minItems": 1,
+              "maxItems": 100
+            },
+            "color": {
+              "enum": [
+                "default",
+                "secondary",
+                "tertiary",
+                "success",
+                "warning",
+                "danger",
+                "info",
+                "accent"
+              ]
+            },
+            "weight": {
+              "enum": [
+                "normal",
+                "medium",
+                "semibold",
+                "bold"
+              ]
+            },
+            "align": {
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            },
+            "italic": {
+              "type": "boolean"
+            },
+            "underline": {
+              "type": "boolean"
+            },
+            "strike": {
+              "type": "boolean"
+            },
+            "shimmer": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "runs"
+          ],
+          "additionalProperties": false
+        }
+      ]
     },
     "TitleNode": {
       "type": "object",
@@ -226,6 +413,18 @@
             "center",
             "end"
           ]
+        },
+        "italic": {
+          "type": "boolean"
+        },
+        "underline": {
+          "type": "boolean"
+        },
+        "strike": {
+          "type": "boolean"
+        },
+        "shimmer": {
+          "type": "boolean"
         },
         "level": {
           "type": "integer",
@@ -279,6 +478,18 @@
             "center",
             "end"
           ]
+        },
+        "italic": {
+          "type": "boolean"
+        },
+        "underline": {
+          "type": "boolean"
+        },
+        "strike": {
+          "type": "boolean"
+        },
+        "shimmer": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -328,6 +539,9 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 200
+        },
+        "inline": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -960,6 +1174,87 @@
           "type": "integer",
           "minimum": 1,
           "maximum": 6
+        },
+        "mobileColumns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        }
+      },
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "GridItemNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "grid-item"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "colSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "rowSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "mobileColSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        }
+      },
+      "required": [
+        "type",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "BlockquoteNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "blockquote"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        },
+        "attribution": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "cite": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
         }
       },
       "required": [
@@ -1122,6 +1417,85 @@
       ],
       "additionalProperties": false
     },
+    "TableCellObject": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/Value"
+        },
+        "rowSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        },
+        "colSpan": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "header": {
+          "type": "boolean"
+        },
+        "scope": {
+          "enum": [
+            "row",
+            "col",
+            "rowgroup"
+          ]
+        },
+        "align": {
+          "enum": [
+            "start",
+            "center",
+            "end"
+          ]
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "TableCell": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Value"
+        },
+        {
+          "$ref": "#/$defs/TableCellObject"
+        }
+      ]
+    },
+    "TableSection": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "head",
+            "body",
+            "foot"
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/TableCell"
+            },
+            "minItems": 0,
+            "maxItems": 20
+          },
+          "minItems": 0,
+          "maxItems": 200
+        }
+      },
+      "required": [
+        "kind",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
     "TableNode": {
       "type": "object",
       "properties": {
@@ -1148,7 +1522,7 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/$defs/Value"
+              "$ref": "#/$defs/TableCell"
             },
             "minItems": 0,
             "maxItems": 20
@@ -1156,17 +1530,163 @@
           "minItems": 0,
           "maxItems": 200
         },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TableSection"
+          },
+          "minItems": 1,
+          "maxItems": 12
+        },
         "caption": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
           "type": "string",
           "maxLength": 12000
         }
       },
       "required": [
         "type",
-        "columns",
-        "rows"
+        "columns"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "table"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "minItems": 1,
+              "maxItems": 20
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/TableCell"
+                },
+                "minItems": 0,
+                "maxItems": 20
+              },
+              "minItems": 0,
+              "maxItems": 200
+            },
+            "sections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TableSection"
+              },
+              "minItems": 1,
+              "maxItems": 12
+            },
+            "caption": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "status": {
+              "enum": [
+                "ready",
+                "loading",
+                "error"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 12000
+            }
+          },
+          "required": [
+            "rows"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "table"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "minItems": 1,
+              "maxItems": 20
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/TableCell"
+                },
+                "minItems": 0,
+                "maxItems": 20
+              },
+              "minItems": 0,
+              "maxItems": 200
+            },
+            "sections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TableSection"
+              },
+              "minItems": 1,
+              "maxItems": 12
+            },
+            "caption": {
+              "type": "string",
+              "maxLength": 12000
+            },
+            "status": {
+              "enum": [
+                "ready",
+                "loading",
+                "error"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 12000
+            }
+          },
+          "required": [
+            "sections"
+          ],
+          "additionalProperties": false
+        }
+      ]
     },
     "MetricNode": {
       "type": "object",
@@ -4343,6 +4863,12 @@
         },
         {
           "$ref": "#/$defs/GridNode"
+        },
+        {
+          "$ref": "#/$defs/GridItemNode"
+        },
+        {
+          "$ref": "#/$defs/BlockquoteNode"
         },
         {
           "$ref": "#/$defs/SectionNode"

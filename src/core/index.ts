@@ -1,4 +1,5 @@
 import {inspectConverters} from './converters.js';
+import {tableLayout, isTableCellObject, TableLayoutError} from './table.js';
 import {inspectHeatmap} from './heatmap.js';
 import {isFinance,inspectFinance} from './finance.js';
 import {isLearning,inspectLearning} from './learning.js';
@@ -184,20 +185,24 @@ function inspectSvg(node: Extract<Node, { type: 'svg' }>, path: string, add: (is
   });
 }
 
-function walkNodes(document: IUIDocument, visit: (node: Node, path: string) => void) {
-  const walk = (node: Node, path: string) => {
-    visit(node, path);
-    if ('children' in node) node.children.forEach((child, i) => walk(child, `${path}/children/${i}`));
-    if (node.type === 'list') node.items.forEach((item, i) => { if (record(item) && 'type' in item) walk(item as Node, `${path}/items/${i}`); });
+function walkNodes(document: IUIDocument, visit: (node: Node, path: string, parent?: Node) => void) {
+  const walk = (node: Node, path: string, parent?: Node) => {
+    visit(node, path, parent);
+    if ('children' in node) node.children.forEach((child, i) => walk(child, `${path}/children/${i}`, node));
+    if (node.type === 'list') node.items.forEach((item, i) => { if (record(item) && 'type' in item) walk(item as Node, `${path}/items/${i}`, node); });
   };
   document.body.forEach((node, i) => walk(node, `/body/${i}`));
 }
 function nodeValues(node: Node, path: string): [Value, string][] {
   const values: [Value, string][] = [];
   for (const key of ['disabled', 'error'] as const) if (key in node) { const v=(node as unknown as Record<string,Value>)[key]; if(v!==undefined)values.push([v,`${path}/${key}`]); }
-  if ('value' in node) values.push([node.value, `${path}/value`]);
+  if ('value' in node && node.value !== undefined) values.push([node.value, `${path}/value`]);
+  if (node.type === 'text') node.runs?.forEach((run, i) => values.push([run.value, `${path}/runs/${i}/value`]));
   if (node.type === 'list') node.items.forEach((item, i) => { if (!record(item) || !('type' in item)) values.push([item as Value, `${path}/items/${i}`]); });
-  if (node.type === 'table') node.rows.forEach((row, i) => row.forEach((value, j) => values.push([value, `${path}/rows/${i}/${j}`])));
+  if (node.type === 'table') {
+    const rows = (items: typeof node.rows, at: string) => items?.forEach((row, i) => row.forEach((cell, j) => values.push(isTableCellObject(cell) ? [cell.value, `${at}/${i}/${j}/value`] : [cell, `${at}/${i}/${j}`])));
+    rows(node.rows, `${path}/rows`); node.sections?.forEach((section, i) => rows(section.rows, `${path}/sections/${i}/rows`));
+  }
   if (node.type === 'topology') node.links.forEach((link, i) => { if (link.load !== undefined) values.push([link.load, `${path}/links/${i}/load`]); });
   if (node.type === 'chart') node.data.forEach((row, i) => Object.entries(row).forEach(([key, value]) => { if (value !== undefined) values.push([value, pointer(`${path}/data/${i}`, key)]); }));
   return values;
@@ -236,7 +241,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
   };
   for (const [key, value] of Object.entries(computed)) if (value !== undefined) capture(() => { infer(value, pointer('/computed', key)); });
   const ids = new Set<string>();
-  walkNodes(document, (node, path) => {
+  walkNodes(document, (node, path, parent) => {
     if (node.id) { if (ids.has(node.id)) add(issue('DUPLICATE_ID', `${path}/id`, `Duplicate node id: ${node.id}.`)); ids.add(node.id); }
     for (const [value, at] of nodeValues(node, path)) capture(() => { infer(value, at); });
     inspectExtension(node,path,state,add);
@@ -248,9 +253,18 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='weather'&&node.source.url&&!isSafeURL(node.source.url))add(issue('UNSAFE_URL',`${path}/source/url`,'Weather source URL is outside the allowed policy.'));
     if (node.type === 'native') add(issue('UNSUPPORTED_NATIVE', path, 'Native-runtime nodes are recognized for compatibility but are not supported. Use portable node types.'));
     if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
+    if (node.type === 'text') node.runs?.forEach((run, i) => { if (run.href && !isSafeURL(run.href)) add(issue('UNSAFE_URL', `${path}/runs/${i}/href`, 'Inline link URL is outside the allowed policy.')); });
+    if (node.type === 'blockquote' && node.cite && !isSafeURL(node.cite)) add(issue('UNSAFE_URL', `${path}/cite`, 'Quote source URL is outside the allowed policy.'));
+    if (node.type === 'grid-item') {
+      if (parent?.type !== 'grid') add(issue('GRID_ITEM_PARENT', path, 'grid-item must be a direct child of grid.'));
+      else {
+        if ((node.colSpan ?? 1) > (parent.columns ?? 2)) add(issue('GRID_SPAN', `${path}/colSpan`, 'Grid item span exceeds its desktop columns.'));
+        if ((node.mobileColSpan ?? 1) > (parent.mobileColumns ?? 1)) add(issue('GRID_SPAN', `${path}/mobileColSpan`, 'Grid item span exceeds its mobile columns.'));
+      }
+    }
     if (node.type === 'image' && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Images must use HTTP(S) or base64 PNG, JPEG, GIF or WebP.'));
     if (node.type === 'svg') inspectSvg(node, path, add);
-    if (node.type === 'table') node.rows.forEach((row, i) => { if (row.length !== node.columns.length) add(issue('TABLE_WIDTH', `${path}/rows/${i}`, 'Every row must have one cell per column.')); });
+    if (node.type === 'table') try { tableLayout(node); } catch (error) { if (error instanceof TableLayoutError) add(issue(error.code, path + error.path, error.message)); else throw error; }
     if (node.type === 'topology') {
       const local = new Set<string>();
       node.nodes.forEach((n, i) => { if (local.has(n.id)) add(issue('DUPLICATE_ID', `${path}/nodes/${i}/id`, `Duplicate topology id: ${n.id}.`)); local.add(n.id); });

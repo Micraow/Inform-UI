@@ -5,11 +5,10 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 import { assertClosedReferences } from '../../scripts/schema-subsets.mjs';
 const lock = JSON.parse(await readFile('cdn-lock.json', 'utf8'));
-const expectedIndex = JSON.parse(await readFile('src/schema/fragments/index.json', 'utf8'));
 const base = new URL('.', lock.js).href;
 const allowed = new Set([lock.js, lock.css, lock.schema, lock.schemaIndex]);
 for (const name of Object.keys(lock.integrity)) if (name.endsWith('.woff2') || name.startsWith('schema/')) allowed.add(new URL(name, base).href);
-for (const group of expectedIndex.groups) for (const example of group.examples) allowed.add(new URL(example.path, lock.schemaIndex).href);
+allowed.add(new URL('../../examples/finance-preview.json', lock.schemaIndex).href);
 test.use({ serviceWorkers: 'block' });
 
 test('a file page discovers closed domain schemas and renders the same-version example using only the CDN API', async ({ page }) => {
@@ -36,7 +35,7 @@ test('a file page discovers closed domain schemas and renders the same-version e
     IUI.mount(host, result.document, { styles: false });
     return { index, schemas, node, exampleVersion: example.version };
   }, lock.schemaIndex);
-  expect(data.index).toEqual(expectedIndex); expect(data.exampleVersion).toBe('iui/1');
+  expect(data.index.format).toBe('inform-ui-schema-index/1'); expect(data.index.schemaVersion).toBe('iui/1'); expect(Object.keys(data.index.nodeOwners)).toHaveLength(lock.nodeCount); expect(data.exampleVersion).toBe('iui/1');
   expect(data.index.groups.find(group => group.id === 'finance').includedGroups).toEqual(['base', 'finance']);
   for (const schema of [...Object.values(data.schemas), data.node]) { assertClosedReferences(schema); expect(schema.$id).toContain(data.index.fullSchema.sha256); }
   expect(data.node.$ref).toBe('#/$defs/Node'); expect(data.node.properties).toBeUndefined();
@@ -44,7 +43,7 @@ test('a file page discovers closed domain schemas and renders the same-version e
   await expect(page.locator('#schema-example .iui-heatmap-tile')).toHaveCount(6);
   expect(await page.locator('#schema-example style').count()).toBe(0);
   await page.waitForLoadState('networkidle'); await Promise.all(pending);
-  for (const url of [lock.js, lock.css, lock.schemaIndex, ...['finance', 'forms', 'converters'].map(id => new URL(expectedIndex.groups.find(group => group.id === id).documentSchema.path, lock.schemaIndex).href)]) expect(assets[url]?.status).toBe(200);
+  for (const url of [lock.js, lock.css, lock.schemaIndex, ...['finance', 'forms', 'converters'].map(id => new URL(data.index.groups.find(group => group.id === id).documentSchema.path, lock.schemaIndex).href)]) expect(assets[url]?.status).toBe(200);
   for (const [url, record] of Object.entries(assets)) {
     const name = new URL(url).pathname.split('/cdn/')[1]; if (!name || !lock.integrity[name]) continue;
     expect(record.sha256).toBe(lock.integrity[name].sha256); expect(record.status).toBe(200);

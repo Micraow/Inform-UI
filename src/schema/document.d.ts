@@ -47,6 +47,8 @@ export type Node =
   | RowNode
   | ColNode
   | GridNode
+  | GridItemNode
+  | BlockquoteNode
   | SectionNode
   | FigureNode
   | DetailsNode
@@ -83,6 +85,126 @@ export type Node =
   | CurrencyConverterNode
   | SvgNode
   | NativeNode;
+export type TextNode = {
+  type: "text";
+  id?: string;
+  value?: Value;
+  /**
+   * @minItems 1
+   * @maxItems 100
+   */
+  runs?: [TextRun, ...TextRun[]];
+  color?: "default" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "accent";
+  weight?: "normal" | "medium" | "semibold" | "bold";
+  align?: "start" | "center" | "end";
+  italic?: boolean;
+  underline?: boolean;
+  strike?: boolean;
+  shimmer?: boolean;
+} & TextNode1;
+export type TextNode1 =
+  | {
+      type?: "text";
+      id?: string;
+      value: Value;
+      /**
+       * @minItems 1
+       * @maxItems 100
+       */
+      runs?: [TextRun, ...TextRun[]];
+      color?: "default" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "accent";
+      weight?: "normal" | "medium" | "semibold" | "bold";
+      align?: "start" | "center" | "end";
+      italic?: boolean;
+      underline?: boolean;
+      strike?: boolean;
+      shimmer?: boolean;
+    }
+  | {
+      type?: "text";
+      id?: string;
+      value?: Value;
+      /**
+       * @minItems 1
+       * @maxItems 100
+       */
+      runs: [TextRun, ...TextRun[]];
+      color?: "default" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "accent";
+      weight?: "normal" | "medium" | "semibold" | "bold";
+      align?: "start" | "center" | "end";
+      italic?: boolean;
+      underline?: boolean;
+      strike?: boolean;
+      shimmer?: boolean;
+    };
+export type TableNode = {
+  type: "table";
+  id?: string;
+  /**
+   * @minItems 1
+   * @maxItems 20
+   */
+  columns: [string, ...string[]];
+  /**
+   * @minItems 0
+   * @maxItems 200
+   */
+  rows?: TableCell[][];
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  sections?: [TableSection, ...TableSection[]];
+  caption?: string;
+  status?: "ready" | "loading" | "error";
+  message?: string;
+} & TableNode1;
+export type TableCell = Value | TableCellObject;
+export type TableNode1 =
+  | {
+      type?: "table";
+      id?: string;
+      /**
+       * @minItems 1
+       * @maxItems 20
+       */
+      columns?: [string, ...string[]];
+      /**
+       * @minItems 0
+       * @maxItems 200
+       */
+      rows: TableCell[][];
+      /**
+       * @minItems 1
+       * @maxItems 12
+       */
+      sections?: [TableSection, ...TableSection[]];
+      caption?: string;
+      status?: "ready" | "loading" | "error";
+      message?: string;
+    }
+  | {
+      type?: "table";
+      id?: string;
+      /**
+       * @minItems 1
+       * @maxItems 20
+       */
+      columns?: [string, ...string[]];
+      /**
+       * @minItems 0
+       * @maxItems 200
+       */
+      rows?: TableCell[][];
+      /**
+       * @minItems 1
+       * @maxItems 12
+       */
+      sections: [TableSection, ...TableSection[]];
+      caption?: string;
+      status?: "ready" | "loading" | "error";
+      message?: string;
+    };
 
 /**
  * The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.
@@ -104,13 +226,14 @@ export interface IUIDocument {
    */
   body: [Node, ...Node[]];
 }
-export interface TextNode {
-  type: "text";
-  id?: string;
+export interface TextRun {
   value: Value;
-  color?: "default" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "accent";
-  weight?: "normal" | "medium" | "semibold" | "bold";
-  align?: "start" | "center" | "end";
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  strike?: boolean;
+  code?: boolean;
+  href?: string;
 }
 export interface TitleNode {
   type: "title";
@@ -119,6 +242,10 @@ export interface TitleNode {
   color?: "default" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "accent";
   weight?: "normal" | "medium" | "semibold" | "bold";
   align?: "start" | "center" | "end";
+  italic?: boolean;
+  underline?: boolean;
+  strike?: boolean;
+  shimmer?: boolean;
   level?: number;
 }
 export interface CaptionNode {
@@ -128,6 +255,10 @@ export interface CaptionNode {
   color?: "default" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "info" | "accent";
   weight?: "normal" | "medium" | "semibold" | "bold";
   align?: "start" | "center" | "end";
+  italic?: boolean;
+  underline?: boolean;
+  strike?: boolean;
+  shimmer?: boolean;
 }
 export interface MarkdownNode {
   type: "markdown";
@@ -139,6 +270,7 @@ export interface CodeNode {
   id?: string;
   value: string;
   language?: string;
+  inline?: boolean;
 }
 export interface MathNode {
   type: "math";
@@ -265,6 +397,30 @@ export interface GridNode {
    */
   children: Node[];
   columns?: number;
+  mobileColumns?: number;
+}
+export interface GridItemNode {
+  type: "grid-item";
+  id?: string;
+  colSpan?: number;
+  rowSpan?: number;
+  mobileColSpan?: number;
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  children: [Node, ...Node[]];
+}
+export interface BlockquoteNode {
+  type: "blockquote";
+  id?: string;
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  children: [Node, ...Node[]];
+  attribution?: string;
+  cite?: string;
 }
 export interface SectionNode {
   type: "section";
@@ -315,20 +471,21 @@ export interface ListNode {
    */
   items: (Value | Node)[];
 }
-export interface TableNode {
-  type: "table";
-  id?: string;
-  /**
-   * @minItems 1
-   * @maxItems 20
-   */
-  columns: [string, ...string[]];
+export interface TableCellObject {
+  value: Value;
+  rowSpan?: number;
+  colSpan?: number;
+  header?: boolean;
+  scope?: "row" | "col" | "rowgroup";
+  align?: "start" | "center" | "end";
+}
+export interface TableSection {
+  kind: "head" | "body" | "foot";
   /**
    * @minItems 0
    * @maxItems 200
    */
-  rows: Value[][];
-  caption?: string;
+  rows: TableCell[][];
 }
 export interface MetricNode {
   type: "metric";

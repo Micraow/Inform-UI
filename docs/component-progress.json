@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-09T03:14:00Z",
+  "as_of_utc": "2026-10-09T04:30:00Z",
   "scope": "用户提供捕获范围内去重后的256项；非OpenAI全量私有组件声明",
   "criterion": "功能实现并通过已执行的回归，不等于完整像素/所有平台/辅助技术验收。新增变化须按ID更新，不用schema节点数替代。",
   "basis": {
@@ -15,10 +15,10 @@
     "converters_verified_ci": "https://github.com/Micraow/Inform-UI/actions/runs/37878019661"
   },
   "counts": {
-    "not_implemented": 202,
+    "not_implemented": 201,
     "functionally_verified": 36,
-    "partial": 18,
-    "implemented_pending_verification": 0
+    "partial": 14,
+    "implemented_pending_verification": 5
   },
   "components": [
     {
@@ -39,8 +39,8 @@
       "id": "base-blockquote",
       "name": "引用块",
       "layer": "primitive",
-      "status": "not_implemented",
-      "note": "暂无专门实现证据"
+      "status": "implemented_pending_verification",
+      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
     },
     {
       "id": "base-box",
@@ -123,8 +123,8 @@
       "id": "base-code",
       "name": "行内代码",
       "layer": "primitive",
-      "status": "partial",
-      "note": "无行内代码"
+      "status": "implemented_pending_verification",
+      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
     },
     {
       "id": "base-col",
@@ -183,8 +183,8 @@
       "id": "base-grid",
       "name": "网格",
       "layer": "primitive",
-      "status": "partial",
-      "note": "无独立grid-item/span"
+      "status": "implemented_pending_verification",
+      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
     },
     {
       "id": "base-html-view",
@@ -358,15 +358,15 @@
       "id": "base-table",
       "name": "表格",
       "layer": "primitive",
-      "status": "partial",
-      "note": "无section/合并单元格"
+      "status": "implemented_pending_verification",
+      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
     },
     {
       "id": "base-text",
       "name": "文本",
       "layer": "primitive",
-      "status": "partial",
-      "note": "缺italic/underline/strike/shimmer"
+      "status": "implemented_pending_verification",
+      "note": "基础增强源码与本地回归已实现；真实浏览器、截图及新固定CDN尚待验收，未计入已完成功能。"
     },
     {
       "id": "base-textarea",

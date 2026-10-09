@@ -10,3 +10,13 @@ const controller:Controller=mount(host,spec);controller.setState({x:1});controll
 // @ts-expect-error raw HTML is not part of the node language
 const invalid:Node={type:'html',value:'<b>x</b>'};
 void invalid;
+const rich:Node={type:'text',runs:[{value:{$:'count'},bold:true,code:true}]};
+const table:Node={type:'table',columns:['Name','Value'],sections:[{kind:'body',rows:[[{value:'A',header:true},0]]}]};
+const grid:Node={type:'grid',columns:2,children:[{type:'grid-item',colSpan:2,children:[rich]}]};
+const quote:Node={type:'blockquote',children:[rich],attribution:'Original example'};
+void [table,grid,quote];
+// @ts-expect-error text requires either a value or runs
+const missingText:Node={type:'text'};
+// @ts-expect-error table requires rows or sections
+const missingTable:Node={type:'table',columns:['A']};
+void [missingText,missingTable];
