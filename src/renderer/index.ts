@@ -1,3 +1,5 @@
+import {renderEmailPreview} from './email-preview.js';
+import {renderFileNav} from './file-nav.js';
 import {renderPoll} from './poll.js';
 import {renderTracker} from './trackers.js';
 import {renderOnboarding} from './onboarding.js';
@@ -162,6 +164,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'email-preview':out=renderEmailPreview(context,n,labels.mailFilesUI);break;
+      case 'file-nav-list':out=renderFileNav(context,n,labels.mailFilesUI);break;
       case 'create-interactive-poll':out=renderPoll(context,n,labels.pollUI);break;
       case 'onboarding-selection':out=renderOnboarding(context,n,labels.onboardingUI);break;
       case 'asset-distribution':case 'transaction-list':out=renderLedger(context,n,labels.ledgerUI);break;

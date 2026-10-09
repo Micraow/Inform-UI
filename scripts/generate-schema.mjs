@@ -90,6 +90,17 @@ node('package-tracker',{label:short,description:string(2000),carrier:short,track
 defs.TrackedFlightEndpoint=object({airport:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3},name:short,scheduledAt:flightAt,estimatedAt:flightAt,actualAt:flightAt,terminal:short,gate:short},['airport','scheduledAt']);
 defs.FlightUpdate=object({id:suppliedKey,at:flightAt,message:short,kind:choice('information','change','disruption'),description:string(2000)},['id','at','message','kind']);
 node('flight-tracker',{label:short,description:string(2000),carrier:short,flightNumber:short,status:choice('scheduled','boarding','departed','landed','cancelled','diverted','unknown'),observedAt:flightAt,departure:ref('TrackedFlightEndpoint'),arrival:ref('TrackedFlightEndpoint'),updates:array(ref('FlightUpdate'),0,40),source:ref('TrackerSource')},['label','carrier','flightNumber','status','observedAt','departure','arrival','updates']);
+// Original supplied plain-text mail and finite file navigation; no provider/filesystem access.
+defs.ReaderSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.EmailPreviewPerson=object({name:short,address:string(320,1)},['address']);
+const readerMetadata={sizeBytes:integer(0,1e12),mediaType:short,description:string(2000)};
+defs.EmailPreviewAttachment=object({id:suppliedKey,name:short,...readerMetadata,url:string(2048,1)},['id','name']);
+node('email-preview',{subject:string(500,1),from:ref('EmailPreviewPerson'),to:array(ref('EmailPreviewPerson'),0,40),cc:array(ref('EmailPreviewPerson'),0,40),sentAt:flightAt,body:string(20000),quotedText:string(20000),attachments:array(ref('EmailPreviewAttachment'),0,20),source:ref('ReaderSource')},['subject','from','to','body']);
+const fileEntryCommon={id:suppliedKey,name:short,parentId:{anyOf:[suppliedKey,{type:'null'}]},description:string(2000)};
+defs.FileNavFolder=object({...fileEntryCommon,kind:{const:'folder'}},['id','name','kind']);
+defs.FileNavFile=object({...fileEntryCommon,...readerMetadata,kind:{const:'file'},category:choice('document','image','audio','video','archive','other'),modifiedAt:flightAt,url:string(2048,1)},['id','name','kind']);
+defs.FileNavEntry={oneOf:[ref('FileNavFolder'),ref('FileNavFile')]};
+node('file-nav-list',{label:short,description:string(2000),entries:array(ref('FileNavEntry'),0,120),initialFolderId:suppliedKey,source:ref('ReaderSource')},['label','entries']);
 // Original bounded reader for supplied discussion content; no provider integration.
 const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
 defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);
