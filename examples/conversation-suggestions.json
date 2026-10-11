@@ -1,0 +1,28 @@
+{
+  "version": "iui/1",
+  "title": "Original local conversation suggestions",
+  "body": [
+    {
+      "type": "conversation-suggestions",
+      "label": "Choose supplied text",
+      "suggestions": [
+        {
+          "id": "review",
+          "label": "Review summary",
+          "prompt": "Review only the supplied summary."
+        },
+        {
+          "id": "compare",
+          "label": "Compare options",
+          "prompt": "Compare these supplied options."
+        },
+        {
+          "id": "unavailable",
+          "label": "Unavailable",
+          "prompt": "This supplied prompt is disabled.",
+          "disabled": true
+        }
+      ]
+    }
+  ]
+}

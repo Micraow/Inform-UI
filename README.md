@@ -1,3 +1,11 @@
+## Source-only 151 checkpoint
+
+ConversationSuggestions is an original finite reimplementation under the current library model. Historical source was not recovered. Supply 0–12 records with unique IDs, labels and prompt text; optional disabled flags are literal booleans. The local frozen `iui:conversation-suggestion` intent carries `{id,prompt}` and is cancelable. It never sends messages or calls a model/provider.
+
+Build, types and 21 basic/schema/cancellation/lifecycle checks pass. Reference visual/native acceptance remains pending. FollowUpActionBar150 remains separately available. The two known Video149 SDK/transparent-layer findings are queued for a narrow successor.
+
+Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain130. Saves use [skip ci].
+
 ## Source-only 150 checkpoint
 
 FollowUpActionBar is independently reimplemented using the current library model; the historical source was not recovered. Supply 0–12 actions with unique IDs, labels and optional literal disabled flags. The frozen local `iui:follow-up-action` intent is cancelable and contains only the action ID. No external request, navigation or message is sent. Acceptance means requested, not completed.

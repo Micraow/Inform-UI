@@ -420,6 +420,8 @@ Object.assign(defs,JSON.parse(await readFile(new URL('./async-image-definitions.
 Object.assign(defs,JSON.parse(await readFile(new URL('./lottie-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LottieNode'));owners.lottie='base';
 // Exact supplied income labels; no estimation, account lookup or date prediction.
 defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+defs.ConversationSuggestion=object({id:key,label:short,prompt:string(2000,1),disabled:bool},['id','label','prompt']);
+node('conversation-suggestions',{label:short,suggestions:array(ref('ConversationSuggestion'),0,12),disabled:bool},['suggestions']);
 defs.FollowUpAction=object({id:key,label:short,disabled:bool},['id','label']);
 node('follow-up-action-bar',{label:short,actions:array(ref('FollowUpAction'),0,12),disabled:bool},['actions']);
 node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimatedMonthlyIncomeLabel:short,incomeSourcesLabel:short,nextPaycheck:{anyOf:[ref('LedgerIncomePaycheck'),{type:'null'}]},emptyLabel:string(2000),masked:bool,maskedLabel:short,estimatedLabel:short,nextPaycheckLabel:short,recurringIncomeLabel:short,noUpcomingLabel:string(2000),dateUnavailableLabel:short,source:ref('LedgerSource')},['label','hasIncome'],'finance');
