@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:bfb623aa34e5084b02c5f5c7ce1aba51f8f8dd7953c1eb45471a2b6b3935423d:node:learning",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:6d7d1c751fff875f85e58845050179087661b45aad6c0e26d75353666582bed4:node:learning",
   "title": "Inform UI node subset: learning",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

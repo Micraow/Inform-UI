@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-10-11T12:45:41.774018+00:00",
+  "as_of_utc": "2026-10-11T13:05:52.496417+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
@@ -9,7 +9,7 @@
     "partial": 1
   },
   "completeImplementationCoverage": 158,
-  "registeredProtocolNodes": 164,
+  "registeredProtocolNodes": 166,
   "components": [
     {
       "id": "base-animate",

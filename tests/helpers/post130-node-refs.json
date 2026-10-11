@@ -32,5 +32,7 @@
   "#/$defs/AutomationPlanSummaryNode",
   "#/$defs/ScheduledTaskSuggestionNode",
   "#/$defs/EntityCardNode",
-  "#/$defs/EntityOverviewNode"
+  "#/$defs/EntityOverviewNode",
+  "#/$defs/AskUserDetailsNode",
+  "#/$defs/AskUserFilesNode"
 ]

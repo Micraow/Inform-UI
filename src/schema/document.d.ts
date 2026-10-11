@@ -194,7 +194,9 @@ export type Node =
   | AutomationPlanSummaryNode
   | ScheduledTaskSuggestionNode
   | EntityCardNode
-  | EntityOverviewNode;
+  | EntityOverviewNode
+  | AskUserDetailsNode
+  | AskUserFilesNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -4729,4 +4731,68 @@ export interface EntityOverviewNode {
   emptyLabel?: string;
   title?: string;
   mobile?: boolean;
+}
+export interface AskUserDetailsNode {
+  type: "ask-user-details";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  showCTA?: boolean;
+  enabled?: boolean;
+  disabled?: boolean;
+  localReview?: boolean;
+  cancelLabel?: string;
+  reviewLabel?: string;
+  invalidLabel?: string;
+  acceptedLabel?: string;
+  invitation?: string;
+  buttonLabel?: string;
+  submitLabel?: string;
+  /**
+   * @maxItems 20
+   */
+  questions?: {
+    id: string;
+    label: string;
+    kind?: "text" | "textarea" | "select";
+    required?: boolean;
+    placeholder?: string;
+    initialValue?: string;
+    maxLength?: number;
+    /**
+     * @maxItems 30
+     */
+    options?: {
+      value: string;
+      label: string;
+    }[];
+  }[];
+  emptyLabel?: string;
+}
+export interface AskUserFilesNode {
+  type: "ask-user-files";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  showCTA?: boolean;
+  enabled?: boolean;
+  disabled?: boolean;
+  localReview?: boolean;
+  cancelLabel?: string;
+  reviewLabel?: string;
+  invalidLabel?: string;
+  acceptedLabel?: string;
+  kind?: "file" | "photo" | "video" | "media";
+  buttonLabel?: string;
+  fileLabel?: string;
+  photoLabel?: string;
+  videoLabel?: string;
+  mediaLabel?: string;
+  submitLabel?: string;
+  emptyLabel?: string;
+  multiple?: boolean;
+  maxFiles?: number;
+  maxFileBytes?: number;
 }

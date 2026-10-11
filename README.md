@@ -1,3 +1,7 @@
+# Local details/file request candidates
+
+Two original finite CTA views and optional local review UI add166 protocol registrations. Canonical functional scope stays158/1/97 until independent review. Files are represented only by explicitly selected local metadata; no contents are read or uploaded. The packaged164 CDN and its ongoing native run remain a separate immutable checkpoint. See [the contract](docs/ask-user-contract.md).
+
 # Unified164 package ready for native acceptance
 
 This tree contains the updated164-node CDN and schema package. Full local generation/build/CDN/type/queue/Node/public-type/boundary checks passed:3160/3160 Node tests,385.6 seconds. The earlier3147/3157 run is preserved; its ten historical assertion mismatches were repaired with strict reviewed projections and distinct-node assertions, without changing those old snapshots.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:bfb623aa34e5084b02c5f5c7ce1aba51f8f8dd7953c1eb45471a2b6b3935423d:document:base+learning",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:6d7d1c751fff875f85e58845050179087661b45aad6c0e26d75353666582bed4:document:base+learning",
   "title": "Inform UI document subset: base, learning",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -490,6 +490,342 @@
         "events"
       ],
       "additionalProperties": false
+    },
+    "AskUserDetailsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ask-user-details"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "showCTA": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "localReview": {
+          "type": "boolean"
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviewLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "invalidLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "acceptedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "invitation": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 2000
+        },
+        "buttonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "submitLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "questions": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "kind": {
+                "enum": [
+                  "text",
+                  "textarea",
+                  "select"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "placeholder": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 300
+              },
+              "initialValue": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 4000
+              },
+              "maxLength": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4000
+              },
+              "options": {
+                "type": "array",
+                "maxItems": 30,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 300
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "questions": false
+        }
+      },
+      "else": {
+        "properties": {
+          "questions": {},
+          "buttonLabel": {},
+          "submitLabel": {}
+        },
+        "required": [
+          "questions",
+          "buttonLabel",
+          "submitLabel"
+        ]
+      }
+    },
+    "AskUserFilesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ask-user-files"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "showCTA": {
+          "type": "boolean"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "localReview": {
+          "type": "boolean"
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviewLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "invalidLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "acceptedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "kind": {
+          "enum": [
+            "file",
+            "photo",
+            "video",
+            "media"
+          ]
+        },
+        "buttonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "fileLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "photoLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "videoLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "mediaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "submitLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "multiple": {
+          "type": "boolean"
+        },
+        "maxFiles": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "maxFileBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "kind": {}
+        },
+        "required": [
+          "kind"
+        ]
+      }
     },
     "AsyncImageGroupNode": {
       "type": "object",
@@ -7342,6 +7678,12 @@
         },
         {
           "$ref": "#/$defs/EntityOverviewNode"
+        },
+        {
+          "$ref": "#/$defs/AskUserDetailsNode"
+        },
+        {
+          "$ref": "#/$defs/AskUserFilesNode"
         }
       ]
     },

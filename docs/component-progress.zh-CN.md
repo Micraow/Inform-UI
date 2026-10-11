@@ -267,4 +267,4 @@ AutomationPlanSummary原13项未覆盖整体折叠后的reset组合，现按已�
 
 后继修复：AutomationPlanSummary整体折叠/reset负控原样转绿，独立14项与8消费者流程通过，恢复implemented-pending；前述回退记录保留。
 
-164集成中Scheduled与Entity两项共13项独立检查、Automation原14项复验通过，三新项晋级implemented-pending。当前158/1/97，协议注册164；原生与参考像素另验。
+164集成中Scheduled与Entity两项共13项独立检查、Automation原14项复验通过，三新项晋级implemented-pending。当前158/1/97，协议注册166；原生与参考像素另验。
