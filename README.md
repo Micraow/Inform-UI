@@ -1,3 +1,7 @@
+# Current functional scope:150 /1 /105
+
+The supplied Link family `e6b60a69` passed12 independent functional tests and an eight-flow consumer. Its three canonical IDs are now implemented-pending:150 implemented (53 historical acceptances,97 pending full acceptance),1 partial Weather and105 missing. Registration remains156. The public Link source ise90f0eb; packaged assets remain unified154. New native/pixel acceptance is separate. Earlier checkpoint statements below remain historical.
+
 # Supplied Link-family source checkpoint
 
 Three original supplied presentations are available: inline Link, LinkCard and RecommendationLinkCard, with phase handling, passive children, desktop URL/copy disclosure, explicit image loading and cancelable local host intents. The legacy value/href Link remains compatible. See [the contract](docs/supplied-links.md). Only two protocol registrations are new (156 total). Canonical scope remains147/1/108 pending independent review of these three new functional candidates. All47 Link-family tests and95 related compatibility tests passed (142 total); build/types/queue/boundary checks passed. Ten of11 schema-subset checks passed; the retained unified154 CDN intentionally differs from the new source schema, so its byte-identity check remains red until an identified asset rebuild. new native/pixel acceptance and matching CDN are separate. The previously published source isb4077ac and packaged CDN remains unified154. Earlier checkpoint statements below are historical.

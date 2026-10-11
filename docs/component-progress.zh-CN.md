@@ -1,6 +1,6 @@
 # 组件进度
 
-147项完整实现覆盖：53项历史验收，94项完整实现待验。另1项部分实现Weather、108项未实现，总计256。协议注册156不是完成数。五项补全均过独立普通功能复核；新源码原生与参考像素验收仍待完成。
+150项完整实现覆盖：53项历史验收，97项完整实现待验。另1项部分实现Weather、105项未实现，总计256。协议注册156不是完成数。Link三项独立普通功能复核通过；新源码原生与参考像素验收仍待完成。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -212,8 +212,8 @@
 | ledger-transaction-detail | Ledger Transaction Detail | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-upcoming-activity | Ledger Upcoming Activity | 完整实现待验 | Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending. |
 | ledger-watchlist | Ledger Watchlist | 未实现 | No implementation in the current library. |
-| link | Link | 未实现 | No implementation in the current library. |
-| link-card | Link Card | 未实现 | No implementation in the current library. |
+| link | Link | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
+| link-card | Link Card | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
 | list-automations | List Automations | 未实现 | No implementation in the current library. |
 | local-business | Local Business | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | multiple-choice-block-v2 | Multiple Choice Block V2 | 未实现 | No implementation in the current library. |
@@ -236,7 +236,7 @@
 | learning-quiz | Learning Quiz | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | rating | Rating | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | recommendation-card | Recommendation Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| recommendation-link-card | Recommendation Link Card | 未实现 | No implementation in the current library. |
+| recommendation-link-card | Recommendation Link Card | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
 | reservation-time-pills-ref-carousel | Reservation Time Pills Ref Carousel | 未实现 | No implementation in the current library. |
 | restaurant-reviews | Restaurant Reviews | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | shared-activity-planner | Shared Activity Planner | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |

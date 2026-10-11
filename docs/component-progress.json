@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T11:33:19.827720+00:00",
+  "as_of_utc": "2026-10-11T11:57:06.874020+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 94,
+    "implemented_pending_verification": 97,
     "functionally_verified": 53,
-    "not_implemented": 108,
+    "not_implemented": 105,
     "partial": 1
   },
-  "completeImplementationCoverage": 147,
+  "completeImplementationCoverage": 150,
   "registeredProtocolNodes": 156,
   "components": [
     {
@@ -1471,15 +1471,15 @@
       "id": "link",
       "name": "Link",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending."
     },
     {
       "id": "link-card",
       "name": "Link Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending."
     },
     {
       "id": "list-automations",
@@ -1639,8 +1639,8 @@
       "id": "recommendation-link-card",
       "name": "Recommendation Link Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending."
     },
     {
       "id": "reservation-time-pills-ref-carousel",
