@@ -1,3 +1,7 @@
+# Supplied voice family candidate
+
+Three original finite speech/voice request views add172 registered protocols. They emit cancelable local requests and display supplied phases; they do not open a microphone, synthesize speech, grade recordings or contact account services. Canonical scope remains163/1/92 pending independent review. The packaged164 source/asset/native checkpoint remains separate. See [the contract](docs/voice-cards.md).
+
 # Current functional scope:163 /1 /92
 
 Three supplied Ledger category views passed9 independent checks,8 consumer flows and68 author/related tests. Canonical coverage is163 implemented (53 historical acceptances,110 pending full acceptance),1 partial Weather and92 missing;169 protocols are registered. The fixed unified164 package at74d463 passed3160 Node and717 Chromium tests. Ledger source has separate pending native/pixel acceptance. Earlier checkpoint statements below retain their original scope.

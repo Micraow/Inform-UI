@@ -37,5 +37,8 @@
   "#/$defs/AskUserFilesNode",
   "#/$defs/LedgerSpendByCategoryNode",
   "#/$defs/LedgerSpendByCategoryDetailNode",
-  "#/$defs/LedgerSpendByCategoryRecentTransactionsNode"
+  "#/$defs/LedgerSpendByCategoryRecentTransactionsNode",
+  "#/$defs/LearningVoiceModeLauncherCardNode",
+  "#/$defs/OfferVoiceConversationNode",
+  "#/$defs/LearningSpeakCardNode"
 ]

@@ -1,0 +1,44 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "learning-speak-card",
+      "label": "Original speaking practice",
+      "available": true,
+      "exercises": [
+        {
+          "id": "first",
+          "text": "A quiet blue room",
+          "phase": "success",
+          "playbackAvailable": true
+        },
+        {
+          "id": "second",
+          "text": "A bright red door",
+          "sourceText": "Recall the supplied phrase",
+          "mode": "recall",
+          "phase": "idle"
+        }
+      ]
+    },
+    {
+      "type": "learning-voice-mode-launcher-card",
+      "label": "Original voice request",
+      "title": "Describe an invented room",
+      "description": "A local supplied prompt.",
+      "startLabel": "Request practice",
+      "voiceSession": {
+        "id": "fictional-session"
+      },
+      "available": true
+    },
+    {
+      "type": "offer-voice-conversation",
+      "label": "Original conversation offer",
+      "buttonLabel": "Request a conversation",
+      "presentation": "card",
+      "description": "Only a local request is emitted.",
+      "available": true
+    }
+  ]
+}

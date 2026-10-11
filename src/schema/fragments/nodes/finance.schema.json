@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:82cc3cdf13ad606233da9a59022d548ed18dd41c14cd72858aa536b7282d32f6:node:finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:8b62dad2505d07aafc17540d11aac2e8e3376d968aaf16c0fce331cdc16874ff:node:finance",
   "title": "Inform UI node subset: finance",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

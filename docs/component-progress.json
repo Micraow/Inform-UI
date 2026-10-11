@@ -9,7 +9,7 @@
     "partial": 1
   },
   "completeImplementationCoverage": 163,
-  "registeredProtocolNodes": 169,
+  "registeredProtocolNodes": 172,
   "components": [
     {
       "id": "base-animate",

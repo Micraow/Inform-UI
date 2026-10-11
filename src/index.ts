@@ -39,3 +39,5 @@ export type {RecurringReviewDetail} from './renderer/ledger-records.js';
 export type {PromptChecklistIntent} from './renderer/prompt-checklist.js';
 
 export type {MotorsportSessionDetail} from './renderer/motorsport.js';
+
+export type {VoiceCardNode,VoiceIntentDetail,SpeakIntentDetail,LearningSpeakCard,LearningVoiceModeLauncherCard,OfferVoiceConversation} from './core/voice-cards.js';

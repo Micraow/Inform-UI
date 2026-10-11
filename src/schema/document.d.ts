@@ -199,7 +199,10 @@ export type Node =
   | AskUserFilesNode
   | LedgerSpendByCategoryNode
   | LedgerSpendByCategoryDetailNode
-  | LedgerSpendByCategoryRecentTransactionsNode;
+  | LedgerSpendByCategoryRecentTransactionsNode
+  | LearningVoiceModeLauncherCardNode
+  | OfferVoiceConversationNode
+  | LearningSpeakCardNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -4913,4 +4916,146 @@ export interface LedgerSpendByCategoryRecentTransactionsNode {
     icon?: string;
   }[];
   noRecentTransactionsLabel?: string;
+}
+export interface LearningVoiceModeLauncherCardNode {
+  type: "learning-voice-mode-launcher-card";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  available?: boolean;
+  unavailableLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  title?: string;
+  description?: string;
+  startLabel?: string;
+  voiceSession?: {
+    id: string;
+  };
+}
+export interface OfferVoiceConversationNode {
+  type: "offer-voice-conversation";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  available?: boolean;
+  unavailableLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  presentation?: "button" | "card";
+  buttonLabel?: string;
+  description?: string;
+  iconSrc?: string;
+}
+export interface LearningSpeakCardNode {
+  type: "learning-speak-card";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  available?: boolean;
+  unavailableLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  exercises?: [
+    {
+      id: string;
+      text: string;
+      sourceText?: string;
+      language?: string;
+      mode?: "repeat" | "recall";
+      phase?: "idle" | "starting" | "listening" | "success" | "failure" | "error";
+      available?: boolean;
+      playbackAvailable?: boolean;
+      playbackPhase?: "idle" | "playing" | "error";
+      labels?: {
+        title?: string;
+        directions?: string;
+        start?: string;
+        stop?: string;
+        retry?: string;
+        starting?: string;
+        listening?: string;
+        success?: string;
+        failure?: string;
+        error?: string;
+        play?: string;
+        stopPlayback?: string;
+        playbackError?: string;
+        hiddenWord?: string;
+      };
+      /**
+       * @minItems 1
+       * @maxItems 200
+       */
+      segments?: [
+        {
+          text: string;
+          matched?: boolean;
+        },
+        ...{
+          text: string;
+          matched?: boolean;
+        }[]
+      ];
+    },
+    ...{
+      id: string;
+      text: string;
+      sourceText?: string;
+      language?: string;
+      mode?: "repeat" | "recall";
+      phase?: "idle" | "starting" | "listening" | "success" | "failure" | "error";
+      available?: boolean;
+      playbackAvailable?: boolean;
+      playbackPhase?: "idle" | "playing" | "error";
+      labels?: {
+        title?: string;
+        directions?: string;
+        start?: string;
+        stop?: string;
+        retry?: string;
+        starting?: string;
+        listening?: string;
+        success?: string;
+        failure?: string;
+        error?: string;
+        play?: string;
+        stopPlayback?: string;
+        playbackError?: string;
+        hiddenWord?: string;
+      };
+      /**
+       * @minItems 1
+       * @maxItems 200
+       */
+      segments?: [
+        {
+          text: string;
+          matched?: boolean;
+        },
+        ...{
+          text: string;
+          matched?: boolean;
+        }[]
+      ];
+    }[]
+  ];
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  progressLabels?: [string, ...string[]];
+  previousLabel?: string;
+  nextLabel?: string;
+  doneLabel?: string;
 }

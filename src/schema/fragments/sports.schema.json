@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:82cc3cdf13ad606233da9a59022d548ed18dd41c14cd72858aa536b7282d32f6:document:base+sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:8b62dad2505d07aafc17540d11aac2e8e3376d968aaf16c0fce331cdc16874ff:document:base+sports",
   "title": "Inform UI document subset: base, sports",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -9090,8 +9090,110 @@
         },
         {
           "$ref": "#/$defs/AskUserFilesNode"
+        },
+        {
+          "$ref": "#/$defs/OfferVoiceConversationNode"
         }
       ]
+    },
+    "OfferVoiceConversationNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "offer-voice-conversation"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "presentation": {
+          "enum": [
+            "button",
+            "card"
+          ]
+        },
+        "buttonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "buttonLabel": {}
+        },
+        "required": [
+          "buttonLabel"
+        ]
+      }
     },
     "OnboardingOption": {
       "type": "object",

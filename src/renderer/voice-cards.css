@@ -1,0 +1,30 @@
+.iui-voice-card{display:grid;gap:14px;max-inline-size:100%;padding:20px;border:1px solid var(--iui-line);border-radius:24px;background:var(--iui-surface);overflow-wrap:anywhere}
+.iui-voice-card[hidden],.iui-voice-card [hidden]{display:none!important}
+.iui-voice-card .iui-voice-title{font-size:1rem;font-weight:600;color:var(--iui-muted)}
+.iui-voice-description,.iui-speak-source{white-space:pre-wrap;line-height:1.6}
+.iui-voice-card .iui-voice-start,.iui-voice-card .iui-voice-speak{min-block-size:48px;border-radius:999px;font-weight:600}
+.iui-learning-voice-mode-launcher-card .iui-voice-start,.iui-voice-card .iui-voice-speak{background:var(--iui-info);color:var(--iui-bg)}
+.iui-voice-card button:disabled{opacity:.5;cursor:not-allowed}
+.iui-voice-card button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-voice-actions,.iui-speak-navigation{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.iui-voice-actions>.iui-voice-speak{flex:1 1 170px}
+.iui-speak-navigation{justify-content:space-between;border-block-start:1px solid var(--iui-line);padding-block-start:14px}
+.iui-speak-progress{font-size:.85rem;color:var(--iui-muted);font-variant-numeric:tabular-nums}
+.iui-speak-phrase{white-space:pre-wrap;font-size:1.35rem;line-height:1.7;padding-block:10px}
+.iui-speak-hidden{display:inline-block;min-inline-size:3em;border-radius:6px;background:var(--iui-line);color:var(--iui-muted);text-align:center}
+.iui-speak-segment[data-matched=true]{color:var(--iui-info)}
+.iui-speak-phase,.iui-voice-capability,.iui-voice-status,.iui-speak-playback-status{font-size:.85rem;color:var(--iui-muted)}
+.iui-voice-status:empty,.iui-voice-capability:empty,.iui-speak-phase:empty,.iui-speak-playback-status:empty,.iui-voice-description:empty{display:none}
+.iui-voice-card[data-speak-phase=success] .iui-speak-phase{color:var(--iui-success)}
+.iui-voice-card[data-speak-phase=failure] .iui-speak-phase,.iui-voice-card[data-speak-phase=error] .iui-speak-phase{color:var(--iui-danger)}
+.iui-offer-voice-conversation[data-presentation=button]{display:block;border:0;padding:0;background:transparent}
+.iui-offer-voice-conversation[data-presentation=button] .iui-voice-start{padding-inline:20px}
+.iui-offer-voice-conversation[data-presentation=button] .iui-voice-status,.iui-offer-voice-conversation[data-presentation=button] .iui-voice-capability{margin-block-start:8px}
+.iui-offer-voice-conversation[data-presentation=card]{padding:0}
+.iui-offer-voice-conversation[data-presentation=card] .iui-voice-start{display:block;border:0;border-radius:24px;text-align:start;padding:20px;background:transparent}
+.iui-offer-voice-conversation[data-presentation=card] .iui-voice-description{display:block;margin-block-start:6px;color:var(--iui-muted);font-weight:400}
+.iui-offer-voice-conversation[data-presentation=card] .iui-voice-icon{float:inline-start;margin-inline-end:16px}
+.iui-offer-voice-conversation[data-presentation=card] :is(.iui-voice-status,.iui-voice-capability):not(:empty){padding:0 20px 14px}
+.iui-voice-loading{min-block-size:140px;border-radius:16px;background:var(--iui-line)}
+.iui-offer-voice-conversation .iui-voice-loading{min-block-size:40px;max-inline-size:180px}
+@media(max-width:480px){.iui-voice-card{padding:16px;gap:12px}.iui-speak-navigation{gap:8px}.iui-speak-navigation button{font-size:.8rem;padding-inline:10px}}
