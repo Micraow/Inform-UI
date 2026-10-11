@@ -253,13 +253,25 @@ export function createForms(c: RendererContext) {
     const cancel = e('button');
     let pointerAction: HTMLButtonElement | undefined, pointerId: number | undefined;
     let touchAction = false;
-    let blurTask: number | undefined;
+    let blurTask: (() => void) | undefined;
     const deferredBlur = new Set<() => void>();
     const flushPointerBlur = (refresh = true) => {
-      if (blurTask !== undefined) c.doc.defaultView?.clearTimeout(blurTask);
+      if (blurTask !== undefined) blurTask();
       blurTask = undefined; pointerAction = undefined; pointerId = undefined; touchAction = false;
       const callbacks = [...deferredBlur]; deferredBlur.clear();
       if (refresh) callbacks.forEach(callback => callback());
+    };
+    const schedulePointerBlur = (delay: number) => {
+      if (blurTask !== undefined) blurTask();
+      const win = c.doc.defaultView;
+      if (!win) return;
+      const task = c.lifecycle.fork();
+      const cancelTask = () => task.dispose();
+      blurTask = cancelTask;
+      task.acquire(() => win.setTimeout(task.guard(() => {
+        task.dispose();
+        if (blurTask === cancelTask) c.lifecycle.during(() => flushPointerBlur());
+      }), delay), id => win.clearTimeout(id));
     };
     const local: FormScope = { fields: [], deferPointerBlur: (next, refresh) => {
       if (!pointerAction || (next !== pointerAction && !(touchAction && next === null))) return false;
@@ -312,12 +324,11 @@ export function createForms(c: RendererContext) {
       // Touch compatibility focus/click can arrive in a later task. Keep the
       // action stable until its real click; a cancelled/no-click gesture still
       // gets bounded validation feedback. Mouse keeps its existing next-task path.
-      blurTask = c.doc.defaultView?.setTimeout(() => flushPointerBlur(), touchAction ? 500 : 0);
+      schedulePointerBlur(touchAction ? 500 : 0);
     });
     on(c.doc, 'click', (event: Event) => {
       if (!touchAction || !pointerAction || (event.target as Element | null)?.closest?.('button') !== pointerAction) return;
-      if (blurTask !== undefined) c.doc.defaultView?.clearTimeout(blurTask);
-      blurTask = c.doc.defaultView?.setTimeout(() => flushPointerBlur(), 0);
+      schedulePointerBlur(0);
     });
     on(c.doc, 'keydown', () => { if (touchAction) flushPointerBlur(); });
     on(c.doc, 'pointercancel', (event: Event) => {

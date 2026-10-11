@@ -216,4 +216,4 @@ This recovery branch now also restores the project-owned `f1-races` and `f1-stan
 
 The current-source browser workflow run on commit `b3903ff5e7eaddb7326d017308af052847ebb15f` belongs to124. It is not acceptance for126. This126 checkpoint is saved with `[skip ci]`; no126 full or native browser result is claimed. The124 workflow retains its explicit124 assertion until a separately scoped validation update.
 
-A subsequent source-only checkpoint adds the touch blur-validation fix and nine Node contracts (46 Forms tests passed). The tracked126 CDN files still identify the preceding frozen asset until the combined rebuild. Native touch revalidation is pending; no new CI run is triggered by this source checkpoint.
+A subsequent source-only checkpoint adds the touch blur-validation fix and eleven Node contracts (48 Forms tests passed), including late timer-registration compensation. The tracked126 CDN files still identify the preceding frozen asset until the combined rebuild. Native touch revalidation is pending; no new CI run is triggered by this source checkpoint.

@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {JSDOM} from 'jsdom';import {mount} from '../dist/index.js';
+for(const mode of ['update','dispose'])test(`touch fallback registration ${mode} compensates its returned timer`,()=>{const dom=new JSDOM('<main></main>'),host=dom.window.document.querySelector('main'),ctl=mount(host,{version:'iui/1',state:{n:2},body:[{type:'form',label:'Local',children:[{type:'input',kind:'number',label:'N',bind:'n',min:0}]},{type:'timer',durationMs:60000}]},{styles:false}),button=host.querySelector('[data-time-action=start]'),field=host.querySelector('input'),pending=new Set();let fired=false,id=0;
+ const pointer=type=>{const event=new dom.window.Event(type,{bubbles:true,cancelable:true});Object.defineProperties(event,{pointerId:{value:1},pointerType:{value:'touch'},isPrimary:{value:true},button:{value:0}});button.dispatchEvent(event);};
+ field.value='-1';field.dispatchEvent(new dom.window.Event('input',{bubbles:true}));pointer('pointerdown');field.dispatchEvent(new dom.window.FocusEvent('blur',{relatedTarget:button}));
+ dom.window.setTimeout=(fn,delay)=>{const key=++id;if(delay===500&&!fired){fired=true;if(mode==='update')ctl.update({version:'iui/1',body:[{type:'text',value:'Newest'}]});else ctl.dispose();}pending.add(key);return key;};dom.window.clearTimeout=key=>pending.delete(key);
+ try{pointer('pointerup');assert.equal(fired,true);assert.equal(pending.size,0);assert.equal(host.textContent,mode==='update'?'Newest':'');}finally{ctl.dispose();dom.window.close();}
+});
