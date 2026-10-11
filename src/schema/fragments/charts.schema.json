@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:5c3e5c988db93af14f4d5279f4a5b5cef4d1bc900275398905e0813d47f2fe83:document:base+charts",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:6f6906e2f42a6ae14137fc7fe0d9d2e9a72e0846092f2c8c96482fbb58ebd4c6:document:base+charts",
   "title": "Inform UI document subset: base, charts",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -6151,6 +6151,12 @@
           "$ref": "#/$defs/LottieNode"
         },
         {
+          "$ref": "#/$defs/TabbedSectionNode"
+        },
+        {
+          "$ref": "#/$defs/VisualCardCarouselNode"
+        },
+        {
           "$ref": "#/$defs/LinkCardNode"
         },
         {
@@ -8906,6 +8912,39 @@
       ],
       "additionalProperties": false
     },
+    "SuppliedSectionTab": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "content": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "title",
+        "content"
+      ],
+      "additionalProperties": false
+    },
     "TabGroupNode": {
       "type": "object",
       "properties": {
@@ -8976,6 +9015,60 @@
         "id",
         "label",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "TabbedSectionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "tabbed-section"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SuppliedSectionTab"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "activeId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "vertical": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "tabs"
       ],
       "additionalProperties": false
     },
@@ -9882,6 +9975,171 @@
           "additionalProperties": false
         }
       ]
+    },
+    "VisualCardCarouselNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "visual-card-carousel"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VisualCardItem"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "viewerImages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SearchImageRecord"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "viewer": {
+          "enum": [
+            "local",
+            "intent"
+          ]
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "title",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "VisualCardItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "metadata": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "image": {
+          "$ref": "#/$defs/SearchImageRecord"
+        },
+        "imageLoading": {
+          "type": "boolean"
+        },
+        "imageIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 23
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "entity": {
+          "$ref": "#/$defs/VisualEntityRequest"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "VisualEntityRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "additionalProperties": false
     },
     "WebLinkCardsNode": {
       "type": "object",

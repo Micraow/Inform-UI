@@ -1,3 +1,7 @@
+# Supplied tabbed-section and visual-carousel source checkpoint
+
+Two original functional candidates add horizontal/vertical sections with passive Markdown and measured visual card collections with image galleries and entity/URL requests. All36 family tests plus79 related compatibility/reset/Markdown/projection tests passed (115 total); build/types/queue/boundary checks passed. See [the contract](docs/tabbed-visual.md). Registration is158; canonical scope stays150 implemented,1 partial Weather,105 missing until independent review. No fresh CDN/native/pixel result is claimed; packaged CDN remains unified154. Earlier checkpoint statements below retain their original source identities.
+
 # Current functional scope:150 /1 /105
 
 The supplied Link family `e6b60a69` passed12 independent functional tests and an eight-flow consumer. Its three canonical IDs are now implemented-pending:150 implemented (53 historical acceptances,97 pending full acceptance),1 partial Weather and105 missing. Registration remains156. The public Link source ise90f0eb; packaged assets remain unified154. New native/pixel acceptance is separate. Earlier checkpoint statements below remain historical.

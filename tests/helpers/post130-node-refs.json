@@ -24,5 +24,7 @@
   "#/$defs/LedgerIncomeTrackerNode",
   "#/$defs/AsyncVideoCarouselNode",
   "#/$defs/LinkCardNode",
-  "#/$defs/RecommendationLinkCardNode"
+  "#/$defs/RecommendationLinkCardNode",
+  "#/$defs/TabbedSectionNode",
+  "#/$defs/VisualCardCarouselNode"
 ]

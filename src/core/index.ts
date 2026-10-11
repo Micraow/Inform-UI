@@ -1,3 +1,4 @@
+import{inspectTabbedVisual}from'./tabbed-visual.js';
 import{inspectSuppliedLink}from'./supplied-links.js';
 import {inspectSpendMonth} from './spend-month.js';
 import {inspectUpcomingActivity} from './upcoming-activity.js';
@@ -359,6 +360,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='youtube')inspectYouTube(node,path,add);
     if(node.type==='async-image'||node.type==='async-image-group')inspectAsyncImages(node,path,add,isSafeURL);
     if(node.type==='lottie')inspectLottie(node,path,add);
+    if(node.type==='tabbed-section'||node.type==='visual-card-carousel')inspectTabbedVisual(node,path,add,isSafeURL);
     if((node.type==='link'&&node.href===undefined)||node.type==='link-card'||node.type==='recommendation-link-card')inspectSuppliedLink(node,path,add,isSafeURL);
     if(node.type==='ledger-spend-so-far-this-month')inspectSpendMonth(node,path,add);
     if(node.type==='ledger-upcoming-activity')inspectUpcomingActivity(node,path,add,isSafeURL);

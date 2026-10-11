@@ -1,0 +1,75 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "tabbed-section",
+      "label": "Original supplied sections",
+      "tabs": [
+        {
+          "id": "intro",
+          "label": "Intro",
+          "title": "Original first section",
+          "content": "**Supplied** text and [passive label](https://example.test) without navigation."
+        },
+        {
+          "id": "notes",
+          "label": "Notes",
+          "title": "Original notes",
+          "content": "- First note\n- Second note"
+        },
+        {
+          "id": "code",
+          "label": "Code",
+          "title": "Original literal example",
+          "content": "`one + two`"
+        }
+      ]
+    },
+    {
+      "type": "visual-card-carousel",
+      "title": "Original supplied visual collection",
+      "items": [
+        {
+          "id": "reading",
+          "label": "Original reading card",
+          "title": "Reading",
+          "caption": "Original caption",
+          "source": "Supplied source",
+          "image": {
+            "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+            "title": "Original teaching pixel"
+          },
+          "url": "https://example.test/reading"
+        },
+        {
+          "id": "entity",
+          "label": "Original entity card",
+          "title": "Entity",
+          "subtitle": "Original subtitle",
+          "metadata": "Supplied metadata",
+          "reason": "A supplied reason",
+          "summary": "A supplied summary",
+          "image": {
+            "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+            "title": "Original teaching pixel"
+          },
+          "entity": {
+            "id": "example_entity",
+            "kind": "teaching"
+          }
+        },
+        {
+          "id": "loading",
+          "label": "Original loading card",
+          "title": "Loading",
+          "imageLoading": true
+        },
+        {
+          "id": "empty",
+          "label": "Original absent image",
+          "title": "No image supplied"
+        }
+      ]
+    }
+  ]
+}

@@ -178,6 +178,8 @@ export type Node =
   | AsyncImageNode
   | AsyncImageGroupNode
   | LottieNode
+  | TabbedSectionNode
+  | VisualCardCarouselNode
   | LinkCardNode
   | RecommendationLinkCardNode
   | LedgerSpendSoFarThisMonthNode
@@ -4186,6 +4188,70 @@ export interface LottieData {
    */
   assets?: LottieJSON[];
   [k: string]: LottieJSON;
+}
+export interface TabbedSectionNode {
+  type: "tabbed-section";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  tabs: SuppliedSectionTab[];
+  activeId?: string;
+  vertical?: boolean;
+  disabled?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+}
+export interface SuppliedSectionTab {
+  id: string;
+  label: string;
+  title: string;
+  content: string;
+  disabled?: boolean;
+}
+export interface VisualCardCarouselNode {
+  type: "visual-card-carousel";
+  id?: string;
+  title: string;
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  items: VisualCardItem[];
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  viewerImages?: SearchImageRecord[];
+  viewer?: "local" | "intent";
+  mobile?: boolean;
+  disabled?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+}
+export interface VisualCardItem {
+  id: string;
+  label: string;
+  title?: string;
+  query?: string;
+  caption?: string;
+  subtitle?: string;
+  source?: string;
+  metadata?: string;
+  reason?: string;
+  summary?: string;
+  image?: SearchImageRecord;
+  imageLoading?: boolean;
+  imageIndex?: number;
+  url?: string;
+  entity?: VisualEntityRequest;
+  disabled?: boolean;
+}
+export interface VisualEntityRequest {
+  id: string;
+  kind: string;
 }
 export interface LinkCardNode {
   type: "link-card";

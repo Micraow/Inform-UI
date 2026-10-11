@@ -420,6 +420,11 @@ Object.assign(defs,JSON.parse(await readFile(new URL('./async-image-definitions.
 Object.assign(defs,JSON.parse(await readFile(new URL('./lottie-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LottieNode'));owners.lottie='base';
 // Exact supplied income labels; no estimation, account lookup or date prediction.
 defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+defs.SuppliedSectionTab=object({id:key,label:short,title:short,content:string(12000),disabled:bool},['id','label','title','content']);
+node('tabbed-section',{label:short,tabs:array(ref('SuppliedSectionTab'),0,24),activeId:key,vertical:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:short},['label','tabs'],'base');
+defs.VisualEntityRequest=object({id:short,kind:short},['id','kind']);
+defs.VisualCardItem=object({id:key,label:short,title:short,query:short,caption:short,subtitle:short,source:short,metadata:short,reason:string(1200,1),summary:string(2000,1),image:ref('SearchImageRecord'),imageLoading:bool,imageIndex:integer(0,23),url:string(2048,1),entity:ref('VisualEntityRequest'),disabled:bool},['id','label']);
+node('visual-card-carousel',{title:short,items:array(ref('VisualCardItem'),0,24),viewerImages:array(ref('SearchImageRecord'),0,24),viewer:choice('local','intent'),mobile:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:short},['title','items'],'base');
 const suppliedLinkProps={url:string(2048,1),title:short,status:choice('pending','resolved','failed'),fallback:short,disabled:bool,source:short,snippet:string(2000,1),faviconSrc:string(200000,1),imageSrc:string(200000,1),mobile:bool,hostLink:bool,copyLabel:short,loadImageLabel:short};
 Object.assign(defs.LinkNode.properties,{...suppliedLinkProps,children:array(ref('Node'),0,32)});defs.LinkNode.required=['type'];defs.LinkNode.anyOf=[object(defs.LinkNode.properties,['value','href']),object(defs.LinkNode.properties,['url']),object({...defs.LinkNode.properties,status:choice('pending','failed')},['status'])];
 node('link-card',suppliedLinkProps,[],'base');
