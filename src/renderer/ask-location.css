@@ -1,0 +1,20 @@
+/* Original supplied permission-request presentation; no copied reference artwork. */
+.iui-root .iui-ask-location{container-type:inline-size;inline-size:100%;min-inline-size:0}
+.iui-root .iui-ask-location-panel{display:flex;flex-direction:column;gap:16px;padding:18px 16px;border:1px solid var(--iui-line);border-radius:20px;background:var(--iui-surface-primary);max-inline-size:100%;box-sizing:border-box}
+.iui-root .iui-ask-location-panel[hidden]{display:none}
+.iui-root .iui-ask-location-copy{display:flex;gap:4px;min-inline-size:0;flex:1}
+.iui-root .iui-ask-location-icon{font-size:24px;line-height:24px;inline-size:24px;flex:none;color:var(--iui-muted)}
+.iui-root .iui-ask-location-text{min-inline-size:0;overflow-wrap:anywhere}
+.iui-root .iui-ask-location-text h3,.iui-root .iui-ask-location-text p{margin:0;font-size:14px;line-height:20px}
+.iui-root .iui-ask-location-text h3{font-weight:500}.iui-root .iui-ask-location-text p{color:var(--iui-muted)}
+.iui-root button.iui-ask-location-learn{display:inline;min-block-size:0;padding:0;border:0;background:transparent;color:#0285ff;font:inherit;text-align:start;text-decoration:underline}
+.iui-root button.iui-ask-location-learn:is(:hover,:active,:disabled){background:transparent}
+.iui-root .iui-ask-location-actions{display:flex;align-items:center;gap:8px;inline-size:100%}
+.iui-root .iui-ask-location-actions button{flex:1;min-block-size:36px;padding:7px 16px;border-radius:9999px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-ask-location-reset{margin-block-start:8px;font-size:12px}
+.iui-root .iui-ask-location-notice{font-size:12px;margin:4px 0}.iui-root .iui-ask-location-notice:empty{display:none}
+.iui-root .iui-ask-location-loading{min-block-size:130px;background:var(--iui-surface-tertiary);border-radius:12px}
+@container(min-width:576px){.iui-root .iui-ask-location-panel{flex-direction:row;align-items:center}.iui-root .iui-ask-location-copy{gap:12px;align-items:center}.iui-root .iui-ask-location-actions{inline-size:auto;flex:none}.iui-root .iui-ask-location-actions button{flex:0 1 auto}}
+
+.iui-root button.iui-ask-location-request:enabled{background:var(--iui-ink);color:var(--iui-bg);border-color:var(--iui-ink)}
+.iui-root button.iui-ask-location-decline:enabled{background:transparent;color:var(--iui-ink);border:1px solid var(--iui-line)}

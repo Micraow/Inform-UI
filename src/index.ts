@@ -49,3 +49,7 @@ export type {WeatherSuppliedNode,WeatherSuppliedOptions,WeatherActionDetail,Weat
 export type {QuizCardsNode,QuizActionDetail,QuizIntent,FollowUpQuiz,MultipleChoiceBlock,PersonalityQuiz,QuizMedia,QuizOption,QuizAnswer,QuizQuestion as QuizCardQuestion} from './core/quiz-cards.js';
 
 export type {CapabilityWelcomeNode,CapabilityWelcomeDetail,WelcomeAction,WelcomeItem} from './core/capability-welcome.js';
+
+export type {AskUserLocationNode,AskLocationDetail} from './core/ask-location.js';
+
+export type {ReservationPillsCarouselNode,ReservationPillsData,ReservationPillsDetail,ReservationPillsIntent,ReservationGroup,ReservationSlot,ReservationProviderOption,ReservationTarget} from './core/reservation-pills.js';

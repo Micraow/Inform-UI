@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T15:04:43.742452+00:00",
+  "as_of_utc": "2026-10-11T15:31:09.770152+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 125,
+    "implemented_pending_verification": 127,
     "functionally_verified": 53,
-    "not_implemented": 78,
+    "not_implemented": 76,
     "partial": 0
   },
-  "completeImplementationCoverage": 178,
-  "registeredProtocolNodes": 183,
+  "completeImplementationCoverage": 180,
+  "registeredProtocolNodes": 185,
   "components": [
     {
       "id": "base-animate",
@@ -617,8 +617,8 @@
       "id": "ask-user-location",
       "name": "Ask User Location",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete first-generation supplied local request passed 8 independent checks and 5 consumer DOM/standalone flows, with zero geolocation or network calls. Native/reference pixel acceptance remains pending."
     },
     {
       "id": "async-image",
@@ -1213,7 +1213,7 @@
       "name": "Follow Up Quiz",
       "layer": "domain",
       "status": "implemented_pending_verification",
-      "note": "Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
+      "note": "Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending."
     },
     {
       "id": "gen-image",
@@ -1500,7 +1500,7 @@
       "name": "Multiple Choice Block V2",
       "layer": "domain",
       "status": "implemented_pending_verification",
-      "note": "Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
+      "note": "Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending."
     },
     {
       "id": "nba-game-boxscore",
@@ -1577,7 +1577,7 @@
       "name": "Personality Quiz",
       "layer": "domain",
       "status": "implemented_pending_verification",
-      "note": "Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
+      "note": "Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending."
     },
     {
       "id": "places-metadata-bar",
@@ -1646,8 +1646,8 @@
       "id": "reservation-time-pills-ref-carousel",
       "name": "Reservation Time Pills Ref Carousel",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied reservation carousel and internal ordinary variant passed 11 independent checks and 6 consumer DOM/standalone flows; one canonical ID. Native/reference pixel acceptance pending."
     },
     {
       "id": "restaurant-reviews",
@@ -1794,7 +1794,7 @@
       "name": "Whats New Capability Welcome",
       "layer": "domain",
       "status": "implemented_pending_verification",
-      "note": "Complete supplied welcome contract passed 8 independent checks and 5 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
+      "note": "Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending."
     },
     {
       "id": "word-card",

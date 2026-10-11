@@ -1,18 +1,24 @@
-# Unified183 ready for native validation
+# Current source185 / published unified183 assets
 
-The complete local check passed3428/3428 Node tests, generation, builds, types, owned-queue and source-boundary checks. All52 CDN files were independently checked by bytes/SHA/SRI; the Skill consumer passed106 positive and158 negative contracts through both ESM/global entries plus8 mixed DOM flows. Canonical scope is178 implemented (53 historical,125 pending full acceptance),0 partial,78 missing;183 protocol nodes. Native discovery found742 cases; execution is pending. AskUserLocation184 and later source candidates are outside this release. See docs/unified183-validation.md for exact evidence boundaries. Earlier checkpoint statements below retain their original scope.
+The current source adds complete supplied AskUserLocation and ReservationCarousel contracts, with author, independent and consumer checks. Live canonical scope is180 implemented (53 historical,127 pending full acceptance),0 partial,76 missing;185 protocols are registered. The CDN directory remains the exact unified183 package at f7c49af9a2a19da635ce97ca78f41521a5722e2e, whose local3428 tests passed and native run38151422002 is separate. These source185 changes are ordinary skip-ci saves and are not covered by that183 native run. The internal ordinary reservation view is not counted as another canonical component.
 
-# Unified183 validation candidate
+Earlier source checkpoints below retain their original local asset scope.
 
-This checkout contains the unified183 generated schema, source and CDN assets. Canonical functional coverage is178 implemented (53 historical,125 pending verification),0 partial and78 missing. The first complete local Node run was3424/3426; two historical test-range assumptions were corrected with exact reviewed Weather projection and precise writing-family identities. The original failures are retained externally. The18 targeted projection/writing checks passed; a fresh full run and this candidate’s native acceptance are pending. AskUserLocation184 and later domains are excluded.
+# Current functional scope: 180 / 0 / 76
 
-# Current functional scope: 178 / 0 / 78
+Reservation carousel passed11 independent checks and6 consumer DOM/standalone flows. Live canonical scope is180 implemented (53 historical,127 pending full acceptance),0 partial,76 missing;185 protocols. The ordinary internal reservation variant is not counted separately. New native/pixel acceptance is pending; unified183 remains a separate178-scope frozen batch.
 
-Canonical scope is 178 implemented (53 historical,125 pending verification),0 partial,78 missing;183 protocol nodes are registered. Quiz and Welcome source contracts have author, independent and consumer acceptance. A unified183 build is being prepared. New native/pixel acceptance remains pending; older unified164 acceptance applies only to its fixed assets. Earlier checkpoints below retain their original scope.
+# Supplied reservation carousel candidate /185 protocols
 
-# Current functional scope: 177 / 0 / 79
+The finite reservation-time-pills-ref-carousel is integrated with its separate ordinary reservation data renderer for composed views. Local provider, seating, date, image and card requests are cancelable; no booking, provider, geolocation or voice service is invoked. See docs/reservation-pills.md and examples/reservation-pills.json. Author domain/public/standalone/core checks passed61/61;3 native tests were discovered but not executed. Scope remains179/0/77 pending independent acceptance. The unified183 package is frozen separately and excludes this candidate.
 
-Three supplied quiz contracts passed 11 independent checks and 7 consumer DOM/standalone flows. Canonical scope is 177 implemented (53 historical, 124 pending verification), 0 partial, 79 missing; 183 protocol nodes are registered. Welcome remains a candidate. New-source native/pixel acceptance is pending; unified164 acceptance remains limited to its fixed assets. Earlier checkpoint statements below retain their original scope.
+# Current functional scope: 179 / 0 / 77
+
+AskUserLocation passed 8 independent checks and 5 consumer DOM/standalone flows. Live canonical scope is179 implemented (53 historical,126 pending full acceptance),0 partial,77 missing;184 registered protocols. This status-only successor does not change runtime bytes. Unified183 retains its separate178 scope and pending native acceptance.
+
+# Supplied location request candidate /184 protocol nodes
+
+A finite, original first-generation location request is available as ask-user-location. It only emits cancelable local intents, with no geolocation, permission prompt, navigation or service call. See docs/ask-location.md and examples/ask-location.json. Canonical scope remains178/0/78 until independent acceptance;184 registration is separate. Unified183 validation is a separate frozen batch and CDN remains the previous fixed release in this source-only tree.
 
 # Welcome source candidate:183 registered protocols
 

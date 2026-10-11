@@ -51,5 +51,7 @@
   "#/$defs/FollowUpQuizNode",
   "#/$defs/MultipleChoiceBlockV2Node",
   "#/$defs/PersonalityQuizNode",
-  "#/$defs/WhatsNewCapabilityWelcomeNode"
+  "#/$defs/WhatsNewCapabilityWelcomeNode",
+  "#/$defs/AskUserLocationNode",
+  "#/$defs/ReservationTimePillsRefCarouselNode"
 ]

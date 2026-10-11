@@ -1,6 +1,6 @@
 # 组件进度
 
-178项完整实现覆盖：53项历史验收，125项完整实现待验；0项部分实现，78项未实现，总计256。协议注册183另计。Welcome普通功能独立8项及消费者5组通过；新源码原生/参考像素未验。旧统一164的3160/717验收仅覆盖其固定版本。
+180项完整实现覆盖：53历史、127待完整验收，0部分、76未实现；185协议登记另计。Reservation仅一个canonical晋级，内部普通变体不另计；独立11项与消费者6组已过，新原生/像素未验。统一183冻结178口径不变。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -90,7 +90,7 @@
 | artist-upcoming-events | Artist Upcoming Events | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ask-user-details | Ask User Details | 完整实现待验 | Complete finite local CTA contract and optional local review passed independent8 cases and consumer7 flows. New native/reference pixel acceptance remains pending. |
 | ask-user-files | Ask User Files | 完整实现待验 | Complete finite local CTA contract and optional local review passed independent8 cases and consumer7 flows. New native/reference pixel acceptance remains pending. |
-| ask-user-location | Ask User Location | 未实现 | No implementation in the current library. |
+| ask-user-location | Ask User Location | 完整实现待验 | Complete first-generation supplied local request passed 8 independent checks and 5 consumer DOM/standalone flows, with zero geolocation or network calls. Native/reference pixel acceptance remains pending. |
 | async-image | Async Image | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | async-image-group | Async Image Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | async-video-carousel | Async Video Carousel | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -175,7 +175,7 @@
 | flight-tracker | Flight Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | follow-up-action-bar | Follow Up Action Bar | 完整实现待验 | Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending. |
 | follow-up-card-group | Follow Up Card Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| follow-up-quiz | Follow Up Quiz | 完整实现待验 | Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending. |
+| follow-up-quiz | Follow Up Quiz | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
 | gen-image | Gen Image | 未实现 | No implementation in the current library. |
 | homework-helper-v2 | Homework Helper V2 | 未实现 | No implementation in the current library. |
 | image-gen | Image Gen | 未实现 | No implementation in the current library. |
@@ -216,7 +216,7 @@
 | link-card | Link Card | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
 | list-automations | List Automations | 完整实现待验 | Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending. |
 | local-business | Local Business | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| multiple-choice-block-v2 | Multiple Choice Block V2 | 完整实现待验 | Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending. |
+| multiple-choice-block-v2 | Multiple Choice Block V2 | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
 | nba-game-boxscore | Nba Game Boxscore | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | nba-player-summary | Nba Player Summary | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | nba-scores | Nba Scores | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -227,7 +227,7 @@
 | openai | Openai | 未实现 | No implementation in the current library. |
 | open-detail | Open Detail | 未实现 | No implementation in the current library. |
 | package-tracker | Package Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| personality-quiz | Personality Quiz | 完整实现待验 | Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending. |
+| personality-quiz | Personality Quiz | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
 | places-metadata-bar | Places Metadata Bar | 未实现 | No implementation in the current library. |
 | plugin-followup | Plugin Followup | 未实现 | No implementation in the current library. |
 | product-card | Product Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -237,7 +237,7 @@
 | rating | Rating | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | recommendation-card | Recommendation Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | recommendation-link-card | Recommendation Link Card | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
-| reservation-time-pills-ref-carousel | Reservation Time Pills Ref Carousel | 未实现 | No implementation in the current library. |
+| reservation-time-pills-ref-carousel | Reservation Time Pills Ref Carousel | 完整实现待验 | Complete supplied reservation carousel and internal ordinary variant passed 11 independent checks and 6 consumer DOM/standalone flows; one canonical ID. Native/reference pixel acceptance pending. |
 | restaurant-reviews | Restaurant Reviews | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | shared-activity-planner | Shared Activity Planner | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | sidebar-fact-table | Sidebar Fact Table | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -258,5 +258,5 @@
 | weather | Weather | 完整实现待验 | Complete additive supplied Weather views and local controls passed11 independent checks and8 consumer flows after modifier/IME repair; new native/reference pixel acceptance pending. |
 | weather-widget-v3 | Weather Widget V3 | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | whats-new-capability-search | Whats New Capability Search | 未实现 | No implementation in the current library. |
-| whats-new-capability-welcome | Whats New Capability Welcome | 完整实现待验 | Complete supplied welcome contract passed 8 independent checks and 5 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending. |
+| whats-new-capability-welcome | Whats New Capability Welcome | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
 | word-card | Word Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |

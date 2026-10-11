@@ -213,7 +213,9 @@ export type Node =
   | FollowUpQuizNode
   | MultipleChoiceBlockV2Node
   | PersonalityQuizNode
-  | WhatsNewCapabilityWelcomeNode;
+  | WhatsNewCapabilityWelcomeNode
+  | AskUserLocationNode
+  | ReservationTimePillsRefCarouselNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -858,6 +860,26 @@ export type LottieJSON =
   | LottieJSON[]
   | {
       [k: string]: LottieJSON;
+    };
+export type ReservationPillsTarget =
+  | {
+      kind: "prompt";
+      query: string;
+    }
+  | {
+      kind: "url";
+      url: string;
+    }
+  | {
+      kind: "provider";
+      providerId: string;
+      requestId?: string;
+      available?: boolean;
+    }
+  | {
+      kind: "entity";
+      entityId: string;
+      available?: boolean;
     };
 
 /**
@@ -5728,4 +5750,146 @@ export interface WhatsNewCapabilityWelcomeNode {
   resetLabel?: string;
   requestedLabel?: string;
   cancelledLabel?: string;
+}
+export interface AskUserLocationNode {
+  type: "ask-user-location";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  title?: string;
+  description?: string;
+  learnMoreUrl?: string;
+  learnMoreLabel?: string;
+  notNowLabel?: string;
+  turnOnLabel?: string;
+  dismissed?: boolean;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+}
+export interface ReservationTimePillsRefCarouselNode {
+  type: "reservation-time-pills-ref-carousel";
+  id?: string;
+  label: string;
+  /**
+   * @maxItems 16
+   */
+  items?: ReservationPillsCarouselItem[];
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  previousLabel?: string;
+  nextLabel?: string;
+  emptyLabel?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+}
+export interface ReservationPillsCarouselItem {
+  id: string;
+  referenceId?: string;
+  /**
+   * @maxItems 30
+   */
+  groups: ReservationPillsGroup[];
+  voiceCard?: ReservationPillsVoiceCard;
+  showMoreTimesLabel?: string;
+  disabled?: boolean;
+}
+export interface ReservationPillsGroup {
+  id: string;
+  dateLabel: string;
+  dateTimeLabel?: string;
+  partySizeLabel: string;
+  providerName: string;
+  /**
+   * @maxItems 12
+   */
+  logos?: {
+    name: string;
+    src: string;
+  }[];
+  /**
+   * @maxItems 48
+   */
+  times: ReservationPillsProviderOption[];
+  /**
+   * @maxItems 48
+   */
+  desktopSlots?: ReservationPillsSlot[];
+  /**
+   * @maxItems 48
+   */
+  mobileSlots?: ReservationPillsSlot[];
+  /**
+   * @maxItems 12
+   */
+  changeOptions?: ReservationPillsProviderOption[];
+  requestedLauncher?: ReservationPillsLauncher;
+  seeMoreLauncher?: ReservationPillsLauncher;
+  emptyLabel?: string;
+  retryLabel?: string;
+}
+export interface ReservationPillsProviderOption {
+  id: string;
+  providerName?: string;
+  timeLabel?: string;
+  startDateTime?: string;
+  bookingQuery?: string;
+  url?: string;
+  launcher?: ReservationPillsLauncher;
+  seeMoreLauncher?: ReservationPillsLauncher;
+  retryLauncher?: ReservationPillsLauncher;
+  disabled?: boolean;
+}
+export interface ReservationPillsLauncher {
+  providerId: string;
+  requestId?: string;
+  available?: boolean;
+}
+export interface ReservationPillsSlot {
+  id: string;
+  providerName?: string;
+  timeLabel?: string;
+  startDateTime?: string;
+  bookingQuery?: string;
+  url?: string;
+  launcher?: ReservationPillsLauncher;
+  seeMoreLauncher?: ReservationPillsLauncher;
+  retryLauncher?: ReservationPillsLauncher;
+  disabled?: boolean;
+  label: string;
+  unavailable?: boolean;
+  moreOptions?: boolean;
+  /**
+   * @maxItems 12
+   */
+  providerOptions?: ReservationPillsProviderOption[];
+  /**
+   * @maxItems 8
+   */
+  seatingOptions?: {
+    id: string;
+    label: string;
+    /**
+     * @maxItems 12
+     */
+    options: ReservationPillsProviderOption[];
+  }[];
+}
+export interface ReservationPillsVoiceCard {
+  title?: string;
+  metadataLabel?: string;
+  hasRating?: boolean;
+  /**
+   * @maxItems 12
+   */
+  images: {
+    id: string;
+    src: string;
+    alt: string;
+  }[];
+  action?: ReservationPillsTarget;
 }

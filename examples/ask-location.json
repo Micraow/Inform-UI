@@ -1,0 +1,17 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ask-user-location",
+      "id": "local-permission-request",
+      "label": "Optional location request",
+      "title": "Choose whether to share a location",
+      "description": "Location can help a connected host offer nearby suggestions. This demonstration only sends a local request.",
+      "learnMoreUrl": "https://example.test/location-help",
+      "learnMoreLabel": "Learn more",
+      "notNowLabel": "Not now",
+      "turnOnLabel": "Request location",
+      "resetLabel": "Reset local request"
+    }
+  ]
+}
