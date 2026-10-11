@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:b9d74b6803885aca64bf80d01086a0e8f20c421eb5109a3edaec9b374686f440:document:base+graphics",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:5c27c6ab8e6a93cf1aa65fb8acd6cd28d17cae33225b8794e1ef9bfe108a7222:document:base+graphics",
   "title": "Inform UI document subset: base, graphics",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1849,6 +1849,240 @@
       "required": [
         "type",
         "value"
+      ],
+      "additionalProperties": false
+    },
+    "CapabilitySearchExample": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "exampleLabel": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "notes": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "ctaPrompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "ctaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "venue": {
+          "$ref": "#/$defs/CapabilitySearchVenue"
+        },
+        "venueAction": {
+          "$ref": "#/$defs/CapabilitySearchTarget"
+        },
+        "searchImage": {
+          "$ref": "#/$defs/SearchImageRecord"
+        },
+        "nativeMap": {
+          "type": "boolean"
+        },
+        "showSourceImage": {
+          "type": "boolean"
+        },
+        "reservationWidget": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/ReservationPillsData"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "enrichmentPending": {
+          "type": "boolean"
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/CapabilitySearchSource"
+          }
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "notes",
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "CapabilitySearchSource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "CapabilitySearchTarget": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "prompt"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "kind",
+            "query"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "url"
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "kind",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "entity"
+            },
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "entityId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "capability"
+            },
+            "capabilityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "capabilityId"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "CapabilitySearchVenue": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "detail": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "referenceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "name",
+        "detail",
+        "address"
       ],
       "additionalProperties": false
     },
@@ -8137,6 +8371,9 @@
         },
         {
           "$ref": "#/$defs/ReservationTimePillsRefCarouselNode"
+        },
+        {
+          "$ref": "#/$defs/WhatsNewCapabilitySearchNode"
         }
       ]
     },
@@ -10909,6 +11146,93 @@
       },
       "required": [
         "id",
+        "groups"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsData": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "groups": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsGroup"
+          }
+        },
+        "voiceCard": {
+          "$ref": "#/$defs/ReservationPillsVoiceCard"
+        },
+        "showMoreTimesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "mode": {
+          "enum": [
+            "standard",
+            "voice"
+          ]
+        },
+        "seatingEnabled": {
+          "type": "boolean"
+        },
+        "collapsedGroups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "initialGroups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "expandedGroups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "showMoreDatesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showFewerDatesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "label",
         "groups"
       ],
       "additionalProperties": false
@@ -14137,6 +14461,145 @@
         "items"
       ],
       "additionalProperties": false
+    },
+    "WhatsNewCapabilitySearchNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "whats-new-capability-search"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "intro": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "examples": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "$ref": "#/$defs/CapabilitySearchExample"
+          }
+        },
+        "locationPrompt": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "searchLocation": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "offerPreciseLocation": {
+          "type": "boolean"
+        },
+        "locationVariant": {
+          "enum": [
+            "button",
+            "widget"
+          ]
+        },
+        "inlineLocationLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "locationAvailable": {
+          "type": "boolean"
+        },
+        "locationWidget": {
+          "$ref": "#/$defs/AskUserLocationNode"
+        },
+        "nativeMapUnavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "streaming": {
+          "type": "boolean"
+        },
+        "streamingLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "enrichmentLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "animateReveal": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "examples": {}
+        },
+        "required": [
+          "examples"
+        ]
+      }
     },
     "WhatsNewCapabilityWelcomeNode": {
       "type": "object",

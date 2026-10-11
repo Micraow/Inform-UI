@@ -1,0 +1,362 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "whats-new-capability-search",
+      "id": "search-guide",
+      "label": "Search capability examples",
+      "intro": "Explore the supplied examples together.",
+      "locationPrompt": "Results use a supplied area.",
+      "offerPreciseLocation": true,
+      "locationVariant": "widget",
+      "locationAvailable": true,
+      "inlineLocationLabel": "Request location",
+      "locationWidget": {
+        "type": "ask-user-location",
+        "id": "location-child",
+        "label": "Supplied location request",
+        "title": "Use a supplied location?",
+        "description": "This example emits a local request only.",
+        "learnMoreUrl": "https://example.com/location",
+        "learnMoreLabel": "Learn about location",
+        "notNowLabel": "Not now",
+        "turnOnLabel": "Request location"
+      },
+      "examples": [
+        {
+          "id": "idea",
+          "title": "Plan a sample evening",
+          "exampleLabel": "A supplied example",
+          "notes": [
+            "Compare only the supplied possibilities.",
+            "Ask a follow-up question."
+          ],
+          "ctaPrompt": "Explain the supplied possibilities.",
+          "ctaLabel": "Explore this example",
+          "sources": [
+            {
+              "id": "source",
+              "label": "Example source",
+              "url": "https://example.com/source"
+            }
+          ],
+          "footer": "Supplied example footer"
+        },
+        {
+          "id": "place",
+          "title": "Plan a sample evening",
+          "exampleLabel": "A supplied example",
+          "notes": [],
+          "ctaLabel": "Review this place",
+          "sources": [
+            {
+              "id": "source",
+              "label": "Example source",
+              "url": "https://example.com/source"
+            }
+          ],
+          "footer": "Supplied example footer",
+          "venue": {
+            "name": "Sample Dining Room",
+            "detail": "Supplied cuisine · Example rating",
+            "address": "An illustrative address",
+            "url": "https://example.com/dining",
+            "referenceId": "sample-place"
+          },
+          "venueAction": {
+            "kind": "entity",
+            "entityId": "sample-place",
+            "available": true
+          },
+          "searchImage": {
+            "content_url": "https://images.example.test/dining.png"
+          }
+        },
+        {
+          "id": "reservation",
+          "title": "Plan a sample evening",
+          "exampleLabel": "A supplied example",
+          "notes": [],
+          "ctaLabel": "Explore this example",
+          "sources": [
+            {
+              "id": "source",
+              "label": "Example source",
+              "url": "https://example.com/source"
+            }
+          ],
+          "footer": "Supplied reservation footer",
+          "venue": {
+            "name": "Second Dining Room",
+            "detail": "Supplied cuisine · Example rating",
+            "address": "An illustrative address",
+            "url": "https://example.com/dining",
+            "referenceId": "sample-place"
+          },
+          "venueAction": {
+            "kind": "url",
+            "url": "https://example.com/second"
+          },
+          "reservationWidget": {
+            "data": {
+              "label": "Supplied restaurant times",
+              "seatingEnabled": true,
+              "groups": [
+                {
+                  "id": "day-0",
+                  "dateLabel": "Day 1",
+                  "partySizeLabel": "2 people",
+                  "providerName": "Provider A",
+                  "times": [
+                    {
+                      "id": "time",
+                      "timeLabel": "6:00 PM"
+                    }
+                  ],
+                  "desktopSlots": [
+                    {
+                      "id": "six",
+                      "label": "6:00 PM",
+                      "bookingQuery": "Review the supplied 6 pm option"
+                    },
+                    {
+                      "id": "seven",
+                      "label": "7:00 PM",
+                      "seatingOptions": [
+                        {
+                          "id": "inside",
+                          "label": "Inside",
+                          "options": [
+                            {
+                              "id": "a",
+                              "bookingQuery": "Review inside seating"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "outside",
+                          "label": "Outside",
+                          "options": [
+                            {
+                              "id": "b",
+                              "bookingQuery": "Review outside seating"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "day-1",
+                  "dateLabel": "Day 2",
+                  "partySizeLabel": "2 people",
+                  "providerName": "Provider A",
+                  "times": [
+                    {
+                      "id": "time",
+                      "timeLabel": "6:00 PM"
+                    }
+                  ],
+                  "desktopSlots": [
+                    {
+                      "id": "six",
+                      "label": "6:00 PM",
+                      "bookingQuery": "Review the supplied 6 pm option"
+                    },
+                    {
+                      "id": "seven",
+                      "label": "7:00 PM",
+                      "seatingOptions": [
+                        {
+                          "id": "inside",
+                          "label": "Inside",
+                          "options": [
+                            {
+                              "id": "a",
+                              "bookingQuery": "Review inside seating"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "outside",
+                          "label": "Outside",
+                          "options": [
+                            {
+                              "id": "b",
+                              "bookingQuery": "Review outside seating"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "day-2",
+                  "dateLabel": "Day 3",
+                  "partySizeLabel": "2 people",
+                  "providerName": "Provider A",
+                  "times": [
+                    {
+                      "id": "time",
+                      "timeLabel": "6:00 PM"
+                    }
+                  ],
+                  "desktopSlots": [
+                    {
+                      "id": "six",
+                      "label": "6:00 PM",
+                      "bookingQuery": "Review the supplied 6 pm option"
+                    },
+                    {
+                      "id": "seven",
+                      "label": "7:00 PM",
+                      "seatingOptions": [
+                        {
+                          "id": "inside",
+                          "label": "Inside",
+                          "options": [
+                            {
+                              "id": "a",
+                              "bookingQuery": "Review inside seating"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "outside",
+                          "label": "Outside",
+                          "options": [
+                            {
+                              "id": "b",
+                              "bookingQuery": "Review outside seating"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "day-3",
+                  "dateLabel": "Day 4",
+                  "partySizeLabel": "2 people",
+                  "providerName": "Provider A",
+                  "times": [
+                    {
+                      "id": "time",
+                      "timeLabel": "6:00 PM"
+                    }
+                  ],
+                  "desktopSlots": [
+                    {
+                      "id": "six",
+                      "label": "6:00 PM",
+                      "bookingQuery": "Review the supplied 6 pm option"
+                    },
+                    {
+                      "id": "seven",
+                      "label": "7:00 PM",
+                      "seatingOptions": [
+                        {
+                          "id": "inside",
+                          "label": "Inside",
+                          "options": [
+                            {
+                              "id": "a",
+                              "bookingQuery": "Review inside seating"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "outside",
+                          "label": "Outside",
+                          "options": [
+                            {
+                              "id": "b",
+                              "bookingQuery": "Review outside seating"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "waiting",
+          "title": "Plan a sample evening",
+          "exampleLabel": "A supplied example",
+          "notes": [],
+          "ctaPrompt": "Explain the supplied possibilities.",
+          "ctaLabel": "Explore this example",
+          "sources": [
+            {
+              "id": "source",
+              "label": "Example source",
+              "url": "https://example.com/source"
+            }
+          ],
+          "footer": "Shown only after supplied details arrive.",
+          "venue": {
+            "name": "Third supplied dining room",
+            "detail": "Supplied cuisine · Example rating",
+            "address": "An illustrative address",
+            "url": "https://example.com/dining",
+            "referenceId": "sample-place"
+          },
+          "reservationWidget": {},
+          "enrichmentPending": true,
+          "nativeMap": true
+        }
+      ],
+      "animateReveal": true
+    },
+    {
+      "type": "whats-new-capability-search",
+      "id": "inline-search",
+      "label": "Inline location variant",
+      "intro": "Explore the supplied examples together.",
+      "locationPrompt": "Results use a supplied area.",
+      "offerPreciseLocation": true,
+      "locationVariant": "button",
+      "locationAvailable": true,
+      "inlineLocationLabel": "Request location",
+      "locationWidget": {
+        "type": "ask-user-location",
+        "id": "location-child",
+        "label": "Supplied location request",
+        "title": "Use a supplied location?",
+        "description": "This example emits a local request only.",
+        "learnMoreUrl": "https://example.com/location",
+        "learnMoreLabel": "Learn about location",
+        "notNowLabel": "Not now",
+        "turnOnLabel": "Request location"
+      },
+      "examples": [],
+      "searchLocation": "Sample City",
+      "emptyLabel": "No supplied examples in this variant."
+    },
+    {
+      "type": "whats-new-capability-search",
+      "label": "Streaming examples",
+      "streaming": true,
+      "examples": [],
+      "intro": "More supplied examples may arrive through a document update."
+    },
+    {
+      "type": "whats-new-capability-search",
+      "label": "Pending search examples",
+      "status": "pending"
+    },
+    {
+      "type": "whats-new-capability-search",
+      "label": "Unavailable search examples",
+      "status": "failed",
+      "fallback": "No search examples were supplied."
+    }
+  ]
+}

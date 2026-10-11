@@ -215,7 +215,8 @@ export type Node =
   | PersonalityQuizNode
   | WhatsNewCapabilityWelcomeNode
   | AskUserLocationNode
-  | ReservationTimePillsRefCarouselNode;
+  | ReservationTimePillsRefCarouselNode
+  | WhatsNewCapabilitySearchNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -879,6 +880,25 @@ export type ReservationPillsTarget =
   | {
       kind: "entity";
       entityId: string;
+      available?: boolean;
+    };
+export type CapabilitySearchTarget =
+  | {
+      kind: "prompt";
+      query: string;
+    }
+  | {
+      kind: "url";
+      url: string;
+    }
+  | {
+      kind: "entity";
+      entityId: string;
+      available?: boolean;
+    }
+  | {
+      kind: "capability";
+      capabilityId: string;
       available?: boolean;
     };
 
@@ -5892,4 +5912,93 @@ export interface ReservationPillsVoiceCard {
     alt: string;
   }[];
   action?: ReservationPillsTarget;
+}
+export interface WhatsNewCapabilitySearchNode {
+  type: "whats-new-capability-search";
+  id?: string;
+  label: string;
+  intro?: string;
+  /**
+   * @maxItems 24
+   */
+  examples?: CapabilitySearchExample[];
+  locationPrompt?: string;
+  searchLocation?: string;
+  offerPreciseLocation?: boolean;
+  locationVariant?: "button" | "widget";
+  inlineLocationLabel?: string;
+  locationAvailable?: boolean;
+  locationWidget?: AskUserLocationNode;
+  nativeMapUnavailableLabel?: string;
+  streaming?: boolean;
+  streamingLabel?: string;
+  enrichmentLabel?: string;
+  animateReveal?: boolean;
+  disabled?: boolean;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  emptyLabel?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+}
+export interface CapabilitySearchExample {
+  id: string;
+  title: string;
+  exampleLabel?: string;
+  prompt?: string;
+  /**
+   * @maxItems 30
+   */
+  notes: string[];
+  ctaPrompt?: string;
+  ctaLabel?: string;
+  venue?: CapabilitySearchVenue;
+  venueAction?: CapabilitySearchTarget;
+  searchImage?: SearchImageRecord;
+  nativeMap?: boolean;
+  showSourceImage?: boolean;
+  reservationWidget?: {
+    data?: ReservationPillsData;
+  };
+  enrichmentPending?: boolean;
+  footer?: string;
+  /**
+   * @maxItems 30
+   */
+  sources: CapabilitySearchSource[];
+  disabled?: boolean;
+}
+export interface CapabilitySearchVenue {
+  name: string;
+  detail: string;
+  address: string;
+  url?: string;
+  referenceId?: string;
+}
+export interface ReservationPillsData {
+  label: string;
+  /**
+   * @maxItems 30
+   */
+  groups: ReservationPillsGroup[];
+  voiceCard?: ReservationPillsVoiceCard;
+  showMoreTimesLabel?: string;
+  disabled?: boolean;
+  mode?: "standard" | "voice";
+  seatingEnabled?: boolean;
+  collapsedGroups?: number;
+  initialGroups?: number;
+  expandedGroups?: number;
+  showMoreDatesLabel?: string;
+  showFewerDatesLabel?: string;
+  emptyLabel?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+}
+export interface CapabilitySearchSource {
+  id: string;
+  label: string;
+  url: string;
 }

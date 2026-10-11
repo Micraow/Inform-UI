@@ -53,3 +53,5 @@ export type {CapabilityWelcomeNode,CapabilityWelcomeDetail,WelcomeAction,Welcome
 export type {AskUserLocationNode,AskLocationDetail} from './core/ask-location.js';
 
 export type {ReservationPillsCarouselNode,ReservationPillsData,ReservationPillsDetail,ReservationPillsIntent,ReservationGroup,ReservationSlot,ReservationProviderOption,ReservationTarget} from './core/reservation-pills.js';
+
+export type {CapabilitySearchNode,CapabilitySearchDetail,CapabilitySearchExample,CapabilitySearchAction,CapabilitySearchTarget} from './core/capability-search.js';

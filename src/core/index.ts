@@ -1,3 +1,4 @@
+import {inspectCapabilitySearch} from './capability-search.js';
 import {inspectReservationPillsCarousel} from './reservation-pills.js';
 import {inspectAskLocation} from './ask-location.js';
 import {inspectCapabilityWelcome} from './capability-welcome.js';
@@ -404,6 +405,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='conversational-onboarding-search')inspectSearchOnboarding(node,path,add,isSafeURL);
     if(node.type==='follow-up-quiz'||node.type==='multiple-choice-block-v2'||node.type==='personality-quiz')inspectQuizCards(node,path,add,isSafeURL);
     if(node.type==='reservation-time-pills-ref-carousel')inspectReservationPillsCarousel(node,path,add,isSafeURL);
+    if(node.type==='whats-new-capability-search')inspectCapabilitySearch(node,path,add,isSafeURL);
     if(node.type==='ask-user-location')inspectAskLocation(node,path,add,isSafeURL);
     if(node.type==='whats-new-capability-welcome')inspectCapabilityWelcome(node,path,add,isSafeURL);
     if(node.type==='onboarding-feature-card'||node.type==='onboarding-plugin-suggestions'||node.type==='onboarding-starter-tasks')inspectOnboardingCards(node,path,add,isSafeURL);

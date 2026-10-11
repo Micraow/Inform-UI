@@ -1,6 +1,6 @@
 # 组件进度
 
-180项完整实现覆盖：53历史、127待完整验收，0部分、76未实现；185协议登记另计。Reservation仅一个canonical晋级，内部普通变体不另计；独立11项与消费者6组已过，新原生/像素未验。统一183冻结178口径不变。
+181项完整实现覆盖：53历史、128待完整验收，0部分、75未实现；186协议登记另计。Search组合独立10项与消费者6组已过，新原生/像素未验。统一183冻结178口径及其3428 Node、742 Chromium终态独立保留。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -257,6 +257,6 @@
 | weather-sidebar-title | Weather Sidebar Title | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | weather | Weather | 完整实现待验 | Complete additive supplied Weather views and local controls passed11 independent checks and8 consumer flows after modifier/IME repair; new native/reference pixel acceptance pending. |
 | weather-widget-v3 | Weather Widget V3 | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
-| whats-new-capability-search | Whats New Capability Search | 未实现 | No implementation in the current library. |
+| whats-new-capability-search | Whats New Capability Search | 完整实现待验 | Complete finite supplied Search composition passed 10 independent checks and 6 consumer DOM/standalone flows. Reservation and location retain independent local requests; new native/pixel acceptance is pending. |
 | whats-new-capability-welcome | Whats New Capability Welcome | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
 | word-card | Word Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |

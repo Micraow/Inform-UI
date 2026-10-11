@@ -1,3 +1,4 @@
+import {installCapabilitySearchSchema} from './capability-search-schema.mjs';
 import {installReservationPillsSchema} from './reservation-pills-schema.mjs';
 import {installAskLocationSchema} from './ask-location-schema.mjs';
 import {installCapabilityWelcomeSchema} from './capability-welcome-schema.mjs';
@@ -482,6 +483,7 @@ installQuizCardsSchema({node,defs});
 installCapabilityWelcomeSchema({node,defs});
 installAskLocationSchema({node,defs});
 installReservationPillsSchema({node,defs});
+installCapabilitySearchSchema({node,defs});
 
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };

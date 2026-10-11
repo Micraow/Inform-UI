@@ -1,8 +1,14 @@
-# Current source185 / published unified183 assets
+# Source186 / frozen183 release
 
-The current source adds complete supplied AskUserLocation and ReservationCarousel contracts, with author, independent and consumer checks. Live canonical scope is180 implemented (53 historical,127 pending full acceptance),0 partial,76 missing;185 protocols are registered. The CDN directory remains the exact unified183 package at f7c49af9a2a19da635ce97ca78f41521a5722e2e, whose local3428 tests passed and native run38151422002 is separate. These source185 changes are ordinary skip-ci saves and are not covered by that183 native run. The internal ordinary reservation view is not counted as another canonical component.
+Current source adds accepted capability Search, with canonical scope181/0/75. Distributed CDN remains the exact unified183 release. That release passed3428 Node and742 Chromium checks in run38151422002; newer source is covered by its separately reported local checks.
 
-Earlier source checkpoints below retain their original local asset scope.
+# Current functional scope: 181 / 0 / 75
+
+The supplied capability Search composition passed 10 independent checks and 6 consumer DOM/standalone flows. Live scope is 181 implemented (53 historical, 128 pending full acceptance), 0 partial, 75 missing; 186 protocols. Unified183 remains a separate frozen release with 3428 Node and 742 Chromium checks passed; its acceptance does not include newer sources.
+
+# Supplied capability-search composition candidate /186 protocols
+
+WhatsNewCapabilitySearch composes all supplied examples at once, notes and venue/source actions, honest native-map unavailability, optional enrichment, and actual AskUserLocation plus ordinary ReservationPills views. All requests are local and cancelable; streaming is projected into child disabled state. Parent reset never rebuilds its children. Author domain/public/standalone/core checks passed61/61;4 native tests were only discovered. Functional scope stays180/0/76 pending independent acceptance. This candidate is outside the frozen unified183 assets and native run.
 
 # Current functional scope: 180 / 0 / 76
 

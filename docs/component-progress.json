@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T15:31:09.770152+00:00",
+  "as_of_utc": "2026-10-11T15:51:33.321724+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 127,
+    "implemented_pending_verification": 128,
     "functionally_verified": 53,
-    "not_implemented": 76,
+    "not_implemented": 75,
     "partial": 0
   },
-  "completeImplementationCoverage": 180,
-  "registeredProtocolNodes": 185,
+  "completeImplementationCoverage": 181,
+  "registeredProtocolNodes": 186,
   "components": [
     {
       "id": "base-animate",
@@ -1786,8 +1786,8 @@
       "id": "whats-new-capability-search",
       "name": "Whats New Capability Search",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied Search composition passed 10 independent checks and 6 consumer DOM/standalone flows. Reservation and location retain independent local requests; new native/pixel acceptance is pending."
     },
     {
       "id": "whats-new-capability-welcome",

@@ -53,5 +53,6 @@
   "#/$defs/PersonalityQuizNode",
   "#/$defs/WhatsNewCapabilityWelcomeNode",
   "#/$defs/AskUserLocationNode",
-  "#/$defs/ReservationTimePillsRefCarouselNode"
+  "#/$defs/ReservationTimePillsRefCarouselNode",
+  "#/$defs/WhatsNewCapabilitySearchNode"
 ]
