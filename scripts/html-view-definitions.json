@@ -1,0 +1,47 @@
+{
+  "HtmlViewNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "html-view"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "html": {
+        "type": "string",
+        "maxLength": 200000
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "height": {
+        "type": "integer",
+        "minimum": 40,
+        "maximum": 4096
+      },
+      "width": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 40,
+            "maximum": 4096
+          },
+          {
+            "type": "string",
+            "pattern": "^(?:100|[1-9][0-9]?)%$(?![\\s\\S])"
+          }
+        ]
+      }
+    },
+    "required": [
+      "type",
+      "html"
+    ],
+    "additionalProperties": false
+  }
+}

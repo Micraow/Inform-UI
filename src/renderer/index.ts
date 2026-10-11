@@ -1,3 +1,5 @@
+import {renderHtmlView} from './html-view.js';
+import htmlViewStyles from './html-view.css';
 import {renderFeeInterest} from './fee-interest.js';
 import feeInterestStyles from './fee-interest.css';
 import {renderPressable} from './pressable.js';
@@ -96,7 +98,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -259,6 +261,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'html-view':out=renderHtmlView(context,n,root,container);break;
       case 'ledger-fee-interest-paid':out=renderFeeInterest(context,n,root,container);break;
       case 'pressable':out=renderPressable(context,n);break;
       case 'ledger-net-worth':out=renderNetWorth(context,n);break;

@@ -1,3 +1,9 @@
+## Source-only 142 checkpoint
+
+The explicit authored HTML view and its compiler policy are restored. Authored scripts run in an opaque-origin sandboxed iframe, not in the parent document. This is intentionally scriptable content, not a sanitizer. Fixed resource-origin roles and parsed exact script/handler hashes are applied only for validated rendered HTML nodes. Ordinary documents retain their previous policy.
+
+Build, types, source boundary and 24 focused checks pass (17 HTML plus seven existing audio-policy tests). Actual browser execution remains pending. A known follow-up is delayed attachment of an initially detached host after its first queued mount; ordinary connected mounts are tested. Run `npm run generate && npm run build` for the 142-node source. The pinned parse5 dependency is bundled only into the Node compiler, with license notices included. Packaged schema/CDN remain130; saves use [skip ci].
+
 ## Source-only 141 checkpoint
 
 The supplied fee-and-interest reader is restored from hash-verified original source objects plus its exact structural schema and styles. Supplied totals and transaction labels are independent; range selection, expansion and masking are local. No account access, inferred totals, currency conversion or payment occurs. Original late per-paint media cleanup is present; a complete historical a032 checkout is not claimed.

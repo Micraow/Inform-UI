@@ -1,0 +1,1 @@
+{"version":"iui/1","title":"Local authored HTML sample","body":[{"type":"html-view","id":"local-html","title":"Offline counter sample","height":240,"width":"100%","html":"<h2>Local sample</h2><button id=counter onclick=\"this.textContent=String(Number(this.textContent)+1)\">0</button><script>document.body.dataset.ready='true';</script>"}]}
