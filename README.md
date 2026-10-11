@@ -1,3 +1,9 @@
+## Source-only 153 checkpoint
+
+UpcomingActivity is an original finite supplied-data reader, not recovered historical source. Up to60 records preserve exact amount/date display labels and explicit unknowns. Local income/expense/other filtering preserves row identity and uses the shared native-form reset contract. Masked and unknown amounts remain distinct. Frozen cancelable `{id}` intents never initiate account, payment or navigation actions.
+
+Build, types and 19 schema/basic/reset/cancellation checks pass. Native/reference visual acceptance remains pending. Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain130. Saves use [skip ci].
+
 ## Source-only 152 checkpoint
 
 ImageGrid is an original finite reimplementation; historical source was not recovered. Supply up to24 safe images with unique IDs, alternative text and optional captions. The shared image primitive owns loading/failure/cleanup. Native buttons emit only the frozen local cancelable `{id,index}` image-grid intent, with no remote gallery or automatic navigation.

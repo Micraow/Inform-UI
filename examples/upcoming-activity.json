@@ -1,0 +1,1 @@
+{"version":"iui/1","body":[{"type":"ledger-upcoming-activity","label":"Supplied upcoming activity","activities":[{"id":"zero","title":"Supplied zero fee","amountLabel":"USD 0.000000000000000001","dateLabel":"Tomorrow, supplied local label","kind":"expense"},{"id":"unknown","title":"Amount not supplied","amountLabel":null,"dateLabel":null,"kind":"income"}]}]}

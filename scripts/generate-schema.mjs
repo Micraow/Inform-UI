@@ -420,6 +420,8 @@ Object.assign(defs,JSON.parse(await readFile(new URL('./async-image-definitions.
 Object.assign(defs,JSON.parse(await readFile(new URL('./lottie-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LottieNode'));owners.lottie='base';
 // Exact supplied income labels; no estimation, account lookup or date prediction.
 defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+defs.UpcomingActivity=object({id:key,title:short,amountLabel:{anyOf:[short,{type:'null'}]},dateLabel:{anyOf:[short,{type:'null'}]},kind:choice('income','expense','other')},['id','title','amountLabel','dateLabel']);
+node('ledger-upcoming-activity',{label:short,activities:array(ref('UpcomingActivity'),0,60),emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool},['label','activities'],'finance');
 defs.ImageGridItem=object({id:key,src:string(16000,1),alt:short,caption:string(500)},['id','src','alt']);
 node('image-grid',{label:short,images:array(ref('ImageGridItem'),0,24),columns:integer(1,4),fit:choice('contain','cover'),disabled:bool},['images']);
 defs.ConversationSuggestion=object({id:key,label:short,prompt:string(2000,1),disabled:bool},['id','label','prompt']);
