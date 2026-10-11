@@ -1,3 +1,9 @@
+## Source-only133 implementation checkpoint
+
+Three recovered supplied match readers are available in source: NBA scores, soccer games and American-football games. All data and outcomes are explicitly supplied; filtering, sorting, disclosures and resets remain local. The source builds and35 contract/basic ownership tests pass. The earlier original tests were not recovered, so these checks are project-authored replacements.
+
+Run `npm run generate && npm run build` to generate the133-node schema and local runtime. This small checkpoint intentionally retains the frozen130 generated schema/CDN in Git; it does not claim a133 package or native acceptance. Shared reader ownership/input/paint helpers are reused; 13 independent ordinary-flow checks passed on this exact local build. Saves use [skip ci].
+
 ## Current portable130 source checkpoint
 
 This branch now restores 130 protocol node types. The new readers show explicitly supplied fictional tournament rounds and election snapshots; they never fetch live results, infer winners, reconcile totals or advance teams automatically. The source preserves the earlier128 definitions and reuses shared ownership, reset and generation boundaries.

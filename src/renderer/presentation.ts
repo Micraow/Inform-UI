@@ -1,3 +1,4 @@
+import {matchScoresEnglish,matchScoresChinese} from './match-scores-labels.js';
 import {suppliedResultsEnglish,suppliedResultsChinese} from './supplied-results-labels.js';
 import {boxscoreEnglish,boxscoreChinese} from './boxscore-labels.js';
 import {motorsportEnglish,motorsportChinese} from './motorsport-labels.js';
@@ -72,6 +73,7 @@ const english = {
   travelEventsUI:travelEventsEnglish,
   ledgerUI:ledgerEnglish,
   ledgerRecordsUI:ledgerRecordsEnglish,
+  matchScoresUI:matchScoresEnglish,
   suppliedResultsUI:suppliedResultsEnglish,
   boxscoreUI:boxscoreEnglish,
   motorsportUI:motorsportEnglish,
@@ -124,6 +126,7 @@ const chinese: typeof english = {
   travelEventsUI:travelEventsChinese,
   ledgerUI:ledgerChinese,
   ledgerRecordsUI:ledgerRecordsChinese,
+  matchScoresUI:matchScoresChinese,
   suppliedResultsUI:suppliedResultsChinese,
   boxscoreUI:boxscoreChinese,
   motorsportUI:motorsportChinese,

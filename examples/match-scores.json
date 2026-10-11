@@ -1,0 +1,329 @@
+{
+  "version": "iui/1",
+  "title": "Three fictional match-score readers",
+  "body": [
+    {
+      "type": "nba-scores",
+      "id": "sample-nba-scores",
+      "label": "Fictional nba-scores snapshot",
+      "description": "Original synthetic contract fixture, with no live provider or inferred result.",
+      "timezone": "America/Los_Angeles",
+      "teams": [
+        {
+          "id": "all",
+          "label": "All",
+          "record": "Record not inferred"
+        },
+        {
+          "id": "cedar",
+          "label": "Cedar Sample"
+        },
+        {
+          "id": "linen",
+          "label": "Linen Sample"
+        }
+      ],
+      "games": [
+        {
+          "id": "basketball-one",
+          "label": "Fictional basketball-one",
+          "competition": "Workshop Series",
+          "startsAt": "2028-02-29T00:30Z",
+          "homeTeamId": "all",
+          "awayTeamId": "cedar",
+          "status": "live",
+          "homeScore": 0,
+          "awayScore": null,
+          "outcome": "away-win",
+          "clock": "Supplied 02:30",
+          "note": "A supplied status and clock are static text. Outcome does not follow visible scores.",
+          "periods": [
+            {
+              "id": "q1",
+              "label": "Quarter1",
+              "home": 99,
+              "away": 2
+            }
+          ],
+          "leaders": [
+            {
+              "id": "river",
+              "label": "River Sample",
+              "teamId": "all",
+              "points": 200,
+              "rebounds": 0,
+              "assists": null
+            }
+          ]
+        },
+        {
+          "id": "basketball-one-unknown",
+          "label": "Unknown-start sample",
+          "competition": "Workshop Series",
+          "startsAt": null,
+          "homeTeamId": "all",
+          "awayTeamId": "cedar",
+          "status": "unknown",
+          "homeScore": null,
+          "awayScore": 0,
+          "outcome": "unknown",
+          "clock": "Supplied 02:30",
+          "note": "A supplied status and clock are static text. Outcome does not follow visible scores.",
+          "periods": [
+            {
+              "id": "q1",
+              "label": "Quarter1",
+              "home": 99,
+              "away": 2
+            }
+          ],
+          "leaders": [
+            {
+              "id": "river",
+              "label": "River Sample",
+              "teamId": "all",
+              "points": 200,
+              "rebounds": 0,
+              "assists": null
+            }
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z"
+    },
+    {
+      "type": "soccer-games",
+      "id": "sample-soccer-games",
+      "label": "Fictional soccer-games snapshot",
+      "description": "Original synthetic contract fixture, with no live provider or inferred result.",
+      "timezone": "Europe/Paris",
+      "teams": [
+        {
+          "id": "all",
+          "label": "All",
+          "record": "Record not inferred"
+        },
+        {
+          "id": "cedar",
+          "label": "Cedar Sample"
+        },
+        {
+          "id": "linen",
+          "label": "Linen Sample"
+        }
+      ],
+      "games": [
+        {
+          "id": "soccer-one",
+          "label": "Fictional soccer-one",
+          "competition": "Workshop Series",
+          "startsAt": "2028-02-29T00:30Z",
+          "homeTeamId": "all",
+          "awayTeamId": "cedar",
+          "status": "live",
+          "homeScore": 0,
+          "awayScore": null,
+          "outcome": "away-win",
+          "clock": "Supplied 02:30",
+          "note": "A supplied status and clock are static text. Outcome does not follow visible scores.",
+          "aggregate": {
+            "home": 99,
+            "away": 0
+          },
+          "penalties": null,
+          "events": [
+            {
+              "id": "event1",
+              "minute": "90+4",
+              "kind": "goal",
+              "teamId": "cedar",
+              "player": "Morgan Sample",
+              "note": "Minute label is supplied text."
+            },
+            {
+              "id": "event2",
+              "minute": "Unknown minute",
+              "kind": "var",
+              "teamId": null
+            }
+          ]
+        },
+        {
+          "id": "soccer-one-unknown",
+          "label": "Unknown-start sample",
+          "competition": "Workshop Series",
+          "startsAt": null,
+          "homeTeamId": "all",
+          "awayTeamId": "cedar",
+          "status": "unknown",
+          "homeScore": null,
+          "awayScore": 0,
+          "outcome": "unknown",
+          "clock": "Supplied 02:30",
+          "note": "A supplied status and clock are static text. Outcome does not follow visible scores.",
+          "aggregate": {
+            "home": 99,
+            "away": 0
+          },
+          "penalties": null,
+          "events": [
+            {
+              "id": "event1",
+              "minute": "90+4",
+              "kind": "goal",
+              "teamId": "cedar",
+              "player": "Morgan Sample",
+              "note": "Minute label is supplied text."
+            },
+            {
+              "id": "event2",
+              "minute": "Unknown minute",
+              "kind": "var",
+              "teamId": null
+            }
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z"
+    },
+    {
+      "type": "american-football-games",
+      "id": "sample-american-football-games",
+      "label": "Fictional american-football-games snapshot",
+      "description": "Original synthetic contract fixture, with no live provider or inferred result.",
+      "timezone": "UTC",
+      "teams": [
+        {
+          "id": "all",
+          "label": "All",
+          "record": "Record not inferred"
+        },
+        {
+          "id": "cedar",
+          "label": "Cedar Sample"
+        },
+        {
+          "id": "linen",
+          "label": "Linen Sample"
+        }
+      ],
+      "games": [
+        {
+          "id": "football-one",
+          "label": "Fictional football-one",
+          "competition": "Workshop Series",
+          "startsAt": "2028-02-29T00:30Z",
+          "homeTeamId": "all",
+          "awayTeamId": "cedar",
+          "status": "live",
+          "homeScore": 0,
+          "awayScore": null,
+          "outcome": "away-win",
+          "clock": "Supplied 02:30",
+          "note": "A supplied status and clock are static text. Outcome does not follow visible scores.",
+          "periods": [
+            {
+              "id": "q4",
+              "label": "Quarter4",
+              "home": 1,
+              "away": 0,
+              "kind": "quarter",
+              "number": 4
+            },
+            {
+              "id": "ot1",
+              "label": "Overtime1",
+              "home": null,
+              "away": 9,
+              "kind": "overtime",
+              "number": 1
+            }
+          ],
+          "possessionTeamId": null,
+          "situation": {
+            "down": 4,
+            "distance": 0,
+            "ballOn": "OWN12"
+          },
+          "events": [
+            {
+              "id": "score1",
+              "periodId": "ot1",
+              "clock": "00:03",
+              "kind": "touchdown",
+              "teamId": "cedar",
+              "points": 9,
+              "note": "Supplied points are not recomputed from the event kind."
+            },
+            {
+              "id": "score2",
+              "periodId": null,
+              "clock": null,
+              "kind": "other",
+              "teamId": null,
+              "points": null
+            }
+          ]
+        },
+        {
+          "id": "football-one-unknown",
+          "label": "Unknown-start sample",
+          "competition": "Workshop Series",
+          "startsAt": null,
+          "homeTeamId": "all",
+          "awayTeamId": "cedar",
+          "status": "unknown",
+          "homeScore": null,
+          "awayScore": 0,
+          "outcome": "unknown",
+          "clock": "Supplied 02:30",
+          "note": "A supplied status and clock are static text. Outcome does not follow visible scores.",
+          "periods": [
+            {
+              "id": "q4",
+              "label": "Quarter4",
+              "home": 1,
+              "away": 0,
+              "kind": "quarter",
+              "number": 4
+            },
+            {
+              "id": "ot1",
+              "label": "Overtime1",
+              "home": null,
+              "away": 9,
+              "kind": "overtime",
+              "number": 1
+            }
+          ],
+          "possessionTeamId": null,
+          "situation": {
+            "down": 4,
+            "distance": 0,
+            "ballOn": "OWN12"
+          },
+          "events": [
+            {
+              "id": "score1",
+              "periodId": "ot1",
+              "clock": "00:03",
+              "kind": "touchdown",
+              "teamId": "cedar",
+              "points": 9,
+              "note": "Supplied points are not recomputed from the event kind."
+            },
+            {
+              "id": "score2",
+              "periodId": null,
+              "clock": null,
+              "kind": "other",
+              "teamId": null,
+              "points": null
+            }
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z"
+    }
+  ]
+}
