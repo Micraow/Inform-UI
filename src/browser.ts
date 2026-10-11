@@ -39,3 +39,5 @@ export type {PromptChecklistIntent} from './renderer/prompt-checklist.js';
 export type {MotorsportSessionDetail} from './renderer/motorsport.js';
 
 export type {VoiceCardNode,VoiceIntentDetail,SpeakIntentDetail,LearningSpeakCard,LearningVoiceModeLauncherCard,OfferVoiceConversation} from './core/voice-cards.js';
+
+export type {OnboardingCardsNode,OnboardingFeatureDetail,OnboardingPluginDetail,OnboardingTaskDetail,OnboardingFeatureCard,OnboardingPluginSuggestions,OnboardingStarterTasks} from './core/onboarding-cards.js';

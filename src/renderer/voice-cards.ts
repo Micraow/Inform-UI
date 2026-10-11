@@ -51,8 +51,8 @@ export function renderVoiceCard(parent:RendererContext,node:VoiceCardNode,owner:
  let index=0;
  const current=():SpeakExercise=>exercises[index];
  const title=c.element('h3','iui-voice-title'),directions=c.element('p','iui-voice-description'),sourcePhrase=c.element('p','iui-speak-source'),phrase=c.element('div','iui-speak-phrase'),phaseLabel=c.element('p','iui-speak-phase'),playbackLabel=c.element('p','iui-speak-playback-status');
- const actions=c.element('div','iui-voice-actions'),primary=button('','speak'),playback=button('','playback'),previous=button(speak.previousLabel??'Previous exercise','previous'),next=button(speak.nextLabel??'Next exercise','next'),done=button(speak.doneLabel??'Finish','done'),progress=c.element('output','iui-speak-progress'),navigation=c.element('div','iui-speak-navigation');
- write(()=>{phaseLabel.setAttribute('role','status');phaseLabel.setAttribute('aria-live','polite');progress.setAttribute('aria-live','polite');actions.append(primary,playback);navigation.append(previous,progress,next,done);root.append(title,directions,sourcePhrase,phrase,phaseLabel,actions,playbackLabel,capability,navigation,status);});
+ const actions=c.element('div','iui-voice-actions'),primary=button('','speak'),playback=button('','playback'),previous=button(speak.previousLabel??'Previous exercise','previous'),next=button(speak.nextLabel??'Next exercise','next'),done=button(speak.doneLabel??'Finish','done'),reset=button(speak.resetLabel??'Reset practice','reset'),progress=c.element('output','iui-speak-progress'),navigation=c.element('div','iui-speak-navigation');
+ write(()=>{phaseLabel.setAttribute('role','status');phaseLabel.setAttribute('aria-live','polite');progress.setAttribute('aria-live','polite');actions.append(primary,playback);navigation.append(previous,progress,next,done,reset);root.append(title,directions,sourcePhrase,phrase,phaseLabel,actions,playbackLabel,capability,navigation,status);});
  const canSpeak=()=>node.available===true&&current().available!==false;
  const active=()=>current().phase==='starting'||current().phase==='listening';
  const canPlay=()=>current().playbackAvailable===true&&!active()&&(current().mode!=='recall'||current().phase==='success'||current().phase==='failure');
@@ -76,6 +76,7 @@ export function renderVoiceCard(parent:RendererContext,node:VoiceCardNode,owner:
   scope.during(()=>{capability.textContent=canSpeak()?'':node.unavailableLabel??'Speaking is unavailable';});
   scope.during(()=>{previous.disabled=node.disabled===true||index===0;next.disabled=node.disabled===true||!canNext();previous.hidden=exercises.length===1;next.hidden=exercises.length===1;});
   scope.during(()=>{done.hidden=!speak.doneLabel||index!==exercises.length-1;done.disabled=node.disabled===true||!canFinish();});
+  scope.during(()=>{reset.disabled=node.disabled===true;});
   scope.during(()=>{progress.textContent=speak.progressLabels?.[index]??`${index+1} / ${exercises.length}`;});scope.during(()=>{status.textContent=notice;});
  });
  const detail=(intent:SpeakIntentDetail['intent']):SpeakIntentDetail=>({id:node.id??null,exerciseId:current().id,intent,text:current().text,...(current().language?{language:current().language}:{}),...(intent==='finish'?{exerciseIds:Object.freeze(exercises.map(exercise=>exercise.id))}:{})});
@@ -87,5 +88,8 @@ export function renderVoiceCard(parent:RendererContext,node:VoiceCardNode,owner:
   revision++;index+=step;notice='';refresh();
  }));
  c.on(previous,'click',event=>navigate(event,previous,-1));c.on(next,'click',event=>navigate(event,next,1));
- resetPending=readerNativeReset(c,root,[primary],()=>revision,()=>refresh(),()=>{revision++;index=0;notice='';finished=false;refresh();});refresh();return root;
+ // A visible local reset remains available when speaking or Finish is disabled.
+ const clear=()=>{input.retire();revision++;index=0;notice='';finished=false;refresh();};
+ c.on(reset,'click',event=>gate.run(()=>{if(write(()=>event.defaultPrevented)||!allowed(reset))return;clear();}));
+ resetPending=readerNativeReset(c,root,[reset],()=>revision,()=>refresh(),clear);refresh();return root;
 }

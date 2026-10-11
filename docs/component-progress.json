@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T13:37:13.443231+00:00",
+  "as_of_utc": "2026-10-11T13:56:17.919141+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 110,
+    "implemented_pending_verification": 115,
     "functionally_verified": 53,
-    "not_implemented": 92,
+    "not_implemented": 87,
     "partial": 1
   },
-  "completeImplementationCoverage": 163,
-  "registeredProtocolNodes": 174,
+  "completeImplementationCoverage": 168,
+  "registeredProtocolNodes": 177,
   "components": [
     {
       "id": "base-animate",
@@ -1037,8 +1037,8 @@
       "id": "conversational-onboarding-advice",
       "name": "Conversational Onboarding Advice",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending."
     },
     {
       "id": "conversational-onboarding-search",
@@ -1058,8 +1058,8 @@
       "id": "conversational-onboarding-writing",
       "name": "Conversational Onboarding Writing",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending."
     },
     {
       "id": "copy-words",
@@ -1303,8 +1303,8 @@
       "id": "learning-speak-card",
       "name": "Learning Speak Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending."
     },
     {
       "id": "learning-viz-dil",
@@ -1324,8 +1324,8 @@
       "id": "learning-voice-mode-launcher-card",
       "name": "Learning Voice Mode Launcher Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending."
     },
     {
       "id": "ledger-accounts",
@@ -1527,8 +1527,8 @@
       "id": "offer-voice-conversation",
       "name": "Offer Voice Conversation",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending."
     },
     {
       "id": "onboarding-feature-card",

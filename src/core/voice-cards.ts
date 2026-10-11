@@ -18,7 +18,7 @@ export interface SpeakExercise {
  segments?:{text:string;matched?:boolean}[];
 }
 export interface LearningSpeakCard extends VoiceCardBase {
- type:'learning-speak-card'; exercises?:SpeakExercise[]; progressLabels?:string[]; previousLabel?:string; nextLabel?:string; doneLabel?:string;
+ type:'learning-speak-card'; exercises?:SpeakExercise[]; progressLabels?:string[]; previousLabel?:string; nextLabel?:string; doneLabel?:string; resetLabel?:string;
 }
 export type VoiceCardNode=LearningVoiceModeLauncherCard|OfferVoiceConversation|LearningSpeakCard;
 export interface VoiceIntentDetail {readonly id:string|null;readonly source:'learning-voice-mode-launcher-card'|'offer-voice-conversation';readonly intent:'start';readonly voiceSessionId?:string}

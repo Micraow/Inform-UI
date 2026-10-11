@@ -10,6 +10,6 @@ export function installVoiceCardsSchema({node,defs}) {
  resolved('OfferVoiceConversationNode',['buttonLabel']);
  const labels=Object.fromEntries(['title','directions','start','stop','retry','starting','listening','success','failure','error','play','stopPlayback','playbackError','hiddenWord'].map(k=>[k,text(k==='directions'?2000:500)]));
  const exercise=object({id:text(80),text:text(4000),sourceText:text(4000),language:text(80),mode:{enum:['repeat','recall']},phase:{enum:['idle','starting','listening','success','failure','error']},available:bool,playbackAvailable:bool,playbackPhase:{enum:['idle','playing','error']},labels:object(labels),segments:{type:'array',minItems:1,maxItems:200,items:object({text:text(4000,0),matched:bool},['text'])}},['id','text']);
- node('learning-speak-card',{...common,exercises:{type:'array',minItems:1,maxItems:30,items:exercise},progressLabels:{type:'array',minItems:1,maxItems:30,items:text(200)},previousLabel:text(200),nextLabel:text(200),doneLabel:text(200)},['label'],'learning');
+ node('learning-speak-card',{...common,exercises:{type:'array',minItems:1,maxItems:30,items:exercise},progressLabels:{type:'array',minItems:1,maxItems:30,items:text(200)},previousLabel:text(200),nextLabel:text(200),doneLabel:text(200),resetLabel:text(200)},['label'],'learning');
  resolved('LearningSpeakCardNode',['exercises']);
 }

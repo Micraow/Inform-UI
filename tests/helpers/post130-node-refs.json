@@ -42,5 +42,8 @@
   "#/$defs/OfferVoiceConversationNode",
   "#/$defs/LearningSpeakCardNode",
   "#/$defs/ConversationalOnboardingAdviceNode",
-  "#/$defs/ConversationalOnboardingWritingNode"
+  "#/$defs/ConversationalOnboardingWritingNode",
+  "#/$defs/OnboardingFeatureCardNode",
+  "#/$defs/OnboardingPluginSuggestionsNode",
+  "#/$defs/OnboardingStarterTasksNode"
 ]

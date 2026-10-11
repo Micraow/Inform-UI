@@ -204,7 +204,10 @@ export type Node =
   | OfferVoiceConversationNode
   | LearningSpeakCardNode
   | ConversationalOnboardingAdviceNode
-  | ConversationalOnboardingWritingNode;
+  | ConversationalOnboardingWritingNode
+  | OnboardingFeatureCardNode
+  | OnboardingPluginSuggestionsNode
+  | OnboardingStarterTasksNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -5060,6 +5063,7 @@ export interface LearningSpeakCardNode {
   previousLabel?: string;
   nextLabel?: string;
   doneLabel?: string;
+  resetLabel?: string;
 }
 export interface ConversationalOnboardingAdviceNode {
   type: "conversational-onboarding-advice";
@@ -5122,4 +5126,108 @@ export interface ConversationalOnboardingWritingNode {
     question: string;
     content: string;
   };
+}
+export interface OnboardingFeatureCardNode {
+  type: "onboarding-feature-card";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  emptyLabel?: string;
+  title?: string;
+  welcomeHeading?: string;
+  welcomeBody?: string;
+  /**
+   * @maxItems 12
+   */
+  features?: {
+    id: string;
+    featureId: string;
+    title: string;
+    description: string;
+    imageSrc?: string;
+    darkImageSrc?: string;
+    artworkLabel?: string;
+    tooltip?: string;
+    disabled?: boolean;
+  }[];
+  /**
+   * @maxItems 20
+   */
+  benefits?: {
+    id: string;
+    featureId?: string;
+    title: string;
+    description: string;
+    symbol?: string;
+    disabled?: boolean;
+  }[];
+  previousLabel?: string;
+  nextLabel?: string;
+}
+export interface OnboardingPluginSuggestionsNode {
+  type: "onboarding-plugin-suggestions";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  emptyLabel?: string;
+  title?: string;
+  /**
+   * @maxItems 30
+   */
+  plugins?: {
+    id: string;
+    label: string;
+    description?: string;
+    status: "available" | "connected" | "unavailable";
+    statusLabel?: string;
+    connectLabel?: string;
+    imageSrc?: string;
+    darkImageSrc?: string;
+    disabled?: boolean;
+  }[];
+  canBrowse?: boolean;
+  canConnect?: boolean;
+  browseLabel?: string;
+}
+export interface OnboardingStarterTasksNode {
+  type: "onboarding-starter-tasks";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  emptyLabel?: string;
+  heading?: string;
+  variant?: "pills" | "cards" | "selection";
+  /**
+   * @maxItems 20
+   */
+  tasks?: {
+    id: string;
+    label: string;
+    description?: string;
+    prompt?: string;
+    starterPromptId?: string;
+    requiresSitePreview?: boolean;
+    completed?: boolean;
+    disabled?: boolean;
+    imageSrc?: string;
+    darkImageSrc?: string;
+    imageWidth?: number;
+    symbol?: string;
+  }[];
+  selectedTaskId?: string;
+  canRequestSitePreview?: boolean;
+  actionLabel?: string;
+  resetLabel?: string;
 }

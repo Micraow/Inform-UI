@@ -1,0 +1,42 @@
+.iui-onboarding-cards{display:grid;gap:18px;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-onboarding-cards[hidden],.iui-onboarding-cards [hidden]{display:none!important}
+.iui-onboarding-cards .iui-onboarding-cards-title{font-size:1.1rem;font-weight:600}
+.iui-onboarding-cards button{min-block-size:42px}
+.iui-onboarding-cards button:disabled{opacity:.5;cursor:not-allowed}
+.iui-onboarding-cards button:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-onboarding-item-title,.iui-onboarding-item-description{display:block;text-align:start}
+.iui-onboarding-item-title{font-weight:600;line-height:1.4}
+.iui-onboarding-item-description{font-size:.88rem;color:var(--iui-muted);line-height:1.5;margin-block-start:4px;white-space:pre-wrap}
+.iui-onboarding-item-copy{flex:1 1 0;min-inline-size:0}
+.iui-onboarding-cards .iui-onboarding-feature{display:flex;flex-direction:column;flex:0 0 min(82%,245px);gap:6px;border-radius:24px;padding:0 18px 18px;background:var(--iui-info-soft);white-space:normal;text-align:start}
+.iui-onboarding-feature[data-feature-id=images]{background:var(--iui-danger-soft)}
+.iui-onboarding-feature-art{display:flex;flex:1;flex-direction:column;justify-content:center;align-items:center;min-block-size:140px;inline-size:100%;gap:8px}
+.iui-onboarding-artwork-label{font-size:.8rem;font-weight:600;text-align:center}
+.iui-onboarding-benefits{display:grid;gap:6px}
+.iui-onboarding-cards .iui-onboarding-benefit{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;text-align:start;background:transparent;border:0}
+.iui-onboarding-benefit>span{min-inline-size:0}
+.iui-onboarding-symbol{display:inline-flex;align-items:center;justify-content:center;flex:none;inline-size:36px;block-size:36px;border-radius:10px;background:var(--iui-surface);font-size:1.25rem}
+.iui-onboarding-welcome{line-height:1.6;white-space:pre-wrap}
+.iui-onboarding-welcome>*+*{margin-block-start:10px}
+.iui-onboarding-welcome pre{max-inline-size:100%;overflow:auto;font-size:.86rem;padding:12px;background:var(--iui-surface);border-radius:12px}
+.iui-onboarding-plugin-suggestions{gap:0;border:1px solid var(--iui-line);border-radius:20px;background:var(--iui-bg)}
+.iui-onboarding-plugin-header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;border-block-end:1px solid var(--iui-line)}
+.iui-onboarding-cards .iui-onboarding-browse{border:0;text-decoration:underline;color:var(--iui-muted);padding:4px}
+.iui-onboarding-plugins{list-style:none;padding:8px;margin:0;display:grid;gap:4px}
+.iui-onboarding-plugin{display:flex;flex-wrap:wrap;align-items:center;gap:12px;min-block-size:68px;padding:8px}
+.iui-onboarding-plugin-state,.iui-onboarding-cards-status,.iui-onboarding-empty{font-size:.85rem;color:var(--iui-muted)}
+.iui-onboarding-plugin[data-plugin-status=connected] .iui-onboarding-plugin-state{color:var(--iui-success)}
+.iui-onboarding-cards-status:empty,.iui-onboarding-plugin-state:empty{display:none}
+.iui-onboarding-plugin-suggestions>.iui-onboarding-cards-status:not(:empty),.iui-onboarding-plugin-suggestions>.iui-onboarding-empty{padding:0 16px 16px}
+.iui-onboarding-task-list{display:flex;flex-wrap:wrap;gap:12px;align-items:start}
+.iui-onboarding-cards .iui-onboarding-task-button{display:flex;align-items:center;gap:10px;border-radius:999px;padding:10px 16px;text-align:start;max-inline-size:100%}
+.iui-onboarding-cards [data-completed=true] .iui-onboarding-item-title{text-decoration:line-through}
+.iui-onboarding-cards[data-variant=cards] .iui-onboarding-task-list{display:grid}
+.iui-onboarding-task{display:flex;gap:18px;align-items:center;padding-block:8px}
+.iui-onboarding-task>.iui-onboarding-task-button{flex:none}
+.iui-onboarding-cards[data-variant=selection] .iui-onboarding-task-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
+.iui-onboarding-cards[data-variant=selection] .iui-onboarding-task-button{border-radius:16px;min-block-size:120px;flex-direction:column;align-items:start;padding:16px}
+.iui-onboarding-task-button[aria-pressed=true]{border-color:var(--iui-info);background:var(--iui-info-soft)}
+.iui-onboarding-selection-reset{justify-self:start}
+.iui-onboarding-cards-loading{min-block-size:160px;border-radius:20px;background:var(--iui-surface)}
+@media(max-width:480px){.iui-onboarding-cards{gap:14px}.iui-onboarding-task{gap:12px;flex-wrap:wrap}.iui-onboarding-task>.iui-onboarding-task-button{margin-inline-start:auto}.iui-onboarding-plugin-header{flex-wrap:wrap}.iui-onboarding-plugin{gap:8px}.iui-onboarding-plugin>.iui-onboarding-connect{margin-inline-start:auto}}

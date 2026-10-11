@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:ac40262fd0d756a788e63658e6847f35251ddb7627b3e596aa52ce53f545a0d3:document:base+forms",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:9743eed4e8ed8c20ff9c60d10fe35fef85887be360a15ab15959bb77789a55d2:document:base+forms",
   "title": "Inform UI document subset: base, forms",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -7971,6 +7971,15 @@
         },
         {
           "$ref": "#/$defs/ConversationalOnboardingWritingNode"
+        },
+        {
+          "$ref": "#/$defs/OnboardingFeatureCardNode"
+        },
+        {
+          "$ref": "#/$defs/OnboardingPluginSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/OnboardingStarterTasksNode"
         }
       ]
     },
@@ -8073,6 +8082,212 @@
         ]
       }
     },
+    "OnboardingFeatureCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "onboarding-feature-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "welcomeHeading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "welcomeBody": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "features": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "featureId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "imageSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "darkImageSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "artworkLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "tooltip": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "featureId",
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "benefits": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "featureId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "previousLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nextLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "features": {},
+          "benefits": {}
+        },
+        "required": [
+          "title",
+          "features",
+          "benefits"
+        ]
+      }
+    },
     "OnboardingOption": {
       "type": "object",
       "properties": {
@@ -8095,6 +8310,159 @@
         "label"
       ],
       "additionalProperties": false
+    },
+    "OnboardingPluginSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "onboarding-plugin-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "plugins": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "status": {
+                "enum": [
+                  "available",
+                  "connected",
+                  "unavailable"
+                ]
+              },
+              "statusLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "connectLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "imageSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "darkImageSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "canBrowse": {
+          "type": "boolean"
+        },
+        "canConnect": {
+          "type": "boolean"
+        },
+        "browseLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "plugins": {}
+        },
+        "required": [
+          "title",
+          "plugins"
+        ]
+      }
     },
     "OnboardingSelectionNode": {
       "type": "object",
@@ -8290,6 +8658,181 @@
           "additionalProperties": false
         }
       ]
+    },
+    "OnboardingStarterTasksNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "onboarding-starter-tasks"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "heading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "variant": {
+          "enum": [
+            "pills",
+            "cards",
+            "selection"
+          ]
+        },
+        "tasks": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1200
+              },
+              "prompt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "starterPromptId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "requiresSitePreview": {
+                "type": "boolean"
+              },
+              "completed": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "imageSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "darkImageSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "imageWidth": {
+                "type": "integer",
+                "minimum": 16,
+                "maximum": 160
+              },
+              "symbol": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "selectedTaskId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "canRequestSitePreview": {
+          "type": "boolean"
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "heading": {},
+          "tasks": {}
+        },
+        "required": [
+          "heading",
+          "tasks"
+        ]
+      }
     },
     "PackageMilestone": {
       "type": "object",

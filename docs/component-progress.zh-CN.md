@@ -1,6 +1,6 @@
 # 组件进度
 
-163项完整实现覆盖：53项历史验收，110项完整实现待验。另1项部分实现Weather、92项未实现，总计256。协议注册174与完成数分开。Ledger三项独立9例及消费者8流程通过；统一164原生717/717仅覆盖固定74d版本，新Ledger原生/参考像素未验。
+168项完整实现覆盖：53项历史验收，115项完整实现待验。另1项部分实现Weather、87项未实现，总计256。协议注册177不是完成数。Voice3与Advice/Writing2三方普通合同已闭合；新OnboardingCards3仍候选。统一164原生717/717仅覆盖固定74d版本，后续源码原生/参考像素未验。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -150,10 +150,10 @@
 | checklist | Checklist | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | clock | Clock | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | code-cite | Code Cite | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| conversational-onboarding-advice | Conversational Onboarding Advice | 未实现 | No implementation in the current library. |
+| conversational-onboarding-advice | Conversational Onboarding Advice | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
 | conversational-onboarding-search | Conversational Onboarding Search | 未实现 | No implementation in the current library. |
 | conversational-onboarding-study | Conversational Onboarding Study | 未实现 | No implementation in the current library. |
-| conversational-onboarding-writing | Conversational Onboarding Writing | 未实现 | No implementation in the current library. |
+| conversational-onboarding-writing | Conversational Onboarding Writing | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
 | copy-words | Copy Words | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | create-interactive-poll | Create Interactive Poll | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | cricket-match-boxscore | Cricket Match Boxscore | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -188,10 +188,10 @@
 | learning-image-choice-card | Learning Image Choice Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-image-label-card | Learning Image Label Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-sentence-builder-card | Learning Sentence Builder Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| learning-speak-card | Learning Speak Card | 未实现 | No implementation in the current library. |
+| learning-speak-card | Learning Speak Card | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
 | learning-viz-dil | Learning Viz Dil | 未实现 | No implementation in the current library. |
 | learning-vocab-card | Learning Vocab Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| learning-voice-mode-launcher-card | Learning Voice Mode Launcher Card | 未实现 | No implementation in the current library. |
+| learning-voice-mode-launcher-card | Learning Voice Mode Launcher Card | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
 | ledger-accounts | Ledger Accounts | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-credit-score-detail | Ledger Credit Score Detail | 未实现 | No implementation in the current library. |
 | ledger-credit-score | Ledger Credit Score | 未实现 | No implementation in the current library. |
@@ -220,7 +220,7 @@
 | nba-game-boxscore | Nba Game Boxscore | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | nba-player-summary | Nba Player Summary | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | nba-scores | Nba Scores | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| offer-voice-conversation | Offer Voice Conversation | 未实现 | No implementation in the current library. |
+| offer-voice-conversation | Offer Voice Conversation | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
 | onboarding-feature-card | Onboarding Feature Card | 未实现 | No implementation in the current library. |
 | onboarding-plugin-suggestions | Onboarding Plugin Suggestions | 未实现 | No implementation in the current library. |
 | onboarding-starter-tasks | Onboarding Starter Tasks | 未实现 | No implementation in the current library. |

@@ -1,3 +1,11 @@
+# Current functional scope:168 /1 /87
+
+Voice3 passed12 independent checks and8 consumer flows after its two native-reset contract defects were repaired at37c30c. Advice/Writing2 passed7 independent checks and6 consumer flows at744c. Canonical coverage is168 implemented (53 historical acceptances,115 pending full acceptance),1 partial Weather and87 missing. Registration is177; the three new onboarding-card views remain functional candidates. The fixed unified164 package retains3160 Node and717 Chromium acceptance; newer source has separate native/pixel gates. Earlier checkpoint statements retain their original version scope.
+
+# Supplied onboarding cards candidate
+
+Three original finite feature, plugin and starter-task views add177 registered protocols. They preserve supplied capabilities and emit cancelable local requests; no plugin installation, account registration, external navigation or task service runs. Canonical coverage stays163/1/92 pending independent review. Packaged164 remains the last unified asset/native checkpoint. See [the contract](docs/onboarding-cards.md).
+
 # Supplied advice and writing candidates
 
 Two original complete three-tab demonstrations add174 registered protocols. Advice has numbered steps, recipe Markdown and troubleshooting; Writing has whitespace-preserving translations and supplied email/message drafts. No content-generation or sending service is invoked. Canonical scope remains163/1/92 pending independent reviews. Search/Study composite demonstrations are separate work. See [the contract](docs/conversational-onboarding.md).
