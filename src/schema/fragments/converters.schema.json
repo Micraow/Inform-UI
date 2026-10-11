@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:46df7d86b0758876e67ce30d988685294f662ae7665edc805c054381d18ac685:document:base+converters",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:d7b722d3791b0d61046fdf2f6d30c58c1729df80d94b62e2427f9dad17fde7cb:document:base+converters",
   "title": "Inform UI document subset: base, converters",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -6616,6 +6616,9 @@
         },
         {
           "$ref": "#/$defs/AutomationPlanSummaryNode"
+        },
+        {
+          "$ref": "#/$defs/ScheduledTaskSuggestionNode"
         }
       ]
     },
@@ -8505,6 +8508,64 @@
       "required": [
         "type",
         "children"
+      ],
+      "additionalProperties": false
+    },
+    "ScheduledTaskSuggestionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "scheduled-task-suggestion"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "action": {
+          "enum": [
+            "new-turn",
+            "task-opt-in-accept"
+          ]
+        },
+        "creationGuidelines": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "originSurface": {
+          "enum": [
+            "chat",
+            "work"
+          ]
+        },
+        "submitted": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label"
       ],
       "additionalProperties": false
     },

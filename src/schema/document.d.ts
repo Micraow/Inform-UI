@@ -191,7 +191,8 @@ export type Node =
   | AsyncVideoCarouselNode
   | DisplayAutomationNode
   | ListAutomationsNode
-  | AutomationPlanSummaryNode;
+  | AutomationPlanSummaryNode
+  | ScheduledTaskSuggestionNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -4637,4 +4638,16 @@ export interface AutomationPlanSummaryNode {
     in_progress: string;
     pending: string;
   };
+}
+export interface ScheduledTaskSuggestionNode {
+  type: "scheduled-task-suggestion";
+  id?: string;
+  label: string;
+  action?: "new-turn" | "task-opt-in-accept";
+  creationGuidelines?: string;
+  originSurface?: "chat" | "work";
+  submitted?: boolean;
+  disabled?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
 }

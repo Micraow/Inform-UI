@@ -1,0 +1,8 @@
+.iui-root .iui-scheduled-suggestion{max-width:100%;min-width:0}
+.iui-root .iui-scheduled-suggestion-button{display:flex;align-items:center;gap:6px;min-height:48px;max-width:100%;padding:10px 15px 10px 13px;border:1px solid var(--iui-line);border-radius:24px;background:var(--iui-surface);color:var(--iui-ink);text-align:start;font:inherit}
+.iui-root .iui-scheduled-suggestion-icon{flex:none;font-size:20px;line-height:24px}
+.iui-root .iui-scheduled-suggestion-label{min-width:0;overflow-wrap:anywhere;font-size:16px;line-height:26px;font-weight:500}
+.iui-root .iui-scheduled-suggestion-button:disabled{cursor:default}
+.iui-root .iui-scheduled-suggestion-loading{width:280px;max-width:100%;height:48px;background:var(--iui-surface-tertiary);animation:iui-scheduled-suggestion-loading 1.5s ease-in-out infinite alternate}
+@keyframes iui-scheduled-suggestion-loading{to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-root .iui-scheduled-suggestion-loading{animation:none}}

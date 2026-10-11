@@ -1,0 +1,7 @@
+{
+  "version": "iui/1",
+  "body": [
+    {"type":"scheduled-task-suggestion","id":"weekly-review","label":"Review the supplied weekly study plan","action":"new-turn","creationGuidelines":"Offer a weekly study review using the supplied plan.","originSurface":"chat"},
+    {"type":"scheduled-task-suggestion","id":"local-opt-in","label":"Accept this supplied task suggestion","action":"task-opt-in-accept","originSurface":"work"}
+  ]
+}

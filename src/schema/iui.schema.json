@@ -18690,6 +18690,64 @@
         ]
       }
     },
+    "ScheduledTaskSuggestionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "scheduled-task-suggestion"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "action": {
+          "enum": [
+            "new-turn",
+            "task-opt-in-accept"
+          ]
+        },
+        "creationGuidelines": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000
+        },
+        "originSurface": {
+          "enum": [
+            "chat",
+            "work"
+          ]
+        },
+        "submitted": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -19174,6 +19232,9 @@
         },
         {
           "$ref": "#/$defs/AutomationPlanSummaryNode"
+        },
+        {
+          "$ref": "#/$defs/ScheduledTaskSuggestionNode"
         }
       ]
     }

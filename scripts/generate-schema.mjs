@@ -453,6 +453,7 @@ node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimate
 Object.assign(defs,JSON.parse(await readFile(new URL('./async-video-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncVideoCarouselNode'));owners['async-video-carousel']='base';
 
 installAutomationSchema({node,defs});
+node('scheduled-task-suggestion',{label:short,action:choice('new-turn','task-opt-in-accept'),creationGuidelines:string(12000,1),originSurface:choice('chat','work'),submitted:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:string(2000,1)},['label']);
 
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };

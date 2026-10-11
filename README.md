@@ -1,3 +1,7 @@
+# Supplied scheduled-task suggestion candidate
+
+One original finite suggestion view adds two local cancelable acceptance branches and a one-shot visible receipt. It performs no real scheduling or conversation operation. Registration is162; canonical coverage stays155/1/100 until independent functional review. Packaged CDN stays unified154. See [the contract](docs/scheduled-suggestion.md).
+
 # Current functional scope:155 /1 /100
 
 The three supplied automation views passed13 independent ordinary-function cases. Coverage is155 complete implementations (53 historical acceptances and102 pending full acceptance),1 partial Weather and100 missing;161 registered protocols. No real scheduling operations are implemented. Native/pixel acceptance remains separate. Packaged CDN stays unified154. Earlier checkpoints below retain their source identities.

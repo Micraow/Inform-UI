@@ -29,5 +29,6 @@
   "#/$defs/VisualCardCarouselNode",
   "#/$defs/DisplayAutomationNode",
   "#/$defs/ListAutomationsNode",
-  "#/$defs/AutomationPlanSummaryNode"
+  "#/$defs/AutomationPlanSummaryNode",
+  "#/$defs/ScheduledTaskSuggestionNode"
 ]
