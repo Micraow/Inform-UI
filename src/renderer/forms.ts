@@ -17,8 +17,9 @@ export function createForms(c: RendererContext) {
   const { element: e, on, bind } = c;
   const disabled = (control: Control) => control.matches(':disabled');
 
-  type NativeResetJob = { binding: string; initial: StateValue; current: () => boolean | undefined; restore: () => void };
+  type NativeResetJob = { binding: string; initial: StateValue; current: () => boolean | undefined; restore: () => void; complete: () => void };
   const nativeResets = new Map<Control, NativeResetJob>();
+  const nativeRevisions = new Map<string, Set<() => void>>();
   let nativeResetQueued = false;
   function queueNativeReset(control: Control, job: NativeResetJob) {
     nativeResets.set(control, job);
@@ -33,42 +34,98 @@ export function createForms(c: RendererContext) {
       const accepted = jobs.filter(item => item.current());
       const patch = Object.fromEntries(accepted.map(item => [item.binding, item.initial]));
       try { if (Object.keys(patch).length) c.change(patch); }
-      finally { jobs.forEach(item => item.restore()); }
+      finally { jobs.forEach(item => accepted.includes(item) ? item.complete() : item.restore()); }
     });
   }
   c.cleanup(() => nativeResets.clear());
 
   /** Basic controlled inputs outside an iui Form still belong to their native host form. */
-  function nativeControl(root: HTMLElement, control: HTMLInputElement | HTMLSelectElement, binding: string, refresh: () => void) {
+  function nativeControl(root: HTMLElement, controls: readonly Control[], binding: string, refresh: () => void, reset: () => void = refresh) {
     // The explicit iui Form already owns its atomic reset and local field drafts.
     if (scope) return;
     const local = suppliedReaderContext(c, root);
     const life = local.lifecycle;
     const initial = life.during(() => c.getState()[binding]);
     let revision = 0, observed = initial;
+    const revisions = nativeRevisions.get(binding) ?? new Set<() => void>();
+    const revise = () => { revision++; };
+    revisions.add(revise); nativeRevisions.set(binding, revisions);
+    local.cleanup(() => { revisions.delete(revise); if (!revisions.size) nativeRevisions.delete(binding); });
     local.bind(() => {
       const next = life.during(() => c.getState()[binding]);
       if (!Object.is(next, observed)) { observed = next; revision++; }
     });
-    const edited = () => {
-      if (!life.during(() => readerBlocked(root, control, life.current()))) revision++;
-    };
-    life.listen(control, 'input', edited, true);
-    life.listen(control, 'change', edited, true);
     const restore = () => life.during(refresh);
-    local.cleanup(() => { nativeResets.delete(control); });
-    readerNativeReset(local, root, [control], () => revision, restore, () => {
-      const ticket = revision, form = life.during(() => control.form);
-      queueNativeReset(control, {
-        binding, initial,
-        current: life.guard(() => ticket === revision && control.form === form && !readerBlocked(root, control, life.current())),
-        restore: life.guard(restore)
+    for (const control of controls) {
+      const edited = () => {
+        if (!life.during(() => readerBlocked(root, control, life.current()))) revision++;
+      };
+      life.listen(control, 'input', edited, true);
+      life.listen(control, 'change', edited, true);
+      local.cleanup(() => { nativeResets.delete(control); });
+      readerNativeReset(local, root, [control], () => revision, restore, () => {
+        const ticket = revision, form = life.during(() => control.form);
+        queueNativeReset(control, {
+          binding, initial,
+          current: life.guard(() => ticket === revision && control.form === form && !readerBlocked(root, control, life.current())),
+          restore: life.guard(restore), complete: life.guard(reset)
+        });
+      }, 'after-default');
+    }
+    return local;
+  }
+
+  // A host reset button can sit below the mounted UI. Keep blur validation
+  // from moving it between pointerdown and click, just as an iui Form does.
+  let hostBlur: ((input: Control, next: EventTarget | null, refresh: () => void) => boolean) | undefined;
+  function hostPointerBlur(input: Control, next: EventTarget | null, refresh: () => void): boolean {
+    if (!hostBlur) {
+      let action: HTMLButtonElement | HTMLInputElement | undefined, pointerId: number | undefined;
+      let touch = false, cancelTask: (() => void) | undefined;
+      const pending = new Set<() => void>();
+      const flush = () => {
+        cancelTask?.(); cancelTask = undefined; action = undefined; pointerId = undefined; touch = false;
+        const callbacks = [...pending]; pending.clear(); callbacks.forEach(callback => callback());
+      };
+      const schedule = (delay: number) => {
+        cancelTask?.();
+        const view = c.doc.defaultView;
+        if (!view) { flush(); return; }
+        const task = c.lifecycle.fork();
+        const cancel = () => task.dispose(); cancelTask = cancel;
+        task.acquire(() => view.setTimeout(task.guard(() => {
+          task.dispose(); if (cancelTask === cancel) flush();
+        }), delay), id => view.clearTimeout(id));
+      };
+      const target = (event: Event) => event.composedPath().find(item =>
+        (item as Element)?.nodeType === 1 && ['BUTTON', 'INPUT'].includes((item as Element).tagName)
+      ) as HTMLButtonElement | HTMLInputElement | undefined;
+      on(c.doc, 'pointerdown', (event: Event) => {
+        const pointer = event as PointerEvent;
+        if (pointer.button !== 0 || pointer.isPrimary === false || event.defaultPrevented) return;
+        if (action && pointer.pointerId !== pointerId) return;
+        flush(); const button = target(event);
+        if (!button || button.type !== 'reset' || !button.form || button.matches(':disabled')) return;
+        action = button; pointerId = pointer.pointerId; touch = pointer.pointerType === 'touch';
       });
-    }, 'after-default');
+      on(c.doc, 'pointerup', (event: Event) => { if (action && (event as PointerEvent).pointerId === pointerId) schedule(touch ? 500 : 0); });
+      on(c.doc, 'click', (event: Event) => { if (action && target(event) === action) schedule(0); });
+      on(c.doc, 'pointercancel', (event: Event) => { if ((event as PointerEvent).pointerId === pointerId) flush(); });
+      on(c.doc, 'keydown', flush);
+      on(c.doc, 'visibilitychange', () => { if (c.doc.hidden) flush(); });
+      if (c.doc.defaultView) on(c.doc.defaultView, 'blur', flush);
+      c.cleanup(() => { cancelTask?.(); pending.clear(); action = undefined; });
+      hostBlur = (control, related, callback) => {
+        if (!action || !control.form || control.form !== action.form || (related !== action && !(touch && related === null))) return false;
+        pending.add(callback); return true;
+      };
+    }
+    return hostBlur(input, next, refresh);
   }
 
   function field(n: FieldNode): HTMLElement {
     const fieldScope = scope;
+    let hostContext: RendererContext | undefined;
     const id = internalId(c, 'form-field');
     const out = e('div', 'iui-field');
     const hint = e('p', 'iui-caption iui-field-hint', n.hint);
@@ -93,6 +150,12 @@ export function createForms(c: RendererContext) {
     (group ?? out).append(label);
     if (group) out.append(group);
     const inputs: (HTMLInputElement | HTMLTextAreaElement)[] = [];
+    let drafts: { value: string; checked: boolean }[] = [];
+    const rememberDrafts = () => { drafts = inputs.map(input => ({value: input.value, checked: 'checked' in input && input.checked})); };
+    const restoreDrafts = () => {
+      inputs.forEach((input, i) => { const draft = drafts[i]; if (!draft) return; input.value = draft.value; if ('checked' in input) input.checked = draft.checked; });
+      refresh();
+    };
     let touched = false;
     let localError = '';
     let last: StateValue | undefined;
@@ -112,6 +175,7 @@ export function createForms(c: RendererContext) {
         // an error between pointerdown and pointerup can move that button away
         // and swallow the user's first click, leaving a stale idle form status.
         if (fieldScope?.deferPointerBlur(next, refresh)) return;
+        if (!fieldScope && hostContext && hostPointerBlur(input, next, hostContext.lifecycle.guard(refresh))) return;
         refresh();
       });
     };
@@ -265,6 +329,7 @@ export function createForms(c: RendererContext) {
         if (message) target.setAttribute('aria-errormessage', error.id);
         else target.removeAttribute('aria-errormessage');
       }
+      rememberDrafts();
     }
 
     const handle: FieldHandle = {
@@ -278,6 +343,8 @@ export function createForms(c: RendererContext) {
     bound.add(handle); fields.set(n.bind, bound);
     c.cleanup(() => { bound.delete(handle); if (!bound.size) fields.delete(n.bind); });
     bind(refresh);
+    hostContext = nativeControl(out, inputs, n.bind, restoreDrafts, handle.reset);
+    if (hostContext) hostPointerBlur(inputs[0], null, () => {});
     return out;
   }
 
@@ -483,8 +550,11 @@ export function createForms(c: RendererContext) {
     return out;
   }
   const syncDrafts = (bindings: Iterable<string>, reset = false) => {
-    for (const binding of bindings) for (const handle of fields.get(binding) ?? []) {
-      if (reset) handle.reset(); else handle.overwrite();
+    for (const binding of bindings) {
+      for (const revise of nativeRevisions.get(binding) ?? []) revise();
+      for (const handle of fields.get(binding) ?? []) {
+        if (reset) handle.reset(); else handle.overwrite();
+      }
     }
   };
   return { field, group, form, syncDrafts, nativeControl };

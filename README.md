@@ -1,3 +1,7 @@
+# Host-form fields and reliable Reset clicks
+
+The current source extends the host-form reset adapter to Input, Textarea, Radio and Segmented fields. It preserves invalid drafts on cancellation, restores supplied defaults on acceptance, and lets newer input win. Pointer blur validation no longer moves a host Reset button before its first click. The exact successor passed 139 related Node checks, 12 independent real Chromium scenarios and 5 independent consumer flows. Scope remains 208 implementations and 213 protocols. These are source-only changes; the distributed CDN remains the exact unified213/933 package below.
+
 # Host-form control reset correction
 
 The current source adds native host-form reset reconciliation for Slider, Toggle and Select. Author checks passed64/64, the original8 real Chromium scenarios passed on the corrected task-boundary successor, and4 independent consumer flows passed. Accepted and canceled Reset, newer input and atomic sibling bindings are covered. Input/Textarea/choice-field followups are separate candidates. The distributed CDN remains the exact unified213/933 package below; these newer source changes require a source build and are not silently attributed to those asset bytes.
