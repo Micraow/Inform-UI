@@ -1,6 +1,7 @@
 import type {LedgerTransactionDetailNode,TransactionDetailRelated} from '../schema/document.js';
 import type {RendererContext} from './context.js';
 import {readerBlocked} from './reader-controls.js';
+import {ownedTree} from './owned-tree.js';
 
 export interface TransactionDetailIntent {readonly componentId:string|null;readonly transactionId:string}
 
@@ -21,11 +22,9 @@ export function renderTransactionDetail(c:RendererContext,node:LedgerTransaction
     else root.hidden=true;
     return root;
   }
-  // The shared generation owns resource acquisition, callbacks and cleanup.
-  // Immediate-parent checks do not claim a restored permanent ancestor observer.
-  let parent:Node|null=null,dispatching=false;
-  const life=c.lifecycle.fork(()=>parent===null||root.parentNode===parent);
-  c.bind(()=>{if(parent===null&&root.parentNode)parent=root.parentNode;});
+  // Shared resources and permanent composed ownership, without local observers.
+  let dispatching=false;
+  const life=ownedTree(c,root);
   const usable=(control:HTMLElement)=>life.current()&&!readerBlocked(root,control,true);
   const data=node.data,hidden=node.sensitiveValuesHidden===true,labels=data.labels;
   const element=c.element;

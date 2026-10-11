@@ -1,0 +1,244 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied boxscore examples",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "nba-game-boxscore",
+      "id": "basketball",
+      "label": "Supplied fictional basketball boxscore",
+      "description": "Example players and teams. Scores are supplied independently; no totals are computed.",
+      "status": "final",
+      "statusText": "Supplied record, not a live game.",
+      "observedAt": "2028-03-01T15:00Z",
+      "teams": [
+        {
+          "id": "north",
+          "label": "Team North",
+          "score": 101,
+          "players": [
+            {
+              "id": "alex",
+              "label": "Alex Example",
+              "starter": true,
+              "minutes": "30:00",
+              "points": 20,
+              "rebounds": 4,
+              "assists": 5,
+              "steals": 1,
+              "blocks": 0,
+              "turnovers": 2,
+              "plusMinus": 3,
+              "note": "Supplied minutes and line."
+            },
+            {
+              "id": "blake",
+              "label": "Blake Example",
+              "starter": false,
+              "minutes": "30:00",
+              "points": 20,
+              "rebounds": 4,
+              "assists": 5,
+              "steals": 1,
+              "blocks": 0,
+              "turnovers": 2,
+              "plusMinus": -5,
+              "fieldGoals": "8–15",
+              "threePointers": "2–6",
+              "freeThrows": "2–2"
+            },
+            {
+              "id": "unknown",
+              "label": "Unknown Example",
+              "starter": null,
+              "minutes": null,
+              "points": null,
+              "rebounds": null,
+              "assists": null,
+              "steals": null,
+              "blocks": null,
+              "turnovers": null,
+              "plusMinus": null
+            }
+          ]
+        },
+        {
+          "id": "south",
+          "label": "Team South",
+          "score": 99,
+          "players": [
+            {
+              "id": "casey",
+              "label": "Casey Example",
+              "starter": true,
+              "minutes": "30:00",
+              "points": 25,
+              "rebounds": 4,
+              "assists": 5,
+              "steals": 1,
+              "blocks": 0,
+              "turnovers": 2,
+              "plusMinus": 3,
+              "source": {
+                "label": "Example player record",
+                "url": "https://example.org/player"
+              }
+            },
+            {
+              "id": "zero",
+              "label": "Zero Example",
+              "starter": false,
+              "minutes": "0:00",
+              "points": 0,
+              "rebounds": 0,
+              "assists": 0,
+              "steals": 0,
+              "blocks": 0,
+              "turnovers": 0,
+              "plusMinus": 0
+            }
+          ]
+        }
+      ],
+      "periods": [
+        {
+          "label": "First supplied period",
+          "scores": [
+            25,
+            24
+          ]
+        },
+        {
+          "label": "Second supplied period",
+          "scores": [
+            null,
+            25
+          ]
+        }
+      ],
+      "source": {
+        "label": "Example match source",
+        "url": "https://example.org/basketball"
+      }
+    },
+    {
+      "type": "cricket-match-boxscore",
+      "id": "cricket",
+      "label": "Supplied fictional cricket boxscore",
+      "status": "unknown",
+      "statusText": "No match outcome supplied.",
+      "teams": [
+        {
+          "id": "coast",
+          "label": "Coast Example"
+        },
+        {
+          "id": "ridge",
+          "label": "Ridge Example"
+        }
+      ],
+      "innings": [
+        {
+          "id": "first",
+          "label": "First supplied innings",
+          "teamId": "coast",
+          "runs": 120,
+          "wickets": 4,
+          "overs": "16.4",
+          "extras": 8,
+          "note": "Overs text is not a decimal number.",
+          "batting": [
+            {
+              "id": "alex",
+              "label": "Alex Example",
+              "dismissal": "Not out (supplied)",
+              "runs": 40,
+              "balls": 30,
+              "fours": 3,
+              "sixes": 1,
+              "strikeRate": 133.33,
+              "note": "Supplied innings line."
+            },
+            {
+              "id": "blake",
+              "label": "Blake Example",
+              "dismissal": "Not out (supplied)",
+              "runs": 40,
+              "balls": 20,
+              "fours": 3,
+              "sixes": 1,
+              "strikeRate": 133.33
+            },
+            {
+              "id": "unknown",
+              "label": "Unknown Example",
+              "dismissal": null,
+              "runs": null,
+              "balls": null,
+              "fours": null,
+              "sixes": null,
+              "strikeRate": null
+            }
+          ],
+          "bowling": [
+            {
+              "id": "casey",
+              "label": "Casey Example",
+              "overs": "4.0",
+              "maidens": 0,
+              "runs": 20,
+              "wickets": 2,
+              "economy": 5
+            },
+            {
+              "id": "devon",
+              "label": "Devon Example",
+              "overs": "4.0",
+              "maidens": 0,
+              "runs": 15,
+              "wickets": 2,
+              "economy": 3.75
+            },
+            {
+              "id": "unknown",
+              "label": "Unknown Example",
+              "overs": null,
+              "maidens": null,
+              "runs": null,
+              "wickets": null,
+              "economy": null
+            }
+          ]
+        },
+        {
+          "id": "second",
+          "label": "Second supplied innings",
+          "teamId": "ridge",
+          "runs": null,
+          "wickets": null,
+          "overs": null,
+          "extras": null,
+          "batting": [
+            {
+              "id": "zero",
+              "label": "Zero Example",
+              "dismissal": "Not out (supplied)",
+              "runs": 0,
+              "balls": 0,
+              "fours": 0,
+              "sixes": 0,
+              "strikeRate": null
+            }
+          ],
+          "bowling": [],
+          "source": {
+            "label": "Example innings source",
+            "url": "https://example.org/cricket"
+          }
+        }
+      ]
+    }
+  ]
+}

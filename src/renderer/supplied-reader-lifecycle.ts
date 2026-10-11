@@ -1,12 +1,11 @@
 import type {RendererContext} from './context.js';
 import type {RenderGeneration} from './generation.js';
+import {ownedTree} from './owned-tree.js';
 export {readerNativeReset as suppliedReaderReset} from './reader-controls.js';
 
 export function suppliedReaderContext(parent:RendererContext,root:HTMLElement):RendererContext {
- let owner:Node|null=null,bound=false;
- const life=parent.lifecycle.fork(()=>!bound||root.parentNode===owner);
- const c:RendererContext={...parent,lifecycle:life,on:life.listen,cleanup:life.own,bind:fn=>parent.bind(life.guard(fn)),element:(tag,cls,value)=>life.during(()=>parent.element(tag,cls,value))};
- parent.bind(life.guard(()=>{if(!bound&&root.isConnected){owner=root.parentNode;bound=true;}}));
+ const life=ownedTree(parent,root);
+ const c:RendererContext={...parent,lifecycle:life,on:life.listen,cleanup:life.own,bind:fn=>life.own(parent.bind(life.guard(fn))),element:(tag,cls,value)=>life.during(()=>parent.element(tag,cls,value))};
  return c;
 }
 /** Each synchronous paint retires older work, including reentrant same-generation input. */

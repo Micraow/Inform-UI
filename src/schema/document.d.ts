@@ -146,6 +146,8 @@ export type Node =
   | TransactionListNode
   | LedgerAccountsNode
   | LedgerRecurringTransactionsNode
+  | NbaGameBoxscoreNode
+  | CricketMatchBoxscoreNode
   | NbaPlayerSummaryNode
   | TennisPlayerSummaryNode
   | UnitConverterNode
@@ -2943,6 +2945,130 @@ export interface LedgerRecurringRecord {
   observedAt?: string;
   note?: string;
   source?: LedgerSource;
+}
+export interface NbaGameBoxscoreNode {
+  type: "nba-game-boxscore";
+  id?: string;
+  label: string;
+  description?: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled" | "unknown";
+  statusText?: string;
+  observedAt?: string;
+  source?: TravelEventSource;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  teams: [BasketballBoxTeam, BasketballBoxTeam, ...BasketballBoxTeam[]];
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  periods: {
+    label: string;
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    scores: [number | null, number | null, ...(number | null)[]];
+  }[];
+}
+export interface BasketballBoxTeam {
+  id: string;
+  label: string;
+  score: number | null;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  players: BasketballBoxPlayer[];
+  note?: string;
+}
+export interface BasketballBoxPlayer {
+  id: string;
+  label: string;
+  note?: string;
+  source?: TravelEventSource;
+  starter: boolean | null;
+  minutes: string | null;
+  points: number | null;
+  rebounds: number | null;
+  assists: number | null;
+  steals: number | null;
+  blocks: number | null;
+  turnovers: number | null;
+  plusMinus: number | null;
+  fieldGoals?: string | null;
+  threePointers?: string | null;
+  freeThrows?: string | null;
+}
+export interface CricketMatchBoxscoreNode {
+  type: "cricket-match-boxscore";
+  id?: string;
+  label: string;
+  description?: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled" | "unknown";
+  statusText?: string;
+  observedAt?: string;
+  source?: TravelEventSource;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  teams: [CricketBoxTeam, CricketBoxTeam, ...CricketBoxTeam[]];
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  innings: CricketBoxInnings[];
+}
+export interface CricketBoxTeam {
+  id: string;
+  label: string;
+}
+export interface CricketBoxInnings {
+  id: string;
+  label: string;
+  teamId: string;
+  runs: number | null;
+  wickets: number | null;
+  overs: string | null;
+  extras: number | null;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  batting: CricketBattingRow[];
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  bowling: CricketBowlingRow[];
+  note?: string;
+  source?: TravelEventSource;
+}
+export interface CricketBattingRow {
+  id: string;
+  label: string;
+  note?: string;
+  source?: TravelEventSource;
+  dismissal: string | null;
+  runs: number | null;
+  balls: number | null;
+  fours: number | null;
+  sixes: number | null;
+  strikeRate: number | null;
+}
+export interface CricketBowlingRow {
+  id: string;
+  label: string;
+  note?: string;
+  source?: TravelEventSource;
+  overs: string | null;
+  maidens: number | null;
+  runs: number | null;
+  wickets: number | null;
+  economy: number | null;
 }
 export interface NbaPlayerSummaryNode {
   type: "nba-player-summary";

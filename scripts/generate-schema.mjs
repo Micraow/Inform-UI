@@ -326,6 +326,19 @@ defs.LedgerAccountSnapshot=object({id:suppliedKey,label:short,institution:short,
 node('ledger-accounts',{...ledgerCommon,accounts:array(ref('LedgerAccountSnapshot'),0,40),initiallyRevealed:bool},['label','accounts'],'finance');
 defs.LedgerRecurringRecord=object({id:suppliedKey,label:short,counterparty:short,cadence:choice('weekly','monthly','yearly','other','unknown'),status:choice('scheduled','paused','unknown'),direction:choice('incoming','outgoing','unknown'),estimatedAmount:ref('LedgerExactMoney'),nextDate:travelDate,observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','cadence','status','direction']);
 node('ledger-recurring-transactions',{...ledgerCommon,records:array(ref('LedgerRecurringRecord'),0,60),initialReviewedIds:array(suppliedKey,0,60)},['label','records'],'finance');
+// Original supplied boxscores. Explicit totals/overs/averages remain source data.
+const boxCount={anyOf:[integer(0,1000000),{type:'null'}]};
+const boxText={anyOf:[string(200,1),{type:'null'}]};
+const boxRow={id:suppliedKey,label:short,note:string(2000),source:ref('TravelEventSource')};
+defs.BasketballBoxPlayer=object({...boxRow,starter:{anyOf:[bool,{type:'null'}]},minutes:boxText,points:boxCount,rebounds:boxCount,assists:boxCount,steals:boxCount,blocks:boxCount,turnovers:boxCount,plusMinus:{anyOf:[integer(-1000000,1000000),{type:'null'}]},fieldGoals:boxText,threePointers:boxText,freeThrows:boxText},['id','label','starter','minutes','points','rebounds','assists','steals','blocks','turnovers','plusMinus']);
+defs.BasketballBoxTeam=object({id:suppliedKey,label:short,score:boxCount,players:array(ref('BasketballBoxPlayer'),0,40),note:string(2000)},['id','label','score','players']);
+defs.CricketBoxTeam=object({id:suppliedKey,label:short},['id','label']);
+defs.CricketBattingRow=object({...boxRow,dismissal:boxText,runs:boxCount,balls:boxCount,fours:boxCount,sixes:boxCount,strikeRate:{anyOf:[{type:'number',minimum:0,maximum:1000000},{type:'null'}]}},['id','label','dismissal','runs','balls','fours','sixes','strikeRate']);
+defs.CricketBowlingRow=object({...boxRow,overs:boxText,maidens:boxCount,runs:boxCount,wickets:boxCount,economy:{anyOf:[{type:'number',minimum:0,maximum:1000000},{type:'null'}]}},['id','label','overs','maidens','runs','wickets','economy']);
+defs.CricketBoxInnings=object({id:suppliedKey,label:short,teamId:suppliedKey,runs:boxCount,wickets:boxCount,overs:boxText,extras:boxCount,batting:array(ref('CricketBattingRow'),0,30),bowling:array(ref('CricketBowlingRow'),0,30),note:string(2000),source:ref('TravelEventSource')},['id','label','teamId','runs','wickets','overs','extras','batting','bowling']);
+const boxCommon={label:short,description:string(3000),status:choice('scheduled','live','final','postponed','cancelled','unknown'),statusText:string(1000),observedAt:flightAt,source:ref('TravelEventSource')};
+node('nba-game-boxscore',{...boxCommon,teams:array(ref('BasketballBoxTeam'),2,2),periods:array(object({label:short,scores:array(boxCount,2,2)},['label','scores']),0,20)},['label','status','teams','periods'],'sports');
+node('cricket-match-boxscore',{...boxCommon,teams:array(ref('CricketBoxTeam'),2,2),innings:array(ref('CricketBoxInnings'),0,12)},['label','status','teams','innings'],'sports');
 const playerCount = {anyOf:[integer(0,1000000),{type:'null'}]};
 const playerRate = {anyOf:[{type:'number',minimum:0,maximum:10000},{type:'null'}]};
 const playerRank = {anyOf:[integer(1,1000000),{type:'null'}]};

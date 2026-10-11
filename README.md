@@ -1,10 +1,12 @@
-## Current supplied-data extensions
+## Current portable128 checkpoint
 
-This branch provides 124 protocol node types. Additions to the earlier portable core include follow-up cards, transaction details, recommendation cards, finance status banners, prompt checklists, account/recurring-record readers, and NBA/tennis player summaries. See `examples/` and the generated schema for their closed input contracts.
+This branch restores 128 protocol node types, including supplied F1 races/standings and NBA/cricket boxscores. Data is explicitly supplied, with local filtering, sorting and cancelable intents. The implementation uses independent project-owned JS/TS; it has no OpenAI runtime dependency. Source is MIT licensed with dependency and font notices retained.
 
-Domain data is explicitly supplied. Finance readers do not access accounts or execute payments; prompt and navigation-like controls emit cancelable local intents instead of starting remote actions. The implementation has no OpenAI runtime dependency. Original project code is MIT licensed; dependency and font notices remain in the repository.
+The integrated128 source passed all 2,297 local Node tests, public declarations and boundary checks. Its exact original source/asset commits are fd21ad361b7f6777a44b11bcf4ea4f218a08852e / 3cbb87bf046d67d2dabf12ef0b5b7711804cbd4f. A subsequent independent admission-getter test identified duplicate-intent gaps in three readers; their small successor is being validated separately.
 
-The initial 124-node candidate passed 2,021 Node tests. A subsequent reset read-boundary fix and CI-portability changes passed 200 targeted checks; the branch workflow validates the current full checkout. Native visual/browser acceptance is tracked separately, and existing examples with fixed CDN pins continue to refer to those historical assets. Run `npm run check` and the configured browser tests to verify a checkout. The baseline documentation follows.
+The earlier124 remote run passed 2,036 Node tests and 637 of 670 native browser cases. Thirty-two browser fixture issues and the remaining touch validation timing case have local fixes; the combined128 native browser rerun is pending. Neither the earlier124 result nor local tests establish128 native visual acceptance. Existing fixed-CDN examples retain their historical pins. Ordinary checkpoints use [skip ci].
+
+The earlier project overview follows.
 
 <h1 align="center">Inform UI</h1>
 
@@ -208,12 +210,3 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 后续新增[供数文章](docs/news-article.md)、[供数评论](docs/entity-reviews.md)、[供数时段选择](docs/restaurant-availability.md)与[讨论阅读](docs/reddit-thread-card.md)。[二十四项本地记录](docs/local-enhancements-84.md)保留原始证据。其后新增[显式动画/庆祝](docs/motion.md)与[邮件草稿/计划回顾](docs/draft-review.md)，[二十八项本地冻结](docs/local-enhancements-88.md)全库863项通过，仍未计入真实浏览器验收。
 
 [三十项本地冻结](docs/local-enhancements-90.md)加入供数地点选择与逐图确认画廊，同时修复Forms祖先禁用与同步adapter生命周期边界。28项全库与后续影响面检查的证据分别列出；正式已验仍53项。
-
-
-## Portable126 source checkpoint
-
-This recovery branch now also restores the project-owned `f1-races` and `f1-standings` readers: supplied sessions and standings, local filters/sorts, and cancelable session intents. No live data providers are connected. The exact126 candidate passed 93 targeted tests, with an earlier418-test affected-area run. Its new generation controls turn seven reproduced failures into passing cases.
-
-The current-source browser workflow run on commit `b3903ff5e7eaddb7326d017308af052847ebb15f` belongs to124. It is not acceptance for126. This126 checkpoint is saved with `[skip ci]`; no126 full or native browser result is claimed. The124 workflow retains its explicit124 assertion until a separately scoped validation update.
-
-A subsequent source-only checkpoint adds the touch blur-validation fix and eleven Node contracts (48 Forms tests passed), including late timer-registration compensation. The tracked126 CDN files still identify the preceding frozen asset until the combined rebuild. Native touch revalidation is pending; no new CI run is triggered by this source checkpoint.

@@ -3,10 +3,10 @@
   "format": "inform-ui-schema-index/1",
   "fullSchema": {
     "path": "../iui.schema.json",
-    "utf8Bytes": 291649,
-    "unicodeCodePoints": 291649,
-    "estimatedTokens": 72913,
-    "sha256": "13b07fd00859bed429b3f894b8a77d99983e423d5e65675adecdc9eb81c4fa97"
+    "utf8Bytes": 307124,
+    "unicodeCodePoints": 307124,
+    "estimatedTokens": 76781,
+    "sha256": "dc0b52475b5bfa856cbc6111ccb910d8e527430aea8e9acf7a70df70c0726947"
   },
   "semantics": "All bundles perform structural validation only. The unchanged full validateDocument also checks state references, ranges, dates, URLs, native rejection and other semantic rules.",
   "tokenEstimateMethod": "ceil(Unicode code points / 4), a rough model-independent heuristic; not measured model tokens or a guaranteed saving.",
@@ -36,6 +36,7 @@
     "col": "base",
     "copy-words": "base",
     "create-interactive-poll": "base",
+    "cricket-match-boxscore": "sports",
     "currency-converter": "converters",
     "details": "base",
     "divider": "base",
@@ -86,6 +87,7 @@
     "metric": "base",
     "metric-grid": "base",
     "native": "compatibility",
+    "nba-game-boxscore": "sports",
     "nba-player-summary": "sports",
     "news-article": "base",
     "onboarding-selection": "base",
@@ -249,7 +251,7 @@
         "utf8Bytes": 176456,
         "unicodeCodePoints": 176456,
         "estimatedTokens": 44114,
-        "sha256": "17bec26510fbf4130e7eb01abb1a753140ac0c8e1c0e602ca80328805f31cf4a"
+        "sha256": "9c313092ad4670ef69092a51e22945e7209d26431c871b92a6b2f78ac791b946"
       },
       "nodeSchema": {
         "path": "nodes/base.schema.json",
@@ -257,7 +259,7 @@
         "utf8Bytes": 175207,
         "unicodeCodePoints": 175207,
         "estimatedTokens": 43802,
-        "sha256": "4f3ca1b466fa34063d80cfdc54ab3aa58a05423e0dcbcc246f50d3901c4c5e38"
+        "sha256": "85cc43ef1b64ebdfdd3e33494f6fdd6ec201eb4b93ff4581d5fad79704511409"
       },
       "examples": [
         {
@@ -467,7 +469,7 @@
         "utf8Bytes": 189180,
         "unicodeCodePoints": 189180,
         "estimatedTokens": 47295,
-        "sha256": "b5a5b7895704c63e8370a092071a7d02ad9d5d6e502daec66f9fe0559a2bcfb1"
+        "sha256": "c4ad926f4d5a91c53db0399698944bf8828e188160b98f53c40f0b5eb8f9358d"
       },
       "nodeSchema": {
         "path": "nodes/forms.schema.json",
@@ -475,7 +477,7 @@
         "utf8Bytes": 14592,
         "unicodeCodePoints": 14592,
         "estimatedTokens": 3648,
-        "sha256": "eba1e5dfb949af5b00bc5fb212035a1552372be6544d4d1ffb3bd4249d3ca2ab"
+        "sha256": "3343fc07c046443f1e18009e246678dd7d381ae6004524d9b3934ebbb18c704c"
       },
       "examples": [
         {
@@ -520,7 +522,7 @@
         "utf8Bytes": 179390,
         "unicodeCodePoints": 179390,
         "estimatedTokens": 44848,
-        "sha256": "a0c8487acf6decbc8aacd3c929cc0cb71b74520910ff84f91289d402107a205f"
+        "sha256": "1bf8dac91145a559d0dc78e190afd66fcbc2e9c8562fc5bbe31f8cf3dbfd9f37"
       },
       "nodeSchema": {
         "path": "nodes/charts.schema.json",
@@ -528,7 +530,7 @@
         "utf8Bytes": 4802,
         "unicodeCodePoints": 4802,
         "estimatedTokens": 1201,
-        "sha256": "e7dab4a621b5fa5279009c371bd873b1c24ca64792123570a5074b277a775a65"
+        "sha256": "f512731bb666bff8ba5a0bd4fa08966742a6aeaeebfc3801d9a921eef42cc61f"
       },
       "examples": [
         {
@@ -562,7 +564,7 @@
         "utf8Bytes": 180408,
         "unicodeCodePoints": 180408,
         "estimatedTokens": 45102,
-        "sha256": "c3f3bece5ab0e12c2f5ef2cf10788a400f440f382e346d43f6c9b9ddbc8974da"
+        "sha256": "9be509f2b2263c0672b0fa8fafc5ed5e44345cb51b013633951e4f7b97ff3419"
       },
       "nodeSchema": {
         "path": "nodes/graphics.schema.json",
@@ -570,7 +572,7 @@
         "utf8Bytes": 5820,
         "unicodeCodePoints": 5820,
         "estimatedTokens": 1455,
-        "sha256": "77d6af4b67cf2e90fe25a5a25eafe112cccbdf56c59549be33e8fa7305ac9130"
+        "sha256": "58d31be00406d88520893989032f744aeab4373db851203434e2cd56aafb494b"
       },
       "examples": [
         {
@@ -595,7 +597,7 @@
         "utf8Bytes": 183216,
         "unicodeCodePoints": 183216,
         "estimatedTokens": 45804,
-        "sha256": "14efa705f8589f9e8a4985f844ae41d39aba8b859e768c869e35ee5629991e62"
+        "sha256": "379f9f085300d4687b9dfa12bb44c6c75300e978682fa9e16ea3f5501ce8a09c"
       },
       "nodeSchema": {
         "path": "nodes/weather.schema.json",
@@ -603,7 +605,7 @@
         "utf8Bytes": 7218,
         "unicodeCodePoints": 7218,
         "estimatedTokens": 1805,
-        "sha256": "99a49dff4c8164ec960f0e954a23310771963b53dd081f223ebc7932f193d172"
+        "sha256": "195450c8c03fcd0e7320b34507924b7efb44e2ae7be015b20efb0d068e1db42c"
       },
       "examples": [
         {
@@ -625,24 +627,26 @@
         "sports-schedule",
         "sports-scoreboard",
         "sports-standings",
+        "nba-game-boxscore",
+        "cricket-match-boxscore",
         "nba-player-summary",
         "tennis-player-summary"
       ],
       "documentSchema": {
         "path": "sports.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 204005,
-        "unicodeCodePoints": 204005,
-        "estimatedTokens": 51002,
-        "sha256": "9fc7be36add50c37fe287e0afb6dffd4690887cb644db494b6d0a4f21184543a"
+        "utf8Bytes": 219480,
+        "unicodeCodePoints": 219480,
+        "estimatedTokens": 54870,
+        "sha256": "f5937950b4b179e46920209c06886b10704fcaac9922d47ff1cb24fcd91f3f53"
       },
       "nodeSchema": {
         "path": "nodes/sports.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 28412,
-        "unicodeCodePoints": 28412,
-        "estimatedTokens": 7103,
-        "sha256": "239c2365e0230cdb99624886413b723ae11565c750accd76129d9fd2434c3b74"
+        "utf8Bytes": 43887,
+        "unicodeCodePoints": 43887,
+        "estimatedTokens": 10972,
+        "sha256": "b2e9fb8ead433671fc0aaa50c6deea0515cfee4b38695266d6b2a581961709e2"
       },
       "examples": [
         {
@@ -671,7 +675,7 @@
         "utf8Bytes": 187007,
         "unicodeCodePoints": 187007,
         "estimatedTokens": 46752,
-        "sha256": "6a7f5c960f1822fafaa3db8e3d6c04408f753d50baca0bed2427e721c12b312a"
+        "sha256": "badbd7893f1203e788b6ca5c20d9a3a2ee5dcbffd2347f42bb64c06e43f39fb4"
       },
       "nodeSchema": {
         "path": "nodes/learning.schema.json",
@@ -679,7 +683,7 @@
         "utf8Bytes": 11009,
         "unicodeCodePoints": 11009,
         "estimatedTokens": 2753,
-        "sha256": "220a7baa6ec182b80a4ca7593528de3922913b9f5460abeebd2dc6140f5fca90"
+        "sha256": "f7375a140913e4fa65ee18f0414ad74f502a31774b5213a3513f410435d1bbc3"
       },
       "examples": [
         {
@@ -725,7 +729,7 @@
         "utf8Bytes": 211607,
         "unicodeCodePoints": 211607,
         "estimatedTokens": 52902,
-        "sha256": "c2e0f2098315374d7ebd946eed8efdace2eba4b282e3fe79ab16fd0ba31f9d1b"
+        "sha256": "ac76a335f958b94c709a9edb02b1d081547cc774d409180bb680c25c4125ea25"
       },
       "nodeSchema": {
         "path": "nodes/finance.schema.json",
@@ -733,7 +737,7 @@
         "utf8Bytes": 35609,
         "unicodeCodePoints": 35609,
         "estimatedTokens": 8903,
-        "sha256": "399443568f55c140873401af38ff1400ac8b2e09d2d5b668525cd34618564fe0"
+        "sha256": "284f80db77639f6474ee6581e8abe3fd498543cb2cb4c7822bfe4d9fc40cee3b"
       },
       "examples": [
         {
@@ -767,7 +771,7 @@
         "utf8Bytes": 183421,
         "unicodeCodePoints": 183421,
         "estimatedTokens": 45856,
-        "sha256": "b1f1c84b8b3ece6bf639e130759fb62d879c577289547dab7903782b3110c105"
+        "sha256": "92c36edd582df6cc63dc8729bdb91d35d719e05bd429a0fb792bd8723b01a5a8"
       },
       "nodeSchema": {
         "path": "nodes/converters.schema.json",
@@ -775,7 +779,7 @@
         "utf8Bytes": 7423,
         "unicodeCodePoints": 7423,
         "estimatedTokens": 1856,
-        "sha256": "6c8f5a66455774265c89ec8dc873ca37eaf9335214f12fec18b25dc7b8eccffb"
+        "sha256": "e4d0e9b13deb6e3ba2f0e5a8c2d469818ef7128b92eb7b191fb38503f454a5ec"
       },
       "examples": [
         {
@@ -802,7 +806,7 @@
         "utf8Bytes": 180967,
         "unicodeCodePoints": 180967,
         "estimatedTokens": 45242,
-        "sha256": "39c1d23717a6aa2abd2852ecce869428371f8cfe867d3f649eba5717c125ce67"
+        "sha256": "2520f43e06e184935ffd181a65848fc9f5df701cbe750332f7d1a76dfda94d3a"
       },
       "nodeSchema": {
         "path": "nodes/time.schema.json",
@@ -810,7 +814,7 @@
         "utf8Bytes": 4969,
         "unicodeCodePoints": 4969,
         "estimatedTokens": 1243,
-        "sha256": "2846bb2563a1d5f1761c16b51810567b8d46036de0a63ea68f7343449478fafb"
+        "sha256": "2b055a7a27228047ca8a84cdb4ad1d1896424d9920a2d1f59099baafd530b874"
       },
       "examples": [
         {
@@ -835,7 +839,7 @@
         "utf8Bytes": 181216,
         "unicodeCodePoints": 181216,
         "estimatedTokens": 45304,
-        "sha256": "fcb65a26f9f7a82e7be771c9c075fc43c8835b4544d4a963974c7a0f35b3c0a3"
+        "sha256": "534154eb78f20d492e2e593230fd09470c3174c17e10edcbaff83208ac2dc4ac"
       },
       "nodeSchema": {
         "path": "nodes/compatibility.schema.json",
@@ -843,7 +847,7 @@
         "utf8Bytes": 5218,
         "unicodeCodePoints": 5218,
         "estimatedTokens": 1305,
-        "sha256": "faea25fd3320d847ba74a8912bcb1752f43aaf66e81d07da318496b62bac0f91"
+        "sha256": "287e2704bf0a1a39587e41cdb74116de9360e6a225b5493dda4a11a4f08177fb"
       },
       "examples": [],
       "warning": "native is structurally recognized but always rejected by validateDocument; it is not a supported renderer."

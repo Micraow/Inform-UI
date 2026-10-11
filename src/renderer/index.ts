@@ -1,3 +1,5 @@
+import {renderBasketballBoxscore,renderCricketBoxscore} from './boxscores.js';
+import boxscoreStyles from './boxscores.css';
 import {renderMotorsportRaces,renderMotorsportStandings} from './motorsport.js';
 import motorsportStyles from './motorsport.css';
 import {renderPlayerSummary} from './player-summaries.js';
@@ -78,7 +80,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -241,6 +243,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'nba-game-boxscore':out=renderBasketballBoxscore(context,n,labels.boxscoreUI);break;
+      case 'cricket-match-boxscore':out=renderCricketBoxscore(context,n,labels.boxscoreUI);break;
       case 'f1-races':out=renderMotorsportRaces(context,n,labels.motorsportUI);break;
       case 'f1-standings':out=renderMotorsportStandings(context,n,labels.motorsportUI);break;
       case 'nba-player-summary':case 'tennis-player-summary':out=renderPlayerSummary(context,n,labels.playerSummaryUI);break;

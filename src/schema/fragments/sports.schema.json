@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:13b07fd00859bed429b3f894b8a77d99983e423d5e65675adecdc9eb81c4fa97:document:base+sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:dc0b52475b5bfa856cbc6111ccb910d8e527430aea8e9acf7a70df70c0726947:document:base+sports",
   "title": "Inform UI document subset: base, sports",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -521,6 +521,228 @@
       "required": [
         "type",
         "value"
+      ],
+      "additionalProperties": false
+    },
+    "BasketballBoxPlayer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "starter": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minutes": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rebounds": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assists": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "steals": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "blocks": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "turnovers": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "plusMinus": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": -1000000,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fieldGoals": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "threePointers": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "freeThrows": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "starter",
+        "minutes",
+        "points",
+        "rebounds",
+        "assists",
+        "steals",
+        "blocks",
+        "turnovers",
+        "plusMinus"
+      ],
+      "additionalProperties": false
+    },
+    "BasketballBoxTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BasketballBoxPlayer"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "score",
+        "players"
       ],
       "additionalProperties": false
     },
@@ -1781,6 +2003,390 @@
         "type",
         "label",
         "options"
+      ],
+      "additionalProperties": false
+    },
+    "CricketBattingRow": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "dismissal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runs": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "balls": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fours": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sixes": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "strikeRate": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "dismissal",
+        "runs",
+        "balls",
+        "fours",
+        "sixes",
+        "strikeRate"
+      ],
+      "additionalProperties": false
+    },
+    "CricketBowlingRow": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "overs": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "maidens": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runs": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wickets": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "economy": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "overs",
+        "maidens",
+        "runs",
+        "wickets",
+        "economy"
+      ],
+      "additionalProperties": false
+    },
+    "CricketBoxInnings": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "runs": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wickets": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "overs": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extras": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "batting": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CricketBattingRow"
+          },
+          "minItems": 0,
+          "maxItems": 30
+        },
+        "bowling": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CricketBowlingRow"
+          },
+          "minItems": 0,
+          "maxItems": 30
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "teamId",
+        "runs",
+        "wickets",
+        "overs",
+        "extras",
+        "batting",
+        "bowling"
+      ],
+      "additionalProperties": false
+    },
+    "CricketBoxTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "CricketMatchBoxscoreNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "cricket-match-boxscore"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "statusText": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CricketBoxTeam"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "innings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CricketBoxInnings"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "status",
+        "teams",
+        "innings"
       ],
       "additionalProperties": false
     },
@@ -4504,6 +5110,104 @@
       ],
       "additionalProperties": false
     },
+    "NbaGameBoxscoreNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "nba-game-boxscore"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "statusText": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BasketballBoxTeam"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "scores": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            },
+            "required": [
+              "label",
+              "scores"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "status",
+        "teams",
+        "periods"
+      ],
+      "additionalProperties": false
+    },
     "NbaPlayerSummaryNode": {
       "type": "object",
       "properties": {
@@ -4905,6 +5609,12 @@
         },
         {
           "$ref": "#/$defs/SportsStandingsNode"
+        },
+        {
+          "$ref": "#/$defs/NbaGameBoxscoreNode"
+        },
+        {
+          "$ref": "#/$defs/CricketMatchBoxscoreNode"
         },
         {
           "$ref": "#/$defs/NbaPlayerSummaryNode"

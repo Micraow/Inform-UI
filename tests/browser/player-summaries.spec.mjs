@@ -1,9 +1,9 @@
 import {test,expect} from '@playwright/test';import {readFile} from 'node:fs/promises';
 const fixture=JSON.parse(await readFile(new URL('../../examples/player-summaries.json',import.meta.url)));
-async function setup(page,spec=fixture,lang='en'){
+async function setup(page,spec=fixture,lang='en',parentForm=false){
   await page.goto('/mount.html');await page.waitForFunction(()=>!!window.iui);
   const requests=[];page.on('request',request=>requests.push(request.url()));
-  await page.evaluate(({spec,lang})=>{const host=document.getElementById('host');host.lang=lang;window.playerController=window.iui.mount(host,spec);},{spec,lang});
+  await page.evaluate(({spec,lang,parentForm})=>{const host=document.getElementById('host');if(parentForm){const form=document.createElement('form');host.before(form);form.append(host);}host.lang=lang;window.playerController=window.iui.mount(host,spec);},{spec,lang,parentForm});
   return requests;
 }
 for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`player summaries ${theme} ${width}: stable statistics and local filters`,async({page,context})=>{
@@ -23,7 +23,7 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`play
   await page.screenshot({path:`test-results/player-summaries-${theme}-${width}.png`,fullPage:true});
 });
 test('player summaries native reset and canceled reset preserve local filters',async({page})=>{
-  await setup(page);await page.evaluate(()=>{const host=document.getElementById('host'),form=document.createElement('form');host.before(form);form.append(host);});
+  await setup(page,fixture,'en',true);
   const search=page.locator('.iui-nba-player input');await search.fill('north');
   await page.evaluate(()=>{const form=document.querySelector('form');form.addEventListener('reset',event=>event.preventDefault(),{once:true});form.reset();});
   await expect(search).toHaveValue('north');await page.evaluate(()=>document.querySelector('form').reset());await expect(search).toHaveValue('');
