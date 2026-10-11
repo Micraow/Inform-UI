@@ -4167,11 +4167,15 @@ export interface ConversationSuggestionsNode {
    */
   suggestions: ConversationSuggestion[];
   disabled?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
 }
 export interface ConversationSuggestion {
   id: string;
   label: string;
   prompt: string;
+  intent?: "new-turn" | "start-voice";
+  iconSrc?: string;
   disabled?: boolean;
 }
 export interface FollowUpActionBarNode {

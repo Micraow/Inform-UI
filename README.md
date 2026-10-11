@@ -1,3 +1,7 @@
+# Conversation presentation source checkpoint
+
+The current source adds supplied pending/resolved/failed states, decorative images, reference-informed pill layout and separate local voice/new-turn requests. Existing suggestions/prompt inputs remain compatible. See [the contract](docs/conversation-presentations.md). The 35 Conversation and 38 FollowUp tests passed in the current source build; no fresh full/native run is claimed. The packaged CDN remains unified154. Regenerate source and CDN with the documented commands below. Canonical counts remain142 complete,6 partial,108 missing pending independent complete-contract review.
+
 # Follow-up presentation source checkpoint
 
 The current source adds Footer and wrapped-pills layouts, responsive action selection, supplied pending/failed states, decorative images and three distinct local intent branches. The original flat form remains compatible. See [the contract](docs/follow-up-presentations.md).

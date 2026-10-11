@@ -12,6 +12,13 @@ The existing sixth partial ID is `weather`. No historical acceptance is upgraded
 
 ## Follow-up action bar
 
+The newer source extension documents Footer/wrapped layouts, container-width selection,
+64-pixel pending state, fallback and distinct local intent branches in
+[follow-up presentations](follow-up-presentations.md). Its exact `7b5e55b` source
+passed 38 local tests and a separate eight-flow consumer. It remains partial
+pending independent review of the complete functional gates below. The original
+subset identity and the gaps which motivated this extension are retained here.
+
 - Current candidate: `e2d4a0261ac0b40d1abc69e6c811b9208100efb1`.
 - Present subset: up to 12 supplied action labels, disabled state and a frozen,
   cancelable local `{id}` intent. No external action is performed.
@@ -25,6 +32,12 @@ The existing sixth partial ID is `weather`. No historical acceptance is upgraded
   Host services remain optional explicit integrations, never fabricated execution.
 
 ## Conversation suggestions
+
+A source extension now adds pending/resolved/failed states, decorative images and
+explicit local voice/new-turn requests while retaining the old API. See
+[conversation presentations](conversation-presentations.md). Initial source tests
+cover the new branches; independent complete-contract review is pending, so the
+canonical row remains partial. The original subset and gap inventory follows.
 
 - Current subset was first consumed in the fixed `a3345630f7683db5b7ae77d729ecc000abab65d3`
   integration. Its `suggestions`/`prompt` API is an original limited contract.

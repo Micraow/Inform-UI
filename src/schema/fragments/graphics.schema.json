@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:3ce15e30120b56f9b9849d5e48c0dcaff7093c1d2de3487c515b80aa44840b6e:document:base+graphics",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:4f16c4c2be3b8d7dd39c8568fa3666b8d0ec2ef428f198f81e3d8868514530e5:document:base+graphics",
   "title": "Inform UI document subset: base, graphics",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1850,6 +1850,17 @@
           "minLength": 1,
           "maxLength": 2000
         },
+        "intent": {
+          "enum": [
+            "new-turn",
+            "start-voice"
+          ]
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
+        },
         "disabled": {
           "type": "boolean"
         }
@@ -1887,6 +1898,17 @@
         },
         "disabled": {
           "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
         }
       },
       "required": [

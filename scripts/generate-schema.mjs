@@ -426,8 +426,8 @@ defs.UpcomingActivity=object({id:key,title:short,amountLabel:{anyOf:[short,{type
 node('ledger-upcoming-activity',{label:short,activities:array(ref('UpcomingActivity'),0,60),emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool},['label','activities'],'finance');
 defs.ImageGridItem=object({id:key,src:string(16000,1),alt:short,caption:string(500)},['id','src','alt']);
 node('image-grid',{label:short,images:array(ref('ImageGridItem'),0,24),columns:integer(1,4),fit:choice('contain','cover'),disabled:bool},['images']);
-defs.ConversationSuggestion=object({id:key,label:short,prompt:string(2000,1),disabled:bool},['id','label','prompt']);
-node('conversation-suggestions',{label:short,suggestions:array(ref('ConversationSuggestion'),0,12),disabled:bool},['suggestions']);
+defs.ConversationSuggestion=object({id:key,label:short,prompt:string(2000,1),intent:choice('new-turn','start-voice'),iconSrc:string(16000,1),disabled:bool},['id','label','prompt']);
+node('conversation-suggestions',{label:short,suggestions:array(ref('ConversationSuggestion'),0,12),disabled:bool,status:choice('pending','resolved','failed'),fallback:string(2000)},['suggestions']);
 defs.FollowUpAction=object({id:key,label:short,query:{type:'string',maxLength:2000},intent:{enum:['new-turn','start-voice','open-image-composer']},iconSrc:{type:'string',maxLength:16000},disabled:bool},['id','label']);
 node('follow-up-action-bar',{label:short,actions:array(ref('FollowUpAction'),0,12),disabled:bool,presentation:{enum:['flat','footer','wrapped_pills']},status:{enum:['pending','resolved','failed']},fallback:{type:'string',maxLength:2000}},['actions']);
 node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimatedMonthlyIncomeLabel:short,incomeSourcesLabel:short,nextPaycheck:{anyOf:[ref('LedgerIncomePaycheck'),{type:'null'}]},emptyLabel:string(2000),masked:bool,maskedLabel:short,estimatedLabel:short,nextPaycheckLabel:short,recurringIncomeLabel:short,noUpcomingLabel:string(2000),dateUnavailableLabel:short,source:ref('LedgerSource')},['label','hasIncome'],'finance');
