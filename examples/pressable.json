@@ -1,0 +1,18 @@
+{
+  "version": "iui/1",
+  "title": "Original passive action surface",
+  "state": { "blocked": false, "count": 3 },
+  "body": [{
+    "type": "pressable",
+    "id": "review-supplied",
+    "label": "Review the supplied items",
+    "description": "A local request for the host to review supplied content. No navigation occurs automatically.",
+    "actionId": "review-items",
+    "disabled": { "$": "blocked" },
+    "children": [{ "type": "box", "gap": 2, "padding": 4, "children": [
+      { "type": "text", "value": "Supplied item count", "weight": "semibold" },
+      { "type": "text", "value": { "$": "count" } },
+      { "type": "caption", "value": "The visible count may change; the accessible action label remains accurate." }
+    ] }]
+  }]
+}

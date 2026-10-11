@@ -1,0 +1,15 @@
+.iui-pressable{min-inline-size:0;overflow-wrap:anywhere}
+.iui-pressable-surface{position:relative;min-block-size:0;border:0;border-radius:inherit;background:transparent;isolation:isolate}
+.iui-pressable-content{padding:0;pointer-events:none;min-inline-size:0}
+.iui-pressable-content>.iui-layout{margin:0}
+.iui-root .iui-pressable-hit{position:absolute;inset:0;padding:0;inline-size:100%;block-size:100%;border:0;border-radius:inherit;background:transparent;color:inherit;cursor:pointer;z-index:1}
+.iui-root .iui-pressable-hit:hover:not(:disabled){background:transparent}
+.iui-root .iui-pressable-hit:active:not(:disabled){background:transparent}
+.iui-root .iui-pressable-hit:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-pressable[data-tone=primary] .iui-pressable-surface{border:1px solid var(--iui-info)}
+.iui-pressable[data-tone=danger] .iui-pressable-surface{border:1px solid var(--iui-danger)}
+.iui-pressable[data-disabled=true] .iui-pressable-content,.iui-pressable-surface:has(>.iui-pressable-hit:disabled)>.iui-pressable-content{opacity:.5}
+.iui-root .iui-pressable-hit:disabled{cursor:default;background:transparent;border:0}
+.iui-root .iui-pressable-description,.iui-root .iui-pressable-status{font-size:.85rem;color:var(--iui-muted);margin-block:8px 0;line-height:1.5}
+.iui-pressable-status:empty{display:none}
+@media(forced-colors:active){.iui-pressable-surface{border-color:ButtonText}.iui-root .iui-pressable-hit:focus-visible{outline-color:Highlight}.iui-root .iui-pressable-hit:disabled{border:1px dashed GrayText}}

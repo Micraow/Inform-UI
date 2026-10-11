@@ -1,3 +1,9 @@
+## Source-only 140 checkpoint
+
+Pressable is restored from the project's original renderer, core, labels, schema and CSS. A native button covers passive authored content and emits only a local, cancelable `iui:press` intent. Nested focusable actions are rejected; dynamic disabled state and visible content remain separate. Shared ownership and exclusive intent admission guard retirement and reentry.
+
+Build, types and 44 focused checks pass: 21 Pressable contracts/flows and 23 NetWorth checks, including the modified-shortcut/IME correction. Native keyboard activation and visuals remain pending. Run `npm run generate && npm run build` for the 140-node source; keep `scripts/pressable-definitions.json` as required generator input. Packaged schema/CDN remain130. Saves use [skip ci].
+
 ## Source-only 139 checkpoint
 
 The supplied NetWorth chart is restored from this project's original final core, renderer and styles. Summary values remain independent of chart observations; unknown values preserve gaps. Interval selection and keyboard inspection are local, with no account connection or currency conversion. Build, types and 22 new synthetic contract/chart tests pass. The original test fixture was unavailable, so no original-suite result is claimed. Independent and native geometry checks remain separate.

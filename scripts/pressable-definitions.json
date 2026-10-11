@@ -1,0 +1,53 @@
+{
+  "PressableNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "pressable"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "actionId": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "disabled": {
+        "$ref": "#/$defs/Value"
+      },
+      "tone": {
+        "enum": [
+          "default",
+          "primary",
+          "danger"
+        ]
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/Node"
+        },
+        "minItems": 1,
+        "maxItems": 30
+      }
+    },
+    "required": [
+      "type",
+      "label",
+      "actionId",
+      "children"
+    ],
+    "additionalProperties": false
+  }
+}

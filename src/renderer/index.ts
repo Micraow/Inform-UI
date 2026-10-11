@@ -1,3 +1,5 @@
+import {renderPressable} from './pressable.js';
+import pressableStyles from './pressable.css';
 import {renderNetWorth} from './net-worth.js';
 import netWorthStyles from './net-worth.css';
 import {renderWeatherSidebar} from './weather-sidebar.js';
@@ -92,7 +94,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -255,6 +257,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'pressable':out=renderPressable(context,n);break;
       case 'ledger-net-worth':out=renderNetWorth(context,n);break;
       case 'weather-sidebar-title':out=renderWeatherSidebar(context,n);break;
       case 'ledger-low-confidence-category-correction':out=renderCategoryCorrection(context,n);break;
