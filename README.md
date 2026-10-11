@@ -210,3 +210,7 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 后续新增[供数文章](docs/news-article.md)、[供数评论](docs/entity-reviews.md)、[供数时段选择](docs/restaurant-availability.md)与[讨论阅读](docs/reddit-thread-card.md)。[二十四项本地记录](docs/local-enhancements-84.md)保留原始证据。其后新增[显式动画/庆祝](docs/motion.md)与[邮件草稿/计划回顾](docs/draft-review.md)，[二十八项本地冻结](docs/local-enhancements-88.md)全库863项通过，仍未计入真实浏览器验收。
 
 [三十项本地冻结](docs/local-enhancements-90.md)加入供数地点选择与逐图确认画廊，同时修复Forms祖先禁用与同步adapter生命周期边界。28项全库与后续影响面检查的证据分别列出；正式已验仍53项。
+
+### Player table readability source checkpoint
+
+A subsequent source-only correction preserves complete words and supplied period/numeric literals inside locally scrolling player-summary tables. The focused suite passed 75 tests and TypeScript checking passed. Six real-browser geometry checks are authored but not yet run. Published CDN bytes remain the frozen 128 candidate; rebuild from source to try this correction. The running 128 CI validates commit `1e6f6e1b182d4cd29b764d87cf8b0839d18b04fa`, before this CSS correction.
