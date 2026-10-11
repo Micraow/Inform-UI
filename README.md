@@ -2,9 +2,9 @@
 
 This branch restores 128 protocol node types, including supplied F1 races/standings and NBA/cricket boxscores. Data is explicitly supplied, with local filtering, sorting and cancelable intents. The implementation uses independent project-owned JS/TS; it has no OpenAI runtime dependency. Source is MIT licensed with dependency and font notices retained.
 
-The integrated128 source passed all 2,297 local Node tests, public declarations and boundary checks. Its exact original source/asset commits are fd21ad361b7f6777a44b11bcf4ea4f218a08852e / 3cbb87bf046d67d2dabf12ef0b5b7711804cbd4f. A subsequent independent admission-getter test identified duplicate-intent gaps in three readers; their small successor is being validated separately.
+The integrated128 source passed all 2,297 local Node tests, public declarations and boundary checks. Its exact original source/asset commits are fd21ad361b7f6777a44b11bcf4ea4f218a08852e / 3cbb87bf046d67d2dabf12ef0b5b7711804cbd4f. The subsequent shared intent-admission fix passed 581 focused checks, 31 enhanced entry tests and 100 distinct independent regressions. It keeps exclusive admission ahead of reentrant host reads. The local 2,297-test full run remains evidence for its exact predecessor, not a repeated full run on this successor.
 
-The earlier124 remote run passed 2,036 Node tests and 637 of 670 native browser cases. Thirty-two browser fixture issues and the remaining touch validation timing case have local fixes; the combined128 native browser rerun is pending. Neither the earlier124 result nor local tests establish128 native visual acceptance. Existing fixed-CDN examples retain their historical pins. Ordinary checkpoints use [skip ci].
+The earlier124 remote run passed 2,036 Node tests and 637 of 670 native browser cases. Thirty-two browser fixture issues and the remaining touch validation timing case have local fixes; the combined128 native browser rerun is the next required validation. Neither the earlier124 result nor local tests establish128 native visual acceptance. Existing fixed-CDN examples retain their historical pins. Ordinary checkpoints use [skip ci].
 
 The earlier project overview follows.
 

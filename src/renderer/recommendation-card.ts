@@ -2,12 +2,12 @@ import type {RecommendationCardNode} from '../core/recommendation-card.js';
 import type {RendererContext} from './context.js';
 import {readerBlocked} from './reader-controls.js';
 import {ownedTree} from './owned-tree.js';
+import {intentGate} from './intent-gate.js';
 export interface RecommendationCardIntent {readonly componentId:string|null;readonly conversationId:string}
 /** Frozen local intent only. Host authorization and navigation are outside this renderer. */
 export function renderRecommendationCard(c:RendererContext,node:RecommendationCardNode):HTMLElement {
  const root=c.element('section','iui-recommendation-card');
- let dispatching=false;
- const life=ownedTree(c,root),write=life.during;
+ const life=ownedTree(c,root),write=life.during,intent=intentGate(life);
  write(()=>root.setAttribute('aria-label',node.label));write(()=>{root.dataset.status=node.status;});write(()=>{root.dir='auto';});
  if(node.status==='pending'){
   write(()=>root.setAttribute('aria-busy','true'));
@@ -28,10 +28,8 @@ export function renderRecommendationCard(c:RendererContext,node:RecommendationCa
  }else if(data.emoji){const emoji=c.element('span','iui-recommendation-emoji',data.emoji);write(()=>emoji.setAttribute('aria-hidden','true'));write(()=>button.append(emoji));}
  const copy=c.element('span','iui-recommendation-copy'),title=c.element('span','iui-recommendation-title',data.title),description=c.element('span','iui-recommendation-description',data.description);
  write(()=>copy.append(title,description));write(()=>button.append(copy));write(()=>root.append(button));
- life.listen(button,'click',()=>{
-  if(dispatching||!life.current()||readerBlocked(root,button,life.current()))return;
-  dispatching=true;
-  try{
+ life.listen(button,'click',()=>intent.run(()=>{
+  if(readerBlocked(root,button,life.current()))return;
    const detail:RecommendationCardIntent=Object.freeze({componentId:node.id??null,conversationId:data.conversationId});
    const event=write(()=>{
     const Event=c.doc.defaultView?.CustomEvent;
@@ -40,7 +38,6 @@ export function renderRecommendationCard(c:RendererContext,node:RecommendationCa
    });
    if(readerBlocked(root,button,life.current()))return;
    const dispatch=write(()=>root.dispatchEvent);write(()=>dispatch.call(root,event));
-  }finally{dispatching=false;}
- });
+ }));
  return root;
 }
