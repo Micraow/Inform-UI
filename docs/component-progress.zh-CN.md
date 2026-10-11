@@ -1,6 +1,6 @@
 # 组件进度
 
-168项完整实现覆盖：53项历史验收，115项完整实现待验。另1项部分实现Weather、87项未实现，总计256。协议注册177不是完成数。Voice3与Advice/Writing2三方普通合同已闭合；新OnboardingCards3仍候选。统一164原生717/717仅覆盖固定74d版本，后续源码原生/参考像素未验。
+171项完整实现覆盖：53项历史验收，118项完整实现待验。另1项部分实现Weather、84项未实现，总计256。协议注册177与完成数分开。三项Onboarding Cards独立9例与消费者8流程通过；新源码原生与参考像素未验，统一164原生717项仍仅覆盖固定74d版本。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -221,9 +221,9 @@
 | nba-player-summary | Nba Player Summary | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | nba-scores | Nba Scores | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | offer-voice-conversation | Offer Voice Conversation | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
-| onboarding-feature-card | Onboarding Feature Card | 未实现 | No implementation in the current library. |
-| onboarding-plugin-suggestions | Onboarding Plugin Suggestions | 未实现 | No implementation in the current library. |
-| onboarding-starter-tasks | Onboarding Starter Tasks | 未实现 | No implementation in the current library. |
+| onboarding-feature-card | Onboarding Feature Card | 完整实现待验 | Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
+| onboarding-plugin-suggestions | Onboarding Plugin Suggestions | 完整实现待验 | Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
+| onboarding-starter-tasks | Onboarding Starter Tasks | 完整实现待验 | Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | openai | Openai | 未实现 | No implementation in the current library. |
 | open-detail | Open Detail | 未实现 | No implementation in the current library. |
 | package-tracker | Package Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |

@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T13:56:17.919141+00:00",
+  "as_of_utc": "2026-10-11T14:10:11.134098+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 115,
+    "implemented_pending_verification": 118,
     "functionally_verified": 53,
-    "not_implemented": 87,
+    "not_implemented": 84,
     "partial": 1
   },
-  "completeImplementationCoverage": 168,
+  "completeImplementationCoverage": 171,
   "registeredProtocolNodes": 177,
   "components": [
     {
@@ -1534,22 +1534,22 @@
       "id": "onboarding-feature-card",
       "name": "Onboarding Feature Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "onboarding-plugin-suggestions",
       "name": "Onboarding Plugin Suggestions",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "onboarding-starter-tasks",
       "name": "Onboarding Starter Tasks",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "openai",

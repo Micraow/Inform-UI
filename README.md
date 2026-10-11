@@ -1,3 +1,7 @@
+# Current functional scope:171 /1 /84
+
+The three supplied onboarding cards passed9 independent checks and8 consumer flows. Canonical coverage is171 implemented (53 historical acceptances,118 pending full acceptance),1 partial Weather and84 missing;177 protocols are registered. New source native/reference pixel acceptance remains pending. Earlier checkpoints retain their original scope.
+
 # Current functional scope:168 /1 /87
 
 Voice3 passed12 independent checks and8 consumer flows after its two native-reset contract defects were repaired at37c30c. Advice/Writing2 passed7 independent checks and6 consumer flows at744c. Canonical coverage is168 implemented (53 historical acceptances,115 pending full acceptance),1 partial Weather and87 missing. Registration is177; the three new onboarding-card views remain functional candidates. The fixed unified164 package retains3160 Node and717 Chromium acceptance; newer source has separate native/pixel gates. Earlier checkpoint statements retain their original version scope.
