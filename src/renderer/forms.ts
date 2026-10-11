@@ -1,3 +1,5 @@
+import {readerBlocked, readerNativeReset, readerResetTask} from './reader-controls.js';
+import {suppliedReaderContext} from './supplied-reader-lifecycle.js';
 import {internalId} from './internal-id.js';
 import type { Node } from '../schema/document.js';
 import type { StateValue } from '../core/index.js';
@@ -14,6 +16,56 @@ export function createForms(c: RendererContext) {
   const fields = new Map<string, Set<FieldHandle>>();
   const { element: e, on, bind } = c;
   const disabled = (control: Control) => control.matches(':disabled');
+
+  type NativeResetJob = { binding: string; initial: StateValue; current: () => boolean | undefined; restore: () => void };
+  const nativeResets = new Map<Control, NativeResetJob>();
+  let nativeResetQueued = false;
+  function queueNativeReset(control: Control, job: NativeResetJob) {
+    nativeResets.set(control, job);
+    if (nativeResetQueued) return;
+    nativeResetQueued = true;
+    // Native control reconciliation runs after all reset listeners. Batch the
+    // accepted bindings so derived state never sees a half-reset sibling set.
+    readerResetTask(c, () => {
+      nativeResetQueued = false;
+      const jobs = [...nativeResets.values()];
+      nativeResets.clear();
+      const accepted = jobs.filter(item => item.current());
+      const patch = Object.fromEntries(accepted.map(item => [item.binding, item.initial]));
+      try { if (Object.keys(patch).length) c.change(patch); }
+      finally { jobs.forEach(item => item.restore()); }
+    });
+  }
+  c.cleanup(() => nativeResets.clear());
+
+  /** Basic controlled inputs outside an iui Form still belong to their native host form. */
+  function nativeControl(root: HTMLElement, control: HTMLInputElement | HTMLSelectElement, binding: string, refresh: () => void) {
+    // The explicit iui Form already owns its atomic reset and local field drafts.
+    if (scope) return;
+    const local = suppliedReaderContext(c, root);
+    const life = local.lifecycle;
+    const initial = life.during(() => c.getState()[binding]);
+    let revision = 0, observed = initial;
+    local.bind(() => {
+      const next = life.during(() => c.getState()[binding]);
+      if (!Object.is(next, observed)) { observed = next; revision++; }
+    });
+    const edited = () => {
+      if (!life.during(() => readerBlocked(root, control, life.current()))) revision++;
+    };
+    life.listen(control, 'input', edited, true);
+    life.listen(control, 'change', edited, true);
+    const restore = () => life.during(refresh);
+    local.cleanup(() => { nativeResets.delete(control); });
+    readerNativeReset(local, root, [control], () => revision, restore, () => {
+      const ticket = revision, form = life.during(() => control.form);
+      queueNativeReset(control, {
+        binding, initial,
+        current: life.guard(() => ticket === revision && control.form === form && !readerBlocked(root, control, life.current())),
+        restore: life.guard(restore)
+      });
+    }, 'after-default');
+  }
 
   function field(n: FieldNode): HTMLElement {
     const fieldScope = scope;
@@ -435,5 +487,5 @@ export function createForms(c: RendererContext) {
       if (reset) handle.reset(); else handle.overwrite();
     }
   };
-  return { field, group, form, syncDrafts };
+  return { field, group, form, syncDrafts, nativeControl };
 }

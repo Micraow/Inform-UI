@@ -56,3 +56,11 @@ const controller = mount(host, document, {
 原生日期输入使用明确的YYYY-MM-DD字符串和minDate/maxDate范围，复用本表单生命周期；见[日期字段合同](date-field.md)。这是后续本地候选，尚未通过真实浏览器批次。
 
 表单快照与原生 reset 合同由文档中的 `form` 节点拥有。不要把带受控字段的挂载容器再包在宿主自己管理的 HTML form 中；外层原生表单会绕开该节点的快照/校验生命周期。普通 disabled fieldset 继承仍受支持。
+
+## Basic controls in a host form
+
+Slider, Toggle and Select can be mounted in an existing native HTML form without an iui Form wrapper. An accepted native reset restores each eligible control's initial supplied state and its rendered value/output. Sibling bindings are applied as one state patch before derived expressions are reevaluated. Reset cancellation preserves current values. New input or a host state change before reconciliation wins for the corresponding binding, while unaffected siblings still reset.
+
+The explicit iui Form remains responsible for its own reset transaction. Host-form adapters use the existing owned lifecycle and native-reset contract: disabled fieldset/first-legend, hidden/inert ownership, ShadowRoot-local association and generation retirement still apply. Replaced or moved owners cannot publish old resets; disposal releases listeners. No schema or protocol changes are required.
+
+Host controls opt into an owned task boundary after native default actions. Real browser-triggered Reset events may perform microtask checkpoints between listeners, so a microtask alone cannot safely decide cancellation or repaint a native control. The existing reader reset helper retains its default microtask scheduling for existing callers; only this host-control integration requests `after-default`. Its pending marker persists until that decision, and the following atomic commit rechecks newer input, native form association and owner validity. Both task registrations use the common generation acquisition and cleanup.
