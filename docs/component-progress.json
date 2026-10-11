@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T14:10:11.134098+00:00",
+  "as_of_utc": "2026-10-11T15:04:43.742452+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 118,
+    "implemented_pending_verification": 125,
     "functionally_verified": 53,
-    "not_implemented": 84,
-    "partial": 1
+    "not_implemented": 78,
+    "partial": 0
   },
-  "completeImplementationCoverage": 171,
-  "registeredProtocolNodes": 178,
+  "completeImplementationCoverage": 178,
+  "registeredProtocolNodes": 183,
   "components": [
     {
       "id": "base-animate",
@@ -1044,15 +1044,15 @@
       "id": "conversational-onboarding-search",
       "name": "Conversational Onboarding Search",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Real supplied Weather, stock chart and finite news readers passed10 independent checks and7 consumer flows after nested input/resource correction; new native/reference pixel acceptance pending."
     },
     {
       "id": "conversational-onboarding-study",
       "name": "Conversational Onboarding Study",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "Source candidate provides supplied orbit slider, real local quiz and numeric chart; author tests passed, independent verification pending. Not yet included in implementation coverage."
+      "status": "implemented_pending_verification",
+      "note": "Supplied orbit, local quiz and numeric chart passed9 independent checks and8 consumer flows after chart reset correction; new native/reference pixel acceptance pending."
     },
     {
       "id": "conversational-onboarding-writing",
@@ -1212,8 +1212,8 @@
       "id": "follow-up-quiz",
       "name": "Follow Up Quiz",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
     },
     {
       "id": "gen-image",
@@ -1499,8 +1499,8 @@
       "id": "multiple-choice-block-v2",
       "name": "Multiple Choice Block V2",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
     },
     {
       "id": "nba-game-boxscore",
@@ -1576,8 +1576,8 @@
       "id": "personality-quiz",
       "name": "Personality Quiz",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied quiz contract passed 11 independent checks and 7 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
     },
     {
       "id": "places-metadata-bar",
@@ -1772,8 +1772,8 @@
       "id": "weather",
       "name": "Weather",
       "layer": "domain",
-      "status": "partial",
-      "note": "Incomplete functional contract."
+      "status": "implemented_pending_verification",
+      "note": "Complete additive supplied Weather views and local controls passed11 independent checks and8 consumer flows after modifier/IME repair; new native/reference pixel acceptance pending."
     },
     {
       "id": "weather-widget-v3",
@@ -1793,8 +1793,8 @@
       "id": "whats-new-capability-welcome",
       "name": "Whats New Capability Welcome",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied welcome contract passed 8 independent checks and 5 consumer DOM/standalone flows. Native/reference pixel acceptance remains pending."
     },
     {
       "id": "word-card",

@@ -1,260 +1,107 @@
-import type { WeatherNode } from '../schema/document.js';
-import type { RendererContext } from './context.js';
-import { dateInZone, timestamp } from '../core/extensions.js';
+import type {WeatherNode} from '../schema/document.js';
+import type {WeatherSuppliedNode,WeatherTemperatureLabels,WeatherActionDetail,WeatherFollowUp} from '../core/weather-supplied.js';
+import type {RendererContext} from './context.js';
+import {dateInZone,timestamp} from '../core/extensions.js';
+import {suppliedReaderContext,suppliedReaderInput,suppliedReaderPainter} from './supplied-reader-lifecycle.js';
+import {readerBlocked,readerNativeReset} from './reader-controls.js';
+import {intentGate} from './intent-gate.js';
+type Unit=WeatherNode['units']['temperature'];type Metric='temperature'|'precipitation';type Hour=WeatherSuppliedNode['hourly'][number];
+/** Always convert from supplied source units, never from a displayed value. */
+export function weatherTemperature(value:number|null|undefined,from:Unit,to:Unit):number|null {return value==null?null:from===to?value:to==='fahrenheit'?value*9/5+32:(value-32)*5/9;}
+/** Daily keys are location calendar dates; hourly instants preserve their real offsets. */
+export function weatherHours(node:WeatherNode,date:string):WeatherNode['hourly'] {return node.hourly.filter(hour=>dateInZone(hour.time,node.location.timezone)===date).slice().sort((a,b)=>timestamp(a.time)-timestamp(b.time));}
+export function weatherCoordinates(hours:readonly WeatherNode['hourly'][number][],left:number,width:number):number[]{if(!hours.length)return[];const times=hours.map(hour=>timestamp(hour.time)),first=Math.min(...times),last=Math.max(...times);return times.map(time=>first===last?left+width/2:left+(time-first)/(last-first)*width);}
 
-type Unit = WeatherNode['units']['temperature'];
-type Metric = 'temperature' | 'precipitation';
-type Hour = WeatherNode['hourly'][number];
-let weatherId = 0;
-
-/** Always convert from the immutable supplied unit, never from a previously displayed value. */
-export function weatherTemperature(value: number | null | undefined, from: Unit, to: Unit): number | null {
-  if (value == null) return null;
-  return from === to ? value : to === 'fahrenheit' ? value * 9 / 5 + 32 : (value - 32) * 5 / 9;
+/** Offline snapshot, local controls and cancelable receipts. No permission or provider API. */
+export function renderWeather(parent:RendererContext,n:WeatherSuppliedNode):HTMLElement {
+ const root=parent.element('section','iui-weather');let measure=()=>{};const c=suppliedReaderContext(parent,root,()=>measure()),life=c.lifecycle,write=life.during,draw=suppliedReaderPainter(c),input=suppliedReaderInput(c),sizing=suppliedReaderInput(c),gate=intentGate(life);
+ const e=c.element,svg=(tag:string,attrs?:Record<string,unknown>)=>write(()=>parent.svg(tag,attrs));
+ const l={...c.labels(),...n.labels},zh=c.labels().temperature==='温度',locale=zh?'zh-CN':'en-US';
+ const defaults=zh?{observation:'观测时间',selected:'所选日期',high:'最高',low:'最低',unit:'温度单位',view:'展示方式',metric:'逐小时指标',time:'当地时间',conditions:'天气状况',reset:'重置天气视图',instructions:'使用左右方向键浏览各时刻，Home 和 End 跳至首尾。完整数值可切换至表格查看。',accepted:'本地请求已接受',cancelled:'本地请求已取消'}:{observation:'Observed',selected:'Selected date',high:'High',low:'Low',unit:'Temperature unit',view:'Display view',metric:'Hourly metric',time:'Local time',conditions:'Conditions',reset:'Reset weather view',instructions:'Use Left and Right arrow keys to browse times, Home and End for the first and last. Switch to Table for all values.',accepted:'Local request accepted',cancelled:'Local request cancelled'};
+ const local={...defaults,...n.labels};
+ const conditions=zh?{clear:'晴','partly-cloudy':'局部多云',cloudy:'多云',rain:'雨',snow:'雪',storm:'雷暴',fog:'雾',unknown:'天气状况未知'}:{clear:'Clear','partly-cloudy':'Partly cloudy',cloudy:'Cloudy',rain:'Rain',snow:'Snow',storm:'Storm',fog:'Fog',unknown:'Unknown conditions'};
+ const zone=n.location.timezone,currentDate=dateInZone(n.current.time,zone),dates=[...new Set([...n.daily.map(day=>day.date),...n.hourly.map(hour=>dateInZone(hour.time,zone))])].sort();
+ const initialDate=n.initialDate??(dates.includes(currentDate)?currentDate:dates[0]??currentDate),initialUnit=n.initialUnit??n.units.temperature,initialMetric=n.initialMetric??'temperature',initialView=n.presentation==='table'?'table':'chart',compact=n.presentation==='compact';
+ let selected=initialDate,unit:Unit=initialUnit,metric:Metric=initialMetric,view:'chart'|'table'=initialView,active=0,revision=0,useCurrent=n.useCurrent??true,followUpDate='',notice='',visibleFollowUps=3,resetPending=()=>false;
+ const clock=new Intl.DateTimeFormat(locale,{timeZone:zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}),clockWithZone=new Intl.DateTimeFormat(locale,{timeZone:zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZoneName:'shortOffset'}),fullTime=new Intl.DateTimeFormat(locale,{timeZone:zone,year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZoneName:'shortOffset'}),dayFormat=new Intl.DateTimeFormat(locale,{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'});
+ const formatDay=(date:string)=>n.daily.find(day=>day.date===date)?.label??dayFormat.format(new Date(date+'T12:00:00Z'));
+ const symbol=()=>unit==='celsius'?'°C':'°F',number=(value:number)=>new Intl.NumberFormat(locale,{maximumFractionDigits:1}).format(value),temp=(value:number|null|undefined,labels?:WeatherTemperatureLabels)=>labels?.[unit]??(value==null?l.missing:number(weatherTemperature(value,n.units.temperature,unit)!)+symbol()),percent=(value:number|null|undefined)=>value==null?l.missing:number(value)+'%';
+ const condition=(value:WeatherNode['current']['condition']|undefined)=>conditions[value??'unknown'];
+ const id=write(()=>c.allocateInternalId?.('weather')??c.prefix+'weather'),append=(parent:Element,...children:Node[])=>write(()=>parent.append(...children));
+ write(()=>{root.dataset.timezone=zone;root.dataset.presentation=n.presentation??'chart';root.setAttribute('aria-label',n.regionLabel??`${n.location.name} · ${l.daily}`);});
+ const header=e('header','iui-weather-header'),place=e('div','iui-weather-place'),units=e('div','iui-weather-segment'),state=e('p','iui-weather-status'),body=e('div','iui-weather-body');
+ append(place,e('h2','iui-weather-location',n.location.name),e('p','iui-caption',zone));write(()=>{units.setAttribute('role','group');units.setAttribute('aria-label',local.unit);});
+ const button=(label:string,action:string,value='',cls='')=>{const b=e('button',cls,label);write(()=>{b.type='button';b.dataset.weatherAction=action;b.dataset.value=value;b.disabled=n.disabled===true;});return b;};
+ const celsius=button('°C','unit','celsius'),fahrenheit=button('°F','unit','fahrenheit');write(()=>{celsius.setAttribute('aria-label',zh?'摄氏度':'Celsius');fahrenheit.setAttribute('aria-label',zh?'华氏度':'Fahrenheit');});append(units,celsius,fahrenheit);append(header,place,units);
+ const current=e('div','iui-weather-current'),currentMain=e('div','iui-weather-current-main'),currentNumber=e('span','iui-weather-current-temperature'),currentIcon=e('span','iui-weather-current-symbol'),currentDescription=e('div','iui-weather-current-description'),eyebrow=e('p','iui-weather-eyebrow'),description=e('p','iui-weather-condition'),observed=e('time','iui-caption'),facts=e('dl','iui-weather-facts');append(currentMain,currentIcon,currentNumber);append(currentDescription,eyebrow,description,observed);append(current,currentMain,currentDescription,facts);
+ const daily=e('div','iui-weather-days'),dayButtons:HTMLButtonElement[]=[];write(()=>{daily.setAttribute('role','tablist');daily.setAttribute('aria-label',l.daily);});
+ for(const date of dates){const day=n.daily.find(item=>item.date===date),b=button('','date',date,'iui-weather-day');write(()=>{b.setAttribute('role','tab');b.id=id+'-date-'+date;b.setAttribute('aria-controls',id+'-panel');});append(b,e('span','iui-weather-day-date',formatDay(date)));if(day)append(b,weatherIcon({...c,svg},day.condition,'iui-weather-day-icon'),e('span','iui-weather-day-range'),e('span','iui-weather-day-rain'));else append(b,e('span','iui-weather-day-hourly',l.hourly));dayButtons.push(b);append(daily,b);}
+ const panel=e('section','iui-weather-panel'),toolbar=e('div','iui-weather-toolbar'),metrics=e('div','iui-weather-segment'),views=e('div','iui-weather-segment'),selectedTitle=e('h3','iui-weather-hourly-title'),empty=e('p','iui-weather-empty'),instructions=e('p','iui-weather-visually-hidden',local.instructions),readout=e('output','iui-weather-readout'),tableWrap=e('div','iui-weather-table-wrap');
+ write(()=>{panel.id=id+'-panel';panel.setAttribute('role','tabpanel');metrics.setAttribute('role','group');metrics.setAttribute('aria-label',local.metric);views.setAttribute('role','group');views.setAttribute('aria-label',local.view);empty.setAttribute('role','status');instructions.id=id+'-instructions';readout.id=id+'-readout';readout.setAttribute('aria-live','polite');readout.setAttribute('aria-atomic','true');tableWrap.tabIndex=0;tableWrap.setAttribute('role','region');tableWrap.setAttribute('aria-label',l.hourly);});
+ const temperature=button(l.temperature,'metric','temperature'),precipitation=button(l.precipitation,'metric','precipitation'),chartButton=button(l.chartView,'view','chart'),tableButton=button(l.tableView,'view','table'),reset=button(n.resetLabel??local.reset,'reset','','iui-weather-reset');
+ const graphic=svg('svg',{class:'iui-weather-chart',role:'img',tabindex:0,'aria-describedby':id+'-instructions '+id+'-readout'});append(metrics,temperature,precipitation);append(views,chartButton,tableButton);append(toolbar,metrics,views,reset);append(panel,selectedTitle,toolbar,empty,graphic,instructions,readout,tableWrap);append(body,current,daily,panel);
+ const footer=e('footer','iui-weather-source'),sourceLine=e('p'),updated=e('time','',`${l.updated}: ${fullTime.format(new Date(n.updatedAt))}`);append(sourceLine,write(()=>c.doc.createTextNode(l.source+': ')));if(n.source.url){const link=e('a','',n.source.label);write(()=>{link.href=n.source.url!;link.target='_blank';link.rel='noopener noreferrer';link.referrerPolicy='no-referrer';});append(sourceLine,link);}else append(sourceLine,write(()=>c.doc.createTextNode(n.source.label)));if(n.source.synthetic)append(sourceLine,e('span','iui-weather-synthetic',l.synthetic));write(()=>{updated.dateTime=n.updatedAt;});append(footer,sourceLine,updated);
+ const intentStatus=e('p','iui-weather-intent-status'),actionArea=e('div','iui-weather-actions'),followUpArea=e('div','iui-weather-followups');write(()=>{intentStatus.setAttribute('role','status');intentStatus.setAttribute('aria-live','polite');});append(root,header,state,body,actionArea,followUpArea,intentStatus,footer);
+ const enabled=(control:HTMLElement|SVGElement)=>write(()=>(n.status??'ready')==='ready'&&!compact&&n.disabled!==true&&!readerBlocked(root,control as HTMLElement,life.current()));
+ const send=(event:Event,control:HTMLButtonElement,intent:WeatherActionDetail['intent'],available:()=>boolean,extra:Pick<WeatherActionDetail,'actionId'|'query'>={})=>gate.run(()=>{
+  const ticket=revision;if(write(()=>event.defaultPrevented)||resetPending()||!enabled(control)||!available())return;
+  const Constructor=write(()=>c.doc.defaultView?.CustomEvent);if(!Constructor)return;const detail:WeatherActionDetail=Object.freeze({id:n.id??null,intent,date:selected,unit,metric,...extra});
+  const emitted=write(()=>new Constructor('iui:weather-action',{detail,bubbles:true,cancelable:true,composed:false}));if(ticket!==revision||resetPending()||!enabled(control)||!available())return;const accepted=write(()=>root.dispatchEvent(emitted));if(ticket!==revision||resetPending()||!enabled(control)||!available())return;revision++;notice=accepted?(n.requestedLabel??local.accepted):(n.cancelledLabel??local.cancelled);paint();
+ });
+ if(n.locationAction){const action=n.locationAction,control=button(action.label,'location');write(()=>{control.disabled=n.disabled===true||action.available!==true;});append(place,control);c.on(control,'click',event=>send(event,control,'request-location',()=>action.available===true,action.query?{query:action.query}:{}));}
+ if(n.share){const action=n.share,control=button(action.label,'share');write(()=>{control.disabled=n.disabled===true||action.available!==true;});append(action.placement==='bottom'?actionArea:header,control);c.on(control,'click',event=>send(event,control,'share',()=>action.available===true));}
+ const followUpGroups:{date:string;group:HTMLElement;buttons:HTMLButtonElement[]}[]=[];
+ const followUps=(items:readonly WeatherFollowUp[],date:string)=>{const group=e('div','iui-weather-followup-group'),buttons:HTMLButtonElement[]=[];for(const item of items.slice(0,3)){const control=button(item.label,'follow-up',item.id);write(()=>{control.disabled=n.disabled===true||item.disabled===true;});buttons.push(control);append(group,control);c.on(control,'click',event=>send(event,control,'follow-up',()=>item.disabled!==true,{actionId:item.id,query:item.query}));}followUpGroups.push({date,group,buttons});append(followUpArea,group);};
+ followUps(n.followUps??[],'');for(const day of n.daily)if(day.followUps)followUps(day.followUps,day.date);
+ let hours:Hour[]=[],positions:number[]=[],chartWidth=640;
+ const summary=(hour:Hour)=>`${n.chartWindow?fullTime.format(new Date(hour.time)):clockWithZone.format(new Date(hour.time))} · ${l.temperature}: ${temp(hour.temperature,hour.temperatureLabels)} · ${l.precipitation}: ${percent(hour.precipitationProbability)}${hour.description?' · '+hour.description:''}`;
+ function paint():void {draw(scope=>{
+  const put=scope.during,make=<K extends keyof HTMLElementTagNameMap>(tag:K,cls='',value?:unknown)=>put(()=>e(tag,cls,value)),shape=(tag:string,attrs?:Record<string,unknown>)=>put(()=>svg(tag,attrs)),add=(parent:Element,...children:Node[])=>put(()=>parent.append(...children));
+  const status=n.status??'ready',day=n.daily.find(item=>item.date===selected),headlineCurrent=n.useCurrent===undefined&&!compact||useCurrent,headline=headlineCurrent?n.current:undefined,headlineValue=headline?headline.temperature:day?.high,headlineLabels=headline?headline.temperatureLabels:day?.highLabels;
+  put(()=>{root.dataset.unit=unit;root.dataset.metric=metric;root.dataset.view=view;root.dataset.date=selected;root.dataset.status=status;root.dataset.useCurrent=String(headlineCurrent);root.setAttribute('aria-busy',String(status==='loading'));});
+  put(()=>{state.textContent=status==='loading'?n.message??l.loading:status==='error'?n.message??l.loadError:'';state.hidden=!state.textContent;state.setAttribute('role',status==='error'?'alert':'status');body.hidden=status!=='ready';units.hidden=status!=='ready'||compact;panel.hidden=compact;actionArea.hidden=status!=='ready'||compact;followUpArea.hidden=status!=='ready'||compact;});
+  for(const control of [header,place])for(const action of Array.from(control.querySelectorAll<HTMLButtonElement>('[data-weather-action=share],[data-weather-action=location]')))put(()=>{action.hidden=status!=='ready'||compact;});
+  put(()=>{intentStatus.textContent=notice;});if(status!=='ready')return;
+  for(const[control,pressed]of[[celsius,unit==='celsius'],[fahrenheit,unit==='fahrenheit'],[temperature,metric==='temperature'],[precipitation,metric==='precipitation'],[chartButton,view==='chart'],[tableButton,view==='table']]as const)put(()=>control.setAttribute('aria-pressed',String(pressed)));
+  put(()=>{currentNumber.textContent=temp(headlineValue,headlineLabels);currentNumber.setAttribute('aria-label',(unit==='celsius'?headlineLabels?.a11yCelsius:headlineLabels?.a11yFahrenheit)??`${headlineCurrent?l.current:local.selected} ${l.temperature}: ${temp(headlineValue,headlineLabels)}`);eyebrow.textContent=headlineCurrent?l.current:formatDay(selected);description.textContent=headlineCurrent?(n.current.description??condition(n.current.condition)):(day?.description??condition(day?.condition));observed.hidden=!headlineCurrent;observed.textContent=`${local.observation}: ${fullTime.format(new Date(n.current.time))}`;observed.dateTime=n.current.time;});
+  const icon=weatherIcon({...c,svg:shape},headline?.condition??day?.condition??'unknown','iui-weather-current-icon');put(()=>currentIcon.replaceChildren(icon));
+  const factRows:HTMLElement[]=[];const fact=(label:string,value:string)=>{const pair=make('div');add(pair,make('dt','',label),make('dd','',value));factRows.push(pair);};
+  if(headlineCurrent&&n.current.feelsLike!==undefined)fact(l.feelsLike,temp(n.current.feelsLike));if(headlineCurrent&&n.current.humidity!==undefined)fact(l.humidity,percent(n.current.humidity));const range=headlineCurrent?n.daily.find(day=>day.date===currentDate):day;if(range){fact(local.high,temp(range.high,range.highLabels));fact(local.low,temp(range.low,range.lowLabels));}put(()=>facts.replaceChildren(...factRows));
+  for(const b of dayButtons){const date=b.dataset.value!,item=n.daily.find(day=>day.date===date),chosen=date===selected;put(()=>{b.setAttribute('aria-selected',String(chosen));b.tabIndex=chosen?0:-1;});let label=formatDay(date);if(item){put(()=>{b.querySelector('.iui-weather-day-range')!.textContent=`${temp(item.high,item.highLabels)} / ${temp(item.low,item.lowLabels)}`;b.querySelector('.iui-weather-day-rain')!.textContent=percent(item.precipitationProbability);});label+=`, ${item.description??condition(item.condition)}, ${local.high} ${temp(item.high,item.highLabels)}, ${local.low} ${temp(item.low,item.lowLabels)}, ${l.precipitation} ${percent(item.precipitationProbability)}`;}put(()=>b.setAttribute('aria-label',label));}
+  put(()=>{daily.hidden=compact||n.showDatePicker===false||dates.length===0;});if(dates.length)put(()=>panel.setAttribute('aria-labelledby',id+'-date-'+selected));else put(()=>panel.setAttribute('aria-label',l.hourly));put(()=>{selectedTitle.textContent=n.tableDateLabel&&view==='table'?n.tableDateLabel:`${l.hourly} · ${formatDay(selected)}`;});
+  for(const group of followUpGroups){put(()=>{group.group.hidden=group.date!==followUpDate;});for(const[index,control]of group.buttons.entries())put(()=>{control.hidden=index>=visibleFollowUps;});}
+  if(compact)return;
+  const allHours=weatherHours(n,selected) as Hour[];hours=allHours;
+  if(n.chartWindow&&allHours.length){const start=n.chartWindow.startTime&&dateInZone(n.chartWindow.startTime,zone)===selected?n.hourly.findIndex(hour=>timestamp(hour.time)===timestamp(n.chartWindow!.startTime!)):n.hourly.indexOf(allHours[0]);hours=n.hourly.slice(start,start+n.chartWindow.points);}
+  active=Math.min(active,Math.max(0,hours.length-1));const values=hours.map(hour=>metric==='temperature'?weatherTemperature(hour.temperature,n.units.temperature,unit):hour.precipitationProbability),valid=values.filter((value):value is number=>value!==null);
+  put(()=>{empty.textContent=!allHours.length||(view==='chart'&&!valid.length)?n.message??l.empty:'';empty.hidden=!empty.textContent;graphic.style.display=view==='chart'&&valid.length?'block':'none';graphic.toggleAttribute('hidden',view!=='chart'||!valid.length);readout.hidden=view!=='chart'||!hours.length;tableWrap.hidden=view!=='table'||!allHours.length;});
+  chartWidth=Math.max(280,put(()=>root.clientWidth)||640);let low=metric==='precipitation'?0:valid.length?Math.min(...valid):0,high=metric==='precipitation'?100:valid.length?Math.max(...valid):1;if(low===high){low--;high++;}
+  const tickLabel=(value:number)=>number(value)+(metric==='temperature'?'°':'%'),left=Math.max(43,...[low,(low+high)/2,high].map(value=>tickLabel(value).length*6+8)),height=120,pad={left,right:12,top:10,bottom:27},plotWidth=chartWidth-pad.left-pad.right,plotHeight=height-pad.top-pad.bottom,y=(value:number)=>pad.top+(high-value)/(high-low)*plotHeight;
+  positions=weatherCoordinates(hours,pad.left,plotWidth);put(()=>{graphic.setAttribute('viewBox',`0 0 ${chartWidth} ${height}`);graphic.setAttribute('aria-label',`${n.location.name} · ${formatDay(selected)} · ${metric==='temperature'?l.temperature+' ('+symbol()+')':l.precipitation+' (%)'}`);});const shapes:SVGElement[]=[];
+  if(valid.length){for(let tick=0;tick<3;tick++){const value=low+(high-low)*tick/2,yy=y(value);shapes.push(shape('line',{x1:pad.left,x2:chartWidth-pad.right,y1:yy,y2:yy,class:'iui-weather-grid'}));const label=shape('text',{x:pad.left-7,y:yy+4,'text-anchor':'end',class:'iui-weather-tick'});put(()=>{label.textContent=tickLabel(value);});shapes.push(label);}
+   const ticks=[...new Set(hours.length<=3?hours.map((_,index)=>index):[0,positions.reduce((best,x,index)=>Math.abs(x-(pad.left+plotWidth/2))<Math.abs(positions[best]-(pad.left+plotWidth/2))?index:best,0),hours.length-1])],duplicates=new Set(hours.map(hour=>clock.format(new Date(hour.time))).filter((value,index,array)=>array.indexOf(value)!==index));
+   for(const[index,ordinal]of ticks.map((value,index)=>[value,index])){const label=shape('text',{x:positions[index],y:height-5,'text-anchor':ordinal===0&&ticks.length>1?'start':ordinal===ticks.length-1&&ticks.length>1?'end':'middle',class:'iui-weather-tick','data-tick-time':hours[index].time}),time=clock.format(new Date(hours[index].time));put(()=>{label.textContent=hours[index].label??(duplicates.has(time)?clockWithZone.format(new Date(hours[index].time)):time);});shapes.push(label);}
+   const plot=shape('g',{'data-weather-series':metric});let segment:string[]=[];const flush=()=>{if(segment.length){const points=segment.map(command=>command.slice(2)),first=points[0].split(' ')[0],last=points.at(-1)!.split(' ')[0];put(()=>plot.prepend(shape('polygon',{points:[`${first} ${height-pad.bottom}`,...points,`${last} ${height-pad.bottom}`].join(' '),class:'iui-weather-area'})));add(plot,shape('path',{d:segment.join(' '),class:'iui-weather-line',fill:'none'}));}segment=[];};
+   const gap=positions.length>1?Math.min(...positions.slice(1).map((x,index)=>x-positions[index])):20,barWidth=Math.max(1,Math.min(24,gap*.65));
+   values.forEach((value,index)=>{if(value===null){flush();return;}const x=positions[index],yy=y(value),attrs={'data-hour':index,'data-time':hours[index].time,'data-value':value};let mark:SVGElement;if(metric==='temperature'){segment.push(`${segment.length?'L':'M'} ${x} ${yy}`);mark=shape('circle',{...attrs,cx:x,cy:yy,r:3,class:'iui-weather-point'});}else mark=shape('rect',{...attrs,x:x-barWidth/2,y:yy,width:barWidth,height:y(0)-yy,rx:2,class:'iui-weather-bar'});const title=shape('title');put(()=>{title.textContent=summary(hours[index]);});add(mark,title);add(plot,mark);});flush();shapes.push(plot,shape('line',{'data-weather-cursor':'',x1:positions[active],x2:positions[active],y1:pad.top,y2:height-pad.bottom,class:'iui-weather-cursor'}));
+  }put(()=>graphic.replaceChildren(...shapes));
+  const table=make('table','iui-weather-table'),caption=make('caption','',`${l.hourly} · ${formatDay(selected)} · ${zone}`),head=make('thead'),tr=make('tr'),withConditions=allHours.some(hour=>hour.condition!==undefined||hour.description!==undefined),tbody=make('tbody');
+  for(const label of [local.time,...(withConditions?[local.conditions]:[]),`${l.temperature} (${symbol()})`,`${l.precipitation} (%)`]){const th=make('th','',label);put(()=>{th.scope='col';});add(tr,th);}add(head,tr);
+  for(const hour of allHours){const row=make('tr'),th=make('th'),time=make('time','',hour.label??clockWithZone.format(new Date(hour.time)));put(()=>{th.scope='row';time.dateTime=hour.time;time.title=fullTime.format(new Date(hour.time));});add(th,time);add(row,th);if(withConditions)add(row,make('td','',hour.description??condition(hour.condition)));const tdTemp=make('td','',temp(hour.temperature,hour.temperatureLabels)),tdRain=make('td','',percent(hour.precipitationProbability));if(hour.temperature!==null)put(()=>{tdTemp.dataset.rawValue=String(hour.temperature);tdTemp.dataset.sourceUnit=n.units.temperature;});if(hour.precipitationProbability!==null)put(()=>{tdRain.dataset.rawValue=String(hour.precipitationProbability);});add(row,tdTemp,tdRain);add(tbody,row);}add(table,caption,head,tbody);put(()=>tableWrap.replaceChildren(table));
+  put(()=>{readout.value=hours.length?summary(hours[active]):'';});for(const mark of Array.from(graphic.querySelectorAll('[data-hour]')))put(()=>mark.classList.toggle('iui-weather-point-active',Number(mark.getAttribute('data-hour'))===active));
+ });}
+ const change=(event:Event,control:HTMLElement|SVGElement,work:()=>void,accept:()=>boolean=()=>true)=>gate.run(()=>input.run(scope=>{if(scope.during(()=>event.defaultPrevented)||!enabled(control)||!scope.during(accept))return;revision++;notice='';work();paint();}));
+ for(const[control,value]of[[celsius,'celsius'],[fahrenheit,'fahrenheit']]as const)c.on(control,'click',event=>change(event,control,()=>{unit=value;}));
+ for(const[control,value]of[[temperature,'temperature'],[precipitation,'precipitation']]as const)c.on(control,'click',event=>change(event,control,()=>{metric=value;active=0;}));
+ for(const[control,value]of[[chartButton,'chart'],[tableButton,'table']]as const)c.on(control,'click',event=>change(event,control,()=>{view=value;}));
+ const choose=(date:string)=>{selected=date;active=0;followUpDate=date;if(n.useCurrent!==undefined)useCurrent=date===currentDate;};
+ dayButtons.forEach((control,index)=>{c.on(control,'click',event=>change(event,control,()=>choose(dates[index])));c.on(control,'keydown',event=>{let key='';change(event,control,()=>{write(()=>event.preventDefault());const direction=write(()=>c.doc.defaultView?.getComputedStyle(root).direction)==='rtl'?-1:1,next=key==='Home'?0:key==='End'?dates.length-1:(dates.indexOf(selected)+(key==='ArrowRight'?1:-1)*direction+dates.length)%dates.length;choose(dates[next]);paint();write(()=>dayButtons[next].focus());},()=>{const e=event as KeyboardEvent;if(e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||e.isComposing||e.keyCode===229)return false;key=e.key;return ['ArrowLeft','ArrowRight','Home','End'].includes(key);});});});
+ c.on(graphic,'keydown',event=>{let key='';change(event,graphic,()=>{write(()=>event.preventDefault());active=key==='Home'?0:key==='End'?Math.max(0,hours.length-1):Math.max(0,Math.min(hours.length-1,active+(key==='ArrowRight'?1:-1)));},()=>{const e=event as KeyboardEvent;if(e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||e.isComposing||e.keyCode===229)return false;key=e.key;return ['ArrowLeft','ArrowRight','Home','End'].includes(key);});});
+ c.on(graphic,'pointermove',event=>change(event,graphic,()=>{const bounds=write(()=>graphic.getBoundingClientRect());if(!bounds.width||!positions.length)return;const at=(write(()=>(event as PointerEvent).clientX)-bounds.left)/bounds.width*chartWidth;active=positions.reduce((nearest,x,index)=>Math.abs(x-at)<Math.abs(positions[nearest]-at)?index:nearest,0);}));
+ const clear=()=>{input.retire();revision++;selected=initialDate;unit=initialUnit;metric=initialMetric;view=initialView;active=0;useCurrent=n.useCurrent??true;followUpDate='';notice='';paint();};c.on(reset,'click',event=>gate.run(()=>{if(write(()=>event.defaultPrevented)||!enabled(reset))return;clear();}));
+ if(!compact)resetPending=readerNativeReset(c,root,[reset],()=>revision,()=>paint(),clear);
+ measure=()=>sizing.run(scope=>{const width=scope.during(()=>root.getBoundingClientRect().width);visibleFollowUps=width&&width<380?1:width&&width<576?2:3;paint();});if(c.doc.defaultView)c.on(c.doc.defaultView,'resize',()=>measure());c.bind(()=>measure());paint();return root;
 }
-
-/** Daily dates are calendar dates in the location; hourly instants retain their actual offsets. */
-export function weatherHours(node: WeatherNode, date: string): Hour[] {
-  return node.hourly.filter(hour => dateInZone(hour.time, node.location.timezone) === date)
-    .slice().sort((a, b) => timestamp(a.time) - timestamp(b.time));
-}
-
-export function weatherCoordinates(hours: readonly Hour[], left: number, width: number): number[] {
-  if (!hours.length) return [];
-  const times = hours.map(hour => timestamp(hour.time));
-  const first = Math.min(...times), last = Math.max(...times);
-  return times.map(time => first === last ? left + width / 2 : left + (time - first) / (last - first) * width);
-}
-
-/** Offline weather presentation. No timers, remote icons, provider calls or implicit refresh. */
-export function renderWeather(c: RendererContext, n: WeatherNode): HTMLElement {
-  const { element: e, svg, on } = c, l = c.labels();
-  const zh = l.temperature === '温度', locale = zh ? 'zh-CN' : 'en-US';
-  const local = zh ? {
-    observation: '观测时间', selected: '所选日期', high: '最高', low: '最低',
-    unit: '温度单位', view: '展示方式', metric: '逐小时指标', time: '当地时间',
-    instructions: '使用左右方向键浏览各时刻，Home 和 End 跳至首尾。完整数值可切换至表格查看。',
-    conditions: { clear: '晴', 'partly-cloudy': '局部多云', cloudy: '多云', rain: '雨', snow: '雪', storm: '雷暴', fog: '雾', unknown: '天气状况未知' },
-  } : {
-    observation: 'Observed', selected: 'Selected date', high: 'High', low: 'Low',
-    unit: 'Temperature unit', view: 'Display view', metric: 'Hourly metric', time: 'Local time',
-    instructions: 'Use Left and Right arrow keys to browse times, Home and End for the first and last. Switch to Table for all values.',
-    conditions: { clear: 'Clear', 'partly-cloudy': 'Partly cloudy', cloudy: 'Cloudy', rain: 'Rain', snow: 'Snow', storm: 'Storm', fog: 'Fog', unknown: 'Unknown conditions' },
-  };
-  const zone = n.location.timezone;
-  const clock = new Intl.DateTimeFormat(locale, { timeZone: zone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
-  const clockWithZone = new Intl.DateTimeFormat(locale, { timeZone: zone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZoneName: 'shortOffset' });
-  const fullTime = new Intl.DateTimeFormat(locale, { timeZone: zone, year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZoneName: 'shortOffset' });
-  // Calendar dates must not be reparsed in the location timezone: UTC noon is only a formatting anchor.
-  const dayFormat = new Intl.DateTimeFormat(locale, { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' });
-  const formatDay = (date: string) => dayFormat.format(new Date(`${date}T12:00:00Z`));
-  const condition = (value: WeatherNode['current']['condition']) => local.conditions[value];
-  const currentDate = dateInZone(n.current.time, zone);
-  const dates = [...new Set([...n.daily.map(day => day.date), ...n.hourly.map(hour => dateInZone(hour.time, zone))])].sort();
-  let selected = n.initialDate ?? (dates.includes(currentDate) ? currentDate : dates[0] ?? currentDate);
-  let unit: Unit = n.units.temperature, metric: Metric = 'temperature', view: 'chart' | 'table' = 'chart', active = 0;
-  const id = `${c.prefix}weather-${++weatherId}`;
-  const root = e('section', 'iui-weather');
-  root.setAttribute('aria-label', `${n.location.name} · ${l.daily}`);
-  root.dataset.timezone = zone;
-  const header = e('header', 'iui-weather-header'), place = e('div', 'iui-weather-place');
-  place.append(e('h2', 'iui-weather-location', n.location.name), e('p', 'iui-caption', zone));
-  const units = e('div', 'iui-weather-segment'); units.setAttribute('role', 'group'); units.setAttribute('aria-label', local.unit);
-  const button = (label: string, action: string, value: string, cls = '') => {
-    const b = e('button', cls, label); b.type = 'button'; b.dataset.weatherAction = action; b.dataset.value = value; return b;
-  };
-  const celsius = button('°C', 'unit', 'celsius'), fahrenheit = button('°F', 'unit', 'fahrenheit');
-  celsius.setAttribute('aria-label', zh ? '摄氏度' : 'Celsius'); fahrenheit.setAttribute('aria-label', zh ? '华氏度' : 'Fahrenheit');
-  units.append(celsius, fahrenheit); header.append(place, units);
-  const state = e('p', 'iui-weather-status');
-  const body = e('div', 'iui-weather-body'), current = e('div', 'iui-weather-current');
-  const currentMain = e('div', 'iui-weather-current-main'), currentNumber = e('span', 'iui-weather-current-temperature');
-  const currentIcon = weatherIcon(c, n.current.condition, 'iui-weather-current-icon');
-  currentMain.append(currentIcon, currentNumber);
-  const currentDescription = e('div', 'iui-weather-current-description');
-  currentDescription.append(e('p', 'iui-weather-eyebrow', l.current), e('p', 'iui-weather-condition', condition(n.current.condition)));
-  const observed = e('time', 'iui-caption', `${local.observation}: ${fullTime.format(new Date(n.current.time))}`); observed.dateTime = n.current.time;
-  currentDescription.append(observed);
-  const facts = e('dl', 'iui-weather-facts');
-  current.append(currentMain, currentDescription, facts);
-  const daily = e('div', 'iui-weather-days'); daily.setAttribute('role', 'tablist'); daily.setAttribute('aria-label', l.daily);
-  const dayButtons: HTMLButtonElement[] = [];
-  dates.forEach(date => {
-    const day = n.daily.find(item => item.date === date), b = button('', 'date', date, 'iui-weather-day');
-    b.setAttribute('role', 'tab'); b.id = `${id}-date-${date}`; b.setAttribute('aria-controls', `${id}-panel`);
-    b.append(e('span', 'iui-weather-day-date', formatDay(date)));
-    if (day) {
-      b.append(weatherIcon(c, day.condition, 'iui-weather-day-icon'));
-      b.append(e('span', 'iui-weather-day-range'), e('span', 'iui-weather-day-rain'));
-    } else b.append(e('span', 'iui-weather-day-hourly', l.hourly));
-    dayButtons.push(b); daily.append(b);
-  });
-  const panel = e('section', 'iui-weather-panel'); panel.id = `${id}-panel`; panel.setAttribute('role', 'tabpanel');
-  const toolbar = e('div', 'iui-weather-toolbar'), metrics = e('div', 'iui-weather-segment'), views = e('div', 'iui-weather-segment');
-  metrics.setAttribute('role', 'group'); metrics.setAttribute('aria-label', local.metric);
-  views.setAttribute('role', 'group'); views.setAttribute('aria-label', local.view);
-  const temperature = button(l.temperature, 'metric', 'temperature'), precipitation = button(l.precipitation, 'metric', 'precipitation');
-  const chartButton = button(l.chartView, 'view', 'chart'), tableButton = button(l.tableView, 'view', 'table');
-  metrics.append(temperature, precipitation); views.append(chartButton, tableButton); toolbar.append(metrics, views);
-  const selectedTitle = e('h3', 'iui-weather-hourly-title');
-  const empty = e('p', 'iui-weather-empty'); empty.setAttribute('role', 'status');
-  const graphic = svg('svg', { class: 'iui-weather-chart', role: 'img', tabindex: 0, 'aria-describedby': `${id}-instructions ${id}-readout` });
-  const instructions = e('p', 'iui-weather-visually-hidden', local.instructions); instructions.id = `${id}-instructions`;
-  const readout = e('output', 'iui-weather-readout'); readout.id = `${id}-readout`; readout.setAttribute('aria-live', 'polite'); readout.setAttribute('aria-atomic', 'true');
-  const tableWrap = e('div', 'iui-weather-table-wrap'); tableWrap.tabIndex = 0; tableWrap.setAttribute('role', 'region'); tableWrap.setAttribute('aria-label', l.hourly);
-  panel.append(selectedTitle, toolbar, empty, graphic, instructions, readout, tableWrap);
-  body.append(current, daily, panel);
-  const footer = e('footer', 'iui-weather-source');
-  const sourceLine = e('p'); sourceLine.append(c.doc.createTextNode(`${l.source}: `));
-  if (n.source.url) {
-    const a = e('a', '', n.source.label); a.href = n.source.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.referrerPolicy = 'no-referrer'; sourceLine.append(a);
-  } else sourceLine.append(c.doc.createTextNode(n.source.label));
-  if (n.source.synthetic) sourceLine.append(e('span', 'iui-weather-synthetic', l.synthetic));
-  const updated = e('time', '', `${l.updated}: ${fullTime.format(new Date(n.updatedAt))}`); updated.dateTime = n.updatedAt;
-  footer.append(sourceLine, updated); root.append(header, state, body, footer);
-
-  const symbol = () => unit === 'celsius' ? '°C' : '°F';
-  const number = (value: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(value);
-  const temp = (value: number | null | undefined) => {
-    const result = weatherTemperature(value, n.units.temperature, unit); return result === null ? l.missing : `${number(result)}${symbol()}`;
-  };
-  const percent = (value: number | null | undefined) => value == null ? l.missing : `${number(value)}%`;
-  const summary = (hour: Hour) => `${clockWithZone.format(new Date(hour.time))} · ${l.temperature}: ${temp(hour.temperature)} · ${l.precipitation}: ${percent(hour.precipitationProbability)}`;
-  let hours: Hour[] = [], positions: number[] = [], chartWidth = 640;
-  const focusHour = (index: number) => {
-    if (!hours.length) { readout.value = ''; return; }
-    active = Math.max(0, Math.min(hours.length - 1, index)); readout.value = summary(hours[active]);
-    graphic.querySelectorAll('[data-hour]').forEach(mark => mark.classList.toggle('iui-weather-point-active', Number(mark.getAttribute('data-hour')) === active));
-    const guide = graphic.querySelector('[data-weather-cursor]');
-    if (guide) { guide.setAttribute('x1', String(positions[active])); guide.setAttribute('x2', String(positions[active])); }
-  };
-  const pressed = (control: HTMLElement, value: boolean) => control.setAttribute('aria-pressed', String(value));
-  const paint = () => {
-    root.dataset.unit = unit; root.dataset.metric = metric; root.dataset.view = view; root.dataset.date = selected;
-    const status = n.status ?? 'ready'; root.dataset.status = status; root.setAttribute('aria-busy', String(status === 'loading'));
-    state.textContent = status === 'loading' ? n.message ?? l.loading : status === 'error' ? n.message ?? l.loadError : '';
-    state.hidden = !state.textContent; state.setAttribute('role', status === 'error' ? 'alert' : 'status');
-    body.hidden = status !== 'ready'; units.hidden = status !== 'ready';
-    if (status !== 'ready') return;
-    pressed(celsius, unit === 'celsius'); pressed(fahrenheit, unit === 'fahrenheit');
-    pressed(temperature, metric === 'temperature'); pressed(precipitation, metric === 'precipitation');
-    pressed(chartButton, view === 'chart'); pressed(tableButton, view === 'table');
-    currentNumber.textContent = temp(n.current.temperature);
-    currentNumber.setAttribute('aria-label', `${l.current} ${l.temperature}: ${temp(n.current.temperature)}`);
-    facts.replaceChildren();
-    const addFact = (label: string, value: string) => { const pair = e('div'); pair.append(e('dt', '', label), e('dd', '', value)); facts.append(pair); };
-    if (n.current.feelsLike !== undefined) addFact(l.feelsLike, temp(n.current.feelsLike));
-    if (n.current.humidity !== undefined) addFact(l.humidity, percent(n.current.humidity));
-    const today = n.daily.find(day => day.date === currentDate);
-    if (today) { addFact(local.high, temp(today.high)); addFact(local.low, temp(today.low)); }
-    dayButtons.forEach(b => {
-      const date = b.dataset.value!, day = n.daily.find(item => item.date === date), isSelected = date === selected;
-      b.setAttribute('aria-selected', String(isSelected)); b.tabIndex = isSelected ? 0 : -1;
-      let label = formatDay(date);
-      if (day) {
-        b.querySelector('.iui-weather-day-range')!.textContent = `${temp(day.high)} / ${temp(day.low)}`;
-        b.querySelector('.iui-weather-day-rain')!.textContent = percent(day.precipitationProbability);
-        label += `, ${condition(day.condition)}, ${local.high} ${temp(day.high)}, ${local.low} ${temp(day.low)}, ${l.precipitation} ${percent(day.precipitationProbability)}`;
-      } else label += `, ${l.hourly}`;
-      b.setAttribute('aria-label', label);
-    });
-    daily.hidden = dates.length === 0;
-    if (dates.length) panel.setAttribute('aria-labelledby', `${id}-date-${selected}`);
-    else panel.setAttribute('aria-label', l.hourly);
-    selectedTitle.textContent = `${l.hourly} · ${formatDay(selected)}`;
-    hours = weatherHours(n, selected); active = Math.min(active, Math.max(0, hours.length - 1));
-    const values = hours.map(hour => metric === 'temperature' ? weatherTemperature(hour.temperature, n.units.temperature, unit) : hour.precipitationProbability);
-    const valid = values.filter((value): value is number => value !== null);
-    empty.textContent = !hours.length || !valid.length ? n.message ?? l.empty : ''; empty.hidden = !empty.textContent;
-    graphic.style.display = view === 'chart' && valid.length ? 'block' : 'none';
-    readout.hidden = view !== 'chart' || !hours.length; tableWrap.hidden = view !== 'table' || !hours.length;
-    graphic.replaceChildren();
-    chartWidth = Math.max(280, root.clientWidth || 640);
-    let low = metric === 'precipitation' ? 0 : valid.length ? Math.min(...valid) : 0;
-    let high = metric === 'precipitation' ? 100 : valid.length ? Math.max(...valid) : 1;
-    if (low === high) { low -= 1; high += 1; }
-    const tickLabel = (value: number) => `${number(value)}${metric === 'temperature' ? '°' : '%'}`;
-    const left = Math.max(43, ...[low, (low + high) / 2, high].map(value => tickLabel(value).length * 6 + 8));
-    const height = 120, pad = { left, right: 12, top: 10, bottom: 27 }, plotWidth = chartWidth - pad.left - pad.right, plotHeight = height - pad.top - pad.bottom;
-    positions = weatherCoordinates(hours, pad.left, plotWidth);
-    graphic.setAttribute('viewBox', `0 0 ${chartWidth} ${height}`);
-    graphic.setAttribute('aria-label', `${n.location.name} · ${formatDay(selected)} · ${metric === 'temperature' ? `${l.temperature} (${symbol()})` : `${l.precipitation} (%)`}`);
-    if (valid.length) {
-      const y = (value: number) => pad.top + (high - value) / (high - low) * plotHeight;
-      for (let tick = 0; tick < 3; tick++) {
-        const value = low + (high - low) * tick / 2, yy = y(value);
-        graphic.append(svg('line', { x1: pad.left, x2: chartWidth - pad.right, y1: yy, y2: yy, class: 'iui-weather-grid' }));
-        const label = svg('text', { x: pad.left - 7, y: yy + 4, 'text-anchor': 'end', class: 'iui-weather-tick' }); label.textContent = tickLabel(value); graphic.append(label);
-      }
-      // Ticks come from actual instants. Their positions are never inferred from ordinal indexes.
-      const tickIndexes = [...new Set(hours.length <= 3 ? hours.map((_, index) => index) : [0, positions.reduce((best, x, index) => Math.abs(x - (pad.left + plotWidth / 2)) < Math.abs(positions[best] - (pad.left + plotWidth / 2)) ? index : best, 0), hours.length - 1])];
-      const duplicateClocks = new Set(hours.map(hour => clock.format(new Date(hour.time))).filter((value, index, array) => array.indexOf(value) !== index));
-      tickIndexes.forEach((index, order) => {
-        const label = svg('text', { x: positions[index], y: height - 5, 'text-anchor': order === 0 && tickIndexes.length > 1 ? 'start' : order === tickIndexes.length - 1 && tickIndexes.length > 1 ? 'end' : 'middle', class: 'iui-weather-tick', 'data-tick-time': hours[index].time });
-        const formatted = clock.format(new Date(hours[index].time)); label.textContent = duplicateClocks.has(formatted) ? clockWithZone.format(new Date(hours[index].time)) : formatted; graphic.append(label);
-      });
-      const plot = svg('g', { 'data-weather-series': metric }); let segment: string[] = [];
-      const flush = () => { if (segment.length) { const points=segment.map(command=>command.slice(2)),first=points[0].split(' ')[0],last=points.at(-1)!.split(' ')[0]; plot.prepend(svg('polygon',{points:[`${first} ${height-pad.bottom}`,...points,`${last} ${height-pad.bottom}`].join(' '),class:'iui-weather-area'})); plot.append(svg('path', { d: segment.join(' '), class: 'iui-weather-line', fill: 'none' })); } segment = []; };
-      const nearestGap = positions.length > 1 ? Math.min(...positions.slice(1).map((x, index) => x - positions[index])) : plotWidth;
-      const barWidth = Math.max(1, Math.min(22, nearestGap * .55));
-      values.forEach((value, index) => {
-        if (value === null) { flush(); return; }
-        const x = positions[index], yy = y(value);
-        const attributes = { 'data-hour': index, 'data-time': hours[index].time, 'data-timestamp': timestamp(hours[index].time), 'data-value': value };
-        if (metric === 'temperature') {
-          segment.push(`${segment.length ? 'L' : 'M'} ${x} ${yy}`);
-          const point = svg('circle', { ...attributes, cx: x, cy: yy, r: 3, class: 'iui-weather-point' }); const title = svg('title'); title.textContent = summary(hours[index]); point.append(title); plot.append(point);
-        } else {
-          const bar = svg('rect', { ...attributes, x: x - barWidth / 2, y: yy, width: barWidth, height: y(0) - yy, rx: 2, class: 'iui-weather-bar' }); const title = svg('title'); title.textContent = summary(hours[index]); bar.append(title); plot.append(bar);
-        }
-      }); flush(); graphic.append(plot);
-      graphic.append(svg('line', { 'data-weather-cursor': '', x1: positions[active], x2: positions[active], y1: pad.top, y2: height - pad.bottom, class: 'iui-weather-cursor' }));
-    }
-    const table = e('table', 'iui-weather-table'), caption = e('caption', '', `${l.hourly} · ${formatDay(selected)} · ${zone}`), head = e('thead'), tr = e('tr');
-    for (const name of [local.time, `${l.temperature} (${symbol()})`, `${l.precipitation} (%)`]) { const th = e('th', '', name); th.scope = 'col'; tr.append(th); }
-    head.append(tr); const tbody = e('tbody');
-    hours.forEach(hour => {
-      const row = e('tr'), th = e('th'); th.scope = 'row'; const time = e('time', '', clockWithZone.format(new Date(hour.time))); time.dateTime = hour.time; th.append(time);
-      const tdTemp = e('td', '', temp(hour.temperature)), tdRain = e('td', '', percent(hour.precipitationProbability));
-      if (hour.temperature !== null) { tdTemp.dataset.rawValue = String(hour.temperature); tdTemp.dataset.sourceUnit = n.units.temperature; }
-      if (hour.precipitationProbability !== null) tdRain.dataset.rawValue = String(hour.precipitationProbability);
-      row.append(th, tdTemp, tdRain); tbody.append(row);
-    });
-    table.append(caption, head, tbody); tableWrap.replaceChildren(table); focusHour(active);
-  };
-
-  // These listeners and this binding are registered exactly once per renderer instance.
-  on(root, 'click', event => {
-    const target = event.target as Element | null, control = target?.closest<HTMLButtonElement>('button[data-weather-action]');
-    if (!control || !root.contains(control)) return;
-    const action = control.dataset.weatherAction, value = control.dataset.value!;
-    if (action === 'unit') unit = value as Unit;
-    else if (action === 'metric') metric = value as Metric;
-    else if (action === 'view') view = value as 'chart' | 'table';
-    else if (action === 'date') { selected = value; active = 0; }
-    paint();
-  });
-  on(daily, 'keydown', ((event: KeyboardEvent) => {
-    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key) || !dates.length) return;
-    event.preventDefault(); const index = dates.indexOf(selected), rtl = root.closest('[dir]')?.getAttribute('dir') === 'rtl';
-    const direction = (event.key === 'ArrowRight' ? 1 : -1) * (rtl ? -1 : 1);
-    const next = event.key === 'Home' ? 0 : event.key === 'End' ? dates.length - 1 : (index + direction + dates.length) % dates.length;
-    selected = dates[next]; active = 0; paint(); dayButtons[next].focus();
-  }) as EventListener);
-  on(graphic, 'keydown', ((event: KeyboardEvent) => {
-    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-    event.preventDefault(); focusHour(event.key === 'Home' ? 0 : event.key === 'End' ? hours.length - 1 : active + (event.key === 'ArrowRight' ? 1 : -1));
-  }) as EventListener);
-  on(graphic, 'focus', () => focusHour(active));
-  on(graphic, 'pointermove', ((event: PointerEvent) => {
-    const bounds = graphic.getBoundingClientRect(); if (!bounds.width || !positions.length) return;
-    const at = (event.clientX - bounds.left) / bounds.width * chartWidth;
-    focusHour(positions.reduce((nearest, x, index) => Math.abs(x - at) < Math.abs(positions[nearest] - at) ? index : nearest, 0));
-  }) as EventListener);
-  c.bind(paint);
-  return root;
-}
-
 /** Small original inline glyphs; no vendor icon assets or remote image requests. */
 function weatherIcon(c: RendererContext, condition: WeatherNode['current']['condition'], className: string): SVGElement {
   const icon = c.svg('svg', { viewBox: '0 0 28 28', class: className, 'aria-hidden': 'true', focusable: 'false', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });

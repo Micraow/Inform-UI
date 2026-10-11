@@ -1,0 +1,276 @@
+{
+  "version": "iui/1",
+  "title": "Supplied quiz phases",
+  "body": [
+    {
+      "type": "follow-up-quiz",
+      "label": "Loading follow-up data",
+      "status": "pending"
+    },
+    {
+      "type": "multiple-choice-block-v2",
+      "label": "Unavailable choices",
+      "status": "failed",
+      "fallback": "The caller did not supply choices."
+    },
+    {
+      "type": "personality-quiz",
+      "id": "quiz-unavailable",
+      "label": "Supplied outing idea quiz",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": false,
+      "started": false,
+      "initialIndex": 0,
+      "initialAnswers": [],
+      "progressRevision": 0,
+      "savedRevision": 0,
+      "cardSize": "md"
+    },
+    {
+      "type": "personality-quiz",
+      "id": "quiz-generating",
+      "label": "Supplied outing idea quiz",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": true,
+      "started": false,
+      "initialIndex": 0,
+      "initialAnswers": [],
+      "progressRevision": 0,
+      "savedRevision": 0,
+      "cardSize": "md",
+      "generationPhase": "loading"
+    },
+    {
+      "type": "personality-quiz",
+      "id": "quiz-error",
+      "label": "Supplied outing idea quiz",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": true,
+      "started": false,
+      "initialIndex": 0,
+      "initialAnswers": [],
+      "progressRevision": 0,
+      "savedRevision": 0,
+      "cardSize": "md",
+      "generationPhase": "error",
+      "retryQuery": "Request the example again."
+    },
+    {
+      "type": "personality-quiz",
+      "id": "quiz-result-pending",
+      "label": "Supplied outing idea quiz",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": true,
+      "started": true,
+      "initialIndex": 2,
+      "initialAnswers": [
+        {
+          "questionId": "place",
+          "choiceId": "garden"
+        },
+        {
+          "questionId": "activity",
+          "choiceId": "notebook"
+        }
+      ],
+      "progressRevision": 3,
+      "savedRevision": 2,
+      "cardSize": "md",
+      "resultStatus": "pending",
+      "resultRetryAvailable": true
+    },
+    {
+      "type": "personality-quiz",
+      "id": "quiz-media",
+      "label": "Supplied outing idea quiz",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden",
+              "media": {
+                "alt": "Garden illustration unavailable",
+                "phase": "failed",
+                "retryAvailable": true
+              }
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery",
+              "media": {
+                "alt": "Gallery illustration pending",
+                "phase": "pending"
+              }
+            }
+          ],
+          "layout": "image-grid"
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": true,
+      "started": false,
+      "initialIndex": 0,
+      "initialAnswers": [],
+      "progressRevision": 0,
+      "savedRevision": 0,
+      "cardSize": "md",
+      "banner": {
+        "alt": "Pending supplied illustration",
+        "phase": "pending",
+        "message": "The caller has not supplied an illustration yet."
+      }
+    }
+  ]
+}

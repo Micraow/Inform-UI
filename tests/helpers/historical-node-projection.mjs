@@ -9,6 +9,13 @@ export const projectHistorical130=refs=>refs.filter(ref=>!added.has(ref.$ref));
 const approvedLink=JSON.parse(readFileSync(new URL('./approved-link156-definition.json',import.meta.url),'utf8'));
 const linkAdditions=['url','title','status','fallback','disabled','source','snippet','faviconSrc','imageSrc','mobile','hostLink','copyLabel','loadImageLabel','children'];
 export function projectHistoricalDefinition(name, definition){
+ if(name==='WeatherNode'){
+  const copy=structuredClone(definition),p=copy.properties;
+  for(const key of ['presentation','initialMetric','initialUnit','useCurrent','showDatePicker','disabled','regionLabel','tableDateLabel','resetLabel','requestedLabel','cancelledLabel','labels','share','locationAction','followUps','chartWindow'])delete p[key];
+  for(const key of ['description','temperatureLabels'])delete p.current.properties[key];
+  for(const key of ['label','description','highLabels','lowLabels','followUps'])delete p.daily.items.properties[key];
+  for(const key of ['label','description','condition','temperatureLabels'])delete p.hourly.items.properties[key];return copy;
+ }
  if(name!=='LinkNode')return definition;
  assert.deepEqual(definition,approvedLink,'Link156 extension must equal its explicitly reviewed definition before historical projection');
  const old=structuredClone(definition);for(const name of linkAdditions)delete old.properties[name];old.required=['type','value','href'];delete old.anyOf;return old;

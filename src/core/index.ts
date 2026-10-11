@@ -1,3 +1,7 @@
+import {inspectCapabilityWelcome} from './capability-welcome.js';
+import {inspectQuizCards} from './quiz-cards.js';
+import {inspectSearchOnboarding} from './search-onboarding.js';
+import {inspectWeatherSupplied} from './weather-supplied.js';
 import {inspectStudyOnboarding} from './study-onboarding.js';
 import {inspectOnboardingCards} from './onboarding-cards.js';
 import {inspectConversationalOnboarding} from './conversational-onboarding.js';
@@ -348,6 +352,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     }
     for (const [value, at] of nodeValues(node, path)) capture(() => { infer(value, at); });
     inspectExtension(node,path,state,add);
+    if(node.type==='weather')inspectWeatherSupplied(node,path,add);
     if(isSports(node))inspectSports(node,path,add,isSafeURL);
     if(isLearning(node))inspectLearning(node,path,add);
     if(node.type==='vocab-card')inspectVocabCard(node,path,add);
@@ -394,6 +399,9 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='scheduled-task-suggestion')inspectScheduledSuggestion(node,path,add);
     if(node.type==='entity-card'||node.type==='entity-overview')inspectEntity(node,path,add,isSafeURL);
     if(node.type==='conversational-onboarding-study')inspectStudyOnboarding(node,path,add);
+    if(node.type==='conversational-onboarding-search')inspectSearchOnboarding(node,path,add,isSafeURL);
+    if(node.type==='follow-up-quiz'||node.type==='multiple-choice-block-v2'||node.type==='personality-quiz')inspectQuizCards(node,path,add,isSafeURL);
+    if(node.type==='whats-new-capability-welcome')inspectCapabilityWelcome(node,path,add,isSafeURL);
     if(node.type==='onboarding-feature-card'||node.type==='onboarding-plugin-suggestions'||node.type==='onboarding-starter-tasks')inspectOnboardingCards(node,path,add,isSafeURL);
     if(node.type==='conversational-onboarding-advice'||node.type==='conversational-onboarding-writing')inspectConversationalOnboarding(node,path,add,isSafeURL);
     if(node.type==='learning-speak-card'||node.type==='learning-voice-mode-launcher-card'||node.type==='offer-voice-conversation')inspectVoiceCards(node,path,add,isSafeURL);

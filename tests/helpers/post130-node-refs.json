@@ -46,5 +46,10 @@
   "#/$defs/OnboardingFeatureCardNode",
   "#/$defs/OnboardingPluginSuggestionsNode",
   "#/$defs/OnboardingStarterTasksNode",
-  "#/$defs/ConversationalOnboardingStudyNode"
+  "#/$defs/ConversationalOnboardingStudyNode",
+  "#/$defs/ConversationalOnboardingSearchNode",
+  "#/$defs/FollowUpQuizNode",
+  "#/$defs/MultipleChoiceBlockV2Node",
+  "#/$defs/PersonalityQuizNode",
+  "#/$defs/WhatsNewCapabilityWelcomeNode"
 ]

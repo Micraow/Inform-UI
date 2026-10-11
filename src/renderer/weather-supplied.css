@@ -1,0 +1,13 @@
+.iui-weather [hidden]{display:none!important}
+.iui-weather [data-weather-action]:disabled{opacity:.5;cursor:not-allowed}
+.iui-weather-current-symbol{display:inline-flex;flex:none}
+.iui-weather-actions,.iui-weather-followup-group{display:flex;gap:10px;flex-wrap:wrap;margin-block-start:14px}
+.iui-weather-followup-group>button{flex:1 1 0;min-inline-size:0;border-radius:12px}
+.iui-weather-intent-status{font-size:.8rem;color:var(--iui-muted);margin-block-start:10px}
+.iui-weather-intent-status:empty,.iui-weather-actions:empty,.iui-weather-followup-group:empty{display:none}
+.iui-weather[data-presentation=compact]{padding:12px;border:1px solid var(--iui-line);border-radius:14px;background:var(--iui-surface)}
+.iui-weather[data-presentation=compact] .iui-weather-current{padding-block:12px;gap:10px}
+.iui-weather[data-presentation=compact] .iui-weather-current-temperature{font-size:2rem}
+.iui-weather[data-presentation=compact] .iui-weather-current-description{min-inline-size:100px}
+.iui-weather[data-presentation=compact] .iui-weather-facts{inline-size:100%}
+@media(max-width:480px){.iui-weather-header{gap:10px;flex-wrap:wrap}.iui-weather .iui-weather-reset{font-size:.8rem}.iui-weather-followup-group{gap:6px}.iui-weather-followup-group>button{font-size:.8rem}}

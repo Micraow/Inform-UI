@@ -208,7 +208,12 @@ export type Node =
   | OnboardingFeatureCardNode
   | OnboardingPluginSuggestionsNode
   | OnboardingStarterTasksNode
-  | ConversationalOnboardingStudyNode;
+  | ConversationalOnboardingStudyNode
+  | ConversationalOnboardingSearchNode
+  | FollowUpQuizNode
+  | MultipleChoiceBlockV2Node
+  | PersonalityQuizNode
+  | WhatsNewCapabilityWelcomeNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -2545,6 +2550,13 @@ export interface WeatherNode {
     feelsLike?: number | null;
     condition: "clear" | "partly-cloudy" | "cloudy" | "rain" | "snow" | "storm" | "fog" | "unknown";
     humidity?: number | null;
+    description?: string;
+    temperatureLabels?: {
+      celsius: string;
+      fahrenheit: string;
+      a11yCelsius?: string;
+      a11yFahrenheit?: string;
+    };
   };
   /**
    * @minItems 0
@@ -2556,6 +2568,29 @@ export interface WeatherNode {
     high: number | null;
     condition: "clear" | "partly-cloudy" | "cloudy" | "rain" | "snow" | "storm" | "fog" | "unknown";
     precipitationProbability: number | null;
+    label?: string;
+    description?: string;
+    highLabels?: {
+      celsius: string;
+      fahrenheit: string;
+      a11yCelsius?: string;
+      a11yFahrenheit?: string;
+    };
+    lowLabels?: {
+      celsius: string;
+      fahrenheit: string;
+      a11yCelsius?: string;
+      a11yFahrenheit?: string;
+    };
+    /**
+     * @maxItems 12
+     */
+    followUps?: {
+      id: string;
+      label: string;
+      query: string;
+      disabled?: boolean;
+    }[];
   }[];
   /**
    * @minItems 0
@@ -2565,10 +2600,74 @@ export interface WeatherNode {
     time: string;
     temperature: number | null;
     precipitationProbability: number | null;
+    label?: string;
+    description?: string;
+    condition?: "clear" | "partly-cloudy" | "cloudy" | "rain" | "snow" | "storm" | "fog" | "unknown";
+    temperatureLabels?: {
+      celsius: string;
+      fahrenheit: string;
+      a11yCelsius?: string;
+      a11yFahrenheit?: string;
+    };
   }[];
   initialDate?: string;
   status?: "ready" | "loading" | "error";
   message?: string;
+  presentation?: "chart" | "table" | "compact";
+  initialMetric?: "temperature" | "precipitation";
+  initialUnit?: "celsius" | "fahrenheit";
+  useCurrent?: boolean;
+  showDatePicker?: boolean;
+  disabled?: boolean;
+  regionLabel?: string;
+  tableDateLabel?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  labels?: {
+    current?: string;
+    hourly?: string;
+    daily?: string;
+    temperature?: string;
+    precipitation?: string;
+    conditions?: string;
+    time?: string;
+    unit?: string;
+    metric?: string;
+    view?: string;
+    high?: string;
+    low?: string;
+    observation?: string;
+    selected?: string;
+    chartView?: string;
+    tableView?: string;
+    missing?: string;
+    source?: string;
+    updated?: string;
+  };
+  share?: {
+    label: string;
+    available?: boolean;
+    placement?: "top" | "bottom";
+  };
+  locationAction?: {
+    label: string;
+    available?: boolean;
+    query?: string;
+  };
+  /**
+   * @maxItems 12
+   */
+  followUps?: {
+    id: string;
+    label: string;
+    query: string;
+    disabled?: boolean;
+  }[];
+  chartWindow?: {
+    points: number;
+    startTime?: string;
+  };
 }
 export interface F1RacesNode {
   type: "f1-races";
@@ -5298,4 +5397,335 @@ export interface ConversationalOnboardingStudyNode {
       y: number | null;
     }[];
   };
+}
+export interface ConversationalOnboardingSearchNode {
+  type: "conversational-onboarding-search";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  askLabel?: string;
+  activeTab?: "weather" | "stock" | "news";
+  weather?: {
+    label: string;
+    question: string;
+    snapshot: WeatherNode;
+  };
+  stock?: {
+    label: string;
+    question: string;
+    snapshot: FinanceChartNode;
+  };
+  news?: {
+    label: string;
+    question: string;
+    /**
+     * @maxItems 50
+     */
+    summaries: {
+      text: string;
+      sourceId: string;
+    }[];
+    /**
+     * @maxItems 30
+     */
+    items: {
+      id: string;
+      title: string;
+      url: string;
+      sourceLabel: string;
+      dateLabel?: string;
+      imageSrc?: string;
+      faviconSrc?: string;
+    }[];
+    emptyLabel?: string;
+  };
+}
+export interface FollowUpQuizNode {
+  type: "follow-up-quiz";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  title?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  emptyLabel?: string;
+  initialIndex?: number;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  initialAnswers?: {
+    questionId: string;
+    choiceId: string;
+  }[];
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  questions?: {
+    id: string;
+    prompt: string;
+    /**
+     * @minItems 1
+     * @maxItems 12
+     */
+    choices: [
+      {
+        id: string;
+        label: string;
+        disabled?: boolean;
+      },
+      ...{
+        id: string;
+        label: string;
+        disabled?: boolean;
+      }[]
+    ];
+  }[];
+  submitLabel?: string;
+  submitQueryPrefix?: string;
+  skipLabel?: string;
+  previousLabel?: string;
+  completeLabel?: string;
+}
+export interface MultipleChoiceBlockV2Node {
+  type: "multiple-choice-block-v2";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  title?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  emptyLabel?: string;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  options?: {
+    id: string;
+    label: string;
+    disabled?: boolean;
+    query?: string;
+  }[];
+  correctChoiceId?: string;
+  selectedChoiceId?: string;
+  feedback?: {
+    status?: "correct" | "incorrect";
+    open?: boolean;
+    hint?: string;
+    error?: string;
+  };
+  correctLabel?: string;
+  incorrectLabel?: string;
+}
+export interface PersonalityQuizNode {
+  type: "personality-quiz";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  title?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  emptyLabel?: string;
+  initialIndex?: number;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  initialAnswers?: {
+    questionId: string;
+    choiceId: string;
+  }[];
+  description?: string;
+  questionCountLabel?: string;
+  cardSize?: "sm" | "md" | "lg" | "full";
+  banner?: {
+    src?: string;
+    alt: string;
+    phase?: "ready" | "pending" | "failed";
+    message?: string;
+    retryAvailable?: boolean;
+    retryLabel?: string;
+  };
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  questions?: {
+    id: string;
+    prompt: string;
+    /**
+     * @minItems 1
+     * @maxItems 12
+     */
+    choices: [
+      {
+        id: string;
+        label: string;
+        disabled?: boolean;
+        media?: {
+          src?: string;
+          alt: string;
+          phase?: "ready" | "pending" | "failed";
+          message?: string;
+          retryAvailable?: boolean;
+          retryLabel?: string;
+        };
+      },
+      ...{
+        id: string;
+        label: string;
+        disabled?: boolean;
+        media?: {
+          src?: string;
+          alt: string;
+          phase?: "ready" | "pending" | "failed";
+          message?: string;
+          retryAvailable?: boolean;
+          retryLabel?: string;
+        };
+      }[]
+    ];
+    layout?: "text" | "image-prompt" | "image-grid";
+    media?: {
+      src?: string;
+      alt: string;
+      phase?: "ready" | "pending" | "failed";
+      message?: string;
+      retryAvailable?: boolean;
+      retryLabel?: string;
+    };
+  }[];
+  available?: boolean;
+  generationComplete?: boolean;
+  generationPhase?: "ready" | "loading" | "error";
+  started?: boolean;
+  progressRevision?: number;
+  savedRevision?: number;
+  progressStatus?: "saved" | "pending" | "error";
+  resultStatus?: "pending" | "error" | "complete";
+  resultRetryAvailable?: boolean;
+  resultRevision?: number;
+  result?: {
+    name: string;
+    description: string;
+    quote?: string;
+    /**
+     * @minItems 0
+     * @maxItems 20
+     */
+    paragraphs: string[];
+    media?: {
+      src?: string;
+      alt: string;
+      phase?: "ready" | "pending" | "failed";
+      message?: string;
+      retryAvailable?: boolean;
+      retryLabel?: string;
+    };
+  };
+  sharePreview?: boolean;
+  canShare?: boolean;
+  canCopy?: boolean;
+  canCreate?: boolean;
+  sharePending?: boolean;
+  copyText?: string;
+  createPrompt?: string;
+  retryQuery?: string;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  questionProgressLabels?: string[];
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  questionAccessibilityLabels?: string[];
+  labels?: {
+    start?: string;
+    previous?: string;
+    next?: string;
+    seeResult?: string;
+    share?: string;
+    shareResult?: string;
+    retake?: string;
+    ownerRetake?: string;
+    copy?: string;
+    create?: string;
+    ownerCreate?: string;
+    loading?: string;
+    error?: string;
+    retry?: string;
+    progressError?: string;
+    resultLoading?: string;
+    resultError?: string;
+    resultRetry?: string;
+    local?: string;
+  };
+}
+export interface WhatsNewCapabilityWelcomeNode {
+  type: "whats-new-capability-welcome";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  /**
+   * @maxItems 20
+   */
+  items?: {
+    id: string;
+    actionId: string;
+    label: string;
+    iconSrc?: string;
+    fallbackSymbol?: string;
+    disabled?: boolean;
+  }[];
+  /**
+   * @maxItems 30
+   */
+  actions?: (
+    | {
+        id: string;
+        disabled?: boolean;
+        kind: "prompt";
+        query: string;
+      }
+    | {
+        id: string;
+        disabled?: boolean;
+        kind: "url";
+        url: string;
+      }
+    | {
+        id: string;
+        disabled?: boolean;
+        kind: "capability";
+        capability: string;
+        available?: boolean;
+      }
+    | {
+        id: string;
+        disabled?: boolean;
+        kind: "voice";
+        available?: boolean;
+      }
+  )[];
+  campaignId?: string;
+  disabled?: boolean;
+  emptyLabel?: string;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
 }

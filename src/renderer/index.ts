@@ -1,3 +1,10 @@
+import {renderCapabilityWelcome} from './capability-welcome.js';
+import capabilityWelcomeStyles from './capability-welcome.css';
+import {renderQuizCards} from './quiz-cards.js';
+import quizCardsStyles from './quiz-cards.css';
+import {renderSearchOnboarding} from './search-onboarding.js';
+import searchOnboardingStyles from './search-onboarding.css';
+import weatherSuppliedStyles from './weather-supplied.css';
 import {renderStudyOnboarding} from './study-onboarding.js';
 import studyOnboardingStyles from './study-onboarding.css';
 import {renderOnboardingCards} from './onboarding-cards.js';
@@ -141,7 +148,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles + '\n' + tabbedVisualStyles + '\n' + automationStyles + '\n' + scheduledSuggestionStyles + '\n' + entityStyles + '\n' + askUserStyles + '\n' + ledgerCategoryStyles + '\n' + voiceCardsStyles + '\n' + conversationalOnboardingStyles + '\n' + onboardingCardsStyles + '\n' + studyOnboardingStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles + '\n' + tabbedVisualStyles + '\n' + automationStyles + '\n' + scheduledSuggestionStyles + '\n' + entityStyles + '\n' + askUserStyles + '\n' + ledgerCategoryStyles + '\n' + voiceCardsStyles + '\n' + conversationalOnboardingStyles + '\n' + onboardingCardsStyles + '\n' + studyOnboardingStyles + '\n' + weatherSuppliedStyles + '\n' + searchOnboardingStyles + '\n' + quizCardsStyles + '\n' + capabilityWelcomeStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -339,6 +346,9 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'scheduled-task-suggestion':out=renderScheduledSuggestion(context,n);break;
       case 'entity-card':case 'entity-overview':out=renderEntity(context,n,root,container);break;
       case 'conversational-onboarding-study':out=renderStudyOnboarding(context,n);break;
+      case 'conversational-onboarding-search':out=renderSearchOnboarding(context,n,root,container);break;
+      case 'follow-up-quiz':case 'multiple-choice-block-v2':case 'personality-quiz':out=renderQuizCards(context,n,root,container);break;
+      case 'whats-new-capability-welcome':out=renderCapabilityWelcome(context,n,root,container);break;
       case 'onboarding-feature-card':case 'onboarding-plugin-suggestions':case 'onboarding-starter-tasks':out=renderOnboardingCards(context,n,root,container);break;
       case 'conversational-onboarding-advice':case 'conversational-onboarding-writing':out=renderConversationalOnboarding(context,n,root,container);break;
       case 'learning-speak-card':case 'learning-voice-mode-launcher-card':case 'offer-voice-conversation':out=renderVoiceCard(context,n,root,container);break;

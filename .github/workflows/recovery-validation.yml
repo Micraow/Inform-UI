@@ -1,4 +1,4 @@
-name: Validate current portable164 source
+name: Validate current portable183 source
 on:
   push:
     branches: [recovery/portable-124-20261011]
@@ -40,7 +40,7 @@ jobs:
       - name: Verify generated projections and record current asset identity
         run: |
           node scripts/check-generated.mjs 2>&1 | tee artifacts/generated-check.log
-          node --input-type=module -e "import fs from 'node:fs'; const schema=JSON.parse(fs.readFileSync('src/schema/iui.schema.json')); if(schema.\$defs.Node.oneOf.length!==164) throw Error('Expected164 nodes'); fs.writeFileSync('artifacts/current-source-identity.json',JSON.stringify({source:process.env.GITHUB_SHA,nodeTypes:schema.\$defs.Node.oneOf.length,assets:JSON.parse(fs.readFileSync('cdn/integrity.json'))},null,2));"
+          node --input-type=module -e "import fs from 'node:fs'; const schema=JSON.parse(fs.readFileSync('src/schema/iui.schema.json')); if(schema.\$defs.Node.oneOf.length!==183) throw Error('Expected183 nodes'); fs.writeFileSync('artifacts/current-source-identity.json',JSON.stringify({source:process.env.GITHUB_SHA,nodeTypes:schema.\$defs.Node.oneOf.length,assets:JSON.parse(fs.readFileSync('cdn/integrity.json'))},null,2));"
       - name: Install the lock-pinned Playwright Chromium build
         run: node node_modules/@playwright/test/cli.js install --with-deps chromium
       - name: Install the exact licensed test font

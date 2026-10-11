@@ -1,0 +1,7 @@
+/** Finite supplied lookup demonstrations; no search or data-provider runtime. */
+export function installSearchOnboardingSchema({node,defs}){
+ const text=(max=2000)=>({type:'string',minLength:1,maxLength:max}),obj=(properties,required)=>({type:'object',properties,required,additionalProperties:false}),list=(items,maxItems=30)=>({type:'array',items,maxItems}),tab={label:text(200),question:text()};
+ const item=obj({id:text(80),title:text(500),url:text(2048),sourceLabel:text(200),dateLabel:text(200),imageSrc:text(2048),faviconSrc:text(2048)},['id','title','url','sourceLabel']);
+ node('conversational-onboarding-search',{label:text(200),status:{enum:['resolved','pending','failed']},fallback:text(),disabled:{type:'boolean'},askLabel:text(200),activeTab:{enum:['weather','stock','news']},weather:obj({...tab,snapshot:{$ref:'#/$defs/WeatherNode'}},['label','question','snapshot']),stock:obj({...tab,snapshot:{$ref:'#/$defs/FinanceChartNode'}},['label','question','snapshot']),news:obj({...tab,summaries:list(obj({text:text(4000),sourceId:text(80)},['text','sourceId']),50),items:list(item,30),emptyLabel:text(200)},['label','question','summaries','items'])},['label'],'learning');
+ Object.assign(defs.ConversationalOnboardingSearchNode,{if:{properties:{status:{enum:['pending','failed']}},required:['status']},then:{},else:{properties:{weather:{},stock:{},news:{}},required:['weather','stock','news']}});
+}

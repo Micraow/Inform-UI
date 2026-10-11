@@ -1,3 +1,31 @@
+# Current functional scope: 178 / 0 / 78
+
+Canonical scope is 178 implemented (53 historical,125 pending verification),0 partial,78 missing;183 protocol nodes are registered. Quiz and Welcome source contracts have author, independent and consumer acceptance. A unified183 build is being prepared. New native/pixel acceptance remains pending; older unified164 acceptance applies only to its fixed assets. Earlier checkpoints below retain their original scope.
+
+# Current functional scope: 177 / 0 / 79
+
+Three supplied quiz contracts passed 11 independent checks and 7 consumer DOM/standalone flows. Canonical scope is 177 implemented (53 historical, 124 pending verification), 0 partial, 79 missing; 183 protocol nodes are registered. Welcome remains a candidate. New-source native/pixel acceptance is pending; unified164 acceptance remains limited to its fixed assets. Earlier checkpoint statements below retain their original scope.
+
+# Welcome source candidate:183 registered protocols
+
+The supplied capability welcome view passed23 domain and4 actual public/standalone checks,52 with quiz/core integration; native2 scenarios are discovered only. Canonical coverage stays174 /0 /82 while Quiz3 and Welcome await independent acceptance. All capability, prompt and URL requests remain local and cancelable; voice actions remain explicitly unavailable in this view. CDN remains unified164.
+
+# Three quiz source candidates:182 registered protocols
+
+Follow-up questions, a single choice block and a supplied personality-quiz presentation retain distinct interaction contracts. They passed33 domain and6 actual public/standalone checks,58 with core conservation; native3 scenarios are discovered only. Canonical coverage stays173 /0 /83 until independent review. No personality score, remote result or service completion is inferred. The source also includes the narrow nested Search reset/resource fix. CDN remains unified164.
+
+# Search source candidate:179 registered protocols
+
+The supplied Search demo has real Weather, market charts and finite news citations/cards. Twelve domain/public/standalone checks passed;47 combined checks passed before the final added reentry case. Two native scenarios are discovered only. Canonical scope stays173 /0 /83 pending independent Search review. The distributed CDN remains unified164.
+
+# Current functional scope:173 /0 /83
+
+Weather completed additive supplied views and local interactions with11 independent checks and8 consumer flows after the modifier/IME correction. Canonical coverage is173 implementations (53 historical acceptances,120 pending full acceptance),0 partial and83 missing;178 protocols are registered. New native/reference pixel acceptance remains pending. The frozen CDN/native717 belongs to unified164. Earlier checkpoints retain their original scope.
+
+# Additive Weather completion candidate
+
+Existing weather snapshots now support supplied chart/table/compact views, selected-day summaries, explicit display text and local share/location/follow-up requests. The original required fields and semantics are preserved. Integrated validation passed58 weather/domain/core checks and15 final public Weather/Study checks. Three new Weather native scenarios are discovered only. Canonical scope remains171 /1 /84 pending independent Weather and Study review; registration stays178 and CDN stays164.
+
 # Study source candidate:178 registered protocols
 
 The supplied study demo has real orbit controls, a local quiz and an explicit-data chart. Ten new tests and55 combined tests passed; two native scenarios are discovered but not executed. Canonical scope remains171 /1 /84 while independent study review is pending. The distributed CDN remains the separately frozen unified164 package.

@@ -1,3 +1,7 @@
+import {installCapabilityWelcomeSchema} from './capability-welcome-schema.mjs';
+import {installQuizCardsSchema} from './quiz-cards-schema.mjs';
+import {installSearchOnboardingSchema} from './search-onboarding-schema.mjs';
+import {installWeatherSuppliedSchema} from './weather-supplied-schema.mjs';
 import {installStudyOnboardingSchema} from './study-onboarding-schema.mjs';
 import {installOnboardingCardsSchema} from './onboarding-cards-schema.mjs';
 import {installConversationalOnboardingSchema} from './conversational-onboarding-schema.mjs';
@@ -469,7 +473,11 @@ installLedgerCategorySchema({node,defs});
 installVoiceCardsSchema({node,defs});
 installConversationalOnboardingSchema({node,defs});
 installOnboardingCardsSchema({node,defs});
+installWeatherSuppliedSchema({defs});
 installStudyOnboardingSchema({node,defs});
+installSearchOnboardingSchema({node,defs});
+installQuizCardsSchema({node,defs});
+installCapabilityWelcomeSchema({node,defs});
 
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };

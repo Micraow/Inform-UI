@@ -1,0 +1,28 @@
+{
+  "version": "iui/1",
+  "title": "Supplied capability welcome actions",
+  "body": [
+    {
+      "type": "whats-new-capability-welcome",
+      "id": "welcome-example",
+      "label": "Explore the supplied examples",
+      "campaignId": "original-example",
+      "items": [
+        { "id": "search", "actionId": "topic", "label": "Explore a supplied topic", "fallbackSymbol": "⌕" },
+        { "id": "guide", "actionId": "guide", "label": "Request the example guide", "fallbackSymbol": "↗" },
+        { "id": "creative", "actionId": "creative", "label": "Request a creative example", "fallbackSymbol": "✦" },
+        { "id": "voice", "actionId": "voice", "label": "Voice action unavailable in this view" },
+        { "id": "missing", "actionId": "not-supplied", "label": "No action supplied for this item" }
+      ],
+      "actions": [
+        { "id": "topic", "kind": "prompt", "query": "Explain the supplied example briefly." },
+        { "id": "guide", "kind": "url", "url": "https://example.com/guide" },
+        { "id": "creative", "kind": "capability", "capability": "creative-example", "available": true },
+        { "id": "voice", "kind": "voice", "available": true }
+      ]
+    },
+    { "type": "whats-new-capability-welcome", "label": "Waiting for supplied welcome data", "status": "pending" },
+    { "type": "whats-new-capability-welcome", "label": "Unavailable welcome data", "status": "failed", "fallback": "The caller has not supplied these actions." },
+    { "type": "whats-new-capability-welcome", "label": "Empty supplied welcome list", "items": [], "actions": [] }
+  ]
+}
