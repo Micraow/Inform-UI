@@ -1,3 +1,5 @@
+import type {Node as IuiNode} from './schema/document.js';
+import {audioHTTPSource} from './core/learning-media.js';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {validateDocument} from './core/index.js';
@@ -19,7 +21,18 @@ export async function compileArtifact(input:unknown,options:CompileOptions={}):P
   const lang=options.lang??'en';if(!/^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$/.test(lang))throw new Error('lang must be a language tag');
   const runtimeName=`runtime-${createHash('sha256').update(script).digest('hex').slice(0,16)}.js`;
   const styleName=`style-${createHash('sha256').update(css).digest('hex').slice(0,16)}.css`;
-  const csp=`default-src 'none'; script-src ${shared?"'self'":`'sha256-${hash(script)}'`}; style-src 'unsafe-inline'${shared?" 'self'":''}; img-src data: https: http:; font-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'`;
+  const audioSources=new Set<string>();
+  const collectAudio=(node:IuiNode):void=>{
+    if(node.type==='learning-audio-label-card'){
+      const source=/^data:/i.test(node.audio.src)?'data:':audioHTTPSource(node.audio.src);
+      if(source)audioSources.add(source);
+    }
+    if('children' in node)node.children.forEach(collectAudio);
+    if(node.type==='list')for(const item of node.items)if(typeof item==='object'&&item!==null&&'type' in item)collectAudio(item as IuiNode);
+  };
+  result.document.body.forEach(collectAudio);
+  const mediaPolicy=audioSources.size?' media-src '+[...audioSources].sort().join(' ')+';':'';
+  const csp=`default-src 'none'; script-src ${shared?"'self'":`'sha256-${hash(script)}'`}; style-src 'unsafe-inline'${shared?" 'self'":''}; img-src data: https: http:; font-src data:;${mediaPolicy} connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'`;
   const title=escape(result.document.title??'Inform UI');
   const html=`<!doctype html>\n<html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="${escape(csp)}"><meta name="referrer" content="no-referrer"><title>${title}</title>${shared?`<link rel="stylesheet" integrity="sha256-${hash(css)}" href="${base}${styleName}">`:`<style>${css}</style>`}</head><body class="iui-page" data-theme="${result.document.theme??'auto'}" style="margin:0"><main id="iui"><noscript>This interactive document requires JavaScript. ${title}</noscript></main><script id="iui-data" type="application/json">${serialized}</script>${shared?`<script defer integrity="sha256-${hash(script)}" src="${base}${runtimeName}"></script>`:`<script>${script}</script>`}</body></html>\n`;
   return {html,assets:Object.freeze(shared?{[`${base.slice(2)}${runtimeName}`]:script,[`${base.slice(2)}${styleName}`]:css}:{})};
