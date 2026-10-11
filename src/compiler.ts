@@ -34,7 +34,7 @@ export async function compileArtifact(input:unknown,options:CompileOptions={}):P
       const source=/^data:/i.test(node.audio.src)?'data:':audioHTTPSource(node.audio.src);
       if(source)audioSources.add(source);
     }
-    if('children' in node)node.children.forEach(collectAudio);
+    if('children' in node)node.children?.forEach(collectAudio);
     if(node.type==='list')for(const item of node.items)if(typeof item==='object'&&item!==null&&'type' in item)collectAudio(item as IuiNode);
   };
   result.document.body.forEach(collectAudio);

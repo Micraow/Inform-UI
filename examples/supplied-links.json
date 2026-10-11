@@ -1,0 +1,58 @@
+{
+  "version": "iui/1",
+  "title": "Original local supplied link requests",
+  "body": [
+    {
+      "type": "link",
+      "id": "original_inline",
+      "url": "https://example.test/teaching/guide",
+      "title": "An original reading guide",
+      "children": [
+        {
+          "type": "text",
+          "value": "Read the supplied guide"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "id": "original_box_link",
+      "url": "https://example.test/teaching/notes?section=shapes",
+      "title": "Original notes about colored shapes",
+      "hostLink": true,
+      "children": [
+        {
+          "type": "box",
+          "children": [
+            {
+              "type": "text",
+              "value": "Original supplied reading"
+            },
+            {
+              "type": "text",
+              "value": "Two passive lines inside one box"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "link-card",
+      "url": "https://example.test/teaching/notes?section=shapes",
+      "title": "Original notes about colored shapes",
+      "source": "Example notes source",
+      "snippet": "A supplied summary that is never fetched or expanded from the URL.",
+      "faviconSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAAKklEQVR4nGP4+v0nVRDDqEEDZ5BW/mri0ahBowaNGkS2QVTLtKMG0dAgAEJyXli1WzapAAAAAElFTkSuQmCC"
+    },
+    {
+      "type": "recommendation-link-card",
+      "id": "original_recommendation_link",
+      "url": "https://example.test/teaching/catalog#original-panel",
+      "title": "Original panel collection",
+      "source": "Example catalog source",
+      "snippet": "A fictional linked item with a separately supplied inline image.",
+      "faviconSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAAKklEQVR4nGP4+v0nVRDDqEEDZ5BW/mri0ahBowaNGkS2QVTLtKMG0dAgAEJyXli1WzapAAAAAElFTkSuQmCC",
+      "imageSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAIAAABaGO0eAAAA2ElEQVR4nO3RUQmAUBREQVOZx4iWE/HPEsLFdwZOgGVnu+5Hg23jC+IBANAOAIB2AAC0AwCgHQAA7QAAaAcAQDsAANoBANAOAIB2AAC0+xjgPPZCAAAAAAAAAAAAAAAAAAAAAAAAAAAAADB9DYD5dwCsHwAAAAAAAAAAAAAAAAAAAAAAAAAAAABMXwNg/h0A6wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAA09cAmH8nDSAAPwsAgHYAALQDAKAdAADtAABoBwBAOwAA2gEA0A4AgHYAALQDAKDdC+dtjy5usMHBAAAAAElFTkSuQmCC"
+    }
+  ]
+}

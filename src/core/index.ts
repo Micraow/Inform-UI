@@ -1,3 +1,4 @@
+import{inspectSuppliedLink}from'./supplied-links.js';
 import {inspectSpendMonth} from './spend-month.js';
 import {inspectUpcomingActivity} from './upcoming-activity.js';
 import {inspectImageGrid} from './image-grid.js';
@@ -265,7 +266,7 @@ function inspectSvg(node: Extract<Node, { type: 'svg' }>, path: string, add: (is
 function walkNodes(document: IUIDocument, visit: (node: Node, path: string, parent?: Node) => void) {
   const walk = (node: Node, path: string, parent?: Node) => {
     visit(node, path, parent);
-    if ('children' in node) node.children.forEach((child, i) => walk(child, `${path}/children/${i}`, node));
+    if ('children' in node) node.children?.forEach((child, i) => walk(child, `${path}/children/${i}`, node));
     if (node.type === 'list') node.items.forEach((item, i) => { if (record(item) && 'type' in item) walk(item as Node, `${path}/items/${i}`, node); });
   };
   document.body.forEach((node, i) => walk(node, `/body/${i}`));
@@ -358,6 +359,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='youtube')inspectYouTube(node,path,add);
     if(node.type==='async-image'||node.type==='async-image-group')inspectAsyncImages(node,path,add,isSafeURL);
     if(node.type==='lottie')inspectLottie(node,path,add);
+    if((node.type==='link'&&node.href===undefined)||node.type==='link-card'||node.type==='recommendation-link-card')inspectSuppliedLink(node,path,add,isSafeURL);
     if(node.type==='ledger-spend-so-far-this-month')inspectSpendMonth(node,path,add);
     if(node.type==='ledger-upcoming-activity')inspectUpcomingActivity(node,path,add,isSafeURL);
     if(node.type==='image-grid')inspectImageGrid(node,path,add,isSafeURL);
@@ -405,7 +407,8 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
       const links = node.type === 'citation' ? [[node.url, `${path}/url`]] : node.items.map((item, i) => [item.url, `${path}/items/${i}/url`]);
       for (const [url, at] of links) if (!/^https?:\/\//i.test(url) || !isSafeURL(url, 'link')) add(issue('UNSAFE_URL', at, 'Source URLs require allowed absolute HTTP(S) destinations.'));
     }
-    if (node.type === 'link' && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
+    if(node.type==='link'&&node.href!==undefined&&['url','title','status','children','mobile','hostLink','faviconSrc','imageSrc','source','snippet','fallback','disabled','copyLabel','loadImageLabel'].some(key=>key in node))add(issue('LINK_VARIANT',path,'Keep legacy value/href anchors separate from supplied URL intent links.'));
+    if (node.type === 'link' && node.href!==undefined && !isSafeURL(node.href)) add(issue('UNSAFE_URL', `${path}/href`, 'Link URL is outside the allowed policy.'));
     if (node.type === 'text') node.runs?.forEach((run, i) => { if (run.href && !isSafeURL(run.href)) add(issue('UNSAFE_URL', `${path}/runs/${i}/href`, 'Inline link URL is outside the allowed policy.')); });
     if (node.type === 'blockquote' && node.cite && !isSafeURL(node.cite)) add(issue('UNSAFE_URL', `${path}/cite`, 'Quote source URL is outside the allowed policy.'));
     if (node.type === 'tab-panel' && parent?.type !== 'tab-group') add(issue('TAB_PARENT', path, 'tab-panel must be a direct child of tab-group.'));

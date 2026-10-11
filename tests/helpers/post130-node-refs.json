@@ -22,5 +22,7 @@
   "#/$defs/ConversationSuggestionsNode",
   "#/$defs/FollowUpActionBarNode",
   "#/$defs/LedgerIncomeTrackerNode",
-  "#/$defs/AsyncVideoCarouselNode"
+  "#/$defs/AsyncVideoCarouselNode",
+  "#/$defs/LinkCardNode",
+  "#/$defs/RecommendationLinkCardNode"
 ]

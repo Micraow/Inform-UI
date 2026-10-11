@@ -4600,14 +4600,365 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 2048
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "snippet": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "faviconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200000
+        },
+        "imageSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200000
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "hostLink": {
+          "type": "boolean"
+        },
+        "copyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 0,
+          "maxItems": 32
         }
       },
       "required": [
-        "type",
-        "value",
-        "href"
+        "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "link"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "$ref": "#/$defs/Value"
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "resolved",
+                "failed"
+              ]
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "snippet": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "faviconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200000
+            },
+            "imageSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200000
+            },
+            "mobile": {
+              "type": "boolean"
+            },
+            "hostLink": {
+              "type": "boolean"
+            },
+            "copyLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "loadImageLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Node"
+              },
+              "minItems": 0,
+              "maxItems": 32
+            }
+          },
+          "required": [
+            "value",
+            "href"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "link"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "$ref": "#/$defs/Value"
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "resolved",
+                "failed"
+              ]
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "snippet": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "faviconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200000
+            },
+            "imageSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200000
+            },
+            "mobile": {
+              "type": "boolean"
+            },
+            "hostLink": {
+              "type": "boolean"
+            },
+            "copyLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "loadImageLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Node"
+              },
+              "minItems": 0,
+              "maxItems": 32
+            }
+          },
+          "required": [
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "link"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "$ref": "#/$defs/Value"
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "failed"
+              ]
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "snippet": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "faviconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200000
+            },
+            "imageSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200000
+            },
+            "mobile": {
+              "type": "boolean"
+            },
+            "hostLink": {
+              "type": "boolean"
+            },
+            "copyLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "loadImageLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Node"
+              },
+              "minItems": 0,
+              "maxItems": 32
+            }
+          },
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false
+        }
+      ]
     },
     "FaviconNode": {
       "type": "object",
@@ -16410,6 +16761,162 @@
       "required": [],
       "additionalProperties": false
     },
+    "LinkCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "link-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "snippet": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "faviconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200000
+        },
+        "imageSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200000
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "hostLink": {
+          "type": "boolean"
+        },
+        "copyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "RecommendationLinkCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "recommendation-link-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "snippet": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "faviconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200000
+        },
+        "imageSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200000
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "hostLink": {
+          "type": "boolean"
+        },
+        "copyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
     "SpendTrendPoint": {
       "type": "object",
       "properties": {
@@ -17927,6 +18434,12 @@
         },
         {
           "$ref": "#/$defs/LottieNode"
+        },
+        {
+          "$ref": "#/$defs/LinkCardNode"
+        },
+        {
+          "$ref": "#/$defs/RecommendationLinkCardNode"
         },
         {
           "$ref": "#/$defs/LedgerSpendSoFarThisMonthNode"

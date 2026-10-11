@@ -178,6 +178,8 @@ export type Node =
   | AsyncImageNode
   | AsyncImageGroupNode
   | LottieNode
+  | LinkCardNode
+  | RecommendationLinkCardNode
   | LedgerSpendSoFarThisMonthNode
   | LedgerUpcomingActivityNode
   | ImageGridNode
@@ -363,6 +365,103 @@ export type CodeNode1 =
       inline?: false;
       copy?: boolean;
       highlight?: boolean;
+    };
+export type LinkNode = LinkNode1 & {
+  type: "link";
+  id?: string;
+  value?: Value;
+  href?: string;
+  url?: string;
+  title?: string;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  source?: string;
+  snippet?: string;
+  faviconSrc?: string;
+  imageSrc?: string;
+  mobile?: boolean;
+  hostLink?: boolean;
+  copyLabel?: string;
+  loadImageLabel?: string;
+  /**
+   * @minItems 0
+   * @maxItems 32
+   */
+  children?: Node[];
+};
+export type LinkNode1 =
+  | {
+      type?: "link";
+      id?: string;
+      value: Value;
+      href: string;
+      url?: string;
+      title?: string;
+      status?: "pending" | "resolved" | "failed";
+      fallback?: string;
+      disabled?: boolean;
+      source?: string;
+      snippet?: string;
+      faviconSrc?: string;
+      imageSrc?: string;
+      mobile?: boolean;
+      hostLink?: boolean;
+      copyLabel?: string;
+      loadImageLabel?: string;
+      /**
+       * @minItems 0
+       * @maxItems 32
+       */
+      children?: Node[];
+    }
+  | {
+      type?: "link";
+      id?: string;
+      value?: Value;
+      href?: string;
+      url: string;
+      title?: string;
+      status?: "pending" | "resolved" | "failed";
+      fallback?: string;
+      disabled?: boolean;
+      source?: string;
+      snippet?: string;
+      faviconSrc?: string;
+      imageSrc?: string;
+      mobile?: boolean;
+      hostLink?: boolean;
+      copyLabel?: string;
+      loadImageLabel?: string;
+      /**
+       * @minItems 0
+       * @maxItems 32
+       */
+      children?: Node[];
+    }
+  | {
+      type?: "link";
+      id?: string;
+      value?: Value;
+      href?: string;
+      url?: string;
+      title?: string;
+      status: "pending" | "failed";
+      fallback?: string;
+      disabled?: boolean;
+      source?: string;
+      snippet?: string;
+      faviconSrc?: string;
+      imageSrc?: string;
+      mobile?: boolean;
+      hostLink?: boolean;
+      copyLabel?: string;
+      loadImageLabel?: string;
+      /**
+       * @minItems 0
+       * @maxItems 32
+       */
+      children?: Node[];
     };
 export type LoadingBlockNode = {
   type: "loading-block";
@@ -1688,12 +1787,6 @@ export interface SpacerNode {
   type: "spacer";
   id?: string;
   height?: number;
-}
-export interface LinkNode {
-  type: "link";
-  id?: string;
-  value: Value;
-  href: string;
 }
 export interface FaviconNode {
   type: "favicon";
@@ -4093,6 +4186,40 @@ export interface LottieData {
    */
   assets?: LottieJSON[];
   [k: string]: LottieJSON;
+}
+export interface LinkCardNode {
+  type: "link-card";
+  id?: string;
+  url?: string;
+  title?: string;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  source?: string;
+  snippet?: string;
+  faviconSrc?: string;
+  imageSrc?: string;
+  mobile?: boolean;
+  hostLink?: boolean;
+  copyLabel?: string;
+  loadImageLabel?: string;
+}
+export interface RecommendationLinkCardNode {
+  type: "recommendation-link-card";
+  id?: string;
+  url?: string;
+  title?: string;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  source?: string;
+  snippet?: string;
+  faviconSrc?: string;
+  imageSrc?: string;
+  mobile?: boolean;
+  hostLink?: boolean;
+  copyLabel?: string;
+  loadImageLabel?: string;
 }
 export interface LedgerSpendSoFarThisMonthNode {
   type: "ledger-spend-so-far-this-month";

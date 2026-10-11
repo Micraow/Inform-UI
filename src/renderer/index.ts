@@ -1,3 +1,5 @@
+import{renderSuppliedLink}from'./supplied-links.js';
+import suppliedLinkStyles from './supplied-links.css';
 import {renderSpendMonth} from './spend-month.js';
 import spendMonthStyles from './spend-month.css';
 import {renderUpcomingActivity} from './upcoming-activity.js';
@@ -119,7 +121,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -282,6 +284,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'link-card':case 'recommendation-link-card':out=renderSuppliedLink(context,n,root,container);break;
       case 'ledger-spend-so-far-this-month':out=renderSpendMonth(context,n,root);break;
       case 'ledger-upcoming-activity':out=renderUpcomingActivity(context,n,root,container);break;
       case 'image-grid':out=renderImageGrid(context,n,root,container);break;
@@ -350,9 +353,10 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'divider': out = element('hr'); break;
       case 'spacer': out = element('div'); out.style.height = `${n.height ?? 16}px`; out.setAttribute('aria-hidden','true'); break;
       case 'link': {
+        if(n.href===undefined){out=renderSuppliedLink(context,n,root,container);break;}
         const anchor = element('a'); out=anchor; anchor.href = n.href.startsWith('#') ? `#${prefix}${n.href.slice(1)}` : n.href;
         if (!n.href.startsWith('#')) { anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; }
-        const target = out; bind(() => target.textContent = text(value(n.value))); break;
+        const target = out; bind(() => target.textContent = text(value(n.value!))); break;
       }
       case 'favicon': out=renderFavicon(context,n,labels.faviconUI); break;
       case 'image': {

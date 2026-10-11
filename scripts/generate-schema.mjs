@@ -420,6 +420,10 @@ Object.assign(defs,JSON.parse(await readFile(new URL('./async-image-definitions.
 Object.assign(defs,JSON.parse(await readFile(new URL('./lottie-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LottieNode'));owners.lottie='base';
 // Exact supplied income labels; no estimation, account lookup or date prediction.
 defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+const suppliedLinkProps={url:string(2048,1),title:short,status:choice('pending','resolved','failed'),fallback:short,disabled:bool,source:short,snippet:string(2000,1),faviconSrc:string(200000,1),imageSrc:string(200000,1),mobile:bool,hostLink:bool,copyLabel:short,loadImageLabel:short};
+Object.assign(defs.LinkNode.properties,{...suppliedLinkProps,children:array(ref('Node'),0,32)});defs.LinkNode.required=['type'];defs.LinkNode.anyOf=[object(defs.LinkNode.properties,['value','href']),object(defs.LinkNode.properties,['url']),object({...defs.LinkNode.properties,status:choice('pending','failed')},['status'])];
+node('link-card',suppliedLinkProps,[],'base');
+node('recommendation-link-card',suppliedLinkProps,[],'base');
 defs.SpendTrendPoint=object({day:integer(0,31),value:{anyOf:[number,{type:'null'}]},label:{anyOf:[short,{type:'null'}]}},['day','value','label']);
 defs.SpendTrendSeries=object({id:key,label:short,totalValue:{anyOf:[number,{type:'null'}]},totalLabel:{anyOf:[short,{type:'null'}]},dayCount:integer(1,31),points:array(ref('SpendTrendPoint'),0,32),current:bool,daysElapsed:integer(0,31),groupLabel:short},['id','label','totalValue','totalLabel','dayCount','points']);
 defs.SpendCategory=object({id:key,label:short,amountLabel:{anyOf:[short,{type:'null'}]},fraction:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]}},['id','label','amountLabel','fraction']);
