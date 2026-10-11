@@ -1,3 +1,4 @@
+import {installAutomationSchema} from './automation-schema.mjs';
 import {promptChecklistSchema} from './prompt-checklist-schema.mjs';
 import {financeStatusSchema} from './finance-status-schema.mjs';
 import {recommendationCardSchema} from './recommendation-card-schema.mjs';
@@ -450,6 +451,8 @@ defs.FollowUpAction=object({id:key,label:short,query:{type:'string',maxLength:20
 node('follow-up-action-bar',{label:short,actions:array(ref('FollowUpAction'),0,12),disabled:bool,presentation:{enum:['flat','footer','wrapped_pills']},status:{enum:['pending','resolved','failed']},fallback:{type:'string',maxLength:2000}},['actions']);
 node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimatedMonthlyIncomeLabel:short,incomeSourcesLabel:short,nextPaycheck:{anyOf:[ref('LedgerIncomePaycheck'),{type:'null'}]},emptyLabel:string(2000),masked:bool,maskedLabel:short,estimatedLabel:short,nextPaycheckLabel:short,recurringIncomeLabel:short,noUpcomingLabel:string(2000),dateUnavailableLabel:short,source:ref('LedgerSource')},['label','hasIncome'],'finance');
 Object.assign(defs,JSON.parse(await readFile(new URL('./async-video-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncVideoCarouselNode'));owners['async-video-carousel']='base';
+
+installAutomationSchema({node,defs});
 
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };

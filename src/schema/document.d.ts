@@ -188,7 +188,10 @@ export type Node =
   | ConversationSuggestionsNode
   | FollowUpActionBarNode
   | LedgerIncomeTrackerNode
-  | AsyncVideoCarouselNode;
+  | AsyncVideoCarouselNode
+  | DisplayAutomationNode
+  | ListAutomationsNode
+  | AutomationPlanSummaryNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -4560,4 +4563,78 @@ export interface AsyncVideoItem {
   title: string;
   url: string;
   thumbnailUrl?: string;
+}
+export interface DisplayAutomationNode {
+  type: "display-automation";
+  id?: string;
+  label: string;
+  status?: "pending" | "failed" | "resolved";
+  fallback?: string;
+  disabled?: boolean;
+  item?: {
+    id: string;
+    title: string;
+    scheduleLabel: string;
+    url: string;
+    emoji?: string;
+    disabled?: boolean;
+  };
+}
+export interface ListAutomationsNode {
+  type: "list-automations";
+  id?: string;
+  label: string;
+  status?: "pending" | "failed" | "resolved";
+  fallback?: string;
+  disabled?: boolean;
+  headerLabel?: string;
+  emptyLabel?: string;
+  /**
+   * @maxItems 100
+   */
+  items?: {
+    id: string;
+    title: string;
+    scheduleLabel: string;
+    url: string;
+    emoji?: string;
+    disabled?: boolean;
+  }[];
+  viewAll?: {
+    label: string;
+    url: string;
+  };
+}
+export interface AutomationPlanSummaryNode {
+  type: "automation-plan-summary";
+  id?: string;
+  label: string;
+  status?: "pending" | "failed" | "resolved";
+  fallback?: string;
+  disabled?: boolean;
+  title?: string;
+  goalLabel?: string;
+  layout?: "chat" | "library";
+  planType?: "automation" | "language_learning";
+  mobile?: boolean;
+  collapsed?: boolean;
+  completedExpanded?: boolean;
+  showPlanLabel?: string;
+  hidePlanLabel?: string;
+  showCompletedLabel?: string;
+  completedCountLabel?: string;
+  summaryErrorLabel?: string;
+  emptyLabel?: string;
+  steps?:
+    | {
+        id: string;
+        title: string;
+        status: "completed" | "in_progress" | "pending";
+      }[]
+    | null;
+  statusLabels?: {
+    completed: string;
+    in_progress: string;
+    pending: string;
+  };
 }

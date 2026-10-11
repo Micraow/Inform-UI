@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:6f6906e2f42a6ae14137fc7fe0d9d2e9a72e0846092f2c8c96482fbb58ebd4c6:document:base",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:46df7d86b0758876e67ce30d988685294f662ae7665edc805c054381d18ac685:document:base",
   "title": "Inform UI document subset: base",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -777,6 +777,203 @@
         "url"
       ],
       "additionalProperties": false
+    },
+    "AutomationPlanSummaryNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "automation-plan-summary"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "failed",
+            "resolved"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "goalLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "layout": {
+          "enum": [
+            "chat",
+            "library"
+          ]
+        },
+        "planType": {
+          "enum": [
+            "automation",
+            "language_learning"
+          ]
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "collapsed": {
+          "type": "boolean"
+        },
+        "completedExpanded": {
+          "type": "boolean"
+        },
+        "showPlanLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hidePlanLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showCompletedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "completedCountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summaryErrorLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "steps": {
+          "anyOf": [
+            {
+              "type": "array",
+              "maxItems": 100,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "status": {
+                    "enum": [
+                      "completed",
+                      "in_progress",
+                      "pending"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "status"
+                ],
+                "additionalProperties": false
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "statusLabels": {
+          "type": "object",
+          "properties": {
+            "completed": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "in_progress": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "pending": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "completed",
+            "in_progress",
+            "pending"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "steps": false
+        }
+      },
+      "else": {
+        "properties": {
+          "title": {},
+          "goalLabel": {},
+          "steps": {},
+          "statusLabels": {}
+        },
+        "required": [
+          "title",
+          "goalLabel",
+          "steps",
+          "statusLabels"
+        ]
+      }
     },
     "BadgeNode": {
       "type": "object",
@@ -2225,6 +2422,111 @@
         "legs"
       ],
       "additionalProperties": false
+    },
+    "DisplayAutomationNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "display-automation"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "failed",
+            "resolved"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "item": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "scheduleLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            "emoji": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "disabled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "scheduleLabel",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "item": false
+        }
+      },
+      "else": {
+        "properties": {
+          "item": {}
+        },
+        "required": [
+          "item"
+        ]
+      }
     },
     "DividerNode": {
       "type": "object",
@@ -4905,6 +5207,150 @@
         }
       ]
     },
+    "ListAutomationsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "list-automations"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "failed",
+            "resolved"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "headerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "scheduleLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "emoji": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "scheduleLabel",
+              "url"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "viewAll": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "items": false,
+          "viewAll": false
+        }
+      },
+      "else": {
+        "properties": {
+          "headerLabel": {},
+          "emptyLabel": {},
+          "items": {}
+        },
+        "required": [
+          "headerLabel",
+          "emptyLabel",
+          "items"
+        ]
+      }
+    },
     "ListNode": {
       "type": "object",
       "properties": {
@@ -6036,6 +6482,15 @@
         },
         {
           "$ref": "#/$defs/AsyncVideoCarouselNode"
+        },
+        {
+          "$ref": "#/$defs/DisplayAutomationNode"
+        },
+        {
+          "$ref": "#/$defs/ListAutomationsNode"
+        },
+        {
+          "$ref": "#/$defs/AutomationPlanSummaryNode"
         }
       ]
     },

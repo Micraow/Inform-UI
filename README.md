@@ -1,3 +1,7 @@
+# Supplied automation functional candidates
+
+DisplayAutomation, ListAutomations and AutomationPlanSummary add three original finite supplied-data views and cancelable local requests. Registration is161; canonical coverage remains152/1/103 pending independent review of the new family. Packaged CDN remains unified154. No new native/pixel result is claimed. See [the contract](docs/automation-contract.md).
+
 # Current functional scope:152 /1 /103
 
 TabbedSection and VisualCardCarousel passed the original12 independent ordinary-function cases after the query-only card fix. Coverage is152 complete implementations (53 historical acceptances and99 pending full acceptance),1 partial Weather and103 missing;158 registered protocols. New native/pixel acceptance remains pending. Packaged CDN stays unified154. The preceding38d7 candidate had11/12 and is preserved in its original evidence.

@@ -1,3 +1,4 @@
+import {inspectAutomation} from './automation.js';
 import{inspectTabbedVisual}from'./tabbed-visual.js';
 import{inspectSuppliedLink}from'./supplied-links.js';
 import {inspectSpendMonth} from './spend-month.js';
@@ -380,6 +381,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='f1-races'||node.type==='f1-standings')inspectMotorsport(node,path,add,isSafeURL);
     if(node.type==='nba-player-summary'||node.type==='tennis-player-summary')inspectPlayerSummary(node,path,add,isSafeURL);
     if(node.type==='ledger-accounts'||node.type==='ledger-recurring-transactions')inspectLedgerRecords(node,path,add,isSafeURL);
+    if(node.type==='display-automation'||node.type==='list-automations'||node.type==='automation-plan-summary')inspectAutomation(node,path,add,isSafeURL);
     if(node.type==='prompt-checklist')inspectPromptChecklist(node,path,add,isSafeURL);
     if(node.type==='ledger-finance-status-banner')inspectFinanceStatus(node,path,add);
     if(node.type==='recommendation-card')inspectRecommendationCard(node,path,add,isSafeURL);

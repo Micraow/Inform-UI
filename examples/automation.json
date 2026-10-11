@@ -1,0 +1,71 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "display-automation",
+      "label": "Your scheduled review",
+      "item": {
+        "id": "morning",
+        "title": "Review field notes",
+        "scheduleLabel": "Every weekday at 09:00",
+        "url": "https://example.test/automations/morning",
+        "emoji": "📓"
+      }
+    },
+    {
+      "type": "list-automations",
+      "label": "Supplied scheduled tasks",
+      "headerLabel": "Scheduled tasks",
+      "emptyLabel": "No tasks supplied",
+      "items": [
+        {
+          "id": "morning",
+          "title": "Review field notes",
+          "scheduleLabel": "Every weekday at 09:00",
+          "url": "https://example.test/automations/morning",
+          "emoji": "📓"
+        }
+      ],
+      "viewAll": {
+        "label": "View all tasks",
+        "url": "https://example.test/automations"
+      }
+    },
+    {
+      "type": "automation-plan-summary",
+      "label": "Field guide plan",
+      "title": "Prepare a field guide",
+      "goalLabel": "Your plan",
+      "showPlanLabel": "Show plan",
+      "hidePlanLabel": "Hide plan",
+      "showCompletedLabel": "Show completed steps",
+      "statusLabels": {
+        "completed": "Completed",
+        "in_progress": "In progress",
+        "pending": "Pending"
+      },
+      "steps": [
+        {
+          "id": "scope",
+          "title": "Select a topic",
+          "status": "completed"
+        },
+        {
+          "id": "notes",
+          "title": "Gather notes",
+          "status": "completed"
+        },
+        {
+          "id": "draft",
+          "title": "Draft the guide",
+          "status": "in_progress"
+        },
+        {
+          "id": "review",
+          "title": "Review the draft",
+          "status": "pending"
+        }
+      ]
+    }
+  ]
+}

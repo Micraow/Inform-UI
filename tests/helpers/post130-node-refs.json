@@ -26,5 +26,8 @@
   "#/$defs/LinkCardNode",
   "#/$defs/RecommendationLinkCardNode",
   "#/$defs/TabbedSectionNode",
-  "#/$defs/VisualCardCarouselNode"
+  "#/$defs/VisualCardCarouselNode",
+  "#/$defs/DisplayAutomationNode",
+  "#/$defs/ListAutomationsNode",
+  "#/$defs/AutomationPlanSummaryNode"
 ]
