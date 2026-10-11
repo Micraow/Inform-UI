@@ -32,7 +32,7 @@ test('person-profile canonical full/Base schemas have closed refs and accept eve
   assert.equal(validateDocument(spec(person({name:'😀'.repeat(200)}))).ok,true);
   assert.equal(validateDocument(spec(person({biography:'😀'.repeat(6000),facts:[fact({value:'😀'.repeat(2000)})]}))).ok,true);
   const index=JSON.parse(await readFile(new URL('../src/schema/fragments/index.json',import.meta.url),'utf8'));assert.equal(index.nodeOwners['person-profile'],'base');
-  assert.equal(Object.hasOwn(index.nodeOwners,'entity-card'),false);assert.equal(Object.hasOwn(index.nodeOwners,'entity-overview'),false);
+  assert.equal(index.nodeOwners['entity-card'],'base');assert.equal(index.nodeOwners['entity-overview'],'base');const full=JSON.parse(await readFile(new URL('../src/schema/iui.schema.json',import.meta.url),'utf8'));assert.notDeepEqual(full.$defs.PersonProfileNode,full.$defs.EntityCardNode);assert.notDeepEqual(full.$defs.PersonProfileNode,full.$defs.EntityOverviewNode);
 });
 
 test('person-profile every optional combination renders only supplied fields and never fabricates metadata',()=>{

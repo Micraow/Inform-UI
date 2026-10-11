@@ -18,7 +18,7 @@ const slider = { type: 'slider', label: 'Gain', bind: 'gain', min: 0, max: 10, s
 const chart = { type: 'chart', kind: 'line', xKey: 'x', data: [{ x: 'A', y: 1 }, { x: 'B', y: null }], series: [{ key: 'y', label: 'Value' }] };
 const svg = (attrs) => ({ type: 'svg', viewBox: '0 0 100 100', shapes: [{ tag: 'rect', attrs }] });
 
-test('all original examples validate; current public contract has the exact 162-node registry', async () => {
+test('all original examples validate; current public contract has the exact 164-node registry', async () => {
   for (const file of await readdir(new URL('../examples/', import.meta.url))) {
     if (!file.endsWith('.json')) continue;
     const input = JSON.parse(await readFile(new URL(`../examples/${file}`, import.meta.url), 'utf8'));
@@ -27,9 +27,9 @@ test('all original examples validate; current public contract has the exact 162-
   }
   const schema = JSON.parse(await readFile(new URL('../src/schema/iui.schema.json', import.meta.url), 'utf8'));
   assert.equal(schema.$schema, 'https://json-schema.org/draft/2020-12/schema');
-  assert.deepEqual(schema.$defs.Node.oneOf,JSON.parse(await readFile(new URL('./current-node-order-162.json',import.meta.url),'utf8')));
-  assert.equal(schema.$defs.Node.oneOf.length,162);
-  assert.deepEqual(schema.$defs.Node.oneOf.filter(item=>!['#/$defs/LinkCardNode','#/$defs/RecommendationLinkCardNode','#/$defs/TabbedSectionNode','#/$defs/VisualCardCarouselNode','#/$defs/DisplayAutomationNode','#/$defs/ListAutomationsNode','#/$defs/AutomationPlanSummaryNode','#/$defs/ScheduledTaskSuggestionNode'].includes(item.$ref)),JSON.parse(await readFile(new URL('./current-node-order-154.json',import.meta.url),'utf8')));
+  assert.deepEqual(schema.$defs.Node.oneOf,JSON.parse(await readFile(new URL('./current-node-order-164.json',import.meta.url),'utf8')));
+  assert.equal(schema.$defs.Node.oneOf.length,164);
+  assert.deepEqual(schema.$defs.Node.oneOf.filter(item=>!['#/$defs/LinkCardNode','#/$defs/RecommendationLinkCardNode','#/$defs/TabbedSectionNode','#/$defs/VisualCardCarouselNode','#/$defs/DisplayAutomationNode','#/$defs/ListAutomationsNode','#/$defs/AutomationPlanSummaryNode','#/$defs/ScheduledTaskSuggestionNode','#/$defs/EntityCardNode','#/$defs/EntityOverviewNode'].includes(item.$ref)),JSON.parse(await readFile(new URL('./current-node-order-154.json',import.meta.url),'utf8')));
 });
 
 test('successful validation clones, normalizes and deeply freezes data', () => {

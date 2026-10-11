@@ -30,5 +30,7 @@
   "#/$defs/DisplayAutomationNode",
   "#/$defs/ListAutomationsNode",
   "#/$defs/AutomationPlanSummaryNode",
-  "#/$defs/ScheduledTaskSuggestionNode"
+  "#/$defs/ScheduledTaskSuggestionNode",
+  "#/$defs/EntityCardNode",
+  "#/$defs/EntityOverviewNode"
 ]

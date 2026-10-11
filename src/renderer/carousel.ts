@@ -1,6 +1,7 @@
 import type { RendererContext } from './context.js';
 import type { CarouselNode } from '../schema/document.js';
 import type { CarouselLabels } from './carousel-labels.js';
+import type { RenderGeneration } from './generation.js';
 import { measureRail, logicalOffset, physicalOffset } from './source-geometry.js';
 import type { RTLScrollModel } from './source-geometry.js';
 let serial = 0;
@@ -25,7 +26,7 @@ export function renderCarousel(c: RendererContext, n: CarouselNode, labels: Caro
   out.append(toolbar, rail, position);
   const cards = n.children.map(child => { const card = c.render(child); rail.append(card); return card; });
   if (!cards.length) { position.textContent = labels.empty; return out; }
-  const win = c.doc.defaultView; let disposed = false, frame: number | undefined;
+  const win = c.doc.defaultView; let disposed = false, frame: RenderGeneration | undefined;
   const isRTL = () => win?.getComputedStyle(rail).direction === 'rtl';
   const refresh = () => {
     if (disposed) return;
@@ -41,8 +42,26 @@ export function renderCarousel(c: RendererContext, n: CarouselNode, labels: Caro
   };
   const schedule = () => {
     if (disposed || frame !== undefined) return;
-    if (!win?.requestAnimationFrame) { refresh(); return; }
-    frame = win.requestAnimationFrame(() => { frame = undefined; refresh(); });
+    const request = c.lifecycle.during(() => win?.requestAnimationFrame);
+    if (!request) { refresh(); return; }
+    // Own the pending task before registration: a host hook may replace us
+    // before returning its frame ID. acquire compensates that late resource.
+    const pending = c.lifecycle.fork(() => !disposed); frame = pending;
+    let registering = true, registered = false, completed = false;
+    try {
+      pending.acquire(() => request.call(win, pending.guard(() => {
+        completed = true;
+        if (frame === pending) frame = undefined;
+        try { refresh(); } finally { if (!registering) pending.dispose(); }
+      })), id => win!.cancelAnimationFrame(id));
+      registered = true;
+    } finally {
+      registering = false;
+      if (!registered || completed) {
+        if (frame === pending) frame = undefined;
+        pending.dispose();
+      }
+    }
   };
   /** Detect only on an attached, actually overflowing RTL rail. A synchronous
    * one-pixel probe is restored before returning and never alters focus. */
@@ -82,6 +101,6 @@ export function renderCarousel(c: RendererContext, n: CarouselNode, labels: Caro
     }
   }
   if (c.doc.fonts) c.on(c.doc.fonts, 'loadingdone', schedule);
-  c.cleanup(() => { disposed = true; if (frame !== undefined) win?.cancelAnimationFrame(frame); frame = undefined; });
+  c.cleanup(() => { disposed = true; frame?.dispose(); frame = undefined; });
   refresh(); schedule(); return out;
 }

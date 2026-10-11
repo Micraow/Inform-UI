@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T12:25:07.745352+00:00",
+  "as_of_utc": "2026-10-11T12:45:41.774018+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 102,
+    "implemented_pending_verification": 105,
     "functionally_verified": 53,
-    "not_implemented": 100,
+    "not_implemented": 97,
     "partial": 1
   },
-  "completeImplementationCoverage": 155,
-  "registeredProtocolNodes": 162,
+  "completeImplementationCoverage": 158,
+  "registeredProtocolNodes": 164,
   "components": [
     {
       "id": "base-animate",
@@ -484,8 +484,8 @@
       "id": "scheduled-task-suggestion",
       "name": "Offer Scheduled Prompt",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied-data functionality independently verified on164; new native and reference pixel acceptance remain pending."
     },
     {
       "id": "email-draft",
@@ -533,15 +533,15 @@
       "id": "entity-overview",
       "name": "Entity Overview",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied-data functionality independently verified on164; new native and reference pixel acceptance remain pending."
     },
     {
       "id": "entity-card",
       "name": "Entity Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied-data functionality independently verified on164; new native and reference pixel acceptance remain pending."
     },
     {
       "id": "prompt-suggestions",
@@ -646,7 +646,7 @@
       "name": "Automation Plan Summary",
       "layer": "domain",
       "status": "implemented_pending_verification",
-      "note": "Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending."
+      "note": "Whole-plan-collapse/reset regression repaired; original negative replay and14 independent tests plus8 consumer flows passed. Native and reference pixel acceptance remain pending."
     },
     {
       "id": "basketball-tournament",

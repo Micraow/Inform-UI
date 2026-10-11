@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {projectHistoricalDefinition} from './helpers/historical-node-projection.mjs';
+const full=JSON.parse(await readFile(new URL('../src/schema/iui.schema.json',import.meta.url),'utf8')),legacy=JSON.parse(await readFile(new URL('./helpers/legacy-link154-definition.json',import.meta.url),'utf8'));
+test('reviewed link extension projects to exact unchanged legacy primitive',()=>assert.deepEqual(projectHistoricalDefinition('LinkNode',full.$defs.LinkNode),legacy));
+test('projection cannot conceal changes to old or newly approved link fields',()=>{for(const change of [d=>d.properties.href.maxLength=5,d=>d.properties.title.maxLength=1,d=>d.properties.unreviewed={type:'string'},d=>d.anyOf.pop()]){const d=structuredClone(full.$defs.LinkNode);change(d);assert.throws(()=>projectHistoricalDefinition('LinkNode',d));}});
+test('projection leaves every unrelated definition unchanged',()=>{for(const[name,definition]of Object.entries(full.$defs))if(name!=='LinkNode')assert.equal(projectHistoricalDefinition(name,definition),definition);});

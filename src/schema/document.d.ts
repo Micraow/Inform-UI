@@ -192,7 +192,9 @@ export type Node =
   | DisplayAutomationNode
   | ListAutomationsNode
   | AutomationPlanSummaryNode
-  | ScheduledTaskSuggestionNode;
+  | ScheduledTaskSuggestionNode
+  | EntityCardNode
+  | EntityOverviewNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -4650,4 +4652,81 @@ export interface ScheduledTaskSuggestionNode {
   disabled?: boolean;
   status?: "pending" | "resolved" | "failed";
   fallback?: string;
+}
+export interface EntityCardNode {
+  type: "entity-card";
+  id?: string;
+  label: string;
+  status?: "pending" | "failed" | "resolved";
+  fallback?: string;
+  disabled?: boolean;
+  loadImageLabel?: string;
+  title?: string;
+  subtitle?: string;
+  image?: {
+    src: string;
+    alt?: string;
+  } | null;
+  actionId?: string;
+  actionLabel?: string;
+}
+export interface EntityOverviewNode {
+  type: "entity-overview";
+  id?: string;
+  label: string;
+  status?: "pending" | "failed" | "resolved";
+  fallback?: string;
+  disabled?: boolean;
+  loadImageLabel?: string;
+  variant?: "single" | "carousel";
+  item?: {
+    id: string;
+    title: string;
+    /**
+     * @maxItems 12
+     */
+    images: {
+      src: string;
+      alt?: string;
+    }[];
+    /**
+     * @maxItems 20
+     */
+    metadata: {
+      label: string;
+      value: string;
+    }[];
+    description?: string;
+    actionId?: string;
+    actionLabel?: string;
+    disabled?: boolean;
+  };
+  /**
+   * @maxItems 50
+   */
+  items?: {
+    id: string;
+    title: string;
+    /**
+     * @maxItems 12
+     */
+    images: {
+      src: string;
+      alt?: string;
+    }[];
+    /**
+     * @maxItems 20
+     */
+    metadata: {
+      label: string;
+      value: string;
+    }[];
+    description?: string;
+    actionId?: string;
+    actionLabel?: string;
+    disabled?: boolean;
+  }[];
+  emptyLabel?: string;
+  title?: string;
+  mobile?: boolean;
 }

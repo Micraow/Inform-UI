@@ -1,3 +1,4 @@
+import {inspectEntity} from './entity.js';
 import {inspectScheduledSuggestion} from './scheduled-suggestion.js';
 import {inspectAutomation} from './automation.js';
 import{inspectTabbedVisual}from'./tabbed-visual.js';
@@ -384,6 +385,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='ledger-accounts'||node.type==='ledger-recurring-transactions')inspectLedgerRecords(node,path,add,isSafeURL);
     if(node.type==='display-automation'||node.type==='list-automations'||node.type==='automation-plan-summary')inspectAutomation(node,path,add,isSafeURL);
     if(node.type==='scheduled-task-suggestion')inspectScheduledSuggestion(node,path,add);
+    if(node.type==='entity-card'||node.type==='entity-overview')inspectEntity(node,path,add,isSafeURL);
     if(node.type==='prompt-checklist')inspectPromptChecklist(node,path,add,isSafeURL);
     if(node.type==='ledger-finance-status-banner')inspectFinanceStatus(node,path,add);
     if(node.type==='recommendation-card')inspectRecommendationCard(node,path,add,isSafeURL);

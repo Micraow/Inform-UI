@@ -1,3 +1,17 @@
+# Unified164 functional source candidate
+
+Canonical coverage is158 complete functional implementations (53 historical acceptances and105 pending full acceptance),1 partial Weather and97 missing. Protocol registration is164. ScheduledTaskSuggestion and the two Entity views passed13 independent cases; the repaired automation plan passed its14-case replay. These source-build checks do not claim new native/pixel acceptance.
+
+The first unified local full run finished3147/3157: nine historical schema assertions needed the explicitly reviewed Link156 projection, and one historical person-profile assertion still expected the newly implemented Entity nodes to be absent. The original failure is preserved. Strict projection guards retain all old hashes and reject drift in either old or newly reviewed fields. A second complete local run and one combined native batch are required before publication of the new generated package.
+
+# Current functional scope:155 /1 /100
+
+The AutomationPlanSummary reset regression is repaired and its exact failing case now passes with14 independent cases and8 consumer flows on the fixed source. It is restored to implemented-pending. The prior scope rollback remains recorded below. Entity and Scheduled suggestions are still awaiting their independent functional decisions; protocol registration is164. New native/pixel results are pending.
+
+# Current functional regression status:154 /2 /100
+
+AutomationPlanSummary has a newly confirmed whole-plan-collapse/reset regression; its earlier13 passing cases did not cover that combination. DisplayAutomation and ListAutomations remain functionally implemented. A scoped repair and independent replay are required before restoring the plan status. Entity integration is a candidate only;164 protocol registrations do not increase this count. Earlier frozen checkpoints below retain their original results.
+
 # Supplied scheduled-task suggestion candidate
 
 One original finite suggestion view adds two local cancelable acceptance branches and a one-shot visible receipt. It performs no real scheduling or conversation operation. Registration is162; canonical coverage stays155/1/100 until independent functional review. Packaged CDN stays unified154. See [the contract](docs/scheduled-suggestion.md).

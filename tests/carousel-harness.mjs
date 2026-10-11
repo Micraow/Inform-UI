@@ -4,6 +4,7 @@ import {build} from 'esbuild';
 import {fileURLToPath} from 'node:url';
 const fromSource=async name=>{const output=await build({entryPoints:[fileURLToPath(new URL('../src/renderer/'+name,import.meta.url))],bundle:true,write:false,format:'esm',platform:'node',target:'es2022'});return import('data:text/javascript;base64,'+Buffer.from(output.outputFiles[0].text).toString('base64'));};
 const {renderCarousel}=await fromSource('carousel.ts');
+const {renderGeneration}=await fromSource('generation.ts');
 const {carouselEnglish,carouselChinese}=await fromSource('carousel-labels.ts');
 export const {measureRail,logicalOffset,physicalOffset}=await fromSource('source-geometry.ts');
 let instance = 0;
@@ -12,12 +13,13 @@ export function setup({dom = new JSDOM('<!doctype html><html><body></body></html
   const labels = /^zh(?:-|$)/i.test(lang) ? carouselChinese : carouselEnglish;
   let removers=[], disposed=false, nextFrame=0; const frames=new Map(), observers=new Set();
   const metrics={listeners:0, observed:0, disconnects:0};
+  let life=renderGeneration(()=>!disposed);
   win.requestAnimationFrame = cb => { const id=++nextFrame; frames.set(id,cb); return id; };
   win.cancelAnimationFrame = id => frames.delete(id);
   win.ResizeObserver = class { constructor(cb){this.cb=cb;observers.add(this);} observe(){metrics.observed++;} disconnect(){metrics.disconnects++;observers.delete(this);} };
-  const c={render(node){const el=doc.createElement(node.type==='svg'?'svg':'div');el.textContent=node.value??node.type;el.dataset.child=node.type;return el;},doc,prefix:`test-source-${++instance}-`,element(tag,cls='',value){const el=doc.createElement(tag);el.className=cls;if(value!==undefined)el.textContent=String(value);return el;},on(target,name,fn){metrics.listeners++;target.addEventListener(name,fn);removers.push(()=>{metrics.listeners--;target.removeEventListener(name,fn);});},cleanup(fn){removers.push(fn);}};
+  const c={get lifecycle(){return life;},render(node){const el=doc.createElement(node.type==='svg'?'svg':'div');el.textContent=node.value??node.type;el.dataset.child=node.type;return el;},doc,prefix:`test-source-${++instance}-`,element(tag,cls='',value){const el=doc.createElement(tag);el.className=cls;if(value!==undefined)el.textContent=String(value);return el;},on(target,name,fn){metrics.listeners++;target.addEventListener(name,fn);removers.push(()=>{metrics.listeners--;target.removeEventListener(name,fn);});},cleanup(fn){removers.push(fn);}};
   const mount = node => {if(disposed)throw new Error('Disposed');const out=renderCarousel(c,node,labels);out.dataset.iui=node.type;if(node.id)out.id=c.prefix+node.id;root.append(out);return out;};
-  const clear=()=>{const pending=removers;removers=[];for(const fn of pending)fn();};
+  const clear=()=>{life.dispose();life=renderGeneration(()=>!disposed);const pending=removers;removers=[];for(const fn of pending)fn();};
   const flush=()=>{for(let rounds=0;frames.size;rounds++){if(rounds>5)throw new Error('Unexpected frame loop');const pending=[...frames];frames.clear();for(const[,fn]of pending)fn();}};
   return {dom,doc,win,root,c,labels,metrics,mount,flush,frames,observers,resize(){for(const observer of observers)observer.cb();flush();},update(nodes){clear();root.replaceChildren();return nodes.map(mount);},dispose(){if(disposed)return;disposed=true;clear();root.replaceChildren();root.remove();}};
 }

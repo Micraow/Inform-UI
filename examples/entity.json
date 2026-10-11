@@ -1,0 +1,92 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "entity-card",
+      "label": "Supplied entity card",
+      "title": "Original observatory",
+      "subtitle": "An authored description",
+      "image": null,
+      "actionId": "inspect-observatory"
+    },
+    {
+      "type": "entity-overview",
+      "label": "Supplied entity overview",
+      "item": {
+        "id": "landmark1",
+        "title": "Original landmark 1",
+        "images": [],
+        "metadata": [
+          {
+            "label": "District",
+            "value": "North quarter"
+          },
+          {
+            "label": "Type",
+            "value": "Public garden"
+          }
+        ],
+        "description": "A supplied example description. No lookup is performed.",
+        "actionId": "inspect-1"
+      }
+    },
+    {
+      "type": "entity-overview",
+      "label": "Supplied entity collection",
+      "variant": "carousel",
+      "items": [
+        {
+          "id": "landmark2",
+          "title": "Original landmark 2",
+          "images": [],
+          "metadata": [
+            {
+              "label": "District",
+              "value": "North quarter"
+            },
+            {
+              "label": "Type",
+              "value": "Public garden"
+            }
+          ],
+          "description": "A supplied example description. No lookup is performed.",
+          "actionId": "inspect-2"
+        },
+        {
+          "id": "landmark3",
+          "title": "Original landmark 3",
+          "images": [],
+          "metadata": [
+            {
+              "label": "District",
+              "value": "North quarter"
+            },
+            {
+              "label": "Type",
+              "value": "Public garden"
+            }
+          ],
+          "description": "A supplied example description. No lookup is performed.",
+          "actionId": "inspect-3"
+        },
+        {
+          "id": "landmark4",
+          "title": "Original landmark 4",
+          "images": [],
+          "metadata": [
+            {
+              "label": "District",
+              "value": "North quarter"
+            },
+            {
+              "label": "Type",
+              "value": "Public garden"
+            }
+          ],
+          "description": "A supplied example description. No lookup is performed.",
+          "actionId": "inspect-4"
+        }
+      ]
+    }
+  ]
+}

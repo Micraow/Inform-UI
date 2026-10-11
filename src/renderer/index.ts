@@ -1,3 +1,5 @@
+import {renderEntity} from './entity.js';
+import entityStyles from './entity.css';
 import {renderScheduledSuggestion} from './scheduled-suggestion.js';
 import scheduledSuggestionStyles from './scheduled-suggestion.css';
 import {renderAutomation} from './automation.js';
@@ -127,7 +129,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles + '\n' + tabbedVisualStyles + '\n' + automationStyles + '\n' + scheduledSuggestionStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles + '\n' + tabbedVisualStyles + '\n' + automationStyles + '\n' + scheduledSuggestionStyles + '\n' + entityStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -323,6 +325,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'ledger-recurring-transactions':out=renderLedgerRecurring(context,n,labels.ledgerRecordsUI);break;
       case 'display-automation':case 'list-automations':case 'automation-plan-summary':out=renderAutomation(context,n);break;
       case 'scheduled-task-suggestion':out=renderScheduledSuggestion(context,n);break;
+      case 'entity-card':case 'entity-overview':out=renderEntity(context,n,root,container);break;
       case 'prompt-checklist':out=renderPromptChecklist(context,n);break;
       case 'ledger-finance-status-banner':out=renderFinanceStatus(context,n);break;
       case 'recommendation-card':out=renderRecommendationCard(context,n);break;

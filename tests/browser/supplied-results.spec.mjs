@@ -2,10 +2,10 @@ import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 const parts=await Promise.all(['basketball-tournament','election-results'].map(async name=>JSON.parse(await readFile(new URL('../../examples/'+name+'.json',import.meta.url)))));
 const fixture={version:'iui/1',state:{other:0},body:parts.flatMap(part=>part.body)};
-async function setup(page,spec=fixture,lang='en'){
+async function setup(page,spec=fixture,lang='en',externalForm=false){
   await page.goto('/mount.html');await page.waitForFunction(()=>!!window.iui);
   const requests=[];page.on('request',request=>requests.push(request.url()));
-  await page.evaluate(({spec,lang})=>{const host=document.getElementById('host');host.lang=lang;window.resultsController=window.iui.mount(host,spec);},{spec,lang});return requests;
+  await page.evaluate(({spec,lang,externalForm})=>{const host=document.getElementById('host');if(externalForm){const form=document.createElement('form');host.before(form);form.append(host);}host.lang=lang;window.resultsController=window.iui.mount(host,spec);},{spec,lang,externalForm});return requests;
 }
 for(const theme of['light','dark'])for(const width of[390,768,1100])test(`supplied results ${theme} ${width}: keyboard, bracket filters and stable election ties`,async({page,context})=>{
   await page.setViewportSize({width,height:1100});const spec=structuredClone(fixture);spec.theme=theme;
@@ -29,7 +29,7 @@ for(const theme of['light','dark'])for(const width of[390,768,1100])test(`suppli
   await page.screenshot({path:`test-results/supplied-results-${theme}-${width}.png`,fullPage:true});
 });
 test('supplied results native reset respects cancellation, newer edits, moved controls and disposal',async({page})=>{
-  await setup(page);await page.evaluate(()=>{const host=document.getElementById('host'),form=document.createElement('form');host.before(form);form.append(host);});
+  await setup(page,fixture,'en',true);
   const query=page.locator('.iui-basketball-tournament input');await query.fill('first');
   await page.evaluate(()=>{const form=document.querySelector('form');form.addEventListener('reset',event=>event.preventDefault(),{once:true});form.reset();});await expect(query).toHaveValue('first');
   await page.evaluate(()=>{document.querySelector('form').reset();const query=document.querySelector('.iui-basketball-tournament input');query.value='second';query.dispatchEvent(new Event('input'));});await expect(query).toHaveValue('second');

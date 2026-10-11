@@ -1,8 +1,8 @@
 # Late-family reference contracts still incomplete
 
 The project registers 154 protocol node types. Following the two supplied-presentation
-extensions and independent functional review, canonical coverage is **155 implemented
-(53 historical acceptances plus 102 pending full acceptance), 1 partial, and 100 missing**.
+extensions and independent functional review, canonical coverage is **158 implemented
+(53 historical acceptances plus 105 pending full acceptance), 1 partial, and 97 missing**.
 Follow-up action bar and Conversation suggestions have moved to implemented-pending;
 new native and reference-pixel acceptance remains separate. Image grid and Upcoming now have independent ordinary functional review;
 Spend now also passed independent functional review; only the pre-existing weather row remains partial. Historical subset identities
@@ -122,3 +122,7 @@ from a real browser; a CSSOM resolver or SDK adapter is not such evidence.
 ## New supplied Link-family implementation
 
 The three previously missing canonical Link IDs now have original supplied URL/card presentations, phase handling, safe local open/copy requests and resource ownership. Source `e6b60a69` passed47 family tests,95 related tests,12 independent functional tests and an eight-flow consumer. All three are implemented-pending; see [supplied Links](supplied-links.md). Only two protocol types are new because the existing primitive Link remains compatible. Native and reference-pixel acceptance remain separate.
+
+AutomationPlanSummary is temporarily partial following a confirmed whole-plan-collapse/reset regression; the original13 cases remain valid within their narrower coverage.
+
+The plan reset regression was subsequently repaired and independently replayed (14 cases and8 consumer flows); its implemented-pending classification is restored. The failure/rollback evidence remains historical.

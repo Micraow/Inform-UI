@@ -1,6 +1,6 @@
 # 组件进度
 
-155项完整实现覆盖：53项历史验收，102项完整实现待验。另1项部分实现Weather、100项未实现，总计256。协议注册162不是完成数。Link三项及TabbedSection/VisualCardCarousel独立普通功能复核通过；新源码原生与参考像素验收仍待完成。
+158项完整实现覆盖：53项历史验收，105项完整实现待验。另1项部分实现Weather、97项未实现，总计256。协议注册162不是完成数。Link三项及TabbedSection/VisualCardCarousel独立普通功能复核通过；新源码原生与参考像素验收仍待完成。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -262,3 +262,9 @@
 | word-card | Word Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 
 Automation三项独立13项普通功能通过；仅供数与本地意图，无真实任务操作。
+
+AutomationPlanSummary原13项未覆盖整体折叠后的reset组合，现按已知功能回归降为partial；Display/List不受影响。
+
+后继修复：AutomationPlanSummary整体折叠/reset负控原样转绿，独立14项与8消费者流程通过，恢复implemented-pending；前述回退记录保留。
+
+164集成中Scheduled与Entity两项共13项独立检查、Automation原14项复验通过，三新项晋级implemented-pending。当前158/1/97，协议注册164；原生与参考像素另验。

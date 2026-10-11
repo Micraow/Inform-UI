@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "link"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "value": {
+      "$ref": "#/$defs/Value"
+    },
+    "href": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048
+    }
+  },
+  "required": [
+    "type",
+    "value",
+    "href"
+  ],
+  "additionalProperties": false
+}
