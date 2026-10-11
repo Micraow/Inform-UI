@@ -1,3 +1,5 @@
+import {renderSpendMonth} from './spend-month.js';
+import spendMonthStyles from './spend-month.css';
 import {renderUpcomingActivity} from './upcoming-activity.js';
 import upcomingActivityStyles from './upcoming-activity.css';
 import {renderImageGrid} from './image-grid.js';
@@ -117,7 +119,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -280,6 +282,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'ledger-spend-so-far-this-month':out=renderSpendMonth(context,n);break;
       case 'ledger-upcoming-activity':out=renderUpcomingActivity(context,n);break;
       case 'image-grid':out=renderImageGrid(context,n,root,container);break;
       case 'conversation-suggestions':out=renderConversationSuggestions(context,n);break;

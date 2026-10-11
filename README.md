@@ -1,3 +1,11 @@
+## Source-only 154 checkpoint
+
+SpendSoFarThisMonth is an original finite supplied-data reader. Historical source was not recovered. Independent exact total/category labels and nullable supplied fractions are displayed without financial arithmetic or inferred account data. Masking removes bar geometry; zero and unknown amounts remain distinct. Local frozen category intents are cancelable and never navigate or transact.
+
+Build, types and 21 basic/schema/cancellation/lifecycle checks pass. Canonical implementation coverage is147/256:53 historically accepted plus94 awaiting complete acceptance,108 missing and one partial. The five late missing-source families were independently reimplemented, not claimed as recovered source. Native/reference visual acceptance remains pending.
+
+Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain130 until the upcoming unified rebuild. Saves use [skip ci].
+
 ## Source-only 153 checkpoint
 
 UpcomingActivity is an original finite supplied-data reader, not recovered historical source. Up to60 records preserve exact amount/date display labels and explicit unknowns. Local income/expense/other filtering preserves row identity and uses the shared native-form reset contract. Masked and unknown amounts remain distinct. Frozen cancelable `{id}` intents never initiate account, payment or navigation actions.

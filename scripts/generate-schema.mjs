@@ -420,6 +420,8 @@ Object.assign(defs,JSON.parse(await readFile(new URL('./async-image-definitions.
 Object.assign(defs,JSON.parse(await readFile(new URL('./lottie-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LottieNode'));owners.lottie='base';
 // Exact supplied income labels; no estimation, account lookup or date prediction.
 defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+defs.SpendCategory=object({id:key,label:short,amountLabel:{anyOf:[short,{type:'null'}]},fraction:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]}},['id','label','amountLabel','fraction']);
+node('ledger-spend-so-far-this-month',{label:short,periodLabel:short,totalLabel:{anyOf:[short,{type:'null'}]},categories:array(ref('SpendCategory'),0,24),comparisonLabel:short,emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool},['label','periodLabel','totalLabel','categories'],'finance');
 defs.UpcomingActivity=object({id:key,title:short,amountLabel:{anyOf:[short,{type:'null'}]},dateLabel:{anyOf:[short,{type:'null'}]},kind:choice('income','expense','other')},['id','title','amountLabel','dateLabel']);
 node('ledger-upcoming-activity',{label:short,activities:array(ref('UpcomingActivity'),0,60),emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool},['label','activities'],'finance');
 defs.ImageGridItem=object({id:key,src:string(16000,1),alt:short,caption:string(500)},['id','src','alt']);
