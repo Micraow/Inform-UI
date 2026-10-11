@@ -1,0 +1,53 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "conversational-onboarding-advice",
+      "label": "Original practical demonstrations",
+      "stepByStep": {
+        "label": "Everyday task",
+        "question": "How do I tidy an empty tray?",
+        "title": "Original tray checklist",
+        "diagnosis": "Follow this supplied fictional example.",
+        "steps": [
+          "Put the empty tray down.",
+          "Wipe the surface."
+        ]
+      },
+      "recipe": {
+        "label": "Recipe example",
+        "question": "Show an invented snack recipe.",
+        "name": "Original fruit bowl",
+        "content": "**Supplied ingredients**\n\n- Fictional fruit\n- Fictional oats"
+      },
+      "quickFix": {
+        "label": "Troubleshooting",
+        "question": "Why is an imaginary lamp dark?",
+        "title": "Supplied troubleshooting",
+        "diagnosticQuestion": "Is its local switch off?",
+        "nextStep": "Read the supplied manual."
+      }
+    },
+    {
+      "type": "conversational-onboarding-writing",
+      "label": "Original writing demonstrations",
+      "translation": {
+        "label": "Translation",
+        "question": "Translate this invented sentence.",
+        "sourceText": "First line\n  Second line",
+        "translatedText": "Original translation\n  Preserved indentation"
+      },
+      "email": {
+        "label": "Email example",
+        "question": "Draft an imaginary invitation.",
+        "subject": "Fictional field club",
+        "content": "Hello **team**,\n\nThis is an original supplied draft."
+      },
+      "message": {
+        "label": "Message example",
+        "question": "Show an imaginary birthday greeting.",
+        "content": "An **original fictional** greeting."
+      }
+    }
+  ]
+}

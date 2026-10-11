@@ -202,7 +202,9 @@ export type Node =
   | LedgerSpendByCategoryRecentTransactionsNode
   | LearningVoiceModeLauncherCardNode
   | OfferVoiceConversationNode
-  | LearningSpeakCardNode;
+  | LearningSpeakCardNode
+  | ConversationalOnboardingAdviceNode
+  | ConversationalOnboardingWritingNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -5058,4 +5060,66 @@ export interface LearningSpeakCardNode {
   previousLabel?: string;
   nextLabel?: string;
   doneLabel?: string;
+}
+export interface ConversationalOnboardingAdviceNode {
+  type: "conversational-onboarding-advice";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  askLabel?: string;
+  activeTab?: "step-by-step" | "recipe" | "quick-fix";
+  stepByStep?: {
+    label: string;
+    question: string;
+    title: string;
+    diagnosis: string;
+    /**
+     * @maxItems 30
+     */
+    steps: string[];
+    imageSrc?: string;
+    imageAlt?: string;
+  };
+  recipe?: {
+    label: string;
+    question: string;
+    name: string;
+    content: string;
+  };
+  quickFix?: {
+    label: string;
+    question: string;
+    title: string;
+    diagnosticQuestion: string;
+    nextStep: string;
+  };
+}
+export interface ConversationalOnboardingWritingNode {
+  type: "conversational-onboarding-writing";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  askLabel?: string;
+  activeTab?: "translation" | "professional-email" | "birthday-message";
+  translation?: {
+    label: string;
+    question: string;
+    sourceText: string;
+    translatedText: string;
+  };
+  email?: {
+    label: string;
+    question: string;
+    subject: string;
+    content: string;
+  };
+  message?: {
+    label: string;
+    question: string;
+    content: string;
+  };
 }

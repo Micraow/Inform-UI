@@ -1,0 +1,9 @@
+/** Original supplied demonstrations, with no hidden content service. */
+export function installConversationalOnboardingSchema({node,defs}){
+ const text=(max=2000,min=1)=>({type:'string',minLength:min,maxLength:max}),obj=(properties,required)=>({type:'object',properties,required,additionalProperties:false}),bool={type:'boolean'};
+ const common={label:text(200),status:{enum:['resolved','pending','failed']},fallback:text(),disabled:bool,askLabel:text(200)};
+ const tab={label:text(200),question:text()};
+ node('conversational-onboarding-advice',{...common,activeTab:{enum:['step-by-step','recipe','quick-fix']},stepByStep:obj({...tab,title:text(500),diagnosis:text(4000),steps:{type:'array',maxItems:30,items:text()},imageSrc:text(1000000),imageAlt:text(500,0)},['label','question','title','diagnosis','steps']),recipe:obj({...tab,name:text(500),content:text(16000,0)},['label','question','name','content']),quickFix:obj({...tab,title:text(500),diagnosticQuestion:text(4000),nextStep:text(4000)},['label','question','title','diagnosticQuestion','nextStep'])},['label'],'base');
+ node('conversational-onboarding-writing',{...common,activeTab:{enum:['translation','professional-email','birthday-message']},translation:obj({...tab,sourceText:text(8000,0),translatedText:text(8000,0)},['label','question','sourceText','translatedText']),email:obj({...tab,subject:text(500),content:text(16000,0)},['label','question','subject','content']),message:obj({...tab,content:text(16000,0)},['label','question','content'])},['label'],'base');
+ for(const[name,fields]of[['ConversationalOnboardingAdviceNode',['stepByStep','recipe','quickFix']],['ConversationalOnboardingWritingNode',['translation','email','message']]])Object.assign(defs[name],{if:{properties:{status:{enum:['pending','failed']}},required:['status']},then:{},else:{properties:Object.fromEntries(fields.map(key=>[key,{}])),required:fields}});
+}

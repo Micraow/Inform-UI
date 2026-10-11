@@ -40,5 +40,7 @@
   "#/$defs/LedgerSpendByCategoryRecentTransactionsNode",
   "#/$defs/LearningVoiceModeLauncherCardNode",
   "#/$defs/OfferVoiceConversationNode",
-  "#/$defs/LearningSpeakCardNode"
+  "#/$defs/LearningSpeakCardNode",
+  "#/$defs/ConversationalOnboardingAdviceNode",
+  "#/$defs/ConversationalOnboardingWritingNode"
 ]

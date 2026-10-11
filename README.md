@@ -1,3 +1,7 @@
+# Supplied advice and writing candidates
+
+Two original complete three-tab demonstrations add174 registered protocols. Advice has numbered steps, recipe Markdown and troubleshooting; Writing has whitespace-preserving translations and supplied email/message drafts. No content-generation or sending service is invoked. Canonical scope remains163/1/92 pending independent reviews. Search/Study composite demonstrations are separate work. See [the contract](docs/conversational-onboarding.md).
+
 # Supplied voice family candidate
 
 Three original finite speech/voice request views add172 registered protocols. They emit cancelable local requests and display supplied phases; they do not open a microphone, synthesize speech, grade recordings or contact account services. Canonical scope remains163/1/92 pending independent review. The packaged164 source/asset/native checkpoint remains separate. See [the contract](docs/voice-cards.md).

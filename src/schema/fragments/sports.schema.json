@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:8b62dad2505d07aafc17540d11aac2e8e3376d968aaf16c0fce331cdc16874ff:document:base+sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:ac40262fd0d756a788e63658e6847f35251ddb7627b3e596aa52ce53f545a0d3:document:base+sports",
   "title": "Inform UI document subset: base, sports",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -2899,6 +2899,370 @@
         "suggestions"
       ],
       "additionalProperties": false
+    },
+    "ConversationalOnboardingAdviceNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "conversational-onboarding-advice"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "askLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "activeTab": {
+          "enum": [
+            "step-by-step",
+            "recipe",
+            "quick-fix"
+          ]
+        },
+        "stepByStep": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "diagnosis": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "steps": {
+              "type": "array",
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              }
+            },
+            "imageSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            "imageAlt": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "title",
+            "diagnosis",
+            "steps"
+          ],
+          "additionalProperties": false
+        },
+        "recipe": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "content": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 16000
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "name",
+            "content"
+          ],
+          "additionalProperties": false
+        },
+        "quickFix": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "diagnosticQuestion": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "nextStep": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "title",
+            "diagnosticQuestion",
+            "nextStep"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "stepByStep": {},
+          "recipe": {},
+          "quickFix": {}
+        },
+        "required": [
+          "stepByStep",
+          "recipe",
+          "quickFix"
+        ]
+      }
+    },
+    "ConversationalOnboardingWritingNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "conversational-onboarding-writing"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "askLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "activeTab": {
+          "enum": [
+            "translation",
+            "professional-email",
+            "birthday-message"
+          ]
+        },
+        "translation": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "sourceText": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 8000
+            },
+            "translatedText": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "sourceText",
+            "translatedText"
+          ],
+          "additionalProperties": false
+        },
+        "email": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "subject": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "content": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 16000
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "subject",
+            "content"
+          ],
+          "additionalProperties": false
+        },
+        "message": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "content": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 16000
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "content"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "translation": {},
+          "email": {},
+          "message": {}
+        },
+        "required": [
+          "translation",
+          "email",
+          "message"
+        ]
+      }
     },
     "CopyWord": {
       "type": "object",
@@ -9093,6 +9457,12 @@
         },
         {
           "$ref": "#/$defs/OfferVoiceConversationNode"
+        },
+        {
+          "$ref": "#/$defs/ConversationalOnboardingAdviceNode"
+        },
+        {
+          "$ref": "#/$defs/ConversationalOnboardingWritingNode"
         }
       ]
     },
