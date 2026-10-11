@@ -1,0 +1,79 @@
+{
+  "version": "iui/1",
+  "title": "Original finite image practice",
+  "state": {
+    "mediaStatus": "resolved"
+  },
+  "body": [
+    {
+      "type": "async-image",
+      "id": "two-supplied-images",
+      "images": [
+        {
+          "title": "Original blue square",
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQTL5DEmIY1TCqYfhqAABnlmAQyeC+cQAAAABJRU5ErkJggg==",
+          "content_size": {
+            "width": 16,
+            "height": 16
+          }
+        },
+        {
+          "title": "Original orange square",
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGN4UCZHEmIY1TCqYfhqAACGdnQQouyA1gAAAABJRU5ErkJggg==",
+          "content_size": {
+            "width": 16,
+            "height": 16
+          }
+        }
+      ],
+      "status": {
+        "$": "mediaStatus"
+      },
+      "interactive": true,
+      "alt": "Original blue square with a second supplied image",
+      "width": 200,
+      "height": 200,
+      "fit": "contain",
+      "frame": true,
+      "radius": 12,
+      "fallback": "Supplied image unavailable"
+    },
+    {
+      "type": "async-image-group",
+      "id": "three-supplied-images",
+      "images": [
+        {
+          "title": "Original blue square",
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQTL5DEmIY1TCqYfhqAABnlmAQyeC+cQAAAABJRU5ErkJggg==",
+          "content_size": {
+            "width": 16,
+            "height": 16
+          }
+        },
+        {
+          "title": "Original orange square",
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGN4UCZHEmIY1TCqYfhqAACGdnQQouyA1gAAAABJRU5ErkJggg==",
+          "content_size": {
+            "width": 16,
+            "height": 16
+          }
+        },
+        {
+          "title": "Original green square",
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGPQnexFEmIY1TCqYfhqAABN6QoQRGz8iQAAAABJRU5ErkJggg==",
+          "content_size": {
+            "width": 16,
+            "height": 16
+          }
+        }
+      ],
+      "status": {
+        "$": "mediaStatus"
+      },
+      "layout": "bento",
+      "size": "sm",
+      "interactive": true,
+      "fallback": "Supplied image group unavailable"
+    }
+  ]
+}

@@ -13,3 +13,4 @@
 .iui-root .iui-search-image[hidden],.iui-root .iui-search-image [hidden]{display:none!important}
 .iui-root[data-theme=dark] .iui-search-image{--iui-search-image-loading-bg:#00284d}
 @media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-search-image{--iui-search-image-loading-bg:#00284d}}
+.iui-root .iui-layout[data-semantic-gap=true]>:where([data-iui=search-image]+[data-iui]){margin-block-start:16px}

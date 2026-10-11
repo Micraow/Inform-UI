@@ -269,3 +269,6 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   });
   return root;
 }
+
+// Share the existing document coordinator with local image viewers.
+export {coordinator as overlayCoordinator};

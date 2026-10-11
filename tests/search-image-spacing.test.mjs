@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{readFile}from'node:fs/promises';
+test('built SearchImage CSS preserves original semantic sibling spacing',async()=>{const css=await readFile(new URL('../dist/style.css',import.meta.url),'utf8');assert.ok(css.includes('.iui-root .iui-layout[data-semantic-gap=true]>:where([data-iui=search-image]+[data-iui]){margin-block-start:16px}'));});

@@ -1,0 +1,32 @@
+/* Resolved Async Image wrappers; browser-host radius xl=12px, 2xl=16px. */
+.iui-root .iui-async-images{min-width:0;max-width:100%;position:relative}
+.iui-root .iui-async-image-single{--iui-async-border:rgb(26 28 31 / 5%);background:var(--iui-surface-tertiary);overflow:hidden}
+.iui-root .iui-async-image-single[data-frame=true]{border:1px solid var(--color-border-subtle,var(--iui-async-border))}
+.iui-root .iui-async-image-single>.iui-async-image-content{width:100%;height:100%}
+.iui-root .iui-async-image-content,.iui-root .iui-async-image-bento-side{min-width:0;min-height:0}
+.iui-root .iui-async-image-group[data-layout=carousel]>.iui-async-image-content{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:none}
+.iui-root .iui-async-image-group[data-layout=carousel]>.iui-async-image-content>.iui-async-image-tile{flex:0 0 auto}
+.iui-root .iui-async-image-group[data-layout=grid]>.iui-async-image-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:768px;width:100%}
+.iui-root .iui-async-image-group[data-layout=bento]>.iui-async-image-content{display:grid;grid-template-columns:minmax(0,1fr) 40%;gap:2px;aspect-ratio:363/200;max-width:768px;width:100%}
+.iui-root .iui-async-image-bento-side{display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:2px}
+.iui-root .iui-async-image-tile{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--iui-surface-tertiary)}
+.iui-root .iui-async-image-tile>.iui-search-image{border-radius:inherit}
+.iui-root .iui-async-image-failure{display:flex;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--iui-tertiary);background:var(--iui-surface-tertiary)}
+.iui-root .iui-async-image-tile:not([data-failure=true]):not(:has(>.iui-search-image[data-phase=error]))>.iui-async-image-failure{display:none}
+.iui-root .iui-async-image-tile .iui-async-image-hit{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;border-radius:0;outline-offset:2px;color:inherit;background:transparent;box-shadow:none;z-index:2}
+.iui-root .iui-async-image-tile .iui-async-image-hit:is(:hover,:active,:disabled){background:transparent;border:0;box-shadow:none}
+.iui-root .iui-async-image-count{position:absolute;inset-inline-end:10px;inset-block-end:10px;padding:4px 8px 4px 6px;border-radius:999px;background:rgb(0 0 0 / 40%);color:#fff;font-size:12px;line-height:16px;font-weight:600;display:inline-flex;align-items:center;gap:2px}
+/* Deliberately identified local basic fallback; original host lightbox is an optional event consumer. */
+.iui-root .iui-async-image-viewer{max-width:min(900px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto;background:var(--iui-bg);color:var(--iui-ink);border:1px solid var(--iui-line);border-radius:12px;padding:16px;margin:16px auto}
+.iui-root .iui-async-image-viewer[popover]{margin:auto}
+.iui-root .iui-async-image-viewer-header,.iui-root .iui-async-image-viewer-nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.iui-root .iui-async-image-viewer-body{margin-block:12px}
+.iui-root .iui-async-image-viewer:popover-open::backdrop{background:rgb(0 0 0 / 40%)}
+.iui-root .iui-async-images [hidden]{display:none!important}
+
+.iui-root .iui-async-image-tile[data-failure=true]>.iui-async-image-failure{position:relative;min-height:18px;width:100%;height:100%}
+
+.iui-root .iui-async-image-single[data-auto-height=true] .iui-async-image-tile:has(>.iui-search-image[data-phase=error])>.iui-async-image-failure{position:relative;min-height:18px}
+
+.iui-root[data-theme=dark] .iui-async-image-single{--iui-async-border:rgb(255 255 255 / 4%)}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-async-image-single{--iui-async-border:rgb(255 255 255 / 4%)}}

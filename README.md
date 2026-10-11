@@ -1,3 +1,9 @@
+## Source-only 146 checkpoint
+
+The supplied AsyncImage and AsyncImageGroup readers are restored from original project source and verified schema/style objects. Finite pending/resolved/failed states, supplied images and a local-basic image viewer are supported. A frozen cancelable image-open intent lets the host suppress the local viewer. This does not claim equivalence to a private host gallery. Child resources use shared generation scopes, and the viewer reuses the existing document overlay coordinator.
+
+Build, types and 34 focused contracts/flows pass. This checkpoint also restores the original SearchImage16px semantic sibling-spacing rule. Run `npm run generate && npm run build` for the146-node source; keep `scripts/async-image-definitions.json`. Packaged schema/CDN remain130; native rendering remains pending and saves use [skip ci].
+
 ## Source-only 144 checkpoint
 
 Supplied SearchImage and YouTube readers are restored from original project source with exact structural schema and styles. Images use explicit supplied sources and fallback metadata. YouTube accepts only a supplied video ID and fixed privacy-enhanced embed origin; autoplay and provider APIs are disabled. The original direct-load default is retained, while `loadMode: on-demand` provides an explicit load/unload gate. Loading contacts the provider; the example opts into on-demand. No search or metadata discovery occurs.
