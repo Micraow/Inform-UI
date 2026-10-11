@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:9743eed4e8ed8c20ff9c60d10fe35fef85887be360a15ab15959bb77789a55d2:document:base+learning",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:a5bceb93b48e6ff354bd254e338ae80fb13e4facd2baf81e3f224205664f350c:document:base+learning",
   "title": "Inform UI document subset: base, learning",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -2645,6 +2645,292 @@
           "stepByStep",
           "recipe",
           "quickFix"
+        ]
+      }
+    },
+    "ConversationalOnboardingStudyNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "conversational-onboarding-study"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "askLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "activeTab": {
+          "enum": [
+            "visual",
+            "quiz",
+            "math-graph"
+          ]
+        },
+        "visual": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "day": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3650,
+              "multipleOf": 5
+            },
+            "dayLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "yearLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "yearLength": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000000
+            },
+            "resetLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "orbits": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "radius": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 166
+                  },
+                  "period": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1000000
+                  },
+                  "size": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 14
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$(?![\\s\\S])"
+                  },
+                  "ring": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "label",
+                  "radius",
+                  "period",
+                  "size",
+                  "color"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 8,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "dayLabel",
+            "yearLabel",
+            "resetLabel",
+            "orbits"
+          ],
+          "additionalProperties": false
+        },
+        "quiz": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "questions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/QuizQuestion"
+              },
+              "maxItems": 30
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "title",
+            "questions"
+          ],
+          "additionalProperties": false
+        },
+        "mathGraph": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "seriesLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  },
+                  "y": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": -1000000,
+                        "maximum": 1000000
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 300
+            }
+          },
+          "required": [
+            "label",
+            "question",
+            "title",
+            "description",
+            "seriesLabel",
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "visual": {},
+          "quiz": {},
+          "mathGraph": {}
+        },
+        "required": [
+          "visual",
+          "quiz",
+          "mathGraph"
         ]
       }
     },
@@ -8456,6 +8742,9 @@
         },
         {
           "$ref": "#/$defs/OnboardingStarterTasksNode"
+        },
+        {
+          "$ref": "#/$defs/ConversationalOnboardingStudyNode"
         }
       ]
     },

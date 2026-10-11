@@ -9,7 +9,7 @@
     "partial": 1
   },
   "completeImplementationCoverage": 171,
-  "registeredProtocolNodes": 177,
+  "registeredProtocolNodes": 178,
   "components": [
     {
       "id": "base-animate",
@@ -1052,7 +1052,7 @@
       "name": "Conversational Onboarding Study",
       "layer": "domain",
       "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "note": "Source candidate provides supplied orbit slider, real local quiz and numeric chart; author tests passed, independent verification pending. Not yet included in implementation coverage."
     },
     {
       "id": "conversational-onboarding-writing",

@@ -207,7 +207,8 @@ export type Node =
   | ConversationalOnboardingWritingNode
   | OnboardingFeatureCardNode
   | OnboardingPluginSuggestionsNode
-  | OnboardingStarterTasksNode;
+  | OnboardingStarterTasksNode
+  | ConversationalOnboardingStudyNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -5230,4 +5231,71 @@ export interface OnboardingStarterTasksNode {
   canRequestSitePreview?: boolean;
   actionLabel?: string;
   resetLabel?: string;
+}
+export interface ConversationalOnboardingStudyNode {
+  type: "conversational-onboarding-study";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  askLabel?: string;
+  activeTab?: "visual" | "quiz" | "math-graph";
+  visual?: {
+    label: string;
+    question: string;
+    day?: number;
+    dayLabel: string;
+    yearLabel: string;
+    yearLength?: number;
+    resetLabel: string;
+    /**
+     * @minItems 1
+     * @maxItems 8
+     */
+    orbits: [
+      {
+        id: string;
+        label: string;
+        radius: number;
+        period: number;
+        size: number;
+        color: string;
+        ring?: boolean;
+      },
+      ...{
+        id: string;
+        label: string;
+        radius: number;
+        period: number;
+        size: number;
+        color: string;
+        ring?: boolean;
+      }[]
+    ];
+  };
+  quiz?: {
+    label: string;
+    question: string;
+    title: string;
+    description?: string;
+    /**
+     * @maxItems 30
+     */
+    questions: QuizQuestion[];
+  };
+  mathGraph?: {
+    label: string;
+    question: string;
+    title: string;
+    description: string;
+    seriesLabel: string;
+    /**
+     * @maxItems 300
+     */
+    data: {
+      x: number;
+      y: number | null;
+    }[];
+  };
 }

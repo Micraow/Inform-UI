@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:9743eed4e8ed8c20ff9c60d10fe35fef85887be360a15ab15959bb77789a55d2:document:base+weather",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:a5bceb93b48e6ff354bd254e338ae80fb13e4facd2baf81e3f224205664f350c:document:base+weather",
   "title": "Inform UI document subset: base, weather",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",

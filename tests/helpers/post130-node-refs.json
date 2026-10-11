@@ -45,5 +45,6 @@
   "#/$defs/ConversationalOnboardingWritingNode",
   "#/$defs/OnboardingFeatureCardNode",
   "#/$defs/OnboardingPluginSuggestionsNode",
-  "#/$defs/OnboardingStarterTasksNode"
+  "#/$defs/OnboardingStarterTasksNode",
+  "#/$defs/ConversationalOnboardingStudyNode"
 ]

@@ -1,0 +1,79 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "conversational-onboarding-study",
+      "label": "Original supplied lessons",
+      "visual": {
+        "label": "Orbit toy",
+        "question": "Explore a fictional orbit.",
+        "dayLabel": "Day",
+        "yearLabel": "cycles",
+        "yearLength": 100,
+        "resetLabel": "Restart orbit",
+        "orbits": [
+          {
+            "id": "blue",
+            "label": "Blue object",
+            "radius": 80,
+            "period": 100,
+            "size": 6,
+            "color": "#2878cc",
+            "ring": true
+          }
+        ]
+      },
+      "quiz": {
+        "label": "Local quiz",
+        "question": "Check the supplied facts.",
+        "title": "Original quiz",
+        "questions": [
+          {
+            "id": "one",
+            "kind": "single",
+            "prompt": "Which label is blue?",
+            "choices": [
+              {
+                "id": "a",
+                "label": "Blue"
+              },
+              {
+                "id": "b",
+                "label": "Orange"
+              }
+            ],
+            "correct": [
+              "a"
+            ],
+            "explanation": "The supplied label is Blue."
+          }
+        ]
+      },
+      "mathGraph": {
+        "label": "Data graph",
+        "question": "Read the explicit data.",
+        "title": "Supplied points",
+        "description": "No fitted curve.",
+        "seriesLabel": "Observed values",
+        "data": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 2,
+            "y": 4
+          },
+          {
+            "x": 3,
+            "y": null
+          },
+          {
+            "x": 8,
+            "y": -2
+          }
+        ]
+      }
+    }
+  ]
+}

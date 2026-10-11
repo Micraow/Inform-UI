@@ -1,3 +1,7 @@
+# Study source candidate:178 registered protocols
+
+The supplied study demo has real orbit controls, a local quiz and an explicit-data chart. Ten new tests and55 combined tests passed; two native scenarios are discovered but not executed. Canonical scope remains171 /1 /84 while independent study review is pending. The distributed CDN remains the separately frozen unified164 package.
+
 # Current functional scope:171 /1 /84
 
 The three supplied onboarding cards passed9 independent checks and8 consumer flows. Canonical coverage is171 implemented (53 historical acceptances,118 pending full acceptance),1 partial Weather and84 missing;177 protocols are registered. New source native/reference pixel acceptance remains pending. Earlier checkpoints retain their original scope.

@@ -1,3 +1,4 @@
+import {inspectStudyOnboarding} from './study-onboarding.js';
 import {inspectOnboardingCards} from './onboarding-cards.js';
 import {inspectConversationalOnboarding} from './conversational-onboarding.js';
 import {inspectVoiceCards} from './voice-cards.js';
@@ -392,6 +393,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='display-automation'||node.type==='list-automations'||node.type==='automation-plan-summary')inspectAutomation(node,path,add,isSafeURL);
     if(node.type==='scheduled-task-suggestion')inspectScheduledSuggestion(node,path,add);
     if(node.type==='entity-card'||node.type==='entity-overview')inspectEntity(node,path,add,isSafeURL);
+    if(node.type==='conversational-onboarding-study')inspectStudyOnboarding(node,path,add);
     if(node.type==='onboarding-feature-card'||node.type==='onboarding-plugin-suggestions'||node.type==='onboarding-starter-tasks')inspectOnboardingCards(node,path,add,isSafeURL);
     if(node.type==='conversational-onboarding-advice'||node.type==='conversational-onboarding-writing')inspectConversationalOnboarding(node,path,add,isSafeURL);
     if(node.type==='learning-speak-card'||node.type==='learning-voice-mode-launcher-card'||node.type==='offer-voice-conversation')inspectVoiceCards(node,path,add,isSafeURL);
