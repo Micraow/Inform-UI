@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T11:57:06.874020+00:00",
+  "as_of_utc": "2026-10-11T12:19:28.295970+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 97,
+    "implemented_pending_verification": 99,
     "functionally_verified": 53,
-    "not_implemented": 105,
+    "not_implemented": 103,
     "partial": 1
   },
-  "completeImplementationCoverage": 150,
+  "completeImplementationCoverage": 152,
   "registeredProtocolNodes": 158,
   "components": [
     {
@@ -1730,8 +1730,8 @@
       "id": "tabbed-section",
       "name": "Tabbed Section",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete ordinary functionality independently verified; native and reference pixel acceptance remain pending."
     },
     {
       "id": "tab-group",
@@ -1758,8 +1758,8 @@
       "id": "visual-card-carousel",
       "name": "Visual Card Carousel",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete ordinary functionality independently verified; native and reference pixel acceptance remain pending."
     },
     {
       "id": "weather-sidebar-title",

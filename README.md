@@ -1,3 +1,7 @@
+# Current functional scope:152 /1 /103
+
+TabbedSection and VisualCardCarousel passed the original12 independent ordinary-function cases after the query-only card fix. Coverage is152 complete implementations (53 historical acceptances and99 pending full acceptance),1 partial Weather and103 missing;158 registered protocols. New native/pixel acceptance remains pending. Packaged CDN stays unified154. The preceding38d7 candidate had11/12 and is preserved in its original evidence.
+
 # Supplied tabbed-section and visual-carousel source checkpoint
 
 Two original functional candidates add horizontal/vertical sections with passive Markdown and measured visual card collections with image galleries and entity/URL requests. All36 family tests plus79 related compatibility/reset/Markdown/projection tests passed (115 total); build/types/queue/boundary checks passed. See [the contract](docs/tabbed-visual.md). Registration is158; canonical scope stays150 implemented,1 partial Weather,105 missing until independent review. No fresh CDN/native/pixel result is claimed; packaged CDN remains unified154. Earlier checkpoint statements below retain their original source identities.

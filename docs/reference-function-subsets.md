@@ -1,8 +1,8 @@
 # Late-family reference contracts still incomplete
 
 The project registers 154 protocol node types. Following the two supplied-presentation
-extensions and independent functional review, canonical coverage is **150 implemented
-(53 historical acceptances plus 97 pending full acceptance), 1 partial, and 105 missing**.
+extensions and independent functional review, canonical coverage is **152 implemented
+(53 historical acceptances plus 99 pending full acceptance), 1 partial, and 103 missing**.
 Follow-up action bar and Conversation suggestions have moved to implemented-pending;
 new native and reference-pixel acceptance remains separate. Image grid and Upcoming now have independent ordinary functional review;
 Spend now also passed independent functional review; only the pre-existing weather row remains partial. Historical subset identities
