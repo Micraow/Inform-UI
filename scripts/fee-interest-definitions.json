@@ -1,0 +1,194 @@
+{
+  "LedgerFeeInterestTransaction": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "displayName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "dateLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "categoryLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "accountDetail": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "amountLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "amountTone": {
+        "enum": [
+          "primary",
+          "secondary",
+          "positive",
+          "negative"
+        ]
+      },
+      "maskedAmountLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "logoUrl": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 8192
+      },
+      "categoryIcon": {
+        "enum": [
+          "bank",
+          "credit-card",
+          "receipt",
+          "percent"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "displayName",
+      "dateLabel",
+      "categoryLabel",
+      "accountDetail",
+      "amountLabel"
+    ],
+    "additionalProperties": false
+  },
+  "LedgerFeeInterestRange": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "totalPaid": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -1000000000000,
+            "maximum": 1000000000000
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "totalPaidLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "totalStatusLabel": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "conversionNote": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "emptyLabel": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "transactions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/LedgerFeeInterestTransaction"
+        },
+        "minItems": 0,
+        "maxItems": 100
+      }
+    },
+    "required": [
+      "id",
+      "label",
+      "totalPaid",
+      "totalPaidLabel",
+      "transactions"
+    ],
+    "additionalProperties": false
+  },
+  "LedgerFeeInterestPaidNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "ledger-fee-interest-paid"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "source": {
+        "$ref": "#/$defs/LedgerSource"
+      },
+      "ranges": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/LedgerFeeInterestRange"
+        },
+        "minItems": 0,
+        "maxItems": 8
+      },
+      "initialRangeId": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "masked": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "showMoreLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "showLessLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "maskedLabel": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      }
+    },
+    "required": [
+      "type",
+      "label",
+      "ranges"
+    ],
+    "additionalProperties": false
+  }
+}

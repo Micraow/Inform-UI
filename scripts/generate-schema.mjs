@@ -413,6 +413,7 @@ node('ledger-low-confidence-category-correction',{...ledgerCommon,snapshotId:sup
 const netWorthDefinitions=JSON.parse(await readFile(new URL('./net-worth-definitions.json',import.meta.url),'utf8'));
 Object.assign(defs,netWorthDefinitions);nodes.push(ref('LedgerNetWorthNode'));owners['ledger-net-worth']='finance';
 Object.assign(defs,JSON.parse(await readFile(new URL('./pressable-definitions.json',import.meta.url),'utf8')));nodes.push(ref('PressableNode'));owners.pressable='base';
+Object.assign(defs,JSON.parse(await readFile(new URL('./fee-interest-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LedgerFeeInterestPaidNode'));owners['ledger-fee-interest-paid']='finance';
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };
 const dir = fileURLToPath(new URL('../src/schema/', import.meta.url));

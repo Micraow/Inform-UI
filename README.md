@@ -1,3 +1,9 @@
+## Source-only 141 checkpoint
+
+The supplied fee-and-interest reader is restored from hash-verified original source objects plus its exact structural schema and styles. Supplied totals and transaction labels are independent; range selection, expansion and masking are local. No account access, inferred totals, currency conversion or payment occurs. Original late per-paint media cleanup is present; a complete historical a032 checkout is not claimed.
+
+Build, types and 23 synthetic contract/basic interaction checks pass. Run `npm run generate && npm run build` for the 141-node source; keep `scripts/fee-interest-definitions.json` as required generator input. Packaged schema/CDN remain130. Native geometry remains pending; saves use [skip ci].
+
 ## Source-only 140 checkpoint
 
 Pressable is restored from the project's original renderer, core, labels, schema and CSS. A native button covers passive authored content and emits only a local, cancelable `iui:press` intent. Nested focusable actions are rejected; dynamic disabled state and visible content remain separate. Shared ownership and exclusive intent admission guard retirement and reentry.

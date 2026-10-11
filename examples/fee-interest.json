@@ -1,0 +1,103 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied fee and interest snapshots",
+  "body": [
+    {
+      "type": "ledger-fee-interest-paid",
+      "id": "supplied-fees",
+      "label": "Synthetic fees and interest",
+      "description": "Invented teaching labels only. No account access, calculation, currency conversion or payment.",
+      "initialRangeId": "month",
+      "showMoreLabel": "Show all supplied rows",
+      "showLessLabel": "Show fewer rows",
+      "maskedLabel": "Amounts hidden",
+      "ranges": [
+        {
+          "id": "month",
+          "label": "Supplied month",
+          "totalPaid": 900,
+          "totalPaidLabel": "USD 900.00 supplied",
+          "totalStatusLabel": "Supplied total is independent of row labels",
+          "conversionNote": "No currency conversion performed",
+          "transactions": [
+            {
+              "id": "supplied0",
+              "displayName": "Synthetic charge 1",
+              "dateLabel": "Supplied day 1",
+              "categoryLabel": "Supplied fee",
+              "accountDetail": "Fictional sample account",
+              "amountLabel": "USD 1.00",
+              "amountTone": "negative",
+              "categoryIcon": "receipt",
+              "logoUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQTL5DEmIY1TCqYfhqAABnlmAQyeC+cQAAAABJRU5ErkJggg=="
+            },
+            {
+              "id": "supplied1",
+              "displayName": "Synthetic charge 2",
+              "dateLabel": "Supplied day 2",
+              "categoryLabel": "Supplied interest",
+              "accountDetail": "Fictional sample account",
+              "amountLabel": "USD 2.00",
+              "amountTone": "negative",
+              "categoryIcon": "percent"
+            },
+            {
+              "id": "supplied2",
+              "displayName": "Synthetic charge 3",
+              "dateLabel": "Supplied day 3",
+              "categoryLabel": "Supplied fee",
+              "accountDetail": "Fictional sample account",
+              "amountLabel": "USD 3.00",
+              "amountTone": "negative",
+              "categoryIcon": "receipt"
+            },
+            {
+              "id": "supplied3",
+              "displayName": "Synthetic charge 4",
+              "dateLabel": "Supplied day 4",
+              "categoryLabel": "Supplied interest",
+              "accountDetail": "Fictional sample account",
+              "amountLabel": "USD 0.00",
+              "amountTone": "secondary",
+              "categoryIcon": "percent"
+            },
+            {
+              "id": "supplied4",
+              "displayName": "Synthetic charge 5",
+              "dateLabel": "Date not supplied",
+              "categoryLabel": "Supplied fee",
+              "accountDetail": "Fictional sample account",
+              "amountLabel": "Amount not supplied",
+              "amountTone": "negative",
+              "categoryIcon": "receipt"
+            }
+          ]
+        },
+        {
+          "id": "zero",
+          "label": "Explicit zero",
+          "totalPaid": 0,
+          "totalPaidLabel": "USD 0.00 supplied",
+          "emptyLabel": "No charges supplied for this range",
+          "transactions": []
+        },
+        {
+          "id": "unknown",
+          "label": "Unknown total",
+          "totalPaid": null,
+          "totalPaidLabel": "Total not supplied",
+          "transactions": [
+            {
+              "id": "unreported",
+              "displayName": "Synthetic pending record",
+              "dateLabel": "Date not supplied",
+              "categoryLabel": "Category not supplied",
+              "accountDetail": "Fictional unreported account",
+              "amountLabel": "Amount not supplied"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
