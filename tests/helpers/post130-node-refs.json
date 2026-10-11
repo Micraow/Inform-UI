@@ -34,5 +34,8 @@
   "#/$defs/EntityCardNode",
   "#/$defs/EntityOverviewNode",
   "#/$defs/AskUserDetailsNode",
-  "#/$defs/AskUserFilesNode"
+  "#/$defs/AskUserFilesNode",
+  "#/$defs/LedgerSpendByCategoryNode",
+  "#/$defs/LedgerSpendByCategoryDetailNode",
+  "#/$defs/LedgerSpendByCategoryRecentTransactionsNode"
 ]

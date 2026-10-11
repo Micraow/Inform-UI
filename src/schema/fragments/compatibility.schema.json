@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:6d7d1c751fff875f85e58845050179087661b45aad6c0e26d75353666582bed4:document:base+compatibility",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:82cc3cdf13ad606233da9a59022d548ed18dd41c14cd72858aa536b7282d32f6:document:base+compatibility",
   "title": "Inform UI document subset: base, compatibility",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",

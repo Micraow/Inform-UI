@@ -1,3 +1,7 @@
+# Supplied category family candidate
+
+Three original supplied category views add169 registered protocols: month/category overview, category breakdown and recent transactions. Basic build, types and focused tests are reported in the source checkpoint; independent functional review is pending. Canonical scope remains160/1/95. The packaged164 assets retain their exact prior acceptance. See [the finite contract](docs/ledger-category-contract.md).
+
 # Current functional scope:160 /1 /95
 
 AskUserDetails and AskUserFiles passed8 independent checks,7 consumer flows and117 author/related tests. Canonical coverage is160 implemented (53 historical acceptances,107 pending full acceptance),1 partial Weather and95 missing;166 protocols are registered. The fixed unified164 package at74d463 passed3160 Node and717 Chromium tests. Ask source has separate pending native/pixel acceptance. Earlier checkpoint statements below retain their original scope.

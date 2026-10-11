@@ -196,7 +196,10 @@ export type Node =
   | EntityCardNode
   | EntityOverviewNode
   | AskUserDetailsNode
-  | AskUserFilesNode;
+  | AskUserFilesNode
+  | LedgerSpendByCategoryNode
+  | LedgerSpendByCategoryDetailNode
+  | LedgerSpendByCategoryRecentTransactionsNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -4795,4 +4798,119 @@ export interface AskUserFilesNode {
   multiple?: boolean;
   maxFiles?: number;
   maxFileBytes?: number;
+}
+export interface LedgerSpendByCategoryNode {
+  type: "ledger-spend-by-category";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  isLoading?: boolean;
+  hasConnectedAccounts?: boolean;
+  noAccountsLabel?: string;
+  sensitiveValuesHidden?: boolean;
+  maskedLabel?: string;
+  unknownLabel?: string;
+  /**
+   * @maxItems 60
+   */
+  months?: LedgerCategoryMonth[];
+  selectedMonthId?: string;
+  compactTitle?: string;
+  conversionNote?: string;
+  moreLabel?: string;
+  lessLabel?: string;
+  noSpendingTitle?: string;
+  noSpendingDescription?: string;
+  monetaryValueReferencesEnabled?: boolean;
+  disabled?: boolean;
+}
+export interface LedgerCategoryMonth {
+  id: string;
+  label: string;
+  optionLabel?: string;
+  optionGroup?: string;
+  monthStart?: string;
+  totalLabel: string | null;
+  /**
+   * @maxItems 100
+   */
+  segments: {
+    id: string;
+    label: string;
+    weight: number;
+    color: string;
+  }[];
+  /**
+   * @maxItems 100
+   */
+  topCategories: LedgerCategoryItem[];
+  /**
+   * @maxItems 100
+   */
+  categories: LedgerCategoryItem[];
+  hasMoreCategories?: boolean;
+}
+export interface LedgerCategoryItem {
+  id: string;
+  label: string;
+  key?: string;
+  amountLabel: string | null;
+  percentLabel: string | null;
+  filledPct: number;
+  color: string;
+  icon?: string;
+  detailEnabled?: boolean;
+  detailLabel?: string;
+  topDetailLabel?: string;
+  topDetailAmountLabel?: string | null;
+  topDetailShareLabel?: string | null;
+}
+export interface LedgerSpendByCategoryDetailNode {
+  type: "ledger-spend-by-category-detail";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  isLoading?: boolean;
+  hasConnectedAccounts?: boolean;
+  noAccountsLabel?: string;
+  sensitiveValuesHidden?: boolean;
+  maskedLabel?: string;
+  unknownLabel?: string;
+  /**
+   * @maxItems 100
+   */
+  groups?: {
+    id: string;
+    label: string;
+    subtotalLabel: string | null;
+    filledPct: number;
+  }[];
+  noDetailedBreakdownLabel?: string;
+}
+export interface LedgerSpendByCategoryRecentTransactionsNode {
+  type: "ledger-spend-by-category-recent-transactions";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  isLoading?: boolean;
+  hasConnectedAccounts?: boolean;
+  noAccountsLabel?: string;
+  sensitiveValuesHidden?: boolean;
+  maskedLabel?: string;
+  unknownLabel?: string;
+  /**
+   * @maxItems 100
+   */
+  transactions?: {
+    id: string;
+    title: string;
+    dateLabel: string | null;
+    amountLabel: string | null;
+    logoSrc?: string;
+    icon?: string;
+  }[];
+  noRecentTransactionsLabel?: string;
 }
