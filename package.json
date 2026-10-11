@@ -43,7 +43,8 @@
   },
   "dependencies": {
     "ajv": "8.20.0",
-    "katex": "0.18.2"
+    "katex": "0.18.2",
+    "lottie-web": "5.13.0"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",
@@ -52,7 +53,7 @@
     "esbuild": "0.25.10",
     "jsdom": "26.1.0",
     "json-schema-to-typescript": "15.0.4",
-    "typescript": "5.9.3",
-    "parse5": "7.3.0"
+    "parse5": "7.3.0",
+    "typescript": "5.9.3"
   }
 }

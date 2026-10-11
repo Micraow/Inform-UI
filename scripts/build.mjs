@@ -1,3 +1,5 @@
+import {generateLottiePlayer} from './lottie-assets.mjs';
+await generateLottiePlayer();
 import {generateMathStyle} from './math-assets.mjs';
 await generateMathStyle();
 import {build} from 'esbuild';

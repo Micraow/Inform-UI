@@ -1,3 +1,11 @@
+## Source-only 147 checkpoint
+
+The full Lottie SVG engine is restored using official lottie-web5.13.0 and the project's original hash-checked generator. The engine source SHA256 is134b7463eec8de573fb3c6778c3c13368fb89f336b1b905e752f0be80de6a4c9; automatic document scanning and executable animation expressions are disabled. This is the real engine, not a replacement placeholder. Upstream licenses are included.
+
+Build, types, source boundary and53 tests pass (18 Lottie plus35 AsyncImage checks). Actual SVG paths and seek transforms are exercised in JSDOM with only a minimal canvas bootstrap adapter. Native drawing/playback remains pending. Explicit-null image phases and queued viewer-navigation retirement are corrected. Two actual-browser HTML policy probes are discovered but have not run.
+
+Run `npm ci && npm run generate && npm run build`; preserve the locked dependency, lottie-assets.mjs, lottie-definitions.json and the generated-player declaration. The ignored player JavaScript is regenerated from the official pinned engine. Packaged schema/CDN remain130; saves use [skip ci].
+
 ## Source-only 146 checkpoint
 
 The supplied AsyncImage and AsyncImageGroup readers are restored from original project source and verified schema/style objects. Finite pending/resolved/failed states, supplied images and a local-basic image viewer are supported. A frozen cancelable image-open intent lets the host suppress the local viewer. This does not claim equivalence to a private host gallery. Child resources use shared generation scopes, and the viewer reuses the existing document overlay coordinator.

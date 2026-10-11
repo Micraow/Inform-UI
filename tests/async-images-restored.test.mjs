@@ -15,3 +15,5 @@ test('same-turn owner removal retires images and local viewer intent',async()=>{
 const {readFile}=await import('node:fs/promises');const {buildCases}=await import('./fixtures/async-images-cases.mjs');const cases=buildCases(JSON.parse(await readFile(new URL('../examples/async-images.json',import.meta.url),'utf8')));
 for(const[name,spec]of cases.positives)test('shared synthetic async contract '+name,()=>assert.equal(validateDocument(spec).ok,true));
 for(const[name,spec,code,path]of cases.negatives)test('shared synthetic async rejection '+name,()=>{const r=validateDocument(spec);assert.equal(r.ok,false);assert.ok(r.issues.some(i=>i.code===code&&(!path||i.path===path)),JSON.stringify(r.issues));});
+
+for(const type of ['async-image','async-image-group'])test(type+' rejects explicit null status rather than treating it as omitted',()=>{const r=validateDocument({version:'iui/1',body:[{type,images:[],status:null}]});assert.equal(r.ok,false);assert.ok(r.issues.some(i=>i.code==='ASYNC_IMAGE_STATUS'&&i.path==='/body/0/status'));});

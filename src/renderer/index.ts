@@ -1,3 +1,4 @@
+import {renderLottie} from './lottie.js';
 import {renderAsyncImages} from './async-image.js';
 import asyncImageStyles from './async-image.css';
 import {renderSearchImage} from './search-image.js';
@@ -267,6 +268,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'lottie':out=renderLottie(context,n,root,container);break;
       case 'async-image':case 'async-image-group':out=renderAsyncImages(context,n,root,container);break;
       case 'search-image':out=renderSearchImage(context,n,root,container);break;
       case 'youtube':out=renderYouTube(context,n);break;

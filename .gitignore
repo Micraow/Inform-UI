@@ -9,3 +9,5 @@ private-evidence/
 *.har
 *.zip
 .env*
+
+/src/renderer/lottie-player.generated.js
