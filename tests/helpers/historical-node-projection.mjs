@@ -7,9 +7,11 @@ export const projectHistorical130=refs=>refs.filter(ref=>!added.has(ref.$ref));
 // Approved link156 additions are checked in full before projecting the primitive
 // contract. Existing fields and all unrelated definitions are still hashed exactly.
 const approvedLink=JSON.parse(readFileSync(new URL('./approved-link156-definition.json',import.meta.url),'utf8'));
+const approvedWeather=JSON.parse(readFileSync(new URL('./approved-weather178-definition.json',import.meta.url),'utf8'));
 const linkAdditions=['url','title','status','fallback','disabled','source','snippet','faviconSrc','imageSrc','mobile','hostLink','copyLabel','loadImageLabel','children'];
 export function projectHistoricalDefinition(name, definition){
  if(name==='WeatherNode'){
+  assert.deepEqual(definition,approvedWeather,'Weather178 optional extension must equal its reviewed definition before historical projection');
   const copy=structuredClone(definition),p=copy.properties;
   for(const key of ['presentation','initialMetric','initialUnit','useCurrent','showDatePicker','disabled','regionLabel','tableDateLabel','resetLabel','requestedLabel','cancelledLabel','labels','share','locationAction','followUps','chartWindow'])delete p[key];
   for(const key of ['description','temperatureLabels'])delete p.current.properties[key];

@@ -12,7 +12,7 @@ function setup(input=doc([node()]),{lang='en',external=false}={}){const dom=new 
 function enter(s,value){s.draft.value=value;s.draft.dispatchEvent(new s.win.Event('input',{bubbles:true}));}
 test('single canonical base node validates public/schema subsets; fixture and compiler are deterministic and immutable',async()=>{
  const before=structuredClone(fixture);assert.equal(validateDocument(fixture).ok,true);assert.equal(await compileHtml(fixture),await compileHtml(fixture));assert.deepEqual(fixture,before);
- const index=JSON.parse(await readFile('src/schema/fragments/index.json'));assert.equal(index.nodeOwners['writing-block'],'base');assert.equal(Object.keys(index.nodeOwners).filter(k=>/writing/.test(k)).length,1);
+ const index=JSON.parse(await readFile('src/schema/fragments/index.json'));assert.equal(index.nodeOwners['writing-block'],'base');assert.deepEqual(Object.keys(index.nodeOwners).filter(k=>/writing/.test(k)).sort(),['conversational-onboarding-writing','writing-block']);assert.equal(index.nodeOwners['conversational-onboarding-writing'],'base');
  for(const path of ['src/schema/iui.schema.json','src/schema/fragments/base.schema.json','src/schema/fragments/forms.schema.json']){const schema=JSON.parse(await readFile(path));assert.equal(new Ajv2020({strict:true}).compile(schema)(fixture),true,path);}
 });
 test('required literals and finite Unicode bounds agree; expression/action/recipient/HTML/extra fields reject',()=>{

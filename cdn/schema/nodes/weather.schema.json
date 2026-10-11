@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:bfb623aa34e5084b02c5f5c7ce1aba51f8f8dd7953c1eb45471a2b6b3935423d:node:weather",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:2e2102aae39b0e76619771a3d860f8f2bfd9b22ce7f58906d98eb433b49c5452:node:weather",
   "title": "Inform UI node subset: weather",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -159,6 +159,41 @@
                   "type": "null"
                 }
               ]
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "temperatureLabels": {
+              "type": "object",
+              "properties": {
+                "celsius": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "fahrenheit": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "a11yCelsius": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "a11yFahrenheit": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                }
+              },
+              "required": [
+                "celsius",
+                "fahrenheit"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [
@@ -220,6 +255,109 @@
                     "type": "null"
                   }
                 ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "highLabels": {
+                "type": "object",
+                "properties": {
+                  "celsius": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "fahrenheit": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "a11yCelsius": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "a11yFahrenheit": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  }
+                },
+                "required": [
+                  "celsius",
+                  "fahrenheit"
+                ],
+                "additionalProperties": false
+              },
+              "lowLabels": {
+                "type": "object",
+                "properties": {
+                  "celsius": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "fahrenheit": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "a11yCelsius": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "a11yFahrenheit": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  }
+                },
+                "required": [
+                  "celsius",
+                  "fahrenheit"
+                ],
+                "additionalProperties": false
+              },
+              "followUps": {
+                "type": "array",
+                "maxItems": 12,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "query": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    },
+                    "disabled": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "query"
+                  ],
+                  "additionalProperties": false
+                }
               }
             },
             "required": [
@@ -265,6 +403,58 @@
                     "type": "null"
                   }
                 ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "condition": {
+                "enum": [
+                  "clear",
+                  "partly-cloudy",
+                  "cloudy",
+                  "rain",
+                  "snow",
+                  "storm",
+                  "fog",
+                  "unknown"
+                ]
+              },
+              "temperatureLabels": {
+                "type": "object",
+                "properties": {
+                  "celsius": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "fahrenheit": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "a11yCelsius": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  "a11yFahrenheit": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  }
+                },
+                "required": [
+                  "celsius",
+                  "fahrenheit"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
@@ -291,6 +481,258 @@
         "message": {
           "type": "string",
           "maxLength": 12000
+        },
+        "presentation": {
+          "enum": [
+            "chart",
+            "table",
+            "compact"
+          ]
+        },
+        "initialMetric": {
+          "enum": [
+            "temperature",
+            "precipitation"
+          ]
+        },
+        "initialUnit": {
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        },
+        "useCurrent": {
+          "type": "boolean"
+        },
+        "showDatePicker": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "regionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "tableDateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "labels": {
+          "type": "object",
+          "properties": {
+            "current": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "hourly": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "daily": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "temperature": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "precipitation": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "conditions": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "time": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "metric": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "view": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "high": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "low": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "observation": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "selected": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "chartView": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "tableView": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "missing": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "source": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "updated": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "share": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            },
+            "placement": {
+              "enum": [
+                "top",
+                "bottom"
+              ]
+            }
+          },
+          "required": [
+            "label"
+          ],
+          "additionalProperties": false
+        },
+        "locationAction": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "label"
+          ],
+          "additionalProperties": false
+        },
+        "followUps": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "chartWindow": {
+          "type": "object",
+          "properties": {
+            "points": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 48
+            },
+            "startTime": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$",
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "points"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

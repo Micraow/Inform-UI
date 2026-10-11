@@ -1,3 +1,11 @@
+# Unified183 ready for native validation
+
+The complete local check passed3428/3428 Node tests, generation, builds, types, owned-queue and source-boundary checks. All52 CDN files were independently checked by bytes/SHA/SRI; the Skill consumer passed106 positive and158 negative contracts through both ESM/global entries plus8 mixed DOM flows. Canonical scope is178 implemented (53 historical,125 pending full acceptance),0 partial,78 missing;183 protocol nodes. Native discovery found742 cases; execution is pending. AskUserLocation184 and later source candidates are outside this release. See docs/unified183-validation.md for exact evidence boundaries. Earlier checkpoint statements below retain their original scope.
+
+# Unified183 validation candidate
+
+This checkout contains the unified183 generated schema, source and CDN assets. Canonical functional coverage is178 implemented (53 historical,125 pending verification),0 partial and78 missing. The first complete local Node run was3424/3426; two historical test-range assumptions were corrected with exact reviewed Weather projection and precise writing-family identities. The original failures are retained externally. The18 targeted projection/writing checks passed; a fresh full run and this candidate’s native acceptance are pending. AskUserLocation184 and later domains are excluded.
+
 # Current functional scope: 178 / 0 / 78
 
 Canonical scope is 178 implemented (53 historical,125 pending verification),0 partial,78 missing;183 protocol nodes are registered. Quiz and Welcome source contracts have author, independent and consumer acceptance. A unified183 build is being prepared. New native/pixel acceptance remains pending; older unified164 acceptance applies only to its fixed assets. Earlier checkpoints below retain their original scope.

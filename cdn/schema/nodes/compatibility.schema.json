@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:bfb623aa34e5084b02c5f5c7ce1aba51f8f8dd7953c1eb45471a2b6b3935423d:node:compatibility",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:2e2102aae39b0e76619771a3d860f8f2bfd9b22ce7f58906d98eb433b49c5452:node:compatibility",
   "title": "Inform UI node subset: compatibility",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

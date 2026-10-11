@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:bfb623aa34e5084b02c5f5c7ce1aba51f8f8dd7953c1eb45471a2b6b3935423d:node:finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:2e2102aae39b0e76619771a3d860f8f2bfd9b22ce7f58906d98eb433b49c5452:node:finance",
   "title": "Inform UI node subset: finance",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -704,6 +704,216 @@
         "type",
         "label",
         "accounts"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerCategoryItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "percentLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "filledPct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^(green|blue|orange|purple|pink|gray|#[0-9A-Fa-f]{6})$(?![\\s\\S])"
+        },
+        "icon": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "detailEnabled": {
+          "type": "boolean"
+        },
+        "detailLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "topDetailLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "topDetailAmountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "topDetailShareLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "amountLabel",
+        "percentLabel",
+        "filledPct",
+        "color"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerCategoryMonth": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "optionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "optionGroup": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "monthStart": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "totalLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^(green|blue|orange|purple|pink|gray|#[0-9A-Fa-f]{6})$(?![\\s\\S])"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "weight",
+              "color"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 100
+        },
+        "topCategories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCategoryItem"
+          },
+          "maxItems": 100
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCategoryItem"
+          },
+          "maxItems": 100
+        },
+        "hasMoreCategories": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "totalLabel",
+        "segments",
+        "topCategories",
+        "categories"
       ],
       "additionalProperties": false
     },
@@ -1658,6 +1868,485 @@
       ],
       "additionalProperties": false
     },
+    "LedgerSpendByCategoryDetailNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-spend-by-category-detail"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "isLoading": {
+          "type": "boolean"
+        },
+        "hasConnectedAccounts": {
+          "type": "boolean"
+        },
+        "noAccountsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "sensitiveValuesHidden": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "subtotalLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "filledPct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "subtotalLabel",
+              "filledPct"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 100
+        },
+        "noDetailedBreakdownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "failed"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          {
+            "properties": {
+              "isLoading": {
+                "const": true
+              }
+            },
+            "required": [
+              "isLoading"
+            ]
+          },
+          {
+            "properties": {
+              "hasConnectedAccounts": {
+                "const": false
+              }
+            },
+            "required": [
+              "hasConnectedAccounts"
+            ]
+          }
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "groups": {}
+        },
+        "required": [
+          "groups"
+        ]
+      }
+    },
+    "LedgerSpendByCategoryNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-spend-by-category"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "isLoading": {
+          "type": "boolean"
+        },
+        "hasConnectedAccounts": {
+          "type": "boolean"
+        },
+        "noAccountsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "sensitiveValuesHidden": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "months": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCategoryMonth"
+          },
+          "maxItems": 60
+        },
+        "selectedMonthId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+        },
+        "compactTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "conversionNote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "moreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "lessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "noSpendingTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "noSpendingDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "monetaryValueReferencesEnabled": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "failed"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          {
+            "properties": {
+              "isLoading": {
+                "const": true
+              }
+            },
+            "required": [
+              "isLoading"
+            ]
+          },
+          {
+            "properties": {
+              "hasConnectedAccounts": {
+                "const": false
+              }
+            },
+            "required": [
+              "hasConnectedAccounts"
+            ]
+          }
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "months": {}
+        },
+        "required": [
+          "months"
+        ]
+      }
+    },
+    "LedgerSpendByCategoryRecentTransactionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-spend-by-category-recent-transactions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "isLoading": {
+          "type": "boolean"
+        },
+        "hasConnectedAccounts": {
+          "type": "boolean"
+        },
+        "noAccountsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "sensitiveValuesHidden": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$(?![\\s\\S])"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "dateLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "amountLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "logoSrc": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000000
+              },
+              "icon": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "dateLabel",
+              "amountLabel"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 100
+        },
+        "noRecentTransactionsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "failed"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          {
+            "properties": {
+              "isLoading": {
+                "const": true
+              }
+            },
+            "required": [
+              "isLoading"
+            ]
+          },
+          {
+            "properties": {
+              "hasConnectedAccounts": {
+                "const": false
+              }
+            },
+            "required": [
+              "hasConnectedAccounts"
+            ]
+          }
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "transactions": {}
+        },
+        "required": [
+          "transactions"
+        ]
+      }
+    },
     "LedgerSpendSoFarThisMonthNode": {
       "type": "object",
       "properties": {
@@ -2039,6 +2728,15 @@
         },
         {
           "$ref": "#/$defs/LedgerIncomeTrackerNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerSpendByCategoryNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerSpendByCategoryDetailNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerSpendByCategoryRecentTransactionsNode"
         }
       ]
     },
