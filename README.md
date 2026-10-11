@@ -1,8 +1,16 @@
+## Canonical scope correction
+
+Complete implementation coverage is 142/256: 53 historically accepted and 89 awaiting full acceptance. Six entries are partial and 108 are missing. Protocol registrations total154 and are a separate metric.
+
+The five finite implementations introduced in150–154 are functional subsets, not complete reimplementations of their reference contracts. FollowUpActionBar lacks footer/wrapped layouts; ConversationSuggestions lacks phase/icon behavior; ImageGrid lacks mosaic, More disclosure and viewer; UpcomingActivity lacks flow/expandedItems behavior; SpendSoFarThisMonth lacks monthly trend/comparison behavior. These are prioritized completion gaps. Passing subset tests does not close them.
+
+Existing code and tests remain available. Unified validation is in progress; no new native acceptance is claimed.
+
 ## Source-only 154 checkpoint
 
 SpendSoFarThisMonth is an original finite supplied-data reader. Historical source was not recovered. Independent exact total/category labels and nullable supplied fractions are displayed without financial arithmetic or inferred account data. Masking removes bar geometry; zero and unknown amounts remain distinct. Local frozen category intents are cancelable and never navigate or transact.
 
-Build, types and 21 basic/schema/cancellation/lifecycle checks pass. Canonical implementation coverage is147/256:53 historically accepted plus94 awaiting complete acceptance,108 missing and one partial. The five late missing-source families were independently reimplemented, not claimed as recovered source. Native/reference visual acceptance remains pending.
+Build, types and 21 basic/schema/cancellation/lifecycle checks pass. Canonical complete implementation coverage is142/256:53 historically accepted plus89 awaiting full acceptance,108 missing and six partial. The five late missing-source families were independently reimplemented, not claimed as recovered source. Native/reference visual acceptance remains pending.
 
 Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain130 until the upcoming unified rebuild. Saves use [skip ci].
 
