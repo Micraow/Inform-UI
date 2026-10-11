@@ -16,19 +16,26 @@ export const readerBlocked=(root:HTMLElement,control:HTMLElement,alive:boolean)=
  * Registrations belong to a child generation, so late host registration is
  * compensated and releases remain idempotent when the shadow target changes.
  */
-export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:readonly (HTMLInputElement|HTMLSelectElement)[],revision:()=>number,restore:()=>void,reset:()=>void):void {
+export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:readonly (HTMLInputElement|HTMLSelectElement)[],revision:()=>number,restore:()=>void,reset:()=>void):()=>boolean {
  const life=c.lifecycle.fork();
- let resetRoot:EventTarget|undefined,releaseShadow:(()=>void)|undefined;
+ let pending=0,resetRoot:EventTarget|undefined,releaseShadow:(()=>void)|undefined;
  const onReset=(event:Event)=>{
   // Snapshot intent before host getters can synchronously deliver newer input.
   const before=life.during(revision);
   const form=life.during(()=>event.target);
   if(!form||!life.during(()=>controls.some(control=>root.contains(control)&&control.form===form)))return;
-  const allowed=life.during(()=>controls.every(control=>control.form===form&&!readerBlocked(root,control,life.current())));
-  queueMicrotask(life.guard(()=>{
-   if(!life.during(()=>event.defaultPrevented)&&allowed&&life.during(()=>controls.every(control=>control.form===form&&!readerBlocked(root,control,life.current())))&&life.during(revision)===before)life.during(reset);
-   else life.during(restore);
-  }));
+  pending++;
+  // A pending reset blocks review/confirmation until its decision settles.
+  // Disposal releases it immediately; a later delivery cannot decrement twice.
+  const settled=life.own(()=>{pending--;});
+  try {
+   const allowed=life.during(()=>controls.every(control=>control.form===form&&!readerBlocked(root,control,life.current())));
+   const reconcile=life.guard(()=>{
+    if(!life.during(()=>event.defaultPrevented)&&allowed&&life.during(()=>controls.every(control=>control.form===form&&!readerBlocked(root,control,life.current())))&&life.during(revision)===before)life.during(reset);
+    else life.during(restore);
+   });
+   queueMicrotask(()=>{try{reconcile();}finally{settled();}});
+  } catch(error) {settled();throw error;}
  };
  life.listen(c.doc,'reset',onReset,true);
  life.own(c.bind(life.guard(()=>{
@@ -38,4 +45,5 @@ export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:re
   releaseShadow=undefined;resetRoot=next;
   if(next)releaseShadow=life.listen(next,'reset',onReset,true);
  })));
+ return()=>pending>0;
 }

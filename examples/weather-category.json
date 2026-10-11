@@ -1,0 +1,103 @@
+{
+  "version": "iui/1",
+  "title": "Fictional weather and category-review snapshots",
+  "body": [
+    {
+      "type": "weather-sidebar-title",
+      "id": "supplied-weather",
+      "label": "Three supplied temperature snapshots",
+      "description": "Original synthetic places. No location lookup, live weather service or automatic refresh.",
+      "unit": "fahrenheit",
+      "initialPlaceId": "freezing",
+      "places": [
+        {
+          "id": "freezing",
+          "label": "Freezing sample",
+          "timezone": "UTC",
+          "observedAt": "2028-02-29T10:00Z",
+          "temperature": 0,
+          "unit": "celsius",
+          "condition": "clear"
+        },
+        {
+          "id": "minus-forty",
+          "label": "Minus-forty sample",
+          "timezone": "America/Los_Angeles",
+          "observedAt": "2028-02-29T00:30Z",
+          "temperature": -40,
+          "unit": "fahrenheit",
+          "condition": "snow"
+        },
+        {
+          "id": "unknown",
+          "label": "Unknown sample",
+          "timezone": "Asia/Tokyo",
+          "observedAt": null,
+          "temperature": null,
+          "unit": "celsius",
+          "condition": null
+        }
+      ]
+    },
+    {
+      "type": "ledger-low-confidence-category-correction",
+      "id": "category-draft",
+      "label": "Fictional local category review",
+      "description": "Synthetic teaching records. No bank connection, categorization service or account mutation.",
+      "snapshotId": "synthetic-review-v1",
+      "categories": [
+        {
+          "id": "archive",
+          "label": "Archive"
+        },
+        {
+          "id": "materials",
+          "label": "Materials"
+        },
+        {
+          "id": "other",
+          "label": "Other"
+        }
+      ],
+      "transactions": [
+        {
+          "id": "precision",
+          "label": "Precision sample",
+          "date": "2028-02-29",
+          "money": {
+            "amount": "0.000000000000000001",
+            "currency": "USD"
+          },
+          "originalCategoryId": "archive",
+          "suggestedCategoryId": "materials",
+          "confidence": 0,
+          "note": "A supplied suggestion is not automatically selected."
+        },
+        {
+          "id": "zero",
+          "label": "Zero sample",
+          "date": null,
+          "money": {
+            "amount": "0",
+            "currency": "JPY"
+          },
+          "originalCategoryId": null,
+          "suggestedCategoryId": "other",
+          "confidence": 1
+        },
+        {
+          "id": "unknown",
+          "label": "Unknown sample",
+          "date": null,
+          "money": {
+            "amount": null,
+            "currency": "EUR"
+          },
+          "originalCategoryId": "materials",
+          "suggestedCategoryId": null,
+          "confidence": null
+        }
+      ]
+    }
+  ]
+}

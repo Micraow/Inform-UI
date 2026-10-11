@@ -403,6 +403,13 @@ for(const [name,definition]of Object.entries(learningMediaDefinitions)){
   defs[name]=definition;
   if(name.endsWith('Node')){nodes.push(ref(name));owners[definition.properties.type.const]='learning';}
 }
+defs.WeatherSidebarPlace=object({id:suppliedKey,label:short,timezone:short,observedAt:{anyOf:[flightAt,{type:'null'}]},temperature:{anyOf:[{type:'number',minimum:-1000000,maximum:1000000},{type:'null'}]},unit:choice('celsius','fahrenheit'),condition:{anyOf:[condition,{type:'null'}]},source:ref('TravelEventSource')},['id','label','timezone','observedAt','temperature','unit','condition']);
+node('weather-sidebar-title',{label:short,description:string(2000),places:array(ref('WeatherSidebarPlace'),0,30),initialPlaceId:suppliedKey,unit:choice('celsius','fahrenheit')},['label','places','unit'],'weather');
+
+defs.LedgerCorrectionCategory=object({id:suppliedKey,label:short},['id','label']);
+defs.LedgerCorrectionTransaction=object({id:suppliedKey,label:short,date:{anyOf:[travelDate,{type:'null'}]},money:ref('LedgerExactMoney'),originalCategoryId:{anyOf:[suppliedKey,{type:'null'}]},suggestedCategoryId:{anyOf:[suppliedKey,{type:'null'}]},confidence:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]},note:string(2000)},['id','label','date','money','originalCategoryId','suggestedCategoryId','confidence']);
+node('ledger-low-confidence-category-correction',{...ledgerCommon,snapshotId:suppliedKey,categories:array(ref('LedgerCorrectionCategory'),0,40),transactions:array(ref('LedgerCorrectionTransaction'),0,60),disabled:bool},['label','snapshotId','categories','transactions'],'finance');
+
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };
 const dir = fileURLToPath(new URL('../src/schema/', import.meta.url));

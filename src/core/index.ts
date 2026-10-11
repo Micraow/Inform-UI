@@ -1,3 +1,5 @@
+import {inspectWeatherSidebar} from './weather-sidebar.js';
+import {inspectCategoryCorrection} from './category-correction.js';
 import {inspectLearningMedia,isLearningMedia} from './learning-media.js';
 import {inspectMatchScores} from './match-scores.js';
 import {inspectSuppliedResults} from './supplied-results.js';
@@ -334,6 +336,8 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
+    if(node.type==='weather-sidebar-title')inspectWeatherSidebar(node,path,add,isSafeURL);
+    if(node.type==='ledger-low-confidence-category-correction')inspectCategoryCorrection(node,path,add,isSafeURL);
     if(isLearningMedia(node))inspectLearningMedia(node,path,add,isSafeURL);
     if(node.type==='nba-scores'||node.type==='soccer-games'||node.type==='american-football-games')inspectMatchScores(node,path,add,isSafeURL);
     if(node.type==='basketball-tournament'||node.type==='election-results')inspectSuppliedResults(node,path,add,isSafeURL);

@@ -1,3 +1,7 @@
+import {renderWeatherSidebar} from './weather-sidebar.js';
+import {renderCategoryCorrection} from './category-correction.js';
+import weatherSidebarStyles from './weather-sidebar.css';
+import categoryCorrectionStyles from './category-correction.css';
 import {renderLearningMedia} from './learning-media.js';
 import learningMediaStyles from './learning-media.css';
 import {renderMatchScores} from './match-scores.js';
@@ -86,7 +90,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -249,6 +253,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'weather-sidebar-title':out=renderWeatherSidebar(context,n);break;
+      case 'ledger-low-confidence-category-correction':out=renderCategoryCorrection(context,n);break;
       case 'learning-image-choice-card':case 'learning-image-label-card':case 'learning-audio-label-card':out=renderLearningMedia(context,n);break;
       case 'nba-scores':case 'soccer-games':case 'american-football-games':out=renderMatchScores(context,n,labels.matchScoresUI);break;
       case 'basketball-tournament':out=renderTournament(context,n,labels.suppliedResultsUI);break;

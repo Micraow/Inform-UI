@@ -1,3 +1,9 @@
+## Source-only 138 checkpoint
+
+Recovered supplied weather header and local category correction review are implemented. Weather selection and conversion use supplied snapshots. Category changes emit a local, cancelable intent after review; there is no account access or automatic persistence. Build, types and 26 finite contract/basic interaction tests pass. Independent and native checks remain separate.
+
+Run `npm run generate && npm run build` to rebuild the 138-node source. Packaged schema/CDN in this branch remain the frozen 130 assets. The common native-reset helper now exposes a lifecycle-owned pending query for safe review/confirmation timing. Saves use [skip ci].
+
 ## Source-only136 implementation checkpoint
 
 Three finite practice cards are recovered: image choice, image label and audio label. Their schema and CSS retain the original project139 objects; media is supplied explicitly, remote loading requires a local click, and grading uses the supplied answers without recording or submitting responses. The source builds and29 contract/local-practice/basic ownership tests pass. Native media playback and geometry remain unverified.
