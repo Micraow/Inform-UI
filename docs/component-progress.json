@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T10:56:59.566409+00:00",
+  "as_of_utc": "2026-10-11T11:33:19.827720+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 91,
+    "implemented_pending_verification": 94,
     "functionally_verified": 53,
     "not_implemented": 108,
-    "partial": 4
+    "partial": 1
   },
-  "completeImplementationCoverage": 144,
+  "completeImplementationCoverage": 147,
   "registeredProtocolNodes": 154,
   "components": [
     {
@@ -1240,8 +1240,8 @@
       "id": "image-grid",
       "name": "Image Grid",
       "layer": "domain",
-      "status": "partial",
-      "note": "Missing reference mosaic, More disclosure and viewer."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending."
     },
     {
       "id": "instant-suggestions",
@@ -1443,8 +1443,8 @@
       "id": "ledger-spend-so-far-this-month",
       "name": "Ledger Spend So Far This Month",
       "layer": "domain",
-      "status": "partial",
-      "note": "Missing reference month trend and comparison behavior."
+      "status": "implemented_pending_verification",
+      "note": "Supplied month/comparison trends and point inspection independently reviewed; native and reference-pixel acceptance remain pending."
     },
     {
       "id": "ledger-transaction-detail",
@@ -1457,8 +1457,8 @@
       "id": "ledger-upcoming-activity",
       "name": "Ledger Upcoming Activity",
       "layer": "domain",
-      "status": "partial",
-      "note": "Missing reference flow and expandedItems behavior."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending."
     },
     {
       "id": "ledger-watchlist",

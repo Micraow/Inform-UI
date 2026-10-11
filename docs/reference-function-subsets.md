@@ -1,11 +1,11 @@
 # Late-family reference contracts still incomplete
 
 The project registers 154 protocol node types. Following the two supplied-presentation
-extensions and independent functional review, canonical coverage is **144 implemented
-(53 historical acceptances plus 91 pending full acceptance), 4 partial, and 108 missing**.
+extensions and independent functional review, canonical coverage is **147 implemented
+(53 historical acceptances plus 94 pending full acceptance), 1 partial, and 108 missing**.
 Follow-up action bar and Conversation suggestions have moved to implemented-pending;
-new native and reference-pixel acceptance remains separate. Image grid, Upcoming,
-Spend, and the pre-existing weather row remain partial. Historical subset identities
+new native and reference-pixel acceptance remains separate. Image grid and Upcoming now have independent ordinary functional review;
+Spend now also passed independent functional review; only the pre-existing weather row remains partial. Historical subset identities
 and the original functional gates are retained below for traceability.
 
 ## Follow-up action bar
@@ -53,8 +53,8 @@ native and reference-pixel acceptance still open. The original subset and gap in
 The current source extension adds supplied mosaic geometry, More/Fewer with stable
 image nodes, passive live mode, resolution/placeholder states and a local-basic
 viewer. See [image-grid presentations](image-grid-presentations.md). Its43 local
-contract tests pass; independent complete-contract review remains pending, so this
-row remains partial. The initial subset and the original gates follow.
+contract tests pass; nine independent functional tests passed on `8ade06a`, so this
+row is now implemented-pending. The initial subset and the original gates follow.
 
 - Current candidate: `a3345630f7683db5b7ae77d729ecc000abab65d3`.
 - Present subset: up to 24 images, a regular 1–4-column grid, captions and an
@@ -75,8 +75,8 @@ row remains partial. The initial subset and the original gates follow.
 The current source extension implements explicit incoming/outgoing flows,
 conditional expanded-list replacement and supplied resolution/account states.
 See [upcoming flows](upcoming-flows.md). Its42 domain tests and33 common reset
-contracts pass; independent functional review remains pending. This row stays
-partial until review. The original subset and gates follow.
+contracts pass; ten independent functional tests passed on `8446e16`. This row is
+now implemented-pending. The original subset and gates follow.
 
 - Current candidate: `d8aba54dfdb8262e0eb9232daae0daa8426c359b`.
 - Present subset: exact supplied amount/date labels, a kind filter, shared native
@@ -90,6 +90,8 @@ partial until review. The original subset and gates follow.
   repeated expansion without listener growth, and local detail intent cancellation.
 
 ## Spend so far this month
+
+The original monthly trend extension is documented in [spend trends](spend-trends.md). Source `7094076` passed83 author/related tests, eleven independent functional tests and a separate nine-flow consumer. Its canonical row is now implemented-pending. New native and pixel acceptance remain separate; the original subset history follows.
 
 - Current candidate: `b1f736daee2bb321a4eedf3fb6901713e654a3bb`.
 - Present subset: supplied total/category labels and independent category-share

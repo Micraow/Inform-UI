@@ -4105,6 +4105,21 @@ export interface LedgerSpendSoFarThisMonthNode {
    * @maxItems 24
    */
   categories: SpendCategory[];
+  /**
+   * @minItems 1
+   * @maxItems 24
+   */
+  months?: [SpendTrendSeries, ...SpendTrendSeries[]];
+  averageSeries?: SpendTrendSeries;
+  previousSeries?: SpendTrendSeries;
+  selectedMonth?: string;
+  comparison?: string;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  hasConnectedAccounts?: boolean;
+  noAccountsLabel?: string;
+  previousLabel?: string;
+  averageLabel?: string;
   comparisonLabel?: string;
   emptyLabel?: string;
   masked?: boolean;
@@ -4116,6 +4131,26 @@ export interface SpendCategory {
   label: string;
   amountLabel: string | null;
   fraction: number | null;
+}
+export interface SpendTrendSeries {
+  id: string;
+  label: string;
+  totalValue: number | null;
+  totalLabel: string | null;
+  dayCount: number;
+  /**
+   * @minItems 0
+   * @maxItems 32
+   */
+  points: SpendTrendPoint[];
+  current?: boolean;
+  daysElapsed?: number;
+  groupLabel?: string;
+}
+export interface SpendTrendPoint {
+  day: number;
+  value: number | null;
+  label: string | null;
 }
 export interface LedgerUpcomingActivityNode {
   type: "ledger-upcoming-activity";

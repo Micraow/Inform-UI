@@ -1,3 +1,15 @@
+# Current functional scope:147 /1 /108
+
+The monthly spending source `7094076` passed eleven independent functional tests and is now implemented-pending. Current coverage is147 implemented (53 historical acceptances,94 pending full acceptance),1 partial Weather and108 missing. Registration remains154. This is a local source checkpoint; the latest public source remains `75a5115` and packaged assets remain unified154. Earlier checkpoint counts below are historical.
+
+# Supplied monthly spending source checkpoint
+
+The source adds monthly temporal series, explicit previous/average/month comparisons, original monotone interpolation, null-separated curves, day inspection, privacy masking and native reset. All50 spending compatibility/extension tests and33 shared reset contracts passed (83 total); build/types/queue/boundary checks passed. See [the typed contract](docs/spend-trends.md). Canonical scope remains146 implemented,2 partial,108 missing until independent Spend functional review. This local source has no new CDN/native result; public branch remains75a5115.
+
+# Current functional scope: 146 / 2 / 108
+
+Grid `8ade06a` passed nine independent functional tests and Upcoming `8446e16` passed ten. Both are now implemented-pending. Current coverage is146 implemented (53 historical acceptances,93 pending full acceptance),2 partial and108 missing. Registration stays154. These are local source extensions; the latest public source remains `75a5115` and its packaged assets remain unified154. No new native or pixel result is claimed. Earlier checkpoint numbers below describe their historical source.
+
 # Upcoming flow source checkpoint
 
 The source now supports supplied incoming/outgoing flows, stable top rows, conditional replacement by longer expanded lists, same-flow expansion retention, flow-change collapse, resolution/no-account states, explicit detail intents and native reset. See [the contract](docs/upcoming-flows.md). The42 Upcoming and33 shared reset tests passed,75 total, with types/boundary gates. The packaged CDN is still unified154; this extension has no new native result. Canonical scope remains144 implemented,4 partial,108 missing pending independent review.

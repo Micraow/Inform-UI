@@ -282,7 +282,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
-      case 'ledger-spend-so-far-this-month':out=renderSpendMonth(context,n);break;
+      case 'ledger-spend-so-far-this-month':out=renderSpendMonth(context,n,root);break;
       case 'ledger-upcoming-activity':out=renderUpcomingActivity(context,n,root,container);break;
       case 'image-grid':out=renderImageGrid(context,n,root,container);break;
       case 'conversation-suggestions':out=renderConversationSuggestions(context,n,root,container);break;

@@ -1,0 +1,187 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-spend-so-far-this-month",
+      "label": "Original supplied monthly spending",
+      "periodLabel": "Three teaching periods",
+      "totalLabel": "Legacy display",
+      "categories": [],
+      "months": [
+        {
+          "id": "month_august",
+          "label": "Original current teaching period",
+          "totalValue": 777,
+          "totalLabel": "777 supplied credits",
+          "dayCount": 31,
+          "current": true,
+          "daysElapsed": 12,
+          "points": [
+            {
+              "day": 1,
+              "value": 0,
+              "label": "Zero supplied credits"
+            },
+            {
+              "day": 2,
+              "value": 7,
+              "label": "7 supplied credits"
+            },
+            {
+              "day": 9,
+              "value": -2,
+              "label": "Minus2 supplied credits"
+            },
+            {
+              "day": 12,
+              "value": 42,
+              "label": "42 supplied credits"
+            },
+            {
+              "day": 18,
+              "value": null,
+              "label": "Future supplied slot"
+            },
+            {
+              "day": 28,
+              "value": null,
+              "label": "Future supplied slot"
+            }
+          ]
+        },
+        {
+          "id": "month_july",
+          "label": "Original July teaching period",
+          "totalValue": 1200,
+          "totalLabel": "1200 supplied credits",
+          "dayCount": 31,
+          "current": false,
+          "points": [
+            {
+              "day": 1,
+              "value": 0,
+              "label": "Zero supplied credits"
+            },
+            {
+              "day": 3,
+              "value": 12,
+              "label": "12 supplied credits"
+            },
+            {
+              "day": 10,
+              "value": 20,
+              "label": "20 supplied credits"
+            },
+            {
+              "day": 19,
+              "value": null,
+              "label": "Unknown supplied observation"
+            },
+            {
+              "day": 31,
+              "value": 45,
+              "label": "45 supplied credits"
+            }
+          ]
+        },
+        {
+          "id": "month_june",
+          "label": "Original June teaching period",
+          "totalValue": 900,
+          "totalLabel": "900 supplied credits",
+          "dayCount": 30,
+          "current": false,
+          "points": [
+            {
+              "day": 1,
+              "value": 0,
+              "label": "Zero supplied credits"
+            },
+            {
+              "day": 2,
+              "value": 8,
+              "label": "8 supplied credits"
+            },
+            {
+              "day": 9,
+              "value": null,
+              "label": "Unknown supplied observation"
+            },
+            {
+              "day": 18,
+              "value": -3,
+              "label": "Minus3 supplied credits"
+            },
+            {
+              "day": 28,
+              "value": 60,
+              "label": "60 supplied credits"
+            }
+          ]
+        }
+      ],
+      "averageSeries": {
+        "id": "average",
+        "label": "Original supplied average reference",
+        "totalValue": 34,
+        "totalLabel": "Supplied comparison total",
+        "dayCount": 31,
+        "current": false,
+        "points": [
+          {
+            "day": 1,
+            "value": 1,
+            "label": "1 supplied reference credit"
+          },
+          {
+            "day": 4,
+            "value": null,
+            "label": "Unknown supplied reference"
+          },
+          {
+            "day": 12,
+            "value": 15,
+            "label": "15 supplied reference credits"
+          },
+          {
+            "day": 20,
+            "value": 28,
+            "label": "28 supplied reference credits"
+          },
+          {
+            "day": 28,
+            "value": 34,
+            "label": "34 supplied reference credits"
+          }
+        ]
+      },
+      "previousSeries": {
+        "id": "previous_june",
+        "label": "Original supplied earlier reference",
+        "totalValue": 11,
+        "totalLabel": "Supplied comparison total",
+        "dayCount": 31,
+        "current": false,
+        "points": [
+          {
+            "day": 1,
+            "value": 0,
+            "label": "Zero supplied reference credits"
+          },
+          {
+            "day": 12,
+            "value": 5,
+            "label": "5 supplied reference credits"
+          },
+          {
+            "day": 28,
+            "value": 11,
+            "label": "11 supplied reference credits"
+          }
+        ]
+      },
+      "selectedMonth": "month_august",
+      "comparison": "average"
+    }
+  ]
+}

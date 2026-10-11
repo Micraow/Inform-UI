@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c67e39c467d189d272589dc2e6a391953a483bff4b248b42593d02780d48d229:document:base+sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:369264bffcd85ba46c2d15b19fdcad647903b352f6d376e2f6594ab9763b3f7e:document:base+sports",
   "title": "Inform UI document subset: base, sports",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",

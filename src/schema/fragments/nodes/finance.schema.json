@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c67e39c467d189d272589dc2e6a391953a483bff4b248b42593d02780d48d229:node:finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:369264bffcd85ba46c2d15b19fdcad647903b352f6d376e2f6594ab9763b3f7e:node:finance",
   "title": "Inform UI node subset: finance",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -1699,6 +1699,58 @@
           "minItems": 0,
           "maxItems": 24
         },
+        "months": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SpendTrendSeries"
+          },
+          "minItems": 1,
+          "maxItems": 24
+        },
+        "averageSeries": {
+          "$ref": "#/$defs/SpendTrendSeries"
+        },
+        "previousSeries": {
+          "$ref": "#/$defs/SpendTrendSeries"
+        },
+        "selectedMonth": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "comparison": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hasConnectedAccounts": {
+          "type": "boolean"
+        },
+        "noAccountsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "previousLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "averageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
         "comparisonLabel": {
           "type": "string",
           "minLength": 1,
@@ -2032,6 +2084,115 @@
         "label",
         "amountLabel",
         "fraction"
+      ],
+      "additionalProperties": false
+    },
+    "SpendTrendPoint": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "day",
+        "value",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "SpendTrendSeries": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalValue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "totalLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dayCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 31
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SpendTrendPoint"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "current": {
+          "type": "boolean"
+        },
+        "daysElapsed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31
+        },
+        "groupLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "totalValue",
+        "totalLabel",
+        "dayCount",
+        "points"
       ],
       "additionalProperties": false
     },

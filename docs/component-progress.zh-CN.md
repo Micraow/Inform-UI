@@ -1,6 +1,6 @@
 # 组件进度
 
-144项完整实现覆盖：53项历史验收，91项完整实现待验。另4项部分实现、108项未实现，总计256。协议注册154不是完成数。FollowUp与Conversation普通功能独立验收已通过，新源码原生与参考像素验收仍待完成。
+147项完整实现覆盖：53项历史验收，94项完整实现待验。另1项部分实现Weather、108项未实现，总计256。协议注册154不是完成数。五项补全均过独立普通功能复核；新源码原生与参考像素验收仍待完成。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -179,7 +179,7 @@
 | gen-image | Gen Image | 未实现 | No implementation in the current library. |
 | homework-helper-v2 | Homework Helper V2 | 未实现 | No implementation in the current library. |
 | image-gen | Image Gen | 未实现 | No implementation in the current library. |
-| image-grid | Image Grid | 部分实现 | Missing reference mosaic, More disclosure and viewer. |
+| image-grid | Image Grid | 完整实现待验 | Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending. |
 | instant-suggestions | Instant Suggestions | 未实现 | No implementation in the current library. |
 | internal-partner-app | Internal Partner App | 未实现 | No implementation in the current library. |
 | jobs | Jobs | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -208,9 +208,9 @@
 | ledger-spend-by-category-detail | Ledger Spend By Category Detail | 未实现 | No implementation in the current library. |
 | ledger-spend-by-category-recent-transactions | Ledger Spend By Category Recent Transactions | 未实现 | No implementation in the current library. |
 | ledger-spend-by-category | Ledger Spend By Category | 未实现 | No implementation in the current library. |
-| ledger-spend-so-far-this-month | Ledger Spend So Far This Month | 部分实现 | Missing reference month trend and comparison behavior. |
+| ledger-spend-so-far-this-month | Ledger Spend So Far This Month | 完整实现待验 | Supplied month/comparison trends and point inspection independently reviewed; native and reference-pixel acceptance remain pending. |
 | ledger-transaction-detail | Ledger Transaction Detail | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| ledger-upcoming-activity | Ledger Upcoming Activity | 部分实现 | Missing reference flow and expandedItems behavior. |
+| ledger-upcoming-activity | Ledger Upcoming Activity | 完整实现待验 | Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending. |
 | ledger-watchlist | Ledger Watchlist | 未实现 | No implementation in the current library. |
 | link | Link | 未实现 | No implementation in the current library. |
 | link-card | Link Card | 未实现 | No implementation in the current library. |
