@@ -1,0 +1,23 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "image-grid",
+      "label": "Original supplied swatches",
+      "columns": 3,
+      "images": [
+        {
+          "id": "blue",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGPQmhZNEmIY1TCqYfhqAABDbxsQbPuAcQAAAABJRU5ErkJggg==",
+          "alt": "Original blue swatch",
+          "caption": "Locally generated color sample"
+        },
+        {
+          "id": "second",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGPQmhZNEmIY1TCqYfhqAABDbxsQbPuAcQAAAABJRU5ErkJggg==",
+          "alt": "Second supplied swatch"
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,11 @@
+## Source-only 152 checkpoint
+
+ImageGrid is an original finite reimplementation; historical source was not recovered. Supply up to24 safe images with unique IDs, alternative text and optional captions. The shared image primitive owns loading/failure/cleanup. Native buttons emit only the frozen local cancelable `{id,index}` image-grid intent, with no remote gallery or automatic navigation.
+
+Build, types and 27 focused checks pass (19 ImageGrid plus eight Video successor checks). The shared Video SDK timeout now belongs to the subscriber collection and survives disposal of its first client; its hit-layer remains transparent across enabled/disabled interaction states. Reference visuals, native geometry and real SDK playback remain pending.
+
+Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain130. Saves use [skip ci].
+
 ## Source-only 151 checkpoint
 
 ConversationSuggestions is an original finite reimplementation under the current library model. Historical source was not recovered. Supply 0–12 records with unique IDs, labels and prompt text; optional disabled flags are literal booleans. The local frozen `iui:conversation-suggestion` intent carries `{id,prompt}` and is cancelable. It never sends messages or calls a model/provider.

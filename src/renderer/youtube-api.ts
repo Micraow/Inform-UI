@@ -1,4 +1,4 @@
-import type {RenderGeneration} from './generation.js';
+import {renderGeneration,type RenderGeneration} from './generation.js';
 /** Bounded adapter for the official YouTube IFrame API. No user data, query or arbitrary script URL. */
 export interface YouTubePlayer {
  mute():void; playVideo():void; pauseVideo():void; stopVideo():void; destroy():void;
@@ -19,16 +19,19 @@ export function subscribeYouTubeAPI(life:RenderGeneration,doc:Document,active:()
  const client:Client={active,ready,failed};let loader=loaders.get(win);
  if(loader){loader.clients.add(client);return()=>{loader!.clients.delete(client);if(!loader!.clients.size)loader!.stop();};}
  const clients=new Set([client]);let stopped=false,script:HTMLScriptElement|null=null,timer:number|undefined,previous:(()=>void)|undefined;
- const stop=()=>{if(stopped)return;stopped=true;if(timer!==undefined)win.clearTimeout(timer);if(loaders.get(win)===loader)loaders.delete(win);try{if(win.onYouTubeIframeAPIReady===callback)win.onYouTubeIframeAPIReady=previous;}catch{}script?.remove();clients.clear();};
+ // The shared request belongs to its subscriber set, not the first component.
+ // The final unsubscribe (or readiness/failure) releases its own generation.
+ const request=renderGeneration(()=>!stopped&&[...clients].some(item=>item.active()));
+ const stop=()=>{if(stopped)return;stopped=true;if(loaders.get(win)===loader)loaders.delete(win);try{request.dispose();}finally{try{if(win.onYouTubeIframeAPIReady===callback)win.onYouTubeIframeAPIReady=previous;}catch{}script?.remove();clients.clear();}};
  const finish=(success:boolean)=>{if(stopped)return;let api:YouTubeAPI|undefined;try{api=win.YT;}catch{}const current=[...clients].filter(x=>x.active());stop();for(const item of current){if(!item.active())continue;if(success&&typeof api?.Player==='function')item.ready(api);else item.failed();}};
  const callback=()=>{try{previous?.call(win);}finally{finish(true);}};
  loader={clients,script,timer,previous,callback,stop};loaders.set(win,loader);
  try{
   previous=win.onYouTubeIframeAPIReady;if(!active()){stop();return()=>{};}win.onYouTubeIframeAPIReady=callback;
   if(!active()){stop();return()=>{};}script=doc.createElement('script');loader.script=script;if(!active()){stop();return()=>{};}
-  script.async=true;script.referrerPolicy='strict-origin-when-cross-origin';script.addEventListener('error',()=>finish(false),{once:true});
+  script.async=true;script.referrerPolicy='strict-origin-when-cross-origin';request.listen(script,'error',()=>finish(false));
   if(!active()){stop();return()=>{};}script.src=YOUTUBE_API_SOURCE;if(!active()){stop();return()=>{};}
-  (doc.head??doc.documentElement).append(script);if(stopped||!active()){stop();return()=>{};}timer=life.acquire(()=>win.setTimeout(life.guard(()=>finish(false)),10000),id=>win.clearTimeout(id));loader.timer=timer;
+  (doc.head??doc.documentElement).append(script);if(stopped||!active()){stop();return()=>{};}timer=request.acquire(()=>win.setTimeout(request.guard(()=>finish(false)),10000),id=>win.clearTimeout(id));loader.timer=timer;
  }catch{finish(false);}
  return()=>{clients.delete(client);if(!clients.size)stop();};
 }

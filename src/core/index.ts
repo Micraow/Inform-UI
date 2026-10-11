@@ -1,3 +1,4 @@
+import {inspectImageGrid} from './image-grid.js';
 import {inspectConversationSuggestions} from './conversation-suggestions.js';
 import {inspectFollowUpActionBar} from './follow-up-action-bar.js';
 import {inspectAsyncVideo,checkAsyncVideoStatus} from './async-video.js';
@@ -355,6 +356,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='youtube')inspectYouTube(node,path,add);
     if(node.type==='async-image'||node.type==='async-image-group')inspectAsyncImages(node,path,add,isSafeURL);
     if(node.type==='lottie')inspectLottie(node,path,add);
+    if(node.type==='image-grid')inspectImageGrid(node,path,add,isSafeURL);
     if(node.type==='conversation-suggestions')inspectConversationSuggestions(node,path,add);
     if(node.type==='follow-up-action-bar')inspectFollowUpActionBar(node,path,add);
     if(node.type==='async-video-carousel')inspectAsyncVideo(node,path,add,isSafeURL);
