@@ -1,0 +1,167 @@
+{
+  "LedgerNetWorthPoint": {
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+        "minLength": 10,
+        "maxLength": 10
+      },
+      "value": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -1000000000000,
+            "maximum": 1000000000000
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "date",
+      "value"
+    ],
+    "additionalProperties": false
+  },
+  "LedgerNetWorthInterval": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "currentValue": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -1000000000000,
+            "maximum": 1000000000000
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "change": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -1000000000000,
+            "maximum": 1000000000000
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "changePercent": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -1000000,
+            "maximum": 1000000
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "changeWindow": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "points": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/LedgerNetWorthPoint"
+        },
+        "minItems": 0,
+        "maxItems": 120
+      }
+    },
+    "required": [
+      "id",
+      "label",
+      "currentValue",
+      "change",
+      "changePercent",
+      "changeWindow",
+      "points"
+    ],
+    "additionalProperties": false
+  },
+  "LedgerNetWorthNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "ledger-net-worth"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "source": {
+        "$ref": "#/$defs/LedgerSource"
+      },
+      "currency": {
+        "type": "string",
+        "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+        "minLength": 3,
+        "maxLength": 3
+      },
+      "intervals": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/LedgerNetWorthInterval"
+        },
+        "minItems": 0,
+        "maxItems": 8
+      },
+      "initialIntervalId": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "masked": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "balanceNote": {
+        "type": "string",
+        "maxLength": 2000
+      },
+      "conversionNote": {
+        "type": "string",
+        "maxLength": 2000
+      }
+    },
+    "required": [
+      "type",
+      "label",
+      "currency",
+      "intervals"
+    ],
+    "additionalProperties": false
+  }
+}

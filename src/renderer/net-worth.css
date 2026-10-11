@@ -1,0 +1,32 @@
+/* Net-worth reference composition. These selectors affect only this reader. */
+.iui-root .iui-net-worth{--iui-net-worth-surface:#fff;border:1px solid var(--iui-line);border-radius:24px;background:var(--iui-net-worth-surface);overflow:hidden;min-inline-size:0;padding-block-end:16px}
+.iui-root .iui-net-worth-header{padding:20px 24px 12px;display:flex;flex-direction:column;gap:4px;min-inline-size:0}
+.iui-root .iui-net-worth-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-inline-size:0}
+.iui-root .iui-net-worth-title,.iui-root .iui-net-worth-value{margin:0;font-size:16px;line-height:26px;font-weight:600;min-inline-size:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iui-root .iui-net-worth-title{flex:1}
+.iui-root .iui-net-worth-value{text-align:end;font-variant-numeric:tabular-nums}
+.iui-root .iui-net-worth-summary{display:flex;flex-wrap:nowrap;align-items:center;gap:4px;font-size:14px;line-height:20px;font-weight:500;color:var(--iui-muted)}
+.iui-root .iui-net-worth-change,.iui-root .iui-net-worth-window{min-inline-size:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iui-root .iui-net-worth-separator{flex:none}
+.iui-root .iui-net-worth-change[data-direction=up]{color:#30a633}.iui-root .iui-net-worth-change[data-direction=down]{color:var(--iui-danger)}
+.iui-root .iui-net-worth-note,.iui-root .iui-net-worth-source{margin:0;font-size:12px;line-height:16px;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-root .iui-net-worth-divider{margin:0 24px;border:0;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-net-worth-intervals{display:flex;flex-wrap:wrap;gap:4px;padding:12px 24px 4px}
+.iui-root .iui-net-worth-interval{border:0;border-radius:999px;padding:6px 12px;min-block-size:32px;min-inline-size:0;background:transparent;color:var(--iui-muted);font:inherit;font-size:14px;line-height:20px}
+.iui-root .iui-net-worth-interval:hover:not(:disabled){background:var(--iui-ghost-hover)}.iui-root .iui-net-worth-interval[aria-pressed=true]{background:var(--iui-ghost-active);color:var(--iui-ink)}
+.iui-root .iui-net-worth-chart-wrap{position:relative;padding:12px 8px 0 24px;min-inline-size:0}
+.iui-root .iui-net-worth-chart{display:block;inline-size:100%;max-inline-size:100%;padding:0;border:0;border-radius:0;background:transparent;color:inherit;min-block-size:0;text-align:initial;touch-action:pan-y}
+.iui-root .iui-net-worth-chart:disabled{background:transparent;opacity:1}.iui-root .iui-net-worth-chart svg{display:block;inline-size:100%;block-size:auto;overflow:visible}
+.iui-root .iui-net-worth-tooltip{position:absolute;z-index:1;top:8px;left:50%;transform:translate(-50%,-100%);max-inline-size:calc(100% - 48px);padding:6px 10px;border-radius:8px;background:var(--iui-ink);color:var(--iui-bg);font-size:12px;line-height:16px;white-space:pre-line;pointer-events:none}
+.iui-root .iui-net-worth-empty{margin:0;padding:24px;color:var(--iui-muted);font-size:14px}
+.iui-root .iui-net-worth-footer{padding:8px 24px 0}.iui-root .iui-net-worth :is(button,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-net-worth [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-net-worth{border-color:CanvasText}.iui-root .iui-net-worth-change[data-direction],.iui-root .iui-net-worth-summary,.iui-root .iui-net-worth-note,.iui-root .iui-net-worth-empty{color:CanvasText}.iui-root .iui-net-worth-interval[aria-pressed=true]{outline:1px solid Highlight}.iui-root .iui-net-worth svg{forced-color-adjust:auto}}
+
+/* A chart is a transparent reading surface in every interactive state. */
+.iui-root .iui-net-worth-chart:hover:enabled,.iui-root .iui-net-worth-chart:active:enabled{background:transparent}
+
+/* Original web-host elevated role, scoped only to this card. */
+.iui-root[data-theme=dark] .iui-net-worth{--iui-net-worth-surface:#212121}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-net-worth{--iui-net-worth-surface:#212121}}
+@supports(color:color-mix(in srgb,white,transparent)){.iui-root .iui-net-worth{--iui-net-worth-surface:rgb(255 255 255 / 70%)}.iui-root[data-theme=dark] .iui-net-worth{--iui-net-worth-surface:rgb(33 33 33 / 96%)}@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-net-worth{--iui-net-worth-surface:rgb(33 33 33 / 96%)}}}

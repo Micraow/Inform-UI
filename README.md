@@ -1,3 +1,9 @@
+## Source-only 139 checkpoint
+
+The supplied NetWorth chart is restored from this project's original final core, renderer and styles. Summary values remain independent of chart observations; unknown values preserve gaps. Interval selection and keyboard inspection are local, with no account connection or currency conversion. Build, types and 22 new synthetic contract/chart tests pass. The original test fixture was unavailable, so no original-suite result is claimed. Independent and native geometry checks remain separate.
+
+Run `npm run generate && npm run build` for the 139-node source. `scripts/net-worth-definitions.json` is a required generator input. Packaged schema/CDN remain the frozen 130 assets. Saves use [skip ci].
+
 ## Source-only 138 checkpoint
 
 Recovered supplied weather header and local category correction review are implemented. Weather selection and conversion use supplied snapshots. Category changes emit a local, cancelable intent after review; there is no account access or automatic persistence. Build, types and 26 finite contract/basic interaction tests pass. Independent and native checks remain separate.

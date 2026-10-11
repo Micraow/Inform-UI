@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {JSDOM} from 'jsdom';
+import {mount,validateDocument} from '../dist/browser.js';
+import {buildCases} from './fixtures/net-worth-cases.mjs';
+const fixture=JSON.parse(await readFile(new URL('../examples/net-worth.json',import.meta.url),'utf8'));
+const cases=buildCases(fixture);
+for(const[name,spec]of cases.positives)test('net worth accepts '+name,()=>assert.equal(validateDocument(spec).ok,true));
+for(const[name,spec,code,path]of cases.negatives)test('net worth rejects '+name,()=>{const r=validateDocument(spec);assert.equal(r.ok,false);assert.ok(r.issues.some(i=>i.code===code&&(!path||i.path===path)),JSON.stringify(r.issues));});
+function setup(spec=fixture){const dom=new JSDOM('<main></main>'),host=dom.window.document.querySelector('main'),ctl=mount(host,spec);return{dom,host,ctl,root:host.querySelector('.iui-net-worth'),close(){ctl.dispose();dom.window.close();}};}
+test('supplied current value is independent of last observation; null splits paths',()=>{const s=setup();try{assert.equal(s.root.querySelector('.iui-net-worth-value').dataset.rawValue,'900');assert.equal(s.root.querySelectorAll('[data-net-worth-segment]').length,2);assert.equal(s.root.querySelectorAll('[data-point-index]').length,3);assert.match(s.root.querySelector('.iui-net-worth-change').textContent,/-25/);}finally{s.close();}});
+test('keyboard inspection distinguishes zero and unknown, Escape restores supplied summary',()=>{const s=setup();try{const chart=s.root.querySelector('.iui-net-worth-chart'),value=s.root.querySelector('.iui-net-worth-value');for(const[key,expected]of [['Home','0'],['ArrowRight',undefined],['End','120'],['Escape','900']]){chart.dispatchEvent(new s.dom.window.KeyboardEvent('keydown',{key,bubbles:true,cancelable:true}));assert.equal(value.dataset.rawValue,expected);}assert.equal(s.root.querySelector('.iui-net-worth-tooltip').hidden,true);}finally{s.close();}});
+test('interval selection preserves supplied null and explicit zero summaries',()=>{const s=setup();try{s.root.querySelector('[data-interval-id=empty]').click();assert.equal(s.root.querySelector('.iui-net-worth-value').dataset.rawValue,undefined);assert.equal(s.root.querySelector('.iui-net-worth-chart-wrap').hidden,true);s.root.querySelector('[data-interval-id=zero]').click();assert.equal(s.root.querySelector('.iui-net-worth-value').dataset.rawValue,'0');assert.equal(s.root.querySelector('.iui-net-worth-chart-wrap').hidden,false);}finally{s.close();}});
+test('masked chart disables inspection without altering supplied input',()=>{const spec=structuredClone(fixture);spec.body[0].masked=true;const s=setup(spec);try{assert.equal(s.root.querySelector('.iui-net-worth-chart').disabled,true);assert.equal(s.root.querySelector('.iui-net-worth-value').textContent,'••••');assert.equal(spec.body[0].intervals[0].currentValue,900);}finally{s.close();}});
+test('same-turn removal and return permanently retires existing chart controls',()=>{const s=setup();try{const root=s.root;root.remove();s.host.querySelector('.iui-root').append(root);root.querySelector('[data-interval-id=zero]').click();assert.equal(root.querySelector('.iui-net-worth-value').dataset.rawValue,'900');}finally{s.close();}});

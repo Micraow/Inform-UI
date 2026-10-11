@@ -1,0 +1,19 @@
+{
+  "version": "iui/1",
+  "title": "Synthetic supplied balances",
+  "body": [{
+    "type": "ledger-net-worth",
+    "id": "practice-net-worth",
+    "label": "Sample balance history",
+    "description": "Invented teaching values. No bank account or financial advice.",
+    "currency": "USD",
+    "initialIntervalId": "month",
+    "balanceNote": "Current value and change are supplied independently of observations.",
+    "conversionNote": "No currency conversion is performed.",
+    "intervals": [
+      {"id":"month","label":"Sample month","currentValue":900,"change":-25,"changePercent":-2.7,"changeWindow":"Supplied month comparison","points":[{"date":"2028-02-01","value":0},{"date":"2028-02-02","value":null},{"date":"2028-02-03","value":-40},{"date":"2028-02-29","value":120}]},
+      {"id":"empty","label":"Unreported period","currentValue":null,"change":null,"changePercent":null,"changeWindow":"Comparison not supplied","points":[]},
+      {"id":"zero","label":"Explicit zero","currentValue":0,"change":0,"changePercent":0,"changeWindow":"Supplied zero comparison","points":[{"date":"2028-01-01","value":0}]}
+    ]
+  }]
+}
