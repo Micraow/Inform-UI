@@ -121,3 +121,7 @@ jsDelivr 支持 GitHub 完整 commit 路径，固定提交文件具有长期缓�
 上一批62节点已验：292项Node、216项Chromium、42消费者视图全部通过；其CI整树与资产字节关系及实际截图复核见[冻结证据与有限范围](verification-62.md)。新66节点的独立验收见[本批证据](verification-66.md)。
 
 66节点已在实际HTTP响应上核对11项脚本、样式、完整/索引及base/time/finance分片的SHA256、SHA384 SRI、CORS与immutable缓存头；338项Node、241项真实Chromium浏览器、42+18消费者视图通过；实际原图已复核。
+
+## Unified164 recovery package
+
+The recovery branch now carries a single generated164-node package, with52 integrity entries. Local full checks passed3160/3160; the prior10 historical assertion failures and their strict projection repair remain recorded. Consume JavaScript, CSS, schema and integrity from the same fixed commit. The new717-case native batch is pending and must not be represented by earlier154 results.

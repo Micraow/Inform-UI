@@ -1,3 +1,11 @@
+# Unified164 package ready for native acceptance
+
+This tree contains the updated164-node CDN and schema package. Full local generation/build/CDN/type/queue/Node/public-type/boundary checks passed:3160/3160 Node tests,385.6 seconds. The earlier3147/3157 run is preserved; its ten historical assertion mismatches were repaired with strict reviewed projections and distinct-node assertions, without changing those old snapshots.
+
+Canonical functionality:158 implemented (53 historical acceptances,105 pending full acceptance),1 partial Weather,97 missing. The source-built independent164 checks passed27 cases. The upcoming combined Chromium batch discovers717 tests; discovery is not execution. This version does not inherit native acceptance from the older154 package. AskUser work is excluded.
+
+Use this checkout’s [ESM bundle](cdn/iui.min.js), [global bundle](cdn/iui.global.min.js), [stylesheet](cdn/iui.css), [schema](cdn/iui.schema.json) and [integrity manifest](cdn/integrity.json). All52 manifest entries are regenerated together. No package release or main-branch replacement is implied. Earlier source checkpoints below retain their historical identities.
+
 # Unified164 functional source candidate
 
 Canonical coverage is158 complete functional implementations (53 historical acceptances and105 pending full acceptance),1 partial Weather and97 missing. Protocol registration is164. ScheduledTaskSuggestion and the two Entity views passed13 independent cases; the repaired automation plan passed its14-case replay. These source-build checks do not claim new native/pixel acceptance.

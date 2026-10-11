@@ -1,3 +1,9 @@
+# Current unified164 assets
+
+This checkout packages164 protocol nodes. Use `iui.min.js` (ESM), `iui.global.min.js`, `iui.css` and `iui.schema.json` from the same fixed commit; `integrity.json` records all52 generated asset hashes and SRI values. Regenerate with `npm ci && npm run generate && npm run build && npm run build:cdn`.
+
+Local full validation passed3160/3160. The717-case Chromium batch is pending; old154 browser evidence is not a164 result. Canonical functional scope is158/1/97, separate from protocol registration. Earlier pinned examples below remain historical.
+
 # 可直接加载的浏览器构建
 
 这里是同一套 Intelligent-UI 库的公开预构建产物，不需要使用者安装 Node 或执行构建。只包含本项目原创实现及许可明确的 Ajv/KaTeX 依赖。
