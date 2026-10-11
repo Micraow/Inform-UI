@@ -35,3 +35,5 @@ export type {RecommendationCardIntent} from './renderer/recommendation-card.js';
 
 export type {RecurringReviewDetail} from './renderer/ledger-records.js';
 export type {PromptChecklistIntent} from './renderer/prompt-checklist.js';
+
+export type {MotorsportSessionDetail} from './renderer/motorsport.js';

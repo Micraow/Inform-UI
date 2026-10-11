@@ -208,3 +208,10 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 后续新增[供数文章](docs/news-article.md)、[供数评论](docs/entity-reviews.md)、[供数时段选择](docs/restaurant-availability.md)与[讨论阅读](docs/reddit-thread-card.md)。[二十四项本地记录](docs/local-enhancements-84.md)保留原始证据。其后新增[显式动画/庆祝](docs/motion.md)与[邮件草稿/计划回顾](docs/draft-review.md)，[二十八项本地冻结](docs/local-enhancements-88.md)全库863项通过，仍未计入真实浏览器验收。
 
 [三十项本地冻结](docs/local-enhancements-90.md)加入供数地点选择与逐图确认画廊，同时修复Forms祖先禁用与同步adapter生命周期边界。28项全库与后续影响面检查的证据分别列出；正式已验仍53项。
+
+
+## Portable126 source checkpoint
+
+This recovery branch now also restores the project-owned `f1-races` and `f1-standings` readers: supplied sessions and standings, local filters/sorts, and cancelable session intents. No live data providers are connected. The exact126 candidate passed 93 targeted tests, with an earlier418-test affected-area run. Its new generation controls turn seven reproduced failures into passing cases.
+
+The current-source browser workflow run on commit `b3903ff5e7eaddb7326d017308af052847ebb15f` belongs to124. It is not acceptance for126. This126 checkpoint is saved with `[skip ci]`; no126 full or native browser result is claimed. The124 workflow retains its explicit124 assertion until a separately scoped validation update.

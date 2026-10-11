@@ -128,6 +128,8 @@ export type Node =
   | StopwatchNode
   | TimerNode
   | WeatherNode
+  | F1RacesNode
+  | F1StandingsNode
   | SportsScheduleNode
   | SportsScoreboardNode
   | SportsStandingsNode
@@ -2415,6 +2417,65 @@ export interface WeatherNode {
   initialDate?: string;
   status?: "ready" | "loading" | "error";
   message?: string;
+}
+export interface F1RacesNode {
+  type: "f1-races";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 80
+   */
+  races: MotorsportRace[];
+  disabled?: boolean;
+}
+export interface MotorsportRace {
+  id: string;
+  label: string;
+  season: number;
+  round: number;
+  circuit: string;
+  location: string;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  sessions: MotorsportSession[];
+  source?: TravelEventSource;
+}
+export interface MotorsportSession {
+  id: string;
+  label: string;
+  kind: "practice" | "qualifying" | "sprint" | "race" | "other";
+  status: "scheduled" | "complete" | "cancelled" | "postponed" | "unknown";
+  startsAt: string | null;
+  endsAt?: string;
+  note?: string;
+}
+export interface F1StandingsNode {
+  type: "f1-standings";
+  id?: string;
+  label: string;
+  description?: string;
+  season: number;
+  observedAt?: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  standings: MotorsportStanding[];
+}
+export interface MotorsportStanding {
+  id: string;
+  label: string;
+  kind: "driver" | "constructor";
+  team?: string;
+  rank: number | null;
+  points: number | null;
+  wins?: number | null;
+  note?: string;
+  source?: TravelEventSource;
 }
 export interface SportsScheduleNode {
   type: "sports-schedule";

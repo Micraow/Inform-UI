@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:9ed13ed6b7cd5aa71f3b682c9a00292d5987c11a13eb80757eb52803e7ca15ea:node:converters",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:13b07fd00859bed429b3f894b8a77d99983e423d5e65675adecdc9eb81c4fa97:node:converters",
   "title": "Inform UI node subset: converters",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {

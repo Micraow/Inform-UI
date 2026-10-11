@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:9ed13ed6b7cd5aa71f3b682c9a00292d5987c11a13eb80757eb52803e7ca15ea:node:sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:13b07fd00859bed429b3f894b8a77d99983e423d5e65675adecdc9eb81c4fa97:node:sports",
   "title": "Inform UI node subset: sports",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -119,6 +119,287 @@
       ],
       "additionalProperties": false
     },
+    "F1RacesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "f1-races"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "races": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MotorsportRace"
+          },
+          "minItems": 0,
+          "maxItems": 80
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "races"
+      ],
+      "additionalProperties": false
+    },
+    "F1StandingsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "f1-standings"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "season": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 9999
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "standings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MotorsportStanding"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "season",
+        "standings"
+      ],
+      "additionalProperties": false
+    },
+    "MotorsportRace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "season": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 9999
+        },
+        "round": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "circuit": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "sessions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MotorsportSession"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "season",
+        "round",
+        "circuit",
+        "location",
+        "sessions"
+      ],
+      "additionalProperties": false
+    },
+    "MotorsportSession": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "practice",
+            "qualifying",
+            "sprint",
+            "race",
+            "other"
+          ]
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "complete",
+            "cancelled",
+            "postponed",
+            "unknown"
+          ]
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "endsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "kind",
+        "status",
+        "startsAt"
+      ],
+      "additionalProperties": false
+    },
+    "MotorsportStanding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "driver",
+            "constructor"
+          ]
+        },
+        "team": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "rank": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wins": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "kind",
+        "rank",
+        "points"
+      ],
+      "additionalProperties": false
+    },
     "NbaPlayerSummaryNode": {
       "type": "object",
       "properties": {
@@ -172,6 +453,12 @@
     },
     "Node": {
       "oneOf": [
+        {
+          "$ref": "#/$defs/F1RacesNode"
+        },
+        {
+          "$ref": "#/$defs/F1StandingsNode"
+        },
         {
           "$ref": "#/$defs/SportsScheduleNode"
         },

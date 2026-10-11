@@ -1,3 +1,5 @@
+import {renderMotorsportRaces,renderMotorsportStandings} from './motorsport.js';
+import motorsportStyles from './motorsport.css';
 import {renderPlayerSummary} from './player-summaries.js';
 import playerSummaryStyles from './player-summaries.css';
 import ledgerRecordsStyles from './ledger-records.css';
@@ -76,7 +78,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -239,6 +241,8 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'f1-races':out=renderMotorsportRaces(context,n,labels.motorsportUI);break;
+      case 'f1-standings':out=renderMotorsportStandings(context,n,labels.motorsportUI);break;
       case 'nba-player-summary':case 'tennis-player-summary':out=renderPlayerSummary(context,n,labels.playerSummaryUI);break;
       case 'ledger-accounts':out=renderLedgerAccounts(context,n,labels.ledgerRecordsUI);break;
       case 'ledger-recurring-transactions':out=renderLedgerRecurring(context,n,labels.ledgerRecordsUI);break;

@@ -1,0 +1,592 @@
+{
+  "source": "09db2e994a42bfa5c75207fd38fe4761277cdb5d",
+  "definitions": {
+    "Value": "244401b7a281945340ea39cf686aeeebaaae86292dc970640ef1e539e1b2499c",
+    "TextRun": "0994db37773fe09b336d04ecf63b13a0bdf5f1402c2e874436d85aa554b30442",
+    "TextNode": "66b152ed041134f5b47621e3b622ee87de00c87421445ac755f1255b454e4b50",
+    "TitleNode": "d6f917f202c6c7524a7f1ab1418b55e695c58b791fa2cd4fbe879dfc69c7af6d",
+    "CaptionNode": "283cfe8f70b336d40274edb9676cab685fba7958a35c7f90ddf7a35d82eab865",
+    "AgendaEvent": "0d0050d521e10cecf3bd835c7d4d69e60da413a0a75f44ec289aff6b7899593f",
+    "AgendaNode": "4e8abf1aca21aecf498cfc73a3a49acfe1b81fbe5e0d3979b3966beed05067e2",
+    "PersonFact": "0fc455a616db6a1d7192c0b0e5728075ddf4dda0b1c07054934e1a56576432d4",
+    "PersonLink": "2dad1828d3edb7e87d064b6fd6a351755b09d4a639b3c410cbcc655fc65acf1c",
+    "PersonSource": "44400c3b9aac1121b096d7af332e466d434c57703a89a828230310e7a29ba04d",
+    "PersonProfileNode": "8db6f437e816d53fcbd701ffb879078d37981fcc2e9df5b5b7e040d391da5b29",
+    "NewsArticleNode": "c2c1c61281b5b1757c334ecfdf898fcf6cbd0e6d7f62b11e090c46ec7acabd8d",
+    "ReviewRecord": "5494526eae34133a18a58f34ac2be130bd4894aef8dbbc50be0689bbb6601050",
+    "ReviewSource": "44400c3b9aac1121b096d7af332e466d434c57703a89a828230310e7a29ba04d",
+    "EntityReviewsNode": "15d9c1bd0d44a2772d065b9c69e49a09bb141912ae1910a1f7496b10d96ecd1f",
+    "RestaurantAvailabilitySlot": "8ae3e57f558e3c5c727cd577df74751e9382fd741731bf0d014eae6abc1c73fe",
+    "RestaurantAvailabilitySource": "44400c3b9aac1121b096d7af332e466d434c57703a89a828230310e7a29ba04d",
+    "RestaurantAvailabilityNode": "ddcd63949c64025962ad229f665b992a6121756c38f06ee38a42ab7571d792bc",
+    "OnboardingOption": "8df07cf3dc4a7a6574f236197dfab892c34ade3491fadaba291369a4ec00be4f",
+    "OnboardingSelectionNode": "45b589d551975246e82dd098c21b642eadfe868a38ce69ebd57cc02d27d4ea86",
+    "PollDraftOption": "9b70b103ae660afd1ff507b6e81a27bc85d0a4d398ca948d57c0c79754c8ab10",
+    "CreateInteractivePollNode": "13f6e863645db841f99f6342791f9c49803f8daeadea162b9585751d37e4ac2d",
+    "LocationChoiceOption": "fcc89df030c92c464a23dd466f7c549542dcafbd40561b075c2fec6c3cc2b7b6",
+    "LocationChoiceSource": "44400c3b9aac1121b096d7af332e466d434c57703a89a828230310e7a29ba04d",
+    "LocationChoiceRequestNode": "54b8e2fcbfe47c99f2e33ed5d72370ca68be9d8978958c6e760350bd332b9f8c",
+    "BusinessGalleryImage": "f3bff3171ed43564bb73dbab4905c52916903986bfc24476935005a39b5da06a",
+    "BusinessGalleryNode": "9f9b43a0d369e56debf12e377925db64e426aac15856bfccfc2ebbda210a792c",
+    "TravelEventSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "FlightEndpoint": "9ae0eccd63ee05f05c33d15b1015b0d29d17e32dadbca0d1b7c00a203718af0b",
+    "FlightLeg": "a681644ac65f119d46f34d5173e11b3bcf0674dcda3e0f173c0099011d5b1143",
+    "FlightOptionNode": "ae16fd0fe73d7a5c7249e27e535df8c35c73ef3c268d278df0273f4998cc5848",
+    "ArtistEvent": "1f1e805dd342f0575ceadcd85f6c14cc7543dede239971f41bd7f62bc0c55f71",
+    "ArtistUpcomingEventsNode": "27e0bdc2e8e16af0abc458eba944b8043df238bc61a023f88c4e0fd022d96aee",
+    "TrackerSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "PackageMilestone": "87c39d318cfdd0bc83dcec906f11168a659368349b7487ac206f24a79cb9a3cc",
+    "PackageTrackerNode": "70959c59e168010d5852718ffcd404edf9922a0ab3c190a8ed0863ad381fa031",
+    "TrackedFlightEndpoint": "669915ef550895d353dc9054692106b3e956c347b978180f938ecf56623ddfa3",
+    "FlightUpdate": "52e71224abaa1eda8159c729a2188f5bf3a72a5af5d34565c9cea7724c6d64ed",
+    "FlightTrackerNode": "d113ead467f9b85e6acb7527c9bf02b5d6296d52b9769aacbd438e63cd334d07",
+    "RelatedQuestionSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "RelatedQuestion": "da472c36e033036640f14a1af6d322f6212194b1b8004675f2d8fdf6fbc6d387",
+    "SidebarPeopleAlsoAskNode": "06d5c3c1b3ff4755e0004c6efe35484278059fc488bf82057972a59a061ef637",
+    "ReaderSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "EmailPreviewPerson": "575197403232bfe26429823924370203a4a2645f9186a3ea7d0d41efd1eefd4a",
+    "EmailPreviewAttachment": "16e48e27d5b7c05d32ec60b0ee7cfce60d23db4d98a610114c9d7fab02929302",
+    "EmailPreviewNode": "f61dd5a8c488fa0574a04065610fefd8f69603ad8fc38b92c4b8dbe6da7df0ed",
+    "FileNavFolder": "46c61b7741902b7ae50a8b059f8cecd16712cf93167d17a287c89d2b69c0b37c",
+    "FileNavFile": "c38d0db7967061570f85187622a9b9657737c8e8e58a55e916cbc16959e182cb",
+    "FileNavEntry": "65fe0f41d77cfc9f4882157bd4d165a95b0de6cbdfbeaf22723fcba11215b915",
+    "FileNavListNode": "39e7addb0ba10ec6767c621634ed2fec88eab544510440f2f20d1f3998897892",
+    "DecisionSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "SuppliedPrice": "35b09507184ca78ef3b009a444e2b5fde10a653890bc11b4ddf20e4d217f6a64",
+    "JobSalary": "6e83ec543222eec4746394219deb0d059327cf1e0c71c50aa4e0f5199b9b650f",
+    "SuppliedJob": "9759f5abe1dab739921deeb6c806b0507e91d26ec20ff31da96e8dd7fa25183a",
+    "JobsNode": "eaf4a54960b90686e86fe58c8e4eb8409259436317a949eb3b57d3e6bc897b0e",
+    "ProductVariant": "c1a525966018ce532599e71f700f66e1e086e1cfa9137d7e94b04060c57c0ead",
+    "ProductCardNode": "6ba47edf8e18778bf96ea0f49fd82d9b284119ebdb5cd131f823697d473444ef",
+    "PlaceSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "BusinessHoursPeriod": "f12232916a5092bad99234e6fe64965f0c051a97b20607b44bb37e127d46500a",
+    "BusinessHoursDay": "3a0a13ec52b5a10addab0cf8c63fdf4e59370ac09788e7c953acd75fd43b36e2",
+    "LocalBusinessNode": "f3198a7987ed023d4eb3681d222519f518dffc0ec7c9638d0e437a3f5f4f7336",
+    "DiningReview": "a586cdf780c6ae2d2ed2b36a2c24b5063c5738bc1c862051ae330dd4f06bccdd",
+    "RestaurantReviewsNode": "00cc057aea549571fb38f89e55cb390b144bd9cc2ff41d6aede14f95c9a64689",
+    "DiscoveryAirport": "22eb0aebdf94ae0844efb45d94b216a6439435ab3822d7e4892bcc3f72e939f3",
+    "FlightSearchFormNode": "da3a10936d88d6ef02e3ba369c066b9d0fdb9ead6f6ba93360268d59cf223db8",
+    "DiscoveryFlightResult": "5e348b429966603ba02543760bb1e1ad5c12f0d11d5c950c22284530ffacda62",
+    "FlightResultsNode": "c5dce21b7b513bfbc0ee8efd483909d71f6d1e08f03135b25f8cd479f88ec962",
+    "ActivityParticipant": "457cd075120f1688ae3da62f7b03ef1ff01da65c486861b958b60fd54ddd4376",
+    "ActivityAvailability": "c2362f845858adf59c62c3fc4d3fd0b4af6ef11be53aef8a376be25300d1c85e",
+    "ActivityOption": "2969475ade30e1cbdf78e4963ffc01c86837f7f3e1a60be3dd4678d5b030a2fd",
+    "SharedActivityPlannerNode": "4d51ac4633486baead7fb3d164fab3be61f2f4707c2c9374510d1098f25214f6",
+    "EventAgendaEntry": "24e4d5c86302e44dc261eea48d667758ba47fa1dfe4df27829bffc02a9a199ff",
+    "EventSidebarNode": "5b84eceecc21f32bc862cdebba1a615533e7956b6d1eaa2c4c73d1bbc8340e71",
+    "WordExample": "96510f3bb412124acb02a4cb67bc61f05ee54919b182fa007c50cff0da3b2965",
+    "WordCardNode": "1857843fc762e59046be29b0a6b9fc62ba128a52195e49c8579ce8add84ed432",
+    "CopyWord": "ecfabecce46975846bda4ff82b7bfe84618452c9f2d1cd3e1f7068107f0d667e",
+    "CopyWordsNode": "807a7618d55f79c21e10766838c193b597bfbdbd913a2b186c649062cb1b7c5d",
+    "CodeCiteNode": "7973ea8081fdb4fa3d2114993ba3b5858e02c263188410d1665554e01c0a3c85",
+    "CitedFilePage": "9a0d3f31bc687720bf0274f92eb19e0ce944f8c497dc3f114a9d3ac9f208c44e",
+    "FileCiteNode": "e02609b6cd5f1c93993e475cbc859bb543e5a255f8a11afd2eaa48f6d749222e",
+    "SidebarFact": "42fff06e337607d7d8d1b19a9b84213df8aed422fc3625a5a2e6895cf2921667",
+    "SidebarFactTableNode": "caadc647227837f89ca82ea50e60cf1ace1202ec9534a11b7e02ba6986f8e47e",
+    "EntityThumbnailField": "df8242a08c5ec9b7d827fbc5877a36bc46e96842ceb3593f684c0d2279891a6d",
+    "EntityThumbnailRecord": "49ecf1e24b2c352b89d9fb0d966c683bf5cf0e0de921068f1e7af18e70103d92",
+    "EntityThumbnailListNode": "e7a1aee82568ed9e95843f8da78d6500ac1593a786884ab17bd4b0ecdcff6962",
+    "ThreadComment": "8ad2d9882846d687c0bcf561667d6569651e7d019640969edb94f731fd3da799",
+    "RedditThreadCardNode": "885eb42d06a80ab940b00b0914d0f6f8544883d5feebc519d1827cf6ecc42311",
+    "MarkdownNode": "0a93a57a48682add6be700d72e16aeb6003609065b80fca23e2605274ce37418",
+    "WritingBlockNode": "0482b2aea2c5992990225bbc9fd6fc027a6967cbeabe8b4c411f1ceecbaea3f7",
+    "EmailDraftNode": "788cc368d72e6ebe2850d0598f4eb0ec46ea82a1f0d122d964583085be092a6d",
+    "TaskReviewStep": "59a69d5ae676458e18edfbc35c8811cddaf09486f0deb546aa0bb70afc9a16c9",
+    "TaskExpansionCardNode": "81504b8dc828d8ac7c12af8567677d6d50b34d00d0936cbc4ed6c7541d26a473",
+    "CodeNode": "498e580c6efbd182a38f66876e153676b1f4edd9554b2de87ee73cbf863132b3",
+    "MathNode": "68a05dbc520add0321acd2895a0bb8514c6b5a46b9e0ac2081eb2599419d4919",
+    "BadgeNode": "f42e4945c64a0bafddc10a24da73680970bc2ff4adcb4efe8fc900cbfa12995d",
+    "DividerNode": "17fdce29608928c6e938a03e14c1ded38128afb2afdda1677c8c0d088dab441f",
+    "SpacerNode": "afc18109381fafa75b5cebaaba0e9865bb85ae4fce9afb7e8dc0dd33877ba6a9",
+    "LinkNode": "360dc153d4c88d3c33a71e3a37fdde09ed763b45ae04814ed87b5fe4b7c90678",
+    "FaviconNode": "0ceeddf613c66881914d098626ca10fc7cae5b536eb0ead4e0767b53e5dbae66",
+    "ImageNode": "585df63d2c139eed571ed29fd0651c158fefe371379de2075b6066590347e30d",
+    "BoxNode": "6b27d9b8f4f8d2326746a89a4193da0ff00338a6145180bcb7e0b7ff47713ddd",
+    "CardNode": "3ef80e3011d1be1b74ff79ed524288792b33b30f5e093e8de19c634fc0205605",
+    "RowNode": "3bc215004b42843bae185b753340615973196b83e31c159ffc541d94fd7922a2",
+    "ColNode": "a5726b54dd4306c42909307db878b166e6c2f5faa7c2bbbea0c8da34866d6cb8",
+    "GridNode": "b5f1402950526e6d127f7e10a700495d5464d8ca5ceb6994bf4350c354b89dc6",
+    "GridItemNode": "a108af06ac6832e8a6572376c863cb527315d1ce5053137ecb60a9bbcebd9d50",
+    "BlockquoteNode": "a5d16b412a682b843e6f71d29d73bf3daa8d5c8ed11e13548d0da231c71a94a3",
+    "SectionNode": "bddabd79213f5058156268f18aea6974e3666d7339f4de838822b1808403e7de",
+    "FigureNode": "6c6fc11d090d53f811c732de7e564208e59fc8e5da55e50603b568d90ea9879e",
+    "DetailsNode": "47fe5f9a61b894f41018998c387634e1a746805cf8e66cc8174f9c77ab557b73",
+    "TooltipNode": "2768a0716e63d5fecf1f21bfd76c1481d8328deb9645fbc146b66fa4e385b48e",
+    "PopoverNode": "0151652ddb3fb3fa050af5a1f1b42e2e8dce817da89e7ce08bb464e69b880cec",
+    "FlowNode": "9b1686046678c3a9b8a84944e6fb49d822e5b7bf05067f84b4476ddda1ec5d52",
+    "IconNode": "c9c348982ee16abce9ce57513d4999919825f3efb0214806388d1a1ed7ac714c",
+    "PulseIndicatorNode": "6321cefb232d4f6c2f39d1356f07f14b4559a7f59ae6915b58b6e325ec5a1cd6",
+    "LoadingNode": "f5615998dc15480fea6820654886827d5f44ae06ddbbf925aae2dbb8f8403c9e",
+    "LoadingBlockNode": "9de74227c5139e46510859de0f1ffa33c2cce41542c4c096fce6a7b95a758e1b",
+    "SourceRecord": "a14dbf0ee3ce6012fe81599a06db6355851f29cde3b87c5f9b2293ca2b6ce515",
+    "CitationNode": "67cc33851994d651262bec9e03dcb7a4844a19d5da08a3de98a4f05a2ff14e7e",
+    "WebLinkCardsNode": "685198e102647bfdc094fa9b34109d4713d57d6231fab2a27426f1e4419bf48c",
+    "PromptSuggestion": "1f1432262134c71dd2552a836c73b0f5a9a499e310869225beb6596d4be4c89c",
+    "PromptSuggestionsNode": "562c64cf2383461b64972808fc0dec04b01bf05ec7c3cb84984a4fa34e5056fa",
+    "AnimateNode": "8e4c0ab80d7f279367690151fe130a455dee40659844ef767343daa35190ad18",
+    "CelebrationNode": "5d6954ca4d5f776d47193bf1f945efed200165352d9eb10a1d1e45e1381fcc3c",
+    "CarouselNode": "40c9cde1ffca1156f41bc3fade4ad8662525999d02161786d90cb3353581c0d6",
+    "TabPanelNode": "c08c1cddd915998511aa2872297bf972bd06b20ba1c31f9dbd400cb59bec7d4b",
+    "TabGroupNode": "1fad31ad3394453610f1cdb2639cdb6714da3929448700bc3251cb787c923123",
+    "ListNode": "40feaeceedb9b6ddba2383497bcf0c6c5ea0922d95b464f715a91dbc277aa58a",
+    "TableCellObject": "5a8b09889fe5dc1d1edf6222bf226caa3589f923cfaeeca3a2949e746fd7ad85",
+    "TableCell": "ce936bddf89f811b8791969e2a329ceb8fc558a172a5bd45ce47ca748415c5c2",
+    "TableSection": "1cc59c9a2aed742c60f19b307338aa93900b0e5dfbb39eebc8a56ae7f576ff68",
+    "MenuItem": "6009c068ecb2376cb526ecc490a3f303a159d34ce06cbbc87017b0d98e7f07e5",
+    "MenuSection": "9b9ccfa357625991757a1a214349c96994bb07ce3353466ad45c66f58c0fa524",
+    "RestaurantMenuNode": "b8529352935ad7b6431336cebca0bc4b7bdfcd7e2038aea8f04e1f383fcd5ad7",
+    "TableNode": "467259cd1f70377bcccfe317c4e82769f394a8a22aeb5406d4096e64b83b891d",
+    "MetricNode": "972f7b1d8c60d6b0b51213e1e1039dea9e5a826288f409f51a329ee947029fd0",
+    "MetricGridNode": "85a84356a002a90428c77046c528c872c218e8538a09757c67277f84eb371b85",
+    "StepsNode": "c84f206725bdfa3a25ac947025c540b63dfc63b497bcfe4d6bb945d2d9f26edc",
+    "CalloutNode": "d0683011185149cde297c6c97656edde0a89698274f7c2cef957304c121d6992",
+    "LabelNode": "6339995c26fad3203e20ef70a7fb4b04813212c472183ed2abcdc982e1288119",
+    "SliderNode": "32fb8f619ff8abdae317933fd52db28b8993baa051fbd20dc207dc710f76f867",
+    "ChecklistItem": "698ffe23708cc44c2a3e3743bb91c876be98783deb67528b6c5d3cc83d6c0f55",
+    "ChecklistNode": "5e43d22a77c7e251d443ccfb8d6de3546b41f1d425d8ad4f7e3f69babf0a2124",
+    "RatingNode": "9d3013922cdc3a891b1724848ea6720a7b98aa38a9e05d6c37a14dcf05c5645e",
+    "ToggleNode": "7ec38706a1f00ed314e0502b08edec8cace81b4def6c14958a3baf0408e60ecf",
+    "SelectNode": "11cf90157aa5dd613e96a66331622d104e2c8ffde0942c4389f917984f9876bc",
+    "InputNode": "85ab1de3ff24c9886d40a9b639f6b27ef6e89f4c954babcef3e0725b27b54e18",
+    "TextareaNode": "b7a74f404d796fa981c7b1eaa2b2ab0cec53d7f52b3554cf79fa468c8bdabb8d",
+    "RadioNode": "65f5b4ca562b0847213c8d4b154a84397b7eb4a1f1327256e962d751f7052cdb",
+    "SegmentedNode": "54c5a6b550335e7246b283917b2c677db2fbc7498d989b821c0f7a8a2c24dac9",
+    "FieldNode": "78a09ffbfc59102f2bbb436cbb53580ca8c69ef9134238ff5a9516fba367519e",
+    "FormNode": "70f76c828d0f1d4be7b49d30f27f1b2506fa1724b5c1f9e458e999bf873f41e1",
+    "ButtonAction": "fe7166520d060a41a70dd7ec75843068efcd122060401d8c3d568d57c2e38b8a",
+    "ButtonNode": "a591fd8b1be45e61a250357df6560c7d576a9f49df19d65fe56d67181e365274",
+    "TopologyNode": "2333b5cc25dcf543276b37295bbf8c287fbd4a76739cb3eaa957460ab2bf0a33",
+    "ChartNode": "75387d6847dfff7d1c4584db3f1255798a969b6cf99bf71a1311d90b8c7e171c",
+    "ClockNode": "5e009d65d8aca75f253d89540deb7e99f4172d7d97d24ef9125a4c2e135ad98d",
+    "StopwatchNode": "d97c8b2fcdabbcbe54d67cfb8c8a955a516a2d084b8bc25e6846da76eea07332",
+    "TimerNode": "4e235d0ccf105f61794988341796fe2bf197fcc94a020f736d8cb03591f8fb2c",
+    "WeatherNode": "1f250f183023609b0c8535355c6f7a6cce07620cb8b097d60e14aa15cd9b63f9",
+    "SportsTeam": "0735f7e80469ba6e91c33e7fab81df85e354e906409135762639fbdccb37ff4e",
+    "SportsGame": "5483a49aaa689598a2c47ca8100ca0673dae624bcde954c3aa4badc4301eadd5",
+    "SportsStanding": "078499723c367f2437370a453c90fb45e8e942bf02cc21313d9406e83f6265a6",
+    "SportsData": "e6752348209baecc8bbfd6d47db7c974d69a7d50fd4ea4435fb8df5e4c92cf71",
+    "SportsScheduleNode": "b2cf8c1dc35ac510d47d0fa4a78547ea042ef6d1dfd9b6025db34316010679a1",
+    "SportsScoreboardNode": "d3245666bfc9e31d063b4c17990826bf5471de0bb070f193f47baa27a496b207",
+    "SportsStandingsNode": "98376432f13bc90df6ac76e8541d35d51788ca37115c4a96d7d6fc91b9644c04",
+    "QuizQuestion": "d03f1cc845d2d09171ad8b7d42dca73de8273b548fa13333142ce81568d4e759",
+    "QuizNode": "92d6d5cf01db092f07a7d7646ae2a5c4ecaf7b00979997f1d53a1128033b8bf5",
+    "Flashcard": "7cc55834b170f31238a92e208c325618b2f70b41d331ceaf788c3ff364afbdce",
+    "FlashcardsNode": "8f49a5c0367afce59d26bc9fa894e7731590ea0bf5bd666e0358d07e74fc8ca3",
+    "FillBlankPart": "bf14111dcfad5df4dc9f94ec783e6f27fc4ac5673c70f7035da0b2fcede3c5b4",
+    "FillBlankEntry": "54a4a6d35ba7d93d602612707b46639b9c64024485fe42026b77c94ae0ce0e55",
+    "FillBlankNode": "18089f85f3c7e9903faebe0e5a8f470ebff8aa892258d87ab95f4efa31b5892a",
+    "SentenceToken": "7022055226421f7902635f1b8436ccfca047b027f98930e00c0a39f08b657e28",
+    "SentenceBuilderNode": "b73f409b36073ba8572caf631f44157190d836397cea6fc500ab3fdaf5932ab6",
+    "VocabSense": "bf0217a6ba128b091788fd67d251255faf9c7f15c55e5f6e5b5f701694aae48d",
+    "VocabCardNode": "6f2eee0f84a4c819ce4e03e4f4697093357366923b0add24ddbe08e692354194",
+    "FinanceSource": "b15a73cfccfeaaca75107fe9bd360b4530d4a0156cd590d8319e3210b1573af4",
+    "FinanceInstrument": "371c07203bd264b36bcc905d6427b66610012aaed828bd4748f7a01b4cd3b1f1",
+    "FinanceRange": "f3101113c10b5bad9579c1b3a7eb0af21892faac0bb6f708895e599a986f38d4",
+    "FinanceQuoteNode": "7ed04363557ca6c4f5c48ee40b1943aeb6034721fa63670268413a18ce1e9cb3",
+    "FinanceChartNode": "537239475c254fd5d1e5c95298489ec34600b9872ed43050e2767280bd550126",
+    "FinanceComparisonNode": "87701b443ce8f496d801170d90547c6aab6c1604ca01488273ec51ca2cef9c44",
+    "FinanceHeatmapNode": "7d0bdbaf64072a39f224ec0c520dfd59ef3b0ac6db49cd29fc237cd7f3befeef",
+    "LedgerSource": "43c62fa4c230602928a43bf25498d0e09deba61a64296ffd6c5792871939cdf3",
+    "LedgerAccount": "7a6c620fc8237c44fc6259409c61dc3425e9ece79144c951222af39d2816d010",
+    "LedgerTransaction": "cb1677471c28b7f3a47339302a7505a2e18ccd2f53dcde4186ba0d54c29ee845",
+    "AssetDistributionNode": "ffba91f8337cc17174048eeb537ece6f8a448bb617e18c527e928b1b31bf1b06",
+    "TransactionListNode": "446e2f596cb14c8b323d63ba78337dfbbee8588dfb5267a12fb2c5f312fa0c50",
+    "LedgerExactMoney": "5fa327864f1bb7051a27db796ff826da8d8a606aa208006d10ca9304c74298cf",
+    "LedgerAccountSnapshot": "65cba6cb2097398872b0f09424dddf822190e31632767b0e0ed8bd82636afe1d",
+    "LedgerAccountsNode": "d36410062a28837948c7279c62ae23375b305156ec0942acf71f27e43fe88016",
+    "LedgerRecurringRecord": "8cc6a87d5931a794492810da9b605d5502c86183483f29ef5643f6ae77425899",
+    "LedgerRecurringTransactionsNode": "94c53c3c942f1d273d8598c124dcebf03d7144ccdab3cf0014d1ee3972acc93b",
+    "BasketballPlayerRecord": "4ba22fcc93bde3eb799dbf4ef28288bd85c6e31784768f4cc97eb32ea1731166",
+    "TennisPlayerRecord": "1e75df6083dcf72ea9c7e5b2be576abc8d58f491ac0c4eadf49b85b21ffdb316",
+    "NbaPlayerSummaryNode": "5dc9cb5ac645a497273be60342c041dd2ce651b0916e7880dce48d774c5e7a00",
+    "TennisPlayerSummaryNode": "3bce7a12b69dead01145c3ed9622a1da7fdebbca0efda9ca7f296d645065f2d6",
+    "UnitConverterNode": "af0fcbf87d8c10cb6bb65c22a5ee1cd66c1795019bab0d8a8287b20294deb57f",
+    "CurrencyConverterNode": "04ea554d82840afe8b714b15be1d91462639a8d6bdf89dd75c1f444166b4301a",
+    "SvgNode": "4f135586e3c4bed3aa941d35f0ab9c45d2912afd26eb20b0c37440952589e5d2",
+    "NativeNode": "6af88e5bddccc9d49b9b9bb70c817491cbe28601ac01e503dc585b39c5ad0edd",
+    "FollowUpCardIntent": "11127050f6b6824822b8e0b48bdec4aae5f392a6eeb21c61b77b7f377fcc2a89",
+    "FollowUpCardItem": "955aa1cfa00cbff879a00c347a76de692252c945330ec7498153e825bfd28f70",
+    "FollowUpCardGroupNode": "e42946b12b0639b32bd01b9df0965b30de3e737591eff9ac4e375f70bfa3cf2b",
+    "TransactionDetailRelated": "e26d0bf1a4a528dfe6a141107dd179c33d5a7244827349e61f1f7ca15a681ce0",
+    "TransactionDetailBudget": "3cb7b3aa5a97ddfbb9f2bb6f419817bc020895e943e8ac81a04941af7fadd6bc",
+    "TransactionDetailData": "528abbf10cdbda17403f09aa9181d25adf37fb9b3ace90af65e10d98c7176c58",
+    "LedgerTransactionDetailNode": "2e8f043734afa935326407d60a96894e2b1feaea3e184530868b95cf4fe5b3df",
+    "RecommendationCardNode": "9f4220ccc0a13ee2c7d51df547446fbccbf6486c015912cc3b8cca169b635442",
+    "PromptChecklistNode": "f6d8f411101786dc59a6acbd5830c30bc992d6db040156714fa921655c305b38",
+    "LedgerFinanceStatusBannerNode": "f62c82f8e1a730f7e627cb5aa2b295c069e5232b78902e5132c44ce63a9a271f"
+  },
+  "nodeRefs": [
+    {
+      "$ref": "#/$defs/TextNode"
+    },
+    {
+      "$ref": "#/$defs/TitleNode"
+    },
+    {
+      "$ref": "#/$defs/CaptionNode"
+    },
+    {
+      "$ref": "#/$defs/AgendaNode"
+    },
+    {
+      "$ref": "#/$defs/PersonProfileNode"
+    },
+    {
+      "$ref": "#/$defs/NewsArticleNode"
+    },
+    {
+      "$ref": "#/$defs/EntityReviewsNode"
+    },
+    {
+      "$ref": "#/$defs/RestaurantAvailabilityNode"
+    },
+    {
+      "$ref": "#/$defs/OnboardingSelectionNode"
+    },
+    {
+      "$ref": "#/$defs/CreateInteractivePollNode"
+    },
+    {
+      "$ref": "#/$defs/LocationChoiceRequestNode"
+    },
+    {
+      "$ref": "#/$defs/BusinessGalleryNode"
+    },
+    {
+      "$ref": "#/$defs/FlightOptionNode"
+    },
+    {
+      "$ref": "#/$defs/ArtistUpcomingEventsNode"
+    },
+    {
+      "$ref": "#/$defs/PackageTrackerNode"
+    },
+    {
+      "$ref": "#/$defs/FlightTrackerNode"
+    },
+    {
+      "$ref": "#/$defs/SidebarPeopleAlsoAskNode"
+    },
+    {
+      "$ref": "#/$defs/EmailPreviewNode"
+    },
+    {
+      "$ref": "#/$defs/FileNavListNode"
+    },
+    {
+      "$ref": "#/$defs/JobsNode"
+    },
+    {
+      "$ref": "#/$defs/ProductCardNode"
+    },
+    {
+      "$ref": "#/$defs/LocalBusinessNode"
+    },
+    {
+      "$ref": "#/$defs/RestaurantReviewsNode"
+    },
+    {
+      "$ref": "#/$defs/FlightSearchFormNode"
+    },
+    {
+      "$ref": "#/$defs/FlightResultsNode"
+    },
+    {
+      "$ref": "#/$defs/SharedActivityPlannerNode"
+    },
+    {
+      "$ref": "#/$defs/EventSidebarNode"
+    },
+    {
+      "$ref": "#/$defs/WordCardNode"
+    },
+    {
+      "$ref": "#/$defs/CopyWordsNode"
+    },
+    {
+      "$ref": "#/$defs/CodeCiteNode"
+    },
+    {
+      "$ref": "#/$defs/FileCiteNode"
+    },
+    {
+      "$ref": "#/$defs/SidebarFactTableNode"
+    },
+    {
+      "$ref": "#/$defs/EntityThumbnailListNode"
+    },
+    {
+      "$ref": "#/$defs/RedditThreadCardNode"
+    },
+    {
+      "$ref": "#/$defs/MarkdownNode"
+    },
+    {
+      "$ref": "#/$defs/WritingBlockNode"
+    },
+    {
+      "$ref": "#/$defs/EmailDraftNode"
+    },
+    {
+      "$ref": "#/$defs/TaskExpansionCardNode"
+    },
+    {
+      "$ref": "#/$defs/CodeNode"
+    },
+    {
+      "$ref": "#/$defs/MathNode"
+    },
+    {
+      "$ref": "#/$defs/BadgeNode"
+    },
+    {
+      "$ref": "#/$defs/DividerNode"
+    },
+    {
+      "$ref": "#/$defs/SpacerNode"
+    },
+    {
+      "$ref": "#/$defs/LinkNode"
+    },
+    {
+      "$ref": "#/$defs/FaviconNode"
+    },
+    {
+      "$ref": "#/$defs/ImageNode"
+    },
+    {
+      "$ref": "#/$defs/BoxNode"
+    },
+    {
+      "$ref": "#/$defs/CardNode"
+    },
+    {
+      "$ref": "#/$defs/RowNode"
+    },
+    {
+      "$ref": "#/$defs/ColNode"
+    },
+    {
+      "$ref": "#/$defs/GridNode"
+    },
+    {
+      "$ref": "#/$defs/GridItemNode"
+    },
+    {
+      "$ref": "#/$defs/BlockquoteNode"
+    },
+    {
+      "$ref": "#/$defs/SectionNode"
+    },
+    {
+      "$ref": "#/$defs/FigureNode"
+    },
+    {
+      "$ref": "#/$defs/DetailsNode"
+    },
+    {
+      "$ref": "#/$defs/TooltipNode"
+    },
+    {
+      "$ref": "#/$defs/PopoverNode"
+    },
+    {
+      "$ref": "#/$defs/FlowNode"
+    },
+    {
+      "$ref": "#/$defs/IconNode"
+    },
+    {
+      "$ref": "#/$defs/PulseIndicatorNode"
+    },
+    {
+      "$ref": "#/$defs/LoadingNode"
+    },
+    {
+      "$ref": "#/$defs/LoadingBlockNode"
+    },
+    {
+      "$ref": "#/$defs/CitationNode"
+    },
+    {
+      "$ref": "#/$defs/WebLinkCardsNode"
+    },
+    {
+      "$ref": "#/$defs/PromptSuggestionsNode"
+    },
+    {
+      "$ref": "#/$defs/AnimateNode"
+    },
+    {
+      "$ref": "#/$defs/CelebrationNode"
+    },
+    {
+      "$ref": "#/$defs/CarouselNode"
+    },
+    {
+      "$ref": "#/$defs/TabPanelNode"
+    },
+    {
+      "$ref": "#/$defs/TabGroupNode"
+    },
+    {
+      "$ref": "#/$defs/ListNode"
+    },
+    {
+      "$ref": "#/$defs/RestaurantMenuNode"
+    },
+    {
+      "$ref": "#/$defs/TableNode"
+    },
+    {
+      "$ref": "#/$defs/MetricNode"
+    },
+    {
+      "$ref": "#/$defs/MetricGridNode"
+    },
+    {
+      "$ref": "#/$defs/StepsNode"
+    },
+    {
+      "$ref": "#/$defs/CalloutNode"
+    },
+    {
+      "$ref": "#/$defs/LabelNode"
+    },
+    {
+      "$ref": "#/$defs/SliderNode"
+    },
+    {
+      "$ref": "#/$defs/ChecklistNode"
+    },
+    {
+      "$ref": "#/$defs/RatingNode"
+    },
+    {
+      "$ref": "#/$defs/ToggleNode"
+    },
+    {
+      "$ref": "#/$defs/SelectNode"
+    },
+    {
+      "$ref": "#/$defs/InputNode"
+    },
+    {
+      "$ref": "#/$defs/TextareaNode"
+    },
+    {
+      "$ref": "#/$defs/RadioNode"
+    },
+    {
+      "$ref": "#/$defs/SegmentedNode"
+    },
+    {
+      "$ref": "#/$defs/FieldNode"
+    },
+    {
+      "$ref": "#/$defs/FormNode"
+    },
+    {
+      "$ref": "#/$defs/ButtonNode"
+    },
+    {
+      "$ref": "#/$defs/TopologyNode"
+    },
+    {
+      "$ref": "#/$defs/ChartNode"
+    },
+    {
+      "$ref": "#/$defs/ClockNode"
+    },
+    {
+      "$ref": "#/$defs/StopwatchNode"
+    },
+    {
+      "$ref": "#/$defs/TimerNode"
+    },
+    {
+      "$ref": "#/$defs/WeatherNode"
+    },
+    {
+      "$ref": "#/$defs/SportsScheduleNode"
+    },
+    {
+      "$ref": "#/$defs/SportsScoreboardNode"
+    },
+    {
+      "$ref": "#/$defs/SportsStandingsNode"
+    },
+    {
+      "$ref": "#/$defs/QuizNode"
+    },
+    {
+      "$ref": "#/$defs/FlashcardsNode"
+    },
+    {
+      "$ref": "#/$defs/FillBlankNode"
+    },
+    {
+      "$ref": "#/$defs/SentenceBuilderNode"
+    },
+    {
+      "$ref": "#/$defs/VocabCardNode"
+    },
+    {
+      "$ref": "#/$defs/FinanceQuoteNode"
+    },
+    {
+      "$ref": "#/$defs/FinanceChartNode"
+    },
+    {
+      "$ref": "#/$defs/FinanceComparisonNode"
+    },
+    {
+      "$ref": "#/$defs/FinanceHeatmapNode"
+    },
+    {
+      "$ref": "#/$defs/AssetDistributionNode"
+    },
+    {
+      "$ref": "#/$defs/TransactionListNode"
+    },
+    {
+      "$ref": "#/$defs/LedgerAccountsNode"
+    },
+    {
+      "$ref": "#/$defs/LedgerRecurringTransactionsNode"
+    },
+    {
+      "$ref": "#/$defs/NbaPlayerSummaryNode"
+    },
+    {
+      "$ref": "#/$defs/TennisPlayerSummaryNode"
+    },
+    {
+      "$ref": "#/$defs/UnitConverterNode"
+    },
+    {
+      "$ref": "#/$defs/CurrencyConverterNode"
+    },
+    {
+      "$ref": "#/$defs/SvgNode"
+    },
+    {
+      "$ref": "#/$defs/NativeNode"
+    },
+    {
+      "$ref": "#/$defs/FollowUpCardGroupNode"
+    },
+    {
+      "$ref": "#/$defs/LedgerTransactionDetailNode"
+    },
+    {
+      "$ref": "#/$defs/RecommendationCardNode"
+    },
+    {
+      "$ref": "#/$defs/PromptChecklistNode"
+    },
+    {
+      "$ref": "#/$defs/LedgerFinanceStatusBannerNode"
+    }
+  ]
+}
