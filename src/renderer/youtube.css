@@ -1,0 +1,11 @@
+.iui-root .iui-youtube{min-inline-size:0;max-inline-size:100%;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-youtube-caption,.iui-root .iui-youtube-notice,.iui-root .iui-youtube-status{margin-block:12px 0;line-height:1.5}
+.iui-root .iui-youtube-notice{font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-youtube-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block-start:16px}
+.iui-root .iui-youtube-viewport{max-inline-size:100%;overflow-x:auto;margin-block-start:16px;border-radius:inherit;background:var(--iui-surface-secondary)}
+.iui-root .iui-youtube-frame{display:block;inline-size:100%;min-inline-size:200px;min-block-size:200px;block-size:auto;aspect-ratio:16/9;border:0;border-radius:inherit}
+.iui-root .iui-youtube button{min-block-size:44px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-youtube :focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-youtube [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-youtube{border-color:CanvasText}.iui-root .iui-youtube-notice{color:CanvasText}.iui-root .iui-youtube :focus-visible{outline-color:Highlight}}
+.iui-root .iui-youtube[data-load-mode=direct] .iui-youtube-viewport{margin-block-start:0;aspect-ratio:16/9;min-block-size:200px}

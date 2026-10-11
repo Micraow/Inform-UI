@@ -4,7 +4,7 @@ import type {RendererContext} from './context.js';
 import {htmlViewDocument} from '../core/html-view.js';
 /** The only authored-HTML sink is this scriptable, opaque-origin srcdoc frame. */
 export function renderHtmlView(c:RendererContext,n:HtmlViewNode,renderOwner:HTMLElement,host:HTMLElement):HTMLElement {
- const root=c.element('div','iui-html-view');c=suppliedReaderContext(c,root);root.style.height=`${n.height??360}px`;root.style.width=typeof n.width==='number'?`${n.width}px`:n.width??'100%';root.dataset.loaded='false';
+ const root=c.element('div','iui-html-view');c=suppliedReaderContext(c,root,()=>schedule());root.style.height=`${n.height??360}px`;root.style.width=typeof n.width==='number'?`${n.width}px`:n.width??'100%';root.dataset.loaded='false';
  let alive=true,frame:HTMLIFrameElement|null=null,scheduled=false,started=false,inserted=false;
  function retire(){alive=false;const old=frame;frame=null;old?.remove();}
  const owner=c.doc;let mounted=false,parent:ParentNode|null=null;

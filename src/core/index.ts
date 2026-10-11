@@ -1,3 +1,5 @@
+import {inspectSearchImage} from './search-image.js';
+import {inspectYouTube} from './youtube.js';
 import {inspectFeeInterest} from './fee-interest.js';
 import {inspectPressable} from './pressable.js';
 import {inspectNetWorth} from './net-worth.js';
@@ -340,6 +342,8 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
     if(node.type==='ledger-fee-interest-paid')inspectFeeInterest(node,path,add,isSafeURL);
+    if(node.type==='search-image')inspectSearchImage(node,path,add,isSafeURL);
+    if(node.type==='youtube')inspectYouTube(node,path,add);
     if(node.type==='pressable')inspectPressable(node,path,add);
     if(node.type==='ledger-net-worth')inspectNetWorth(node,path,add,isSafeURL);
     if(node.type==='weather-sidebar-title')inspectWeatherSidebar(node,path,add,isSafeURL);

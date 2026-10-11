@@ -1,3 +1,9 @@
+## Source-only 144 checkpoint
+
+Supplied SearchImage and YouTube readers are restored from original project source with exact structural schema and styles. Images use explicit supplied sources and fallback metadata. YouTube accepts only a supplied video ID and fixed privacy-enhanced embed origin; autoplay and provider APIs are disabled. The original direct-load default is retained, while `loadMode: on-demand` provides an explicit load/unload gate. Loading contacts the provider; the example opts into on-demand. No search or metadata discovery occurs.
+
+The shared first-connection notification also repairs the preceding HTML delayed-attachment limitation. Build, types and 54 combined contracts/flows pass, including delayed connection, permanent retirement, image fallback, demand cancellation and compiler policies. Native media rendering/playback is still pending. Run `npm run generate && npm run build` for the 144-node source; preserve `scripts/media-reader-definitions.json`. Packaged schema/CDN remain130; saves use [skip ci].
+
 ## Source-only 142 checkpoint
 
 The explicit authored HTML view and its compiler policy are restored. Authored scripts run in an opaque-origin sandboxed iframe, not in the parent document. This is intentionally scriptable content, not a sanitizer. Fixed resource-origin roles and parsed exact script/handler hashes are applied only for validated rendered HTML nodes. Ordinary documents retain their previous policy.

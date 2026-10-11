@@ -5,11 +5,12 @@ type Edge = {node:Node; parent:Node|null; slot:HTMLSlotElement|null; host:Elemen
 /** A connected component permanently retires after any observed loss of its original
  * composed ancestry. Resources, registration compensation and callbacks stay in
  * the shared generation; this module owns only DOM membership observation. */
-export function ownedTree(c:RendererContext,root:HTMLElement):RenderGeneration {
+export function ownedTree(c:RendererContext,root:HTMLElement,onConnected?:()=>void):RenderGeneration {
  const resources=c.lifecycle.fork();
  const observers=new Map<Node,MutationObserver>();
  const pending:MutationRecord[]=[];
- let edges:Edge[]|undefined,lost=false,checking=false;
+ let edges:Edge[]|undefined,lost=false,checking=false,connectionQueued=false;
+ let life:RenderGeneration;
  resources.own(()=>{lost=true;observers.clear();pending.length=0;edges=undefined;});
  const retire=()=>{lost=true;resources.dispose();};
  const path=():Edge[]=>{
@@ -46,7 +47,13 @@ export function ownedTree(c:RendererContext,root:HTMLElement):RenderGeneration {
    }else pending.length=0;
    valid=true;
   })();}finally{checking=false;}
-  return valid&&!lost&&resources.current();
+  const accepted=valid&&!lost&&resources.current();
+  if(accepted&&edges&&onConnected&&!connectionQueued){
+   connectionQueued=true;
+   // Deliver after construction, with pending ownership records rechecked.
+   queueMicrotask(resources.guard(()=>life.guard(onConnected)()));
+  }
+  return accepted;
  };
  const observe=(target:Node)=>{
   if(observers.has(target))return;
@@ -57,7 +64,7 @@ export function ownedTree(c:RendererContext,root:HTMLElement):RenderGeneration {
   resources.during(()=>observer.observe(target,{childList:true,subtree:true}));
  };
  try{
-  const life=resources.fork(inspect);
+  life=resources.fork(inspect);
   life.own(()=>resources.dispose());
   observe(c.doc);
   resources.own(c.bind(resources.guard(inspect)));

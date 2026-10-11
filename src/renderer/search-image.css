@@ -1,0 +1,15 @@
+.iui-root .iui-search-image{--iui-search-image-loading-bg:#e5f3ff;position:relative;min-width:0;max-width:100%;width:max-content;display:grid;isolation:isolate;overflow:hidden}
+.iui-root .iui-search-image-bitmap{display:block;min-width:0;z-index:1;grid-area:1/1;position:relative}
+.iui-root .iui-search-image-loading{z-index:0;grid-area:1/1;width:100%;height:100%;background:var(--theme-user-msg-bg,var(--color-background-info-surface,var(--iui-search-image-loading-bg)));background:light-dark(var(--dil-image-loading-light-bg,var(--theme-user-msg-bg,var(--color-background-info-surface,var(--iui-search-image-loading-bg)))),var(--theme-user-msg-bg,var(--color-background-info-surface,var(--iui-search-image-loading-bg))));animation:iui-search-image-pulse 1s ease-in-out infinite alternate}
+.iui-root .iui-search-image[data-frame]{outline:1px solid var(--d-image-frame-color,var(--alpha-06,color-mix(in srgb,var(--iui-ink) 6%,transparent)));outline-offset:-1px}
+.iui-root .iui-search-image-frame{position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px var(--d-image-frame-color,var(--alpha-06,color-mix(in srgb,var(--iui-ink) 6%,transparent)))}
+.iui-root .iui-search-image-crop{position:absolute;overflow:hidden;background-color:inherit;z-index:1}
+.iui-root .iui-search-image-fallback{animation:iui-search-image-fallback .18s ease-out both}
+.iui-root .iui-search-image[data-hover-zoom] .iui-search-image-bitmap{backface-visibility:hidden;transform-origin:50%;transition:transform .26s cubic-bezier(.22,1,.36,1);transform:scale(1)}
+@keyframes iui-search-image-pulse{to{opacity:.86;filter:brightness(1.04)}}
+@keyframes iui-search-image-fallback{from{opacity:0}to{opacity:1}}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) and (forced-colors:none){.iui-root .iui-search-image[data-hover-zoom]:is(:hover,:has(:focus-visible)) .iui-search-image-bitmap[data-loaded]{transform:scale(1.03)}}
+@media(prefers-reduced-motion:reduce),(forced-colors:active){.iui-root .iui-search-image-loading,.iui-root .iui-search-image-fallback{animation:none}.iui-root .iui-search-image[data-hover-zoom] .iui-search-image-bitmap[data-loaded]{transition:none;transform:none}}
+.iui-root .iui-search-image[hidden],.iui-root .iui-search-image [hidden]{display:none!important}
+.iui-root[data-theme=dark] .iui-search-image{--iui-search-image-loading-bg:#00284d}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-search-image{--iui-search-image-loading-bg:#00284d}}

@@ -3,8 +3,8 @@ import type {RenderGeneration} from './generation.js';
 import {ownedTree} from './owned-tree.js';
 export {readerNativeReset as suppliedReaderReset} from './reader-controls.js';
 
-export function suppliedReaderContext(parent:RendererContext,root:HTMLElement):RendererContext {
- const life=ownedTree(parent,root);
+export function suppliedReaderContext(parent:RendererContext,root:HTMLElement,onConnected?:()=>void):RendererContext {
+ const life=ownedTree(parent,root,onConnected);
  const c:RendererContext={...parent,lifecycle:life,on:life.listen,cleanup:life.own,bind:fn=>life.own(parent.bind(life.guard(fn))),element:(tag,cls,value)=>life.during(()=>parent.element(tag,cls,value))};
  return c;
 }

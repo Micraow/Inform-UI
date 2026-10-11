@@ -1,3 +1,4 @@
+import {youtubeEnglish,youtubeChinese} from './youtube-labels.js';
 import {pressableEnglish,pressableChinese} from './pressable-labels.js';
 import {learningMediaEnglish,learningMediaChinese} from './learning-media-labels.js';
 import {matchScoresEnglish,matchScoresChinese} from './match-scores-labels.js';
@@ -75,6 +76,7 @@ const english = {
   travelEventsUI:travelEventsEnglish,
   ledgerUI:ledgerEnglish,
   ledgerRecordsUI:ledgerRecordsEnglish,
+  youtubeUI:youtubeEnglish,
   pressableUI:pressableEnglish,
   learningMediaUI:learningMediaEnglish,
   matchScoresUI:matchScoresEnglish,
@@ -130,6 +132,7 @@ const chinese: typeof english = {
   travelEventsUI:travelEventsChinese,
   ledgerUI:ledgerChinese,
   ledgerRecordsUI:ledgerRecordsChinese,
+  youtubeUI:youtubeChinese,
   pressableUI:pressableChinese,
   learningMediaUI:learningMediaChinese,
   matchScoresUI:matchScoresChinese,
