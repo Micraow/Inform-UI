@@ -1,0 +1,19 @@
+{
+  "version": "iui/1",
+  "theme": "light",
+  "body": [
+    {
+      "type": "recommendation-card",
+      "id": "network-study",
+      "label": "Continue a supplied study conversation",
+      "status": "resolved",
+      "canOpenConversation": true,
+      "data": {
+        "conversationId": "supplied-network-study",
+        "title": "Review network measurements",
+        "description": "Continue discussing RTT gaps and supplied WiFi measurements.",
+        "emoji": "\ud83d\udce1"
+      }
+    }
+  ]
+}

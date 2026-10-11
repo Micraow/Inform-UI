@@ -28,3 +28,12 @@ export type {ActivityPlanDetail,EventReviewDetail} from './renderer/activity-pla
 export type {WordMarkDetail,WordsCopyDetail} from './renderer/vocabulary.js';
 
 export type {EntityThumbnailDetail} from './renderer/entity-facts.js';
+
+export type {FollowUpCardDetail} from './renderer/follow-up-card-group.js';
+
+export type {TransactionDetailIntent} from './renderer/transaction-detail.js';
+
+export type {RecommendationCardIntent} from './renderer/recommendation-card.js';
+
+export type {RecurringReviewDetail} from './renderer/ledger-records.js';
+export type {PromptChecklistIntent} from './renderer/prompt-checklist.js';

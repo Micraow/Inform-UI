@@ -1,0 +1,18 @@
+import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+const fixture=JSON.parse(await readFile(new URL('../../examples/follow-up-card-group.json',import.meta.url)));
+async function setup(page,input=fixture){
+ await page.goto('/mount.html');await page.waitForFunction(()=>!!window.iui);const requests=[];page.on('request',r=>requests.push(r.url()));
+ await page.evaluate(input=>{const host=document.getElementById('host');window.followUpEvents=[];host.addEventListener('iui:follow-up-card',e=>{window.followUpEvents.push(e.detail);e.preventDefault();});window.followUpController=window.iui.mount(host,input);},input);return requests;
+}
+for(const theme of ['light','dark'])for(const width of [390,1100])test(`follow-up cards ${theme} ${width}: keyboard, supplied intents and no external request`,async({page})=>{
+ await page.setViewportSize({width,height:1000});const requests=await setup(page,{...fixture,theme}),buttons=page.locator('.iui-follow-up-card');
+ await expect(buttons).toHaveCount(3);await buttons.nth(0).focus();await page.keyboard.press('Enter');await buttons.nth(1).focus();await page.keyboard.press('Space');
+ expect(await page.evaluate(()=>window.followUpEvents.map(x=>x.intent.kind))).toEqual(['query','url']);
+ await expect(buttons.nth(1)).toBeFocused();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect(requests).toEqual([]);
+ await page.screenshot({path:`test-results/follow-up-cards-${theme}-${width}.png`,fullPage:true});
+});
+test('follow-up cards replacement and disposal retire retained old nodes',async({page})=>{await setup(page);await page.evaluate(input=>{window.retainedFollowUp=document.querySelector('.iui-follow-up-card');window.followUpController.update(input);window.retainedFollowUp.click();window.followUpController.dispose();window.retainedFollowUp.click();},fixture);expect(await page.evaluate(()=>window.followUpEvents)).toEqual([]);await expect(page.locator('.iui-follow-up-card')).toHaveCount(0);});
+test('follow-up cards disabled and inert ancestors do not emit',async({page})=>{await setup(page);await page.evaluate(()=>{const root=document.querySelector('.iui-follow-up-card-group');root.setAttribute('inert','');root.querySelector('button').dispatchEvent(new MouseEvent('click',{bubbles:true}));root.removeAttribute('inert');const button=root.querySelector('button');button.disabled=true;button.dispatchEvent(new MouseEvent('click',{bubbles:true}));});expect(await page.evaluate(()=>window.followUpEvents)).toEqual([]);});
+test('follow-up card loading and error keep supplied actions unavailable',async({page})=>{await setup(page,{...fixture,body:[{...fixture.body[0],status:'loading',message:'Loading supplied suggestions'}]});await expect(page.locator('.iui-follow-up-card-group')).toHaveAttribute('aria-busy','true');await expect(page.locator('.iui-follow-up-card')).toHaveCount(0);await page.evaluate(input=>window.followUpController.update(input),{...fixture,body:[{...fixture.body[0],status:'error',message:'Suggestions unavailable'}]});await expect(page.locator('.iui-follow-up-card-fallback')).toHaveText('Suggestions unavailable');});
+test('follow-up cards RTL and long labels stay in the narrow viewport',async({page})=>{await page.setViewportSize({width:390,height:1000});const input=structuredClone(fixture);input.body[0].items[0].label='اقتراحات متابعة '.repeat(10);input.body[0].items[0].description='تفاصيل مقدمة من التطبيق';await setup(page,input);await expect(page.locator('.iui-follow-up-card-group')).toHaveCSS('direction','rtl');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);});

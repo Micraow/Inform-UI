@@ -1,3 +1,10 @@
+import {inspectPlayerSummary} from './player-summaries.js';
+import {inspectLedgerRecords} from './ledger-records.js';
+import {inspectPromptChecklist} from './prompt-checklist.js';
+import {inspectFinanceStatus} from './finance-status.js';
+import {inspectRecommendationCard} from './recommendation-card.js';
+import {inspectTransactionDetail} from './transaction-detail.js';
+import {inspectFollowUpCardGroup} from './follow-up-card-group.js';
 import {inspectRelatedQuestions} from './related-questions.js';
 import {inspectEntityFacts} from './entity-facts.js';
 import {inspectSourceCitation} from './source-citations.js';
@@ -322,6 +329,13 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='news-article')inspectNewsArticle(node,path,add,isSafeURL);
     if(node.type==='entity-reviews')inspectEntityReviews(node,path,add,isSafeURL);
     if(node.type==='package-tracker'||node.type==='flight-tracker')inspectTracker(node,path,add,isSafeURL);
+    if(node.type==='nba-player-summary'||node.type==='tennis-player-summary')inspectPlayerSummary(node,path,add,isSafeURL);
+    if(node.type==='ledger-accounts'||node.type==='ledger-recurring-transactions')inspectLedgerRecords(node,path,add,isSafeURL);
+    if(node.type==='prompt-checklist')inspectPromptChecklist(node,path,add,isSafeURL);
+    if(node.type==='ledger-finance-status-banner')inspectFinanceStatus(node,path,add);
+    if(node.type==='recommendation-card')inspectRecommendationCard(node,path,add,isSafeURL);
+    if(node.type==='ledger-transaction-detail')inspectTransactionDetail(node,path,add,isSafeURL);
+    if(node.type==='follow-up-card-group')inspectFollowUpCardGroup(node,path,add,isSafeURL);
     if(node.type==='sidebar-people-also-ask')inspectRelatedQuestions(node,path,add,isSafeURL);
     if(node.type==='sidebar-fact-table'||node.type==='entity-thumbnail-list')inspectEntityFacts(node,path,add,isSafeURL,url=>isSafeURL(url,'image'));
     if(node.type==='code-cite'||node.type==='file-cite')inspectSourceCitation(node,path,add,isSafeURL);

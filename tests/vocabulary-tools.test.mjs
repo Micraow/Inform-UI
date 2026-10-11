@@ -21,3 +21,26 @@ test('empty/max collections and initial no-selection preserve limits and source 
 for(const mutation of ['outside','disabled'])test('manual focus interruption rechecks selected word ownership: '+mutation,()=>{const x=setup(input(1)),preview=x.root.querySelector('textarea'),selected=x.root.querySelector('input');let calls=0;preview.select=()=>calls++;preview.addEventListener('focus',()=>{if(mutation==='outside')x.dom.window.document.body.append(selected);else selected.disabled=true;},{once:true});x.root.querySelector('.iui-copy-manual').click();assert.equal(calls,0);x.end();});
 test('manual focus interruption cannot select while a new clipboard operation becomes pending',async()=>{const x=setup(input(1)),preview=x.root.querySelector('textarea');let calls=0,finish;preview.select=()=>calls++;clipboard(x,{writeText(){return new Promise(r=>finish=r);}});preview.addEventListener('focus',()=>x.root.querySelector('.iui-copy-words-action').click(),{once:true});x.root.querySelector('.iui-copy-manual').click();assert.equal(calls,0);finish();await flush();x.end();});
 test('manual focus interruption cannot select a newer selection draft',()=>{const x=setup(input(1)),preview=x.root.querySelector('textarea'),selected=x.root.querySelector('input');let calls=0;preview.select=()=>calls++;preview.addEventListener('focus',()=>{selected.checked=false;selected.dispatchEvent(new x.dom.window.Event('change'));},{once:true});x.root.querySelector('.iui-copy-manual').click();assert.equal(calls,0);assert.equal(preview.value,'明亮');x.end();});
+
+test('copy busy state does not self-disable its accepted in-flight operation',async()=>{
+ const x=setup(input(1)),copy=x.root.querySelector('.iui-copy-words-action');let finish,calls=0,intents=0;
+ clipboard(x,{writeText(){calls++;return new Promise(resolve=>finish=resolve)}});
+ x.root.addEventListener('iui:words-copy',()=>{intents++;copy.click()});copy.click();
+ assert.equal(copy.getAttribute('aria-busy'),'true');assert.equal(copy.hasAttribute('aria-disabled'),false);
+ copy.click();assert.equal(calls,1);assert.equal(intents,1);finish();await flush();
+ assert.equal(copy.getAttribute('aria-busy'),'false');assert.match(x.root.querySelector('.iui-vocabulary-status').textContent,/copied/);x.end();
+});
+test('host aria-disabled survives local paints and still blocks copy activation',async()=>{
+ const x=setup(input(1)),copy=x.root.querySelector('.iui-copy-words-action'),select=x.root.querySelector('select');let writes=0,intents=0;
+ clipboard(x,{async writeText(){writes++}});x.root.addEventListener('iui:words-copy',()=>intents++);
+ copy.setAttribute('aria-disabled','true');change(x,select,'comma');assert.equal(copy.getAttribute('aria-disabled'),'true');
+ copy.dispatchEvent(new x.dom.window.MouseEvent('click'));await flush();assert.equal(writes,0);assert.equal(intents,0);
+ copy.removeAttribute('aria-disabled');copy.click();await flush();assert.equal(writes,1);assert.equal(intents,1);x.end();
+});
+for(const settle of ['resolve','reject'])test('host disablement during pending copy suppresses stale '+settle+' feedback without removing the host state',async()=>{
+ const x=setup(input(1)),copy=x.root.querySelector('.iui-copy-words-action');let resolve,reject;
+ clipboard(x,{writeText(){return new Promise((yes,no)=>{resolve=yes;reject=no})}});copy.click();
+ copy.setAttribute('aria-disabled','true');const status=x.root.querySelector('.iui-vocabulary-status'),before=status.textContent;
+ if(settle==='resolve')resolve();else reject(Error('Clipboard unavailable'));await flush();
+ assert.equal(status.textContent,before);assert.equal(copy.getAttribute('aria-disabled'),'true');assert.equal(copy.getAttribute('aria-busy'),'false');x.end();
+});

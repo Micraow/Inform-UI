@@ -1,0 +1,14 @@
+{
+  "version": "iui/1",
+  "title": "Supplied practice account status",
+  "body": [{
+    "type": "ledger-finance-status-banner",
+    "id": "practice-status",
+    "label": "Supplied account-status notice",
+    "status": "resolved",
+    "data": {
+      "title": "Some practice transactions are missing",
+      "description": "This synthetic snapshot does not include October 3. No account connection or live refresh is performed."
+    }
+  }]
+}

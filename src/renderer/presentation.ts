@@ -1,3 +1,5 @@
+import {playerSummaryEnglish,playerSummaryChinese} from './player-summary-labels.js';
+import {ledgerRecordsEnglish,ledgerRecordsChinese} from './ledger-records-labels.js';
 import {questionsEnglish,questionsChinese} from './related-questions-labels.js';
 import {entityFactsEnglish,entityFactsChinese} from './entity-facts-labels.js';
 import {citationEnglish,citationChinese} from './citation-labels.js';
@@ -66,6 +68,8 @@ const english = {
   onboardingUI:onboardingEnglish,
   travelEventsUI:travelEventsEnglish,
   ledgerUI:ledgerEnglish,
+  ledgerRecordsUI:ledgerRecordsEnglish,
+  playerSummaryUI:playerSummaryEnglish,
   choiceGalleryUI:choiceGalleryEnglish,
   motionUI:motionEnglish,
   availabilityUI:availabilityEnglish,threadUI:threadEnglish,
@@ -113,6 +117,8 @@ const chinese: typeof english = {
   onboardingUI:onboardingChinese,
   travelEventsUI:travelEventsChinese,
   ledgerUI:ledgerChinese,
+  ledgerRecordsUI:ledgerRecordsChinese,
+  playerSummaryUI:playerSummaryChinese,
   choiceGalleryUI:choiceGalleryChinese,
   motionUI:motionChinese,
   availabilityUI:availabilityChinese,threadUI:threadChinese,

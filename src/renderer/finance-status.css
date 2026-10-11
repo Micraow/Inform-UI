@@ -1,0 +1,14 @@
+/* Standard-web supplied Finance status; component-local roles preserve other families. */
+.iui-finance-status{width:100%;max-width:100%;min-width:0;--iui-finance-status-elevated:#fff}
+.iui-root[data-theme=dark] .iui-finance-status{--iui-finance-status-elevated:#303030}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-finance-status{--iui-finance-status-elevated:#303030}}
+.iui-finance-status-card{width:100vw;max-width:100%;min-width:0;overflow:hidden;padding:16px;border:1px solid var(--iui-line);border-radius:20px;background:var(--iui-finance-status-elevated);transition:opacity .6s,box-shadow .6s,background .6s,background-color .6s}
+.iui-finance-status-row{display:flex;align-items:stretch;gap:12px;min-width:0}
+.iui-finance-status-icon{display:flex;flex:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:#e25507;color:#fff}
+.iui-finance-status-icon svg{display:block;width:20px;height:20px;flex:none}
+.iui-finance-status-copy{display:flex;flex:1 1 auto;flex-direction:column;gap:4px;min-width:0}
+.iui-root .iui-finance-status-title{margin:0;font-size:16px;line-height:26px;font-weight:600;letter-spacing:0;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-finance-status-description{margin:0;font-size:14px;line-height:20px;font-weight:400;letter-spacing:0;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-finance-status-loading{width:100%;height:88px;border-radius:0;background:var(--iui-surface-tertiary);position:relative;overflow:hidden;isolation:isolate;will-change:opacity,filter;animation:iui-finance-status-pulse 1.5s ease-in-out infinite alternate}
+@keyframes iui-finance-status-pulse{from{filter:brightness(1);opacity:1}to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-finance-status-loading{animation:none}}

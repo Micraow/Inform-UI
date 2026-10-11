@@ -10,11 +10,32 @@ function blockedComposedAncestor(control:HTMLElement):boolean {
  }
  return false;
 }
-/** Checks actual ownership and native disabled semantics without crossing fieldset boundaries artificially. */
-export const readerBlocked=(root:HTMLElement,control:HTMLElement,alive:boolean)=>!alive||!root.isConnected||!control.isConnected||!root.contains(control)||control.matches(':disabled')||blockedComposedAncestor(control);
-/** Reconcile native reset only after cancellation, later input and ownership settle. */
+/** Checks ownership, native disabled semantics and the control's explicit ARIA state. Ancestor ARIA state is not synthesized into native fieldset semantics. */
+export const readerBlocked=(root:HTMLElement,control:HTMLElement,alive:boolean)=>!alive||!root.isConnected||!control.isConnected||!root.contains(control)||control.matches(':disabled')||control.getAttribute('aria-disabled')==='true'||blockedComposedAncestor(control);
+/** Reconcile native reset only after cancellation, later input and ownership settle.
+ * Registrations belong to a child generation, so late host registration is
+ * compensated and releases remain idempotent when the shadow target changes.
+ */
 export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:readonly (HTMLInputElement|HTMLSelectElement)[],revision:()=>number,restore:()=>void,reset:()=>void):void {
- let alive=true,resetRoot:EventTarget|undefined;
- const onReset=(event:Event)=>{const form=event.target;if(!alive||!form||!controls.some(control=>root.contains(control)&&control.form===form))return;const before=revision(),allowed=controls.every(control=>control.form===form&&!readerBlocked(root,control,alive));queueMicrotask(()=>{if(!alive)return;if(!event.defaultPrevented&&allowed&&controls.every(control=>control.form===form&&!readerBlocked(root,control,alive))&&revision()===before)reset();else restore();});};
- c.doc.addEventListener('reset',onReset,true);c.bind(()=>{const tree=root.getRootNode(),next=tree!==c.doc&&tree.nodeType===11?tree:undefined;if(next===resetRoot)return;resetRoot?.removeEventListener('reset',onReset,true);resetRoot=next;resetRoot?.addEventListener('reset',onReset,true);});c.cleanup(()=>{alive=false;c.doc.removeEventListener('reset',onReset,true);resetRoot?.removeEventListener('reset',onReset,true);});
+ const life=c.lifecycle.fork();
+ let resetRoot:EventTarget|undefined,releaseShadow:(()=>void)|undefined;
+ const onReset=(event:Event)=>{
+  // Snapshot intent before host getters can synchronously deliver newer input.
+  const before=life.during(revision);
+  const form=life.during(()=>event.target);
+  if(!form||!life.during(()=>controls.some(control=>root.contains(control)&&control.form===form)))return;
+  const allowed=life.during(()=>controls.every(control=>control.form===form&&!readerBlocked(root,control,life.current())));
+  queueMicrotask(life.guard(()=>{
+   if(!life.during(()=>event.defaultPrevented)&&allowed&&life.during(()=>controls.every(control=>control.form===form&&!readerBlocked(root,control,life.current())))&&life.during(revision)===before)life.during(reset);
+   else life.during(restore);
+  }));
+ };
+ life.listen(c.doc,'reset',onReset,true);
+ life.own(c.bind(life.guard(()=>{
+  const next=life.during(()=>{const tree=root.getRootNode();return tree!==c.doc&&tree.nodeType===11?tree:undefined;});
+  if(next===resetRoot)return;
+  if(releaseShadow)life.during(releaseShadow);
+  releaseShadow=undefined;resetRoot=next;
+  if(next)releaseShadow=life.listen(next,'reset',onReset,true);
+ })));
 }

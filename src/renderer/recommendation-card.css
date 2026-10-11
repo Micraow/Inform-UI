@@ -1,0 +1,23 @@
+/* Standard-web role target. Host/app/extension overrides are not inferred. */
+.iui-root{--iui-recommendation-elevated:#fff;--iui-recommendation-hover:rgb(13 13 13 / 8%);--iui-recommendation-active:rgb(13 13 13 / 12%)}
+.iui-root[data-theme=dark]{--iui-recommendation-elevated:#303030;--iui-recommendation-hover:rgb(255 255 255 / 12%);--iui-recommendation-active:rgb(255 255 255 / 16%)}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto]{--iui-recommendation-elevated:#303030;--iui-recommendation-hover:rgb(255 255 255 / 12%);--iui-recommendation-active:rgb(255 255 255 / 16%)}}
+.iui-recommendation-card{width:100%;max-width:100%;min-width:0}
+.iui-recommendation-card[data-status=resolved]{width:100vw;max-width:100%;overflow:hidden;padding:0;border:1px solid var(--iui-line);border-radius:20px;background:var(--iui-recommendation-elevated);transition:opacity .6s,box-shadow .6s,background .6s,background-color .6s}
+.iui-root .iui-recommendation-action{appearance:none;margin:0;display:flex;align-items:center;gap:16px;width:100%;min-width:0;padding:16px;border:0;border-radius:20px;background:transparent;text-align:start;font-weight:400;transition:background-color .15s,box-shadow .15s,color .15s}
+.iui-root .iui-recommendation-action:hover:enabled{background:transparent}
+@media(hover:hover) and (pointer:fine){.iui-root .iui-recommendation-action:not(:disabled,[aria-disabled=true]):hover{background:var(--iui-recommendation-hover)}}
+.iui-root .iui-recommendation-action:not(:disabled,[aria-disabled=true]):active{background:var(--iui-recommendation-active)}
+.iui-root .iui-recommendation-action:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-recommendation-action:is(:disabled,[aria-disabled=true]){opacity:.5;cursor:default;background:transparent;color:var(--iui-ink);border:0}
+.iui-root .iui-recommendation-action[aria-disabled=true]:active{background:transparent}
+.iui-recommendation-icon-slot{display:block;width:40px;height:40px;flex:none}
+.iui-recommendation-icon{display:block;width:40px;height:40px;object-fit:contain}
+.iui-recommendation-icon[hidden]{display:none}
+.iui-recommendation-emoji{display:block;width:40px;flex:none;font-size:24px;line-height:32px;font-weight:400;letter-spacing:0}
+.iui-recommendation-copy{display:flex;flex:1 1 auto;min-width:0;flex-direction:column;align-items:flex-start;gap:4px}
+.iui-recommendation-title{font-size:16px;line-height:26px;font-weight:600;letter-spacing:0;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-recommendation-description{font-size:14px;line-height:20px;font-weight:400;letter-spacing:0;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-recommendation-loading{width:100%;height:88px;border-radius:0;background:var(--iui-surface-tertiary);position:relative;overflow:hidden;isolation:isolate;will-change:opacity,filter;animation:iui-recommendation-pulse 1.5s ease-in-out infinite alternate}
+@keyframes iui-recommendation-pulse{from{filter:brightness(1);opacity:1}to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-recommendation-loading{animation:none}}

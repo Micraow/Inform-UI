@@ -1,4 +1,8 @@
+import {promptChecklistSchema} from './prompt-checklist-schema.mjs';
+import {financeStatusSchema} from './finance-status-schema.mjs';
+import {recommendationCardSchema} from './recommendation-card-schema.mjs';
 /** Project-owned iui/1 schema construction. No external runtime code is used. */
+import {installTransactionDetail} from './transaction-detail-schema.mjs';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { compile } from 'json-schema-to-typescript';
@@ -310,6 +314,21 @@ defs.LedgerTransaction = object({id:key,date:{type:'string',pattern:'^[1-9]\\d{3
 const ledgerCommon = {label:short,description:string(2000),source:ref('LedgerSource')};
 node('asset-distribution',{...ledgerCommon,observedAt:short,accounts:array(ref('LedgerAccount'),0,40)},['label','accounts'],'finance');
 node('transaction-list',{...ledgerCommon,transactions:array(ref('LedgerTransaction'),0,100)},['label','transactions'],'finance');
+// Supplied exact-text account and recurring record readers; no provider or financial action.
+defs.LedgerExactMoney=object({amount:{anyOf:[{type:'string',pattern:'^-?(?:0|[1-9][0-9]{0,17})(?:\\.[0-9]{1,18})?$(?![\\s\\S])',minLength:1,maxLength:40},{type:'null'}]},currency:ledgerCurrency},['amount','currency']);
+defs.LedgerAccountSnapshot=object({id:suppliedKey,label:short,institution:short,kind:choice('cash','credit','investment','loan','other','unknown'),status:choice('active','closed','unknown'),suffix:{type:'string',pattern:'^[A-Za-z0-9]{1,4}$(?![\\s\\S])'},balance:ref('LedgerExactMoney'),observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','institution','kind','status']);
+node('ledger-accounts',{...ledgerCommon,accounts:array(ref('LedgerAccountSnapshot'),0,40),initiallyRevealed:bool},['label','accounts'],'finance');
+defs.LedgerRecurringRecord=object({id:suppliedKey,label:short,counterparty:short,cadence:choice('weekly','monthly','yearly','other','unknown'),status:choice('scheduled','paused','unknown'),direction:choice('incoming','outgoing','unknown'),estimatedAmount:ref('LedgerExactMoney'),nextDate:travelDate,observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','cadence','status','direction']);
+node('ledger-recurring-transactions',{...ledgerCommon,records:array(ref('LedgerRecurringRecord'),0,60),initialReviewedIds:array(suppliedKey,0,60)},['label','records'],'finance');
+const playerCount = {anyOf:[integer(0,1000000),{type:'null'}]};
+const playerRate = {anyOf:[{type:'number',minimum:0,maximum:10000},{type:'null'}]};
+const playerRank = {anyOf:[integer(1,1000000),{type:'null'}]};
+const playerRecordCommon = {id:suppliedKey,season:short,note:string(2000),source:ref('TravelEventSource')};
+defs.BasketballPlayerRecord=object({...playerRecordCommon,team:{anyOf:[short,{type:'null'}]},scope:choice('regular-season','playoffs','preseason','other','unknown'),games:playerCount,minutesPerGame:playerRate,pointsPerGame:playerRate,reboundsPerGame:playerRate,assistsPerGame:playerRate},['id','season','team','scope','games','minutesPerGame','pointsPerGame','reboundsPerGame','assistsPerGame']);
+defs.TennisPlayerRecord=object({...playerRecordCommon,surface:choice('hard','clay','grass','carpet','other','unknown'),matches:playerCount,wins:playerCount,losses:playerCount,titles:playerCount,rank:playerRank},['id','season','surface','matches','wins','losses','titles','rank']);
+const playerCommon={label:short,player:short,description:string(3000),observedAt:flightAt,source:ref('TravelEventSource')};
+node('nba-player-summary',{...playerCommon,records:array(ref('BasketballPlayerRecord'),0,100)},['label','player','records'],'sports');
+node('tennis-player-summary',{...playerCommon,records:array(ref('TennisPlayerRecord'),0,100)},['label','player','records'],'sports');
 // Local conversion controls use factual unit definitions and caller-supplied exchange snapshots.
 const unitRegistry=JSON.parse(await readFile(new URL('../src/data/units.json',import.meta.url),'utf8'));
 const unitCode={enum:[...new Set(Object.values(unitRegistry).flatMap(category=>category.units.map(unit=>unit.id)))],description:Object.entries(unitRegistry).map(([name,category])=>name+': '+category.units.map(unit=>unit.id).join(', ')).join('; ')};
@@ -318,6 +337,17 @@ const currencyCode={type:'string',pattern:'^[A-Z]{3}$'};
 node('currency-converter',{title:short,source:ref('FinanceSource'),asOf:timestamp,base:currencyCode,rates:array(object({currency:currencyCode,rate:{anyOf:[{type:'number',exclusiveMinimum:0},{type:'null'}],description:'Units of this currency per one base-currency unit; null means unavailable.'}},['currency','rate']),0,200),amount:number,from:currencyCode,to:currencyCode,precision:integer(1,12),status:choice('ready','loading','error'),message:string()},['source','asOf','base','rates','amount'], 'converters');
 node('svg', { viewBox: { type: 'string', pattern: '^\\d+\\s+\\d+\\s+\\d+\\s+\\d+$' }, shapes: array(object({ tag: choice('rect', 'line', 'circle', 'path', 'text', 'polyline', 'polygon'), attrs: { type: 'object', maxProperties: 24, additionalProperties: { anyOf: [string(), number] } }, text: string() }, ['tag', 'attrs']), 1, 150), label: string() }, ['viewBox', 'shapes'], 'graphics');
 node('native', { name: choice('box', 'row', 'col', 'grid', 'grid-item', 'card', 'text', 'title', 'caption', 'badge', 'divider', 'code', 'blockquote', 'bold', 'italic', 'underline', 'strikethrough', 'spacer', 'list', 'list-item', 'table', 'table-row', 'table-cell', 'flow', 'flow-item'), props: { ...object({ gap: integer(0, 16), padding: integer(0, 16), columns: integer(1, 6), radius: choice('none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full'), border: bool, color, size: choice('xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'), weight, align: choice('start', 'center', 'end', 'stretch'), justify: choice('start', 'center', 'end', 'between', 'around'), width: { anyOf: [integer(20, 1400), choice('100%', 'auto')] }, height: integer(0, 1400), maxWidth: integer(20, 1400), minWidth: integer(0, 1400), background: choice('surface', 'surface-secondary', 'surface-tertiary', 'none'), marker: choice('bullet', 'number', 'none'), variant: choice('soft', 'solid', 'outline', 'ghost'), pill: bool, textAlign: align }), maxProperties: 18 }, children }, ['name', 'children'], 'compatibility');
+// Independent finite follow-up intents; no host-service execution.
+defs.FollowUpCardIntent = {oneOf:[object({kind:{const:'url'},url:string(2048,1)},['kind','url']),object({kind:{const:'query'},query:string(4000,1)},['kind','query']),object({kind:{const:'prefill'},surface:{const:'work'},query:string(4000,1)},['kind','surface','query'])]};
+defs.FollowUpCardItem=object({id:key,label:short,description:string(1000,1),emoji:string(32,1),iconData:string(100000,1),disabled:bool,intent:ref('FollowUpCardIntent')},['id','label','intent']);
+node('follow-up-card-group',{label:short,items:array(ref('FollowUpCardItem'),0,40),status:choice('ready','loading','error'),message:string(2000,1)},['label','items']);
+installTransactionDetail({defs,node});
+node('recommendation-card',{},[],'base');
+defs.RecommendationCardNode={...recommendationCardSchema(),type:'object',properties:{type:{const:'recommendation-card'}},required:['type']};
+node('prompt-checklist',{},[],'base');
+defs.PromptChecklistNode={...promptChecklistSchema(),type:'object',properties:{type:{const:'prompt-checklist'}},required:['type']};
+node('ledger-finance-status-banner',{},[],'finance');
+defs.LedgerFinanceStatusBannerNode={...financeStatusSchema(),type:'object',properties:{type:{const:'ledger-finance-status-banner'}},required:['type']};
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };
 const dir = fileURLToPath(new URL('../src/schema/', import.meta.url));

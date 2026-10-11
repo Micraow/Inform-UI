@@ -1,3 +1,4 @@
+import {internalId} from './internal-id.js';
 import type { Node } from '../schema/document.js';
 import type { StateValue } from '../core/index.js';
 import { validInputDate, type FieldNode } from '../core/extensions.js';
@@ -10,14 +11,13 @@ type Control = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 /** Native controls, local validation, and explicitly allowlisted host actions. Never performs network I/O. */
 export function createForms(c: RendererContext) {
   let scope: FormScope | undefined;
-  let serial = 0;
   const fields = new Map<string, Set<FieldHandle>>();
   const { element: e, on, bind } = c;
   const disabled = (control: Control) => control.matches(':disabled');
 
   function field(n: FieldNode): HTMLElement {
     const fieldScope = scope;
-    const id = `iui-form-internal-${c.prefix}field-${++serial}`;
+    const id = internalId(c, 'form-field');
     const out = e('div', 'iui-field');
     const hint = e('p', 'iui-caption iui-field-hint', n.hint);
     const error = e('p', 'iui-field-error');
@@ -234,7 +234,7 @@ export function createForms(c: RendererContext) {
     out.append(e('legend', 'iui-field-label', n.label));
     if (n.hint) {
       const hint = e('p', 'iui-caption iui-field-group-hint', n.hint);
-      hint.id = `iui-form-internal-${c.prefix}group-${++serial}-hint`;
+      hint.id = internalId(c, 'form-group-hint');
       out.setAttribute('aria-describedby', hint.id);
       out.append(hint);
     }
@@ -270,7 +270,7 @@ export function createForms(c: RendererContext) {
     let alive = true;
     out.noValidate = true;
     out.setAttribute('aria-label', n.label);
-    status.id = `iui-form-internal-${c.prefix}status-${++serial}`;
+    status.id = internalId(c, 'form-status');
     status.setAttribute('role', 'status');
     status.setAttribute('aria-live', 'polite');
     status.setAttribute('aria-atomic', 'true');

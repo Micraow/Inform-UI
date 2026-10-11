@@ -142,10 +142,19 @@ export type Node =
   | FinanceHeatmapNode
   | AssetDistributionNode
   | TransactionListNode
+  | LedgerAccountsNode
+  | LedgerRecurringTransactionsNode
+  | NbaPlayerSummaryNode
+  | TennisPlayerSummaryNode
   | UnitConverterNode
   | CurrencyConverterNode
   | SvgNode
-  | NativeNode;
+  | NativeNode
+  | FollowUpCardGroupNode
+  | LedgerTransactionDetailNode
+  | RecommendationCardNode
+  | PromptChecklistNode
+  | LedgerFinanceStatusBannerNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -522,6 +531,168 @@ export type FillBlankPart =
   | string
   | {
       blank: string;
+    };
+export type FollowUpCardIntent =
+  | {
+      kind: "url";
+      url: string;
+    }
+  | {
+      kind: "query";
+      query: string;
+    }
+  | {
+      kind: "prefill";
+      surface: "work";
+      query: string;
+    };
+export type TransactionDetailRelated =
+  | {
+      id: string;
+      name: string;
+      dateLabel: string;
+      amountLabel: string;
+      maskedAmountLabel: string;
+      actionLabel: string;
+      pendingLabel: string;
+      logo?: {
+        src: string;
+        alt: string;
+      };
+      disabled?: boolean;
+      pending: true;
+    }
+  | {
+      id: string;
+      name: string;
+      dateLabel: string;
+      amountLabel: string;
+      maskedAmountLabel: string;
+      actionLabel: string;
+      pendingLabel?: string;
+      logo?: {
+        src: string;
+        alt: string;
+      };
+      disabled?: boolean;
+      pending?: false;
+    };
+export type RecommendationCardNode = {
+  type: "recommendation-card";
+} & RecommendationCardNode1;
+export type RecommendationCardNode1 =
+  | {
+      type: "recommendation-card";
+      id?: string;
+      label: string;
+      fallback?: string;
+      status: "pending" | "failed";
+    }
+  | {
+      type: "recommendation-card";
+      id?: string;
+      label: string;
+      fallback?: string;
+      status: "resolved";
+      canOpenConversation: boolean;
+      data: {
+        conversationId: string;
+        title: string;
+        description: string;
+        emoji?: string;
+        iconData?: string;
+      };
+    };
+export type PromptChecklistNode = {
+  type: "prompt-checklist";
+} & PromptChecklistNode1;
+export type PromptChecklistNode1 =
+  | {
+      type: "prompt-checklist";
+      id?: string;
+      label: string;
+      fallback?: string;
+      disabled?: boolean;
+      status: "pending" | "failed";
+    }
+  | {
+      type: "prompt-checklist";
+      id?: string;
+      label: string;
+      fallback?: string;
+      disabled?: boolean;
+      status: "resolved";
+      data: {
+        title: string;
+        mode: "full" | "compact";
+        /**
+         * @maxItems 40
+         */
+        tasks: {
+          id: string;
+          title: string;
+          /**
+           * @maxItems 40
+           */
+          prompts: {
+            id: string;
+            label: string;
+            promptText: string;
+            summary?: string;
+            icon?:
+              | "info"
+              | "check"
+              | "warning"
+              | "error"
+              | "plus"
+              | "minus"
+              | "arrow-left"
+              | "arrow-right"
+              | "external-link"
+              | "clock";
+            imageData?: string;
+          }[];
+          tryOwnPromptText: string;
+          tryOwnLabel?: string;
+        }[];
+        /**
+         * @maxItems 40
+         */
+        completedTaskIds: string[];
+        selectedTaskId?: string | null;
+        completedItemsExpanded?: boolean;
+        latestCompletedTaskId?: string;
+        latestCompletedTaskTitle?: string;
+        showCompletedItemsLabel: string;
+        tryOwnLabel: string;
+        completion: {
+          headline: string;
+          body: string;
+          showCompletedItemsLabel: string;
+        };
+      };
+    };
+export type LedgerFinanceStatusBannerNode = {
+  type: "ledger-finance-status-banner";
+} & LedgerFinanceStatusBannerNode1;
+export type LedgerFinanceStatusBannerNode1 =
+  | {
+      type: "ledger-finance-status-banner";
+      id?: string;
+      label: string;
+      fallback?: string;
+      status: "pending" | "failed";
+    }
+  | {
+      type: "ledger-finance-status-banner";
+      id?: string;
+      label: string;
+      fallback?: string;
+      status?: "resolved";
+      data?: {
+        title: string;
+        description: string;
+      };
     };
 
 /**
@@ -2653,6 +2824,118 @@ export interface LedgerTransaction {
   counterparty?: string;
   note?: string;
 }
+export interface LedgerAccountsNode {
+  type: "ledger-accounts";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  accounts: LedgerAccountSnapshot[];
+  initiallyRevealed?: boolean;
+}
+export interface LedgerAccountSnapshot {
+  id: string;
+  label: string;
+  institution: string;
+  kind: "cash" | "credit" | "investment" | "loan" | "other" | "unknown";
+  status: "active" | "closed" | "unknown";
+  suffix?: string;
+  balance?: LedgerExactMoney;
+  observedAt?: string;
+  note?: string;
+  source?: LedgerSource;
+}
+export interface LedgerExactMoney {
+  amount: string | null;
+  currency: string;
+}
+export interface LedgerRecurringTransactionsNode {
+  type: "ledger-recurring-transactions";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  records: LedgerRecurringRecord[];
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  initialReviewedIds?: string[];
+}
+export interface LedgerRecurringRecord {
+  id: string;
+  label: string;
+  counterparty?: string;
+  cadence: "weekly" | "monthly" | "yearly" | "other" | "unknown";
+  status: "scheduled" | "paused" | "unknown";
+  direction: "incoming" | "outgoing" | "unknown";
+  estimatedAmount?: LedgerExactMoney;
+  nextDate?: string;
+  observedAt?: string;
+  note?: string;
+  source?: LedgerSource;
+}
+export interface NbaPlayerSummaryNode {
+  type: "nba-player-summary";
+  id?: string;
+  label: string;
+  player: string;
+  description?: string;
+  observedAt?: string;
+  source?: TravelEventSource;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  records: BasketballPlayerRecord[];
+}
+export interface BasketballPlayerRecord {
+  id: string;
+  season: string;
+  note?: string;
+  source?: TravelEventSource;
+  team: string | null;
+  scope: "regular-season" | "playoffs" | "preseason" | "other" | "unknown";
+  games: number | null;
+  minutesPerGame: number | null;
+  pointsPerGame: number | null;
+  reboundsPerGame: number | null;
+  assistsPerGame: number | null;
+}
+export interface TennisPlayerSummaryNode {
+  type: "tennis-player-summary";
+  id?: string;
+  label: string;
+  player: string;
+  description?: string;
+  observedAt?: string;
+  source?: TravelEventSource;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  records: TennisPlayerRecord[];
+}
+export interface TennisPlayerRecord {
+  id: string;
+  season: string;
+  note?: string;
+  source?: TravelEventSource;
+  surface: "hard" | "clay" | "grass" | "carpet" | "other" | "unknown";
+  matches: number | null;
+  wins: number | null;
+  losses: number | null;
+  titles: number | null;
+  rank: number | null;
+}
 export interface UnitConverterNode {
   type: "unit-converter";
   id?: string;
@@ -2888,4 +3171,71 @@ export interface NativeNode {
    * @maxItems 500
    */
   children: Node[];
+}
+export interface FollowUpCardGroupNode {
+  type: "follow-up-card-group";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  items: FollowUpCardItem[];
+  status?: "ready" | "loading" | "error";
+  message?: string;
+}
+export interface FollowUpCardItem {
+  id: string;
+  label: string;
+  description?: string;
+  emoji?: string;
+  iconData?: string;
+  disabled?: boolean;
+  intent: FollowUpCardIntent;
+}
+export interface LedgerTransactionDetailNode {
+  type: "ledger-transaction-detail";
+  id?: string;
+  label: string;
+  status?: "pending" | "resolved" | "failed";
+  mobile?: boolean;
+  sensitiveValuesHidden?: boolean;
+  disabled?: boolean;
+  fallback?: string;
+  data?: TransactionDetailData;
+}
+export interface TransactionDetailData {
+  transactionId: string;
+  name: string;
+  amountLabel: string;
+  maskedAmountLabel: string;
+  merchant: string;
+  dateLabel: string;
+  account: string;
+  category: string;
+  logo?: {
+    src: string;
+    alt: string;
+  };
+  labels: {
+    merchant: string;
+    date: string;
+    account: string;
+    category: string;
+    budget: string;
+    related: string;
+    empty: string;
+    masked: string;
+  };
+  budget?: TransactionDetailBudget;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  related: TransactionDetailRelated[];
+}
+export interface TransactionDetailBudget {
+  limitLabel: string;
+  progressPct: number;
+  color?: "default" | "success" | "warning" | "danger" | "info" | "accent";
 }

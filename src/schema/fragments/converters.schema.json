@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:b439517a091a5795430076becf2bf9e80a3ac8187e7e6317e5ac632952b0b55c:document:base+converters",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:9ed13ed6b7cd5aa71f3b682c9a00292d5987c11a13eb80757eb52803e7ca15ea:document:base+converters",
   "title": "Inform UI document subset: base, converters",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -3144,6 +3144,153 @@
       ],
       "additionalProperties": false
     },
+    "FollowUpCardGroupNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "follow-up-card-group"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FollowUpCardItem"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "loading",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "FollowUpCardIntent": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "url"
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "kind",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "query"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "kind",
+            "query"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "prefill"
+            },
+            "surface": {
+              "const": "work"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "kind",
+            "surface",
+            "query"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "FollowUpCardItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "emoji": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "iconData": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "intent": {
+          "$ref": "#/$defs/FollowUpCardIntent"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "intent"
+      ],
+      "additionalProperties": false
+    },
     "GridItemNode": {
       "type": "object",
       "properties": {
@@ -4422,6 +4569,15 @@
         },
         {
           "$ref": "#/$defs/CurrencyConverterNode"
+        },
+        {
+          "$ref": "#/$defs/FollowUpCardGroupNode"
+        },
+        {
+          "$ref": "#/$defs/RecommendationCardNode"
+        },
+        {
+          "$ref": "#/$defs/PromptChecklistNode"
         }
       ]
     },
@@ -5104,6 +5260,286 @@
       ],
       "additionalProperties": false
     },
+    "PromptChecklistNode": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "prompt-checklist"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "failed"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "label",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "prompt-checklist"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "disabled": {
+              "type": "boolean"
+            },
+            "status": {
+              "const": "resolved"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "mode": {
+                  "enum": [
+                    "full",
+                    "compact"
+                  ]
+                },
+                "tasks": {
+                  "type": "array",
+                  "maxItems": 40,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200,
+                        "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                      },
+                      "title": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500
+                      },
+                      "prompts": {
+                        "type": "array",
+                        "maxItems": 40,
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 200,
+                              "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                            },
+                            "label": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 500
+                            },
+                            "promptText": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 8000
+                            },
+                            "summary": {
+                              "type": "string",
+                              "maxLength": 2000
+                            },
+                            "icon": {
+                              "enum": [
+                                "info",
+                                "check",
+                                "warning",
+                                "error",
+                                "plus",
+                                "minus",
+                                "arrow-left",
+                                "arrow-right",
+                                "external-link",
+                                "clock"
+                              ]
+                            },
+                            "imageData": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 500000
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "label",
+                            "promptText"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "tryOwnPromptText": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 8000
+                      },
+                      "tryOwnLabel": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "prompts",
+                      "tryOwnPromptText"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "completedTaskIds": {
+                  "type": "array",
+                  "maxItems": 40,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                  }
+                },
+                "selectedTaskId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200,
+                      "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "completedItemsExpanded": {
+                  "type": "boolean"
+                },
+                "latestCompletedTaskId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                },
+                "latestCompletedTaskTitle": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "showCompletedItemsLabel": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "tryOwnLabel": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "completion": {
+                  "type": "object",
+                  "properties": {
+                    "headline": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    },
+                    "body": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 4000
+                    },
+                    "showCompletedItemsLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    }
+                  },
+                  "required": [
+                    "headline",
+                    "body",
+                    "showCompletedItemsLabel"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "title",
+                "mode",
+                "tasks",
+                "completedTaskIds",
+                "showCompletedItemsLabel",
+                "tryOwnLabel",
+                "completion"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type",
+            "label",
+            "status",
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "prompt-checklist"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
     "PromptSuggestion": {
       "type": "object",
       "properties": {
@@ -5262,6 +5698,129 @@
         "url"
       ],
       "additionalProperties": false
+    },
+    "RecommendationCardNode": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "recommendation-card"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "failed"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "label",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "recommendation-card"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "fallback": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "status": {
+              "const": "resolved"
+            },
+            "canOpenConversation": {
+              "type": "boolean"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "conversationId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "pattern": "^[^\\s\\u0000-\\u001f\\u007f]+$(?![\\s\\S])"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "description": {
+                  "type": "string",
+                  "maxLength": 4000
+                },
+                "emoji": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 32
+                },
+                "iconData": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500000
+                }
+              },
+              "required": [
+                "conversationId",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type",
+            "label",
+            "status",
+            "canOpenConversation",
+            "data"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "recommendation-card"
+        }
+      },
+      "required": [
+        "type"
+      ]
     },
     "RedditThreadCardNode": {
       "type": "object",

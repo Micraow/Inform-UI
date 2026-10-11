@@ -1,3 +1,4 @@
+import {internalId} from './internal-id.js';
 import type { RendererContext } from './context.js';
 import type { TooltipNode, PopoverNode } from '../schema/document.js';
 import type { OverlayLabels } from './overlay-labels.js';
@@ -10,7 +11,6 @@ interface Entry {
 }
 interface Coordinator { open: (entry: Entry) => void; close: (entry: Entry, reason: CloseReason) => void }
 const coordinators = new WeakMap<Document, Coordinator>();
-const serials = new WeakMap<RendererContext, number>();
 
 /** One Escape/outside-pointer coordinator per ownerDocument, not per mount or surface.
  * Only one popover branch is open. Ancestors remain open when descendants open.
@@ -69,8 +69,7 @@ function coordinator(doc: Document): Coordinator {
  */
 export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, labels: OverlayLabels): HTMLElement {
   const { doc } = c, win = doc.defaultView;
-  const serial = (serials.get(c) ?? 0) + 1; serials.set(c, serial);
-  const base = `iui-overlay-internal-${c.prefix}${serial}`;
+  const base = internalId(c, 'overlay');
   const root = c.element('div', `iui-overlay iui-overlay-${n.type}`);
   const trigger = c.element('button', 'iui-overlay-trigger', n.label);
   const surface = c.element('div', `iui-overlay-surface iui-${n.type}-surface`);

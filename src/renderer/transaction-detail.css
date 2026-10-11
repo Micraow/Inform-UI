@@ -1,0 +1,67 @@
+/* Original local detail surface, scoped to this family. No global token changes. */
+.iui-root .iui-transaction-detail{--iui-transaction-detail-active:rgb(13 13 13 / 12%);--iui-transaction-detail-alpha10:rgb(13 13 13 / 10%);--iui-transaction-detail-alpha20:rgb(13 13 13 / 20%);width:100%;max-width:100%;display:flex;flex-direction:column;gap:0}
+.iui-root .iui-transaction-detail[hidden]{display:none}
+.iui-transaction-detail-loading{width:100%;height:360px;background:var(--iui-surface-tertiary);border-radius:0;position:relative;overflow:hidden;isolation:isolate;will-change:opacity,filter;animation:iui-transaction-detail-loading-pulse 1.5s ease-in-out infinite alternate}
+.iui-transaction-detail-header{padding:16px 20px;display:flex;flex-direction:column;gap:24px}
+.iui-transaction-detail-heading{height:48px;display:flex;gap:12px;align-items:center}
+.iui-transaction-detail-heading-copy,.iui-transaction-detail-related-copy{display:flex;flex-direction:column;gap:0;min-width:0;flex:1}
+.iui-transaction-detail-name,.iui-transaction-detail-amount,.iui-transaction-detail-value,.iui-transaction-detail-related-name,.iui-transaction-detail-related-date,.iui-transaction-detail-related-value,.iui-transaction-detail-pending{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}
+.iui-transaction-detail-name{font-size:18px;line-height:29px;font-weight:600}
+.iui-transaction-detail-amount{font-size:16px;line-height:26px;font-weight:400}
+.iui-transaction-detail-logo{position:relative;width:32px;height:32px;flex:0 0 32px;display:flex;align-items:center;justify-content:center}
+.iui-transaction-detail-logo[data-related=true]{width:28px;height:28px;flex-basis:28px}
+.iui-transaction-detail-logo-fallback{display:flex;align-items:center;justify-content:center;width:100%;height:100%;border-radius:50%;background:var(--iui-transaction-detail-alpha10)}
+.iui-transaction-detail-logo-fallback svg{width:16px;height:16px}
+.iui-transaction-detail-logo[data-related=true] svg{width:14px;height:14px}
+.iui-transaction-detail-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.iui-transaction-detail-image[hidden],.iui-transaction-detail-logo-fallback[hidden]{display:none}
+.iui-transaction-detail-sections{display:flex;flex-direction:column;gap:20px}
+.iui-transaction-detail-facts{margin:0;padding:0 20px}
+.iui-transaction-detail-fact{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 0}
+.iui-transaction-detail-fact[data-field=category]{height:56px}
+.iui-transaction-detail-key,.iui-transaction-detail-value{margin:0;font-size:14px;line-height:20px;font-weight:400}
+.iui-transaction-detail-key{color:var(--iui-muted);flex-shrink:0}
+.iui-transaction-detail-value{text-align:end}
+.iui-transaction-detail-divider{box-sizing:content-box;height:1px;padding:8px 0;background:linear-gradient(var(--iui-line),var(--iui-line)) center/100% 1px no-repeat}
+.iui-transaction-detail-budget{height:71px;padding:10px 0;display:flex;flex-direction:column;gap:8px}
+.iui-transaction-detail-budget-values{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.iui-transaction-detail-track,.iui-transaction-detail-bar{height:4px;border-radius:9999px}
+.iui-transaction-detail-track{background:var(--iui-transaction-detail-alpha10);overflow:hidden}
+.iui-transaction-detail-bar{background:var(--iui-ink)}
+.iui-transaction-detail-bar[data-color=success]{background:var(--iui-success)}
+.iui-transaction-detail-bar[data-color=warning]{background:var(--iui-warning)}
+.iui-transaction-detail-bar[data-color=danger]{background:var(--iui-danger)}
+.iui-transaction-detail-bar[data-color=info]{background:var(--iui-info)}
+.iui-transaction-detail-bar[data-color=accent]{background:var(--iui-accent)}
+.iui-root .iui-transaction-detail-related-title{height:53px;margin:0;padding:12px 20px;display:flex;align-items:center;font-size:16px;line-height:26px;font-weight:600;letter-spacing:normal}
+.iui-transaction-detail-related-list{padding:0 20px}
+.iui-root .iui-transaction-detail-related-item{appearance:none;margin:0;transition:background-color .15s,box-shadow .15s,color .15s;width:100%;display:block;border:0;border-radius:8px;padding:0;background:transparent;text-align:start;box-shadow:none}
+.iui-root .iui-transaction-detail-related-item:hover:enabled{background:transparent}
+@media(hover:hover) and (pointer:fine){.iui-root .iui-transaction-detail-related-item:not(:disabled,[aria-disabled=true]):hover{background:var(--iui-surface-tertiary)}}
+.iui-root .iui-transaction-detail-related-item:not(:disabled,[aria-disabled=true]):active{background:var(--iui-transaction-detail-active)}
+.iui-root .iui-transaction-detail-related-item:is(:disabled,[aria-disabled=true]){background:transparent;cursor:default;opacity:.5}
+.iui-root .iui-transaction-detail-related-item[aria-disabled=true]:active{background:transparent}
+.iui-transaction-detail-related-row{height:53px;padding:10px 0;display:flex;gap:12px;align-items:center;width:100%}
+.iui-transaction-detail-related-name{font-size:14px;line-height:20px;font-weight:500}
+.iui-transaction-detail-related-date,.iui-transaction-detail-related-value{font-size:14px;line-height:20px;font-weight:400}
+.iui-transaction-detail-related-date,.iui-transaction-detail-pending{color:var(--iui-muted)}
+.iui-transaction-detail-related-amount{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;width:max-content}
+.iui-transaction-detail-pending{font-size:14px;line-height:18.2px;font-weight:400}
+.iui-root .iui-transaction-detail-empty{margin:0;padding:0;font-size:14px;line-height:20px;color:var(--iui-muted)}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-header{padding:4px 20px 16px}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-name{font-size:18px;line-height:28px;font-weight:700}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-logo{width:40px;height:40px;flex-basis:40px}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-fact{height:56px}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-divider{padding:0;background:var(--iui-transaction-detail-alpha10)}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-track{background:repeating-linear-gradient(135deg,transparent 0,transparent 4px,var(--iui-transaction-detail-alpha20) 4px,var(--iui-transaction-detail-alpha20) 5px),var(--iui-transaction-detail-alpha10)}
+.iui-root .iui-transaction-detail[data-mobile=true] .iui-transaction-detail-related-title{font-size:18px;line-height:28px;font-weight:700}
+.iui-root .iui-transaction-detail[data-mobile=true] .iui-transaction-detail-related-item{padding:0 8px;border:1px solid transparent}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-related-row{height:66px}
+.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-related-name,.iui-transaction-detail[data-mobile=true] .iui-transaction-detail-related-value{font-size:16px;line-height:26px}
+
+.iui-root[data-theme=dark] .iui-transaction-detail{--iui-transaction-detail-active:rgb(255 255 255 / 16%);--iui-transaction-detail-alpha10:rgb(255 255 255 / 10%);--iui-transaction-detail-alpha20:rgb(255 255 255 / 20%)}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-transaction-detail{--iui-transaction-detail-active:rgb(255 255 255 / 16%);--iui-transaction-detail-alpha10:rgb(255 255 255 / 10%);--iui-transaction-detail-alpha20:rgb(255 255 255 / 20%)}}
+
+@keyframes iui-transaction-detail-loading-pulse{from{filter:brightness(1);opacity:1}to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-transaction-detail-loading{animation:none}}
+.iui-root .iui-transaction-detail-related-item:focus-visible{outline-offset:2px}

@@ -1,0 +1,56 @@
+/* Standard-web component roles; app/extension overrides are outside this target. */
+.iui-root{--iui-prompt-elevated:#fff;--iui-prompt-secondary:#5d5d5d;--iui-prompt-secondary-hover:#414141;--iui-prompt-secondary-active:#303030}
+.iui-root[data-theme=dark]{--iui-prompt-elevated:#303030;--iui-prompt-secondary:#414141;--iui-prompt-secondary-hover:#4f4f4f;--iui-prompt-secondary-active:#5d5d5d}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto]{--iui-prompt-elevated:#303030;--iui-prompt-secondary:#414141;--iui-prompt-secondary-hover:#4f4f4f;--iui-prompt-secondary-active:#5d5d5d}}
+.iui-prompt-checklist{width:100%;max-width:100%;min-width:0}
+.iui-prompt-checklist[data-status=resolved]{width:100vw;max-width:100%;padding:0;border:1px solid var(--iui-line);border-radius:20px;background:var(--iui-prompt-elevated);overflow:hidden;transition:opacity .6s,box-shadow .6s,background .6s,background-color .6s}
+.iui-prompt-checklist-body{display:flex;flex-direction:column;gap:16px;padding:16px}
+.iui-prompt-checklist-tasks,.iui-prompt-checklist-task,.iui-prompt-checklist-detail-content{display:flex;flex-direction:column;gap:0;min-width:0}
+.iui-root .iui-prompt-checklist-title{margin:0;font-size:18px;line-height:28px;letter-spacing:0;font-weight:600}
+.iui-root .iui-prompt-checklist button:is(.iui-prompt-checklist-task-button,.iui-prompt-checklist-choice,.iui-prompt-checklist-review){appearance:none;width:100%;min-width:0;padding:8px;border:0;border-radius:10px;margin:0;background:transparent;color:var(--iui-ink);font:inherit;text-align:start;cursor:pointer}
+.iui-root .iui-prompt-checklist button:is(.iui-prompt-checklist-task-button,.iui-prompt-checklist-choice,.iui-prompt-checklist-review):is(:hover,:active){background:transparent;color:var(--iui-ink)}
+.iui-root .iui-prompt-checklist button:is(.iui-prompt-checklist-task-button,.iui-prompt-checklist-choice,.iui-prompt-checklist-review):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-prompt-checklist button:is(.iui-prompt-checklist-task-button,.iui-prompt-checklist-choice,.iui-prompt-checklist-review):is(:disabled,[aria-disabled=true]){opacity:.5;cursor:default;background:transparent;color:var(--iui-ink)}
+.iui-prompt-checklist-task-plain{padding:8px;width:100%}
+.iui-prompt-checklist-heading{display:flex;align-items:center;gap:8px;width:100%;flex-wrap:nowrap}
+.iui-prompt-checklist-marker{display:flex;align-items:center;justify-content:center;width:20px;height:20px;flex:none;color:var(--iui-tertiary)}
+.iui-prompt-checklist-symbol{display:block;width:24px;height:24px;flex:none;overflow:visible}
+.iui-prompt-checklist-task-title{width:100%;min-width:0;font-size:16px;line-height:26px;letter-spacing:0;color:var(--iui-ink)}
+.iui-prompt-checklist-heading[data-completed=true] .iui-prompt-checklist-task-title{color:var(--iui-tertiary)}
+.iui-prompt-checklist-arrow{display:flex;flex:none;color:var(--iui-muted)}
+.iui-prompt-checklist-arrow .iui-prompt-checklist-symbol{width:14px;height:14px}
+.iui-prompt-checklist-divider{height:1px;flex:none;background:var(--iui-border-subtle)}
+.iui-prompt-checklist-details{overflow:hidden;min-width:0}
+.iui-prompt-checklist-detail-content{padding-bottom:8px}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-choice{display:flex;align-items:center;gap:12px}
+.iui-prompt-checklist-icon{display:flex;align-items:center;justify-content:center;flex:none;width:48px;height:48px;border-radius:10px;background:var(--iui-surface-secondary)}
+.iui-prompt-checklist-icon svg{width:18px;height:18px}
+.iui-prompt-checklist-image-slot{display:flex;align-items:center;justify-content:center;flex:none;width:73px;height:73px;border-radius:10px;border:1px solid var(--iui-border-subtle);background:var(--iui-surface-secondary)}
+.iui-prompt-checklist-image{display:block;flex:none;width:73px;height:73px;border-radius:10px;object-fit:cover}
+.iui-prompt-checklist-image[hidden]{display:none}
+.iui-prompt-checklist-choice-copy{display:flex;flex-direction:column;gap:2px;flex:1 1 auto;min-width:0}
+.iui-prompt-checklist-prompt-label{font-size:16px;line-height:26px;letter-spacing:0;color:var(--iui-ink)}
+.iui-prompt-checklist-summary{font-size:14px;line-height:20px;letter-spacing:0;color:var(--iui-muted);display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.iui-prompt-checklist-own-wrap{padding-top:8px;width:100%}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary{appearance:none;display:inline-block;position:relative;isolation:isolate;width:100%;height:36px;padding:0 15.96px;margin:0;border:0;border-radius:9999px;background:transparent;color:#fff;font:inherit;font-size:14px;line-height:1;font-weight:400;white-space:nowrap;user-select:none;cursor:pointer;transition:opacity .15s,color .15s}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary::before,.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;transition:opacity .15s,background-color .15s,transform .15s,box-shadow .15s,border-color .15s}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary::before{background:var(--iui-prompt-secondary)}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:is(:hover,:active){background:transparent;color:#fff}
+@media(hover:hover) and (pointer:fine){.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:not(:disabled,[aria-disabled=true]):hover::before{background:var(--iui-prompt-secondary-hover)}}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:not(:disabled,[aria-disabled=true]):active::before{background:var(--iui-prompt-secondary-active)}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:not(:disabled,[aria-disabled=true]):active::before,.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:not(:disabled,[aria-disabled=true]):active::after{transform:scale(var(--iui-prompt-button-scale,1))}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:focus{outline:none}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:focus-visible::after{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:is(:disabled,[aria-disabled=true]){color:var(--iui-disabled-text);opacity:1;cursor:not-allowed;border:0;background:transparent}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:is(:disabled,[aria-disabled=true])::before{background:var(--iui-disabled-bg);transform:scale(1)}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-secondary:is(:disabled,[aria-disabled=true])::after{transform:scale(1)}
+.iui-prompt-checklist-finished{display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px 16px 8px;min-height:249px}
+.iui-prompt-checklist-finished-mark{display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;color:var(--iui-ink)}
+.iui-prompt-checklist-finished-mark .iui-prompt-checklist-symbol{width:40px;height:40px}
+.iui-prompt-checklist-finished .iui-prompt-checklist-title{width:100%;text-align:center}
+.iui-root .iui-prompt-checklist-finished-copy{margin:0;width:329px;max-width:100%;font-size:16px;line-height:26px;letter-spacing:0;color:var(--iui-muted);text-align:center}
+.iui-prompt-checklist-review-wrap{width:100%;padding-block:8px}
+.iui-root .iui-prompt-checklist button.iui-prompt-checklist-review{padding:8px 16px;border:1px solid var(--iui-border-subtle);border-radius:9999px;font-size:16px;line-height:26px;letter-spacing:0;font-weight:500;text-align:center}
+.iui-prompt-checklist-loading{width:100%;height:180px;border-radius:0;background:var(--iui-surface-tertiary);position:relative;overflow:hidden;isolation:isolate;will-change:opacity,filter;animation:iui-prompt-checklist-pulse 1.5s ease-in-out infinite alternate}
+@keyframes iui-prompt-checklist-pulse{from{filter:brightness(1);opacity:1}to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-prompt-checklist-loading{animation:none}}

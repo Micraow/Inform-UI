@@ -1,10 +1,8 @@
+import {internalId} from './internal-id.js';
 import type { RendererContext } from './context.js';
 import type { TableNode } from '../schema/document.js';
 import { tableLayout } from '../core/table.js';
 
-// Per-context numbering remains unique through siblings and controller.update(),
-// while allowing an unmounted context and all of its identifiers to be collected.
-const sequences = new WeakMap<RendererContext, number>();
 type LayoutSection = ReturnType<typeof tableLayout>[number];
 type PlacedCell = LayoutSection['rows'][number][number];
 interface RenderedCell { model: PlacedCell; element: HTMLTableCellElement; section: number }
@@ -13,11 +11,9 @@ const overlaps = (start: number, span: number, other: number, otherSpan: number)
 
 /** Render the core-validated layout; core owns every span/occupancy check. */
 export function renderTable(c: RendererContext, n: TableNode): HTMLElement {
-  const sequence = (sequences.get(c) ?? 0) + 1;
-  sequences.set(c, sequence);
   // Caller node ids use c.prefix + node.id. Keep generated associations outside
   // that namespace so a valid caller id cannot shadow a table/header/caption.
-  const id = `iui-table-internal-${c.prefix}${sequence}`;
+  const id = internalId(c, 'table');
   const container = c.element('div', 'iui-table-container');
   const scroll = c.element('div', 'iui-table-wrap iui-table-scroll');
   const table = c.element('table', 'iui-table');

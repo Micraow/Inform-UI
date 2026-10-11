@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import path from 'node:path';import {pathToFileURL} from 'node:url';
+const i=process.argv.indexOf('--runtime');assert.ok(i>=0&&process.argv[i+1],'Pass --runtime PATH after real integration');const runtime=path.resolve(process.argv[i+1]);
+const api=await import(pathToFileURL(path.join(runtime,'dist/index.js'))),browser=await import(pathToFileURL(path.join(runtime,'dist/browser.js')));
+const document=JSON.parse(await readFile(new URL('../examples/transaction-detail.json',import.meta.url),'utf8'));
+for(const lib of [api,browser])assert.equal(lib.validateDocument(document).ok,true,JSON.stringify(lib.validateDocument(document)));
+const owners=JSON.parse(await readFile(path.join(runtime,'src/schema/fragments/index.json'),'utf8'));assert.equal(owners.nodeOwners['ledger-transaction-detail'],'finance');
+const css=await readFile(path.join(runtime,'src/renderer/transaction-detail.css'),'utf8'),external=await readFile(path.join(runtime,'dist/style.css'),'utf8');assert.ok(api.styles.includes(css),'runtime.styles missing exact family');assert.ok(external.includes(css),'external CSS missing exact family');
+const html=await api.compileHtml(document,{backend:'portable',assets:'inline'});assert.equal(await api.compileHtml(document,{backend:'portable',assets:'inline'}),html);assert.ok(html.includes(css),'real standalone HTML style missing exact family');
+const cdata=JSON.parse(await readFile(path.join(runtime,'src/schema/iui.schema.json'),'utf8'));assert.ok(cdata.$defs.LedgerTransactionDetailNode);
+const bad=structuredClone(document);bad.body[0].data.related[1].id=bad.body[0].data.related[0].id;const result=api.validateDocument(bad);assert.equal(result.ok,false);assert.ok(result.issues.some(i=>i.code==='DUPLICATE_ID'&&i.path==='/body/0/data/related/1/id'));
+for(const src of ['javascript:alert(1)','data:image/svg+xml;base64,PHN2Zz48L3N2Zz4=','/relative.png']){const n=structuredClone(document);n.body[0].data.logo={src,alt:'Supplied logo'};const r=api.validateDocument(n);assert.equal(r.ok,false);assert.ok(r.issues.some(i=>i.code==='UNSAFE_URL'&&i.path==='/body/0/data/logo/src'))}
+console.log(JSON.stringify({scope:'Integrated source/browser/standalone artifact smoke',owner:'finance',familyStylesExact:true,unsafeImagesRejected:3,duplicatePath:'/body/0/data/related/1/id',htmlBytes:Buffer.byteLength(html),nativeScenariosExecuted:0},null,2));

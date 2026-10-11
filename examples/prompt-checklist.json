@@ -1,0 +1,38 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "prompt-checklist",
+      "id": "learn",
+      "label": "Supplied learning steps",
+      "status": "resolved",
+      "data": {
+        "title": "Review the supplied study plan",
+        "mode": "full",
+        "tasks": [
+          {
+            "id": "explore",
+            "title": "Explore the idea",
+            "prompts": [
+              {
+                "id": "explain",
+                "label": "Explain the mechanism",
+                "promptText": "Explain this supplied mechanism step by step.",
+                "summary": "A caller-provided example choice."
+              }
+            ],
+            "tryOwnPromptText": "Ask a question about this supplied topic."
+          }
+        ],
+        "completedTaskIds": [],
+        "showCompletedItemsLabel": "Show completed",
+        "tryOwnLabel": "Try your own",
+        "completion": {
+          "headline": "Plan complete",
+          "body": "All supplied steps are marked complete.",
+          "showCompletedItemsLabel": "Review steps"
+        }
+      }
+    }
+  ]
+}

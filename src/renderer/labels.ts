@@ -1,3 +1,4 @@
+import {internalId} from './internal-id.js';
 import type { Node } from '../schema/document.js';
 import type { RendererContext } from './context.js';
 
@@ -7,7 +8,6 @@ interface Association { control?: Control; labels: Set<HTMLLabelElement> }
 /** Local, synchronous native associations. No document lookup or event forwarding. */
 export function createLabels(c: RendererContext) {
   const targets = new Map<string, Association>();
-  let serial = 0;
   const entry = (id: string) => {
     let association = targets.get(id);
     if (!association) { association = { labels: new Set() }; targets.set(id, association); }
@@ -37,7 +37,7 @@ export function createLabels(c: RendererContext) {
     const control = out.querySelector<Control>('input, textarea, select');
     if (!control) throw new Error('Label target renderer requires a native control.');
     const assigned = !control.id;
-    if (assigned) control.id = `iui-label-target-internal-${c.prefix}${++serial}`;
+    if (assigned) control.id = internalId(c, 'label-target');
     const association = entry(n.id);
     association.control = control;
     for (const label of association.labels) label.htmlFor = control.id;

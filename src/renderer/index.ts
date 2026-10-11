@@ -1,3 +1,17 @@
+import {renderPlayerSummary} from './player-summaries.js';
+import playerSummaryStyles from './player-summaries.css';
+import ledgerRecordsStyles from './ledger-records.css';
+import {renderLedgerAccounts,renderLedgerRecurring} from './ledger-records.js';
+import {renderPromptChecklist} from './prompt-checklist.js';
+import promptChecklistStyles from './prompt-checklist.css';
+import {renderFinanceStatus} from './finance-status.js';
+import financeStatusStyles from './finance-status.css';
+import {renderRecommendationCard} from './recommendation-card.js';
+import recommendationStyles from './recommendation-card.css';
+import {renderTransactionDetail} from './transaction-detail.js';
+import transactionDetailStyles from './transaction-detail.css';
+import {renderFollowUpCardGroup} from './follow-up-card-group.js';
+import {renderGeneration} from './generation.js';
 import {renderRelatedQuestions} from './related-questions.js';
 import {renderFactTable,renderEntityThumbnails} from './entity-facts.js';
 import {renderCodeCite,renderFileCite} from './source-citations.js';
@@ -62,7 +76,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -86,63 +100,114 @@ const shorten = (s: string, limit: number) => Array.from(s).length > limit ? Arr
 export function mount(container: HTMLElement, input: unknown, options: MountOptions = {}): Controller {
   if (!container?.ownerDocument) throw new TypeError('mount requires a DOM element');
   const doc = container.ownerDocument;
-  let labels = presentationLabels(container);
   const prefix = `iui-${++instance}-`;
-  let disposed = false;
+  let disposed = false, revision = 0, internalSerial = 0;
+  let active: ReturnType<typeof createGeneration> | undefined;
+  const allocateInternalId = (role: string) => `iui-${role}-internal-${prefix}${++internalSerial}`;
+  const ensureLive = () => { if (disposed) throw new Error('This UI controller has been disposed'); };
+  function replace(next: unknown) {
+    ensureLive();
+    const ticket = revision;
+    const validation = validateDocument(next);
+    if (!validation.ok) throw new InvalidDocumentError(validation.issues);
+    const evaluated = evaluateState(validation.document);
+    if (!evaluated.ok) throw new InvalidDocumentError(evaluated.issues);
+    // Invalid nested updates do not invalidate this transaction. Valid ones do.
+    if (disposed || ticket !== revision) return;
+    const generation = ++revision;
+    const previous = active;
+    const candidate = createGeneration(validation.document, {...evaluated.state}, {...evaluated.computed}, () => !disposed && revision === generation, root => publish(candidate, root));
+    active = candidate;
+    let cleanupError: unknown; let cleanupFailed = false;
+    try { previous?.dispose(); } catch (error) { cleanupFailed = true; cleanupError = error; }
+    try { candidate.start(); }
+    catch (error) {
+      // A failed initial mount has no returned controller to clean it up.
+      // Retire exactly this partial candidate, never a newer reentrant owner.
+      const failures = cleanupFailed ? [cleanupError, error] : [error];
+      try { candidate.dispose(); } catch (releaseError) { failures.push(releaseError); }
+      if (failures.length > 1) throw new AggregateError(failures, 'Rendering and cleanup failed');
+      throw error;
+    }
+    if (cleanupFailed) throw cleanupError;
+  }
+  function publish(candidate: ReturnType<typeof createGeneration>, root: HTMLElement) {
+    if (disposed || active !== candidate) return;
+    try { container.replaceChildren(root); }
+    finally {
+      // A host hook can replace us before the native DOM write finishes.
+      // Compensate that late write and restore only the newest ready owner.
+      if (disposed || active !== candidate) { root.remove(); active?.restore(); }
+    }
+  }
+  replace(input);
+  return {
+    update: replace,
+    getState: () => { ensureLive(); return active!.getState(); },
+    setState: patch => { ensureLive(); active!.setState(patch); },
+    dispose: () => { if (disposed) return; disposed = true; revision++; const previous = active; active = undefined; previous?.dispose(); }
+  };
+
+  function createGeneration(initial: IUIDocument, initialState: Record<string, string | number | boolean>, initialComputed: Record<string, Value>, isCurrent: () => boolean, install: (root: HTMLElement) => void) {
+  const lifetime = renderGeneration(isCurrent);
+  const during = lifetime.during;
+  let labels: ReturnType<typeof presentationLabels>;
+  let stopped = false, ready = false;
   let hasHeading = false;
-  let current: IUIDocument;
-  let state: Record<string, string | number | boolean> = {};
-  let computed: Record<string, Value> = {};
+  const current = initial;
+  let state = initialState;
+  let computed = initialComputed;
   let root: HTMLElement;
   let error: HTMLElement;
   let refreshers: (() => void)[] = [];
-  let removers: (() => void)[] = [];
+
   const text = (value: unknown) => value == null ? '' : String(value);
   const display = (value: unknown) => typeof value === 'number' ? formatNumber(value) : text(value);
   const showValue = (target: HTMLElement, value: unknown) => {
-    target.textContent = display(value);
+    during(() => { target.textContent = display(value); });
     if (typeof value === 'number') {
       const raw = Object.is(value, -0) ? '-0' : String(value);
-      target.dataset.rawValue = raw;
-      if (display(value) !== raw) target.title = `${labels.rawValue}: ${raw}`;
-      else target.removeAttribute('title');
-    } else { delete target.dataset.rawValue; target.removeAttribute('title'); }
+      during(() => { target.dataset.rawValue = raw; });
+      if (display(value) !== raw) during(() => { target.title = `${labels.rawValue}: ${raw}`; });
+      else during(() => target.removeAttribute('title'));
+    } else { during(() => { delete target.dataset.rawValue; }); during(() => target.removeAttribute('title')); }
   };
   const element = <K extends keyof HTMLElementTagNameMap>(tag: K, cls = '', value?: unknown) => {
-    const result = doc.createElement(tag); if (cls) result.className = cls;
-    if (value !== undefined) result.textContent = text(value); return result;
+    const result = during(() => doc.createElement(tag));
+    if (cls) during(() => { result.className = cls; });
+    if (value !== undefined) during(() => { result.textContent = text(value); }); return result;
   };
   const svg = (tag: string, attrs: Record<string, unknown> = {}) => {
-    const result = doc.createElementNS('http://www.w3.org/2000/svg', tag);
-    for (const [key, value] of Object.entries(attrs)) result.setAttribute(key, text(value));
+    const result = during(() => doc.createElementNS('http://www.w3.org/2000/svg', tag));
+    for (const [key, value] of Object.entries(attrs)) during(() => result.setAttribute(key, text(value)));
     return result;
   };
-  const on = (target: EventTarget, name: string, listener: EventListener) => {
-    target.addEventListener(name, listener); removers.push(() => target.removeEventListener(name, listener));
+  const on = lifetime.listen;
+  const bind = (fn: () => void) => {
+    lifetime.check(); const guarded = lifetime.guard(fn); refreshers.push(guarded);
+    const release = lifetime.own(() => { const index=refreshers.indexOf(guarded); if(index>=0)refreshers.splice(index,1); });
+    guarded(); lifetime.check(); return release;
   };
-  const bind = (fn: () => void) => { refreshers.push(fn); fn(); };
-  const value = (v: Value) => evaluateValue(v, state, computed);
-  const clear = () => { for (const remove of removers) remove(); removers = []; refreshers = []; };
-  const notify = () => { for (const fn of refreshers) fn(); };
-  const fail = (e: unknown) => { error.textContent = e instanceof Error ? e.message : String(e); };
+  const value = (v: Value) => during(() => evaluateValue(v, state, computed));
+  const notify = () => { for (const fn of [...refreshers]) { lifetime.check(); fn(); } };
+  const fail = (e: unknown) => { if (error) during(() => { error.textContent = e instanceof Error ? e.message : String(e); }); };
   type DraftPolicy = 'preserve' | 'replace' | 'reset';
   function change(patch: Record<string, string | number | boolean>, draftPolicy: DraftPolicy = 'preserve') {
-    ensureLive();
-    const candidate = evaluateState({...current,state}, patch);
+    lifetime.check();
+    const candidate = during(() => evaluateState({...current,state}, patch));
     if (!candidate.ok) throw new InvalidDocumentError(candidate.issues);
     state = {...candidate.state}; computed = {...candidate.computed};
-    error.textContent = '';
-    if (draftPolicy !== 'preserve') forms.syncDrafts(Object.keys(patch), draftPolicy === 'reset');
+    if (error) during(() => { error.textContent = ''; });
+    if (draftPolicy !== 'preserve') forms?.syncDrafts(Object.keys(patch), draftPolicy === 'reset');
     notify();
   }
   function fromControl(patch: Record<string, string | number | boolean>, draftPolicy: DraftPolicy = 'preserve') {
     try { change(patch, draftPolicy); } catch(e) { notify(); fail(e); }
   }
-  function ensureLive() { if (disposed) throw new Error('This UI controller has been disposed'); }
-  const context:RendererContext={doc,prefix,labels:()=>labels,element,svg,on,bind,cleanup:fn=>removers.push(fn),value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{}};
-  const forms=createForms(context);
-  const fieldLabels=createLabels(context);
-  const children = (parent: HTMLElement, nodes: readonly Node[]) => { for (const node of nodes) parent.append(render(node)); };
+  let context: RendererContext;
+  let forms: ReturnType<typeof createForms>;
+  let fieldLabels: ReturnType<typeof createLabels>;
+  const children = (parent: HTMLElement, nodes: readonly Node[]) => { for (const node of nodes) during(() => parent.append(render(node))); };
   function formula(latex: string, block = true) {
     const target = element(block ? 'div' : 'span', 'iui-math');
     try { target.innerHTML = katex.renderToString(latex, {output:'htmlAndMathml', displayMode:block, throwOnError:true, trust:false, strict:'error', maxExpand:200, maxSize:20}); }
@@ -150,6 +215,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
     return target;
   }
   function render(n: Node): HTMLElement | SVGElement {
+    lifetime.check();
     let out: HTMLElement | SVGElement;
     switch(n.type) {
       case 'text': case 'title': case 'caption': case 'badge': {
@@ -173,6 +239,14 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'nba-player-summary':case 'tennis-player-summary':out=renderPlayerSummary(context,n,labels.playerSummaryUI);break;
+      case 'ledger-accounts':out=renderLedgerAccounts(context,n,labels.ledgerRecordsUI);break;
+      case 'ledger-recurring-transactions':out=renderLedgerRecurring(context,n,labels.ledgerRecordsUI);break;
+      case 'prompt-checklist':out=renderPromptChecklist(context,n);break;
+      case 'ledger-finance-status-banner':out=renderFinanceStatus(context,n);break;
+      case 'recommendation-card':out=renderRecommendationCard(context,n);break;
+      case 'ledger-transaction-detail':out=renderTransactionDetail(context,n);break;
+      case 'follow-up-card-group':out=renderFollowUpCardGroup(context,n);break;
       case 'sidebar-people-also-ask':out=renderRelatedQuestions(context,n,labels.questionsUI);break;
       case 'sidebar-fact-table':out=renderFactTable(context,n,labels.entityFactsUI);break;
       case 'entity-thumbnail-list':out=renderEntityThumbnails(context,n,labels.entityFactsUI);break;
@@ -271,7 +345,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'metric-grid': out=element('div','iui-layout iui-metric-grid');out.style.setProperty('--iui-columns',String(n.columns??2));out.style.setProperty('--iui-mobile-columns',String(Math.min(2,n.columns??2)));children(out,n.children);break;
       case 'steps': out=element('ol','iui-steps');for(const item of n.items){const li=element('li');li.append(element('strong','',item.title));if(item.detail)li.append(element('p','',item.detail));if(item.latex)li.append(formula(item.latex));out.append(li);}break;
       case 'callout': out=element('aside','iui-callout',n.value);out.dataset.tone=n.tone??'neutral';break;
-      case 'slider': {out=element('div','iui-control');const id=`iui-control-internal-${prefix}${refreshers.length}`,head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
+      case 'slider': {out=element('div','iui-control');const id=allocateInternalId('control'),head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;bind(()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;});on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;bind(()=>input.checked=state[n.bind]===true);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}bind(()=>input.value=String(n.options.findIndex(o=>o.value===state[n.bind])));on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);break;}
       case 'button': out=renderButton(context,n,labels.buttonUI,current.state??{});break;
@@ -307,7 +381,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'native': throw new Error('Native runtime is not supported');
       default: {const impossible: never=n;throw new Error(`Unsupported node: ${JSON.stringify(impossible)}`);}
     }
-    out.dataset.iui=n.type;if(n.id)out.id=prefix+n.id;fieldLabels.registerTarget(n,out);return out;
+    during(() => { out.dataset.iui=n.type; }); if(n.id) during(() => { out.id=prefix+n.id!; }); during(() => fieldLabels.registerTarget(n,out));return out;
   }
   function topology(n: Extract<Node,{type:'topology'}>) {
     const figure=element('figure','iui-topology'),graphic=svg('svg',{role:'img','aria-label':n.caption??labels.topology});figure.append(graphic);
@@ -325,22 +399,37 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       summary.textContent=[n.caption,finite.length?`${labels.maximumLoad}: ${maximum.toFixed(2)}.`:''].filter(Boolean).join(' ');
     });return figure;
   }
-  function replace(next: unknown) {
-    ensureLive(); const validation=validateDocument(next);if(!validation.ok)throw new InvalidDocumentError(validation.issues);
-    const evaluated=evaluateState(validation.document);if(!evaluated.ok)throw new InvalidDocumentError(evaluated.issues);
-    clear();labels=presentationLabels(container);hasHeading=false;current=validation.document;state={...evaluated.state};computed={...evaluated.computed};
-    root=element('article','iui-root');root.dataset.theme=current.theme??'auto';root.dir='auto';
-    if(options.styles!==false){const style=element('style');style.textContent=styles;root.append(style);}
-    if(current.title)root.setAttribute('aria-label',current.title);
-    if(current.description)root.append(element('p','iui-description',current.description));
-    const body=element('div','iui-body');children(body,current.body);root.append(body);
-    error=element('p','iui-error');error.setAttribute('role','alert');root.append(error);
-    container.replaceChildren(root);notify();
+  const start = lifetime.guard(() => {
+    labels = during(() => presentationLabels(container));
+    context = during<RendererContext>(() => ({doc,prefix,allocateInternalId,lifecycle:lifetime,labels:()=>labels,element,svg,on,bind,cleanup:lifetime.own,value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{}}));
+    forms = during(() => createForms(context));
+    fieldLabels = during(() => createLabels(context));
+    root=element('article','iui-root');
+    during(() => { root.dataset.theme=current.theme??'auto'; }); during(() => { root.dir='auto'; });
+    if (during(() => options.styles)!==false) { const style=element('style'); during(() => { style.textContent=styles; }); during(() => root.append(style)); }
+    if(current.title) during(() => root.setAttribute('aria-label',current.title!));
+    if(current.description) during(() => root.append(element('p','iui-description',current.description)));
+    const body=element('div','iui-body');children(body,current.body);during(() => root.append(body));
+    error=element('p','iui-error');during(() => error.setAttribute('role','alert'));during(() => root.append(error));
+    ready = true; during(() => install(root)); notify();
+    const RO=during(() => doc.defaultView?.ResizeObserver);
+    if(RO) {
+      let previousWidth=during(() => container.getBoundingClientRect().width);
+      const resize=lifetime.acquire(() => new RO(lifetime.guard(() => {
+        const width=during(() => container.getBoundingClientRect().width);
+        if(width===previousWidth)return;previousWidth=width;notify();
+      })), observer=>observer.disconnect());
+      try { during(() => resize.observe(container)); }
+      finally { if (!lifetime.current()) resize.disconnect(); }
+    }
+  });
+  return {
+    start,
+    restore:lifetime.guard(()=>{if(ready)during(()=>install(root));}),
+    getState:()=>Object.freeze({...state}),
+    setState:lifetime.guard((patch:Record<string,string|number|boolean>)=>change(patch,'replace')),
+    dispose:()=>{if(stopped)return;stopped=true;refreshers=[];try{lifetime.dispose();}finally{root?.remove();}}
+  };
   }
-  replace(input);
-  let resize: ResizeObserver | undefined;
-  const RO=doc.defaultView?.ResizeObserver;
-  if(RO){let previousWidth=container.getBoundingClientRect().width;resize=new RO(()=>{if(disposed)return;const width=container.getBoundingClientRect().width;if(width===previousWidth)return;previousWidth=width;notify();});resize.observe(container);}
-  return {update:replace,getState:()=>{ensureLive();return Object.freeze({...state});},setState:patch=>change(patch,'replace'),dispose:()=>{if(disposed)return;disposed=true;resize?.disconnect();clear();root.remove();}};
 }
 export {styles};

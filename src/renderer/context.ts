@@ -1,17 +1,22 @@
 import type { Node, Value } from '../schema/document.js';
 import type { Scalar, StateValue } from '../core/index.js';
 import type { presentationLabels } from './presentation.js';
+import type {renderGeneration} from './generation.js';
 export interface FormActionContext { readonly values: Readonly<Record<string,StateValue>>; readonly signal: AbortSignal }
 export type FormAction = (context:FormActionContext)=>void|Promise<void>;
 export interface RendererContext {
   doc: Document;
   prefix: string;
+  /** Mount-scoped IDs survive render-generation replacement; authored IDs keep prefix unchanged. */
+  allocateInternalId?: (role: string) => string;
+  /** Current generation; fork for a replaceable component/paint resource scope. */
+  lifecycle: ReturnType<typeof renderGeneration>;
   labels: ()=>ReturnType<typeof presentationLabels>;
   element: <K extends keyof HTMLElementTagNameMap>(tag:K,cls?:string,value?:unknown)=>HTMLElementTagNameMap[K];
   svg: (tag:string,attrs?:Record<string,unknown>)=>SVGElement;
-  on: (target:EventTarget,name:string,listener:EventListener)=>void;
-  bind: (fn:()=>void)=>void;
-  cleanup: (fn:()=>void)=>void;
+  on: (target:EventTarget,name:string,listener:EventListener)=>()=>void;
+  bind: (fn:()=>void)=>()=>void;
+  cleanup: (fn:()=>void)=>()=>void;
   value: (value:Value)=>Scalar;
   display: (value:unknown)=>string;
   showValue: (target:HTMLElement,value:unknown)=>void;

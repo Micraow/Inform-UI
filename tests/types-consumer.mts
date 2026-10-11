@@ -197,3 +197,7 @@ import './vocabulary-tools-types-consumer.mjs';
 import './source-citations-types-consumer.mjs';
 
 import './entity-facts-types-consumer.mjs';
+
+import './transaction-detail-types-consumer.mjs';
+
+import "./finance-status-types-consumer.mjs";

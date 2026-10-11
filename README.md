@@ -1,3 +1,11 @@
+## Current supplied-data extensions
+
+This branch provides 124 protocol node types. Additions to the earlier portable core include follow-up cards, transaction details, recommendation cards, finance status banners, prompt checklists, account/recurring-record readers, and NBA/tennis player summaries. See `examples/` and the generated schema for their closed input contracts.
+
+Domain data is explicitly supplied. Finance readers do not access accounts or execute payments; prompt and navigation-like controls emit cancelable local intents instead of starting remote actions. The implementation has no OpenAI runtime dependency. Original project code is MIT licensed; dependency and font notices remain in the repository.
+
+The initial 124-node candidate passed 2,021 Node tests. A subsequent reset read-boundary fix and CI-portability changes passed 200 targeted checks; the branch workflow validates the current full checkout. Native visual/browser acceptance is tracked separately, and existing examples with fixed CDN pins continue to refer to those historical assets. Run `npm run check` and the configured browser tests to verify a checkout. The baseline documentation follows.
+
 <h1 align="center">Inform UI</h1>
 
 <p align="center"><strong>让简短的 JSON，变成可阅读、可交互的科学解释。</strong></p>

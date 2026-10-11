@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
+const css=await readFile('src/renderer/recommendation-card.css','utf8');
+test('explicit card defaults and separate elevated role',()=>{assert.match(css,/border:1px solid var\(--iui-line\);border-radius:20px/);assert.match(css,/--iui-recommendation-elevated:#303030/);assert.match(css,/padding:16px;border:0;border-radius:20px/)});
+test('original image and typography geometry',()=>{for(const fact of ['width:40px;height:40px','object-fit:contain','font-size:24px;line-height:32px','font-size:16px;line-height:26px;font-weight:600','font-size:14px;line-height:20px','gap:4px'])assert.ok(css.includes(fact),fact)});
+test('ghost states have fine-pointer guard and explicit disabled override',()=>{assert.match(css,/@media\(hover:hover\) and \(pointer:fine\)/);assert.match(css,/not\(:disabled,\[aria-disabled=true\]\):active/);assert.match(css,/opacity:\.5;cursor:default;background:transparent/);assert.match(css,/outline-offset:2px/)});
+test('loading has exact height, no inherited radius, reduced-motion stop',()=>{assert.match(css,/height:88px;border-radius:0/);assert.match(css,/1\.5s ease-in-out infinite alternate/);assert.match(css,/brightness\(1\.04\);opacity:\.86/);assert.match(css,/@media\(prefers-reduced-motion:reduce\)/)});

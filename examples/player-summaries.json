@@ -1,0 +1,143 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied player summaries",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "nba-player-summary",
+      "id": "basketball",
+      "label": "Supplied basketball records",
+      "player": "Alex Example",
+      "observedAt": "2028-03-01T15:00Z",
+      "description": "Fictional player and teams. These values are supplied examples, not league data.",
+      "records": [
+        {
+          "id": "north",
+          "season": "2027–28",
+          "team": "Team North",
+          "scope": "regular-season",
+          "games": 50,
+          "minutesPerGame": 30.5,
+          "pointsPerGame": 20.5,
+          "reboundsPerGame": 5,
+          "assistsPerGame": 8,
+          "note": "Supplied record, averages are not computed."
+        },
+        {
+          "id": "south",
+          "season": "2027–28",
+          "team": "Team South",
+          "scope": "regular-season",
+          "games": 10,
+          "minutesPerGame": 30.5,
+          "pointsPerGame": 20.5,
+          "reboundsPerGame": 4,
+          "assistsPerGame": 8
+        },
+        {
+          "id": "playoffs",
+          "season": "2026–27",
+          "team": "Team South",
+          "scope": "playoffs",
+          "games": 8,
+          "minutesPerGame": 35,
+          "pointsPerGame": 25,
+          "reboundsPerGame": 6,
+          "assistsPerGame": 5,
+          "source": {
+            "label": "Example source",
+            "url": "https://example.org/basketball"
+          }
+        },
+        {
+          "id": "unknown",
+          "season": "Period not supplied",
+          "team": null,
+          "scope": "unknown",
+          "games": null,
+          "minutesPerGame": null,
+          "pointsPerGame": null,
+          "reboundsPerGame": null,
+          "assistsPerGame": null
+        },
+        {
+          "id": "zero",
+          "season": "2028–29",
+          "team": "Team North",
+          "scope": "preseason",
+          "games": 0,
+          "minutesPerGame": 0,
+          "pointsPerGame": 0,
+          "reboundsPerGame": 0,
+          "assistsPerGame": 0
+        }
+      ]
+    },
+    {
+      "type": "tennis-player-summary",
+      "id": "tennis",
+      "label": "Supplied tennis records",
+      "player": "Casey Example",
+      "description": "Fictional player. Ranks and totals are supplied independently.",
+      "source": {
+        "label": "Example source",
+        "url": "https://example.org/tennis"
+      },
+      "records": [
+        {
+          "id": "clay",
+          "season": "2028",
+          "surface": "clay",
+          "matches": 30,
+          "wins": 20,
+          "losses": 10,
+          "titles": 2,
+          "rank": 8,
+          "note": "Supplied season and surface scope."
+        },
+        {
+          "id": "hard",
+          "season": "2028",
+          "surface": "hard",
+          "matches": 40,
+          "wins": 30,
+          "losses": 10,
+          "titles": 2,
+          "rank": 8
+        },
+        {
+          "id": "grass",
+          "season": "2027",
+          "surface": "grass",
+          "matches": 10,
+          "wins": 8,
+          "losses": 2,
+          "titles": 1,
+          "rank": 4
+        },
+        {
+          "id": "unknown",
+          "season": "Period not supplied",
+          "surface": "unknown",
+          "matches": null,
+          "wins": null,
+          "losses": null,
+          "titles": null,
+          "rank": null
+        },
+        {
+          "id": "zero",
+          "season": "2029",
+          "surface": "other",
+          "matches": 0,
+          "wins": 0,
+          "losses": 0,
+          "titles": 0,
+          "rank": null
+        }
+      ]
+    }
+  ]
+}

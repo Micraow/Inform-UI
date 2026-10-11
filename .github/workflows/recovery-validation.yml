@@ -1,0 +1,61 @@
+name: Validate current portable124 source
+on:
+  push:
+    branches: [recovery/portable-124-20261011]
+permissions:
+  contents: read
+concurrency:
+  group: portable124-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  current-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: library
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # official v4
+        with:
+          path: library
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # official v4
+        with:
+          node-version: '24.19.0'
+          check-latest: false
+          cache: npm
+          cache-dependency-path: library/package-lock.json
+      - name: Install locked dependencies in reproducible build layout
+        run: |
+          mkdir -p artifacts ../ui-runtime
+          cp package.json package-lock.json ../ui-runtime/
+          (cd ../ui-runtime && npm ci --ignore-scripts) 2>&1 | tee artifacts/dependencies.log
+          ln -s ../ui-runtime/node_modules node_modules
+          node --version | tee artifacts/node-version.txt
+          npm --version | tee artifacts/npm-version.txt
+      - name: Generate, build, type-check and run the current full Node suite
+        run: npm run check 2>&1 | tee artifacts/current-source-check.log
+      - name: Verify generated projections and record current asset identity
+        run: |
+          node scripts/check-generated.mjs 2>&1 | tee artifacts/generated-check.log
+          node --input-type=module -e "import fs from 'node:fs'; const schema=JSON.parse(fs.readFileSync('src/schema/iui.schema.json')); if(schema.\$defs.Node.oneOf.length!==124) throw Error('Expected124 nodes'); fs.writeFileSync('artifacts/current-source-identity.json',JSON.stringify({source:process.env.GITHUB_SHA,nodeTypes:schema.\$defs.Node.oneOf.length,assets:JSON.parse(fs.readFileSync('cdn/integrity.json'))},null,2));"
+      - name: Install the lock-pinned Playwright Chromium build
+        run: node node_modules/@playwright/test/cli.js install --with-deps chromium
+      - name: Install the exact licensed test font
+        run: |
+          node scripts/prepare-test-font.mjs --install "$RUNNER_TEMP/inform-ui-fonts"
+          echo "FONTCONFIG_FILE=$RUNNER_TEMP/inform-ui-fonts/fonts.conf" >> "$GITHUB_ENV"
+      - name: Run synthetic browsers against this checkout
+        run: node node_modules/@playwright/test/cli.js test --config playwright.recovery.config.mjs 2>&1 | tee artifacts/current-source-browser.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # official v4
+        if: always()
+        with:
+          name: portable124-current-source-${{ github.sha }}
+          path: |
+            library/artifacts/
+            library/playwright-report/
+            library/test-results/
+          retention-days: 14
+          if-no-files-found: warn
