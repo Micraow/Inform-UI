@@ -1,3 +1,9 @@
+## Source-only 148 checkpoint
+
+Ledger Income Tracker is restored from the original early source, schema insertion and dedicated CSS. Supplied estimate, paychecks and date labels remain independent display data. Build, types, 18 author checks and six independent ordinary workflows pass.
+
+The original later icon and divider styling successor has not been recovered; this checkpoint preserves the identified early CSS. Native rendering remains pending. Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain at 130. Saves use [skip ci].
+
 ## Source-only 147 checkpoint
 
 The full Lottie SVG engine is restored using official lottie-web5.13.0 and the project's original hash-checked generator. The engine source SHA256 is134b7463eec8de573fb3c6778c3c13368fb89f336b1b905e752f0be80de6a4c9; automatic document scanning and executable animation expressions are disabled. This is the real engine, not a replacement placeholder. Upstream licenses are included.

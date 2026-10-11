@@ -1,3 +1,4 @@
+import {inspectIncomeTracker} from './income-tracker.js';
 import {inspectLottie,checkLottieTimes} from './lottie.js';
 import {inspectAsyncImages,checkAsyncImageStatus} from './async-image.js';
 import {inspectSearchImage} from './search-image.js';
@@ -350,6 +351,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='youtube')inspectYouTube(node,path,add);
     if(node.type==='async-image'||node.type==='async-image-group')inspectAsyncImages(node,path,add,isSafeURL);
     if(node.type==='lottie')inspectLottie(node,path,add);
+    if(node.type==='ledger-income-tracker')inspectIncomeTracker(node,path,add,isSafeURL);
     if(node.type==='pressable')inspectPressable(node,path,add);
     if(node.type==='ledger-net-worth')inspectNetWorth(node,path,add,isSafeURL);
     if(node.type==='weather-sidebar-title')inspectWeatherSidebar(node,path,add,isSafeURL);

@@ -1,3 +1,5 @@
+import {renderIncomeTracker} from './income-tracker.js';
+import incomeTrackerStyles from './income-tracker.css';
 import {renderLottie} from './lottie.js';
 import {renderAsyncImages} from './async-image.js';
 import asyncImageStyles from './async-image.css';
@@ -105,7 +107,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -268,6 +270,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
         break;
       }
       case 'package-tracker':case 'flight-tracker':out=renderTracker(context,n,labels.trackerUI);break;
+      case 'ledger-income-tracker':out=renderIncomeTracker(context,n,root,container);break;
       case 'lottie':out=renderLottie(context,n,root,container);break;
       case 'async-image':case 'async-image-group':out=renderAsyncImages(context,n,root,container);break;
       case 'search-image':out=renderSearchImage(context,n,root,container);break;
