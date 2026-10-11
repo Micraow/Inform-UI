@@ -27,3 +27,5 @@ Pending uses a350px placeholder; failed fallback and resolved-empty are distinct
 ## Acceptance boundary
 
 The source checkpoint has ordinary functional, cancellation, keyboard, reset, geometry and lifecycle tests. It is independently authored JS/TS; no private captured implementation is included. The last packaged CDN remains unified154. Real browser and reference-pixel acceptance apply only to separately fixed builds; source checks do not upgrade those results.
+
+Query-only cards use the supplied query as visible title when title is omitted. This is an original accessibility/content completion of this API; the observed reference used query for accessible image labels, not as its visible title fallback.
