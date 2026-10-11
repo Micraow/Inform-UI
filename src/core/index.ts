@@ -362,7 +362,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='ledger-upcoming-activity')inspectUpcomingActivity(node,path,add);
     if(node.type==='image-grid')inspectImageGrid(node,path,add,isSafeURL);
     if(node.type==='conversation-suggestions')inspectConversationSuggestions(node,path,add);
-    if(node.type==='follow-up-action-bar')inspectFollowUpActionBar(node,path,add);
+    if(node.type==='follow-up-action-bar')inspectFollowUpActionBar(node,path,add,isSafeURL);
     if(node.type==='async-video-carousel')inspectAsyncVideo(node,path,add,isSafeURL);
     if(node.type==='ledger-income-tracker')inspectIncomeTracker(node,path,add,isSafeURL);
     if(node.type==='pressable')inspectPressable(node,path,add);

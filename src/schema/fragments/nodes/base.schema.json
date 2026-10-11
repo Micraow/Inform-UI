@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:53433f381fe317de5e9d5268352a36354d96c2603f31640db0411427e1d5a4d3:node:base",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:3ce15e30120b56f9b9849d5e48c0dcaff7093c1d2de3487c515b80aa44840b6e:node:base",
   "title": "Inform UI node subset: base",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -3507,6 +3507,21 @@
           "minLength": 1,
           "maxLength": 200
         },
+        "query": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "intent": {
+          "enum": [
+            "new-turn",
+            "start-voice",
+            "open-image-composer"
+          ]
+        },
+        "iconSrc": {
+          "type": "string",
+          "maxLength": 16000
+        },
         "disabled": {
           "type": "boolean"
         }
@@ -3543,6 +3558,24 @@
         },
         "disabled": {
           "type": "boolean"
+        },
+        "presentation": {
+          "enum": [
+            "flat",
+            "footer",
+            "wrapped_pills"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
         }
       },
       "required": [

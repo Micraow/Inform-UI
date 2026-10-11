@@ -1,2 +1,16 @@
 /* Original portable action bar, independent of unrecovered historical source. */
 .iui-root .iui-follow-up-action-bar{display:flex;flex-direction:column;gap:8px;min-width:0}.iui-root .iui-follow-up-action-items{display:flex;flex-wrap:wrap;gap:8px}.iui-root button.iui-follow-up-action{min-height:36px;padding:8px 14px;border:1px solid var(--iui-line);border-radius:999px;white-space:normal;overflow-wrap:anywhere;text-align:start}.iui-root .iui-follow-up-action-status{font-size:12px;line-height:18px}.iui-root .iui-follow-up-action-status:empty{display:none}
+/* Explicit reference-informed layouts. The legacy flat form remains unchanged. */
+.iui-root .iui-follow-up-action-bar[hidden],.iui-root .iui-follow-up-action[hidden]{display:none!important}
+.iui-root .iui-follow-up-action-loading{width:100%;height:64px;background:var(--iui-surface-secondary,var(--iui-hover));animation:iui-follow-up-loading 1.5s ease-in-out infinite alternate}
+@keyframes iui-follow-up-loading{to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-root .iui-follow-up-action-loading{animation:none}}
+.iui-root .iui-follow-up-action-icon{width:24px;height:24px;flex:0 0 24px}
+.iui-root .iui-follow-up-action-bar[data-presentation=wrapped_pills] .iui-follow-up-action-items{flex-direction:column;align-items:flex-start;gap:8px}
+.iui-root .iui-follow-up-action-bar[data-presentation=wrapped_pills] button.iui-follow-up-action{display:flex;align-items:center;gap:8px;height:40px;min-height:40px;max-width:100%;padding:8px 16px 8px 8px;overflow:hidden}
+.iui-root .iui-follow-up-action-bar[data-presentation=wrapped_pills] .iui-follow-up-action-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;line-height:20px;font-weight:400}
+.iui-root .iui-follow-up-action-bar[data-presentation=footer]{padding:12px 20px 20px;box-sizing:border-box;gap:12px}
+.iui-root .iui-follow-up-action-bar[data-presentation=footer]:before{content:'';display:block;border-top:1px solid var(--iui-line)}
+.iui-root .iui-follow-up-action-bar[data-presentation=footer] .iui-follow-up-action-items{flex-wrap:nowrap;gap:0;padding:2px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-hover)}
+.iui-root .iui-follow-up-action-bar[data-presentation=footer] button.iui-follow-up-action{display:flex;align-items:center;justify-content:center;gap:6px;flex:1 1 0;min-width:0;min-height:32px;border:0;border-radius:6px;padding:6px 8px;text-align:center}
+.iui-root .iui-follow-up-action-bar[data-presentation=footer] button.iui-follow-up-action+button.iui-follow-up-action{border-inline-start:1px solid var(--iui-line)}

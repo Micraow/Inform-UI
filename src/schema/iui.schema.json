@@ -16775,6 +16775,21 @@
           "minLength": 1,
           "maxLength": 200
         },
+        "query": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "intent": {
+          "enum": [
+            "new-turn",
+            "start-voice",
+            "open-image-composer"
+          ]
+        },
+        "iconSrc": {
+          "type": "string",
+          "maxLength": 16000
+        },
         "disabled": {
           "type": "boolean"
         }
@@ -16811,6 +16826,24 @@
         },
         "disabled": {
           "type": "boolean"
+        },
+        "presentation": {
+          "enum": [
+            "flat",
+            "footer",
+            "wrapped_pills"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
         }
       },
       "required": [

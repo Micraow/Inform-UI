@@ -1,3 +1,9 @@
+# Follow-up presentation source checkpoint
+
+The current source adds Footer and wrapped-pills layouts, responsive action selection, supplied pending/failed states, decorative images and three distinct local intent branches. The original flat form remains compatible. See [the contract](docs/follow-up-presentations.md).
+
+This extension passed 38 targeted tests and build/type/public-boundary checks. It has not received a new full or native run. The packaged CDN remains the earlier unified154 asset. Regenerate with `npm run generate && npm run build`; use `npm run build:cdn` to produce matching CDN assets. Canonical counts remain142 complete,6 partial,108 missing pending complete-contract review. The historical unified154 results below apply to their fixed predecessor only.
+
 # Current unified portable build
 
 This checkout registers 154 protocol node types. Canonical reference scope is separate: **142 complete implementations (53 historically accepted and89 awaiting full acceptance), six partial and108 missing, out of256**. See [reference functional gaps](docs/reference-function-subsets.md). The five finite ActionBar, ConversationSuggestions, ImageGrid, UpcomingActivity and SpendMonth implementations remain partial because their complete reference contracts are not implemented.

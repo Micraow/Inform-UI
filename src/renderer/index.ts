@@ -286,7 +286,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'ledger-upcoming-activity':out=renderUpcomingActivity(context,n);break;
       case 'image-grid':out=renderImageGrid(context,n,root,container);break;
       case 'conversation-suggestions':out=renderConversationSuggestions(context,n);break;
-      case 'follow-up-action-bar':out=renderFollowUpActionBar(context,n);break;
+      case 'follow-up-action-bar':out=renderFollowUpActionBar(context,n,root,container);break;
       case 'async-video-carousel':out=renderAsyncVideo(context,n,root,container);break;
       case 'ledger-income-tracker':out=renderIncomeTracker(context,n,root,container);break;
       case 'lottie':out=renderLottie(context,n,root,container);break;

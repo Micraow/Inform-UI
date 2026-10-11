@@ -4184,10 +4184,16 @@ export interface FollowUpActionBarNode {
    */
   actions: FollowUpAction[];
   disabled?: boolean;
+  presentation?: "flat" | "footer" | "wrapped_pills";
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
 }
 export interface FollowUpAction {
   id: string;
   label: string;
+  query?: string;
+  intent?: "new-turn" | "start-voice" | "open-image-composer";
+  iconSrc?: string;
   disabled?: boolean;
 }
 export interface LedgerIncomeTrackerNode {
