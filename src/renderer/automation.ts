@@ -65,6 +65,9 @@ export function renderAutomation(parent:RendererContext,node:AutomationNode):HTM
    write(()=>{row.dataset.status=step.status;marker.setAttribute('role','img');marker.setAttribute('aria-label',node.statusLabels?.[step.status]??step.status);});write(()=>row.append(marker,label));write(()=>list.append(row));if(grouped&&step.status==='completed')completedRows.push(row);
   }
  }
- resetPending=readerNativeReset(c,root,controls,()=>revision,refresh,()=>{revision++;collapsed=initial.collapsed;expanded=initial.expanded;refresh();});
+ // The header toggle remains visible while the completed control is inside
+ // the collapsed body. Hidden child controls must not veto this native reset.
+ // Without a whole-plan toggle, the completed disclosure is the visible anchor.
+ resetPending=readerNativeReset(c,root,toggle?[toggle]:controls,()=>revision,refresh,()=>{revision++;collapsed=initial.collapsed;expanded=initial.expanded;refresh();});
  refresh();return root;
 }
