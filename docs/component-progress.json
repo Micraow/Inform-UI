@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T13:24:37.634270+00:00",
+  "as_of_utc": "2026-10-11T13:37:13.443231+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 107,
+    "implemented_pending_verification": 110,
     "functionally_verified": 53,
-    "not_implemented": 95,
+    "not_implemented": 92,
     "partial": 1
   },
-  "completeImplementationCoverage": 160,
+  "completeImplementationCoverage": 163,
   "registeredProtocolNodes": 169,
   "components": [
     {
@@ -1422,22 +1422,22 @@
       "id": "ledger-spend-by-category-detail",
       "name": "Ledger Spend By Category Detail",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "ledger-spend-by-category-recent-transactions",
       "name": "Ledger Spend By Category Recent Transactions",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "ledger-spend-by-category",
       "name": "Ledger Spend By Category",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "ledger-spend-so-far-this-month",

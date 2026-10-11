@@ -1,6 +1,6 @@
 # 组件进度
 
-160项完整实现覆盖：53项历史验收，107项完整实现待验。另1项部分实现Weather、95项未实现，总计256。协议注册169与完成数分开。Ask两项独立8例及消费者7流程通过；统一164原生717/717仅覆盖固定74d版本，新Ask原生/参考像素未验。
+163项完整实现覆盖：53项历史验收，110项完整实现待验。另1项部分实现Weather、92项未实现，总计256。协议注册169与完成数分开。Ledger三项独立9例及消费者8流程通过；统一164原生717/717仅覆盖固定74d版本，新Ledger原生/参考像素未验。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -205,9 +205,9 @@
 | ledger-net-worth | Ledger Net Worth | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-recurring-transactions | Ledger Recurring Transactions | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-repair-bank-connection | Ledger Repair Bank Connection | 未实现 | No implementation in the current library. |
-| ledger-spend-by-category-detail | Ledger Spend By Category Detail | 未实现 | No implementation in the current library. |
-| ledger-spend-by-category-recent-transactions | Ledger Spend By Category Recent Transactions | 未实现 | No implementation in the current library. |
-| ledger-spend-by-category | Ledger Spend By Category | 未实现 | No implementation in the current library. |
+| ledger-spend-by-category-detail | Ledger Spend By Category Detail | 完整实现待验 | Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
+| ledger-spend-by-category-recent-transactions | Ledger Spend By Category Recent Transactions | 完整实现待验 | Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
+| ledger-spend-by-category | Ledger Spend By Category | 完整实现待验 | Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | ledger-spend-so-far-this-month | Ledger Spend So Far This Month | 完整实现待验 | Supplied month/comparison trends and point inspection independently reviewed; native and reference-pixel acceptance remain pending. |
 | ledger-transaction-detail | Ledger Transaction Detail | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-upcoming-activity | Ledger Upcoming Activity | 完整实现待验 | Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending. |
