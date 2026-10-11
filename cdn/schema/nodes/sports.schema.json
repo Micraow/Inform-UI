@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:dc0b52475b5bfa856cbc6111ccb910d8e527430aea8e9acf7a70df70c0726947:node:sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:c73346d9d8dad186fbf409946c03b57a12c47a4ff778e8261563e773bae4d9a4:node:sports",
   "title": "Inform UI node subset: sports",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -338,6 +338,60 @@
         "pointsPerGame",
         "reboundsPerGame",
         "assistsPerGame"
+      ],
+      "additionalProperties": false
+    },
+    "BasketballTournamentNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "basketball-tournament"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentTeam"
+          },
+          "minItems": 0,
+          "maxItems": 128
+        },
+        "rounds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentRound"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "teams",
+        "rounds"
       ],
       "additionalProperties": false
     },
@@ -1173,6 +1227,9 @@
           "$ref": "#/$defs/SportsStandingsNode"
         },
         {
+          "$ref": "#/$defs/BasketballTournamentNode"
+        },
+        {
           "$ref": "#/$defs/NbaGameBoxscoreNode"
         },
         {
@@ -1940,6 +1997,159 @@
         "label",
         "player",
         "records"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentMatch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentParticipant"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "winnerTeamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "startsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "advancesTo": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "status",
+        "participants",
+        "winnerTeamId"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentParticipant": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "placeholder": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "teamId",
+        "score"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentRound": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentMatch"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "matches"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
       ],
       "additionalProperties": false
     },

@@ -1,10 +1,10 @@
-## Current portable128 checkpoint
+## Current portable130 source checkpoint
 
-This branch restores 128 protocol node types, including supplied F1 races/standings and NBA/cricket boxscores. Data is explicitly supplied, with local filtering, sorting and cancelable intents. The implementation uses independent project-owned JS/TS; it has no OpenAI runtime dependency. Source is MIT licensed with dependency and font notices retained.
+This branch now restores 130 protocol node types. The new readers show explicitly supplied fictional tournament rounds and election snapshots; they never fetch live results, infer winners, reconcile totals or advance teams automatically. The source preserves the earlier128 definitions and reuses shared ownership, reset and generation boundaries.
 
-The integrated128 source passed all 2,297 local Node tests, public declarations and boundary checks. Its exact original source/asset commits are fd21ad361b7f6777a44b11bcf4ea4f218a08852e / 3cbb87bf046d67d2dabf12ef0b5b7711804cbd4f. The subsequent shared intent-admission fix passed 581 focused checks, 31 enhanced entry tests and 100 distinct independent regressions. It keeps exclusive admission ahead of reentrant host reads. The local 2,297-test full run remains evidence for its exact predecessor, not a repeated full run on this successor.
+The frozen128 commit `1e6f6e1b182d4cd29b764d87cf8b0839d18b04fa` passed 2,328 Node tests and 687 real Chromium tests in [run38122480527](https://github.com/Micraow/Inform-UI/actions/runs/38122480527). Those results belong to that exact predecessor.
 
-The earlier124 remote run passed 2,036 Node tests and 637 of 670 native browser cases. Thirty-two browser fixture issues and the remaining touch validation timing case have local fixes; the combined128 native browser rerun is the next required validation. Neither the earlier124 result nor local tests establish128 native visual acceptance. Existing fixed-CDN examples retain their historical pins. Ordinary checkpoints use [skip ci].
+The130 candidate passed211 focused checks and156 conservation/impact checks. The original130 snapshot df155f6 passed2,435 local Node tests. A later two-file insertion-reference correction passed102 domain tests and11 independent cases; the full suite has not been repeated on that narrow successor. No130 native browser run is claimed. It also includes a narrow Player table word/literal wrapping correction, with six authored geometry checks awaiting real-browser execution. Ordinary checkpoints use [skip ci]. The current workflow expects130 only for the next deliberately requested validation.
 
 The earlier project overview follows.
 
@@ -210,7 +210,3 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 后续新增[供数文章](docs/news-article.md)、[供数评论](docs/entity-reviews.md)、[供数时段选择](docs/restaurant-availability.md)与[讨论阅读](docs/reddit-thread-card.md)。[二十四项本地记录](docs/local-enhancements-84.md)保留原始证据。其后新增[显式动画/庆祝](docs/motion.md)与[邮件草稿/计划回顾](docs/draft-review.md)，[二十八项本地冻结](docs/local-enhancements-88.md)全库863项通过，仍未计入真实浏览器验收。
 
 [三十项本地冻结](docs/local-enhancements-90.md)加入供数地点选择与逐图确认画廊，同时修复Forms祖先禁用与同步adapter生命周期边界。28项全库与后续影响面检查的证据分别列出；正式已验仍53项。
-
-### Player table readability source checkpoint
-
-A subsequent source-only correction preserves complete words and supplied period/numeric literals inside locally scrolling player-summary tables. The focused suite passed 75 tests and TypeScript checking passed. Six real-browser geometry checks are authored but not yet run. Published CDN bytes remain the frozen 128 candidate; rebuild from source to try this correction. The running 128 CI validates commit `1e6f6e1b182d4cd29b764d87cf8b0839d18b04fa`, before this CSS correction.

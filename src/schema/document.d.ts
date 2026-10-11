@@ -146,6 +146,8 @@ export type Node =
   | TransactionListNode
   | LedgerAccountsNode
   | LedgerRecurringTransactionsNode
+  | BasketballTournamentNode
+  | ElectionResultsNode
   | NbaGameBoxscoreNode
   | CricketMatchBoxscoreNode
   | NbaPlayerSummaryNode
@@ -2945,6 +2947,95 @@ export interface LedgerRecurringRecord {
   observedAt?: string;
   note?: string;
   source?: LedgerSource;
+}
+export interface BasketballTournamentNode {
+  type: "basketball-tournament";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 128
+   */
+  teams: TournamentTeam[];
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  rounds: TournamentRound[];
+  observedAt?: string;
+  source?: TravelEventSource;
+}
+export interface TournamentTeam {
+  id: string;
+  label: string;
+}
+export interface TournamentRound {
+  id: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 32
+   */
+  matches: TournamentMatch[];
+}
+export interface TournamentMatch {
+  id: string;
+  label: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled" | "unknown";
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  participants: [TournamentParticipant, TournamentParticipant, ...TournamentParticipant[]];
+  winnerTeamId: string | null;
+  startsAt?: string;
+  advancesTo?: string;
+  note?: string;
+  source?: TravelEventSource;
+}
+export interface TournamentParticipant {
+  teamId: string | null;
+  placeholder?: string;
+  score: number | null;
+}
+export interface ElectionResultsNode {
+  type: "election-results";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  contests: ElectionContest[];
+  observedAt?: string;
+  source?: TravelEventSource;
+}
+export interface ElectionContest {
+  id: string;
+  label: string;
+  status: "pending" | "counting" | "complete" | "recount" | "unknown";
+  reportedPercent: number | null;
+  totalVotes: number | null;
+  /**
+   * @minItems 0
+   * @maxItems 50
+   */
+  candidates: ElectionCandidate[];
+  observedAt?: string;
+  note?: string;
+  source?: TravelEventSource;
+}
+export interface ElectionCandidate {
+  id: string;
+  label: string;
+  party?: string;
+  votes: number | null;
+  voteShare: number | null;
+  outcome: "elected" | "not-elected" | "unknown";
+  note?: string;
+  source?: TravelEventSource;
 }
 export interface NbaGameBoxscoreNode {
   type: "nba-game-boxscore";

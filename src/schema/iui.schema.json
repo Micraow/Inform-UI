@@ -10621,6 +10621,400 @@
       ],
       "additionalProperties": false
     },
+    "TournamentTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentParticipant": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "placeholder": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "teamId",
+        "score"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentMatch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentParticipant"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "winnerTeamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "startsAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "advancesTo": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "status",
+        "participants",
+        "winnerTeamId"
+      ],
+      "additionalProperties": false
+    },
+    "TournamentRound": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentMatch"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "matches"
+      ],
+      "additionalProperties": false
+    },
+    "BasketballTournamentNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "basketball-tournament"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentTeam"
+          },
+          "minItems": 0,
+          "maxItems": 128
+        },
+        "rounds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TournamentRound"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "teams",
+        "rounds"
+      ],
+      "additionalProperties": false
+    },
+    "ElectionCandidate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "party": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "votes": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "voteShare": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "elected",
+            "not-elected",
+            "unknown"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "votes",
+        "voteShare",
+        "outcome"
+      ],
+      "additionalProperties": false
+    },
+    "ElectionContest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "counting",
+            "complete",
+            "recount",
+            "unknown"
+          ]
+        },
+        "reportedPercent": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "totalVotes": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ElectionCandidate"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "status",
+        "reportedPercent",
+        "totalVotes",
+        "candidates"
+      ],
+      "additionalProperties": false
+    },
+    "ElectionResultsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "election-results"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "contests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ElectionContest"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "contests"
+      ],
+      "additionalProperties": false
+    },
     "BasketballBoxPlayer": {
       "type": "object",
       "properties": {
@@ -13566,6 +13960,12 @@
         },
         {
           "$ref": "#/$defs/LedgerRecurringTransactionsNode"
+        },
+        {
+          "$ref": "#/$defs/BasketballTournamentNode"
+        },
+        {
+          "$ref": "#/$defs/ElectionResultsNode"
         },
         {
           "$ref": "#/$defs/NbaGameBoxscoreNode"

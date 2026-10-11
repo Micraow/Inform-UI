@@ -1,0 +1,85 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied election fixture",
+  "state": {
+    "other": 0
+  },
+  "body": [
+    {
+      "type": "election-results",
+      "id": "election",
+      "label": "Supplied fictional election snapshot",
+      "description": "Fictional candidates, affiliations and regions. No live or official result is implied.",
+      "observedAt": "2028-03-01T15:00Z",
+      "contests": [
+        {
+          "id": "coast",
+          "label": "Example Coast",
+          "status": "counting",
+          "reportedPercent": 80,
+          "totalVotes": 2500,
+          "candidates": [
+            {
+              "id": "blake",
+              "label": "Blake Example",
+              "party": "Example Group North",
+              "votes": 1000,
+              "voteShare": 40,
+              "outcome": "unknown",
+              "note": "Supplied count and share are independent."
+            },
+            {
+              "id": "alex",
+              "label": "Alex Example",
+              "party": "Example Group South",
+              "votes": 1000,
+              "voteShare": 40,
+              "outcome": "elected",
+              "source": {
+                "label": "Example candidate source",
+                "url": "https://example.org/candidate"
+              }
+            },
+            {
+              "id": "unknown",
+              "label": "Unknown Example",
+              "votes": null,
+              "voteShare": null,
+              "outcome": "unknown"
+            },
+            {
+              "id": "zero",
+              "label": "Zero Example",
+              "party": "Example Group North",
+              "votes": 0,
+              "voteShare": 0,
+              "outcome": "not-elected"
+            }
+          ],
+          "note": "Outcome labels are supplied separately from the count status."
+        },
+        {
+          "id": "ridge",
+          "label": "Example Ridge",
+          "status": "complete",
+          "reportedPercent": 100,
+          "totalVotes": 200,
+          "candidates": [
+            {
+              "id": "devon",
+              "label": "Devon Example",
+              "party": "Example Group East",
+              "votes": 200,
+              "voteShare": 100,
+              "outcome": "elected"
+            }
+          ],
+          "source": {
+            "label": "Example contest source",
+            "url": "https://example.org/contest"
+          }
+        }
+      ]
+    }
+  ]
+}
