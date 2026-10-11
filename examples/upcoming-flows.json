@@ -1,0 +1,103 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-upcoming-activity",
+      "label": "Original incoming and outgoing teaching records",
+      "activities": [],
+      "flows": {
+        "incoming": {
+          "top": {
+            "id": "incoming_top",
+            "title": "Original scheduled stipend",
+            "amountLabel": "120 supplied credits",
+            "dateLabel": "Day 20, supplied text",
+            "kind": "income",
+            "detailEnabled": true
+          },
+          "items": [
+            {
+              "id": "incoming_zero",
+              "title": "Original zero adjustment",
+              "amountLabel": "0 supplied credits",
+              "dateLabel": "Day 9, supplied text",
+              "kind": "income"
+            },
+            {
+              "id": "incoming_unknown",
+              "title": "Original incomplete incoming record",
+              "amountLabel": null,
+              "dateLabel": null,
+              "kind": "income"
+            }
+          ],
+          "expandedItems": [
+            {
+              "id": "incoming_zero",
+              "title": "Original zero adjustment",
+              "amountLabel": "0 supplied credits",
+              "dateLabel": "Day 9, supplied text",
+              "kind": "income"
+            },
+            {
+              "id": "incoming_unknown",
+              "title": "Original incomplete incoming record",
+              "amountLabel": null,
+              "dateLabel": null,
+              "kind": "income"
+            },
+            {
+              "id": "incoming_extra",
+              "title": "Original additional teaching record",
+              "amountLabel": "7 supplied credits",
+              "dateLabel": "Day 24, supplied text",
+              "kind": "income"
+            },
+            {
+              "id": "incoming_last",
+              "title": "Original last supplied record",
+              "amountLabel": null,
+              "dateLabel": "Day 28, supplied text",
+              "kind": "income"
+            }
+          ]
+        },
+        "outgoing": {
+          "top": {
+            "id": "outgoing_top",
+            "title": "Original zero scheduled charge",
+            "amountLabel": "0 supplied credits",
+            "dateLabel": "Day 7, supplied text",
+            "kind": "expense"
+          },
+          "items": [
+            {
+              "id": "outgoing_books",
+              "title": "Original reading materials",
+              "amountLabel": "12 supplied credits",
+              "dateLabel": "Day 11, supplied text",
+              "kind": "expense"
+            },
+            {
+              "id": "outgoing_refund",
+              "title": "Original refund notation",
+              "amountLabel": "-5 supplied credits",
+              "dateLabel": null,
+              "kind": "expense"
+            }
+          ],
+          "expandedItems": [
+            {
+              "id": "outgoing_books",
+              "title": "Original reading materials",
+              "amountLabel": "12 supplied credits",
+              "dateLabel": "Day 11, supplied text",
+              "kind": "expense"
+            }
+          ]
+        }
+      },
+      "activeFlow": "incoming"
+    }
+  ]
+}

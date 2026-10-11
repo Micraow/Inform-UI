@@ -4130,6 +4130,18 @@ export interface LedgerUpcomingActivityNode {
   masked?: boolean;
   maskedLabel?: string;
   disabled?: boolean;
+  flows?: UpcomingFlows;
+  activeFlow?: "incoming" | "outgoing";
+  expanded?: boolean;
+  showFlowTabs?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  hasConnectedAccounts?: boolean;
+  noAccountsLabel?: string;
+  incomingLabel?: string;
+  outgoingLabel?: string;
+  moreLabel?: string;
+  lessLabel?: string;
 }
 export interface UpcomingActivity {
   id: string;
@@ -4137,6 +4149,27 @@ export interface UpcomingActivity {
   amountLabel: string | null;
   dateLabel: string | null;
   kind?: "income" | "expense" | "other";
+  accountLabel?: string;
+  amountUnknown?: boolean;
+  detailEnabled?: boolean;
+  iconSrc?: string;
+}
+export interface UpcomingFlows {
+  incoming: UpcomingFlow;
+  outgoing: UpcomingFlow;
+}
+export interface UpcomingFlow {
+  top?: UpcomingActivity;
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  items: UpcomingActivity[];
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  expandedItems?: UpcomingActivity[];
 }
 export interface ImageGridNode {
   type: "image-grid";

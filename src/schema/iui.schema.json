@@ -16569,6 +16569,22 @@
             "expense",
             "other"
           ]
+        },
+        "accountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountUnknown": {
+          "type": "boolean"
+        },
+        "detailEnabled": {
+          "type": "boolean"
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
         }
       },
       "required": [
@@ -16576,6 +16592,50 @@
         "title",
         "amountLabel",
         "dateLabel"
+      ],
+      "additionalProperties": false
+    },
+    "UpcomingFlow": {
+      "type": "object",
+      "properties": {
+        "top": {
+          "$ref": "#/$defs/UpcomingActivity"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UpcomingActivity"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        },
+        "expandedItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UpcomingActivity"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "UpcomingFlows": {
+      "type": "object",
+      "properties": {
+        "incoming": {
+          "$ref": "#/$defs/UpcomingFlow"
+        },
+        "outgoing": {
+          "$ref": "#/$defs/UpcomingFlow"
+        }
+      },
+      "required": [
+        "incoming",
+        "outgoing"
       ],
       "additionalProperties": false
     },
@@ -16618,6 +16678,60 @@
         },
         "disabled": {
           "type": "boolean"
+        },
+        "flows": {
+          "$ref": "#/$defs/UpcomingFlows"
+        },
+        "activeFlow": {
+          "enum": [
+            "incoming",
+            "outgoing"
+          ]
+        },
+        "expanded": {
+          "type": "boolean"
+        },
+        "showFlowTabs": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "hasConnectedAccounts": {
+          "type": "boolean"
+        },
+        "noAccountsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "incomingLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "outgoingLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "moreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "lessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
         }
       },
       "required": [

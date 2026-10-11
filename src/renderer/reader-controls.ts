@@ -16,7 +16,7 @@ export const readerBlocked=(root:HTMLElement,control:HTMLElement,alive:boolean)=
  * Registrations belong to a child generation, so late host registration is
  * compensated and releases remain idempotent when the shadow target changes.
  */
-export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:readonly (HTMLInputElement|HTMLSelectElement)[],revision:()=>number,restore:()=>void,reset:()=>void):()=>boolean {
+export function readerNativeReset(c:RendererContext,root:HTMLElement,controls:readonly (HTMLInputElement|HTMLSelectElement|HTMLButtonElement)[],revision:()=>number,restore:()=>void,reset:()=>void):()=>boolean {
  const life=c.lifecycle.fork();
  let pending=0,resetRoot:EventTarget|undefined,releaseShadow:(()=>void)|undefined;
  const onReset=(event:Event)=>{

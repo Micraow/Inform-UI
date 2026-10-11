@@ -359,7 +359,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='async-image'||node.type==='async-image-group')inspectAsyncImages(node,path,add,isSafeURL);
     if(node.type==='lottie')inspectLottie(node,path,add);
     if(node.type==='ledger-spend-so-far-this-month')inspectSpendMonth(node,path,add);
-    if(node.type==='ledger-upcoming-activity')inspectUpcomingActivity(node,path,add);
+    if(node.type==='ledger-upcoming-activity')inspectUpcomingActivity(node,path,add,isSafeURL);
     if(node.type==='image-grid')inspectImageGrid(node,path,add,isSafeURL);
     if(node.type==='conversation-suggestions')inspectConversationSuggestions(node,path,add,isSafeURL);
     if(node.type==='follow-up-action-bar')inspectFollowUpActionBar(node,path,add,isSafeURL);

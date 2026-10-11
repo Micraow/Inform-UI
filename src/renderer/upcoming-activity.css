@@ -1,2 +1,21 @@
 /* Original finite supplied activity reader. */
 .iui-root .iui-upcoming-activity{display:flex;flex-direction:column;gap:12px;min-width:0}.iui-root .iui-upcoming-activity h3{margin:0;font-size:18px;line-height:28px}.iui-root .iui-upcoming-list{list-style:none;margin:0;padding:0}.iui-root .iui-upcoming-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding-block:12px;border-bottom:1px solid var(--iui-line)}.iui-root .iui-upcoming-date{grid-column:1/-1;font-size:14px;line-height:20px}.iui-root .iui-upcoming-amount{overflow-wrap:anywhere;max-width:20ch}.iui-root .iui-upcoming-row[hidden],.iui-root .iui-upcoming-empty[hidden]{display:none!important}.iui-root .iui-upcoming-open{text-align:start;overflow-wrap:anywhere}
+/* Supplied flow and expansion states. */
+.iui-root .iui-upcoming-activity[hidden],.iui-root .iui-upcoming-flows [hidden]{display:none!important}
+.iui-root .iui-upcoming-flows{width:100%;background:var(--iui-surface-primary);border:1px solid var(--iui-line);border-radius:20px;padding:20px 24px;gap:12px}
+.iui-root .iui-upcoming-loading{width:100%;height:300px;background:var(--iui-surface-tertiary);animation:iui-upcoming-pulse 1.5s ease-in-out infinite alternate}
+.iui-root .iui-upcoming-flows[data-phase=pending]{padding:0;border:0;border-radius:0}
+.iui-root .iui-upcoming-flow-tabs{display:flex;gap:2px;width:100%;border-radius:999px;padding:2px;background:var(--iui-surface-tertiary)}
+.iui-root .iui-upcoming-flow-tabs button{flex:1;border-radius:999px}
+.iui-root .iui-upcoming-flow-tabs button[aria-pressed=true]{background:var(--iui-surface-primary);font-weight:600}
+.iui-root .iui-upcoming-flows[data-wide=true] .iui-upcoming-flow-tabs{width:fit-content}
+.iui-root .iui-upcoming-flows .iui-upcoming-row{display:flex;align-items:center;gap:16px;padding-block:10px}
+.iui-root .iui-upcoming-flows[data-wide=true] .iui-upcoming-row{padding-block:8px}
+.iui-root .iui-upcoming-row-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.iui-root .iui-upcoming-flows .iui-upcoming-open{padding:0;text-align:start}
+.iui-root .iui-upcoming-avatar{width:40px;height:40px;flex:0 0 40px}
+.iui-root .iui-upcoming-flows[data-wide=true] .iui-upcoming-avatar{width:32px;height:32px;flex-basis:32px}
+.iui-root .iui-upcoming-account{font-size:14px;line-height:20px;color:var(--iui-muted)}
+.iui-root .iui-upcoming-expand{width:100%;margin-top:8px}
+@keyframes iui-upcoming-pulse{to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-root .iui-upcoming-loading{animation:none}}

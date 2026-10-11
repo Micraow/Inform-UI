@@ -72,6 +72,12 @@ row remains partial. The initial subset and the original gates follow.
 
 ## Upcoming activity
 
+The current source extension implements explicit incoming/outgoing flows,
+conditional expanded-list replacement and supplied resolution/account states.
+See [upcoming flows](upcoming-flows.md). Its42 domain tests and33 common reset
+contracts pass; independent functional review remains pending. This row stays
+partial until review. The original subset and gates follow.
+
 - Current candidate: `d8aba54dfdb8262e0eb9232daae0daa8426c359b`.
 - Present subset: exact supplied amount/date labels, a kind filter, shared native
   reset behavior and local ID intents.

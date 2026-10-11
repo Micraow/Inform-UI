@@ -1,3 +1,7 @@
+# Upcoming flow source checkpoint
+
+The source now supports supplied incoming/outgoing flows, stable top rows, conditional replacement by longer expanded lists, same-flow expansion retention, flow-change collapse, resolution/no-account states, explicit detail intents and native reset. See [the contract](docs/upcoming-flows.md). The42 Upcoming and33 shared reset tests passed,75 total, with types/boundary gates. The packaged CDN is still unified154; this extension has no new native result. Canonical scope remains144 implemented,4 partial,108 missing pending independent review.
+
 # Image-grid presentation source checkpoint
 
 The current source adds supplied mosaic rows and flex proportions, responsive recommendation More/Fewer, a passive four-image live layout, loading phases and an explicitly local viewer with cancellation, navigation, Escape and focus return. See [the contract](docs/image-grid-presentations.md). All43 Grid compatibility/extension tests passed; source types and boundary checks passed. A shared original five-image fixture is included. Two pending-loading backgrounds also now use the established tertiary surface role.
