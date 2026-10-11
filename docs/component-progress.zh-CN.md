@@ -1,6 +1,6 @@
 # 组件进度
 
-152项完整实现覆盖：53项历史验收，99项完整实现待验。另1项部分实现Weather、103项未实现，总计256。协议注册161不是完成数。Link三项及TabbedSection/VisualCardCarousel独立普通功能复核通过；新源码原生与参考像素验收仍待完成。
+155项完整实现覆盖：53项历史验收，102项完整实现待验。另1项部分实现Weather、100项未实现，总计256。协议注册161不是完成数。Link三项及TabbedSection/VisualCardCarousel独立普通功能复核通过；新源码原生与参考像素验收仍待完成。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -260,3 +260,5 @@
 | whats-new-capability-search | Whats New Capability Search | 未实现 | No implementation in the current library. |
 | whats-new-capability-welcome | Whats New Capability Welcome | 未实现 | No implementation in the current library. |
 | word-card | Word Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
+
+Automation三项独立13项普通功能通过；仅供数与本地意图，无真实任务操作。

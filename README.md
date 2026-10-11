@@ -1,3 +1,7 @@
+# Current functional scope:155 /1 /100
+
+The three supplied automation views passed13 independent ordinary-function cases. Coverage is155 complete implementations (53 historical acceptances and102 pending full acceptance),1 partial Weather and100 missing;161 registered protocols. No real scheduling operations are implemented. Native/pixel acceptance remains separate. Packaged CDN stays unified154. Earlier checkpoints below retain their source identities.
+
 # Supplied automation functional candidates
 
 DisplayAutomation, ListAutomations and AutomationPlanSummary add three original finite supplied-data views and cancelable local requests. Registration is161; canonical coverage remains152/1/103 pending independent review of the new family. Packaged CDN remains unified154. No new native/pixel result is claimed. See [the contract](docs/automation-contract.md).

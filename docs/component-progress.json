@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T12:19:28.295970+00:00",
+  "as_of_utc": "2026-10-11T12:25:07.745352+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 99,
+    "implemented_pending_verification": 102,
     "functionally_verified": 53,
-    "not_implemented": 103,
+    "not_implemented": 100,
     "partial": 1
   },
-  "completeImplementationCoverage": 152,
+  "completeImplementationCoverage": 155,
   "registeredProtocolNodes": 161,
   "components": [
     {
@@ -645,8 +645,8 @@
       "id": "automation-plan-summary",
       "name": "Automation Plan Summary",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending."
     },
     {
       "id": "basketball-tournament",
@@ -1100,8 +1100,8 @@
       "id": "display-automation",
       "name": "Display Automation",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending."
     },
     {
       "id": "election-results",
@@ -1485,8 +1485,8 @@
       "id": "list-automations",
       "name": "List Automations",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending."
     },
     {
       "id": "local-business",
