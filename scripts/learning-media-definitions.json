@@ -1,0 +1,221 @@
+{
+  "LearningAudioLabelCardNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "learning-audio-label-card"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "prompt": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "explanation": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "audio": {
+        "$ref": "#/$defs/LearningPracticeAudio"
+      },
+      "answers": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "minItems": 1,
+        "maxItems": 12
+      }
+    },
+    "required": [
+      "type",
+      "label",
+      "prompt",
+      "audio",
+      "answers"
+    ],
+    "additionalProperties": false
+  },
+  "LearningImageChoiceCardNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "learning-image-choice-card"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "prompt": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "explanation": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "options": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/LearningImageOption"
+        },
+        "minItems": 2,
+        "maxItems": 8
+      },
+      "answerId": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      }
+    },
+    "required": [
+      "type",
+      "label",
+      "prompt",
+      "options",
+      "answerId"
+    ],
+    "additionalProperties": false
+  },
+  "LearningImageLabelCardNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "learning-image-label-card"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "prompt": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "explanation": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "image": {
+        "$ref": "#/$defs/LearningPracticeImage"
+      },
+      "answers": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "minItems": 1,
+        "maxItems": 12
+      }
+    },
+    "required": [
+      "type",
+      "label",
+      "prompt",
+      "image",
+      "answers"
+    ],
+    "additionalProperties": false
+  },
+  "LearningImageOption": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+      },
+      "label": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "image": {
+        "$ref": "#/$defs/LearningPracticeImage"
+      }
+    },
+    "required": [
+      "id",
+      "label",
+      "image"
+    ],
+    "additionalProperties": false
+  },
+  "LearningPracticeAudio": {
+    "type": "object",
+    "properties": {
+      "src": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300000
+      },
+      "transcript": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 6000
+      }
+    },
+    "required": [
+      "src",
+      "transcript"
+    ],
+    "additionalProperties": false
+  },
+  "LearningPracticeImage": {
+    "type": "object",
+    "properties": {
+      "src": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300000
+      },
+      "alt": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "caption": {
+        "type": "string",
+        "maxLength": 2000
+      }
+    },
+    "required": [
+      "src",
+      "alt"
+    ],
+    "additionalProperties": false
+  }
+}

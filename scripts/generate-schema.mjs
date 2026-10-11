@@ -396,6 +396,13 @@ node('prompt-checklist',{},[],'base');
 defs.PromptChecklistNode={...promptChecklistSchema(),type:'object',properties:{type:{const:'prompt-checklist'}},required:['type']};
 node('ledger-finance-status-banner',{},[],'finance');
 defs.LedgerFinanceStatusBannerNode={...financeStatusSchema(),type:'object',properties:{type:{const:'ledger-finance-status-banner'}},required:['type']};
+// Restored project139 schema definitions; exact node/dependency objects are retained.
+const learningMediaDefinitions=JSON.parse(await readFile(new URL('./learning-media-definitions.json',import.meta.url),'utf8'));
+for(const [name,definition]of Object.entries(learningMediaDefinitions)){
+  if(defs[name])throw new Error('Duplicate restored learning definition: '+name);
+  defs[name]=definition;
+  if(name.endsWith('Node')){nodes.push(ref(name));owners[definition.properties.type.const]='learning';}
+}
 defs.Node = { oneOf: nodes };
 const schema = { $schema: 'https://json-schema.org/draft/2020-12/schema', $id: 'urn:micraow:intelligent-ui:schema:iui:1', title: 'IUIDocument', description: 'The project-defined iui/1 wire contract. Semantic validation additionally enforces safe expressions, data and URLs. Native nodes are recognized but unsupported by the portable renderer.', ...object({ version: { const: 'iui/1' }, title: string(), description: string(), theme: choice('auto', 'light', 'dark'), state: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: scalar }, computed: { type: 'object', propertyNames: key, maxProperties: 80, additionalProperties: ref('Value') }, body: array(ref('Node'), 1, 150) }, ['version', 'body']), $defs: defs };
 const dir = fileURLToPath(new URL('../src/schema/', import.meta.url));

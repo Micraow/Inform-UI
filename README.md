@@ -1,3 +1,9 @@
+## Source-only136 implementation checkpoint
+
+Three finite practice cards are recovered: image choice, image label and audio label. Their schema and CSS retain the original project139 objects; media is supplied explicitly, remote loading requires a local click, and grading uses the supplied answers without recording or submitting responses. The source builds and29 contract/local-practice/basic ownership tests pass. Native media playback and geometry remain unverified.
+
+Run `npm run generate && npm run build` to create the136-node local runtime. Preserve `scripts/learning-media-definitions.json` as a required generator input. Packaged schema/CDN bytes remain frozen130 until a later combined build; source coverage is129 canonical implementations, including53 historical accepted items. This checkpoint uses [skip ci].
+
 ## Source-only133 implementation checkpoint
 
 Three recovered supplied match readers are available in source: NBA scores, soccer games and American-football games. All data and outcomes are explicitly supplied; filtering, sorting, disclosures and resets remain local. The source builds and35 contract/basic ownership tests pass. The earlier original tests were not recovered, so these checks are project-authored replacements.

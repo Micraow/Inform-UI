@@ -1,0 +1,28 @@
+/* Original bounded learning media practice. Logical spacing supports RTL layouts. */
+.iui-root .iui-learning-media{min-inline-size:0;margin:0;padding:20px;border:1px solid var(--iui-line);border-radius:16px;background:var(--iui-surface);color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-learning-media-title{font-weight:650;font-size:1.15rem;padding-inline:6px;max-inline-size:100%}
+.iui-root .iui-learning-media-prompt{font-size:1.1rem;line-height:1.5;margin-block:6px 12px}
+.iui-root .iui-learning-media-note,.iui-root .iui-learning-media-alternative,.iui-root .iui-learning-media-figure figcaption{font-size:.85rem;color:var(--iui-muted);line-height:1.5}
+.iui-root .iui-learning-media-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px;margin-block:16px}
+.iui-root .iui-learning-media-option{min-inline-size:0;border:1px solid var(--iui-line);border-radius:12px;padding:12px}
+.iui-root .iui-learning-media-option[data-selected=true]{outline:2px solid var(--iui-accent);outline-offset:-2px}
+.iui-root .iui-learning-media-option label{display:flex;align-items:center;gap:10px;min-block-size:44px;cursor:pointer;font-weight:600}
+.iui-root .iui-learning-media-option input{inline-size:18px;block-size:18px;flex-shrink:0;accent-color:var(--iui-accent)}
+.iui-root .iui-learning-media-figure{margin:0;min-inline-size:0}
+.iui-root .iui-learning-media-image img{display:block;max-inline-size:100%;inline-size:100%;max-block-size:280px;aspect-ratio:4/3;object-fit:contain;border-radius:8px}
+.iui-root .iui-learning-media-response>label{display:block;margin-block:12px 6px;font-weight:600}
+.iui-root .iui-learning-media-answer{box-sizing:border-box;inline-size:100%;min-block-size:44px;padding:10px 12px;border:1px solid var(--iui-line);border-radius:8px;font:inherit;color:inherit;background:var(--iui-bg)}
+.iui-root .iui-learning-media-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block-start:16px}
+.iui-root .iui-learning-media button{min-block-size:44px;max-inline-size:100%;padding:9px 14px;border:1px solid var(--iui-line);border-radius:999px;background:var(--iui-bg);color:inherit;font:inherit;white-space:normal;overflow-wrap:anywhere;cursor:pointer}
+.iui-root .iui-learning-media :focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px}
+.iui-root .iui-learning-media button:disabled,.iui-root .iui-learning-media input:disabled{cursor:not-allowed;opacity:.6}
+.iui-root .iui-learning-media button:disabled{background:var(--iui-disabled-bg);border-color:var(--iui-disabled-border);color:var(--iui-disabled-text)}
+.iui-root .iui-learning-media-status{min-block-size:1.5em;line-height:1.5;margin-block:12px 0}
+.iui-root .iui-learning-media[data-phase=correct] .iui-learning-media-status{color:var(--iui-success)}
+.iui-root .iui-learning-media[data-phase=incorrect] .iui-learning-media-status,.iui-root .iui-learning-media[data-phase=missing] .iui-learning-media-status{color:var(--iui-danger)}
+.iui-root .iui-learning-media-explanation{border-inline-start:3px solid var(--iui-line);padding-inline-start:12px;white-space:pre-wrap}
+.iui-root .iui-learning-media-audio audio{display:block;inline-size:100%;max-inline-size:500px;margin-block:14px}
+.iui-root .iui-learning-media-transcript summary{cursor:pointer;min-block-size:44px;display:list-item;padding-block:10px;box-sizing:border-box}
+.iui-root .iui-learning-media-transcript p{white-space:pre-wrap}
+@media(forced-colors:active){.iui-root .iui-learning-media-option[data-selected=true]{outline-color:Highlight}.iui-root .iui-learning-media :focus-visible{outline-color:Highlight}}
+

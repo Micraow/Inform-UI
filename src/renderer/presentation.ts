@@ -1,3 +1,4 @@
+import {learningMediaEnglish,learningMediaChinese} from './learning-media-labels.js';
 import {matchScoresEnglish,matchScoresChinese} from './match-scores-labels.js';
 import {suppliedResultsEnglish,suppliedResultsChinese} from './supplied-results-labels.js';
 import {boxscoreEnglish,boxscoreChinese} from './boxscore-labels.js';
@@ -73,6 +74,7 @@ const english = {
   travelEventsUI:travelEventsEnglish,
   ledgerUI:ledgerEnglish,
   ledgerRecordsUI:ledgerRecordsEnglish,
+  learningMediaUI:learningMediaEnglish,
   matchScoresUI:matchScoresEnglish,
   suppliedResultsUI:suppliedResultsEnglish,
   boxscoreUI:boxscoreEnglish,
@@ -126,6 +128,7 @@ const chinese: typeof english = {
   travelEventsUI:travelEventsChinese,
   ledgerUI:ledgerChinese,
   ledgerRecordsUI:ledgerRecordsChinese,
+  learningMediaUI:learningMediaChinese,
   matchScoresUI:matchScoresChinese,
   suppliedResultsUI:suppliedResultsChinese,
   boxscoreUI:boxscoreChinese,
