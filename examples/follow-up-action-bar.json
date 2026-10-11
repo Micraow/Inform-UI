@@ -1,0 +1,1 @@
+{"version":"iui/1","title":"Original local follow-up actions","body":[{"type":"follow-up-action-bar","label":"Continue with supplied information","actions":[{"id":"review","label":"Review the supplied summary"},{"id":"compare","label":"Compare the supplied options"},{"id":"unavailable","label":"Unavailable action","disabled":true}]}]}

@@ -1,3 +1,11 @@
+## Source-only 150 checkpoint
+
+FollowUpActionBar is independently reimplemented using the current library model; the historical source was not recovered. Supply 0–12 actions with unique IDs, labels and optional literal disabled flags. The frozen local `iui:follow-up-action` intent is cancelable and contains only the action ID. No external request, navigation or message is sent. Acceptance means requested, not completed.
+
+Build, types and 18 schema/basic lifecycle flows pass, including cancellation/retry, real constructor recursion, disabled controls, first-legend semantics, update during delivery and same-turn retirement. Native/reference visual acceptance remains pending. The preceding Video snapshot has two known queued fixes: shared SDK timeout ownership and transparent hit-layer cascade.
+
+Run `npm ci && npm run generate && npm run build`. Packaged schema/CDN remain130. Saves use [skip ci].
+
 ## Source-only 149 checkpoint
 
 The finite supplied Video Carousel is restored from the original early project core, schema, preview and official YouTube SDK adapter. Its dedicated 200px-card CSS is original portable completion: the historical stylesheet was not recovered. Supplied records remain finite, provider URLs must match IDs, and hosts can cancel the immutable video-open intent before canonical new-tab navigation. Turning off hover preview does not prohibit thumbnail or SDK requests.
