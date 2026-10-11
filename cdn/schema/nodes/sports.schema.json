@@ -1,10 +1,70 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c73346d9d8dad186fbf409946c03b57a12c47a4ff778e8261563e773bae4d9a4:node:sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:53433f381fe317de5e9d5268352a36354d96c2603f31640db0411427e1d5a4d3:node:sports",
   "title": "Inform UI node subset: sports",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
+    "AmericanFootballGamesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "american-football-games"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTeam"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "games": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FootballGame"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "timezone",
+        "teams",
+        "games"
+      ],
+      "additionalProperties": false
+    },
     "BasketballBoxPlayer": {
       "type": "object",
       "properties": {
@@ -866,6 +926,347 @@
       ],
       "additionalProperties": false
     },
+    "FootballGame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "competition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "homeTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "awayTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "homeScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awayScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "home-win",
+            "away-win",
+            "draw",
+            "unknown"
+          ]
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "clock": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FootballPeriod"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "possessionTeamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "situation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FootballSituation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FootballScoringEvent"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "competition",
+        "startsAt",
+        "homeTeamId",
+        "awayTeamId",
+        "status",
+        "homeScore",
+        "awayScore",
+        "outcome",
+        "periods",
+        "possessionTeamId",
+        "situation",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "FootballPeriod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "home": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "away": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "quarter",
+            "overtime"
+          ]
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "home",
+        "away",
+        "kind",
+        "number"
+      ],
+      "additionalProperties": false
+    },
+    "FootballScoringEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "periodId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clock": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "touchdown",
+            "field-goal",
+            "extra-point",
+            "two-point",
+            "safety",
+            "other"
+          ]
+        },
+        "teamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "periodId",
+        "clock",
+        "kind",
+        "teamId",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "FootballSituation": {
+      "type": "object",
+      "properties": {
+        "down": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "distance": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ballOn": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "down",
+        "distance",
+        "ballOn"
+      ],
+      "additionalProperties": false
+    },
     "MotorsportRace": {
       "type": "object",
       "properties": {
@@ -1209,6 +1610,201 @@
       ],
       "additionalProperties": false
     },
+    "NbaScoreGame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "competition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "homeTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "awayTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "homeScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awayScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "home-win",
+            "away-win",
+            "draw",
+            "unknown"
+          ]
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "clock": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScorePeriod"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "leaders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreLeader"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "competition",
+        "startsAt",
+        "homeTeamId",
+        "awayTeamId",
+        "status",
+        "homeScore",
+        "awayScore",
+        "outcome",
+        "periods",
+        "leaders"
+      ],
+      "additionalProperties": false
+    },
+    "NbaScoresNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "nba-scores"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTeam"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "games": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NbaScoreGame"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "timezone",
+        "teams",
+        "games"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -1227,6 +1823,15 @@
           "$ref": "#/$defs/SportsStandingsNode"
         },
         {
+          "$ref": "#/$defs/NbaScoresNode"
+        },
+        {
+          "$ref": "#/$defs/SoccerGamesNode"
+        },
+        {
+          "$ref": "#/$defs/AmericanFootballGamesNode"
+        },
+        {
           "$ref": "#/$defs/BasketballTournamentNode"
         },
         {
@@ -1242,6 +1847,430 @@
           "$ref": "#/$defs/TennisPlayerSummaryNode"
         }
       ]
+    },
+    "ScoreLeader": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rebounds": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assists": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "teamId",
+        "points",
+        "rebounds",
+        "assists"
+      ],
+      "additionalProperties": false
+    },
+    "ScorePair": {
+      "type": "object",
+      "properties": {
+        "home": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "away": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "home",
+        "away"
+      ],
+      "additionalProperties": false
+    },
+    "ScorePeriod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "home": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "away": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "home",
+        "away"
+      ],
+      "additionalProperties": false
+    },
+    "ScoreTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "record": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "SoccerEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "minute": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "goal",
+            "yellow-card",
+            "red-card",
+            "substitution",
+            "var",
+            "other"
+          ]
+        },
+        "teamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "player": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "minute",
+        "kind",
+        "teamId"
+      ],
+      "additionalProperties": false
+    },
+    "SoccerGamesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "soccer-games"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTeam"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "games": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SoccerScoreGame"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "timezone",
+        "teams",
+        "games"
+      ],
+      "additionalProperties": false
+    },
+    "SoccerScoreGame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "competition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "homeTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "awayTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "homeScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awayScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "home-win",
+            "away-win",
+            "draw",
+            "unknown"
+          ]
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "clock": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "aggregate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScorePair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "penalties": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScorePair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SoccerEvent"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "competition",
+        "startsAt",
+        "homeTeamId",
+        "awayTeamId",
+        "status",
+        "homeScore",
+        "awayScore",
+        "outcome",
+        "aggregate",
+        "penalties",
+        "events"
+      ],
+      "additionalProperties": false
     },
     "SportsData": {
       "type": "object",

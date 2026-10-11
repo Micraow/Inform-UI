@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c73346d9d8dad186fbf409946c03b57a12c47a4ff778e8261563e773bae4d9a4:node:finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:53433f381fe317de5e9d5268352a36354d96c2603f31640db0411427e1d5a4d3:node:finance",
   "title": "Inform UI node subset: finance",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -707,6 +707,103 @@
       ],
       "additionalProperties": false
     },
+    "LedgerCorrectionCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerCorrectionTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+              "minLength": 10,
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "money": {
+          "$ref": "#/$defs/LedgerExactMoney"
+        },
+        "originalCategoryId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "suggestedCategoryId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "date",
+        "money",
+        "originalCategoryId",
+        "suggestedCategoryId",
+        "confidence"
+      ],
+      "additionalProperties": false
+    },
     "LedgerExactMoney": {
       "type": "object",
       "properties": {
@@ -733,6 +830,198 @@
       "required": [
         "amount",
         "currency"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerFeeInterestPaidNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-fee-interest-paid"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerFeeInterestRange"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "initialRangeId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showLessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "ranges"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerFeeInterestRange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalPaid": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "totalPaidLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalStatusLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "conversionNote": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "emptyLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerFeeInterestTransaction"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "totalPaid",
+        "totalPaidLabel",
+        "transactions"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerFeeInterestTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "dateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "categoryLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "accountDetail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountTone": {
+          "enum": [
+            "primary",
+            "secondary",
+            "positive",
+            "negative"
+          ]
+        },
+        "maskedAmountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "logoUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "categoryIcon": {
+          "enum": [
+            "bank",
+            "credit-card",
+            "receipt",
+            "percent"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "displayName",
+        "dateLabel",
+        "categoryLabel",
+        "accountDetail",
+        "amountLabel"
       ],
       "additionalProperties": false
     },
@@ -836,6 +1125,398 @@
       "required": [
         "type"
       ]
+    },
+    "LedgerIncomePaycheck": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nextPayment": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frequency": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "accountDetail": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "logoUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "icon": {
+          "enum": [
+            "banknote",
+            "bank",
+            "briefcase",
+            "calendar"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "LedgerIncomeTrackerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-income-tracker"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hasIncome": {
+          "type": "boolean"
+        },
+        "estimatedMonthlyIncomeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "incomeSourcesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nextPaycheck": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LedgerIncomePaycheck"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "emptyLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "estimatedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nextPaycheckLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "recurringIncomeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "noUpcomingLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "dateUnavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "hasIncome"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerLowConfidenceCategoryCorrectionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-low-confidence-category-correction"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "snapshotId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCorrectionCategory"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCorrectionTransaction"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "snapshotId",
+        "categories",
+        "transactions"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerNetWorthInterval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "currentValue": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "changePercent": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "changeWindow": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerNetWorthPoint"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "currentValue",
+        "change",
+        "changePercent",
+        "changeWindow",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerNetWorthNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-net-worth"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerNetWorthInterval"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "initialIntervalId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "balanceNote": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "conversionNote": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "currency",
+        "intervals"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerNetWorthPoint": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "date",
+        "value"
+      ],
+      "additionalProperties": false
     },
     "LedgerRecurringRecord": {
       "type": "object",
@@ -977,6 +1658,78 @@
       ],
       "additionalProperties": false
     },
+    "LedgerSpendSoFarThisMonthNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-spend-so-far-this-month"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SpendCategory"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "comparisonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "periodLabel",
+        "totalLabel",
+        "categories"
+      ],
+      "additionalProperties": false
+    },
     "LedgerTransaction": {
       "type": "object",
       "properties": {
@@ -1083,6 +1836,54 @@
       ],
       "additionalProperties": false
     },
+    "LedgerUpcomingActivityNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-upcoming-activity"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UpcomingActivity"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "activities"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -1114,8 +1915,71 @@
         },
         {
           "$ref": "#/$defs/LedgerFinanceStatusBannerNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerLowConfidenceCategoryCorrectionNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerNetWorthNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerFeeInterestPaidNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerSpendSoFarThisMonthNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerUpcomingActivityNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerIncomeTrackerNode"
         }
       ]
+    },
+    "SpendCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fraction": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "amountLabel",
+        "fraction"
+      ],
+      "additionalProperties": false
     },
     "TransactionDetailBudget": {
       "type": "object",
@@ -1487,6 +2351,58 @@
         "type",
         "label",
         "transactions"
+      ],
+      "additionalProperties": false
+    },
+    "UpcomingActivity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dateLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "income",
+            "expense",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "amountLabel",
+        "dateLabel"
       ],
       "additionalProperties": false
     }

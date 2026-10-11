@@ -3,10 +3,10 @@
   "format": "inform-ui-schema-index/1",
   "fullSchema": {
     "path": "../iui.schema.json",
-    "utf8Bytes": 316492,
-    "unicodeCodePoints": 316492,
-    "estimatedTokens": 79123,
-    "sha256": "c73346d9d8dad186fbf409946c03b57a12c47a4ff778e8261563e773bae4d9a4"
+    "utf8Bytes": 393223,
+    "unicodeCodePoints": 393223,
+    "estimatedTokens": 98306,
+    "sha256": "53433f381fe317de5e9d5268352a36354d96c2603f31640db0411427e1d5a4d3"
   },
   "semantics": "All bundles perform structural validation only. The unchanged full validateDocument also checks state references, ranges, dates, URLs, native rejection and other semantic rules.",
   "tokenEstimateMethod": "ceil(Unicode code points / 4), a rough model-independent heuristic; not measured model tokens or a guaranteed saving.",
@@ -14,9 +14,13 @@
   "examplesBase": "Paths are relative to this CDN index URL; repositoryPath is supplied for local checkouts.",
   "nodeOwners": {
     "agenda": "base",
+    "american-football-games": "sports",
     "animate": "base",
     "artist-upcoming-events": "base",
     "asset-distribution": "finance",
+    "async-image": "base",
+    "async-image-group": "base",
+    "async-video-carousel": "base",
     "badge": "base",
     "basketball-tournament": "sports",
     "blockquote": "base",
@@ -35,6 +39,7 @@
     "code": "base",
     "code-cite": "base",
     "col": "base",
+    "conversation-suggestions": "base",
     "copy-words": "base",
     "create-interactive-poll": "base",
     "cricket-match-boxscore": "sports",
@@ -65,25 +70,38 @@
     "flight-search-form": "base",
     "flight-tracker": "base",
     "flow": "base",
+    "follow-up-action-bar": "base",
     "follow-up-card-group": "base",
     "form": "forms",
     "grid": "base",
     "grid-item": "base",
+    "html-view": "base",
     "icon": "base",
     "image": "base",
+    "image-grid": "base",
     "input": "forms",
     "jobs": "base",
     "label": "base",
+    "learning-audio-label-card": "learning",
+    "learning-image-choice-card": "learning",
+    "learning-image-label-card": "learning",
     "ledger-accounts": "finance",
+    "ledger-fee-interest-paid": "finance",
     "ledger-finance-status-banner": "finance",
+    "ledger-income-tracker": "finance",
+    "ledger-low-confidence-category-correction": "finance",
+    "ledger-net-worth": "finance",
     "ledger-recurring-transactions": "finance",
+    "ledger-spend-so-far-this-month": "finance",
     "ledger-transaction-detail": "finance",
+    "ledger-upcoming-activity": "finance",
     "link": "base",
     "list": "base",
     "loading": "base",
     "loading-block": "base",
     "local-business": "base",
     "location-choice-request": "base",
+    "lottie": "base",
     "markdown": "base",
     "math": "base",
     "metric": "base",
@@ -91,11 +109,13 @@
     "native": "compatibility",
     "nba-game-boxscore": "sports",
     "nba-player-summary": "sports",
+    "nba-scores": "sports",
     "news-article": "base",
     "onboarding-selection": "base",
     "package-tracker": "base",
     "person-profile": "base",
     "popover": "base",
+    "pressable": "base",
     "product-card": "base",
     "prompt-checklist": "base",
     "prompt-suggestions": "base",
@@ -109,6 +129,7 @@
     "restaurant-menu": "base",
     "restaurant-reviews": "base",
     "row": "base",
+    "search-image": "base",
     "section": "base",
     "segmented": "forms",
     "select": "base",
@@ -117,6 +138,7 @@
     "sidebar-fact-table": "base",
     "sidebar-people-also-ask": "base",
     "slider": "base",
+    "soccer-games": "sports",
     "spacer": "base",
     "sports-schedule": "sports",
     "sports-scoreboard": "sports",
@@ -140,9 +162,11 @@
     "unit-converter": "converters",
     "vocab-card": "learning",
     "weather": "weather",
+    "weather-sidebar-title": "weather",
     "web-link-cards": "base",
     "word-card": "base",
-    "writing-block": "base"
+    "writing-block": "base",
+    "youtube": "base"
   },
   "nodeSupportExceptions": {
     "native": "rejected"
@@ -246,23 +270,34 @@
         "election-results",
         "follow-up-card-group",
         "recommendation-card",
-        "prompt-checklist"
+        "prompt-checklist",
+        "pressable",
+        "html-view",
+        "search-image",
+        "youtube",
+        "async-image",
+        "async-image-group",
+        "lottie",
+        "image-grid",
+        "conversation-suggestions",
+        "follow-up-action-bar",
+        "async-video-carousel"
       ],
       "documentSchema": {
         "path": "base.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 180858,
-        "unicodeCodePoints": 180858,
-        "estimatedTokens": 45215,
-        "sha256": "f1ede81a474681462eb55b495f5505881da073a0fb6648ae245087b9ae941c5d"
+        "utf8Bytes": 205977,
+        "unicodeCodePoints": 205977,
+        "estimatedTokens": 51495,
+        "sha256": "6fd05af848b9b850ac6954324255428b83467b3936ab58bc00357d18200d2dec"
       },
       "nodeSchema": {
         "path": "nodes/base.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 179609,
-        "unicodeCodePoints": 179609,
-        "estimatedTokens": 44903,
-        "sha256": "228a9f2b6cb62737446991728a1dbabbc266fb0aa75d6f667dc19f559259964b"
+        "utf8Bytes": 204728,
+        "unicodeCodePoints": 204728,
+        "estimatedTokens": 51182,
+        "sha256": "953b9014c30543aef52ed4307620d12a16bac0648e50b4bc734887240632623c"
       },
       "examples": [
         {
@@ -469,10 +504,10 @@
       "documentSchema": {
         "path": "forms.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 193582,
-        "unicodeCodePoints": 193582,
-        "estimatedTokens": 48396,
-        "sha256": "312b1ae8686021e9b6bb24baaf7ca58dd46f438e701dfcf212d620f051e0a53e"
+        "utf8Bytes": 218701,
+        "unicodeCodePoints": 218701,
+        "estimatedTokens": 54676,
+        "sha256": "0c61685d8cc1710e04b50d3b2b96ea6e7e8b58006d6930a8761b88b8351b7895"
       },
       "nodeSchema": {
         "path": "nodes/forms.schema.json",
@@ -480,7 +515,7 @@
         "utf8Bytes": 14592,
         "unicodeCodePoints": 14592,
         "estimatedTokens": 3648,
-        "sha256": "1446cd080fd9a9e0295dd472a68573c0bd8299d06748693ede8d8629b15c5afd"
+        "sha256": "29aeea3982be3e563386300c2e43050d16c3a2ede1fcdf076408dc436997ae44"
       },
       "examples": [
         {
@@ -522,10 +557,10 @@
       "documentSchema": {
         "path": "charts.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 183792,
-        "unicodeCodePoints": 183792,
-        "estimatedTokens": 45948,
-        "sha256": "53d8810a38de7ff24c545bc4bd4b82167a58ef04de94cbab85cc9a70218f16cf"
+        "utf8Bytes": 208911,
+        "unicodeCodePoints": 208911,
+        "estimatedTokens": 52228,
+        "sha256": "481cecabc1ed0d48235990300ba80ebf07a1a14c6941e104ddc44f5c9de81ad3"
       },
       "nodeSchema": {
         "path": "nodes/charts.schema.json",
@@ -533,7 +568,7 @@
         "utf8Bytes": 4802,
         "unicodeCodePoints": 4802,
         "estimatedTokens": 1201,
-        "sha256": "4e52e88ceb27c1cb72d67a337439bd4cf1b139d710b6bfa6a92b8b797d4268fc"
+        "sha256": "8e7cb3eb49fea25b562eece964594334d40b1666bad247f62781c203ce20bbe7"
       },
       "examples": [
         {
@@ -564,10 +599,10 @@
       "documentSchema": {
         "path": "graphics.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 184810,
-        "unicodeCodePoints": 184810,
-        "estimatedTokens": 46203,
-        "sha256": "e5958d48d8db23dfbdff365dee465672130133c7441e6d60b6b4c651c16d52c8"
+        "utf8Bytes": 209929,
+        "unicodeCodePoints": 209929,
+        "estimatedTokens": 52483,
+        "sha256": "4b0731c8245e551ef4cc7ed2e379c2fb8d1270a0616eb708488c1f7b6c15c90f"
       },
       "nodeSchema": {
         "path": "nodes/graphics.schema.json",
@@ -575,7 +610,7 @@
         "utf8Bytes": 5820,
         "unicodeCodePoints": 5820,
         "estimatedTokens": 1455,
-        "sha256": "6a3d3102079cd754ab50d6e741c1257da0578b856b869b63a6a0a95815ab8b91"
+        "sha256": "41504f428d1a807e8c951ee41343e5c66a073a6af4455ee306bf42efaeb11fd6"
       },
       "examples": [
         {
@@ -592,23 +627,24 @@
         "weather"
       ],
       "ownedNodeTypes": [
-        "weather"
+        "weather",
+        "weather-sidebar-title"
       ],
       "documentSchema": {
         "path": "weather.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 187618,
-        "unicodeCodePoints": 187618,
-        "estimatedTokens": 46905,
-        "sha256": "f8c123fec51f9104608e33a6fc7ec84ca3c363d7b3862380bfdb439ce3eed8d2"
+        "utf8Bytes": 215743,
+        "unicodeCodePoints": 215743,
+        "estimatedTokens": 53936,
+        "sha256": "a2c8a15280e8b0c809104fe9ace5bcd2859398ceb3a17fc5ab65fe611096d937"
       },
       "nodeSchema": {
         "path": "nodes/weather.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 7218,
-        "unicodeCodePoints": 7218,
-        "estimatedTokens": 1805,
-        "sha256": "92adab24b0991997c49357b73c45f7135f89f26924d57b17e27fc4c746ea0d7e"
+        "utf8Bytes": 10629,
+        "unicodeCodePoints": 10629,
+        "estimatedTokens": 2658,
+        "sha256": "e35ab1a13301c6e7fdc48748f5be7d688d04955c870ceeb67391ba9d0543d63d"
       },
       "examples": [
         {
@@ -630,6 +666,9 @@
         "sports-schedule",
         "sports-scoreboard",
         "sports-standings",
+        "nba-scores",
+        "soccer-games",
+        "american-football-games",
         "basketball-tournament",
         "nba-game-boxscore",
         "cricket-match-boxscore",
@@ -639,18 +678,18 @@
       "documentSchema": {
         "path": "sports.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 228848,
-        "unicodeCodePoints": 228848,
-        "estimatedTokens": 57212,
-        "sha256": "b05e50f4396528149042de556ba7d296a50ba4f10ce7b52b6604b4dd81671ee7"
+        "utf8Bytes": 276964,
+        "unicodeCodePoints": 276964,
+        "estimatedTokens": 69241,
+        "sha256": "77992a4b2f1c3972cd3ce453a9cbbbca64a1b1b79a433738cfa28eb22aa88273"
       },
       "nodeSchema": {
         "path": "nodes/sports.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 48853,
-        "unicodeCodePoints": 48853,
-        "estimatedTokens": 12214,
-        "sha256": "3cad7572d6af1282e33bd983e0cb50afb356e9a88abf823c4d02a7db7745f4a4"
+        "utf8Bytes": 71850,
+        "unicodeCodePoints": 71850,
+        "estimatedTokens": 17963,
+        "sha256": "22d7768a53992476b5e5edb8de9078ade6d8a7e68d59862f5e5a811d0e27b473"
       },
       "examples": [
         {
@@ -671,23 +710,26 @@
         "flashcards",
         "fill-blank",
         "sentence-builder",
-        "vocab-card"
+        "vocab-card",
+        "learning-audio-label-card",
+        "learning-image-choice-card",
+        "learning-image-label-card"
       ],
       "documentSchema": {
         "path": "learning.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 191409,
-        "unicodeCodePoints": 191409,
-        "estimatedTokens": 47853,
-        "sha256": "a1a9efc066e8db108f2cc35f4fe495ff2eac6040b9481711652905463da6129f"
+        "utf8Bytes": 221562,
+        "unicodeCodePoints": 221562,
+        "estimatedTokens": 55391,
+        "sha256": "d37b561e1f1a94f40e8b70e862597b4d06b784202a9d00e9501b871e4a21d1c9"
       },
       "nodeSchema": {
         "path": "nodes/learning.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 11009,
-        "unicodeCodePoints": 11009,
-        "estimatedTokens": 2753,
-        "sha256": "fd6d120c1d9a38647d7f82e40a929d7fd149ec6333c254b984c6c49c5c8e6fe3"
+        "utf8Bytes": 16043,
+        "unicodeCodePoints": 16043,
+        "estimatedTokens": 4011,
+        "sha256": "be04bc32464da925cb1282708cc5b4d1143ffc93d1cebfb6bf80f6808b8a26e0"
       },
       "examples": [
         {
@@ -725,23 +767,29 @@
         "ledger-accounts",
         "ledger-recurring-transactions",
         "ledger-transaction-detail",
-        "ledger-finance-status-banner"
+        "ledger-finance-status-banner",
+        "ledger-low-confidence-category-correction",
+        "ledger-net-worth",
+        "ledger-fee-interest-paid",
+        "ledger-spend-so-far-this-month",
+        "ledger-upcoming-activity",
+        "ledger-income-tracker"
       ],
       "documentSchema": {
         "path": "finance.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 216009,
-        "unicodeCodePoints": 216009,
-        "estimatedTokens": 54003,
-        "sha256": "2954ec38d9b043fdc5c13ccd9ec6b52de88826063fc741ac68b656a6f1abbac6"
+        "utf8Bytes": 261703,
+        "unicodeCodePoints": 261703,
+        "estimatedTokens": 65426,
+        "sha256": "4327a61247bce3e9f56c11676bbf176ba698c7cefe21682c3df83e04718b704f"
       },
       "nodeSchema": {
         "path": "nodes/finance.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 35609,
-        "unicodeCodePoints": 35609,
-        "estimatedTokens": 8903,
-        "sha256": "93f11219426fba28f8a566a360000fe482d14260b42c99177bd897b48739d048"
+        "utf8Bytes": 56184,
+        "unicodeCodePoints": 56184,
+        "estimatedTokens": 14046,
+        "sha256": "b340934608f9425c94a78aa3b79f1f1e40572dde777d94b27801fc1ae160f8c2"
       },
       "examples": [
         {
@@ -772,10 +820,10 @@
       "documentSchema": {
         "path": "converters.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 187823,
-        "unicodeCodePoints": 187823,
-        "estimatedTokens": 46956,
-        "sha256": "8d020114500b5a4dfb93f9df5de383e5674490a699c40faa7afbd6900b74457d"
+        "utf8Bytes": 212942,
+        "unicodeCodePoints": 212942,
+        "estimatedTokens": 53236,
+        "sha256": "5eb648155a25ff40a597ffdeb1f5c46b7b3cec90b40dec195ea4a4dbed2ccc4b"
       },
       "nodeSchema": {
         "path": "nodes/converters.schema.json",
@@ -783,7 +831,7 @@
         "utf8Bytes": 7423,
         "unicodeCodePoints": 7423,
         "estimatedTokens": 1856,
-        "sha256": "3a2df9744bedd16890a26e4ee8da12a345bee4ca338428aa49c0ec92408fa15c"
+        "sha256": "6d4731e1e7b14a71ec98675e1cf46781e2b1db467396cf8da869e29923c7598f"
       },
       "examples": [
         {
@@ -807,10 +855,10 @@
       "documentSchema": {
         "path": "time.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 185369,
-        "unicodeCodePoints": 185369,
-        "estimatedTokens": 46343,
-        "sha256": "6e57feb55234073c41685626cd4899a5b42ff8ff88dec64dc622d89131753782"
+        "utf8Bytes": 210488,
+        "unicodeCodePoints": 210488,
+        "estimatedTokens": 52622,
+        "sha256": "e5251d97e0fcdcfa8f6a29bb3f70c04623e2e86b46921c525ac7682ad9ced1d6"
       },
       "nodeSchema": {
         "path": "nodes/time.schema.json",
@@ -818,7 +866,7 @@
         "utf8Bytes": 4969,
         "unicodeCodePoints": 4969,
         "estimatedTokens": 1243,
-        "sha256": "26caf90cd78b8c857db227fab5776e935cf102e66536141eb7c34b989bc7e93e"
+        "sha256": "23186fadfbc72977735cb0326a588fb8c81d536f346cfbbcb102530628e8034d"
       },
       "examples": [
         {
@@ -840,10 +888,10 @@
       "documentSchema": {
         "path": "compatibility.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 185618,
-        "unicodeCodePoints": 185618,
-        "estimatedTokens": 46405,
-        "sha256": "0b3e75b71c449c2b372f10a8b41f0a47b813707643e21b328cc30735c01d92e5"
+        "utf8Bytes": 210737,
+        "unicodeCodePoints": 210737,
+        "estimatedTokens": 52685,
+        "sha256": "7c305dbbb04511f1a8641ceb31fefea7f83bb0ec47a9968aadc2b833d4c51e68"
       },
       "nodeSchema": {
         "path": "nodes/compatibility.schema.json",
@@ -851,7 +899,7 @@
         "utf8Bytes": 5218,
         "unicodeCodePoints": 5218,
         "estimatedTokens": 1305,
-        "sha256": "24f547946081c497cd9183b641acc3255b933ad5958dca9a939a61554c294775"
+        "sha256": "0f54ba0f62a7af3c6e3dc757d8f0c5284139b113f50be411e5a93bfdb850bda1"
       },
       "examples": [],
       "warning": "native is structurally recognized but always rejected by validateDocument; it is not a supported renderer."

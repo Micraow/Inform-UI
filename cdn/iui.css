@@ -1532,3 +1532,220 @@ Visual selectors scoped to .iui-root; WOFF2-only sources. */
 /* Exact recovered130 supplied-results family rules. */
 .iui-root .iui-supplied-results{border:1px solid var(--iui-line);border-radius:12px;padding:16px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-supplied-results>*+*,.iui-election-contest>*+*{margin-block-start:12px}.iui-results-note,.iui-results-source,.iui-results-count{font-size:.875rem;color:var(--iui-muted)}.iui-results-text{white-space:pre-wrap}.iui-results-toolbar{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}.iui-root .iui-supplied-results :is(input,select,button){min-block-size:44px;max-inline-size:100%;min-inline-size:0;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);color:inherit;font:inherit;transition:none}.iui-supplied-results :is(button,summary){white-space:normal;overflow-wrap:anywhere;cursor:pointer}.iui-supplied-results summary{min-block-size:44px}.iui-tournament-board{display:flex;gap:16px;overflow-x:auto;max-inline-size:100%;align-items:flex-start;padding-block:4px 12px}.iui-tournament-round{flex:0 0 min(90%,300px);min-inline-size:0}.iui-tournament-matches,.iui-tournament-participants{list-style:none;padding:0;margin:0}.iui-tournament-match{border:1px solid var(--iui-line);border-radius:8px;padding:12px;margin-block-start:12px}.iui-tournament-match>*+*{margin-block-start:8px}.iui-tournament-participants li{padding-block:4px}.iui-tournament-advance{font-size:.875rem;color:var(--iui-muted)}.iui-election-table-scroll{overflow-x:auto;max-inline-size:100%}.iui-election-results table{border-collapse:collapse;inline-size:100%}.iui-election-results :is(th,td){text-align:start;vertical-align:top;padding:10px 8px;overflow-wrap:anywhere}.iui-election-reported meter{display:block;inline-size:100%;max-inline-size:300px;margin-block-start:8px}.iui-results-number{font-variant-numeric:tabular-nums;direction:ltr}.iui-supplied-results [hidden]{display:none!important}.iui-supplied-results :focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}@media(min-width:700px){.iui-results-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}.iui-results-reset{grid-column:1/-1}}@media(forced-colors:active){.iui-root .iui-supplied-results,.iui-tournament-match,.iui-supplied-results :is(input,select,button){border-color:CanvasText}.iui-results-note,.iui-results-source,.iui-results-count,.iui-tournament-advance{color:CanvasText}}
 
+/* Exact original130 match-score family rules. */
+.iui-root .iui-match-scores{border:1px solid var(--iui-line);border-radius:12px;padding:16px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-match-scores>*+*,.iui-score-game article>*+*,.iui-score-detail-content>*+*{margin-block-start:12px}.iui-score-note,.iui-score-source,.iui-score-count,.iui-score-event-count{color:var(--iui-muted);font-size:.875rem}.iui-score-text{white-space:pre-wrap}.iui-score-toolbar{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}.iui-root .iui-match-scores :is(input,select,button){min-block-size:44px;min-inline-size:0;max-inline-size:100%;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);color:inherit;font:inherit;transition:none}.iui-match-scores :is(button,summary){white-space:normal;overflow-wrap:anywhere;cursor:pointer}.iui-score-details>summary{min-block-size:44px;padding-block:8px}.iui-score-list,.iui-score-events{list-style:none;margin:0;padding:0}.iui-score-game{border:1px solid var(--iui-line);border-radius:10px;padding:14px;margin-block-start:12px}.iui-score-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.iui-score-side{border:1px solid var(--iui-line);border-radius:8px;padding:10px;min-inline-size:0}.iui-score-value{display:block;font-size:1.5rem;font-variant-numeric:tabular-nums}.iui-score-number{font-variant-numeric:tabular-nums}.iui-score-table-scroll{overflow-x:auto;max-inline-size:100%}.iui-match-scores table{border-collapse:collapse;inline-size:100%}.iui-match-scores :is(th,td){padding:10px 8px;text-align:start;vertical-align:top;overflow-wrap:anywhere}.iui-score-event{border-inline-start:3px solid var(--iui-line);padding:10px;margin-block-start:8px}.iui-match-scores [hidden]{display:none!important}.iui-match-scores :focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}@media(min-width:700px){.iui-score-toolbar{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:center}.iui-score-reset{grid-column:1/-1}}@media(forced-colors:active){.iui-root .iui-match-scores,.iui-score-game,.iui-score-side,.iui-score-event,.iui-match-scores :is(input,select,button){border-color:CanvasText}.iui-score-note,.iui-score-source,.iui-score-count,.iui-score-event-count{color:CanvasText}}
+
+/* Original bounded learning media practice. Logical spacing supports RTL layouts. */
+.iui-root .iui-learning-media{min-inline-size:0;margin:0;padding:20px;border:1px solid var(--iui-line);border-radius:16px;background:var(--iui-surface);color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-learning-media-title{font-weight:650;font-size:1.15rem;padding-inline:6px;max-inline-size:100%}
+.iui-root .iui-learning-media-prompt{font-size:1.1rem;line-height:1.5;margin-block:6px 12px}
+.iui-root .iui-learning-media-note,.iui-root .iui-learning-media-alternative,.iui-root .iui-learning-media-figure figcaption{font-size:.85rem;color:var(--iui-muted);line-height:1.5}
+.iui-root .iui-learning-media-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px;margin-block:16px}
+.iui-root .iui-learning-media-option{min-inline-size:0;border:1px solid var(--iui-line);border-radius:12px;padding:12px}
+.iui-root .iui-learning-media-option[data-selected=true]{outline:2px solid var(--iui-accent);outline-offset:-2px}
+.iui-root .iui-learning-media-option label{display:flex;align-items:center;gap:10px;min-block-size:44px;cursor:pointer;font-weight:600}
+.iui-root .iui-learning-media-option input{inline-size:18px;block-size:18px;flex-shrink:0;accent-color:var(--iui-accent)}
+.iui-root .iui-learning-media-figure{margin:0;min-inline-size:0}
+.iui-root .iui-learning-media-image img{display:block;max-inline-size:100%;inline-size:100%;max-block-size:280px;aspect-ratio:4/3;object-fit:contain;border-radius:8px}
+.iui-root .iui-learning-media-response>label{display:block;margin-block:12px 6px;font-weight:600}
+.iui-root .iui-learning-media-answer{box-sizing:border-box;inline-size:100%;min-block-size:44px;padding:10px 12px;border:1px solid var(--iui-line);border-radius:8px;font:inherit;color:inherit;background:var(--iui-bg)}
+.iui-root .iui-learning-media-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block-start:16px}
+.iui-root .iui-learning-media button{min-block-size:44px;max-inline-size:100%;padding:9px 14px;border:1px solid var(--iui-line);border-radius:999px;background:var(--iui-bg);color:inherit;font:inherit;white-space:normal;overflow-wrap:anywhere;cursor:pointer}
+.iui-root .iui-learning-media :focus-visible{outline:2px solid var(--iui-accent);outline-offset:3px}
+.iui-root .iui-learning-media button:disabled,.iui-root .iui-learning-media input:disabled{cursor:not-allowed;opacity:.6}
+.iui-root .iui-learning-media button:disabled{background:var(--iui-disabled-bg);border-color:var(--iui-disabled-border);color:var(--iui-disabled-text)}
+.iui-root .iui-learning-media-status{min-block-size:1.5em;line-height:1.5;margin-block:12px 0}
+.iui-root .iui-learning-media[data-phase=correct] .iui-learning-media-status{color:var(--iui-success)}
+.iui-root .iui-learning-media[data-phase=incorrect] .iui-learning-media-status,.iui-root .iui-learning-media[data-phase=missing] .iui-learning-media-status{color:var(--iui-danger)}
+.iui-root .iui-learning-media-explanation{border-inline-start:3px solid var(--iui-line);padding-inline-start:12px;white-space:pre-wrap}
+.iui-root .iui-learning-media-audio audio{display:block;inline-size:100%;max-inline-size:500px;margin-block:14px}
+.iui-root .iui-learning-media-transcript summary{cursor:pointer;min-block-size:44px;display:list-item;padding-block:10px;box-sizing:border-box}
+.iui-root .iui-learning-media-transcript p{white-space:pre-wrap}
+@media(forced-colors:active){.iui-root .iui-learning-media-option[data-selected=true]{outline-color:Highlight}.iui-root .iui-learning-media :focus-visible{outline-color:Highlight}}
+
+
+/* Exact original130 project weather-sidebar rules. */
+.iui-root .iui-weather-sidebar-title{border:1px solid var(--iui-line);border-radius:12px;padding:16px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-weather-sidebar-title>*+*,.iui-weather-title-place>*+*{margin-block-start:12px}.iui-weather-title-note,.iui-weather-title-zone,.iui-weather-title-source,.iui-weather-title-observed{color:var(--iui-muted);font-size:.875rem}.iui-weather-title-text{white-space:pre-wrap}.iui-weather-title-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.iui-weather-title-units{display:flex;gap:4px}.iui-root .iui-weather-sidebar-title :is(select,button){min-block-size:44px;max-inline-size:100%;min-inline-size:0;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);color:inherit;font:inherit;transition:none}.iui-weather-sidebar-title select{flex:1 1 160px}.iui-weather-sidebar-title button{white-space:normal;overflow-wrap:anywhere;cursor:pointer}.iui-weather-title-units [aria-pressed=true]{outline:2px solid var(--iui-focus);outline-offset:-3px;font-weight:700}.iui-weather-title-temperature{font-size:2rem;font-variant-numeric:tabular-nums}.iui-weather-sidebar-title [hidden]{display:none!important}.iui-weather-sidebar-title :focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}.iui-football-situation dl{display:flex;flex-wrap:wrap;gap:12px}.iui-football-situation dl>div{flex:1 1 120px;min-inline-size:0}.iui-football-situation dd{margin:4px 0;font-variant-numeric:tabular-nums}@media(forced-colors:active){.iui-root .iui-weather-sidebar-title,.iui-weather-sidebar-title :is(select,button){border-color:CanvasText}.iui-weather-title-note,.iui-weather-title-zone,.iui-weather-title-source,.iui-weather-title-observed{color:CanvasText}.iui-weather-title-units [aria-pressed=true]{outline-color:Highlight}}
+
+/* Exact original130 project category-correction rules. */
+.iui-root .iui-category-correction{border:1px solid var(--iui-line);border-radius:12px;padding:16px;background:var(--iui-surface-primary);min-inline-size:0;overflow-wrap:anywhere}.iui-category-correction>*+*,.iui-correction-transaction>*+*{margin-block-start:12px}.iui-correction-note,.iui-correction-source,.iui-correction-date{font-size:.875rem;color:var(--iui-muted)}.iui-correction-text{white-space:pre-wrap}.iui-correction-transactions,.iui-correction-preview{list-style:none;padding:0;margin:0}.iui-correction-transaction,.iui-correction-panel{border:1px solid var(--iui-line);border-radius:8px;padding:12px;margin-block-start:12px;min-inline-size:0}.iui-correction-facts{display:flex;flex-wrap:wrap;gap:12px}.iui-correction-facts>div{flex:1 1 140px;min-inline-size:0}.iui-correction-facts dd{margin:4px 0}.iui-correction-money{font-variant-numeric:tabular-nums;text-align:start}.iui-correction-controls,.iui-correction-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.iui-correction-controls select{flex:1 1 180px}.iui-root .iui-category-correction :is(select,button){font:inherit;color:inherit;min-block-size:44px;min-inline-size:0;max-inline-size:100%;padding:8px;border:1px solid var(--iui-line);border-radius:8px;background:var(--iui-surface-primary);transition:none}.iui-category-correction button{white-space:normal;overflow-wrap:anywhere;cursor:pointer}.iui-category-correction [aria-disabled=true]{opacity:.65}.iui-correction-preview-row{padding-block:12px;border-block-end:1px solid var(--iui-line)}.iui-correction-preview-row>*{display:block}.iui-correction-panel .iui-correction-actions{margin-block-start:12px}.iui-category-correction [hidden]{display:none!important}.iui-category-correction :focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}@media(forced-colors:active){.iui-root .iui-category-correction,.iui-correction-transaction,.iui-correction-panel,.iui-category-correction :is(select,button){border-color:CanvasText}.iui-correction-note,.iui-correction-source,.iui-correction-date{color:CanvasText}}
+
+/* Net-worth reference composition. These selectors affect only this reader. */
+.iui-root .iui-net-worth{--iui-net-worth-surface:#fff;border:1px solid var(--iui-line);border-radius:24px;background:var(--iui-net-worth-surface);overflow:hidden;min-inline-size:0;padding-block-end:16px}
+.iui-root .iui-net-worth-header{padding:20px 24px 12px;display:flex;flex-direction:column;gap:4px;min-inline-size:0}
+.iui-root .iui-net-worth-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-inline-size:0}
+.iui-root .iui-net-worth-title,.iui-root .iui-net-worth-value{margin:0;font-size:16px;line-height:26px;font-weight:600;min-inline-size:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iui-root .iui-net-worth-title{flex:1}
+.iui-root .iui-net-worth-value{text-align:end;font-variant-numeric:tabular-nums}
+.iui-root .iui-net-worth-summary{display:flex;flex-wrap:nowrap;align-items:center;gap:4px;font-size:14px;line-height:20px;font-weight:500;color:var(--iui-muted)}
+.iui-root .iui-net-worth-change,.iui-root .iui-net-worth-window{min-inline-size:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iui-root .iui-net-worth-separator{flex:none}
+.iui-root .iui-net-worth-change[data-direction=up]{color:#30a633}.iui-root .iui-net-worth-change[data-direction=down]{color:var(--iui-danger)}
+.iui-root .iui-net-worth-note,.iui-root .iui-net-worth-source{margin:0;font-size:12px;line-height:16px;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-root .iui-net-worth-divider{margin:0 24px;border:0;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-net-worth-intervals{display:flex;flex-wrap:wrap;gap:4px;padding:12px 24px 4px}
+.iui-root .iui-net-worth-interval{border:0;border-radius:999px;padding:6px 12px;min-block-size:32px;min-inline-size:0;background:transparent;color:var(--iui-muted);font:inherit;font-size:14px;line-height:20px}
+.iui-root .iui-net-worth-interval:hover:not(:disabled){background:var(--iui-ghost-hover)}.iui-root .iui-net-worth-interval[aria-pressed=true]{background:var(--iui-ghost-active);color:var(--iui-ink)}
+.iui-root .iui-net-worth-chart-wrap{position:relative;padding:12px 8px 0 24px;min-inline-size:0}
+.iui-root .iui-net-worth-chart{display:block;inline-size:100%;max-inline-size:100%;padding:0;border:0;border-radius:0;background:transparent;color:inherit;min-block-size:0;text-align:initial;touch-action:pan-y}
+.iui-root .iui-net-worth-chart:disabled{background:transparent;opacity:1}.iui-root .iui-net-worth-chart svg{display:block;inline-size:100%;block-size:auto;overflow:visible}
+.iui-root .iui-net-worth-tooltip{position:absolute;z-index:1;top:8px;left:50%;transform:translate(-50%,-100%);max-inline-size:calc(100% - 48px);padding:6px 10px;border-radius:8px;background:var(--iui-ink);color:var(--iui-bg);font-size:12px;line-height:16px;white-space:pre-line;pointer-events:none}
+.iui-root .iui-net-worth-empty{margin:0;padding:24px;color:var(--iui-muted);font-size:14px}
+.iui-root .iui-net-worth-footer{padding:8px 24px 0}.iui-root .iui-net-worth :is(button,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-net-worth [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-net-worth{border-color:CanvasText}.iui-root .iui-net-worth-change[data-direction],.iui-root .iui-net-worth-summary,.iui-root .iui-net-worth-note,.iui-root .iui-net-worth-empty{color:CanvasText}.iui-root .iui-net-worth-interval[aria-pressed=true]{outline:1px solid Highlight}.iui-root .iui-net-worth svg{forced-color-adjust:auto}}
+
+/* A chart is a transparent reading surface in every interactive state. */
+.iui-root .iui-net-worth-chart:hover:enabled,.iui-root .iui-net-worth-chart:active:enabled{background:transparent}
+
+/* Original web-host elevated role, scoped only to this card. */
+.iui-root[data-theme=dark] .iui-net-worth{--iui-net-worth-surface:#212121}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-net-worth{--iui-net-worth-surface:#212121}}
+@supports(color:color-mix(in srgb,white,transparent)){.iui-root .iui-net-worth{--iui-net-worth-surface:rgb(255 255 255 / 70%)}.iui-root[data-theme=dark] .iui-net-worth{--iui-net-worth-surface:rgb(33 33 33 / 96%)}@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-net-worth{--iui-net-worth-surface:rgb(33 33 33 / 96%)}}}
+
+.iui-pressable{min-inline-size:0;overflow-wrap:anywhere}
+.iui-pressable-surface{position:relative;min-block-size:0;border:0;border-radius:inherit;background:transparent;isolation:isolate}
+.iui-pressable-content{padding:0;pointer-events:none;min-inline-size:0}
+.iui-pressable-content>.iui-layout{margin:0}
+.iui-root .iui-pressable-hit{position:absolute;inset:0;padding:0;inline-size:100%;block-size:100%;border:0;border-radius:inherit;background:transparent;color:inherit;cursor:pointer;z-index:1}
+.iui-root .iui-pressable-hit:hover:not(:disabled){background:transparent}
+.iui-root .iui-pressable-hit:active:not(:disabled){background:transparent}
+.iui-root .iui-pressable-hit:focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}
+.iui-pressable[data-tone=primary] .iui-pressable-surface{border:1px solid var(--iui-info)}
+.iui-pressable[data-tone=danger] .iui-pressable-surface{border:1px solid var(--iui-danger)}
+.iui-pressable[data-disabled=true] .iui-pressable-content,.iui-pressable-surface:has(>.iui-pressable-hit:disabled)>.iui-pressable-content{opacity:.5}
+.iui-root .iui-pressable-hit:disabled{cursor:default;background:transparent;border:0}
+.iui-root .iui-pressable-description,.iui-root .iui-pressable-status{font-size:.85rem;color:var(--iui-muted);margin-block:8px 0;line-height:1.5}
+.iui-pressable-status:empty{display:none}
+@media(forced-colors:active){.iui-pressable-surface{border-color:ButtonText}.iui-root .iui-pressable-hit:focus-visible{outline-color:Highlight}.iui-root .iui-pressable-hit:disabled{border:1px dashed GrayText}}
+
+/* Supplied fee/interest reading card. Local roles preserve the original web-host surface. */
+.iui-root .iui-fee-interest{--iui-fee-surface:#fff;--iui-fee-alpha:var(--iui-ink);--iui-fee-soft-active:rgb(26 28 31 / 5%);background:var(--iui-fee-surface);border:1px solid var(--iui-line);border-radius:24px;min-inline-size:0;max-inline-size:100%;overflow:hidden}
+.iui-root .iui-fee-interest-header{display:flex;align-items:flex-start;gap:12px;padding:20px 24px 0;min-inline-size:0}
+.iui-root .iui-fee-interest-heading{flex:1;min-inline-size:0}
+.iui-root .iui-fee-interest-title,.iui-root .iui-fee-interest-total{font-size:16px;line-height:26px;font-weight:600;margin:0;min-inline-size:0}
+.iui-root .iui-fee-interest-total{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:end;font-variant-numeric:tabular-nums}
+.iui-root .iui-fee-interest-control{position:relative;display:flex;align-items:center;max-inline-size:100%;inline-size:max-content}
+.iui-root .iui-fee-interest-select{appearance:none;border:0;border-radius:8px;margin:0;padding:4px 24px 4px 0;background:transparent;color:var(--iui-ink);font:inherit;font-size:14px;line-height:20px;max-inline-size:100%;min-inline-size:0;min-block-size:28px;cursor:pointer}
+.iui-root .iui-fee-interest-select:hover:enabled{background:var(--iui-ghost-hover)}.iui-root .iui-fee-interest-select:disabled{opacity:.5;cursor:default}
+.iui-root .iui-fee-interest-control>.iui-fee-interest-icon{position:absolute;inset-inline-end:4px;inline-size:16px;block-size:16px;pointer-events:none}
+.iui-root .iui-fee-interest-note,.iui-root .iui-fee-interest-description{padding:0 24px 8px;margin:0;font-size:14px;line-height:20px;color:var(--iui-muted);overflow-wrap:anywhere}
+.iui-root .iui-fee-interest-rule{padding:4px 24px}.iui-root .iui-fee-interest-rule hr,.iui-root .iui-fee-interest-row-rule{margin:0;border:0;border-block-start:1px solid var(--iui-line)}
+.iui-root .iui-fee-interest-content{padding:0 24px}.iui-root .iui-fee-interest-content[data-has-entries=true]{padding-block-end:20px}
+.iui-root .iui-fee-interest-row{display:flex;align-items:center;gap:16px;inline-size:100%;min-inline-size:0;padding-block:10px}
+.iui-root .iui-fee-interest-avatar{display:grid;place-items:center;position:relative;flex:none;inline-size:40px;block-size:40px;border-radius:50%;background:var(--iui-fee-alpha)}
+.iui-root .iui-fee-interest-icon{inline-size:24px;block-size:24px}.iui-root .iui-fee-interest-logo{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:contain}.iui-root .iui-fee-interest-avatar[data-logo=loaded]{background:transparent}.iui-root .iui-fee-interest-avatar[data-logo=loaded]>.iui-fee-interest-icon{visibility:hidden}
+.iui-root .iui-fee-interest-details{flex:1;min-inline-size:0}.iui-root .iui-fee-interest-name,.iui-root .iui-fee-interest-amount{font-size:16px;line-height:26px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-inline-size:0}
+.iui-root .iui-fee-interest-amount{text-align:end;font-variant-numeric:tabular-nums}.iui-root .iui-fee-interest-amount[data-tone=secondary]{color:var(--iui-muted)}.iui-root .iui-fee-interest-amount[data-tone=positive]{color:#30a633}.iui-root .iui-fee-interest-amount[data-tone=negative]{color:var(--iui-danger)}
+.iui-root .iui-fee-interest-meta{display:flex;align-items:center;gap:4px;min-inline-size:0;color:var(--iui-muted);font-size:14px;line-height:20px;white-space:nowrap}.iui-root .iui-fee-interest-date{min-inline-size:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.iui-root .iui-fee-interest-account{min-inline-size:0;overflow:hidden;text-overflow:ellipsis}
+.iui-root .iui-fee-interest-empty{display:flex;align-items:center;gap:12px;padding-block:24px;color:var(--iui-muted)}.iui-root .iui-fee-interest-empty>.iui-fee-interest-icon{box-sizing:content-box;padding:6px;border-radius:50%;background:var(--iui-ghost-active)}.iui-root .iui-fee-interest-empty p{margin:0;font-size:14px;line-height:20px}
+.iui-root .iui-fee-interest-more-wrap{padding-block-start:20px}.iui-root .iui-fee-interest-more{display:block;inline-size:100%;border:0;border-radius:999px;background:var(--color-background-primary-soft,var(--app-color-background-control,transparent));color:var(--iui-ink);padding:8px 16px;font:inherit;font-size:14px;line-height:20px;font-weight:500;min-block-size:36px}.iui-root .iui-fee-interest-more:hover:enabled{background:var(--color-background-primary-soft-hover,var(--app-color-background-button-secondary-hover,var(--iui-ghost-hover)))}.iui-root .iui-fee-interest-more:active:enabled{background:var(--color-background-primary-soft-active,var(--app-color-background-button-secondary,var(--iui-fee-soft-active)))}
+.iui-root .iui-fee-interest-footer{padding:0 24px 20px;font-size:14px;line-height:20px}.iui-root .iui-fee-interest :is(button,select,a):focus-visible{outline:2px solid var(--iui-focus);outline-offset:2px}.iui-root .iui-fee-interest [hidden]{display:none!important}
+.iui-root .iui-fee-interest[data-wide=true] .iui-fee-interest-row{padding-block:8px}.iui-root .iui-fee-interest[data-wide=true] .iui-fee-interest-avatar{inline-size:32px;block-size:32px}.iui-root .iui-fee-interest[data-wide=true] .iui-fee-interest-avatar>.iui-fee-interest-icon{inline-size:20px;block-size:20px}.iui-root .iui-fee-interest[data-wide=true] .iui-fee-interest-name,.iui-root .iui-fee-interest[data-wide=true] .iui-fee-interest-amount{font-size:14px;line-height:20px}
+.iui-root[data-theme=dark] .iui-fee-interest{--iui-fee-surface:#212121;--iui-fee-soft-active:rgb(255 255 255 / 5%)}@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-fee-interest{--iui-fee-surface:#212121;--iui-fee-soft-active:rgb(255 255 255 / 5%)}}
+@supports(color:color-mix(in srgb,white,transparent)){.iui-root .iui-fee-interest{--iui-fee-surface:rgb(255 255 255 / 70%)}.iui-root[data-theme=dark] .iui-fee-interest{--iui-fee-surface:rgb(33 33 33 / 96%)}@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-fee-interest{--iui-fee-surface:rgb(33 33 33 / 96%)}}}
+@media(forced-colors:active){.iui-root .iui-fee-interest{border-color:CanvasText}.iui-root .iui-fee-interest-amount[data-tone],.iui-root .iui-fee-interest-note,.iui-root .iui-fee-interest-meta{color:CanvasText}}
+
+@supports(color:color-mix(in oklab,white,transparent)){.iui-root .iui-fee-interest{--iui-fee-alpha:color-mix(in oklab,var(--iui-ink) 10%,transparent)}}
+
+.iui-root .iui-html-view{box-sizing:border-box;min-width:0;max-width:100%;overflow:hidden}
+.iui-root .iui-html-view-frame{background:transparent;border:0;width:100%;max-width:100%;height:100%;min-height:0;display:block}
+
+.iui-root .iui-search-image{--iui-search-image-loading-bg:#e5f3ff;position:relative;min-width:0;max-width:100%;width:max-content;display:grid;isolation:isolate;overflow:hidden}
+.iui-root .iui-search-image-bitmap{display:block;min-width:0;z-index:1;grid-area:1/1;position:relative}
+.iui-root .iui-search-image-loading{z-index:0;grid-area:1/1;width:100%;height:100%;background:var(--theme-user-msg-bg,var(--color-background-info-surface,var(--iui-search-image-loading-bg)));background:light-dark(var(--dil-image-loading-light-bg,var(--theme-user-msg-bg,var(--color-background-info-surface,var(--iui-search-image-loading-bg)))),var(--theme-user-msg-bg,var(--color-background-info-surface,var(--iui-search-image-loading-bg))));animation:iui-search-image-pulse 1s ease-in-out infinite alternate}
+.iui-root .iui-search-image[data-frame]{outline:1px solid var(--d-image-frame-color,var(--alpha-06,color-mix(in srgb,var(--iui-ink) 6%,transparent)));outline-offset:-1px}
+.iui-root .iui-search-image-frame{position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px var(--d-image-frame-color,var(--alpha-06,color-mix(in srgb,var(--iui-ink) 6%,transparent)))}
+.iui-root .iui-search-image-crop{position:absolute;overflow:hidden;background-color:inherit;z-index:1}
+.iui-root .iui-search-image-fallback{animation:iui-search-image-fallback .18s ease-out both}
+.iui-root .iui-search-image[data-hover-zoom] .iui-search-image-bitmap{backface-visibility:hidden;transform-origin:50%;transition:transform .26s cubic-bezier(.22,1,.36,1);transform:scale(1)}
+@keyframes iui-search-image-pulse{to{opacity:.86;filter:brightness(1.04)}}
+@keyframes iui-search-image-fallback{from{opacity:0}to{opacity:1}}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) and (forced-colors:none){.iui-root .iui-search-image[data-hover-zoom]:is(:hover,:has(:focus-visible)) .iui-search-image-bitmap[data-loaded]{transform:scale(1.03)}}
+@media(prefers-reduced-motion:reduce),(forced-colors:active){.iui-root .iui-search-image-loading,.iui-root .iui-search-image-fallback{animation:none}.iui-root .iui-search-image[data-hover-zoom] .iui-search-image-bitmap[data-loaded]{transition:none;transform:none}}
+.iui-root .iui-search-image[hidden],.iui-root .iui-search-image [hidden]{display:none!important}
+.iui-root[data-theme=dark] .iui-search-image{--iui-search-image-loading-bg:#00284d}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-search-image{--iui-search-image-loading-bg:#00284d}}
+.iui-root .iui-layout[data-semantic-gap=true]>:where([data-iui=search-image]+[data-iui]){margin-block-start:16px}
+
+.iui-root .iui-youtube{min-inline-size:0;max-inline-size:100%;color:var(--iui-ink);overflow-wrap:anywhere}
+.iui-root .iui-youtube-caption,.iui-root .iui-youtube-notice,.iui-root .iui-youtube-status{margin-block:12px 0;line-height:1.5}
+.iui-root .iui-youtube-notice{font-size:.875rem;color:var(--iui-muted)}
+.iui-root .iui-youtube-actions{display:flex;flex-wrap:wrap;gap:8px;margin-block-start:16px}
+.iui-root .iui-youtube-viewport{max-inline-size:100%;overflow-x:auto;margin-block-start:16px;border-radius:inherit;background:var(--iui-surface-secondary)}
+.iui-root .iui-youtube-frame{display:block;inline-size:100%;min-inline-size:200px;min-block-size:200px;block-size:auto;aspect-ratio:16/9;border:0;border-radius:inherit}
+.iui-root .iui-youtube button{min-block-size:44px;white-space:normal;overflow-wrap:anywhere}
+.iui-root .iui-youtube :focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
+.iui-root .iui-youtube [hidden]{display:none!important}
+@media(forced-colors:active){.iui-root .iui-youtube{border-color:CanvasText}.iui-root .iui-youtube-notice{color:CanvasText}.iui-root .iui-youtube :focus-visible{outline-color:Highlight}}
+.iui-root .iui-youtube[data-load-mode=direct] .iui-youtube-viewport{margin-block-start:0;aspect-ratio:16/9;min-block-size:200px}
+
+/* Resolved Async Image wrappers; browser-host radius xl=12px, 2xl=16px. */
+.iui-root .iui-async-images{min-width:0;max-width:100%;position:relative}
+.iui-root .iui-async-image-single{--iui-async-border:rgb(26 28 31 / 5%);background:var(--iui-surface-tertiary);overflow:hidden}
+.iui-root .iui-async-image-single[data-frame=true]{border:1px solid var(--color-border-subtle,var(--iui-async-border))}
+.iui-root .iui-async-image-single>.iui-async-image-content{width:100%;height:100%}
+.iui-root .iui-async-image-content,.iui-root .iui-async-image-bento-side{min-width:0;min-height:0}
+.iui-root .iui-async-image-group[data-layout=carousel]>.iui-async-image-content{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:none}
+.iui-root .iui-async-image-group[data-layout=carousel]>.iui-async-image-content>.iui-async-image-tile{flex:0 0 auto}
+.iui-root .iui-async-image-group[data-layout=grid]>.iui-async-image-content{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:768px;width:100%}
+.iui-root .iui-async-image-group[data-layout=bento]>.iui-async-image-content{display:grid;grid-template-columns:minmax(0,1fr) 40%;gap:2px;aspect-ratio:363/200;max-width:768px;width:100%}
+.iui-root .iui-async-image-bento-side{display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:2px}
+.iui-root .iui-async-image-tile{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--iui-surface-tertiary)}
+.iui-root .iui-async-image-tile>.iui-search-image{border-radius:inherit}
+.iui-root .iui-async-image-failure{display:flex;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--iui-tertiary);background:var(--iui-surface-tertiary)}
+.iui-root .iui-async-image-tile:not([data-failure=true]):not(:has(>.iui-search-image[data-phase=error]))>.iui-async-image-failure{display:none}
+.iui-root .iui-async-image-tile .iui-async-image-hit{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;border-radius:0;outline-offset:2px;color:inherit;background:transparent;box-shadow:none;z-index:2}
+.iui-root .iui-async-image-tile .iui-async-image-hit:is(:hover,:active,:disabled){background:transparent;border:0;box-shadow:none}
+.iui-root .iui-async-image-count{position:absolute;inset-inline-end:10px;inset-block-end:10px;padding:4px 8px 4px 6px;border-radius:999px;background:rgb(0 0 0 / 40%);color:#fff;font-size:12px;line-height:16px;font-weight:600;display:inline-flex;align-items:center;gap:2px}
+/* Deliberately identified local basic fallback; original host lightbox is an optional event consumer. */
+.iui-root .iui-async-image-viewer{max-width:min(900px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow:auto;background:var(--iui-bg);color:var(--iui-ink);border:1px solid var(--iui-line);border-radius:12px;padding:16px;margin:16px auto}
+.iui-root .iui-async-image-viewer[popover]{margin:auto}
+.iui-root .iui-async-image-viewer-header,.iui-root .iui-async-image-viewer-nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.iui-root .iui-async-image-viewer-body{margin-block:12px}
+.iui-root .iui-async-image-viewer:popover-open::backdrop{background:rgb(0 0 0 / 40%)}
+.iui-root .iui-async-images [hidden]{display:none!important}
+
+.iui-root .iui-async-image-tile[data-failure=true]>.iui-async-image-failure{position:relative;min-height:18px;width:100%;height:100%}
+
+.iui-root .iui-async-image-single[data-auto-height=true] .iui-async-image-tile:has(>.iui-search-image[data-phase=error])>.iui-async-image-failure{position:relative;min-height:18px}
+
+.iui-root[data-theme=dark] .iui-async-image-single{--iui-async-border:rgb(255 255 255 / 4%)}
+@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-async-image-single{--iui-async-border:rgb(255 255 255 / 4%)}}
+
+/* Original supplied-income reading order. All roles remain component-local. */
+.iui-root .iui-income-tracker{--iui-income-surface:#fff;--iui-income-alpha:var(--iui-ink);background:var(--iui-income-surface);border:1px solid var(--iui-line);border-radius:24px;min-inline-size:0;overflow:hidden}
+.iui-root .iui-income-header{display:flex;align-items:flex-start;gap:16px;padding:20px 24px 16px}.iui-root .iui-income-heading{display:flex;flex-direction:column;gap:2px;flex:1;min-inline-size:0}
+.iui-root .iui-income-title{font-size:16px;line-height:26px;font-weight:600;margin:0}.iui-root .iui-income-subtitle,.iui-root .iui-income-label{font-size:14px;line-height:20px;color:var(--iui-muted);margin:0}
+.iui-root .iui-income-badge{display:grid;place-items:center;flex:none;inline-size:36px;block-size:36px;border-radius:50%;background:var(--iui-income-alpha);color:var(--iui-muted)}.iui-root .iui-income-icon{inline-size:24px;block-size:24px}
+.iui-root .iui-income-rule{padding:4px 24px}.iui-root .iui-income-rule hr,.iui-root .iui-income-body>hr{border:0;border-block-start:1px solid var(--iui-line);margin:0}
+.iui-root .iui-income-body{display:flex;flex-direction:column;gap:16px;padding:12px 24px 20px}.iui-root .iui-income-estimate,.iui-root .iui-income-sources{display:flex;flex-direction:column;gap:2px;min-inline-size:0}
+.iui-root .iui-income-estimate-value{font-size:18px;line-height:28px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-inline-size:0;font-variant-numeric:tabular-nums}
+.iui-root .iui-income-next{display:flex;flex-direction:column;gap:6px}.iui-root .iui-income-paycheck{display:flex;align-items:center;gap:12px;inline-size:100%;min-inline-size:0}
+.iui-root .iui-income-avatar{display:grid;place-items:center;position:relative;flex:none;inline-size:32px;block-size:32px;border-radius:50%;background:var(--iui-income-alpha)}.iui-root .iui-income-avatar>.iui-income-icon{inline-size:20px;block-size:20px}.iui-root .iui-income-avatar>.iui-search-image{position:absolute;inset:0}.iui-root .iui-income-avatar:has(>.iui-search-image[data-phase=loaded]){background:transparent}.iui-root .iui-income-avatar:has(>.iui-search-image[data-phase=loaded])>.iui-income-icon{visibility:hidden}
+.iui-root .iui-income-details{flex:1;min-inline-size:0}.iui-root .iui-income-paycheck-name,.iui-root .iui-income-paycheck-amount,.iui-root .iui-income-sources-value{font-size:14px;line-height:20px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;min-inline-size:0}.iui-root .iui-income-paycheck-amount{text-align:end;font-variant-numeric:tabular-nums}.iui-root .iui-income-paycheck-meta{font-size:14px;line-height:20px;color:var(--iui-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}
+.iui-root .iui-income-empty{display:flex;align-items:center;gap:12px;padding:24px}.iui-root .iui-income-footer{padding:0 24px 20px;font-size:14px;line-height:20px}
+.iui-root[data-theme=dark] .iui-income-tracker{--iui-income-surface:#212121}@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-income-tracker{--iui-income-surface:#212121}}
+@supports(color:color-mix(in srgb,white,transparent)){.iui-root .iui-income-tracker{--iui-income-surface:rgb(255 255 255 / 70%)}.iui-root[data-theme=dark] .iui-income-tracker{--iui-income-surface:rgb(33 33 33 / 96%)}@media(prefers-color-scheme:dark){.iui-root[data-theme=auto] .iui-income-tracker{--iui-income-surface:rgb(33 33 33 / 96%)}}}
+@supports(color:color-mix(in oklab,white,transparent)){.iui-root .iui-income-tracker{--iui-income-alpha:color-mix(in oklab,var(--iui-ink) 10%,transparent)}}
+@media(forced-colors:active){.iui-root .iui-income-tracker{border-color:CanvasText}.iui-root .iui-income-label,.iui-root .iui-income-subtitle,.iui-root .iui-income-paycheck-meta{color:CanvasText}}
+
+/* Original portable completion: the early recovered Video module had no recovered stylesheet. */
+.iui-root .iui-async-video{position:relative;min-width:0;max-width:100%}.iui-root .iui-async-video-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding-block:4px}.iui-root .iui-async-video-card{position:relative;flex:0 0 200px;width:200px;aspect-ratio:9/16;overflow:hidden;border-radius:12px;background:var(--iui-surface);scroll-snap-align:start}.iui-root .iui-async-video-open{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;z-index:2}.iui-root .iui-async-video-open:focus-visible{outline:2px solid currentColor;outline-offset:-3px}.iui-root .iui-video-preview,.iui-root .iui-video-preview-player,.iui-root .iui-video-preview-thumbnail{position:absolute;inset:0}.iui-root .iui-video-preview iframe,.iui-root .iui-video-preview img{width:100%;height:100%;border:0;object-fit:cover}.iui-root .iui-video-preview[data-playing=true] .iui-video-preview-thumbnail{visibility:hidden}.iui-root .iui-video-provider-badge,.iui-root .iui-video-tiktok-badge{position:absolute;bottom:12px;left:12px;display:flex;gap:6px;align-items:center;padding:4px 8px;border-radius:999px;background:#000b;color:white;z-index:1}.iui-root .iui-async-video-content:has(>.iui-async-video-skeleton){display:flex;gap:12px;overflow:hidden}.iui-root .iui-async-video-skeleton{flex:0 0 200px;aspect-ratio:9/16;border-radius:12px;background:var(--iui-line)}.iui-root .iui-async-video-loading-full{height:200px;background:var(--iui-line);border-radius:12px}.iui-root .iui-async-video-previous,.iui-root .iui-async-video-next{margin:4px}.iui-root .iui-async-video [hidden]{display:none!important}
+/* The hit target must not paint over provider thumbnails in any interaction state. */
+.iui-root .iui-async-video button.iui-async-video-open,.iui-root .iui-async-video button.iui-async-video-open:is(:hover,:active,:disabled,[aria-disabled=true]){background:transparent}
+
+/* Original portable action bar, independent of unrecovered historical source. */
+.iui-root .iui-follow-up-action-bar{display:flex;flex-direction:column;gap:8px;min-width:0}.iui-root .iui-follow-up-action-items{display:flex;flex-wrap:wrap;gap:8px}.iui-root button.iui-follow-up-action{min-height:36px;padding:8px 14px;border:1px solid var(--iui-line);border-radius:999px;white-space:normal;overflow-wrap:anywhere;text-align:start}.iui-root .iui-follow-up-action-status{font-size:12px;line-height:18px}.iui-root .iui-follow-up-action-status:empty{display:none}
+
+/* Original portable action bar, independent of unrecovered historical source. */
+.iui-root .iui-conversation-suggestions{display:flex;flex-direction:column;gap:8px;min-width:0}.iui-root .iui-conversation-suggestion-items{display:flex;flex-wrap:wrap;gap:8px}.iui-root button.iui-conversation-suggestion{min-height:36px;padding:8px 14px;border:1px solid var(--iui-line);border-radius:999px;white-space:normal;overflow-wrap:anywhere;text-align:start}.iui-root .iui-conversation-suggestion-status{font-size:12px;line-height:18px}.iui-root .iui-conversation-suggestion-status:empty{display:none}
+
+/* Original portable grid completion; historical ImageGrid source was not recovered. */
+.iui-root .iui-image-grid{display:grid;grid-template-columns:repeat(var(--iui-image-grid-columns,3),minmax(0,1fr));gap:12px;min-width:0;max-width:100%}.iui-root .iui-image-grid-tile{margin:0;min-width:0;display:flex;flex-direction:column;gap:6px}.iui-root button.iui-image-grid-open{display:block;padding:0;width:100%;aspect-ratio:1;overflow:hidden;border:0;border-radius:12px}.iui-root .iui-image-grid-caption{font-size:14px;line-height:20px;overflow-wrap:anywhere}@media(max-width:480px){.iui-root .iui-image-grid{grid-template-columns:repeat(min(var(--iui-image-grid-columns,3),2),minmax(0,1fr))}}
+
+/* Original finite supplied activity reader. */
+.iui-root .iui-upcoming-activity{display:flex;flex-direction:column;gap:12px;min-width:0}.iui-root .iui-upcoming-activity h3{margin:0;font-size:18px;line-height:28px}.iui-root .iui-upcoming-list{list-style:none;margin:0;padding:0}.iui-root .iui-upcoming-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding-block:12px;border-bottom:1px solid var(--iui-line)}.iui-root .iui-upcoming-date{grid-column:1/-1;font-size:14px;line-height:20px}.iui-root .iui-upcoming-amount{overflow-wrap:anywhere;max-width:20ch}.iui-root .iui-upcoming-row[hidden],.iui-root .iui-upcoming-empty[hidden]{display:none!important}.iui-root .iui-upcoming-open{text-align:start;overflow-wrap:anywhere}
+
+.iui-root .iui-spend-month{display:flex;flex-direction:column;gap:12px;min-width:0}.iui-root .iui-spend-month h3,.iui-root .iui-spend-month p{margin:0}.iui-root .iui-spend-total{font-size:24px;line-height:32px;font-weight:600;overflow-wrap:anywhere}.iui-root .iui-spend-categories{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}.iui-root .iui-spend-category{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.iui-root .iui-spend-bar{grid-column:1/-1;height:8px;overflow:hidden;border-radius:4px;background:var(--iui-line)}.iui-root .iui-spend-fill{display:block;height:100%;background:currentColor;border-radius:inherit}.iui-root .iui-spend-category-open{text-align:start;overflow-wrap:anywhere}.iui-root .iui-spend-amount{max-width:20ch;overflow-wrap:anywhere}
+

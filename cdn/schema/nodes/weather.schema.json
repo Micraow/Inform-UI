@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c73346d9d8dad186fbf409946c03b57a12c47a4ff778e8261563e773bae4d9a4:node:weather",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:53433f381fe317de5e9d5268352a36354d96c2603f31640db0411427e1d5a4d3:node:weather",
   "title": "Inform UI node subset: weather",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -9,8 +9,31 @@
       "oneOf": [
         {
           "$ref": "#/$defs/WeatherNode"
+        },
+        {
+          "$ref": "#/$defs/WeatherSidebarTitleNode"
         }
       ]
+    },
+    "TravelEventSource": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
     },
     "WeatherNode": {
       "type": "object",
@@ -279,6 +302,135 @@
         "current",
         "daily",
         "hourly"
+      ],
+      "additionalProperties": false
+    },
+    "WeatherSidebarPlace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "observedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "temperature": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "enum": [
+                "clear",
+                "partly-cloudy",
+                "cloudy",
+                "rain",
+                "snow",
+                "storm",
+                "fog",
+                "unknown"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "timezone",
+        "observedAt",
+        "temperature",
+        "unit",
+        "condition"
+      ],
+      "additionalProperties": false
+    },
+    "WeatherSidebarTitleNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "weather-sidebar-title"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "places": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WeatherSidebarPlace"
+          },
+          "minItems": 0,
+          "maxItems": 30
+        },
+        "initialPlaceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "unit": {
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "places",
+        "unit"
       ],
       "additionalProperties": false
     }
