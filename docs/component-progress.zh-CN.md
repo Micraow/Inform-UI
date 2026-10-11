@@ -1,6 +1,6 @@
 # 组件进度
 
-142项完整实现覆盖：53项历史验收，89项完整实现待验。另6项部分实现、108项未实现，总计256。协议注册154不是完成数。五项有限子集的缺失功能见 reference-function-subsets.md。
+144项完整实现覆盖：53项历史验收，91项完整实现待验。另4项部分实现、108项未实现，总计256。协议注册154不是完成数。FollowUp与Conversation普通功能独立验收已通过，新源码原生与参考像素验收仍待完成。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -81,7 +81,7 @@
 | entity-overview | Entity Overview | 未实现 | No implementation in the current library. |
 | entity-card | Entity Card | 未实现 | No implementation in the current library. |
 | prompt-suggestions | Follow Up | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| conversation-suggestions | Conversational Onboarding Follow Up Pills | 部分实现 | Missing reference phase and icon behavior. |
+| conversation-suggestions | Conversational Onboarding Follow Up Pills | 完整实现待验 | Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending. |
 | news-article | News Article | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | flight-option | Flight Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | currency-converter | Currency Converter | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
@@ -173,7 +173,7 @@
 | flight-results | Flight Results | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | flight-search-form | Flight Search Form | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | flight-tracker | Flight Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| follow-up-action-bar | Follow Up Action Bar | 部分实现 | Missing reference footer and wrapped layouts. |
+| follow-up-action-bar | Follow Up Action Bar | 完整实现待验 | Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending. |
 | follow-up-card-group | Follow Up Card Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | follow-up-quiz | Follow Up Quiz | 未实现 | No implementation in the current library. |
 | gen-image | Gen Image | 未实现 | No implementation in the current library. |

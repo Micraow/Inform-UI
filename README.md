@@ -1,3 +1,7 @@
+# Current canonical scope
+
+FollowUpActionBar and ConversationSuggestions now have their supplied presentation, resolution and local intent branches, with independent ordinary functional review passed. Current scope is **144 implemented (53 historical acceptances and 91 awaiting full acceptance), 4 partial, 108 missing**. Protocol registration stays154. New native and reference-pixel acceptance is separate. The checkpoint descriptions below retain their original source/test boundaries.
+
 # Conversation presentation source checkpoint
 
 The current source adds supplied pending/resolved/failed states, decorative images, reference-informed pill layout and separate local voice/new-turn requests. Existing suggestions/prompt inputs remain compatible. See [the contract](docs/conversation-presentations.md). The 35 Conversation and 38 FollowUp tests passed in the current source build; no fresh full/native run is claimed. The packaged CDN remains unified154. Regenerate source and CDN with the documented commands below. Canonical counts remain142 complete,6 partial,108 missing pending independent complete-contract review.

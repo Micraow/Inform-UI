@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T10:19:45.197888+00:00",
+  "as_of_utc": "2026-10-11T10:56:59.566409+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 89,
+    "implemented_pending_verification": 91,
     "functionally_verified": 53,
     "not_implemented": 108,
-    "partial": 6
+    "partial": 4
   },
-  "completeImplementationCoverage": 142,
+  "completeImplementationCoverage": 144,
   "registeredProtocolNodes": 154,
   "components": [
     {
@@ -554,8 +554,8 @@
       "id": "conversation-suggestions",
       "name": "Conversational Onboarding Follow Up Pills",
       "layer": "domain",
-      "status": "partial",
-      "note": "Missing reference phase and icon behavior."
+      "status": "implemented_pending_verification",
+      "note": "Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending."
     },
     {
       "id": "news-article",
@@ -1198,8 +1198,8 @@
       "id": "follow-up-action-bar",
       "name": "Follow Up Action Bar",
       "layer": "domain",
-      "status": "partial",
-      "note": "Missing reference footer and wrapped layouts."
+      "status": "implemented_pending_verification",
+      "note": "Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending."
     },
     {
       "id": "follow-up-card-group",

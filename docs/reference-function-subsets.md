@@ -1,22 +1,20 @@
 # Late-family reference contracts still incomplete
 
-As of 2026-10-11, the recovery protocol registers 154 node types. That is not a
-count of complete canonical reference components. The fixed source candidates
-below implement useful finite subsets with passing local checks. They must remain
-`partial` in the 256-ID reference inventory until the missing functional contracts
-have been restored and verified. A local DOM pass does not resolve those gaps.
-
-The five reclassifications produce **142 implemented (53 historical functional
-acceptances plus 89 pending verification), 6 partial, and 108 not implemented**.
-The existing sixth partial ID is `weather`. No historical acceptance is upgraded.
+The project registers 154 protocol node types. Following the two supplied-presentation
+extensions and independent functional review, canonical coverage is **144 implemented
+(53 historical acceptances plus 91 pending full acceptance), 4 partial, and 108 missing**.
+Follow-up action bar and Conversation suggestions have moved to implemented-pending;
+new native and reference-pixel acceptance remains separate. Image grid, Upcoming,
+Spend, and the pre-existing weather row remain partial. Historical subset identities
+and the original functional gates are retained below for traceability.
 
 ## Follow-up action bar
 
 The newer source extension documents Footer/wrapped layouts, container-width selection,
 64-pixel pending state, fallback and distinct local intent branches in
 [follow-up presentations](follow-up-presentations.md). Its exact `7b5e55b` source
-passed 38 local tests and a separate eight-flow consumer. It remains partial
-pending independent review of the complete functional gates below. The original
+passed 38 local tests and a separate eight-flow consumer. Independent ordinary functional review passed on the combined `342bc8f` source;
+the canonical row is now implemented-pending, with native/pixel acceptance still open. The original
 subset identity and the gaps which motivated this extension are retained here.
 
 - Current candidate: `e2d4a0261ac0b40d1abc69e6c811b9208100efb1`.
@@ -35,9 +33,9 @@ subset identity and the gaps which motivated this extension are retained here.
 
 A source extension now adds pending/resolved/failed states, decorative images and
 explicit local voice/new-turn requests while retaining the old API. See
-[conversation presentations](conversation-presentations.md). Initial source tests
-cover the new branches; independent complete-contract review is pending, so the
-canonical row remains partial. The original subset and gap inventory follows.
+[conversation presentations](conversation-presentations.md). Initial source tests and independent ordinary functional review
+cover the new branches; the canonical row is now implemented-pending, with new
+native and reference-pixel acceptance still open. The original subset and gap inventory follows.
 
 - Current subset was first consumed in the fixed `a3345630f7683db5b7ae77d729ecc000abab65d3`
   integration. Its `suggestions`/`prompt` API is an original limited contract.
