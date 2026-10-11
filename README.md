@@ -1,3 +1,11 @@
+## Source-only 149 checkpoint
+
+The finite supplied Video Carousel is restored from the original early project core, schema, preview and official YouTube SDK adapter. Its dedicated 200px-card CSS is original portable completion: the historical stylesheet was not recovered. Supplied records remain finite, provider URLs must match IDs, and hosts can cancel the immutable video-open intent before canonical new-tab navigation. Turning off hover preview does not prohibit thumbnail or SDK requests.
+
+Build, types, 25 component workflows and six common deferred-queue tests pass. All 21 renderer microtask sites pass the typed ownership gate. Four existing reader queues now enter through the shared lifecycle guard. Actual external SDK playback and native visual acceptance remain pending.
+
+Run `npm ci && npm run generate && npm run build`. Preserve async-video-definitions.json and the queue gate's explicit exception file. Packaged schema/CDN remain130. Saves use [skip ci].
+
 ## Source-only 148 checkpoint
 
 Ledger Income Tracker is restored from the original early source, schema insertion and dedicated CSS. Supplied estimate, paychecks and date labels remain independent display data. Build, types, 18 author checks and six independent ordinary workflows pass.

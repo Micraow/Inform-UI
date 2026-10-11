@@ -145,10 +145,10 @@ export function renderLedger(c:RendererContext,n:LedgerNode,l:LedgerLabels):HTML
     const form = event.target as HTMLFormElement | null;
     if (!alive || form?.tagName !== 'FORM' || !form.contains(out)) return;
     const before = revision, allowed = active(out) && controls.every(active);
-    queueMicrotask(()=>{
+    queueMicrotask(c.lifecycle.guard(()=>{
       if (!alive || !out.isConnected || !form.contains(out)) return;
       if (!event.defaultPrevented && before === revision && allowed && active(out) && controls.every(active)) { revision++; reset(); } else paint();
-    });
+    }));
   };
   c.doc.addEventListener('reset',onReset,true);
   c.bind(()=>{

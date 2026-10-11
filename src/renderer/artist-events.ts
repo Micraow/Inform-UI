@@ -57,10 +57,10 @@ export function renderArtistEvents(c: RendererContext, n: ArtistUpcomingEventsNo
     const reset = (event:Event) => {
       if (!alive || !root.isConnected || event.target!==filter.form) return;
       const form=filter.form, before=revision, allowed=!blocked();
-      queueMicrotask(()=>{
+      queueMicrotask(c.lifecycle.guard(()=>{
         if (!alive || !root.isConnected || event.defaultPrevented || filter.form!==form || revision!==before) return;
         if (allowed && !blocked()) month='';paint();
-      });
+      }));
     };
     c.on(c.doc,'reset',reset);
     // A reset inside a shadow tree does not bubble to ownerDocument.

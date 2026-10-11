@@ -1,3 +1,4 @@
+import {inspectAsyncVideo,checkAsyncVideoStatus} from './async-video.js';
 import {inspectIncomeTracker} from './income-tracker.js';
 import {inspectLottie,checkLottieTimes} from './lottie.js';
 import {inspectAsyncImages,checkAsyncImageStatus} from './async-image.js';
@@ -267,6 +268,7 @@ function walkNodes(document: IUIDocument, visit: (node: Node, path: string, pare
 function nodeValues(node: Node, path: string): [Value, string][] {
   const values: [Value, string][] = [];
   if(node.type==='lottie')for(const key of ['currentTime','advanceRate']as const)if(node[key]!==undefined)values.push([node[key]!,path+'/'+key]);
+  if(node.type==='async-video-carousel'&&node.status!==undefined)values.push([node.status,path+'/status']);
   if((node.type==='async-image'||node.type==='async-image-group')&&node.status!==undefined)values.push([node.status,path+'/status']);
   for (const key of ['disabled', 'error'] as const) if (key in node) { const v=(node as unknown as Record<string,Value>)[key]; if(v!==undefined)values.push([v,`${path}/${key}`]); }
   if ('value' in node && node.value !== undefined) values.push([node.value, `${path}/value`]);
@@ -351,6 +353,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='youtube')inspectYouTube(node,path,add);
     if(node.type==='async-image'||node.type==='async-image-group')inspectAsyncImages(node,path,add,isSafeURL);
     if(node.type==='lottie')inspectLottie(node,path,add);
+    if(node.type==='async-video-carousel')inspectAsyncVideo(node,path,add,isSafeURL);
     if(node.type==='ledger-income-tracker')inspectIncomeTracker(node,path,add,isSafeURL);
     if(node.type==='pressable')inspectPressable(node,path,add);
     if(node.type==='ledger-net-worth')inspectNetWorth(node,path,add,isSafeURL);
@@ -470,6 +473,7 @@ function resolveState(document: IUIDocument, state: Record<string, Scalar>): Sta
   let largestValueText = 0;
   walkNodes(document, (node, path) => {
     if(node.type==='lottie')capture(()=>checkLottieTimes(node,path,v=>evaluate(v,path),add));
+    if(node.type==='async-video-carousel')capture(()=>checkAsyncVideoStatus(node,path,v=>evaluate(v,path+'/status'),add));
     if(node.type==='async-image'||node.type==='async-image-group')capture(()=>checkAsyncImageStatus(node,path,v=>evaluate(v,path+'/status'),add));
     for (const [value, at] of nodeValues(node, path)) capture(() => { largestValueText = Math.max(largestValueText, textUnits(value)); const resolved=evaluate(value, at); if((at===`${path}/disabled`||(node.type==='checklist'&&/^\/items\/\d+\/disabled$/.test(at.slice(path.length))))&&typeof resolved!=='boolean') add(issue('INPUT_TYPE',at,'disabled must resolve to a boolean.')); if(at===`${path}/error`&&typeof resolved!=='string') add(issue('INPUT_TYPE',at,'error must resolve to a string.')); });
     if (node.type === 'loading' && node.progress !== undefined) capture(() => {

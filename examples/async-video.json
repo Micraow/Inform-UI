@@ -1,0 +1,33 @@
+{
+  "version": "iui/1",
+  "title": "Original finite provider-record reading",
+  "state": {
+    "videoStatus": "resolved"
+  },
+  "body": [
+    {
+      "type": "async-video-carousel",
+      "id": "supplied-video-rail",
+      "status": {
+        "$": "videoStatus"
+      },
+      "hoverPreview": false,
+      "items": [
+        {
+          "provider": "youtube",
+          "videoId": "AbCdEf012_-",
+          "title": "Original syntax-only YouTube record",
+          "url": "https://www.youtube.com/watch?v=AbCdEf012_-"
+        },
+        {
+          "provider": "tiktok",
+          "videoId": "9000000000000000001",
+          "title": "Original syntax-only TikTok record",
+          "url": "https://www.tiktok.com/@inform_fixture/video/9000000000000000001",
+          "thumbnailUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGPQmhZNEmIY1TCqYfhqAABDbxsQbPuAcQAAAABJRU5ErkJggg=="
+        }
+      ],
+      "fallback": "Supplied video records are unavailable."
+    }
+  ]
+}

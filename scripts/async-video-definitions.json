@@ -1,0 +1,78 @@
+{
+  "AsyncVideoCarouselNode": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "const": "async-video-carousel"
+      },
+      "id": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/AsyncVideoItem"
+        },
+        "minItems": 0,
+        "maxItems": 20
+      },
+      "status": {
+        "$ref": "#/$defs/Value"
+      },
+      "hoverPreview": {
+        "type": "boolean"
+      },
+      "disabled": {
+        "type": "boolean"
+      },
+      "fallback": {
+        "type": "string",
+        "maxLength": 2000
+      }
+    },
+    "required": [
+      "type"
+    ],
+    "additionalProperties": false
+  },
+  "AsyncVideoItem": {
+    "type": "object",
+    "properties": {
+      "provider": {
+        "enum": [
+          "youtube",
+          "tiktok"
+        ]
+      },
+      "videoId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300
+      },
+      "url": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048
+      },
+      "thumbnailUrl": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 500000
+      }
+    },
+    "required": [
+      "provider",
+      "videoId",
+      "title",
+      "url"
+    ],
+    "additionalProperties": false
+  }
+}

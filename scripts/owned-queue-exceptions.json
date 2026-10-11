@@ -1,0 +1,7 @@
+[
+  {
+    "path": "src/renderer/reader-controls.ts",
+    "fingerprint": "5ebac5959cb8fad6f3f0f10c627de993306a81ce91c60183d3eb72403eef767c",
+    "reason": "Shared reset reconcile is already generation-guarded; its outer finally must settle the pending counter even after retirement. The entire canonical call syntax is pinned."
+  }
+]
