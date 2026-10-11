@@ -10621,6 +10621,1026 @@
       ],
       "additionalProperties": false
     },
+    "ScoreTeam": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "record": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "ScorePair": {
+      "type": "object",
+      "properties": {
+        "home": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "away": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "home",
+        "away"
+      ],
+      "additionalProperties": false
+    },
+    "ScorePeriod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "home": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "away": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "home",
+        "away"
+      ],
+      "additionalProperties": false
+    },
+    "ScoreLeader": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rebounds": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assists": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "teamId",
+        "points",
+        "rebounds",
+        "assists"
+      ],
+      "additionalProperties": false
+    },
+    "SoccerEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "minute": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "goal",
+            "yellow-card",
+            "red-card",
+            "substitution",
+            "var",
+            "other"
+          ]
+        },
+        "teamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "player": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "minute",
+        "kind",
+        "teamId"
+      ],
+      "additionalProperties": false
+    },
+    "NbaScoreGame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "competition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "homeTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "awayTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "homeScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awayScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "home-win",
+            "away-win",
+            "draw",
+            "unknown"
+          ]
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "clock": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScorePeriod"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "leaders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreLeader"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "competition",
+        "startsAt",
+        "homeTeamId",
+        "awayTeamId",
+        "status",
+        "homeScore",
+        "awayScore",
+        "outcome",
+        "periods",
+        "leaders"
+      ],
+      "additionalProperties": false
+    },
+    "SoccerScoreGame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "competition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "homeTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "awayTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "homeScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awayScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "home-win",
+            "away-win",
+            "draw",
+            "unknown"
+          ]
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "clock": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "aggregate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScorePair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "penalties": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ScorePair"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SoccerEvent"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "competition",
+        "startsAt",
+        "homeTeamId",
+        "awayTeamId",
+        "status",
+        "homeScore",
+        "awayScore",
+        "outcome",
+        "aggregate",
+        "penalties",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "NbaScoresNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "nba-scores"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTeam"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "games": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NbaScoreGame"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "timezone",
+        "teams",
+        "games"
+      ],
+      "additionalProperties": false
+    },
+    "SoccerGamesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "soccer-games"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTeam"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "games": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SoccerScoreGame"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "timezone",
+        "teams",
+        "games"
+      ],
+      "additionalProperties": false
+    },
+    "FootballPeriod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "home": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "away": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "quarter",
+            "overtime"
+          ]
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "home",
+        "away",
+        "kind",
+        "number"
+      ],
+      "additionalProperties": false
+    },
+    "FootballSituation": {
+      "type": "object",
+      "properties": {
+        "down": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "distance": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ballOn": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "down",
+        "distance",
+        "ballOn"
+      ],
+      "additionalProperties": false
+    },
+    "FootballScoringEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "periodId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clock": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "touchdown",
+            "field-goal",
+            "extra-point",
+            "two-point",
+            "safety",
+            "other"
+          ]
+        },
+        "teamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "points": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "id",
+        "periodId",
+        "clock",
+        "kind",
+        "teamId",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "FootballGame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "competition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startsAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "homeTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "awayTeamId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "status": {
+          "enum": [
+            "scheduled",
+            "live",
+            "final",
+            "postponed",
+            "cancelled",
+            "unknown"
+          ]
+        },
+        "homeScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "awayScore": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "home-win",
+            "away-win",
+            "draw",
+            "unknown"
+          ]
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "clock": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        },
+        "periods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FootballPeriod"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "possessionTeamId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "situation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FootballSituation"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FootballScoringEvent"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "competition",
+        "startsAt",
+        "homeTeamId",
+        "awayTeamId",
+        "status",
+        "homeScore",
+        "awayScore",
+        "outcome",
+        "periods",
+        "possessionTeamId",
+        "situation",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "AmericanFootballGamesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "american-football-games"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 3000
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScoreTeam"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "games": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FootballGame"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+          "minLength": 17,
+          "maxLength": 22
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "timezone",
+        "teams",
+        "games"
+      ],
+      "additionalProperties": false
+    },
     "TournamentTeam": {
       "type": "object",
       "properties": {
@@ -13614,6 +14634,2358 @@
         "type"
       ]
     },
+    "LearningAudioLabelCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "learning-audio-label-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "audio": {
+          "$ref": "#/$defs/LearningPracticeAudio"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "prompt",
+        "audio",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "LearningImageChoiceCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "learning-image-choice-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LearningImageOption"
+          },
+          "minItems": 2,
+          "maxItems": 8
+        },
+        "answerId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "prompt",
+        "options",
+        "answerId"
+      ],
+      "additionalProperties": false
+    },
+    "LearningImageLabelCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "learning-image-label-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "$ref": "#/$defs/LearningPracticeImage"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "minItems": 1,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "prompt",
+        "image",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "LearningImageOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "image": {
+          "$ref": "#/$defs/LearningPracticeImage"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "image"
+      ],
+      "additionalProperties": false
+    },
+    "LearningPracticeAudio": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300000
+        },
+        "transcript": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        }
+      },
+      "required": [
+        "src",
+        "transcript"
+      ],
+      "additionalProperties": false
+    },
+    "LearningPracticeImage": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300000
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "src",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "WeatherSidebarPlace": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "observedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])",
+              "minLength": 17,
+              "maxLength": 22
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "temperature": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "enum": [
+                "clear",
+                "partly-cloudy",
+                "cloudy",
+                "rain",
+                "snow",
+                "storm",
+                "fog",
+                "unknown"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/TravelEventSource"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "timezone",
+        "observedAt",
+        "temperature",
+        "unit",
+        "condition"
+      ],
+      "additionalProperties": false
+    },
+    "WeatherSidebarTitleNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "weather-sidebar-title"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "places": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WeatherSidebarPlace"
+          },
+          "minItems": 0,
+          "maxItems": 30
+        },
+        "initialPlaceId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "unit": {
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "places",
+        "unit"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerCorrectionCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerCorrectionTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+              "minLength": 10,
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "money": {
+          "$ref": "#/$defs/LedgerExactMoney"
+        },
+        "originalCategoryId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "suggestedCategoryId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "date",
+        "money",
+        "originalCategoryId",
+        "suggestedCategoryId",
+        "confidence"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerLowConfidenceCategoryCorrectionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-low-confidence-category-correction"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "snapshotId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCorrectionCategory"
+          },
+          "minItems": 0,
+          "maxItems": 40
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerCorrectionTransaction"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "snapshotId",
+        "categories",
+        "transactions"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerNetWorthPoint": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "date",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerNetWorthInterval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "currentValue": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "changePercent": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000,
+              "maximum": 1000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "changeWindow": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerNetWorthPoint"
+          },
+          "minItems": 0,
+          "maxItems": 120
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "currentValue",
+        "change",
+        "changePercent",
+        "changeWindow",
+        "points"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerNetWorthNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-net-worth"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$(?![\\s\\S])",
+          "minLength": 3,
+          "maxLength": 3
+        },
+        "intervals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerNetWorthInterval"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "initialIntervalId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "balanceNote": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "conversionNote": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "currency",
+        "intervals"
+      ],
+      "additionalProperties": false
+    },
+    "PressableNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "pressable"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "actionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        },
+        "tone": {
+          "enum": [
+            "default",
+            "primary",
+            "danger"
+          ]
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1,
+          "maxItems": 30
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "actionId",
+        "children"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerFeeInterestTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "dateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "categoryLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "accountDetail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountTone": {
+          "enum": [
+            "primary",
+            "secondary",
+            "positive",
+            "negative"
+          ]
+        },
+        "maskedAmountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "logoUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "categoryIcon": {
+          "enum": [
+            "bank",
+            "credit-card",
+            "receipt",
+            "percent"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "displayName",
+        "dateLabel",
+        "categoryLabel",
+        "accountDetail",
+        "amountLabel"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerFeeInterestRange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalPaid": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": -1000000000000,
+              "maximum": 1000000000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "totalPaidLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalStatusLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "conversionNote": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "emptyLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerFeeInterestTransaction"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "totalPaid",
+        "totalPaidLabel",
+        "transactions"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerFeeInterestPaidNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-fee-interest-paid"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        },
+        "ranges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LedgerFeeInterestRange"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "initialRangeId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showLessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "ranges"
+      ],
+      "additionalProperties": false
+    },
+    "HtmlViewNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "html-view"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "html": {
+          "type": "string",
+          "maxLength": 200000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 40,
+          "maximum": 4096
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 40,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9][0-9]?)%$(?![\\s\\S])"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "html"
+      ],
+      "additionalProperties": false
+    },
+    "YoutubeNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "youtube"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadMode": {
+          "enum": [
+            "direct",
+            "on-demand"
+          ]
+        },
+        "videoId": {
+          "type": "string",
+          "minLength": 11,
+          "maxLength": 11,
+          "pattern": "^[A-Za-z0-9_-]{11}$(?![\\s\\S])"
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "startSeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 86400
+        },
+        "fullscreen": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "$ref": "#/$defs/Value"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "videoId"
+      ],
+      "additionalProperties": false
+    },
+    "SearchImageNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "search-image"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "searchImage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SearchImageRecord"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minWidth": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minHeight": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxWidth": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxHeight": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "aspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "fit": {
+          "enum": [
+            "cover",
+            "contain",
+            "fill",
+            "none",
+            "scale-down"
+          ]
+        },
+        "position": {
+          "type": "string",
+          "maxLength": 50,
+          "pattern": "^[0-9]+(?:\\.[0-9]+)?% [0-9]+(?:\\.[0-9]+)?%$(?![\\s\\S])"
+        },
+        "frame": {
+          "type": "boolean"
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "hoverZoom": {
+          "type": "boolean"
+        },
+        "hideOnFailure": {
+          "type": "boolean"
+        },
+        "sourcePending": {
+          "type": "boolean"
+        },
+        "upgradeToFullRes": {
+          "const": false
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "contentCropFit": {
+          "enum": [
+            "contain",
+            "cover"
+          ]
+        },
+        "containOutsideAspectRatio": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            "max": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "searchImage"
+      ],
+      "additionalProperties": false
+    },
+    "SearchImageRecord": {
+      "type": "object",
+      "properties": {
+        "content_url": {
+          "type": "string",
+          "maxLength": 500000
+        },
+        "thumbnail_url": {
+          "type": "string",
+          "maxLength": 500000
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "content_size": {
+          "$ref": "#/$defs/SearchImageSize"
+        },
+        "thumbnail_size": {
+          "$ref": "#/$defs/SearchImageSize"
+        },
+        "thumbnail_crop_info": {
+          "type": "object",
+          "properties": {
+            "center_x_percent": {
+              "type": "number",
+              "minimum": -1000,
+              "maximum": 1000
+            },
+            "center_y_percent": {
+              "type": "number",
+              "minimum": -1000,
+              "maximum": 1000
+            }
+          },
+          "required": [
+            "center_x_percent",
+            "center_y_percent"
+          ],
+          "additionalProperties": false
+        },
+        "content_presentation": {
+          "$ref": "#/$defs/SearchImagePresentation"
+        },
+        "thumbnail_presentation": {
+          "$ref": "#/$defs/SearchImagePresentation"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "SearchImagePresentation": {
+      "type": "object",
+      "properties": {
+        "aspect_ratio": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1000
+        },
+        "placement": {
+          "$ref": "#/$defs/SearchImagePlacement"
+        }
+      },
+      "required": [
+        "aspect_ratio",
+        "placement"
+      ],
+      "additionalProperties": false
+    },
+    "SearchImagePlacement": {
+      "type": "object",
+      "properties": {
+        "left": {
+          "type": "number",
+          "minimum": -1000,
+          "maximum": 1000
+        },
+        "top": {
+          "type": "number",
+          "minimum": -1000,
+          "maximum": 1000
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1000
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1000
+        }
+      },
+      "required": [
+        "left",
+        "top",
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
+    "SearchImageSize": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "additionalProperties": false
+    },
+    "AsyncImageGroupNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "async-image-group"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SearchImageRecord"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "status": {
+          "$ref": "#/$defs/Value"
+        },
+        "interactive": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "layout": {
+          "enum": [
+            "carousel",
+            "bento"
+          ]
+        },
+        "size": {
+          "enum": [
+            "sm",
+            "lg"
+          ]
+        },
+        "aspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "itemWidth": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "itemHeight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        }
+      },
+      "required": [
+        "type",
+        "images"
+      ],
+      "additionalProperties": false
+    },
+    "AsyncImageNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "async-image"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SearchImageRecord"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "status": {
+          "$ref": "#/$defs/Value"
+        },
+        "interactive": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minWidth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4096
+        },
+        "minHeight": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4096
+        },
+        "maxWidth": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "pattern": "^(?:100|[1-9]?[0-9](?:\\.[0-9]{1,3})?)%$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxHeight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "aspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "fit": {
+          "enum": [
+            "cover",
+            "contain",
+            "fill",
+            "none",
+            "scale-down"
+          ]
+        },
+        "frame": {
+          "type": "boolean"
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        }
+      },
+      "required": [
+        "type",
+        "images"
+      ],
+      "additionalProperties": false
+    },
+    "LottieNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "lottie"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/LottieData"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000000
+            }
+          ]
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "aspectRatio": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 100
+        },
+        "fit": {
+          "enum": [
+            "contain",
+            "cover",
+            "fill",
+            "none"
+          ]
+        },
+        "loop": {
+          "type": "boolean"
+        },
+        "currentTime": {
+          "$ref": "#/$defs/Value"
+        },
+        "advanceRate": {
+          "$ref": "#/$defs/Value"
+        },
+        "animationStartTime": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600
+        },
+        "animationEndTime": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3600
+        }
+      },
+      "required": [
+        "type",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "LottieData": {
+      "type": "object",
+      "properties": {
+        "v": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "fr": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 240
+        },
+        "ip": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 864000
+        },
+        "op": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 864000
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LottieJSON"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LottieJSON"
+          },
+          "minItems": 0,
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "v",
+        "w",
+        "h",
+        "fr",
+        "ip",
+        "op",
+        "layers"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/LottieJSON"
+      }
+    },
+    "LottieJSON": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "maxLength": 200000
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LottieJSON"
+          },
+          "minItems": 0,
+          "maxItems": 500
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/LottieJSON"
+          }
+        }
+      ]
+    },
+    "LedgerIncomePaycheck": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nextPayment": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frequency": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "accountDetail": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "logoUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8192
+        },
+        "icon": {
+          "enum": [
+            "banknote",
+            "bank",
+            "briefcase",
+            "calendar"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "SpendCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fraction": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "amountLabel",
+        "fraction"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerSpendSoFarThisMonthNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-spend-so-far-this-month"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "periodLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "totalLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SpendCategory"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "comparisonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "periodLabel",
+        "totalLabel",
+        "categories"
+      ],
+      "additionalProperties": false
+    },
+    "UpcomingActivity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "amountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dateLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "income",
+            "expense",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "amountLabel",
+        "dateLabel"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerUpcomingActivityNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-upcoming-activity"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "activities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UpcomingActivity"
+          },
+          "minItems": 0,
+          "maxItems": 60
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "activities"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "src": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "id",
+        "src",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "image-grid"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridItem"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "fit": {
+          "enum": [
+            "contain",
+            "cover"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "images"
+      ],
+      "additionalProperties": false
+    },
+    "ConversationSuggestion": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "prompt"
+      ],
+      "additionalProperties": false
+    },
+    "ConversationSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "conversation-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "suggestions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ConversationSuggestion"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "suggestions"
+      ],
+      "additionalProperties": false
+    },
+    "FollowUpAction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "FollowUpActionBarNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "follow-up-action-bar"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FollowUpAction"
+          },
+          "minItems": 0,
+          "maxItems": 12
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "actions"
+      ],
+      "additionalProperties": false
+    },
+    "LedgerIncomeTrackerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-income-tracker"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hasIncome": {
+          "type": "boolean"
+        },
+        "estimatedMonthlyIncomeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "incomeSourcesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nextPaycheck": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LedgerIncomePaycheck"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "emptyLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "maskedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "estimatedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nextPaycheckLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "recurringIncomeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "noUpcomingLabel": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "dateUnavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/LedgerSource"
+        }
+      },
+      "required": [
+        "type",
+        "label",
+        "hasIncome"
+      ],
+      "additionalProperties": false
+    },
+    "AsyncVideoCarouselNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "async-video-carousel"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AsyncVideoItem"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        },
+        "status": {
+          "$ref": "#/$defs/Value"
+        },
+        "hoverPreview": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "AsyncVideoItem": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "enum": [
+            "youtube",
+            "tiktok"
+          ]
+        },
+        "videoId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500000
+        }
+      },
+      "required": [
+        "provider",
+        "videoId",
+        "title",
+        "url"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -13962,6 +17334,15 @@
           "$ref": "#/$defs/LedgerRecurringTransactionsNode"
         },
         {
+          "$ref": "#/$defs/NbaScoresNode"
+        },
+        {
+          "$ref": "#/$defs/SoccerGamesNode"
+        },
+        {
+          "$ref": "#/$defs/AmericanFootballGamesNode"
+        },
+        {
           "$ref": "#/$defs/BasketballTournamentNode"
         },
         {
@@ -14005,6 +17386,69 @@
         },
         {
           "$ref": "#/$defs/LedgerFinanceStatusBannerNode"
+        },
+        {
+          "$ref": "#/$defs/LearningAudioLabelCardNode"
+        },
+        {
+          "$ref": "#/$defs/LearningImageChoiceCardNode"
+        },
+        {
+          "$ref": "#/$defs/LearningImageLabelCardNode"
+        },
+        {
+          "$ref": "#/$defs/WeatherSidebarTitleNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerLowConfidenceCategoryCorrectionNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerNetWorthNode"
+        },
+        {
+          "$ref": "#/$defs/PressableNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerFeeInterestPaidNode"
+        },
+        {
+          "$ref": "#/$defs/HtmlViewNode"
+        },
+        {
+          "$ref": "#/$defs/SearchImageNode"
+        },
+        {
+          "$ref": "#/$defs/YoutubeNode"
+        },
+        {
+          "$ref": "#/$defs/AsyncImageNode"
+        },
+        {
+          "$ref": "#/$defs/AsyncImageGroupNode"
+        },
+        {
+          "$ref": "#/$defs/LottieNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerSpendSoFarThisMonthNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerUpcomingActivityNode"
+        },
+        {
+          "$ref": "#/$defs/ImageGridNode"
+        },
+        {
+          "$ref": "#/$defs/ConversationSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/FollowUpActionBarNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerIncomeTrackerNode"
+        },
+        {
+          "$ref": "#/$defs/AsyncVideoCarouselNode"
         }
       ]
     }

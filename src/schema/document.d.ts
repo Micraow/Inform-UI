@@ -146,6 +146,9 @@ export type Node =
   | TransactionListNode
   | LedgerAccountsNode
   | LedgerRecurringTransactionsNode
+  | NbaScoresNode
+  | SoccerGamesNode
+  | AmericanFootballGamesNode
   | BasketballTournamentNode
   | ElectionResultsNode
   | NbaGameBoxscoreNode
@@ -160,7 +163,28 @@ export type Node =
   | LedgerTransactionDetailNode
   | RecommendationCardNode
   | PromptChecklistNode
-  | LedgerFinanceStatusBannerNode;
+  | LedgerFinanceStatusBannerNode
+  | LearningAudioLabelCardNode
+  | LearningImageChoiceCardNode
+  | LearningImageLabelCardNode
+  | WeatherSidebarTitleNode
+  | LedgerLowConfidenceCategoryCorrectionNode
+  | LedgerNetWorthNode
+  | PressableNode
+  | LedgerFeeInterestPaidNode
+  | HtmlViewNode
+  | SearchImageNode
+  | YoutubeNode
+  | AsyncImageNode
+  | AsyncImageGroupNode
+  | LottieNode
+  | LedgerSpendSoFarThisMonthNode
+  | LedgerUpcomingActivityNode
+  | ImageGridNode
+  | ConversationSuggestionsNode
+  | FollowUpActionBarNode
+  | LedgerIncomeTrackerNode
+  | AsyncVideoCarouselNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -699,6 +723,15 @@ export type LedgerFinanceStatusBannerNode1 =
         title: string;
         description: string;
       };
+    };
+export type LottieJSON =
+  | null
+  | boolean
+  | number
+  | string
+  | LottieJSON[]
+  | {
+      [k: string]: LottieJSON;
     };
 
 /**
@@ -2948,6 +2981,196 @@ export interface LedgerRecurringRecord {
   note?: string;
   source?: LedgerSource;
 }
+export interface NbaScoresNode {
+  type: "nba-scores";
+  id?: string;
+  label: string;
+  description?: string;
+  timezone: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  teams: ScoreTeam[];
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  games: NbaScoreGame[];
+  observedAt?: string;
+  source?: TravelEventSource;
+}
+export interface ScoreTeam {
+  id: string;
+  label: string;
+  record?: string;
+}
+export interface NbaScoreGame {
+  id: string;
+  label: string;
+  competition: string;
+  startsAt: string | null;
+  homeTeamId: string;
+  awayTeamId: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled" | "unknown";
+  homeScore: number | null;
+  awayScore: number | null;
+  outcome: "home-win" | "away-win" | "draw" | "unknown";
+  periodLabel?: string;
+  clock?: string;
+  venue?: string;
+  note?: string;
+  source?: TravelEventSource;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  periods: ScorePeriod[];
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  leaders: ScoreLeader[];
+}
+export interface ScorePeriod {
+  id: string;
+  label: string;
+  home: number | null;
+  away: number | null;
+}
+export interface ScoreLeader {
+  id: string;
+  label: string;
+  teamId: string;
+  points: number | null;
+  rebounds: number | null;
+  assists: number | null;
+}
+export interface SoccerGamesNode {
+  type: "soccer-games";
+  id?: string;
+  label: string;
+  description?: string;
+  timezone: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  teams: ScoreTeam[];
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  games: SoccerScoreGame[];
+  observedAt?: string;
+  source?: TravelEventSource;
+}
+export interface SoccerScoreGame {
+  id: string;
+  label: string;
+  competition: string;
+  startsAt: string | null;
+  homeTeamId: string;
+  awayTeamId: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled" | "unknown";
+  homeScore: number | null;
+  awayScore: number | null;
+  outcome: "home-win" | "away-win" | "draw" | "unknown";
+  periodLabel?: string;
+  clock?: string;
+  venue?: string;
+  note?: string;
+  source?: TravelEventSource;
+  aggregate: ScorePair | null;
+  penalties: ScorePair | null;
+  /**
+   * @minItems 0
+   * @maxItems 120
+   */
+  events: SoccerEvent[];
+}
+export interface ScorePair {
+  home: number | null;
+  away: number | null;
+}
+export interface SoccerEvent {
+  id: string;
+  minute: string;
+  kind: "goal" | "yellow-card" | "red-card" | "substitution" | "var" | "other";
+  teamId: string | null;
+  player?: string;
+  note?: string;
+}
+export interface AmericanFootballGamesNode {
+  type: "american-football-games";
+  id?: string;
+  label: string;
+  description?: string;
+  timezone: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  teams: ScoreTeam[];
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  games: FootballGame[];
+  observedAt?: string;
+  source?: TravelEventSource;
+}
+export interface FootballGame {
+  id: string;
+  label: string;
+  competition: string;
+  startsAt: string | null;
+  homeTeamId: string;
+  awayTeamId: string;
+  status: "scheduled" | "live" | "final" | "postponed" | "cancelled" | "unknown";
+  homeScore: number | null;
+  awayScore: number | null;
+  outcome: "home-win" | "away-win" | "draw" | "unknown";
+  periodLabel?: string;
+  clock?: string;
+  venue?: string;
+  note?: string;
+  source?: TravelEventSource;
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  periods: FootballPeriod[];
+  possessionTeamId: string | null;
+  situation: FootballSituation | null;
+  /**
+   * @minItems 0
+   * @maxItems 120
+   */
+  events: FootballScoringEvent[];
+}
+export interface FootballPeriod {
+  id: string;
+  label: string;
+  home: number | null;
+  away: number | null;
+  kind: "quarter" | "overtime";
+  number: number;
+}
+export interface FootballSituation {
+  down: number | null;
+  distance: number | null;
+  ballOn: string | null;
+}
+export interface FootballScoringEvent {
+  id: string;
+  periodId: string | null;
+  clock: string | null;
+  kind: "touchdown" | "field-goal" | "extra-point" | "two-point" | "safety" | "other";
+  teamId: string | null;
+  points: number | null;
+  note?: string;
+}
 export interface BasketballTournamentNode {
   type: "basketball-tournament";
   id?: string;
@@ -3516,4 +3739,502 @@ export interface TransactionDetailBudget {
   limitLabel: string;
   progressPct: number;
   color?: "default" | "success" | "warning" | "danger" | "info" | "accent";
+}
+export interface LearningAudioLabelCardNode {
+  type: "learning-audio-label-card";
+  id?: string;
+  label: string;
+  prompt: string;
+  explanation?: string;
+  disabled?: boolean;
+  audio: LearningPracticeAudio;
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  answers: [string, ...string[]];
+}
+export interface LearningPracticeAudio {
+  src: string;
+  transcript: string;
+}
+export interface LearningImageChoiceCardNode {
+  type: "learning-image-choice-card";
+  id?: string;
+  label: string;
+  prompt: string;
+  explanation?: string;
+  disabled?: boolean;
+  /**
+   * @minItems 2
+   * @maxItems 8
+   */
+  options: [LearningImageOption, LearningImageOption, ...LearningImageOption[]];
+  answerId: string;
+}
+export interface LearningImageOption {
+  id: string;
+  label: string;
+  image: LearningPracticeImage;
+}
+export interface LearningPracticeImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+export interface LearningImageLabelCardNode {
+  type: "learning-image-label-card";
+  id?: string;
+  label: string;
+  prompt: string;
+  explanation?: string;
+  disabled?: boolean;
+  image: LearningPracticeImage;
+  /**
+   * @minItems 1
+   * @maxItems 12
+   */
+  answers: [string, ...string[]];
+}
+export interface WeatherSidebarTitleNode {
+  type: "weather-sidebar-title";
+  id?: string;
+  label: string;
+  description?: string;
+  /**
+   * @minItems 0
+   * @maxItems 30
+   */
+  places: WeatherSidebarPlace[];
+  initialPlaceId?: string;
+  unit: "celsius" | "fahrenheit";
+}
+export interface WeatherSidebarPlace {
+  id: string;
+  label: string;
+  timezone: string;
+  observedAt: string | null;
+  temperature: number | null;
+  unit: "celsius" | "fahrenheit";
+  condition: ("clear" | "partly-cloudy" | "cloudy" | "rain" | "snow" | "storm" | "fog" | "unknown") | null;
+  source?: TravelEventSource;
+}
+export interface LedgerLowConfidenceCategoryCorrectionNode {
+  type: "ledger-low-confidence-category-correction";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  snapshotId: string;
+  /**
+   * @minItems 0
+   * @maxItems 40
+   */
+  categories: LedgerCorrectionCategory[];
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  transactions: LedgerCorrectionTransaction[];
+  disabled?: boolean;
+}
+export interface LedgerCorrectionCategory {
+  id: string;
+  label: string;
+}
+export interface LedgerCorrectionTransaction {
+  id: string;
+  label: string;
+  date: string | null;
+  money: LedgerExactMoney;
+  originalCategoryId: string | null;
+  suggestedCategoryId: string | null;
+  confidence: number | null;
+  note?: string;
+}
+export interface LedgerNetWorthNode {
+  type: "ledger-net-worth";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  currency: string;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  intervals: LedgerNetWorthInterval[];
+  initialIntervalId?: string;
+  masked?: boolean;
+  disabled?: boolean;
+  balanceNote?: string;
+  conversionNote?: string;
+}
+export interface LedgerNetWorthInterval {
+  id: string;
+  label: string;
+  currentValue: number | null;
+  change: number | null;
+  changePercent: number | null;
+  changeWindow: string;
+  /**
+   * @minItems 0
+   * @maxItems 120
+   */
+  points: LedgerNetWorthPoint[];
+}
+export interface LedgerNetWorthPoint {
+  date: string;
+  value: number | null;
+}
+export interface PressableNode {
+  type: "pressable";
+  id?: string;
+  label: string;
+  description?: string;
+  actionId: string;
+  disabled?: Value;
+  tone?: "default" | "primary" | "danger";
+  /**
+   * @minItems 1
+   * @maxItems 30
+   */
+  children: [Node, ...Node[]];
+}
+export interface LedgerFeeInterestPaidNode {
+  type: "ledger-fee-interest-paid";
+  id?: string;
+  label: string;
+  description?: string;
+  source?: LedgerSource;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  ranges: LedgerFeeInterestRange[];
+  initialRangeId?: string;
+  masked?: boolean;
+  disabled?: boolean;
+  showMoreLabel?: string;
+  showLessLabel?: string;
+  maskedLabel?: string;
+}
+export interface LedgerFeeInterestRange {
+  id: string;
+  label: string;
+  totalPaid: number | null;
+  totalPaidLabel: string;
+  totalStatusLabel?: string;
+  conversionNote?: string;
+  emptyLabel?: string;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  transactions: LedgerFeeInterestTransaction[];
+}
+export interface LedgerFeeInterestTransaction {
+  id: string;
+  displayName: string;
+  dateLabel: string;
+  categoryLabel: string;
+  accountDetail: string;
+  amountLabel: string;
+  amountTone?: "primary" | "secondary" | "positive" | "negative";
+  maskedAmountLabel?: string;
+  logoUrl?: string;
+  categoryIcon?: "bank" | "credit-card" | "receipt" | "percent";
+}
+export interface HtmlViewNode {
+  type: "html-view";
+  id?: string;
+  html: string;
+  title?: string;
+  height?: number;
+  width?: number | string;
+}
+export interface SearchImageNode {
+  type: "search-image";
+  id?: string;
+  searchImage: SearchImageRecord | null;
+  alt?: string;
+  width?: number | string;
+  height?: number | string;
+  minWidth?: number | string;
+  minHeight?: number | string;
+  maxWidth?: number | string;
+  maxHeight?: number | string;
+  aspectRatio?: number | string;
+  fit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  position?: string;
+  frame?: boolean;
+  radius?: number;
+  hoverZoom?: boolean;
+  hideOnFailure?: boolean;
+  sourcePending?: boolean;
+  upgradeToFullRes?: false;
+  fallback?: string;
+  contentCropFit?: "contain" | "cover";
+  containOutsideAspectRatio?: {
+    min: number;
+    max: number;
+  };
+}
+export interface SearchImageRecord {
+  content_url?: string;
+  thumbnail_url?: string;
+  title?: string;
+  content_size?: SearchImageSize;
+  thumbnail_size?: SearchImageSize;
+  thumbnail_crop_info?: {
+    center_x_percent: number;
+    center_y_percent: number;
+  };
+  content_presentation?: SearchImagePresentation;
+  thumbnail_presentation?: SearchImagePresentation;
+}
+export interface SearchImageSize {
+  width: number;
+  height: number;
+}
+export interface SearchImagePresentation {
+  aspect_ratio: number;
+  placement: SearchImagePlacement;
+}
+export interface SearchImagePlacement {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+export interface YoutubeNode {
+  type: "youtube";
+  id?: string;
+  label: string;
+  loadMode?: "direct" | "on-demand";
+  videoId: string;
+  caption?: string;
+  startSeconds?: number;
+  fullscreen?: boolean;
+  disabled?: Value;
+}
+export interface AsyncImageNode {
+  type: "async-image";
+  id?: string;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  images: SearchImageRecord[];
+  status?: Value;
+  interactive?: boolean;
+  disabled?: boolean;
+  fallback?: string;
+  alt?: string;
+  width?: number | string;
+  height?: number | string;
+  minWidth?: number;
+  minHeight?: number;
+  maxWidth?: number | string;
+  maxHeight?: number;
+  aspectRatio?: number | string;
+  fit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  frame?: boolean;
+  radius?: number;
+}
+export interface AsyncImageGroupNode {
+  type: "async-image-group";
+  id?: string;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  images: SearchImageRecord[];
+  status?: Value;
+  interactive?: boolean;
+  disabled?: boolean;
+  fallback?: string;
+  layout?: "carousel" | "bento";
+  size?: "sm" | "lg";
+  aspectRatio?: number | string;
+  itemWidth?: number | string;
+  itemHeight?: number;
+}
+export interface LottieNode {
+  type: "lottie";
+  id?: string;
+  source: LottieData | string;
+  alt?: string;
+  width?: number;
+  height?: number;
+  aspectRatio?: number;
+  fit?: "contain" | "cover" | "fill" | "none";
+  loop?: boolean;
+  currentTime?: Value;
+  advanceRate?: Value;
+  animationStartTime?: number;
+  animationEndTime?: number;
+}
+export interface LottieData {
+  v: string;
+  w: number;
+  h: number;
+  fr: number;
+  ip: number;
+  op: number;
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  layers: LottieJSON[];
+  /**
+   * @minItems 0
+   * @maxItems 100
+   */
+  assets?: LottieJSON[];
+  [k: string]: LottieJSON;
+}
+export interface LedgerSpendSoFarThisMonthNode {
+  type: "ledger-spend-so-far-this-month";
+  id?: string;
+  label: string;
+  periodLabel: string;
+  totalLabel: string | null;
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  categories: SpendCategory[];
+  comparisonLabel?: string;
+  emptyLabel?: string;
+  masked?: boolean;
+  maskedLabel?: string;
+  disabled?: boolean;
+}
+export interface SpendCategory {
+  id: string;
+  label: string;
+  amountLabel: string | null;
+  fraction: number | null;
+}
+export interface LedgerUpcomingActivityNode {
+  type: "ledger-upcoming-activity";
+  id?: string;
+  label: string;
+  /**
+   * @minItems 0
+   * @maxItems 60
+   */
+  activities: UpcomingActivity[];
+  emptyLabel?: string;
+  masked?: boolean;
+  maskedLabel?: string;
+  disabled?: boolean;
+}
+export interface UpcomingActivity {
+  id: string;
+  title: string;
+  amountLabel: string | null;
+  dateLabel: string | null;
+  kind?: "income" | "expense" | "other";
+}
+export interface ImageGridNode {
+  type: "image-grid";
+  id?: string;
+  label?: string;
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  images: ImageGridItem[];
+  columns?: number;
+  fit?: "contain" | "cover";
+  disabled?: boolean;
+}
+export interface ImageGridItem {
+  id: string;
+  src: string;
+  alt: string;
+  caption?: string;
+}
+export interface ConversationSuggestionsNode {
+  type: "conversation-suggestions";
+  id?: string;
+  label?: string;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  suggestions: ConversationSuggestion[];
+  disabled?: boolean;
+}
+export interface ConversationSuggestion {
+  id: string;
+  label: string;
+  prompt: string;
+  disabled?: boolean;
+}
+export interface FollowUpActionBarNode {
+  type: "follow-up-action-bar";
+  id?: string;
+  label?: string;
+  /**
+   * @minItems 0
+   * @maxItems 12
+   */
+  actions: FollowUpAction[];
+  disabled?: boolean;
+}
+export interface FollowUpAction {
+  id: string;
+  label: string;
+  disabled?: boolean;
+}
+export interface LedgerIncomeTrackerNode {
+  type: "ledger-income-tracker";
+  id?: string;
+  label: string;
+  subtitle?: string;
+  hasIncome: boolean;
+  estimatedMonthlyIncomeLabel?: string;
+  incomeSourcesLabel?: string;
+  nextPaycheck?: LedgerIncomePaycheck | null;
+  emptyLabel?: string;
+  masked?: boolean;
+  maskedLabel?: string;
+  estimatedLabel?: string;
+  nextPaycheckLabel?: string;
+  recurringIncomeLabel?: string;
+  noUpcomingLabel?: string;
+  dateUnavailableLabel?: string;
+  source?: LedgerSource;
+}
+export interface LedgerIncomePaycheck {
+  name?: string | null;
+  amountLabel?: string | null;
+  nextPayment?: string | null;
+  frequency?: string | null;
+  accountDetail?: string | null;
+  logoUrl?: string;
+  icon?: "banknote" | "bank" | "briefcase" | "calendar";
+}
+export interface AsyncVideoCarouselNode {
+  type: "async-video-carousel";
+  id?: string;
+  /**
+   * @minItems 0
+   * @maxItems 20
+   */
+  items?: AsyncVideoItem[];
+  status?: Value;
+  hoverPreview?: boolean;
+  disabled?: boolean;
+  fallback?: string;
+}
+export interface AsyncVideoItem {
+  provider: "youtube" | "tiktok";
+  videoId: string;
+  title: string;
+  url: string;
+  thumbnailUrl?: string;
 }
