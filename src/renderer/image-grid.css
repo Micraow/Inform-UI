@@ -1,2 +1,25 @@
 /* Original portable grid completion; historical ImageGrid source was not recovered. */
 .iui-root .iui-image-grid{display:grid;grid-template-columns:repeat(var(--iui-image-grid-columns,3),minmax(0,1fr));gap:12px;min-width:0;max-width:100%}.iui-root .iui-image-grid-tile{margin:0;min-width:0;display:flex;flex-direction:column;gap:6px}.iui-root button.iui-image-grid-open{display:block;padding:0;width:100%;aspect-ratio:1;overflow:hidden;border:0;border-radius:12px}.iui-root .iui-image-grid-caption{font-size:14px;line-height:20px;overflow-wrap:anywhere}@media(max-width:480px){.iui-root .iui-image-grid{grid-template-columns:repeat(min(var(--iui-image-grid-columns,3),2),minmax(0,1fr))}}
+/* Supplied mosaic/recommendation/live layouts; the ordinary grid stays compatible. */
+.iui-root .iui-image-grid[hidden],.iui-root .iui-image-grid [hidden]{display:none!important}
+.iui-root .iui-image-grid[data-presentation=mosaic]{display:flex;flex-direction:column;width:760px;max-width:100%;gap:16px}
+.iui-root .iui-image-grid-mosaic{display:flex;flex-direction:column;gap:2px;border-radius:16px;overflow:hidden;width:100%}
+.iui-root .iui-image-grid-row{display:flex;gap:2px;align-items:stretch;width:100%;min-width:0}
+.iui-root .iui-image-grid-row .iui-image-grid-tile{min-width:0;min-height:0;margin:0;overflow:hidden;aspect-ratio:auto;border-radius:0}
+.iui-root .iui-image-grid-row .iui-image-grid-open{height:100%;width:100%;aspect-ratio:auto;border-radius:0}
+.iui-root .iui-image-grid-placeholder{min-width:0;background:var(--iui-surface-tertiary);animation:iui-grid-loading 1.5s ease-in-out infinite alternate}
+.iui-root .iui-image-grid[data-presentation=live]{display:flex;width:100%;height:64px;gap:2px;border-radius:24px;overflow:hidden}
+.iui-root .iui-image-grid[data-presentation=live] .iui-image-grid-tile{flex:1;min-width:0;height:64px;margin:0;border-radius:0;aspect-ratio:auto}
+.iui-root .iui-image-grid-passive{width:100%;height:100%}
+.iui-root .iui-image-grid-recommendations{display:flex;flex-wrap:wrap;gap:8px;align-items:center;grid-column:1/-1}
+.iui-root button.iui-image-grid-recommendation,.iui-root button.iui-image-grid-recommendation-toggle{display:flex;align-items:center;gap:8px;height:40px;padding:8px 16px 8px 8px;border:1px solid var(--iui-line);border-radius:999px;max-width:100%}
+.iui-root .iui-image-grid-recommendation .iui-search-image{flex:0 0 24px}
+.iui-root .iui-image-grid-recommendation span{max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;line-height:20px}
+.iui-root button.iui-image-grid-recommendation-toggle{min-width:72px;justify-content:center;padding-inline:16px}
+.iui-root .iui-image-grid-recommendation-placeholder{width:156px;height:40px;border-radius:999px;background:var(--iui-hover);animation:iui-grid-loading 1.5s ease-in-out infinite alternate}
+.iui-root .iui-image-grid-pending,.iui-root .iui-image-grid-fallback{grid-column:1/-1}
+.iui-root .iui-image-grid-viewer-frame{width:100%;min-height:0}
+@keyframes iui-grid-loading{to{filter:brightness(1.04);opacity:.86}}
+@media(prefers-reduced-motion:reduce){.iui-root .iui-image-grid-placeholder,.iui-root .iui-image-grid-recommendation-placeholder{animation:none}}
+
+.iui-root .iui-image-grid button.iui-image-grid-open,.iui-root .iui-image-grid button.iui-image-grid-open:is(:hover,:active,:disabled,[aria-disabled=true]){background:transparent;color:inherit}

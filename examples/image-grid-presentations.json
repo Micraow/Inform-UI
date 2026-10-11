@@ -1,0 +1,105 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "image-grid",
+      "presentation": "mosaic",
+      "images": [
+        {
+          "id": "blue",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAgklEQVR4nO3QQQ2AMADAwInBGobnhRB+OOC7LlxSAc2N63700Vh+EA8QIECAAIUDBAgQIEDhAAECBGhboOOcuwQIECBAgMIBAgQIEKBwgAABAgQoHCBAgAABCgcIECBAgMIBAgQIEKBwgJJAfwgQIECAAIUDBAgQIEDhAAECBAhQuBeVDoQnQ0zBawAAAABJRU5ErkJggg==",
+          "alt": "Original blue rectangular panel",
+          "caption": "Original supplied 96 by 64 color panel"
+        },
+        {
+          "id": "orange",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABgCAIAAAAip+O/AAAAiElEQVR4nO3PQQ2AMADAwGlBIa5RsBB+uFi35JIK6I35fkc38gOA+gCgPgCoDwDqA4D6AKA+AKgPAOoDgPoAoD4AqA8WAZ77Wh8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQALYNoA6gDqAOoA6gDqAOoA6gDqAOoA6gLrjAT/z+hW2qjYzgQAAAABJRU5ErkJggg==",
+          "alt": "Original orange rectangular panel",
+          "caption": "Original supplied 64 by 96 color panel"
+        },
+        {
+          "id": "green",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAIAAAABc2X6AAAAgElEQVR4nO3PQQ2AQBDAQPzgClcIJYQfGnix6U1SAZ3tup+l2n4/AAYGBgYGBl4m4HrA9YDrAdcDrvcZvJ/HqICBgYGBgQcFDAwMDAw8KGBgYGBg4EEBAwMDAwMPChgYGBgYeFDAwMDA6YDrAdcDrgdcD7gecD3gesD1gOstB34BqURH9lpHuBMAAAAASUVORK5CYII=",
+          "alt": "Original green rectangular panel",
+          "caption": "Original supplied 80 by 80 color panel"
+        },
+        {
+          "id": "purple",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAA8CAIAAAAiz+n/AAAAkElEQVR4nO3QQQ2AMADAwHlED8IQRgg/XAzoLqmA5sZ53ZrQeP1gkUCDbgUadCvQoFuBBt0KNOhWoEG3Av036H07koEG3Qo06FagQbcCDboVaNCtQINuBRp0K9CgW4EG3Qo06FagQbcCDboVaNCtQINuBXpVaIH+RKBBtwINuhVo0K1Ag24FGnQr0KBbgZ7UA3AS9GwJtZ8zAAAAAElFTkSuQmCC",
+          "alt": "Original purple rectangular panel",
+          "caption": "Original supplied 120 by 60 color panel"
+        },
+        {
+          "id": "yellow",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAB4CAIAAAAhVwZfAAAAhklEQVR4nO3OQQ2AMAAAsZnBPXpwQgi/uYDb0qQCOu7nXc74fSAdJi0tHSAtLR0gLS0dIC0tHSAtLR2wb/o6j89IS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS6+VrpGWlg6QlpYOkJaWDpCWlg6QlpYOkJbeLT0BZX/xmzsqIwAAAAAASUVORK5CYII=",
+          "alt": "Original yellow rectangular panel",
+          "caption": "Original supplied 60 by 120 color panel"
+        }
+      ],
+      "rows": [
+        {
+          "aspectRatio": 2.4,
+          "tiles": [
+            {
+              "imageId": "blue",
+              "aspectRatio": 1.5,
+              "flexGrow": 3
+            },
+            {
+              "imageId": "orange",
+              "aspectRatio": 0.6666666666666666,
+              "flexGrow": 1
+            }
+          ]
+        },
+        {
+          "aspectRatio": 3,
+          "tiles": [
+            {
+              "imageId": "green",
+              "aspectRatio": 1,
+              "flexGrow": 1
+            },
+            {
+              "imageId": "purple",
+              "aspectRatio": 2,
+              "flexGrow": 2
+            },
+            {
+              "imageId": "yellow",
+              "aspectRatio": 0.5,
+              "flexGrow": 1
+            }
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "id": "compare_blue",
+          "label": "Compare the blue panel",
+          "query": "Compare only the supplied blue panel with the other supplied panels.",
+          "thumbnailSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABACAIAAABqVuVZAAAAgklEQVR4nO3QQQ2AMADAwInBGobnhRB+OOC7LlxSAc2N63700Vh+EA8QIECAAIUDBAgQIEDhAAECBGhboOOcuwQIECBAgMIBAgQIEKBwgAABAgQoHCBAgAABCgcIECBAgMIBAgQIEKBwgJJAfwgQIECAAIUDBAgQIEDhAAECBAhQuBeVDoQnQ0zBawAAAABJRU5ErkJggg=="
+        },
+        {
+          "id": "compare_orange",
+          "label": "Compare the orange panel",
+          "query": "Compare only the supplied orange panel with the other supplied panels.",
+          "thumbnailSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABgCAIAAAAip+O/AAAAiElEQVR4nO3PQQ2AMADAwGlBIa5RsBB+uFi35JIK6I35fkc38gOA+gCgPgCoDwDqA4D6AKA+AKgPAOoDgPoAoD4AqA8WAZ77Wh8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQALYNoA6gDqAOoA6gDqAOoA6gDqAOoA6gLrjAT/z+hW2qjYzgQAAAABJRU5ErkJggg=="
+        },
+        {
+          "id": "compare_green",
+          "label": "Compare the green panel",
+          "query": "Compare only the supplied green panel with the other supplied panels.",
+          "thumbnailSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAIAAAABc2X6AAAAgElEQVR4nO3PQQ2AQBDAQPzgClcIJYQfGnix6U1SAZ3tup+l2n4/AAYGBgYGBl4m4HrA9YDrAdcDrvcZvJ/HqICBgYGBgQcFDAwMDAw8KGBgYGBg4EEBAwMDAwMPChgYGBgYeFDAwMDA6YDrAdcDrgdcD7gecD3gesD1gOstB34BqURH9lpHuBMAAAAASUVORK5CYII="
+        },
+        {
+          "id": "compare_purple",
+          "label": "Compare the purple panel",
+          "query": "Compare only the supplied purple panel with the other supplied panels.",
+          "thumbnailSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAA8CAIAAAAiz+n/AAAAkElEQVR4nO3QQQ2AMADAwHlED8IQRgg/XAzoLqmA5sZ53ZrQeP1gkUCDbgUadCvQoFuBBt0KNOhWoEG3Av036H07koEG3Qo06FagQbcCDboVaNCtQINuBRp0K9CgW4EG3Qo06FagQbcCDboVaNCtQINuBXpVaIH+RKBBtwINuhVo0K1Ag24FGnQr0KBbgZ7UA3AS9GwJtZ8zAAAAAElFTkSuQmCC"
+        }
+      ],
+      "viewer": "local"
+    }
+  ]
+}

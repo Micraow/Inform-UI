@@ -16656,6 +16656,121 @@
       ],
       "additionalProperties": false
     },
+    "ImageGridTile": {
+      "type": "object",
+      "properties": {
+        "imageId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "flexGrow": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "imageId"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridRow": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "tiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridTile"
+          },
+          "minItems": 1,
+          "maxItems": 24
+        }
+      },
+      "required": [
+        "tiles"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridPlaceholderTile": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "flexGrow": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "ImageGridPlaceholderRow": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "tiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridPlaceholderTile"
+          },
+          "minItems": 1,
+          "maxItems": 24
+        }
+      },
+      "required": [
+        "tiles"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridRecommendation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "thumbnailSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "query",
+        "thumbnailSrc"
+      ],
+      "additionalProperties": false
+    },
     "ImageGridNode": {
       "type": "object",
       "properties": {
@@ -16693,6 +16808,60 @@
         },
         "disabled": {
           "type": "boolean"
+        },
+        "presentation": {
+          "enum": [
+            "grid",
+            "mosaic",
+            "live"
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridRow"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridRecommendation"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "recommendationsExpanded": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "loading": {
+          "type": "boolean"
+        },
+        "placeholderRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridPlaceholderRow"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "viewer": {
+          "enum": [
+            "intent",
+            "local"
+          ]
         }
       },
       "required": [

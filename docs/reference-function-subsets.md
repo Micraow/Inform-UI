@@ -50,6 +50,12 @@ native and reference-pixel acceptance still open. The original subset and gap in
 
 ## Image grid
 
+The current source extension adds supplied mosaic geometry, More/Fewer with stable
+image nodes, passive live mode, resolution/placeholder states and a local-basic
+viewer. See [image-grid presentations](image-grid-presentations.md). Its43 local
+contract tests pass; independent complete-contract review remains pending, so this
+row remains partial. The initial subset and the original gates follow.
+
 - Current candidate: `a3345630f7683db5b7ae77d729ecc000abab65d3`.
 - Present subset: up to 24 images, a regular 1–4-column grid, captions and an
   `{id,index}` opening intent. There is no local viewer or recommendation mode.

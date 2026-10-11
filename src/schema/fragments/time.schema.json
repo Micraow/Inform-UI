@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:4f16c4c2be3b8d7dd39c8568fa3666b8d0ec2ef428f198f81e3d8868514530e5:document:base+time",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:9de92dc7b43dea005d56f6093e8e5613a01c4ae8452e1d2bfc9ceaa5fe8d3f78:document:base+time",
   "title": "Inform UI document subset: base, time",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -4262,11 +4262,180 @@
         },
         "disabled": {
           "type": "boolean"
+        },
+        "presentation": {
+          "enum": [
+            "grid",
+            "mosaic",
+            "live"
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridRow"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridRecommendation"
+          },
+          "minItems": 0,
+          "maxItems": 24
+        },
+        "recommendationsExpanded": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "loading": {
+          "type": "boolean"
+        },
+        "placeholderRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridPlaceholderRow"
+          },
+          "minItems": 0,
+          "maxItems": 8
+        },
+        "viewer": {
+          "enum": [
+            "intent",
+            "local"
+          ]
         }
       },
       "required": [
         "type",
         "images"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridPlaceholderRow": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "tiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridPlaceholderTile"
+          },
+          "minItems": 1,
+          "maxItems": 24
+        }
+      },
+      "required": [
+        "tiles"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridPlaceholderTile": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "flexGrow": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "ImageGridRecommendation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "thumbnailSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16000
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "query",
+        "thumbnailSrc"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridRow": {
+      "type": "object",
+      "properties": {
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "tiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ImageGridTile"
+          },
+          "minItems": 1,
+          "maxItems": 24
+        }
+      },
+      "required": [
+        "tiles"
+      ],
+      "additionalProperties": false
+    },
+    "ImageGridTile": {
+      "type": "object",
+      "properties": {
+        "imageId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$"
+        },
+        "aspectRatio": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        },
+        "flexGrow": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "imageId"
       ],
       "additionalProperties": false
     },

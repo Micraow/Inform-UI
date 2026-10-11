@@ -7,6 +7,6 @@
 .iui-root .iui-conversation-suggestion-label{font-size:14px;line-height:20px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .iui-root .iui-conversation-suggestion-status{font-size:12px;line-height:18px}
 .iui-root .iui-conversation-suggestion-status:empty{display:none}
-.iui-root .iui-conversation-suggestion-loading{width:100%;height:80px;background:var(--iui-hover);animation:iui-conversation-loading 1.5s ease-in-out infinite alternate}
+.iui-root .iui-conversation-suggestion-loading{width:100%;height:80px;background:var(--iui-surface-tertiary);animation:iui-conversation-loading 1.5s ease-in-out infinite alternate}
 @keyframes iui-conversation-loading{to{filter:brightness(1.04);opacity:.86}}
 @media(prefers-reduced-motion:reduce){.iui-root .iui-conversation-suggestion-loading{animation:none}}

@@ -4150,12 +4150,64 @@ export interface ImageGridNode {
   columns?: number;
   fit?: "contain" | "cover";
   disabled?: boolean;
+  presentation?: "grid" | "mosaic" | "live";
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  rows?: ImageGridRow[];
+  /**
+   * @minItems 0
+   * @maxItems 24
+   */
+  recommendations?: ImageGridRecommendation[];
+  recommendationsExpanded?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  loading?: boolean;
+  /**
+   * @minItems 0
+   * @maxItems 8
+   */
+  placeholderRows?: ImageGridPlaceholderRow[];
+  viewer?: "intent" | "local";
 }
 export interface ImageGridItem {
   id: string;
   src: string;
   alt: string;
   caption?: string;
+}
+export interface ImageGridRow {
+  aspectRatio?: number;
+  /**
+   * @minItems 1
+   * @maxItems 24
+   */
+  tiles: [ImageGridTile, ...ImageGridTile[]];
+}
+export interface ImageGridTile {
+  imageId: string;
+  aspectRatio?: number;
+  flexGrow?: number;
+}
+export interface ImageGridRecommendation {
+  id: string;
+  label: string;
+  query: string;
+  thumbnailSrc: string;
+}
+export interface ImageGridPlaceholderRow {
+  aspectRatio?: number;
+  /**
+   * @minItems 1
+   * @maxItems 24
+   */
+  tiles: [ImageGridPlaceholderTile, ...ImageGridPlaceholderTile[]];
+}
+export interface ImageGridPlaceholderTile {
+  aspectRatio?: number;
+  flexGrow?: number;
 }
 export interface ConversationSuggestionsNode {
   type: "conversation-suggestions";

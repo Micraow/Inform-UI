@@ -1,3 +1,9 @@
+# Image-grid presentation source checkpoint
+
+The current source adds supplied mosaic rows and flex proportions, responsive recommendation More/Fewer, a passive four-image live layout, loading phases and an explicitly local viewer with cancellation, navigation, Escape and focus return. See [the contract](docs/image-grid-presentations.md). All43 Grid compatibility/extension tests passed; source types and boundary checks passed. A shared original five-image fixture is included. Two pending-loading backgrounds also now use the established tertiary surface role.
+
+The packaged CDN stays on unified154. This source extension has no fresh native result. Current canonical scope remains144 implemented,4 partial,108 missing pending independent Grid functional review. Prior source and validation checkpoints below remain historical.
+
 # Current canonical scope
 
 FollowUpActionBar and ConversationSuggestions now have their supplied presentation, resolution and local intent branches, with independent ordinary functional review passed. Current scope is **144 implemented (53 historical acceptances and 91 awaiting full acceptance), 4 partial, 108 missing**. Protocol registration stays154. New native and reference-pixel acceptance is separate. The checkpoint descriptions below retain their original source/test boundaries.
