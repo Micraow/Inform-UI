@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T15:51:33.321724+00:00",
+  "as_of_utc": "2026-10-11T18:11:24.594055+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 128,
+    "implemented_pending_verification": 155,
     "functionally_verified": 53,
-    "not_implemented": 75,
+    "not_implemented": 48,
     "partial": 0
   },
-  "completeImplementationCoverage": 181,
-  "registeredProtocolNodes": 186,
+  "completeImplementationCoverage": 208,
+  "registeredProtocolNodes": 213,
   "components": [
     {
       "id": "base-animate",
@@ -659,8 +659,8 @@
       "id": "bento",
       "name": "Bento",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied discovery presentation and local request contract passed author tests, independent QA and consumer flows. Responsive CSS is checked; native geometry and reference pixels remain pending."
     },
     {
       "id": "calculator-abcd2-score-for-transient-ischemic-attack",
@@ -1002,15 +1002,15 @@
       "id": "care-provider-results",
       "name": "Care Provider Results",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Supplied care-directory views d1e555 passed12 independent checks and7 consumer flows. All booking and navigation outcomes remain local requests; no clinical or provider service is executed. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "care-provider-sidebar",
       "name": "Care Provider Sidebar",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Supplied care-directory views d1e555 passed12 independent checks and7 consumer flows. All booking and navigation outcomes remain local requests; no clinical or provider service is executed. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "checklist",
@@ -1121,8 +1121,8 @@
       "id": "entity",
       "name": "Entity",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending."
     },
     {
       "id": "entity-thumbnail-list",
@@ -1170,8 +1170,8 @@
       "id": "finance-onboarding-suggestions",
       "name": "Finance Onboarding Suggestions",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied finance-entry presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No account or banking service. Native/pixel acceptance pending;576px layout checked as CSS contract only."
     },
     {
       "id": "flight-results",
@@ -1219,22 +1219,22 @@
       "id": "gen-image",
       "name": "Gen Image",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending."
     },
     {
       "id": "homework-helper-v2",
       "name": "Homework Helper V2",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied view and finite local request contract passed author tests, independent QA and consumer flows. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "image-gen",
       "name": "Image Gen",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied view and finite local request contract passed author tests, independent QA and consumer flows. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "image-grid",
@@ -1247,15 +1247,15 @@
       "id": "instant-suggestions",
       "name": "Instant Suggestions",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied context presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No navigation, plugin service or telemetry. Native/pixel acceptance pending."
     },
     {
       "id": "internal-partner-app",
       "name": "Internal Partner App",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied view and finite local request contract passed author tests, independent QA and consumer flows. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "jobs",
@@ -1310,8 +1310,8 @@
       "id": "learning-viz-dil",
       "name": "Learning Viz Dil",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Supplied learning animation e6bb passed11 independent plus18 unchanged original engine checks and8 consumer flows. Real SVG playback verified in DOM; new native/reference pixel acceptance pending."
     },
     {
       "id": "learning-vocab-card",
@@ -1338,22 +1338,22 @@
       "id": "ledger-credit-score-detail",
       "name": "Ledger Credit Score Detail",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete independent supplied score/history/detail views passed author tests, independent QA and consumer flows. No credit assessment or financial service is performed. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "ledger-credit-score",
       "name": "Ledger Credit Score",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete independent supplied score/history/detail views passed author tests, independent QA and consumer flows. No credit assessment or financial service is performed. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "ledger-equity-updates",
       "name": "Ledger Equity Updates",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied-label table and disclosure contract passed author checks, independent QA and consumer flows. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "ledger-fee-interest-paid",
@@ -1366,8 +1366,8 @@
       "id": "ledger-finance-onboarding",
       "name": "Ledger Finance Onboarding",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied finance-entry presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No account or banking service. Native/pixel acceptance pending;576px layout checked as CSS contract only."
     },
     {
       "id": "ledger-finance-status-banner",
@@ -1394,8 +1394,8 @@
       "id": "ledger-low-confidence-category-correction-legacy",
       "name": "Ledger Low Confidence Category Correction Legacy",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original finite supplied interaction implementation accepted at 848a1d20: independent12/12 and consumer7 flows; original reset focus failures retained. New native and reference pixel acceptance pending."
     },
     {
       "id": "ledger-net-worth",
@@ -1415,8 +1415,8 @@
       "id": "ledger-repair-bank-connection",
       "name": "Ledger Repair Bank Connection",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied finance-entry presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No account or banking service. Native/pixel acceptance pending;576px layout checked as CSS contract only."
     },
     {
       "id": "ledger-spend-by-category-detail",
@@ -1464,8 +1464,8 @@
       "id": "ledger-watchlist",
       "name": "Ledger Watchlist",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied-label table and disclosure contract passed author checks, independent QA and consumer flows. Native and reference-pixel acceptance remain pending."
     },
     {
       "id": "link",
@@ -1555,15 +1555,15 @@
       "id": "openai",
       "name": "Openai",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied discovery presentation and local request contract passed author tests, independent QA and consumer flows. Responsive CSS is checked; native geometry and reference pixels remain pending."
     },
     {
       "id": "open-detail",
       "name": "Open Detail",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete supplied discovery presentation and local request contract passed author tests, independent QA and consumer flows. Responsive CSS is checked; native geometry and reference pixels remain pending."
     },
     {
       "id": "package-tracker",
@@ -1583,15 +1583,15 @@
       "id": "places-metadata-bar",
       "name": "Places Metadata Bar",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied context presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No navigation, plugin service or telemetry. Native/pixel acceptance pending."
     },
     {
       "id": "plugin-followup",
       "name": "Plugin Followup",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied context presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No navigation, plugin service or telemetry. Native/pixel acceptance pending."
     },
     {
       "id": "product-card",
@@ -1611,8 +1611,8 @@
       "id": "push-drip-series-intro",
       "name": "Push Drip Series Intro",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied task presentation passed independent and consumer checks, including accepted cancellation focus return. Drip service confirmation remains unavailable. New native/pixel acceptance pending."
     },
     {
       "id": "learning-quiz",
@@ -1688,8 +1688,8 @@
       "id": "speech-synthesizer",
       "name": "Speech Synthesizer",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending."
     },
     {
       "id": "stock-chart",
@@ -1716,15 +1716,15 @@
       "id": "stop-push-drip-series",
       "name": "Stop Push Drip Series",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied task presentation passed independent and consumer checks, including accepted cancellation focus return. Drip service confirmation remains unavailable. New native/pixel acceptance pending."
     },
     {
       "id": "superbowl-riddle",
       "name": "Superbowl Riddle",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original finite supplied interaction implementation accepted at 848a1d20: independent12/12 and consumer7 flows; original reset focus failures retained. New native and reference pixel acceptance pending."
     },
     {
       "id": "tabbed-section",
@@ -1744,8 +1744,8 @@
       "id": "task-autopause-card",
       "name": "Task Autopause Card",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite supplied task presentation passed independent and consumer checks, including accepted cancellation focus return. Drip service confirmation remains unavailable. New native/pixel acceptance pending."
     },
     {
       "id": "tennis-player-summary",

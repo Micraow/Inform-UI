@@ -1,6 +1,80 @@
-# Source186 / frozen183 release
+# Unified213 published source and assets
 
-Current source adds accepted capability Search, with canonical scope181/0/75. Distributed CDN remains the exact unified183 release. That release passed3428 Node and742 Chromium checks in run38151422002; newer source is covered by its separately reported local checks.
+This checkpoint contains 213 registered protocols and 208 complete functional implementations: 53 historical verifications and 155 implementations pending comprehensive reference acceptance. The remaining 48 clinical calculators are unimplemented. It requires no OpenAI account, API or service.
+
+The complete baseline passed 3717 Node tests. All 53 selected native assertions subsequently passed across retained runs and corrected test fixtures; this is not a claim of a single all-green run. Screenshot inspection found two real narrow-header defects. The final successor changes only Credit and Care CSS, with 58 affected tests, 8 affected native scenarios, 8 geometry checks and 8 newly inspected screenshots passing. All 52 CDN assets were independently checked by bytes, SHA-256 and SRI. The final narrow consumer passed 32 positive and 44 negative contracts through ESM/global entries, 8 actual flows and a standalone script. Full reference-pixel equivalence and clinical validation are not claimed.
+
+See [validation and restoration](docs/unified213-validation.md). The chronological checkpoint notes below retain their original scope and pending statuses; this summary records their completed local successor. GitHub CI status is reported separately from these local results.
+
+# Unified213 readable-header successor
+
+The original213 candidate passed3717 Node checks and all53 selected native assertions through recorded fixture/environment corrections. Actual review of16 screenshots then exposed two narrow-header readability defects in Credit and Care. This successor changes only those two local CSS layouts, adds whole-word native line-box checks and regenerates the same52-asset closure. Its focused58 tests and build/public types/boundary pass; its new native visual recheck is pending. Original213 results and negative screenshots remain separate.
+
+# Unified213 local candidate
+
+Complete local check passed3717/3717 Node tests, including schema/build/CDN/type/queue/public-types/boundary checks. The source registers213 protocols and has208 completed functional implementations (53 historical,155 pending full acceptance);48 clinical calculators remain unimplemented.
+
+The unified candidate contains52 hashed CDN assets. A bounded native plan covers41 new authored scenarios,8 existing sentinels and4 composite visual cases (16 light/dark screenshots). Full-configuration discovery was killed by this local execution environment;53 is still a planned count pending independent discovery and real Chromium execution. No new native or reference-pixel acceptance is claimed. Public source publication remains at the earlier authorized frozen checkpoint; this local candidate is not a published release.
+
+# Current functional scope: 208 / 0 / 48
+
+Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending. Live scope is208 implemented (53 historical,155 pending full acceptance),0 partial,48 missing;213 protocols. Distributed/native-validated assets remain unified183. Earlier checkpoints below retain their original scope.
+
+# Current functional scope: 205 / 0 / 51
+
+Supplied care-directory views d1e555 passed12 independent checks and7 consumer flows. All booking and navigation outcomes remain local requests; no clinical or provider service is executed. New native/reference pixel acceptance remains pending. Live scope is205 implemented (53 historical,152 pending full acceptance),0 partial,51 missing;210 protocols. Distributed/native-validated assets remain unified183. Earlier checkpoints below retain their original scope.
+
+# Current functional scope: 203 / 0 / 53
+
+Supplied learning animation e6bb passed11 independent plus18 unchanged original engine checks and8 consumer flows. Real SVG playback verified in DOM; new native/reference pixel acceptance pending. Live scope is203 implemented (53 historical,150 pending full acceptance),0 partial,53 missing;208 protocols. Distributed/native-validated assets remain unified183. Earlier checkpoints below retain their original scope.
+
+# Current functional scope: 202 / 0 / 54
+
+The legacy category request view and river-crossing game passed12 independent checks and7 consumer flows at848a1d20, including the original reset focus regressions. Live scope is202 implemented (53 historical,149 pending full acceptance),0 partial,54 missing;207 protocols. New native/reference-pixel acceptance remains pending. Distributed/native-validated assets remain unified183. Earlier checkpoints below retain their original scope.
+
+# Current functional scope: 200 / 0 / 56
+
+Two supplied credit views passed13 independent checks and8 consumer flows. Live scope is200 implemented (53 historical,147 pending full acceptance),0 partial,56 missing;205 protocols. The views do not assess creditworthiness or perform financial services. New native/reference-pixel acceptance remains pending. Distributed/native-validated assets remain unified183.
+
+# Supplied credit-view source candidates: 205 protocols
+
+Original score overview/history and factor detail views preserve supplied labels, coordinates, independent colors, masking and local requests. They do not calculate creditworthiness, ratings or advice, retrieve reports or contact financial services. Live functional scope remains198/0/58 pending independent acceptance. Distributed/native-validated assets remain unified183. See docs/credit-score.md.
+
+# Supplied discovery source candidates: 203 protocols
+
+Bento four-card responsive composition, OpenDetail four/all action list and supplied organization card retain complete finite presentation and local request contracts. Live functional scope remains195/0/61 while these candidates await independent acceptance. Distributed/native-validated assets remain unified183. See docs/supplied-discovery.md.
+
+# Supplied launcher source candidates: 200 protocols
+
+Original HomeworkHelperV2, ImageGen result and InternalPartnerApp views preserve supplied selection, phase, media and availability contracts with finite local requests. Canonical scope is192/0/64 after both market views passed independent acceptance; these three launcher candidates await independent acceptance. Distributed assets remain unified183. See docs/supplied-launchers.md.
+
+# Read-only market table source candidates: 197 protocols
+
+Original ledger-equity-updates and ledger-watchlist views preserve independently supplied price/change labels, source order, masking, empty/no-account states and the observed disclosure transitions. They do not retrieve quotes, calculate returns or perform account/trading operations. Canonical scope remains190/0/66 pending independent acceptance. This source also corrects two prior component styles to use existing global border/ink tokens. Distributed assets remain frozen unified183. See docs/equity-watchlist.md.
+
+# Current functional scope: 190 / 0 / 66
+
+The three supplied context views passed 10 independent checks and 6 consumer flows. Live scope is190 implemented (53 historical,137 pending full acceptance),0 partial,66 missing;195 protocols. New native/pixel acceptance remains pending. Unified183 remains the separate frozen native-validated release.
+
+# Context presentation source candidates: 195 protocols
+
+Three original finite views are available: places-metadata-bar, plugin-followup and instant-suggestions. Supplied ratings, theme-specific logos, capability and streaming gates, paired suggestion hints and local cancelable requests retain separate contracts. No navigation, plugin service, new conversation or analytics is executed. Canonical scope remains187/0/69 pending independent acceptance. Distributed assets remain the frozen unified183 release. See docs/context-actions.md.
+
+# Current functional scope: 187 / 0 / 69
+
+The three supplied finance entry views passed 10 independent checks and 6 consumer flows. Live scope is187 implemented (53 historical,134 pending full acceptance),0 partial,69 missing;192 protocols. The576px layout is checked as a CSS contract; new native/pixel acceptance remains pending. Unified183 remains the separate frozen native-validated release.
+
+# Finance entry source candidates: 192 protocols
+
+Three original finite finance entry views are available: ledger-repair-bank-connection, ledger-finance-onboarding and finance-onboarding-suggestions. Supplied connection status, action priority, capability-gated prefill and independent follow-up remain local cancelable requests. No account or banking service is called. Canonical scope remains184/0/72 pending independent acceptance; distributed assets remain frozen unified183. See docs/finance-entry.md.
+
+# Current functional scope: 184 / 0 / 72
+
+Three supplied task views passed 10 independent checks and 6 consumer flows, with both original cancellation-focus cases closed in ce64acab. Live scope is184 implemented (53 historical,131 pending full acceptance),0 partial,72 missing;189 registered protocols. Native acceptance remains scoped to the earlier unified183 release.
+
+# Task source candidates: 189 protocol registrations
+
+Three original finite task views are available: push-drip-series-intro, stop-push-drip-series and task-autopause-card. Drip confirmation remains unavailable; local expand/cancel/reset and cancelable task requests are supported. Author checks passed 39/39 with types and lifecycle gates; three native scenarios were discovered only. Canonical scope remains 181/0/75 pending independent acceptance. Distributed assets remain frozen unified183. See docs/task-cards.md.
 
 # Current functional scope: 181 / 0 / 75
 

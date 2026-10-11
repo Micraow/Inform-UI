@@ -216,7 +216,34 @@ export type Node =
   | WhatsNewCapabilityWelcomeNode
   | AskUserLocationNode
   | ReservationTimePillsRefCarouselNode
-  | WhatsNewCapabilitySearchNode;
+  | WhatsNewCapabilitySearchNode
+  | PushDripSeriesIntroNode
+  | StopPushDripSeriesNode
+  | TaskAutopauseCardNode
+  | LedgerFinanceOnboardingNode
+  | LedgerRepairBankConnectionNode
+  | FinanceOnboardingSuggestionsNode
+  | PlacesMetadataBarNode
+  | PluginFollowupNode
+  | InstantSuggestionsNode
+  | LedgerEquityUpdatesNode
+  | LedgerWatchlistNode
+  | HomeworkHelperV2Node
+  | ImageGenNode
+  | InternalPartnerAppNode
+  | BentoNode
+  | OpenDetailNode
+  | OpenaiNode
+  | LedgerCreditScoreNode
+  | LedgerCreditScoreDetailNode
+  | LedgerLowConfidenceCategoryCorrectionLegacyNode
+  | SuperbowlRiddleNode
+  | LearningVizDilNode
+  | CareProviderResultsNode
+  | CareProviderSidebarNode
+  | EntityNode
+  | GenImageNode
+  | SpeechSynthesizerNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -6001,4 +6028,1030 @@ export interface CapabilitySearchSource {
   id: string;
   label: string;
   url: string;
+}
+export interface PushDripSeriesIntroNode {
+  type: "push-drip-series-intro";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  stopped?: boolean;
+  stoppedLabel?: string;
+  confirming?: boolean;
+  confirmationTitle?: string;
+  confirmationMessage?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  unavailableLabel?: string;
+  introPrefix?: string;
+  introLinkLabel?: string;
+  introSuffix?: string;
+}
+export interface StopPushDripSeriesNode {
+  type: "stop-push-drip-series";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  stopped?: boolean;
+  stoppedLabel?: string;
+  confirming?: boolean;
+  confirmationTitle?: string;
+  confirmationMessage?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  unavailableLabel?: string;
+  actionLabel?: string;
+  actionStyle?: "text-links" | "outline-keep" | "red" | "solid";
+  confirmationLayout?: "card" | "inline";
+}
+export interface TaskAutopauseCardNode {
+  type: "task-autopause-card";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  taskId?: string;
+  taskTitle?: string;
+  prompt?: string;
+  body?: string;
+  showBody?: boolean;
+  continueLabel?: string;
+  settingsLabel?: string;
+  deleteLabel?: string;
+}
+export interface LedgerFinanceOnboardingNode {
+  type: "ledger-finance-onboarding";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  title?: string;
+  description?: string;
+  prompt?: string;
+  action?: {
+    kind: "prompt" | "action";
+    value: string;
+  };
+  threadMode?: string;
+  systemHint?: string;
+  iconSrc?: string;
+  loadImageLabel?: string;
+  icon?: string;
+  ctaLabel?: string;
+  linkId?: string;
+  initializing?: boolean;
+}
+export interface LedgerRepairBankConnectionNode {
+  type: "ledger-repair-bank-connection";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  title?: string;
+  description?: string;
+  prompt?: string;
+  action?: {
+    kind: "prompt" | "action";
+    value: string;
+  };
+  threadMode?: string;
+  systemHint?: string;
+  iconSrc?: string;
+  loadImageLabel?: string;
+  icon?: string;
+  ctaLabel?: string;
+  linkId?: string;
+  initializing?: boolean;
+}
+export interface FinanceOnboardingSuggestionsNode {
+  type: "finance-onboarding-suggestions";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  heading?: string;
+  prefillAvailable?: boolean;
+  /**
+   * @maxItems 24
+   */
+  items?: {
+    id: string;
+    label: string;
+    query: string;
+    emoji?: string;
+    disabled?: boolean;
+  }[];
+  followUp?: {
+    label: string;
+    query: string;
+    event?: string;
+    icon?: string;
+    disabled?: boolean;
+  };
+}
+export interface PlacesMetadataBarNode {
+  type: "places-metadata-bar";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  loadImageLabel?: string;
+  ratingLabel?: string | null;
+  reviewCountLabel?: string | null;
+  providerLabel?: string;
+  providerUrl?: string;
+  providerLogo?:
+    | string
+    | {
+        light?: string;
+        dark?: string;
+      };
+  providerLogoWidth?: number;
+  /**
+   * @maxItems 32
+   */
+  items?: {
+    label: string;
+    color?: "primary" | "secondary" | "positive" | "negative" | "warning";
+  }[];
+}
+export interface PluginFollowupNode {
+  type: "plugin-followup";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  loadImageLabel?: string;
+  available?: boolean;
+  hidden?: boolean;
+  pending?: boolean;
+  streaming?: boolean;
+  showContext?: boolean;
+  context?: string;
+  offerId?: string;
+  actionLabel?: string;
+  pluginId?: string;
+  icon?: {
+    light?: string;
+    dark?: string;
+  };
+}
+export interface InstantSuggestionsNode {
+  type: "instant-suggestions";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  loadImageLabel?: string;
+  title?: string;
+  category?: string;
+  /**
+   * @maxItems 32
+   */
+  suggestions?: {
+    id: string;
+    prompt: string;
+    answerId?: string;
+    entityId?: string;
+    disabled?: boolean;
+  }[];
+}
+export interface LedgerEquityUpdatesNode {
+  type: "ledger-equity-updates";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  title?: string;
+  asOfLabel?: string;
+  emptyLabel?: string;
+  unknownLabel?: string;
+  labels?: {
+    stock: string;
+    price: string;
+    percent: string;
+    value?: string;
+    up: string;
+    down: string;
+    showMore: string;
+    showLess: string;
+    masked: string;
+  };
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  /**
+   * @maxItems 200
+   */
+  rows?: {
+    id: string;
+    ticker: string;
+    name: string;
+    priceLabel: string | null;
+    percentLabel: string | null;
+    percentDirection?: "up" | "down" | "flat";
+    percentColor?: "primary" | "secondary" | "positive" | "negative";
+    valueLabel: string | null;
+    valueDirection?: "up" | "down" | "flat";
+    valueColor?: "primary" | "secondary" | "positive" | "negative";
+  }[];
+  hasPositions?: boolean;
+  connected?: boolean;
+  masked?: boolean;
+  conversionNote?: string;
+  noAccounts?: {
+    title: string;
+    description: string;
+    actionLabel: string;
+    query: string;
+  };
+}
+export interface LedgerWatchlistNode {
+  type: "ledger-watchlist";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  title?: string;
+  asOfLabel?: string;
+  emptyLabel?: string;
+  unknownLabel?: string;
+  labels?: {
+    stock: string;
+    price: string;
+    percent: string;
+    value?: string;
+    up: string;
+    down: string;
+    showMore: string;
+    showLess: string;
+    masked: string;
+  };
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  /**
+   * @maxItems 200
+   */
+  rows?: {
+    id: string;
+    ticker: string;
+    name: string;
+    priceLabel: string | null;
+    percentLabel: string | null;
+    percentDirection?: "up" | "down" | "flat";
+    percentColor?: "primary" | "secondary" | "positive" | "negative";
+    valueLabel?: string | null;
+    valueDirection?: "up" | "down" | "flat";
+    valueColor?: "primary" | "secondary" | "positive" | "negative";
+  }[];
+  hasEntries?: boolean;
+  rowsToShow?: number;
+}
+export interface HomeworkHelperV2Node {
+  type: "homework-helper-v2";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  loadImageLabel?: string;
+  question?: string;
+  /**
+   * @maxItems 12
+   */
+  options?: {
+    value: string;
+    label: string;
+    disabled?: boolean;
+  }[];
+  selectedValue?: string | null;
+  submitted?: boolean;
+  preventRepeatedSubmission?: boolean;
+  submitLabel?: string;
+}
+export interface ImageGenNode {
+  type: "image-gen";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  loadImageLabel?: string;
+  imageStatus?: "waiting" | "succeeded" | "failed";
+  url?: string;
+  alt?: string;
+  error?: string;
+}
+export interface InternalPartnerAppNode {
+  type: "internal-partner-app";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  loadImageLabel?: string;
+  title?: string;
+  buttonLabel?: string;
+  providerLogo?: string;
+  launcher?: {
+    appId: string;
+    viewId?: string;
+    query?: string;
+  };
+}
+export interface BentoNode {
+  type: "bento";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  largeCard?: {
+    query: string;
+    context?: string;
+    imageUrl?: string;
+    imageAlt?: string;
+    statusText?: string;
+  };
+  smallCardA?: {
+    title: string;
+    body: string;
+    bodyIsTitle?: boolean;
+    bodySize?: "sm" | "md";
+    url?: string;
+    query?: string;
+    context?: string;
+    linkHost?: string;
+    iconSrc?: string;
+  };
+  smallCardB?: {
+    title: string;
+    body: string;
+    bodyIsTitle?: boolean;
+    bodySize?: "sm" | "md";
+    url?: string;
+    query?: string;
+    context?: string;
+    linkHost?: string;
+    iconSrc?: string;
+  };
+  mediumCard?: {
+    title: string;
+    body: string;
+    bodyIsTitle?: boolean;
+    bodySize?: "sm" | "md";
+    url?: string;
+    query?: string;
+    context?: string;
+    linkHost?: string;
+    iconSrc?: string;
+  };
+}
+export interface OpenDetailNode {
+  type: "open-detail";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  title?: string;
+  action?: string;
+  /**
+   * @maxItems 100
+   */
+  actions?: {
+    id: string;
+    label: string;
+    payload?: string | null;
+    disabled?: boolean;
+  }[];
+  showMoreLabel?: string;
+  showLessLabel?: string;
+}
+export interface OpenaiNode {
+  type: "openai";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  requestedLabel?: string;
+  cancelledLabel?: string;
+  name?: string;
+  tagline?: string;
+  image?: string;
+  imageAlt?: string;
+  websiteUrl?: string;
+  morePrompt?: string;
+  websiteLabel?: string;
+  moreLabel?: string;
+}
+export interface LedgerCreditScoreNode {
+  type: "ledger-credit-score";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  dataStatus?: "loading" | "empty" | "ready";
+  masked?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  title?: string;
+  scoreLabel?: string | null;
+  scorePosition?: number;
+  activeView?: "overview" | "trend";
+  /**
+   * @maxItems 2
+   */
+  viewOptions?: {
+    value: "overview" | "trend";
+    label: string;
+  }[];
+  selectedPeriod?: string;
+  /**
+   * @maxItems 12
+   */
+  history?: {
+    id: string;
+    label: string;
+    /**
+     * @maxItems 200
+     */
+    points: {
+      id: string;
+      x: number;
+      label: string;
+      accessibilityLabel: string;
+      values: {
+        [k: string]: number | null;
+      };
+    }[];
+    /**
+     * @minItems 1
+     * @maxItems 8
+     */
+    series: [
+      {
+        key: string;
+        label: string;
+        tone?: "primary" | "secondary" | "positive" | "warning" | "negative";
+      },
+      ...{
+        key: string;
+        label: string;
+        tone?: "primary" | "secondary" | "positive" | "warning" | "negative";
+      }[]
+    ];
+    yMin?: number;
+    yMax?: number;
+    /**
+     * @maxItems 12
+     */
+    yTicks?: {
+      value: number;
+      label: string;
+    }[];
+  }[];
+  hasHistory?: boolean;
+  /**
+   * @maxItems 30
+   */
+  metrics?: {
+    id: string;
+    label: string;
+    valueLabel: string | null;
+    tone?: "primary" | "secondary" | "positive" | "warning" | "negative";
+    detailEnabled?: boolean;
+  }[];
+  disclosure?: {
+    text: string;
+    linkText?: string;
+    url?: string;
+  };
+  reportDateLabel?: string;
+  labels?: {
+    maskedScore: string;
+    maskedValue: string;
+    unknown: string;
+    loading: string;
+    empty: string;
+    noHistory: string;
+    viewSelector: string;
+    rangeSelector: string;
+    scoreMeter: string;
+    scoreDetails: string;
+    historyChart: string;
+    close: string;
+  };
+}
+export interface LedgerCreditScoreDetailNode {
+  type: "ledger-credit-score-detail";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  dataStatus?: "loading" | "empty" | "ready";
+  masked?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  summaryLabel?: string | null;
+  ratingLabel?: string | null;
+  ratingTone?: "primary" | "secondary" | "positive" | "warning" | "negative";
+  /**
+   * @maxItems 100
+   */
+  rows?: {
+    id: string;
+    label: string;
+    valueLabel: string | null;
+    progressPercent?: number | null;
+  }[];
+  /**
+   * @maxItems 30
+   */
+  factors?: {
+    description: string;
+  }[];
+  relatedTitle?: string;
+  /**
+   * @maxItems 100
+   */
+  relatedItems?: {
+    id: string;
+    label: string;
+    detailLabel?: string | null;
+    valueLabel?: string | null;
+    valueAccessibilityLabel?: string | null;
+    logo?: string;
+    fallbackGlyph?: string;
+  }[];
+  relatedNote?: string;
+  labels?: {
+    maskedValue: string;
+    unknown: string;
+    loading: string;
+    empty: string;
+    takeaways: string;
+  };
+}
+export interface LedgerLowConfidenceCategoryCorrectionLegacyNode {
+  type: "ledger-low-confidence-category-correction-legacy";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  title?: string;
+  connected?: boolean;
+  emptyLabel?: string;
+  masked?: boolean;
+  showMoreLabel?: string;
+  showLessLabel?: string;
+  loadImageLabel?: string;
+  noAccounts?: {
+    title: string;
+    description: string;
+    actionLabel: string;
+    query: string;
+  };
+  /**
+   * @maxItems 100
+   */
+  transactions?: {
+    id: string;
+    name: string;
+    dateLabel: string;
+    amountLabel: string;
+    amountValue?: number | null;
+    maskedAmountLabel: string;
+    categoryLabel: string;
+    query: string;
+    logo?: string;
+    logoAlt?: string;
+    fallbackGlyph?: string;
+  }[];
+}
+export interface SuperbowlRiddleNode {
+  type: "superbowl-riddle";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  title?: string;
+  instructions?: string;
+  initial?: {
+    /**
+     * @maxItems 3
+     */
+    left: ("fox" | "chicken" | "grain")[];
+    /**
+     * @maxItems 3
+     */
+    right: ("fox" | "chicken" | "grain")[];
+    boatSide: "left" | "right";
+    cargo: ("fox" | "chicken" | "grain") | null;
+    outcome: "playing" | "won" | "lost";
+  };
+  labels?: {
+    fox: string;
+    chicken: string;
+    grain: string;
+    leftBank: string;
+    rightBank: string;
+    boat: string;
+    cross: string;
+    unload: string;
+    wonTitle: string;
+    wonDescription: string;
+    lostTitle: string;
+    lostDescription: string;
+    followups: string;
+  };
+  /**
+   * @maxItems 12
+   */
+  wonFollowups?: {
+    id: string;
+    label: string;
+    query: string;
+  }[];
+  /**
+   * @maxItems 12
+   */
+  lostFollowups?: {
+    id: string;
+    label: string;
+    query: string;
+  }[];
+}
+export interface LearningVizDilNode {
+  type: "learning-viz-dil";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  sources?: {
+    light: LottieData;
+    dark: LottieData;
+  };
+  theme?: "light" | "dark" | "auto";
+  alt?: string;
+  animated?: boolean;
+  playLabel?: string;
+  pauseLabel?: string;
+  resetLabel?: string;
+  loadImageLabel?: string;
+}
+export interface CareProviderResultsNode {
+  type: "care-provider-results";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  render?: boolean;
+  resultStatus?: "ok" | "partial" | "empty" | "error";
+  title?: string;
+  subtitle?: string;
+  emptyTitle?: string;
+  emptyMessage?: string;
+  errorTitle?: string;
+  errorMessage?: string;
+  retryLabel?: string;
+  retryQuery?: string;
+  partialNotice?: string;
+  noAvailabilityLabel?: string;
+  /**
+   * @maxItems 30
+   */
+  providers?: CareProvider[];
+  providersToShow?: number;
+  expandedProvidersToShow?: number;
+  selectedLocationId?: string;
+  selectedDate?: string;
+  showMoreLabel?: string;
+  hasMoreResults?: boolean;
+  moreResultsLabel?: string;
+  moreResultsQuery?: string;
+  nextCursor?: string | null;
+}
+export interface CareProvider {
+  id: string;
+  name: string;
+  initials: string;
+  photo?: string;
+  photoAlt?: string;
+  specialty?: string;
+  ratingLabel?: string | null;
+  reviewCountLabel?: string | null;
+  networkLabel?: string | null;
+  inNetwork?: boolean;
+  summary?: string;
+  partnerLogo?: string;
+  partnerLabel?: string;
+  partnerGlyph?: string;
+  profile?: CareRequest;
+  profileLabel?: string;
+  /**
+   * @maxItems 10
+   */
+  locations: CareLocation[];
+}
+export interface CareRequest {
+  url?: string;
+  query?: string;
+}
+export interface CareLocation {
+  id: string;
+  label: string;
+  distanceLabel?: string | null;
+  modality?: "in-person" | "telehealth";
+  partnerLabel?: string;
+  partnerLogo?: string;
+  partnerGlyph?: string;
+  action?: CareRequest;
+  actionLabel?: string;
+  /**
+   * @maxItems 62
+   */
+  days: CareDay[];
+  combinedDays?: CareDay[] | null;
+}
+export interface CareDay {
+  date: string;
+  label: string;
+  accessibilityLabel: string;
+  countLabel?: string;
+  /**
+   * @maxItems 8
+   */
+  groups: {
+    label: string;
+    /**
+     * @maxItems 40
+     */
+    slots: CareSlot[];
+  }[];
+}
+export interface CareSlot {
+  id: string;
+  label: string;
+  accessibilityLabel: string;
+  url?: string;
+  chooseLabel?: string;
+  dismissLabel?: string;
+  /**
+   * @maxItems 8
+   */
+  options?: {
+    id: string;
+    label: string;
+    accessibilityLabel: string;
+    url: string;
+  }[];
+}
+export interface CareProviderSidebarNode {
+  type: "care-provider-sidebar";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  fallback?: string;
+  disabled?: boolean;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  provider?: CareProvider;
+  locationLabel?: string;
+  modality?: "in-person" | "telehealth";
+  /**
+   * @maxItems 20
+   */
+  locationOptions?: {
+    id: string;
+    label: string;
+    accessibilityLabel: string;
+    modality?: "in-person" | "telehealth";
+    selected: boolean;
+    action: CareRequest;
+  }[];
+  directions?: {
+    label: string;
+    url: string;
+  };
+  profileLink?: {
+    label: string;
+    url: string;
+  };
+  appointmentsHeading?: string;
+  noAppointmentsLabel?: string;
+  /**
+   * @maxItems 62
+   */
+  days?: CareDay[];
+  selectedDate?: string;
+  /**
+   * @maxItems 24
+   */
+  months?: CareCalendarMonth[];
+  selectedMonth?: number;
+  /**
+   * @minItems 7
+   * @maxItems 7
+   */
+  weekdayLabels?: [string, string, string, string, string, string, string, ...string[]];
+  previousMonthLabel?: string;
+  nextMonthLabel?: string;
+  closeLabel?: string;
+}
+export interface CareCalendarMonth {
+  id: string;
+  label: string;
+  firstAvailableDate: string | null;
+  /**
+   * @maxItems 42
+   */
+  days: {
+    date: string;
+    label: string;
+    accessibilityLabel: string;
+    currentMonth: boolean;
+    available: boolean;
+  }[];
+}
+export interface EntityNode {
+  type: "entity";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  disabled?: boolean;
+  fallback?: string;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  value?: string;
+  mobile?: boolean;
+  category?: string;
+  query?: string;
+  action?: InlineHostAction;
+  detailPayload?: {
+    entityId: string;
+    category?: string;
+    query?: string;
+  };
+  entityData?: {
+    name?: string;
+    /**
+     * @maxItems 30
+     */
+    categories?: string[];
+    rating?: number | null;
+    priceLabel?: string;
+    open?: boolean;
+    legacyWebsiteUrl?: string;
+  };
+  image?: SearchImageRecord;
+  directionsUrl?: string;
+  websiteUrl?: string;
+  directionsLabel?: string;
+  websiteLabel?: string;
+  openLabel?: string;
+  closedLabel?: string;
+  detailsLabel?: string;
+  closeLabel?: string;
+}
+export interface InlineHostAction {
+  kind: "url" | "query" | "entity";
+  url?: string;
+  query?: string;
+  entityId?: string;
+  category?: string;
+  appendToCurrent?: boolean;
+}
+export interface GenImageNode {
+  type: "gen-image";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  disabled?: boolean;
+  fallback?: string;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  /**
+   * @maxItems 20
+   */
+  images?: SearchImageRecord[];
+  loading?: boolean;
+  width?: number | string;
+  height?: number | string;
+  maxWidth?: number | string;
+  maxHeight?: number | string;
+  minWidth?: number | string;
+  minHeight?: number | string;
+  frameWidth?: number | string;
+  frameHeight?: number | string;
+  frameMaxWidth?: number | string;
+  frameMaxHeight?: (number | string) | null;
+  aspectRatio?: number | string;
+  frameAspectRatio?: number | string;
+  radius?: number;
+  frame?: boolean;
+  fit?: "cover" | "contain";
+  presentation?: {
+    frame?: boolean;
+    minWidth?: number | string;
+    minHeight?: number | string;
+    radius?: number;
+  };
+  onClickAction?: InlineHostAction | null;
+  defaultAction?: InlineHostAction;
+  openLabel?: string;
+}
+export interface SpeechSynthesizerNode {
+  type: "speech-synthesizer";
+  id?: string;
+  label: string;
+  status?: "resolved" | "pending" | "failed";
+  disabled?: boolean;
+  fallback?: string;
+  resetLabel?: string;
+  loadImageLabel?: string;
+  available?: boolean;
+  playbackStatus?: "idle" | "starting" | "playing" | "paused" | "error";
+  error?: string | null;
+  playbackSpeed?: number;
+  source?: {
+    text?: string;
+    language?: string;
+    voiceId?: string;
+  };
+  controls?: "default" | "custom";
+  playLabel?: string;
+  stopLabel?: string;
+  unavailableLabel?: string;
+  statusLabel?: string;
 }

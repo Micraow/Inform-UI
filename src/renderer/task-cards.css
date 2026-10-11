@@ -1,0 +1,24 @@
+/* Original finite local notification/task presentation. */
+.iui-root .iui-task-card{container-type:inline-size;min-inline-size:0;max-inline-size:100%;overflow-wrap:anywhere}
+.iui-root .iui-task-card [hidden]{display:none}
+.iui-root .iui-task-card-content h3,.iui-root .iui-task-card-content p{margin:0}.iui-root .iui-task-card-content h3{font-size:16px;font-weight:600}
+.iui-root .iui-drip-intro{line-height:1.5}.iui-root button.iui-drip-link{display:inline;padding:0;min-block-size:0;border:0;border-radius:0;font:inherit;text-decoration:underline;background:transparent;color:inherit}
+.iui-root button.iui-drip-link:is(:hover,:active,:disabled){background:transparent}
+.iui-root .iui-drip-confirmation{display:flex;flex-direction:column;align-items:start;gap:12px;margin-block-start:12px;max-inline-size:100%;box-sizing:border-box}
+.iui-root .iui-drip-confirmation[data-layout=card]{padding:16px;border:1px solid var(--iui-line);border-radius:20px;background:var(--iui-surface-primary);inline-size:min(100%,362px)}
+.iui-root .iui-drip-confirmation>p{font-size:14px;color:var(--iui-muted)}
+.iui-root .iui-drip-confirmation-actions{display:flex;flex-direction:column;gap:8px;align-items:start;flex-wrap:wrap}
+.iui-root .iui-drip-confirmation:is([data-style=text-links],[data-style=outline-keep]) .iui-drip-confirmation-actions{flex-direction:row}
+.iui-root .iui-drip-confirmation[data-style=text-links] button{border:0;border-radius:0;padding:0;min-block-size:0;background:transparent;text-decoration:underline;font-size:14px}
+.iui-root .iui-drip-confirmation[data-style=text-links] button:is(:hover,:active,:disabled){background:transparent}
+.iui-root .iui-drip-confirmation[data-style=outline-keep] button[data-task-action=cancel]{background:transparent;border:1px solid var(--iui-line)}
+.iui-root .iui-drip-confirmation[data-style=red] .iui-drip-confirm-disabled{color:var(--iui-danger)}
+.iui-root .iui-task-card-reset{margin-block-start:8px;font-size:12px}.iui-root .iui-task-card-notice{font-size:12px;margin:4px 0}.iui-root .iui-task-card-notice:empty{display:none}
+.iui-root .iui-task-card-loading{min-block-size:48px;background:var(--iui-surface-tertiary);border-radius:12px}
+.iui-root .iui-task-card[data-kind=stop-push-drip-series] .iui-task-card-loading{inline-size:180px;min-block-size:24px;max-inline-size:100%}
+.iui-root .iui-task-card[data-kind=task-autopause-card] .iui-task-card-loading{min-block-size:220px}
+.iui-root .iui-task-card[data-kind=task-autopause-card] .iui-task-card-content{border:1px solid var(--iui-line);border-radius:20px;overflow:hidden}
+.iui-root .iui-task-autopause-header{background:var(--iui-surface-secondary);padding:12px 16px;font-size:16px}
+.iui-root .iui-task-autopause-body{display:flex;flex-direction:column;gap:12px;padding:16px}.iui-root .iui-task-autopause-body>p{color:var(--iui-muted)}
+.iui-root .iui-task-autopause-actions{display:flex;gap:8px;flex-wrap:wrap}.iui-root .iui-task-card-danger{color:var(--iui-danger)}
+@container(min-width:576px){.iui-root .iui-task-autopause-body{gap:16px}}

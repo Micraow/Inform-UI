@@ -52,3 +52,25 @@ export type {AskUserLocationNode,AskLocationDetail} from './core/ask-location.js
 export type {ReservationPillsCarouselNode,ReservationPillsData,ReservationPillsDetail,ReservationPillsIntent,ReservationGroup,ReservationSlot,ReservationProviderOption,ReservationTarget} from './core/reservation-pills.js';
 
 export type {CapabilitySearchNode,CapabilitySearchDetail,CapabilitySearchExample,CapabilitySearchAction,CapabilitySearchTarget} from './core/capability-search.js';
+
+export type {TaskCardNode,TaskCardDetail,DripCardNode,TaskAutopauseNode} from './core/task-cards.js';
+
+export type {FinanceEntryNode,FinanceEntryCard,FinanceEntrySuggestions,FinanceEntryDetail,FinanceEntryItem,EntryTarget} from './core/finance-entry.js';
+
+export type {ContextActionNode,ContextActionDetail,PlacesMetadataNode,PluginFollowupNode,InstantSuggestionsNode,ThemedContextIcon} from './core/context-actions.js';
+
+export type {EquityWatchNode,EquityWatchRow,EquityWatchDetail} from './core/equity-watchlist.js';
+
+export type {SuppliedLauncherNode,SuppliedLauncherDetail,HomeworkHelperNode,ImageGenNode,InternalPartnerNode} from './core/supplied-launchers.js';
+
+export type {SuppliedDiscoveryNode,SuppliedDiscoveryDetail,BentoNode,BentoSupport,OpenDetailNode,OpenaiNode} from './core/supplied-discovery.js';
+
+export type {SuppliedCreditNode,SuppliedCreditDetail,CreditScoreNode,CreditDetailNode,CreditHistory,CreditPoint,CreditMetric,CreditTone} from './core/credit-score.js';
+
+export type {SuppliedInteractionNode,SuppliedInteractionDetail,LegacyCategoryNode,SuperbowlRiddleNode,RiddleSnapshot,RiddleItem} from './core/supplied-interactions.js';
+
+export type {LearningVizNode,LearningVizDetail} from './core/learning-viz.js';
+
+export type {CareProviderNode,CareResultsNode,CareSidebarNode,CareProviderDetail,CareProvider,CareLocation,CareDay,CareSlot,CareCalendarMonth,CareRequest} from './core/care-providers.js';
+
+export type {InlineHostMediaNode,InlineHostMediaDetail,InlineHostAction,EntityNode,GenImageNode,SpeechSynthesizerNode,ImageDimension} from './core/inline-host-media.js';

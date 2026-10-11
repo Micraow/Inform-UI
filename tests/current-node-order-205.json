@@ -1,0 +1,617 @@
+[
+  {
+    "$ref": "#/$defs/TextNode"
+  },
+  {
+    "$ref": "#/$defs/TitleNode"
+  },
+  {
+    "$ref": "#/$defs/CaptionNode"
+  },
+  {
+    "$ref": "#/$defs/AgendaNode"
+  },
+  {
+    "$ref": "#/$defs/PersonProfileNode"
+  },
+  {
+    "$ref": "#/$defs/NewsArticleNode"
+  },
+  {
+    "$ref": "#/$defs/EntityReviewsNode"
+  },
+  {
+    "$ref": "#/$defs/RestaurantAvailabilityNode"
+  },
+  {
+    "$ref": "#/$defs/OnboardingSelectionNode"
+  },
+  {
+    "$ref": "#/$defs/CreateInteractivePollNode"
+  },
+  {
+    "$ref": "#/$defs/LocationChoiceRequestNode"
+  },
+  {
+    "$ref": "#/$defs/BusinessGalleryNode"
+  },
+  {
+    "$ref": "#/$defs/FlightOptionNode"
+  },
+  {
+    "$ref": "#/$defs/ArtistUpcomingEventsNode"
+  },
+  {
+    "$ref": "#/$defs/PackageTrackerNode"
+  },
+  {
+    "$ref": "#/$defs/FlightTrackerNode"
+  },
+  {
+    "$ref": "#/$defs/SidebarPeopleAlsoAskNode"
+  },
+  {
+    "$ref": "#/$defs/EmailPreviewNode"
+  },
+  {
+    "$ref": "#/$defs/FileNavListNode"
+  },
+  {
+    "$ref": "#/$defs/JobsNode"
+  },
+  {
+    "$ref": "#/$defs/ProductCardNode"
+  },
+  {
+    "$ref": "#/$defs/LocalBusinessNode"
+  },
+  {
+    "$ref": "#/$defs/RestaurantReviewsNode"
+  },
+  {
+    "$ref": "#/$defs/FlightSearchFormNode"
+  },
+  {
+    "$ref": "#/$defs/FlightResultsNode"
+  },
+  {
+    "$ref": "#/$defs/SharedActivityPlannerNode"
+  },
+  {
+    "$ref": "#/$defs/EventSidebarNode"
+  },
+  {
+    "$ref": "#/$defs/WordCardNode"
+  },
+  {
+    "$ref": "#/$defs/CopyWordsNode"
+  },
+  {
+    "$ref": "#/$defs/CodeCiteNode"
+  },
+  {
+    "$ref": "#/$defs/FileCiteNode"
+  },
+  {
+    "$ref": "#/$defs/SidebarFactTableNode"
+  },
+  {
+    "$ref": "#/$defs/EntityThumbnailListNode"
+  },
+  {
+    "$ref": "#/$defs/RedditThreadCardNode"
+  },
+  {
+    "$ref": "#/$defs/MarkdownNode"
+  },
+  {
+    "$ref": "#/$defs/WritingBlockNode"
+  },
+  {
+    "$ref": "#/$defs/EmailDraftNode"
+  },
+  {
+    "$ref": "#/$defs/TaskExpansionCardNode"
+  },
+  {
+    "$ref": "#/$defs/CodeNode"
+  },
+  {
+    "$ref": "#/$defs/MathNode"
+  },
+  {
+    "$ref": "#/$defs/BadgeNode"
+  },
+  {
+    "$ref": "#/$defs/DividerNode"
+  },
+  {
+    "$ref": "#/$defs/SpacerNode"
+  },
+  {
+    "$ref": "#/$defs/LinkNode"
+  },
+  {
+    "$ref": "#/$defs/FaviconNode"
+  },
+  {
+    "$ref": "#/$defs/ImageNode"
+  },
+  {
+    "$ref": "#/$defs/BoxNode"
+  },
+  {
+    "$ref": "#/$defs/CardNode"
+  },
+  {
+    "$ref": "#/$defs/RowNode"
+  },
+  {
+    "$ref": "#/$defs/ColNode"
+  },
+  {
+    "$ref": "#/$defs/GridNode"
+  },
+  {
+    "$ref": "#/$defs/GridItemNode"
+  },
+  {
+    "$ref": "#/$defs/BlockquoteNode"
+  },
+  {
+    "$ref": "#/$defs/SectionNode"
+  },
+  {
+    "$ref": "#/$defs/FigureNode"
+  },
+  {
+    "$ref": "#/$defs/DetailsNode"
+  },
+  {
+    "$ref": "#/$defs/TooltipNode"
+  },
+  {
+    "$ref": "#/$defs/PopoverNode"
+  },
+  {
+    "$ref": "#/$defs/FlowNode"
+  },
+  {
+    "$ref": "#/$defs/IconNode"
+  },
+  {
+    "$ref": "#/$defs/PulseIndicatorNode"
+  },
+  {
+    "$ref": "#/$defs/LoadingNode"
+  },
+  {
+    "$ref": "#/$defs/LoadingBlockNode"
+  },
+  {
+    "$ref": "#/$defs/CitationNode"
+  },
+  {
+    "$ref": "#/$defs/WebLinkCardsNode"
+  },
+  {
+    "$ref": "#/$defs/PromptSuggestionsNode"
+  },
+  {
+    "$ref": "#/$defs/AnimateNode"
+  },
+  {
+    "$ref": "#/$defs/CelebrationNode"
+  },
+  {
+    "$ref": "#/$defs/CarouselNode"
+  },
+  {
+    "$ref": "#/$defs/TabPanelNode"
+  },
+  {
+    "$ref": "#/$defs/TabGroupNode"
+  },
+  {
+    "$ref": "#/$defs/ListNode"
+  },
+  {
+    "$ref": "#/$defs/RestaurantMenuNode"
+  },
+  {
+    "$ref": "#/$defs/TableNode"
+  },
+  {
+    "$ref": "#/$defs/MetricNode"
+  },
+  {
+    "$ref": "#/$defs/MetricGridNode"
+  },
+  {
+    "$ref": "#/$defs/StepsNode"
+  },
+  {
+    "$ref": "#/$defs/CalloutNode"
+  },
+  {
+    "$ref": "#/$defs/LabelNode"
+  },
+  {
+    "$ref": "#/$defs/SliderNode"
+  },
+  {
+    "$ref": "#/$defs/ChecklistNode"
+  },
+  {
+    "$ref": "#/$defs/RatingNode"
+  },
+  {
+    "$ref": "#/$defs/ToggleNode"
+  },
+  {
+    "$ref": "#/$defs/SelectNode"
+  },
+  {
+    "$ref": "#/$defs/InputNode"
+  },
+  {
+    "$ref": "#/$defs/TextareaNode"
+  },
+  {
+    "$ref": "#/$defs/RadioNode"
+  },
+  {
+    "$ref": "#/$defs/SegmentedNode"
+  },
+  {
+    "$ref": "#/$defs/FieldNode"
+  },
+  {
+    "$ref": "#/$defs/FormNode"
+  },
+  {
+    "$ref": "#/$defs/ButtonNode"
+  },
+  {
+    "$ref": "#/$defs/TopologyNode"
+  },
+  {
+    "$ref": "#/$defs/ChartNode"
+  },
+  {
+    "$ref": "#/$defs/ClockNode"
+  },
+  {
+    "$ref": "#/$defs/StopwatchNode"
+  },
+  {
+    "$ref": "#/$defs/TimerNode"
+  },
+  {
+    "$ref": "#/$defs/WeatherNode"
+  },
+  {
+    "$ref": "#/$defs/F1RacesNode"
+  },
+  {
+    "$ref": "#/$defs/F1StandingsNode"
+  },
+  {
+    "$ref": "#/$defs/SportsScheduleNode"
+  },
+  {
+    "$ref": "#/$defs/SportsScoreboardNode"
+  },
+  {
+    "$ref": "#/$defs/SportsStandingsNode"
+  },
+  {
+    "$ref": "#/$defs/QuizNode"
+  },
+  {
+    "$ref": "#/$defs/FlashcardsNode"
+  },
+  {
+    "$ref": "#/$defs/FillBlankNode"
+  },
+  {
+    "$ref": "#/$defs/SentenceBuilderNode"
+  },
+  {
+    "$ref": "#/$defs/VocabCardNode"
+  },
+  {
+    "$ref": "#/$defs/FinanceQuoteNode"
+  },
+  {
+    "$ref": "#/$defs/FinanceChartNode"
+  },
+  {
+    "$ref": "#/$defs/FinanceComparisonNode"
+  },
+  {
+    "$ref": "#/$defs/FinanceHeatmapNode"
+  },
+  {
+    "$ref": "#/$defs/AssetDistributionNode"
+  },
+  {
+    "$ref": "#/$defs/TransactionListNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerAccountsNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerRecurringTransactionsNode"
+  },
+  {
+    "$ref": "#/$defs/NbaScoresNode"
+  },
+  {
+    "$ref": "#/$defs/SoccerGamesNode"
+  },
+  {
+    "$ref": "#/$defs/AmericanFootballGamesNode"
+  },
+  {
+    "$ref": "#/$defs/BasketballTournamentNode"
+  },
+  {
+    "$ref": "#/$defs/ElectionResultsNode"
+  },
+  {
+    "$ref": "#/$defs/NbaGameBoxscoreNode"
+  },
+  {
+    "$ref": "#/$defs/CricketMatchBoxscoreNode"
+  },
+  {
+    "$ref": "#/$defs/NbaPlayerSummaryNode"
+  },
+  {
+    "$ref": "#/$defs/TennisPlayerSummaryNode"
+  },
+  {
+    "$ref": "#/$defs/UnitConverterNode"
+  },
+  {
+    "$ref": "#/$defs/CurrencyConverterNode"
+  },
+  {
+    "$ref": "#/$defs/SvgNode"
+  },
+  {
+    "$ref": "#/$defs/NativeNode"
+  },
+  {
+    "$ref": "#/$defs/FollowUpCardGroupNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerTransactionDetailNode"
+  },
+  {
+    "$ref": "#/$defs/RecommendationCardNode"
+  },
+  {
+    "$ref": "#/$defs/PromptChecklistNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerFinanceStatusBannerNode"
+  },
+  {
+    "$ref": "#/$defs/LearningAudioLabelCardNode"
+  },
+  {
+    "$ref": "#/$defs/LearningImageChoiceCardNode"
+  },
+  {
+    "$ref": "#/$defs/LearningImageLabelCardNode"
+  },
+  {
+    "$ref": "#/$defs/WeatherSidebarTitleNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerLowConfidenceCategoryCorrectionNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerNetWorthNode"
+  },
+  {
+    "$ref": "#/$defs/PressableNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerFeeInterestPaidNode"
+  },
+  {
+    "$ref": "#/$defs/HtmlViewNode"
+  },
+  {
+    "$ref": "#/$defs/SearchImageNode"
+  },
+  {
+    "$ref": "#/$defs/YoutubeNode"
+  },
+  {
+    "$ref": "#/$defs/AsyncImageNode"
+  },
+  {
+    "$ref": "#/$defs/AsyncImageGroupNode"
+  },
+  {
+    "$ref": "#/$defs/LottieNode"
+  },
+  {
+    "$ref": "#/$defs/TabbedSectionNode"
+  },
+  {
+    "$ref": "#/$defs/VisualCardCarouselNode"
+  },
+  {
+    "$ref": "#/$defs/LinkCardNode"
+  },
+  {
+    "$ref": "#/$defs/RecommendationLinkCardNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerSpendSoFarThisMonthNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerUpcomingActivityNode"
+  },
+  {
+    "$ref": "#/$defs/ImageGridNode"
+  },
+  {
+    "$ref": "#/$defs/ConversationSuggestionsNode"
+  },
+  {
+    "$ref": "#/$defs/FollowUpActionBarNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerIncomeTrackerNode"
+  },
+  {
+    "$ref": "#/$defs/AsyncVideoCarouselNode"
+  },
+  {
+    "$ref": "#/$defs/DisplayAutomationNode"
+  },
+  {
+    "$ref": "#/$defs/ListAutomationsNode"
+  },
+  {
+    "$ref": "#/$defs/AutomationPlanSummaryNode"
+  },
+  {
+    "$ref": "#/$defs/ScheduledTaskSuggestionNode"
+  },
+  {
+    "$ref": "#/$defs/EntityCardNode"
+  },
+  {
+    "$ref": "#/$defs/EntityOverviewNode"
+  },
+  {
+    "$ref": "#/$defs/AskUserDetailsNode"
+  },
+  {
+    "$ref": "#/$defs/AskUserFilesNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerSpendByCategoryNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerSpendByCategoryDetailNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerSpendByCategoryRecentTransactionsNode"
+  },
+  {
+    "$ref": "#/$defs/LearningVoiceModeLauncherCardNode"
+  },
+  {
+    "$ref": "#/$defs/OfferVoiceConversationNode"
+  },
+  {
+    "$ref": "#/$defs/LearningSpeakCardNode"
+  },
+  {
+    "$ref": "#/$defs/ConversationalOnboardingAdviceNode"
+  },
+  {
+    "$ref": "#/$defs/ConversationalOnboardingWritingNode"
+  },
+  {
+    "$ref": "#/$defs/OnboardingFeatureCardNode"
+  },
+  {
+    "$ref": "#/$defs/OnboardingPluginSuggestionsNode"
+  },
+  {
+    "$ref": "#/$defs/OnboardingStarterTasksNode"
+  },
+  {
+    "$ref": "#/$defs/ConversationalOnboardingStudyNode"
+  },
+  {
+    "$ref": "#/$defs/ConversationalOnboardingSearchNode"
+  },
+  {
+    "$ref": "#/$defs/FollowUpQuizNode"
+  },
+  {
+    "$ref": "#/$defs/MultipleChoiceBlockV2Node"
+  },
+  {
+    "$ref": "#/$defs/PersonalityQuizNode"
+  },
+  {
+    "$ref": "#/$defs/WhatsNewCapabilityWelcomeNode"
+  },
+  {
+    "$ref": "#/$defs/AskUserLocationNode"
+  },
+  {
+    "$ref": "#/$defs/ReservationTimePillsRefCarouselNode"
+  },
+  {
+    "$ref": "#/$defs/WhatsNewCapabilitySearchNode"
+  },
+  {
+    "$ref": "#/$defs/PushDripSeriesIntroNode"
+  },
+  {
+    "$ref": "#/$defs/StopPushDripSeriesNode"
+  },
+  {
+    "$ref": "#/$defs/TaskAutopauseCardNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerFinanceOnboardingNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerRepairBankConnectionNode"
+  },
+  {
+    "$ref": "#/$defs/FinanceOnboardingSuggestionsNode"
+  },
+  {
+    "$ref": "#/$defs/PlacesMetadataBarNode"
+  },
+  {
+    "$ref": "#/$defs/PluginFollowupNode"
+  },
+  {
+    "$ref": "#/$defs/InstantSuggestionsNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerEquityUpdatesNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerWatchlistNode"
+  },
+  {
+    "$ref": "#/$defs/HomeworkHelperV2Node"
+  },
+  {
+    "$ref": "#/$defs/ImageGenNode"
+  },
+  {
+    "$ref": "#/$defs/InternalPartnerAppNode"
+  },
+  {
+    "$ref": "#/$defs/BentoNode"
+  },
+  {
+    "$ref": "#/$defs/OpenDetailNode"
+  },
+  {
+    "$ref": "#/$defs/OpenaiNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerCreditScoreNode"
+  },
+  {
+    "$ref": "#/$defs/LedgerCreditScoreDetailNode"
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "version": "iui/1",
+  "theme": "light",
+  "body": [
+    {
+      "type": "places-metadata-bar",
+      "id": "place-demo",
+      "label": "Original supplied place metadata",
+      "ratingLabel": "0.0 supplied",
+      "reviewCountLabel": "0 reviews supplied",
+      "providerLabel": "Example provider",
+      "providerUrl": "https://example.test/places/demo",
+      "providerLogo": {
+        "light": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+        "dark": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGO4s8CAJMQwqmFUw/DVAAA1gKwQX48xYwAAAABJRU5ErkJggg=="
+      },
+      "providerLogoWidth": 16,
+      "items": [
+        {
+          "label": "Original district",
+          "color": "secondary"
+        },
+        {
+          "label": "Supplied open status",
+          "color": "positive"
+        }
+      ]
+    },
+    {
+      "type": "plugin-followup",
+      "id": "plugin-demo",
+      "label": "Original local plugin offer",
+      "available": true,
+      "offerId": "fictional-offer-3",
+      "pluginId": "fictional-plugin",
+      "actionLabel": "Request this local plugin choice",
+      "context": "Original context supplied by the fixture.",
+      "icon": {
+        "light": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+        "dark": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGO4s8CAJMQwqmFUw/DVAAA1gKwQX48xYwAAAABJRU5ErkJggg=="
+      }
+    },
+    {
+      "type": "instant-suggestions",
+      "id": "suggest-demo",
+      "label": "Original instant suggestions",
+      "title": "Choose a supplied prompt",
+      "category": "original-demo",
+      "suggestions": [
+        {
+          "id": "one",
+          "prompt": "Show the original location overview",
+          "answerId": "original-answer-1",
+          "entityId": "original-entity-1"
+        },
+        {
+          "id": "two",
+          "prompt": "Read the supplied notes",
+          "answerId": "unpaired-original-hint"
+        }
+      ]
+    }
+  ]
+}

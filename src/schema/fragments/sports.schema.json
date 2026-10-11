@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:5c27c6ab8e6a93cf1aa65fb8acd6cd28d17cae33225b8794e1ef9bfe108a7222:document:base+sports",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:07baf67bb5d4521703fe59a176017a3c8f56c5e596f41c1e704c212d1f62d6e2:document:base+sports",
   "title": "Inform UI document subset: base, sports",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -1912,6 +1912,278 @@
       ],
       "additionalProperties": false
     },
+    "BentoNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "bento"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "largeCard": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "imageUrl": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            "imageAlt": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "statusText": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "smallCardA": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "bodyIsTitle": {
+              "type": "boolean"
+            },
+            "bodySize": {
+              "enum": [
+                "sm",
+                "md"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkHost": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "iconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": [
+            "title",
+            "body"
+          ]
+        },
+        "smallCardB": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "bodyIsTitle": {
+              "type": "boolean"
+            },
+            "bodySize": {
+              "enum": [
+                "sm",
+                "md"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkHost": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "iconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": [
+            "title",
+            "body"
+          ]
+        },
+        "mediumCard": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "bodyIsTitle": {
+              "type": "boolean"
+            },
+            "bodySize": {
+              "enum": [
+                "sm",
+                "md"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkHost": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "iconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": [
+            "title",
+            "body"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "largeCard": {},
+          "smallCardA": {},
+          "smallCardB": {},
+          "mediumCard": {}
+        },
+        "required": [
+          "largeCard",
+          "smallCardA",
+          "smallCardB",
+          "mediumCard"
+        ]
+      }
+    },
     "BlockquoteNode": {
       "type": "object",
       "properties": {
@@ -2687,6 +2959,861 @@
         "children"
       ],
       "additionalProperties": false
+    },
+    "CareCalendarMonth": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "firstAvailableDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "days": {
+          "type": "array",
+          "maxItems": 42,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              },
+              "accessibilityLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "currentMonth": {
+                "type": "boolean"
+              },
+              "available": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "date",
+              "label",
+              "accessibilityLabel",
+              "currentMonth",
+              "available"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "firstAvailableDate",
+        "days"
+      ]
+    },
+    "CareDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "accessibilityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "countLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "groups": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "slots": {
+                "type": "array",
+                "maxItems": 40,
+                "items": {
+                  "$ref": "#/$defs/CareSlot"
+                }
+              }
+            },
+            "required": [
+              "label",
+              "slots"
+            ]
+          }
+        }
+      },
+      "required": [
+        "date",
+        "label",
+        "accessibilityLabel",
+        "groups"
+      ]
+    },
+    "CareLocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "distanceLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "modality": {
+          "enum": [
+            "in-person",
+            "telehealth"
+          ]
+        },
+        "partnerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "partnerLogo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "partnerGlyph": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "action": {
+          "$ref": "#/$defs/CareRequest"
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "days": {
+          "type": "array",
+          "maxItems": 62,
+          "items": {
+            "$ref": "#/$defs/CareDay"
+          }
+        },
+        "combinedDays": {
+          "anyOf": [
+            {
+              "type": "array",
+              "maxItems": 62,
+              "items": {
+                "$ref": "#/$defs/CareDay"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "days"
+      ]
+    },
+    "CareProvider": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "initials": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "photo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "photoAlt": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "specialty": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "ratingLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reviewCountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "networkLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inNetwork": {
+          "type": "boolean"
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "partnerLogo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "partnerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "partnerGlyph": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "profile": {
+          "$ref": "#/$defs/CareRequest"
+        },
+        "profileLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "locations": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/CareLocation"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "initials",
+        "locations"
+      ]
+    },
+    "CareProviderResultsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "care-provider-results"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "render": {
+          "type": "boolean"
+        },
+        "resultStatus": {
+          "enum": [
+            "ok",
+            "partial",
+            "empty",
+            "error"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "emptyTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "emptyMessage": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "errorTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "errorMessage": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "retryLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "retryQuery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "partialNotice": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "noAvailabilityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "providers": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/CareProvider"
+          }
+        },
+        "providersToShow": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "expandedProvidersToShow": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "selectedLocationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "selectedDate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "hasMoreResults": {
+          "type": "boolean"
+        },
+        "moreResultsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "moreResultsQuery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "resultStatus": {},
+          "providers": {},
+          "providersToShow": {},
+          "expandedProvidersToShow": {},
+          "showMoreLabel": {},
+          "noAvailabilityLabel": {}
+        },
+        "required": [
+          "resultStatus",
+          "providers",
+          "providersToShow",
+          "expandedProvidersToShow",
+          "showMoreLabel",
+          "noAvailabilityLabel"
+        ]
+      }
+    },
+    "CareProviderSidebarNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "care-provider-sidebar"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "provider": {
+          "$ref": "#/$defs/CareProvider"
+        },
+        "locationLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "modality": {
+          "enum": [
+            "in-person",
+            "telehealth"
+          ]
+        },
+        "locationOptions": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "accessibilityLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "modality": {
+                "enum": [
+                  "in-person",
+                  "telehealth"
+                ]
+              },
+              "selected": {
+                "type": "boolean"
+              },
+              "action": {
+                "$ref": "#/$defs/CareRequest"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "accessibilityLabel",
+              "selected",
+              "action"
+            ]
+          }
+        },
+        "directions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ]
+        },
+        "profileLink": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ]
+        },
+        "appointmentsHeading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "noAppointmentsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "days": {
+          "type": "array",
+          "maxItems": 62,
+          "items": {
+            "$ref": "#/$defs/CareDay"
+          }
+        },
+        "selectedDate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "months": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "$ref": "#/$defs/CareCalendarMonth"
+          }
+        },
+        "selectedMonth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 23
+        },
+        "weekdayLabels": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          }
+        },
+        "previousMonthLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "nextMonthLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "closeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "provider": {},
+          "locationOptions": {},
+          "appointmentsHeading": {},
+          "noAppointmentsLabel": {},
+          "days": {},
+          "months": {},
+          "weekdayLabels": {},
+          "previousMonthLabel": {},
+          "nextMonthLabel": {}
+        },
+        "required": [
+          "provider",
+          "locationOptions",
+          "appointmentsHeading",
+          "noAppointmentsLabel",
+          "days",
+          "months",
+          "weekdayLabels",
+          "previousMonthLabel",
+          "nextMonthLabel"
+        ]
+      }
+    },
+    "CareRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      },
+      "required": []
+    },
+    "CareSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "accessibilityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "chooseLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "dismissLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "options": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "accessibilityLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "accessibilityLabel",
+              "url"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "accessibilityLabel"
+      ]
     },
     "CarouselNode": {
       "type": "object",
@@ -4923,6 +6050,205 @@
         ]
       }
     },
+    "EntityNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "entity"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "action": {
+          "$ref": "#/$defs/InlineHostAction"
+        },
+        "detailPayload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "entityId"
+          ]
+        },
+        "entityData": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "categories": {
+              "type": "array",
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "rating": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "priceLabel": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "open": {
+              "type": "boolean"
+            },
+            "legacyWebsiteUrl": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": []
+        },
+        "image": {
+          "$ref": "#/$defs/SearchImageRecord"
+        },
+        "directionsUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "websiteUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "directionsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "websiteLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "openLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "closedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "detailsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "closeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "value": {}
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
     "EntityOverviewNode": {
       "type": "object",
       "properties": {
@@ -7042,6 +8368,313 @@
       ],
       "additionalProperties": false
     },
+    "GenImageNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "gen-image"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/SearchImageRecord"
+          }
+        },
+        "loading": {
+          "type": "boolean"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxHeight": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minHeight": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameHeight": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameMaxWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameMaxHeight": {
+          "anyOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4096
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32,
+                  "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "aspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameAspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "frame": {
+          "type": "boolean"
+        },
+        "fit": {
+          "enum": [
+            "cover",
+            "contain"
+          ]
+        },
+        "presentation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "frame": {
+              "type": "boolean"
+            },
+            "minWidth": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4096
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32,
+                  "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+                }
+              ]
+            },
+            "minHeight": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4096
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32,
+                  "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+                }
+              ]
+            },
+            "radius": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            }
+          },
+          "required": []
+        },
+        "onClickAction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InlineHostAction"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "defaultAction": {
+          "$ref": "#/$defs/InlineHostAction"
+        },
+        "openLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "GridItemNode": {
       "type": "object",
       "properties": {
@@ -7568,6 +9201,293 @@
         "alt"
       ],
       "additionalProperties": false
+    },
+    "InlineHostAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "url",
+            "query",
+            "entity"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "entityId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "appendToCurrent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind"
+      ]
+    },
+    "InstantSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "instant-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "suggestions": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "prompt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "answerId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "entityId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "prompt"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "suggestions": {}
+        },
+        "required": [
+          "title",
+          "suggestions"
+        ]
+      }
+    },
+    "InternalPartnerAppNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "internal-partner-app"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "buttonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "providerLogo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "launcher": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "appId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "viewId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "appId"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "buttonLabel": {}
+        },
+        "required": [
+          "title",
+          "buttonLabel"
+        ]
+      }
     },
     "JobSalary": {
       "type": "object",
@@ -10207,6 +12127,51 @@
         },
         {
           "$ref": "#/$defs/WhatsNewCapabilitySearchNode"
+        },
+        {
+          "$ref": "#/$defs/PushDripSeriesIntroNode"
+        },
+        {
+          "$ref": "#/$defs/StopPushDripSeriesNode"
+        },
+        {
+          "$ref": "#/$defs/TaskAutopauseCardNode"
+        },
+        {
+          "$ref": "#/$defs/PlacesMetadataBarNode"
+        },
+        {
+          "$ref": "#/$defs/PluginFollowupNode"
+        },
+        {
+          "$ref": "#/$defs/InstantSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/InternalPartnerAppNode"
+        },
+        {
+          "$ref": "#/$defs/BentoNode"
+        },
+        {
+          "$ref": "#/$defs/OpenDetailNode"
+        },
+        {
+          "$ref": "#/$defs/OpenaiNode"
+        },
+        {
+          "$ref": "#/$defs/CareProviderResultsNode"
+        },
+        {
+          "$ref": "#/$defs/CareProviderSidebarNode"
+        },
+        {
+          "$ref": "#/$defs/EntityNode"
+        },
+        {
+          "$ref": "#/$defs/GenImageNode"
+        },
+        {
+          "$ref": "#/$defs/SpeechSynthesizerNode"
         }
       ]
     },
@@ -11058,6 +13023,272 @@
         "required": [
           "heading",
           "tasks"
+        ]
+      }
+    },
+    "OpenDetailNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "open-detail"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "payload": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ]
+          }
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showLessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "action": {},
+          "actions": {}
+        },
+        "required": [
+          "title",
+          "action",
+          "actions"
+        ]
+      }
+    },
+    "OpenaiNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "openai"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "tagline": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "image": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "imageAlt": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "websiteUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "morePrompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "websiteLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "moreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "name": {},
+          "tagline": {},
+          "image": {},
+          "websiteUrl": {},
+          "morePrompt": {}
+        },
+        "required": [
+          "name",
+          "tagline",
+          "image",
+          "websiteUrl",
+          "morePrompt"
         ]
       }
     },
@@ -11925,6 +14156,310 @@
       ],
       "additionalProperties": false
     },
+    "PlacesMetadataBarNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "places-metadata-bar"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "ratingLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reviewCountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "providerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "providerUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "providerLogo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "light": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000000
+                },
+                "dark": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000000
+                }
+              },
+              "required": []
+            }
+          ]
+        },
+        "providerLogoWidth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 240
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "color": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative",
+                  "warning"
+                ]
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "items": {}
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    "PluginFollowupNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "plugin-followup"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "pending": {
+          "type": "boolean"
+        },
+        "streaming": {
+          "type": "boolean"
+        },
+        "showContext": {
+          "type": "boolean"
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "offerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "pluginId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "icon": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            "dark": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "offerId": {},
+          "actionLabel": {}
+        },
+        "required": [
+          "offerId",
+          "actionLabel"
+        ]
+      }
+    },
     "PollDraftOption": {
       "type": "object",
       "properties": {
@@ -12538,6 +15073,161 @@
         "status"
       ],
       "additionalProperties": false
+    },
+    "PushDripSeriesIntroNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "push-drip-series-intro"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "stopped": {
+          "type": "boolean"
+        },
+        "stoppedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "confirming": {
+          "type": "boolean"
+        },
+        "confirmationTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "confirmationMessage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "confirmLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "introPrefix": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "introLinkLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "introSuffix": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "if": {
+          "properties": {
+            "stopped": {
+              "const": true
+            }
+          },
+          "required": [
+            "stopped"
+          ]
+        },
+        "then": {
+          "properties": {
+            "stoppedLabel": {}
+          },
+          "required": [
+            "stoppedLabel"
+          ]
+        },
+        "else": {
+          "properties": {
+            "confirmationTitle": {},
+            "confirmationMessage": {},
+            "confirmLabel": {},
+            "cancelLabel": {},
+            "introPrefix": {},
+            "introLinkLabel": {},
+            "introSuffix": {}
+          },
+          "required": [
+            "confirmationTitle",
+            "confirmationMessage",
+            "confirmLabel",
+            "cancelLabel",
+            "introPrefix",
+            "introLinkLabel",
+            "introSuffix"
+          ]
+        }
+      }
     },
     "RatingNode": {
       "type": "object",
@@ -15156,6 +17846,129 @@
       ],
       "additionalProperties": false
     },
+    "SpeechSynthesizerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "speech-synthesizer"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "playbackStatus": {
+          "enum": [
+            "idle",
+            "starting",
+            "playing",
+            "paused",
+            "error"
+          ]
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "playbackSpeed": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 4
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16000
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "voiceId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            }
+          },
+          "required": []
+        },
+        "controls": {
+          "enum": [
+            "default",
+            "custom"
+          ]
+        },
+        "playLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "stopLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "statusLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "SportsData": {
       "type": "object",
       "properties": {
@@ -15805,6 +18618,163 @@
       ],
       "additionalProperties": false
     },
+    "StopPushDripSeriesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "stop-push-drip-series"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "stopped": {
+          "type": "boolean"
+        },
+        "stoppedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "confirming": {
+          "type": "boolean"
+        },
+        "confirmationTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "confirmationMessage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "confirmLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actionStyle": {
+          "enum": [
+            "text-links",
+            "outline-keep",
+            "red",
+            "solid"
+          ]
+        },
+        "confirmationLayout": {
+          "enum": [
+            "card",
+            "inline"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "if": {
+          "properties": {
+            "stopped": {
+              "const": true
+            }
+          },
+          "required": [
+            "stopped"
+          ]
+        },
+        "then": {
+          "properties": {
+            "stoppedLabel": {}
+          },
+          "required": [
+            "stoppedLabel"
+          ]
+        },
+        "else": {
+          "properties": {
+            "confirmationTitle": {},
+            "confirmationMessage": {},
+            "confirmLabel": {},
+            "cancelLabel": {},
+            "actionLabel": {}
+          },
+          "required": [
+            "confirmationTitle",
+            "confirmationMessage",
+            "confirmLabel",
+            "cancelLabel",
+            "actionLabel"
+          ]
+        }
+      }
+    },
     "SuppliedJob": {
       "type": "object",
       "properties": {
@@ -16330,6 +19300,141 @@
         "rows"
       ],
       "additionalProperties": false
+    },
+    "TaskAutopauseCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "task-autopause-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "taskId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "taskTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "showBody": {
+          "type": "boolean"
+        },
+        "continueLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "settingsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "deleteLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "taskId": {},
+          "taskTitle": {},
+          "prompt": {},
+          "continueLabel": {}
+        },
+        "required": [
+          "taskId",
+          "taskTitle",
+          "prompt",
+          "continueLabel"
+        ],
+        "if": {
+          "properties": {
+            "showBody": {
+              "const": true
+            }
+          },
+          "required": [
+            "showBody"
+          ]
+        },
+        "then": {
+          "properties": {
+            "body": {}
+          },
+          "required": [
+            "body"
+          ]
+        }
+      }
     },
     "TaskExpansionCardNode": {
       "type": "object",

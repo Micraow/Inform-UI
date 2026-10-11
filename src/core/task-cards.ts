@@ -1,0 +1,7 @@
+import type {Issue} from './index.js';
+interface TaskCardBase {id?:string;label:string;status?:'resolved'|'pending'|'failed';fallback?:string;disabled?:boolean;resetLabel?:string;requestedLabel?:string;cancelledLabel?:string}
+export interface DripCardNode extends TaskCardBase {type:'push-drip-series-intro'|'stop-push-drip-series';introPrefix?:string;introLinkLabel?:string;introSuffix?:string;actionLabel?:string;confirmationTitle?:string;confirmationMessage?:string;confirmLabel?:string;cancelLabel?:string;unavailableLabel?:string;stopped?:boolean;stoppedLabel?:string;confirming?:boolean;actionStyle?:'text-links'|'outline-keep'|'red'|'solid';confirmationLayout?:'card'|'inline'}
+export interface TaskAutopauseNode extends TaskCardBase {type:'task-autopause-card';taskId?:string;taskTitle?:string;prompt?:string;body?:string;showBody?:boolean;continueLabel?:string;settingsLabel?:string;deleteLabel?:string}
+export type TaskCardNode=DripCardNode|TaskAutopauseNode;
+export interface TaskCardDetail {readonly id:string|null;readonly component:TaskCardNode['type'];readonly intent:'expand'|'collapse'|'cancel'|'resume'|'settings'|'delete';readonly taskId?:string}
+export function inspectTaskCard(node:TaskCardNode,path:string,add:(issue:Issue)=>void):void {for(const[key,value]of Object.entries(node))if(typeof value==='string'&&!['introPrefix','introSuffix','body','fallback'].includes(key)&&!value.trim())add({code:'TASK_CARD_TEXT',path:path+'/'+key,message:'Supply nonblank text.'});}

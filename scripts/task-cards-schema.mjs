@@ -1,0 +1,11 @@
+/** Finite supplied task cards. No scheduler or notification service. */
+export function installTaskCardsSchema({node,defs}){
+ const text=(max=500)=>({type:'string',minLength:1,maxLength:max}),content=(max=2000)=>({type:'string',maxLength:max}),bool={type:'boolean'},common={label:text(200),status:{enum:['resolved','pending','failed']},fallback:content(),disabled:bool,resetLabel:text(200),requestedLabel:text(1000),cancelledLabel:text(1000)};
+ const stop={stopped:bool,stoppedLabel:text(1000),confirming:bool,confirmationTitle:text(500),confirmationMessage:text(2000),confirmLabel:text(200),cancelLabel:text(200),unavailableLabel:text(1000)};
+ for(const[type,fields]of[['push-drip-series-intro',{introPrefix:content(),introLinkLabel:text(200),introSuffix:content()}],['stop-push-drip-series',{actionLabel:text(200),actionStyle:{enum:['text-links','outline-keep','red','solid']},confirmationLayout:{enum:['card','inline']}}]]){
+  node(type,{...common,...stop,...fields},['label'],'base');const key=type==='push-drip-series-intro'?'PushDripSeriesIntroNode':'StopPushDripSeriesNode';
+  Object.assign(defs[key],{if:{properties:{status:{enum:['pending','failed']}},required:['status']},then:{},else:{if:{properties:{stopped:{const:true}},required:['stopped']},then:{properties:{stoppedLabel:{}},required:['stoppedLabel']},else:{properties:{confirmationTitle:{},confirmationMessage:{},confirmLabel:{},cancelLabel:{},...Object.fromEntries(Object.keys(fields).filter(k=>!['actionStyle','confirmationLayout'].includes(k)).map(k=>[k,{}]))},required:['confirmationTitle','confirmationMessage','confirmLabel','cancelLabel',...Object.keys(fields).filter(k=>!['actionStyle','confirmationLayout'].includes(k))]}}});
+ }
+ node('task-autopause-card',{...common,taskId:text(200),taskTitle:text(500),prompt:text(1000),body:content(4000),showBody:bool,continueLabel:text(200),settingsLabel:text(200),deleteLabel:text(200)},['label'],'base');
+ Object.assign(defs.TaskAutopauseCardNode,{if:{properties:{status:{enum:['pending','failed']}},required:['status']},then:{},else:{properties:{taskId:{},taskTitle:{},prompt:{},continueLabel:{}},required:['taskId','taskTitle','prompt','continueLabel'],if:{properties:{showBody:{const:true}},required:['showBody']},then:{properties:{body:{}},required:['body']}}});
+}

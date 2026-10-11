@@ -1,6 +1,6 @@
 # 组件进度
 
-181项完整实现覆盖：53历史、128待完整验收，0部分、75未实现；186协议登记另计。Search组合独立10项与消费者6组已过，新原生/像素未验。统一183冻结178口径及其3428 Node、742 Chromium终态独立保留。
+208项完整实现覆盖：53历史、155待完整验收，0部分、48未实现；213协议登记另计。独立普通功能与消费者验证闭合；新原生/像素未验，183冻结包范围不变。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -96,7 +96,7 @@
 | async-video-carousel | Async Video Carousel | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | automation-plan-summary | Automation Plan Summary | 完整实现待验 | Whole-plan-collapse/reset regression repaired; original negative replay and14 independent tests plus8 consumer flows passed. Native and reference pixel acceptance remain pending. |
 | basketball-tournament | Basketball Tournament | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| bento | Bento | 未实现 | No implementation in the current library. |
+| bento | Bento | 完整实现待验 | Complete supplied discovery presentation and local request contract passed author tests, independent QA and consumer flows. Responsive CSS is checked; native geometry and reference pixels remain pending. |
 | calculator-abcd2-score-for-transient-ischemic-attack | Calculator Abcd2 Score For Transient Ischemic Attack | 未实现 | No implementation in the current library. |
 | calculator-apache-ii-score | Calculator Apache Ii Score | 未实现 | No implementation in the current library. |
 | calculator-apgar-score | Calculator Apgar Score | 未实现 | No implementation in the current library. |
@@ -145,8 +145,8 @@
 | calculator-wells-score-for-pulmonary-embolism | Calculator Wells Score For Pulmonary Embolism | 未实现 | No implementation in the current library. |
 | calculator-westley-croup-severity-score | Calculator Westley Croup Severity Score | 未实现 | No implementation in the current library. |
 | calculator-years-algorithm-for-pulmonary-embolism | Calculator Years Algorithm For Pulmonary Embolism | 未实现 | No implementation in the current library. |
-| care-provider-results | Care Provider Results | 未实现 | No implementation in the current library. |
-| care-provider-sidebar | Care Provider Sidebar | 未实现 | No implementation in the current library. |
+| care-provider-results | Care Provider Results | 完整实现待验 | Supplied care-directory views d1e555 passed12 independent checks and7 consumer flows. All booking and navigation outcomes remain local requests; no clinical or provider service is executed. New native/reference pixel acceptance remains pending. |
+| care-provider-sidebar | Care Provider Sidebar | 完整实现待验 | Supplied care-directory views d1e555 passed12 independent checks and7 consumer flows. All booking and navigation outcomes remain local requests; no clinical or provider service is executed. New native/reference pixel acceptance remains pending. |
 | checklist | Checklist | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | clock | Clock | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | code-cite | Code Cite | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -162,26 +162,26 @@
 | display-automation | Display Automation | 完整实现待验 | Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending. |
 | election-results | Election Results | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | email-preview | Email Preview | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| entity | Entity | 未实现 | No implementation in the current library. |
+| entity | Entity | 完整实现待验 | Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending. |
 | entity-thumbnail-list | Entity Thumbnail List | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | event-sidebar | Event Sidebar | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | f1-races | F1 Races | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | f1-standings | F1 Standings | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | file-cite | File Cite | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | file-nav-list | File Nav List | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| finance-onboarding-suggestions | Finance Onboarding Suggestions | 未实现 | No implementation in the current library. |
+| finance-onboarding-suggestions | Finance Onboarding Suggestions | 完整实现待验 | Complete finite supplied finance-entry presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No account or banking service. Native/pixel acceptance pending;576px layout checked as CSS contract only. |
 | flight-results | Flight Results | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | flight-search-form | Flight Search Form | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | flight-tracker | Flight Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | follow-up-action-bar | Follow Up Action Bar | 完整实现待验 | Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending. |
 | follow-up-card-group | Follow Up Card Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | follow-up-quiz | Follow Up Quiz | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
-| gen-image | Gen Image | 未实现 | No implementation in the current library. |
-| homework-helper-v2 | Homework Helper V2 | 未实现 | No implementation in the current library. |
-| image-gen | Image Gen | 未实现 | No implementation in the current library. |
+| gen-image | Gen Image | 完整实现待验 | Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending. |
+| homework-helper-v2 | Homework Helper V2 | 完整实现待验 | Complete supplied view and finite local request contract passed author tests, independent QA and consumer flows. Native and reference-pixel acceptance remain pending. |
+| image-gen | Image Gen | 完整实现待验 | Complete supplied view and finite local request contract passed author tests, independent QA and consumer flows. Native and reference-pixel acceptance remain pending. |
 | image-grid | Image Grid | 完整实现待验 | Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending. |
-| instant-suggestions | Instant Suggestions | 未实现 | No implementation in the current library. |
-| internal-partner-app | Internal Partner App | 未实现 | No implementation in the current library. |
+| instant-suggestions | Instant Suggestions | 完整实现待验 | Complete finite supplied context presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No navigation, plugin service or telemetry. Native/pixel acceptance pending. |
+| internal-partner-app | Internal Partner App | 完整实现待验 | Complete supplied view and finite local request contract passed author tests, independent QA and consumer flows. Native and reference-pixel acceptance remain pending. |
 | jobs | Jobs | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-audio-label-card | Learning Audio Label Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-fill-blank-card | Learning Fill Blank Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -189,29 +189,29 @@
 | learning-image-label-card | Learning Image Label Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-sentence-builder-card | Learning Sentence Builder Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-speak-card | Learning Speak Card | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
-| learning-viz-dil | Learning Viz Dil | 未实现 | No implementation in the current library. |
+| learning-viz-dil | Learning Viz Dil | 完整实现待验 | Supplied learning animation e6bb passed11 independent plus18 unchanged original engine checks and8 consumer flows. Real SVG playback verified in DOM; new native/reference pixel acceptance pending. |
 | learning-vocab-card | Learning Vocab Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | learning-voice-mode-launcher-card | Learning Voice Mode Launcher Card | 完整实现待验 | Complete finite supplied functionality passed independent and actual consumer review. Voice reset regression is closed by37c30c; Advice/Writing reviewed at744c. New native and reference pixels remain pending. |
 | ledger-accounts | Ledger Accounts | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| ledger-credit-score-detail | Ledger Credit Score Detail | 未实现 | No implementation in the current library. |
-| ledger-credit-score | Ledger Credit Score | 未实现 | No implementation in the current library. |
-| ledger-equity-updates | Ledger Equity Updates | 未实现 | No implementation in the current library. |
+| ledger-credit-score-detail | Ledger Credit Score Detail | 完整实现待验 | Complete independent supplied score/history/detail views passed author tests, independent QA and consumer flows. No credit assessment or financial service is performed. Native and reference-pixel acceptance remain pending. |
+| ledger-credit-score | Ledger Credit Score | 完整实现待验 | Complete independent supplied score/history/detail views passed author tests, independent QA and consumer flows. No credit assessment or financial service is performed. Native and reference-pixel acceptance remain pending. |
+| ledger-equity-updates | Ledger Equity Updates | 完整实现待验 | Complete supplied-label table and disclosure contract passed author checks, independent QA and consumer flows. Native and reference-pixel acceptance remain pending. |
 | ledger-fee-interest-paid | Ledger Fee Interest Paid | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| ledger-finance-onboarding | Ledger Finance Onboarding | 未实现 | No implementation in the current library. |
+| ledger-finance-onboarding | Ledger Finance Onboarding | 完整实现待验 | Complete finite supplied finance-entry presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No account or banking service. Native/pixel acceptance pending;576px layout checked as CSS contract only. |
 | ledger-finance-status-banner | Ledger Finance Status Banner | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-income-tracker | Ledger Income Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-low-confidence-category-correction | Ledger Low Confidence Category Correction | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| ledger-low-confidence-category-correction-legacy | Ledger Low Confidence Category Correction Legacy | 未实现 | No implementation in the current library. |
+| ledger-low-confidence-category-correction-legacy | Ledger Low Confidence Category Correction Legacy | 完整实现待验 | Original finite supplied interaction implementation accepted at 848a1d20: independent12/12 and consumer7 flows; original reset focus failures retained. New native and reference pixel acceptance pending. |
 | ledger-net-worth | Ledger Net Worth | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-recurring-transactions | Ledger Recurring Transactions | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| ledger-repair-bank-connection | Ledger Repair Bank Connection | 未实现 | No implementation in the current library. |
+| ledger-repair-bank-connection | Ledger Repair Bank Connection | 完整实现待验 | Complete finite supplied finance-entry presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No account or banking service. Native/pixel acceptance pending;576px layout checked as CSS contract only. |
 | ledger-spend-by-category-detail | Ledger Spend By Category Detail | 完整实现待验 | Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | ledger-spend-by-category-recent-transactions | Ledger Spend By Category Recent Transactions | 完整实现待验 | Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | ledger-spend-by-category | Ledger Spend By Category | 完整实现待验 | Complete supplied overview, breakdown and recent-record contracts passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | ledger-spend-so-far-this-month | Ledger Spend So Far This Month | 完整实现待验 | Supplied month/comparison trends and point inspection independently reviewed; native and reference-pixel acceptance remain pending. |
 | ledger-transaction-detail | Ledger Transaction Detail | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | ledger-upcoming-activity | Ledger Upcoming Activity | 完整实现待验 | Complete supplied functional branches independently reviewed; new native and reference-pixel acceptance remain pending. |
-| ledger-watchlist | Ledger Watchlist | 未实现 | No implementation in the current library. |
+| ledger-watchlist | Ledger Watchlist | 完整实现待验 | Complete supplied-label table and disclosure contract passed author checks, independent QA and consumer flows. Native and reference-pixel acceptance remain pending. |
 | link | Link | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
 | link-card | Link Card | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
 | list-automations | List Automations | 完整实现待验 | Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending. |
@@ -224,15 +224,15 @@
 | onboarding-feature-card | Onboarding Feature Card | 完整实现待验 | Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | onboarding-plugin-suggestions | Onboarding Plugin Suggestions | 完整实现待验 | Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
 | onboarding-starter-tasks | Onboarding Starter Tasks | 完整实现待验 | Complete supplied presentations and local cancelable actions passed9 independent checks and8 consumer flows. New native/reference pixel acceptance remains pending. |
-| openai | Openai | 未实现 | No implementation in the current library. |
-| open-detail | Open Detail | 未实现 | No implementation in the current library. |
+| openai | Openai | 完整实现待验 | Complete supplied discovery presentation and local request contract passed author tests, independent QA and consumer flows. Responsive CSS is checked; native geometry and reference pixels remain pending. |
+| open-detail | Open Detail | 完整实现待验 | Complete supplied discovery presentation and local request contract passed author tests, independent QA and consumer flows. Responsive CSS is checked; native geometry and reference pixels remain pending. |
 | package-tracker | Package Tracker | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | personality-quiz | Personality Quiz | 完整实现待验 | Complete supplied implementation passed independent and consumer functional checks; native/reference pixel acceptance pending. |
-| places-metadata-bar | Places Metadata Bar | 未实现 | No implementation in the current library. |
-| plugin-followup | Plugin Followup | 未实现 | No implementation in the current library. |
+| places-metadata-bar | Places Metadata Bar | 完整实现待验 | Complete finite supplied context presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No navigation, plugin service or telemetry. Native/pixel acceptance pending. |
+| plugin-followup | Plugin Followup | 完整实现待验 | Complete finite supplied context presentation passed 10 independent checks and 6 consumer DOM/standalone flows. No navigation, plugin service or telemetry. Native/pixel acceptance pending. |
 | product-card | Product Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | prompt-checklist | Prompt Checklist | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| push-drip-series-intro | Push Drip Series Intro | 未实现 | No implementation in the current library. |
+| push-drip-series-intro | Push Drip Series Intro | 完整实现待验 | Complete finite supplied task presentation passed independent and consumer checks, including accepted cancellation focus return. Drip service confirmation remains unavailable. New native/pixel acceptance pending. |
 | learning-quiz | Learning Quiz | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | rating | Rating | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | recommendation-card | Recommendation Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -243,15 +243,15 @@
 | sidebar-fact-table | Sidebar Fact Table | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | sidebar-people-also-ask | Sidebar People Also Ask | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | soccer-games | Soccer Games | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| speech-synthesizer | Speech Synthesizer | 未实现 | No implementation in the current library. |
+| speech-synthesizer | Speech Synthesizer | 完整实现待验 | Original supplied-data Entity, GenImage and SpeechSynthesizer host adapters: author40, independentQA13 and consumer20positive24negative8flows passed on3b0614; no actual TTS, image generation, navigation or external service. New native/reference-pixel acceptance remains pending. |
 | stock-chart | Stock Chart | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | stock-comparison-chart | Stock Comparison Chart | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | stock-heatmap | Stock Heatmap | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
-| stop-push-drip-series | Stop Push Drip Series | 未实现 | No implementation in the current library. |
-| superbowl-riddle | Superbowl Riddle | 未实现 | No implementation in the current library. |
+| stop-push-drip-series | Stop Push Drip Series | 完整实现待验 | Complete finite supplied task presentation passed independent and consumer checks, including accepted cancellation focus return. Drip service confirmation remains unavailable. New native/pixel acceptance pending. |
+| superbowl-riddle | Superbowl Riddle | 完整实现待验 | Original finite supplied interaction implementation accepted at 848a1d20: independent12/12 and consumer7 flows; original reset focus failures retained. New native and reference pixel acceptance pending. |
 | tabbed-section | Tabbed Section | 完整实现待验 | Complete ordinary functionality independently verified; native and reference pixel acceptance remain pending. |
 | tab-group | Tab Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| task-autopause-card | Task Autopause Card | 未实现 | No implementation in the current library. |
+| task-autopause-card | Task Autopause Card | 完整实现待验 | Complete finite supplied task presentation passed independent and consumer checks, including accepted cancellation focus return. Drip service confirmation remains unavailable. New native/pixel acceptance pending. |
 | tennis-player-summary | Tennis Player Summary | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | visual-card-carousel | Visual Card Carousel | 完整实现待验 | Complete ordinary functionality independently verified; native and reference pixel acceptance remain pending. |
 | weather-sidebar-title | Weather Sidebar Title | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |

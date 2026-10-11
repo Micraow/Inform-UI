@@ -1,0 +1,31 @@
+import type {TaskCardNode,TaskCardDetail} from '../core/task-cards.js';
+import type {RendererContext} from './context.js';
+import {suppliedReaderContext,suppliedReaderPainter} from './supplied-reader-lifecycle.js';
+import {readerBlocked,readerNativeReset} from './reader-controls.js';
+import {intentGate} from './intent-gate.js';
+/** Original local card interactions; confirmation in the drip view is intentionally unavailable. */
+export function renderTaskCard(parent:RendererContext,node:TaskCardNode):HTMLElement {
+ const root=parent.element('section','iui-task-card'),c=suppliedReaderContext(parent,root),life=c.lifecycle,write=life.during,draw=suppliedReaderPainter(c),gate=intentGate(life),e=c.element;
+ write(()=>{root.setAttribute('role','group');root.setAttribute('aria-label',node.label);root.dir='auto';root.dataset.kind=node.type;root.dataset.phase=node.status??'resolved';});
+ if(node.status==='pending'){const pending=e('p','iui-task-card-loading',node.fallback??'Waiting for supplied card');write(()=>{pending.setAttribute('role','status');root.setAttribute('aria-busy','true');root.append(pending);});return root;}
+ if(node.status==='failed'){if(node.fallback)write(()=>root.append(e('p','',node.fallback)));else write(()=>{root.hidden=true;});return root;}
+ if(node.type!=='task-autopause-card'&&node.stopped){write(()=>root.append(e('p','iui-task-card-stopped',node.stoppedLabel??'')));return root;}
+ const content=e('div','iui-task-card-content'),notice=e('p','iui-task-card-notice'),reset=e('button','iui-task-card-reset',node.resetLabel??'Reset local card');write(()=>{notice.setAttribute('role','status');notice.setAttribute('aria-live','polite');reset.type='button';reset.dataset.taskAction='reset';reset.disabled=node.disabled===true;root.append(content,reset,notice);});
+ let focusAfterPaint:HTMLButtonElement|undefined;
+ let revision=0,message='',confirming=node.type!=='task-autopause-card'&&node.confirming===true,pending=()=>false;const paints:Array<(put:<T>(fn:()=>T)=>T)=>void>=[];
+ const refresh=()=>draw(scope=>{scope.during(()=>{notice.textContent=message;});for(const paint of paints)paint(scope.during);const target=focusAfterPaint;focusAfterPaint=undefined;if(target&&ready(target))scope.during(()=>target.focus());});
+ const ready=(b:HTMLButtonElement)=>write(()=>node.disabled!==true&&!readerBlocked(root,b,life.current()));
+ const action=(host:HTMLElement,label:string,intent:TaskCardDetail['intent'],apply?:()=>void,eventIntent?:()=>TaskCardDetail['intent'])=>{const b=e('button','iui-task-card-action',label);write(()=>{b.type='button';b.dataset.taskAction=intent;b.disabled=node.disabled===true;host.append(b);});c.on(b,'click',event=>gate.run(()=>{const before=revision;if(write(()=>event.defaultPrevented)||pending()||!ready(b))return;const Constructor=write(()=>c.doc.defaultView?.CustomEvent);if(!Constructor)return;
+  const detail:TaskCardDetail=Object.freeze({id:node.id??null,component:node.type,intent:write(()=>eventIntent?.()??intent),...(node.type==='task-autopause-card'?{taskId:node.taskId}: {})});const outgoing=write(()=>new Constructor('iui:task-card',{detail,bubbles:true,cancelable:true,composed:false}));if(before!==revision||pending()||!ready(b))return;const accepted=write(()=>root.dispatchEvent(outgoing));if(before!==revision||pending()||!ready(b))return;revision++;if(accepted&&apply)apply();message=accepted?(node.requestedLabel??'Local request accepted'):(node.cancelledLabel??'Local request cancelled');refresh();}));return b;};
+ if(node.type==='task-autopause-card'){
+  const header=e('div','iui-task-autopause-header',node.taskTitle??''),body=e('div','iui-task-autopause-body'),buttons=e('div','iui-task-autopause-actions');write(()=>{content.append(header,body);body.append(e('h3','',node.prompt??''));if(node.showBody)body.append(e('p','',node.body??''));body.append(buttons);});action(buttons,node.continueLabel??'Continue','resume');action(buttons,node.settingsLabel??'Task settings','settings');const remove=action(buttons,node.deleteLabel??'Delete task','delete');write(()=>remove.classList.add('iui-task-card-danger'));
+ }else{
+  const intro=e('p','iui-drip-intro'),panel=e('div','iui-drip-confirmation'),buttons=e('div','iui-drip-confirmation-actions');const title=e('h3','',node.confirmationTitle??''),description=e('p','',node.confirmationMessage??''),confirm=e('button','iui-drip-confirm-disabled',node.confirmLabel??''),unavailable=e('p','iui-drip-unavailable',node.unavailableLabel??'This action is not available here.');
+  write(()=>{panel.dataset.style=node.type==='push-drip-series-intro'?'text-links':node.actionStyle??'text-links';panel.dataset.layout=node.type==='push-drip-series-intro'?'card':node.confirmationLayout??'inline';confirm.type='button';confirm.disabled=true;confirm.dataset.taskAction='confirm-unavailable';buttons.append(confirm);panel.append(title,description,buttons,unavailable);content.append(intro,panel);});
+  let trigger:HTMLButtonElement;
+  if(node.type==='push-drip-series-intro'){write(()=>intro.append(c.doc.createTextNode(node.introPrefix??'')));const toggle=trigger=action(intro,node.introLinkLabel??'','expand',()=>{confirming=!confirming;},()=>confirming?'collapse':'expand');write(()=>{toggle.classList.add('iui-drip-link');intro.append(c.doc.createTextNode(node.introSuffix??''));});paints.push(put=>{put(()=>toggle.setAttribute('aria-expanded',String(confirming)));});}
+  else trigger=action(intro,node.actionLabel??'','expand',()=>{confirming=true;});
+  action(buttons,node.cancelLabel??'Cancel','cancel',()=>{const tree=write(()=>root.getRootNode()) as Document|ShadowRoot;const active=write(()=>tree.activeElement);const restore=write(()=>active!==null&&panel.contains(active));confirming=false;if(restore)focusAfterPaint=trigger;});paints.push(put=>{put(()=>{panel.hidden=!confirming;});put(()=>{intro.hidden=node.type==='stop-push-drip-series'&&confirming;});put(()=>{root.dataset.confirming=String(confirming);});});
+ }
+ const clear=()=>{revision++;message='';confirming=node.type!=='task-autopause-card'&&node.confirming===true;refresh();};c.on(reset,'click',event=>gate.run(()=>{if(write(()=>event.defaultPrevented)||!ready(reset))return;clear();}));pending=readerNativeReset(c,root,[reset],()=>revision,refresh,clear);refresh();return root;
+}

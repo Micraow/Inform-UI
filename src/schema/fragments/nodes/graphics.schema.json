@@ -1,10 +1,109 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:5c27c6ab8e6a93cf1aa65fb8acd6cd28d17cae33225b8794e1ef9bfe108a7222:node:graphics",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:07baf67bb5d4521703fe59a176017a3c8f56c5e596f41c1e704c212d1f62d6e2:node:graphics",
   "title": "Inform UI node subset: graphics",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
+    "ImageGenNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "image-gen"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "imageStatus": {
+          "enum": [
+            "waiting",
+            "succeeded",
+            "failed"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "alt": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "error": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "imageStatus": {}
+        },
+        "required": [
+          "imageStatus"
+        ]
+      }
+    },
     "Node": {
       "oneOf": [
         {
@@ -12,6 +111,9 @@
         },
         {
           "$ref": "#/$defs/SvgNode"
+        },
+        {
+          "$ref": "#/$defs/ImageGenNode"
         }
       ]
     },

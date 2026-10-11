@@ -3,10 +3,10 @@
   "format": "inform-ui-schema-index/1",
   "fullSchema": {
     "path": "../iui.schema.json",
-    "utf8Bytes": 582186,
-    "unicodeCodePoints": 582186,
-    "estimatedTokens": 145547,
-    "sha256": "5c27c6ab8e6a93cf1aa65fb8acd6cd28d17cae33225b8794e1ef9bfe108a7222"
+    "utf8Bytes": 716233,
+    "unicodeCodePoints": 716233,
+    "estimatedTokens": 179059,
+    "sha256": "07baf67bb5d4521703fe59a176017a3c8f56c5e596f41c1e704c212d1f62d6e2"
   },
   "semantics": "All bundles perform structural validation only. The unchanged full validateDocument also checks state references, ranges, dates, URLs, native rejection and other semantic rules.",
   "tokenEstimateMethod": "ceil(Unicode code points / 4), a rough model-independent heuristic; not measured model tokens or a guaranteed saving.",
@@ -27,6 +27,7 @@
     "automation-plan-summary": "base",
     "badge": "base",
     "basketball-tournament": "sports",
+    "bento": "base",
     "blockquote": "base",
     "box": "base",
     "business-gallery": "base",
@@ -34,6 +35,8 @@
     "callout": "base",
     "caption": "base",
     "card": "base",
+    "care-provider-results": "base",
+    "care-provider-sidebar": "base",
     "carousel": "base",
     "celebration": "base",
     "chart": "charts",
@@ -58,6 +61,7 @@
     "election-results": "base",
     "email-draft": "base",
     "email-preview": "base",
+    "entity": "base",
     "entity-card": "base",
     "entity-overview": "base",
     "entity-reviews": "base",
@@ -74,6 +78,7 @@
     "finance-chart": "finance",
     "finance-comparison": "finance",
     "finance-heatmap": "finance",
+    "finance-onboarding-suggestions": "finance",
     "finance-quote": "finance",
     "flashcards": "learning",
     "flight-option": "base",
@@ -85,33 +90,46 @@
     "follow-up-card-group": "base",
     "follow-up-quiz": "base",
     "form": "forms",
+    "gen-image": "base",
     "grid": "base",
     "grid-item": "base",
+    "homework-helper-v2": "learning",
     "html-view": "base",
     "icon": "base",
     "image": "base",
+    "image-gen": "graphics",
     "image-grid": "base",
     "input": "forms",
+    "instant-suggestions": "base",
+    "internal-partner-app": "base",
     "jobs": "base",
     "label": "base",
     "learning-audio-label-card": "learning",
     "learning-image-choice-card": "learning",
     "learning-image-label-card": "learning",
     "learning-speak-card": "learning",
+    "learning-viz-dil": "learning",
     "learning-voice-mode-launcher-card": "learning",
     "ledger-accounts": "finance",
+    "ledger-credit-score": "finance",
+    "ledger-credit-score-detail": "finance",
+    "ledger-equity-updates": "finance",
     "ledger-fee-interest-paid": "finance",
+    "ledger-finance-onboarding": "finance",
     "ledger-finance-status-banner": "finance",
     "ledger-income-tracker": "finance",
     "ledger-low-confidence-category-correction": "finance",
+    "ledger-low-confidence-category-correction-legacy": "finance",
     "ledger-net-worth": "finance",
     "ledger-recurring-transactions": "finance",
+    "ledger-repair-bank-connection": "finance",
     "ledger-spend-by-category": "finance",
     "ledger-spend-by-category-detail": "finance",
     "ledger-spend-by-category-recent-transactions": "finance",
     "ledger-spend-so-far-this-month": "finance",
     "ledger-transaction-detail": "finance",
     "ledger-upcoming-activity": "finance",
+    "ledger-watchlist": "finance",
     "link": "base",
     "link-card": "base",
     "list": "base",
@@ -136,15 +154,20 @@
     "onboarding-plugin-suggestions": "base",
     "onboarding-selection": "base",
     "onboarding-starter-tasks": "base",
+    "open-detail": "base",
+    "openai": "base",
     "package-tracker": "base",
     "person-profile": "base",
     "personality-quiz": "base",
+    "places-metadata-bar": "base",
+    "plugin-followup": "base",
     "popover": "base",
     "pressable": "base",
     "product-card": "base",
     "prompt-checklist": "base",
     "prompt-suggestions": "base",
     "pulse-indicator": "base",
+    "push-drip-series-intro": "base",
     "quiz": "learning",
     "radio": "forms",
     "rating": "base",
@@ -168,16 +191,20 @@
     "slider": "base",
     "soccer-games": "sports",
     "spacer": "base",
+    "speech-synthesizer": "base",
     "sports-schedule": "sports",
     "sports-scoreboard": "sports",
     "sports-standings": "sports",
     "steps": "base",
+    "stop-push-drip-series": "base",
     "stopwatch": "time",
+    "superbowl-riddle": "learning",
     "svg": "graphics",
     "tab-group": "base",
     "tab-panel": "base",
     "tabbed-section": "base",
     "table": "base",
+    "task-autopause-card": "base",
     "task-expansion-card": "base",
     "tennis-player-summary": "sports",
     "text": "base",
@@ -338,23 +365,38 @@
         "whats-new-capability-welcome",
         "ask-user-location",
         "reservation-time-pills-ref-carousel",
-        "whats-new-capability-search"
+        "whats-new-capability-search",
+        "push-drip-series-intro",
+        "stop-push-drip-series",
+        "task-autopause-card",
+        "places-metadata-bar",
+        "plugin-followup",
+        "instant-suggestions",
+        "internal-partner-app",
+        "bento",
+        "open-detail",
+        "openai",
+        "care-provider-results",
+        "care-provider-sidebar",
+        "entity",
+        "gen-image",
+        "speech-synthesizer"
       ],
       "documentSchema": {
         "path": "base.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 337825,
-        "unicodeCodePoints": 337825,
-        "estimatedTokens": 84457,
-        "sha256": "a8fd1c61d68a242d7db1aae038c2f970c48bb35a01c4e49b7102da571d6253f2"
+        "utf8Bytes": 408116,
+        "unicodeCodePoints": 408116,
+        "estimatedTokens": 102029,
+        "sha256": "fc7e261fc3abb328aff31c8b7146dbb25dab8ad1ebf8c1c2519d1a75c3316bed"
       },
       "nodeSchema": {
         "path": "nodes/base.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 336576,
-        "unicodeCodePoints": 336576,
-        "estimatedTokens": 84144,
-        "sha256": "322b0d6d0a02469834920ba3c9bee923646e6cd696d9d456d831a4461dad1def"
+        "utf8Bytes": 406867,
+        "unicodeCodePoints": 406867,
+        "estimatedTokens": 101717,
+        "sha256": "7feda0cc2e870fb3ce2dc56c9d1ed8ffff1a67bb47384d558a0697c4c77edf5a"
       },
       "examples": [
         {
@@ -561,10 +603,10 @@
       "documentSchema": {
         "path": "forms.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 350549,
-        "unicodeCodePoints": 350549,
-        "estimatedTokens": 87638,
-        "sha256": "758d2f92b252a2b045b55e81fd90acd3fb02663721dd433b72c26c36f6fd83e5"
+        "utf8Bytes": 420840,
+        "unicodeCodePoints": 420840,
+        "estimatedTokens": 105210,
+        "sha256": "700554641bcbf9e93b18a49707d637f15af2aa36d0853397645a5bd11365bd8d"
       },
       "nodeSchema": {
         "path": "nodes/forms.schema.json",
@@ -572,7 +614,7 @@
         "utf8Bytes": 14592,
         "unicodeCodePoints": 14592,
         "estimatedTokens": 3648,
-        "sha256": "df8c2a2aed51a1b9bbf1d0ba9fedf2e776364482234c7adc05bf1010f80ab09f"
+        "sha256": "d2b3ba1b4444a0853419b9651678593ccd0178d8005b5556d9304cbdb269b522"
       },
       "examples": [
         {
@@ -614,10 +656,10 @@
       "documentSchema": {
         "path": "charts.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 340759,
-        "unicodeCodePoints": 340759,
-        "estimatedTokens": 85190,
-        "sha256": "8687967683d068cc8d238b1eb73b699eddfcc673465c8e3ef759a911b329b5d6"
+        "utf8Bytes": 411050,
+        "unicodeCodePoints": 411050,
+        "estimatedTokens": 102763,
+        "sha256": "135f6f9c50fef932b75469d6214f445c6bb0dcfecf371824658a96801241023d"
       },
       "nodeSchema": {
         "path": "nodes/charts.schema.json",
@@ -625,7 +667,7 @@
         "utf8Bytes": 4802,
         "unicodeCodePoints": 4802,
         "estimatedTokens": 1201,
-        "sha256": "9fa31db3cf4ac782cfcc63cc18a9937d01fdcdf21fcd291d8ea61d3a0b9c110b"
+        "sha256": "396be28a930dbb336dff52f24f18a66e4ef2c1cf7262ccd37afaba11385ca472"
       },
       "examples": [
         {
@@ -651,23 +693,24 @@
       ],
       "ownedNodeTypes": [
         "topology",
-        "svg"
+        "svg",
+        "image-gen"
       ],
       "documentSchema": {
         "path": "graphics.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 341777,
-        "unicodeCodePoints": 341777,
-        "estimatedTokens": 85445,
-        "sha256": "aaf104a269d2164a631dd283b04ba475a8cd2f92cf7e52e99860625c44858af0"
+        "utf8Bytes": 414157,
+        "unicodeCodePoints": 414157,
+        "estimatedTokens": 103540,
+        "sha256": "ff6c49099384543a8c981096250051ab4071fea97517b94641b5483b24c13dc6"
       },
       "nodeSchema": {
         "path": "nodes/graphics.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 5820,
-        "unicodeCodePoints": 5820,
-        "estimatedTokens": 1455,
-        "sha256": "f850f052f1ba54cef7833703cf4e6e2242a92095fe4edf13d99ccb4964905796"
+        "utf8Bytes": 7909,
+        "unicodeCodePoints": 7909,
+        "estimatedTokens": 1978,
+        "sha256": "e286bdc99edaa6bf520778fa8a19844f443c1b071fab05e02ec1ad68a8c6fb67"
       },
       "examples": [
         {
@@ -690,10 +733,10 @@
       "documentSchema": {
         "path": "weather.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 359720,
-        "unicodeCodePoints": 359720,
-        "estimatedTokens": 89930,
-        "sha256": "9672ea5a16212203ecd1b00c643f3d475d3e86da2c249bd458198ab2c468fcd2"
+        "utf8Bytes": 430011,
+        "unicodeCodePoints": 430011,
+        "estimatedTokens": 107503,
+        "sha256": "72752a06a36d9160592d94dbfbad9d3b713b37ccc7cd252979959a7b0a082da0"
       },
       "nodeSchema": {
         "path": "nodes/weather.schema.json",
@@ -701,7 +744,7 @@
         "utf8Bytes": 22758,
         "unicodeCodePoints": 22758,
         "estimatedTokens": 5690,
-        "sha256": "0f4402d2d852e2b1832e1a969ac33293d18bc08fcf4fd2ef59f38edbac0e48f4"
+        "sha256": "a5aac6bc8f332a14b4a1e8f2d52c3ea8534f41a8c94bcd80da82a0b7f2d096b7"
       },
       "examples": [
         {
@@ -735,10 +778,10 @@
       "documentSchema": {
         "path": "sports.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 408812,
-        "unicodeCodePoints": 408812,
-        "estimatedTokens": 102203,
-        "sha256": "9bc05a3b3bf45f54ed7eda2ac4ce1cfd67f4f7683fb0168011e239fdaa05a883"
+        "utf8Bytes": 479103,
+        "unicodeCodePoints": 479103,
+        "estimatedTokens": 119776,
+        "sha256": "c32ffaa81815952529e35447df14f8b1089a7b2a39da8b488864314251e5904e"
       },
       "nodeSchema": {
         "path": "nodes/sports.schema.json",
@@ -746,7 +789,7 @@
         "utf8Bytes": 71850,
         "unicodeCodePoints": 71850,
         "estimatedTokens": 17963,
-        "sha256": "2b3c91730b892d0f69f3f9e63c06a083ce00ca2bdadb1434e125eff2fbc2d1f3"
+        "sha256": "84f5323377e0dd17b35078f455f1c9f6cf3fc41924c47d73332c7274600591e3"
       },
       "examples": [
         {
@@ -774,23 +817,26 @@
         "learning-voice-mode-launcher-card",
         "learning-speak-card",
         "conversational-onboarding-study",
-        "conversational-onboarding-search"
+        "conversational-onboarding-search",
+        "homework-helper-v2",
+        "superbowl-riddle",
+        "learning-viz-dil"
       ],
       "documentSchema": {
         "path": "learning.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 400214,
-        "unicodeCodePoints": 400214,
-        "estimatedTokens": 100054,
-        "sha256": "4c7f60e34cbd7064ac8a088663125d9e446dc2e54a8b72adf85b8eff805a13a6"
+        "utf8Bytes": 482929,
+        "unicodeCodePoints": 482929,
+        "estimatedTokens": 120733,
+        "sha256": "c6765b5919718f3d68cdacfc52a67ffed0cad236ae166d40751511e76eb71878"
       },
       "nodeSchema": {
         "path": "nodes/learning.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 62847,
-        "unicodeCodePoints": 62847,
-        "estimatedTokens": 15712,
-        "sha256": "35920eed58a608ee1b040d8687982465beaae64c8a96e5e62d842801fddd1652"
+        "utf8Bytes": 77144,
+        "unicodeCodePoints": 77144,
+        "estimatedTokens": 19286,
+        "sha256": "ece202d7b02d0217f223cc4ac814056d605b319bb701216626260d749563d22e"
       },
       "examples": [
         {
@@ -837,23 +883,31 @@
         "ledger-income-tracker",
         "ledger-spend-by-category",
         "ledger-spend-by-category-detail",
-        "ledger-spend-by-category-recent-transactions"
+        "ledger-spend-by-category-recent-transactions",
+        "ledger-finance-onboarding",
+        "ledger-repair-bank-connection",
+        "finance-onboarding-suggestions",
+        "ledger-equity-updates",
+        "ledger-watchlist",
+        "ledger-credit-score",
+        "ledger-credit-score-detail",
+        "ledger-low-confidence-category-correction-legacy"
       ],
       "documentSchema": {
         "path": "finance.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 415779,
-        "unicodeCodePoints": 415779,
-        "estimatedTokens": 103945,
-        "sha256": "3e7eea6e31a243d676b3e7b095e61e17e48e58ceb68b1bb55bf59ec3abab8451"
+        "utf8Bytes": 535313,
+        "unicodeCodePoints": 535313,
+        "estimatedTokens": 133829,
+        "sha256": "2ca7d68d76e40263ed7620fdd2ec898a6612272bde372c5df390ee895aaf3585"
       },
       "nodeSchema": {
         "path": "nodes/finance.schema.json",
         "rootKind": "node",
-        "utf8Bytes": 78412,
-        "unicodeCodePoints": 78412,
-        "estimatedTokens": 19603,
-        "sha256": "9b5bc7540daf9f4d6e536f51a9235b89d5535de7d4729dd4b2ff56f01b9b76f1"
+        "utf8Bytes": 127655,
+        "unicodeCodePoints": 127655,
+        "estimatedTokens": 31914,
+        "sha256": "128c3d6437a2c0c81abc5690263c09944f90583c7d1fc34d51abd883f275f368"
       },
       "examples": [
         {
@@ -884,10 +938,10 @@
       "documentSchema": {
         "path": "converters.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 344790,
-        "unicodeCodePoints": 344790,
-        "estimatedTokens": 86198,
-        "sha256": "b37d72960a25bebb8a6949d7e48184b45aa822a5bcd03c5b56e9ee52110f4e64"
+        "utf8Bytes": 415081,
+        "unicodeCodePoints": 415081,
+        "estimatedTokens": 103771,
+        "sha256": "5821323e295ae5d1e02afb1cae22a85664486e045c895c3d80d263eb272b0cb0"
       },
       "nodeSchema": {
         "path": "nodes/converters.schema.json",
@@ -895,7 +949,7 @@
         "utf8Bytes": 7423,
         "unicodeCodePoints": 7423,
         "estimatedTokens": 1856,
-        "sha256": "28b53d2707975ff158cece632c316e854aae0fd0a63d1d7c843ce30a6beccb12"
+        "sha256": "44f7b1bc08aa4d3a607ff81133eb5976bccd5c19034ad6584061d803b9ad1ff4"
       },
       "examples": [
         {
@@ -919,10 +973,10 @@
       "documentSchema": {
         "path": "time.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 342336,
-        "unicodeCodePoints": 342336,
-        "estimatedTokens": 85584,
-        "sha256": "e9b7c07076d0dceefb0ded0669095d952cdbf2e6cb0725ef11eabe14e643afc2"
+        "utf8Bytes": 412627,
+        "unicodeCodePoints": 412627,
+        "estimatedTokens": 103157,
+        "sha256": "cc98568e99acbc6d1d8502d6048f8287f8c957fe9d7016cd9face9173979be6c"
       },
       "nodeSchema": {
         "path": "nodes/time.schema.json",
@@ -930,7 +984,7 @@
         "utf8Bytes": 4969,
         "unicodeCodePoints": 4969,
         "estimatedTokens": 1243,
-        "sha256": "017d9f5b4bee29ffce11f4645de32c3e4b432cdd889c5b0592e0bc231c9fb2b8"
+        "sha256": "e355d6884dd1466a1533aa29babeee8f5d5779ca24bdd60dc6c05dfd28d43036"
       },
       "examples": [
         {
@@ -952,10 +1006,10 @@
       "documentSchema": {
         "path": "compatibility.schema.json",
         "rootKind": "document",
-        "utf8Bytes": 342585,
-        "unicodeCodePoints": 342585,
-        "estimatedTokens": 85647,
-        "sha256": "953a07e4ac57c0569dd126c345798fa162be45e9e6ed241f78911d2812ee2df1"
+        "utf8Bytes": 412876,
+        "unicodeCodePoints": 412876,
+        "estimatedTokens": 103219,
+        "sha256": "c217582d03aaca227841665fa4aa3297c53642a77a0709181a857744dd48b504"
       },
       "nodeSchema": {
         "path": "nodes/compatibility.schema.json",
@@ -963,7 +1017,7 @@
         "utf8Bytes": 5218,
         "unicodeCodePoints": 5218,
         "estimatedTokens": 1305,
-        "sha256": "8738cad23462b317799f018a2d3a6bbf76f05585b9cc92b8db4ad1f0b5847099"
+        "sha256": "162aabbf25cc384f3c871a2baf0e2263f050a222855a68868e920e009b929de7"
       },
       "examples": [],
       "warning": "native is structurally recognized but always rejected by validateDocument; it is not a supported renderer."

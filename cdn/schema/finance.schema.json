@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:2e2102aae39b0e76619771a3d860f8f2bfd9b22ce7f58906d98eb433b49c5452:document:base+finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:07baf67bb5d4521703fe59a176017a3c8f56c5e596f41c1e704c212d1f62d6e2:document:base+finance",
   "title": "Inform UI document subset: base, finance",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -827,6 +827,124 @@
         ]
       }
     },
+    "AskUserLocationNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ask-user-location"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "learnMoreUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "learnMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "notNowLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "turnOnLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "dismissed": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "description": {},
+          "learnMoreUrl": {},
+          "learnMoreLabel": {},
+          "notNowLabel": {},
+          "turnOnLabel": {}
+        },
+        "required": [
+          "title",
+          "description",
+          "learnMoreUrl",
+          "learnMoreLabel",
+          "notNowLabel",
+          "turnOnLabel"
+        ]
+      }
+    },
     "AssetDistributionNode": {
       "type": "object",
       "properties": {
@@ -1388,6 +1506,278 @@
       ],
       "additionalProperties": false
     },
+    "BentoNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "bento"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "largeCard": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "imageUrl": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            "imageAlt": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "statusText": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "smallCardA": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "bodyIsTitle": {
+              "type": "boolean"
+            },
+            "bodySize": {
+              "enum": [
+                "sm",
+                "md"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkHost": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "iconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": [
+            "title",
+            "body"
+          ]
+        },
+        "smallCardB": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "bodyIsTitle": {
+              "type": "boolean"
+            },
+            "bodySize": {
+              "enum": [
+                "sm",
+                "md"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkHost": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "iconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": [
+            "title",
+            "body"
+          ]
+        },
+        "mediumCard": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "bodyIsTitle": {
+              "type": "boolean"
+            },
+            "bodySize": {
+              "enum": [
+                "sm",
+                "md"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "context": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkHost": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "iconSrc": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": [
+            "title",
+            "body"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "largeCard": {},
+          "smallCardA": {},
+          "smallCardB": {},
+          "mediumCard": {}
+        },
+        "required": [
+          "largeCard",
+          "smallCardA",
+          "smallCardB",
+          "mediumCard"
+        ]
+      }
+    },
     "BlockquoteNode": {
       "type": "object",
       "properties": {
@@ -1778,6 +2168,240 @@
       ],
       "additionalProperties": false
     },
+    "CapabilitySearchExample": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "exampleLabel": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "notes": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "ctaPrompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "ctaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "venue": {
+          "$ref": "#/$defs/CapabilitySearchVenue"
+        },
+        "venueAction": {
+          "$ref": "#/$defs/CapabilitySearchTarget"
+        },
+        "searchImage": {
+          "$ref": "#/$defs/SearchImageRecord"
+        },
+        "nativeMap": {
+          "type": "boolean"
+        },
+        "showSourceImage": {
+          "type": "boolean"
+        },
+        "reservationWidget": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "$ref": "#/$defs/ReservationPillsData"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "enrichmentPending": {
+          "type": "boolean"
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/CapabilitySearchSource"
+          }
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "notes",
+        "sources"
+      ],
+      "additionalProperties": false
+    },
+    "CapabilitySearchSource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "CapabilitySearchTarget": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "prompt"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "kind",
+            "query"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "url"
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "kind",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "entity"
+            },
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "entityId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "capability"
+            },
+            "capabilityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "capabilityId"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "CapabilitySearchVenue": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "detail": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "referenceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "name",
+        "detail",
+        "address"
+      ],
+      "additionalProperties": false
+    },
     "CaptionNode": {
       "type": "object",
       "properties": {
@@ -1929,6 +2553,861 @@
         "children"
       ],
       "additionalProperties": false
+    },
+    "CareCalendarMonth": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "firstAvailableDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "days": {
+          "type": "array",
+          "maxItems": 42,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "date": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              },
+              "accessibilityLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "currentMonth": {
+                "type": "boolean"
+              },
+              "available": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "date",
+              "label",
+              "accessibilityLabel",
+              "currentMonth",
+              "available"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "firstAvailableDate",
+        "days"
+      ]
+    },
+    "CareDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "accessibilityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "countLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "groups": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "slots": {
+                "type": "array",
+                "maxItems": 40,
+                "items": {
+                  "$ref": "#/$defs/CareSlot"
+                }
+              }
+            },
+            "required": [
+              "label",
+              "slots"
+            ]
+          }
+        }
+      },
+      "required": [
+        "date",
+        "label",
+        "accessibilityLabel",
+        "groups"
+      ]
+    },
+    "CareLocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "distanceLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "modality": {
+          "enum": [
+            "in-person",
+            "telehealth"
+          ]
+        },
+        "partnerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "partnerLogo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "partnerGlyph": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "action": {
+          "$ref": "#/$defs/CareRequest"
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "days": {
+          "type": "array",
+          "maxItems": 62,
+          "items": {
+            "$ref": "#/$defs/CareDay"
+          }
+        },
+        "combinedDays": {
+          "anyOf": [
+            {
+              "type": "array",
+              "maxItems": 62,
+              "items": {
+                "$ref": "#/$defs/CareDay"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "days"
+      ]
+    },
+    "CareProvider": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "initials": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "photo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "photoAlt": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "specialty": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "ratingLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reviewCountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "networkLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inNetwork": {
+          "type": "boolean"
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "partnerLogo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "partnerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "partnerGlyph": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "profile": {
+          "$ref": "#/$defs/CareRequest"
+        },
+        "profileLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "locations": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/CareLocation"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "initials",
+        "locations"
+      ]
+    },
+    "CareProviderResultsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "care-provider-results"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "render": {
+          "type": "boolean"
+        },
+        "resultStatus": {
+          "enum": [
+            "ok",
+            "partial",
+            "empty",
+            "error"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "emptyTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "emptyMessage": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "errorTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "errorMessage": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "retryLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "retryQuery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "partialNotice": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "noAvailabilityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "providers": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/CareProvider"
+          }
+        },
+        "providersToShow": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "expandedProvidersToShow": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "selectedLocationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "selectedDate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "hasMoreResults": {
+          "type": "boolean"
+        },
+        "moreResultsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "moreResultsQuery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "nextCursor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "resultStatus": {},
+          "providers": {},
+          "providersToShow": {},
+          "expandedProvidersToShow": {},
+          "showMoreLabel": {},
+          "noAvailabilityLabel": {}
+        },
+        "required": [
+          "resultStatus",
+          "providers",
+          "providersToShow",
+          "expandedProvidersToShow",
+          "showMoreLabel",
+          "noAvailabilityLabel"
+        ]
+      }
+    },
+    "CareProviderSidebarNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "care-provider-sidebar"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "provider": {
+          "$ref": "#/$defs/CareProvider"
+        },
+        "locationLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "modality": {
+          "enum": [
+            "in-person",
+            "telehealth"
+          ]
+        },
+        "locationOptions": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "accessibilityLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "modality": {
+                "enum": [
+                  "in-person",
+                  "telehealth"
+                ]
+              },
+              "selected": {
+                "type": "boolean"
+              },
+              "action": {
+                "$ref": "#/$defs/CareRequest"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "accessibilityLabel",
+              "selected",
+              "action"
+            ]
+          }
+        },
+        "directions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ]
+        },
+        "profileLink": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ]
+        },
+        "appointmentsHeading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "noAppointmentsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "days": {
+          "type": "array",
+          "maxItems": 62,
+          "items": {
+            "$ref": "#/$defs/CareDay"
+          }
+        },
+        "selectedDate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "months": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "$ref": "#/$defs/CareCalendarMonth"
+          }
+        },
+        "selectedMonth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 23
+        },
+        "weekdayLabels": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 30
+          }
+        },
+        "previousMonthLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "nextMonthLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "closeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "provider": {},
+          "locationOptions": {},
+          "appointmentsHeading": {},
+          "noAppointmentsLabel": {},
+          "days": {},
+          "months": {},
+          "weekdayLabels": {},
+          "previousMonthLabel": {},
+          "nextMonthLabel": {}
+        },
+        "required": [
+          "provider",
+          "locationOptions",
+          "appointmentsHeading",
+          "noAppointmentsLabel",
+          "days",
+          "months",
+          "weekdayLabels",
+          "previousMonthLabel",
+          "nextMonthLabel"
+        ]
+      }
+    },
+    "CareRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      },
+      "required": []
+    },
+    "CareSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "accessibilityLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "chooseLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "dismissLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "options": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "accessibilityLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "accessibilityLabel",
+              "url"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "accessibilityLabel"
+      ]
     },
     "CarouselNode": {
       "type": "object",
@@ -3781,6 +5260,205 @@
         ]
       }
     },
+    "EntityNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "entity"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "mobile": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "action": {
+          "$ref": "#/$defs/InlineHostAction"
+        },
+        "detailPayload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "entityId"
+          ]
+        },
+        "entityData": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "categories": {
+              "type": "array",
+              "maxItems": 30,
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "rating": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": -1000,
+                  "maximum": 1000
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "priceLabel": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "open": {
+              "type": "boolean"
+            },
+            "legacyWebsiteUrl": {
+              "type": "string",
+              "maxLength": 4000
+            }
+          },
+          "required": []
+        },
+        "image": {
+          "$ref": "#/$defs/SearchImageRecord"
+        },
+        "directionsUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "websiteUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "directionsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "websiteLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "openLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "closedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "detailsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "closeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "value": {}
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
     "EntityOverviewNode": {
       "type": "object",
       "properties": {
@@ -5046,6 +6724,163 @@
       ],
       "additionalProperties": false
     },
+    "FinanceOnboardingSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-onboarding-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "heading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "prefillAvailable": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "emoji": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "query"
+            ]
+          }
+        },
+        "followUp": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "event": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "icon": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "disabled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "label",
+            "query"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "heading": {},
+          "items": {},
+          "followUp": {}
+        },
+        "required": [
+          "heading",
+          "items",
+          "followUp"
+        ]
+      }
+    },
     "FinanceQuoteNode": {
       "type": "object",
       "properties": {
@@ -5976,6 +7811,313 @@
         ]
       }
     },
+    "GenImageNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "gen-image"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/SearchImageRecord"
+          }
+        },
+        "loading": {
+          "type": "boolean"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "maxHeight": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "minHeight": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameHeight": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameMaxWidth": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            {
+              "type": "string",
+              "maxLength": 32,
+              "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameMaxHeight": {
+          "anyOf": [
+            {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4096
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32,
+                  "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "aspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "frameAspectRatio": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "string",
+              "maxLength": 40,
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?\\s*[:/]\\s*[0-9]+(?:\\.[0-9]+)?$(?![\\s\\S])"
+            }
+          ]
+        },
+        "radius": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "frame": {
+          "type": "boolean"
+        },
+        "fit": {
+          "enum": [
+            "cover",
+            "contain"
+          ]
+        },
+        "presentation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "frame": {
+              "type": "boolean"
+            },
+            "minWidth": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4096
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32,
+                  "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+                }
+              ]
+            },
+            "minHeight": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4096
+                },
+                {
+                  "type": "string",
+                  "maxLength": 32,
+                  "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]{1,3})?(?:px|%|rem|vw|vh)?$(?![\\s\\S])"
+                }
+              ]
+            },
+            "radius": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            }
+          },
+          "required": []
+        },
+        "onClickAction": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InlineHostAction"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "defaultAction": {
+          "$ref": "#/$defs/InlineHostAction"
+        },
+        "openLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "GridItemNode": {
       "type": "object",
       "properties": {
@@ -6502,6 +8644,293 @@
         "alt"
       ],
       "additionalProperties": false
+    },
+    "InlineHostAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "url",
+            "query",
+            "entity"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "entityId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "appendToCurrent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind"
+      ]
+    },
+    "InstantSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "instant-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "suggestions": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "prompt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "answerId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "entityId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "prompt"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "suggestions": {}
+        },
+        "required": [
+          "title",
+          "suggestions"
+        ]
+      }
+    },
+    "InternalPartnerAppNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "internal-partner-app"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "buttonLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "providerLogo": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "launcher": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "appId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "viewId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "appId"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "buttonLabel": {}
+        },
+        "required": [
+          "title",
+          "buttonLabel"
+        ]
+      }
     },
     "JobSalary": {
       "type": "object",
@@ -7067,6 +9496,1087 @@
       ],
       "additionalProperties": false
     },
+    "LedgerCreditScoreDetailNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-credit-score-detail"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "dataStatus": {
+          "enum": [
+            "loading",
+            "empty",
+            "ready"
+          ]
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summaryLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ratingLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ratingTone": {
+          "enum": [
+            "primary",
+            "secondary",
+            "positive",
+            "warning",
+            "negative"
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "progressPercent": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "valueLabel"
+            ]
+          }
+        },
+        "factors": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "description": {
+                "type": "string",
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        "relatedTitle": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "relatedItems": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "detailLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueAccessibilityLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "logo": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000000
+              },
+              "fallbackGlyph": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ]
+          }
+        },
+        "relatedNote": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "maskedValue": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "unknown": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "loading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "empty": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "takeaways": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "maskedValue",
+            "unknown",
+            "loading",
+            "empty",
+            "takeaways"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "dataStatus": {},
+          "rows": {},
+          "factors": {},
+          "relatedItems": {},
+          "labels": {}
+        },
+        "required": [
+          "dataStatus",
+          "rows",
+          "factors",
+          "relatedItems",
+          "labels"
+        ]
+      }
+    },
+    "LedgerCreditScoreNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-credit-score"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "dataStatus": {
+          "enum": [
+            "loading",
+            "empty",
+            "ready"
+          ]
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "scoreLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scorePosition": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "activeView": {
+          "enum": [
+            "overview",
+            "trend"
+          ]
+        },
+        "viewOptions": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "enum": [
+                  "overview",
+                  "trend"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ]
+          }
+        },
+        "selectedPeriod": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "history": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "points": {
+                "type": "array",
+                "maxItems": 200,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "x": {
+                      "type": "number",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    },
+                    "accessibilityLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    },
+                    "values": {
+                      "type": "object",
+                      "maxProperties": 8,
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "minimum": -1000000000000,
+                            "maximum": 1000000000000
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "x",
+                    "label",
+                    "accessibilityLabel",
+                    "values"
+                  ]
+                }
+              },
+              "series": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    },
+                    "tone": {
+                      "enum": [
+                        "primary",
+                        "secondary",
+                        "positive",
+                        "warning",
+                        "negative"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "label"
+                  ]
+                },
+                "minItems": 1
+              },
+              "yMin": {
+                "type": "number",
+                "minimum": -1000000000000,
+                "maximum": 1000000000000
+              },
+              "yMax": {
+                "type": "number",
+                "minimum": -1000000000000,
+                "maximum": 1000000000000
+              },
+              "yTicks": {
+                "type": "array",
+                "maxItems": 12,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "number",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "label"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "points",
+              "series"
+            ]
+          }
+        },
+        "hasHistory": {
+          "type": "boolean"
+        },
+        "metrics": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tone": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "warning",
+                  "negative"
+                ]
+              },
+              "detailEnabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "valueLabel"
+            ]
+          }
+        },
+        "disclosure": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkText": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "text"
+          ]
+        },
+        "reportDateLabel": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "maskedScore": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "maskedValue": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "unknown": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "loading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "empty": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "noHistory": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "viewSelector": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "rangeSelector": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "scoreMeter": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "scoreDetails": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "historyChart": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "close": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "maskedScore",
+            "maskedValue",
+            "unknown",
+            "loading",
+            "empty",
+            "noHistory",
+            "viewSelector",
+            "rangeSelector",
+            "scoreMeter",
+            "scoreDetails",
+            "historyChart",
+            "close"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "dataStatus": {},
+          "scoreLabel": {},
+          "scorePosition": {},
+          "metrics": {},
+          "history": {},
+          "hasHistory": {},
+          "viewOptions": {},
+          "labels": {}
+        },
+        "required": [
+          "title",
+          "dataStatus",
+          "scoreLabel",
+          "scorePosition",
+          "metrics",
+          "history",
+          "hasHistory",
+          "viewOptions",
+          "labels"
+        ]
+      }
+    },
+    "LedgerEquityUpdatesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-equity-updates"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "asOfLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stock": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "price": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "percent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "up": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "down": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "showMore": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "showLess": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "masked": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "stock",
+            "price",
+            "percent",
+            "up",
+            "down",
+            "showMore",
+            "showLess",
+            "masked"
+          ]
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "ticker": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "priceLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "percentColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "valueColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "ticker",
+              "name",
+              "priceLabel",
+              "percentLabel",
+              "valueLabel"
+            ]
+          }
+        },
+        "hasPositions": {
+          "type": "boolean"
+        },
+        "connected": {
+          "type": "boolean"
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "conversionNote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "noAccounts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "actionLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "title",
+            "description",
+            "actionLabel",
+            "query"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "asOfLabel": {},
+          "emptyLabel": {},
+          "labels": {},
+          "rows": {},
+          "hasPositions": {}
+        },
+        "required": [
+          "title",
+          "asOfLabel",
+          "emptyLabel",
+          "labels",
+          "rows",
+          "hasPositions"
+        ],
+        "if": {
+          "properties": {
+            "connected": {
+              "const": false
+            }
+          },
+          "required": [
+            "connected"
+          ]
+        },
+        "then": {
+          "properties": {
+            "noAccounts": {}
+          },
+          "required": [
+            "noAccounts"
+          ]
+        }
+      }
+    },
     "LedgerExactMoney": {
       "type": "object",
       "properties": {
@@ -7287,6 +10797,174 @@
         "amountLabel"
       ],
       "additionalProperties": false
+    },
+    "LedgerFinanceOnboardingNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-finance-onboarding"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "action": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "prompt",
+                "action"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        "threadMode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "systemHint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "icon": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "ctaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "linkId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initializing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "description": {}
+        },
+        "required": [
+          "title",
+          "description"
+        ],
+        "anyOf": [
+          {
+            "properties": {
+              "action": {}
+            },
+            "required": [
+              "action"
+            ]
+          },
+          {
+            "properties": {
+              "prompt": {}
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        ]
+      }
     },
     "LedgerFinanceStatusBannerNode": {
       "oneOf": [
@@ -7559,6 +11237,218 @@
         "hasIncome"
       ],
       "additionalProperties": false
+    },
+    "LedgerLowConfidenceCategoryCorrectionLegacyNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-low-confidence-category-correction-legacy"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "connected": {
+          "type": "boolean"
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showLessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "noAccounts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "actionLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "title",
+            "description",
+            "actionLabel",
+            "query"
+          ]
+        },
+        "transactions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "dateLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "amountLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "amountValue": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": -1000000000000000,
+                    "maximum": 1000000000000000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "maskedAmountLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "categoryLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "logo": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000000
+              },
+              "logoAlt": {
+                "type": "string",
+                "maxLength": 1000
+              },
+              "fallbackGlyph": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "dateLabel",
+              "amountLabel",
+              "maskedAmountLabel",
+              "categoryLabel",
+              "query"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "connected": {},
+          "emptyLabel": {},
+          "transactions": {}
+        },
+        "required": [
+          "title",
+          "connected",
+          "emptyLabel",
+          "transactions"
+        ]
+      }
     },
     "LedgerLowConfidenceCategoryCorrectionNode": {
       "type": "object",
@@ -7900,6 +11790,156 @@
         "records"
       ],
       "additionalProperties": false
+    },
+    "LedgerRepairBankConnectionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-repair-bank-connection"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "action": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "prompt",
+                "action"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        "threadMode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "systemHint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "icon": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "ctaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "linkId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initializing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "description": {}
+        },
+        "required": [
+          "title",
+          "description"
+        ]
+      }
     },
     "LedgerSource": {
       "type": "object",
@@ -8731,6 +12771,277 @@
         "activities"
       ],
       "additionalProperties": false
+    },
+    "LedgerWatchlistNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-watchlist"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "asOfLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stock": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "price": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "percent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "up": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "down": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "showMore": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "showLess": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "masked": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "stock",
+            "price",
+            "percent",
+            "up",
+            "down",
+            "showMore",
+            "showLess",
+            "masked"
+          ]
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "ticker": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "priceLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "percentColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "valueColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "ticker",
+              "name",
+              "priceLabel",
+              "percentLabel"
+            ]
+          }
+        },
+        "hasEntries": {
+          "type": "boolean"
+        },
+        "rowsToShow": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "asOfLabel": {},
+          "emptyLabel": {},
+          "labels": {},
+          "rows": {},
+          "hasEntries": {}
+        },
+        "required": [
+          "title",
+          "asOfLabel",
+          "emptyLabel",
+          "labels",
+          "rows",
+          "hasEntries"
+        ]
+      }
     },
     "LinkCardNode": {
       "type": "object",
@@ -10738,6 +15049,84 @@
         },
         {
           "$ref": "#/$defs/WhatsNewCapabilityWelcomeNode"
+        },
+        {
+          "$ref": "#/$defs/AskUserLocationNode"
+        },
+        {
+          "$ref": "#/$defs/ReservationTimePillsRefCarouselNode"
+        },
+        {
+          "$ref": "#/$defs/WhatsNewCapabilitySearchNode"
+        },
+        {
+          "$ref": "#/$defs/PushDripSeriesIntroNode"
+        },
+        {
+          "$ref": "#/$defs/StopPushDripSeriesNode"
+        },
+        {
+          "$ref": "#/$defs/TaskAutopauseCardNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerFinanceOnboardingNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerRepairBankConnectionNode"
+        },
+        {
+          "$ref": "#/$defs/FinanceOnboardingSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/PlacesMetadataBarNode"
+        },
+        {
+          "$ref": "#/$defs/PluginFollowupNode"
+        },
+        {
+          "$ref": "#/$defs/InstantSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerEquityUpdatesNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerWatchlistNode"
+        },
+        {
+          "$ref": "#/$defs/InternalPartnerAppNode"
+        },
+        {
+          "$ref": "#/$defs/BentoNode"
+        },
+        {
+          "$ref": "#/$defs/OpenDetailNode"
+        },
+        {
+          "$ref": "#/$defs/OpenaiNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerCreditScoreNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerCreditScoreDetailNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerLowConfidenceCategoryCorrectionLegacyNode"
+        },
+        {
+          "$ref": "#/$defs/CareProviderResultsNode"
+        },
+        {
+          "$ref": "#/$defs/CareProviderSidebarNode"
+        },
+        {
+          "$ref": "#/$defs/EntityNode"
+        },
+        {
+          "$ref": "#/$defs/GenImageNode"
+        },
+        {
+          "$ref": "#/$defs/SpeechSynthesizerNode"
         }
       ]
     },
@@ -11589,6 +15978,272 @@
         "required": [
           "heading",
           "tasks"
+        ]
+      }
+    },
+    "OpenDetailNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "open-detail"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "payload": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ]
+          }
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showLessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "action": {},
+          "actions": {}
+        },
+        "required": [
+          "title",
+          "action",
+          "actions"
+        ]
+      }
+    },
+    "OpenaiNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "openai"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "tagline": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "image": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "imageAlt": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "websiteUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "morePrompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "websiteLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "moreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "name": {},
+          "tagline": {},
+          "image": {},
+          "websiteUrl": {},
+          "morePrompt": {}
+        },
+        "required": [
+          "name",
+          "tagline",
+          "image",
+          "websiteUrl",
+          "morePrompt"
         ]
       }
     },
@@ -12456,6 +17111,310 @@
       ],
       "additionalProperties": false
     },
+    "PlacesMetadataBarNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "places-metadata-bar"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "ratingLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reviewCountLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "providerLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "providerUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "providerLogo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "light": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000000
+                },
+                "dark": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000000
+                }
+              },
+              "required": []
+            }
+          ]
+        },
+        "providerLogoWidth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 240
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "color": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative",
+                  "warning"
+                ]
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "items": {}
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    "PluginFollowupNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "plugin-followup"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "pending": {
+          "type": "boolean"
+        },
+        "streaming": {
+          "type": "boolean"
+        },
+        "showContext": {
+          "type": "boolean"
+        },
+        "context": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "offerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "pluginId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "icon": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            },
+            "dark": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000000
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "offerId": {},
+          "actionLabel": {}
+        },
+        "required": [
+          "offerId",
+          "actionLabel"
+        ]
+      }
+    },
     "PollDraftOption": {
       "type": "object",
       "properties": {
@@ -13070,6 +18029,161 @@
       ],
       "additionalProperties": false
     },
+    "PushDripSeriesIntroNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "push-drip-series-intro"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "stopped": {
+          "type": "boolean"
+        },
+        "stoppedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "confirming": {
+          "type": "boolean"
+        },
+        "confirmationTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "confirmationMessage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "confirmLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "introPrefix": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "introLinkLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "introSuffix": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "if": {
+          "properties": {
+            "stopped": {
+              "const": true
+            }
+          },
+          "required": [
+            "stopped"
+          ]
+        },
+        "then": {
+          "properties": {
+            "stoppedLabel": {}
+          },
+          "required": [
+            "stoppedLabel"
+          ]
+        },
+        "else": {
+          "properties": {
+            "confirmationTitle": {},
+            "confirmationMessage": {},
+            "confirmLabel": {},
+            "cancelLabel": {},
+            "introPrefix": {},
+            "introLinkLabel": {},
+            "introSuffix": {}
+          },
+          "required": [
+            "confirmationTitle",
+            "confirmationMessage",
+            "confirmLabel",
+            "cancelLabel",
+            "introPrefix",
+            "introLinkLabel",
+            "introSuffix"
+          ]
+        }
+      }
+    },
     "RatingNode": {
       "type": "object",
       "properties": {
@@ -13475,6 +18589,651 @@
         "url"
       ],
       "additionalProperties": false
+    },
+    "ReservationPillsCarouselItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "referenceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "groups": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsGroup"
+          }
+        },
+        "voiceCard": {
+          "$ref": "#/$defs/ReservationPillsVoiceCard"
+        },
+        "showMoreTimesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "groups"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsData": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "groups": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsGroup"
+          }
+        },
+        "voiceCard": {
+          "$ref": "#/$defs/ReservationPillsVoiceCard"
+        },
+        "showMoreTimesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "mode": {
+          "enum": [
+            "standard",
+            "voice"
+          ]
+        },
+        "seatingEnabled": {
+          "type": "boolean"
+        },
+        "collapsedGroups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "initialGroups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "expandedGroups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "showMoreDatesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showFewerDatesLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "label",
+        "groups"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsGroup": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "dateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "dateTimeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "partySizeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "providerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "logos": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "src": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              }
+            },
+            "required": [
+              "name",
+              "src"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "times": {
+          "type": "array",
+          "maxItems": 48,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsProviderOption"
+          }
+        },
+        "desktopSlots": {
+          "type": "array",
+          "maxItems": 48,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsSlot"
+          }
+        },
+        "mobileSlots": {
+          "type": "array",
+          "maxItems": 48,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsSlot"
+          }
+        },
+        "changeOptions": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsProviderOption"
+          }
+        },
+        "requestedLauncher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "seeMoreLauncher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "retryLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "id",
+        "dateLabel",
+        "partySizeLabel",
+        "providerName",
+        "times"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsLauncher": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "available": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "providerId"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsProviderOption": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "providerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startDateTime": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "bookingQuery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "launcher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "seeMoreLauncher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "retryLauncher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsSlot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "providerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "timeLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "startDateTime": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "bookingQuery": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 8000
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "launcher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "seeMoreLauncher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "retryLauncher": {
+          "$ref": "#/$defs/ReservationPillsLauncher"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailable": {
+          "type": "boolean"
+        },
+        "moreOptions": {
+          "type": "boolean"
+        },
+        "providerOptions": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsProviderOption"
+          }
+        },
+        "seatingOptions": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "options": {
+                "type": "array",
+                "maxItems": 12,
+                "items": {
+                  "$ref": "#/$defs/ReservationPillsProviderOption"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "options"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationPillsTarget": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "prompt"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "kind",
+            "query"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "url"
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "kind",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "provider"
+            },
+            "providerId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "requestId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "providerId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "entity"
+            },
+            "entityId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "available": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "entityId"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ReservationPillsVoiceCard": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "metadataLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "hasRating": {
+          "type": "boolean"
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "src": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "id",
+              "src",
+              "alt"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "action": {
+          "$ref": "#/$defs/ReservationPillsTarget"
+        }
+      },
+      "required": [
+        "images"
+      ],
+      "additionalProperties": false
+    },
+    "ReservationTimePillsRefCarouselNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "reservation-time-pills-ref-carousel"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/ReservationPillsCarouselItem"
+          }
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "previousLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "nextLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "items": {}
+        },
+        "required": [
+          "items"
+        ]
+      }
     },
     "RestaurantAvailabilityNode": {
       "type": "object",
@@ -14618,6 +20377,129 @@
       ],
       "additionalProperties": false
     },
+    "SpeechSynthesizerNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "speech-synthesizer"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "playbackStatus": {
+          "enum": [
+            "idle",
+            "starting",
+            "playing",
+            "paused",
+            "error"
+          ]
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "playbackSpeed": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 4
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16000
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "voiceId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            }
+          },
+          "required": []
+        },
+        "controls": {
+          "enum": [
+            "default",
+            "custom"
+          ]
+        },
+        "playLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "stopLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "statusLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "SpendCategory": {
       "type": "object",
       "properties": {
@@ -14816,6 +20698,163 @@
         "items"
       ],
       "additionalProperties": false
+    },
+    "StopPushDripSeriesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "stop-push-drip-series"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "stopped": {
+          "type": "boolean"
+        },
+        "stoppedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "confirming": {
+          "type": "boolean"
+        },
+        "confirmationTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "confirmationMessage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "confirmLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "cancelLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "unavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "actionLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actionStyle": {
+          "enum": [
+            "text-links",
+            "outline-keep",
+            "red",
+            "solid"
+          ]
+        },
+        "confirmationLayout": {
+          "enum": [
+            "card",
+            "inline"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "if": {
+          "properties": {
+            "stopped": {
+              "const": true
+            }
+          },
+          "required": [
+            "stopped"
+          ]
+        },
+        "then": {
+          "properties": {
+            "stoppedLabel": {}
+          },
+          "required": [
+            "stoppedLabel"
+          ]
+        },
+        "else": {
+          "properties": {
+            "confirmationTitle": {},
+            "confirmationMessage": {},
+            "confirmLabel": {},
+            "cancelLabel": {},
+            "actionLabel": {}
+          },
+          "required": [
+            "confirmationTitle",
+            "confirmationMessage",
+            "confirmLabel",
+            "cancelLabel",
+            "actionLabel"
+          ]
+        }
+      }
     },
     "SuppliedJob": {
       "type": "object",
@@ -15342,6 +21381,141 @@
         "rows"
       ],
       "additionalProperties": false
+    },
+    "TaskAutopauseCardNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "task-autopause-card"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "taskId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "taskTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "showBody": {
+          "type": "boolean"
+        },
+        "continueLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "settingsLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "deleteLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "taskId": {},
+          "taskTitle": {},
+          "prompt": {},
+          "continueLabel": {}
+        },
+        "required": [
+          "taskId",
+          "taskTitle",
+          "prompt",
+          "continueLabel"
+        ],
+        "if": {
+          "properties": {
+            "showBody": {
+              "const": true
+            }
+          },
+          "required": [
+            "showBody"
+          ]
+        },
+        "then": {
+          "properties": {
+            "body": {}
+          },
+          "required": [
+            "body"
+          ]
+        }
+      }
     },
     "TaskExpansionCardNode": {
       "type": "object",
@@ -16657,6 +22831,145 @@
         "items"
       ],
       "additionalProperties": false
+    },
+    "WhatsNewCapabilitySearchNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "whats-new-capability-search"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "intro": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "examples": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "$ref": "#/$defs/CapabilitySearchExample"
+          }
+        },
+        "locationPrompt": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "searchLocation": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "offerPreciseLocation": {
+          "type": "boolean"
+        },
+        "locationVariant": {
+          "enum": [
+            "button",
+            "widget"
+          ]
+        },
+        "inlineLocationLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "locationAvailable": {
+          "type": "boolean"
+        },
+        "locationWidget": {
+          "$ref": "#/$defs/AskUserLocationNode"
+        },
+        "nativeMapUnavailableLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "streaming": {
+          "type": "boolean"
+        },
+        "streamingLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "enrichmentLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "animateReveal": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "examples": {}
+        },
+        "required": [
+          "examples"
+        ]
+      }
     },
     "WhatsNewCapabilityWelcomeNode": {
       "type": "object",

@@ -1,0 +1,72 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "entity",
+      "id": "original-place",
+      "label": "Original supplied entity",
+      "value": "Fictional place",
+      "detailPayload": {
+        "entityId": "place-1",
+        "category": "original-places"
+      },
+      "entityData": {
+        "name": "Fictional place details",
+        "categories": [
+          "Original category",
+          "",
+          "Second category"
+        ],
+        "rating": 0,
+        "priceLabel": "Supplied price tier",
+        "open": false,
+        "legacyWebsiteUrl": "https://example.test/place"
+      },
+      "image": {
+        "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+        "title": "Original blue square"
+      },
+      "directionsUrl": "https://example.test/directions",
+      "detailsLabel": "View the supplied fictional place",
+      "closedLabel": "Supplied closed",
+      "openLabel": "Supplied open"
+    },
+    {
+      "type": "gen-image",
+      "id": "original-generated-view",
+      "label": "Supplied original image result",
+      "images": [
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "title": "Original blue square"
+        },
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "title": "Second original blue square"
+        }
+      ],
+      "aspectRatio": "4:3",
+      "maxWidth": 320,
+      "maxHeight": 240,
+      "openLabel": "View original supplied images",
+      "fallback": "Original image unavailable"
+    },
+    {
+      "type": "speech-synthesizer",
+      "id": "original-speech",
+      "label": "Original speech adapter",
+      "available": true,
+      "playbackStatus": "idle",
+      "playbackSpeed": 1.25,
+      "source": {
+        "text": "An original sentence supplied for a local speech request.",
+        "language": "en",
+        "voiceId": "host-chosen-original"
+      },
+      "controls": "custom",
+      "playLabel": "Request original speech",
+      "stopLabel": "Request speech stop",
+      "unavailableLabel": "No host speech provider"
+    }
+  ]
+}

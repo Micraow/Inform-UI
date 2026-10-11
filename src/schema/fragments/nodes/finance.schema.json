@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:5c27c6ab8e6a93cf1aa65fb8acd6cd28d17cae33225b8794e1ef9bfe108a7222:node:finance",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:07baf67bb5d4521703fe59a176017a3c8f56c5e596f41c1e704c212d1f62d6e2:node:finance",
   "title": "Inform UI node subset: finance",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -458,6 +458,163 @@
         "history"
       ],
       "additionalProperties": false
+    },
+    "FinanceOnboardingSuggestionsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "finance-onboarding-suggestions"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "heading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "prefillAvailable": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "emoji": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "disabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "query"
+            ]
+          }
+        },
+        "followUp": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "event": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "icon": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "disabled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "label",
+            "query"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "heading": {},
+          "items": {},
+          "followUp": {}
+        },
+        "required": [
+          "heading",
+          "items",
+          "followUp"
+        ]
+      }
     },
     "FinanceQuoteNode": {
       "type": "object",
@@ -1014,6 +1171,1087 @@
       ],
       "additionalProperties": false
     },
+    "LedgerCreditScoreDetailNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-credit-score-detail"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "dataStatus": {
+          "enum": [
+            "loading",
+            "empty",
+            "ready"
+          ]
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summaryLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ratingLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ratingTone": {
+          "enum": [
+            "primary",
+            "secondary",
+            "positive",
+            "warning",
+            "negative"
+          ]
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "progressPercent": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "valueLabel"
+            ]
+          }
+        },
+        "factors": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "description": {
+                "type": "string",
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "description"
+            ]
+          }
+        },
+        "relatedTitle": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "relatedItems": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "detailLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueAccessibilityLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "logo": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000000
+              },
+              "fallbackGlyph": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              }
+            },
+            "required": [
+              "id",
+              "label"
+            ]
+          }
+        },
+        "relatedNote": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "maskedValue": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "unknown": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "loading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "empty": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "takeaways": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "maskedValue",
+            "unknown",
+            "loading",
+            "empty",
+            "takeaways"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "dataStatus": {},
+          "rows": {},
+          "factors": {},
+          "relatedItems": {},
+          "labels": {}
+        },
+        "required": [
+          "dataStatus",
+          "rows",
+          "factors",
+          "relatedItems",
+          "labels"
+        ]
+      }
+    },
+    "LedgerCreditScoreNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-credit-score"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "dataStatus": {
+          "enum": [
+            "loading",
+            "empty",
+            "ready"
+          ]
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "scoreLabel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 4000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scorePosition": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "activeView": {
+          "enum": [
+            "overview",
+            "trend"
+          ]
+        },
+        "viewOptions": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "enum": [
+                  "overview",
+                  "trend"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ]
+          }
+        },
+        "selectedPeriod": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "history": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "points": {
+                "type": "array",
+                "maxItems": 200,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "x": {
+                      "type": "number",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    },
+                    "accessibilityLabel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000
+                    },
+                    "values": {
+                      "type": "object",
+                      "maxProperties": 8,
+                      "additionalProperties": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "minimum": -1000000000000,
+                            "maximum": 1000000000000
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "x",
+                    "label",
+                    "accessibilityLabel",
+                    "values"
+                  ]
+                }
+              },
+              "series": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "key": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 500
+                    },
+                    "tone": {
+                      "enum": [
+                        "primary",
+                        "secondary",
+                        "positive",
+                        "warning",
+                        "negative"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "label"
+                  ]
+                },
+                "minItems": 1
+              },
+              "yMin": {
+                "type": "number",
+                "minimum": -1000000000000,
+                "maximum": 1000000000000
+              },
+              "yMax": {
+                "type": "number",
+                "minimum": -1000000000000,
+                "maximum": 1000000000000
+              },
+              "yTicks": {
+                "type": "array",
+                "maxItems": 12,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "value": {
+                      "type": "number",
+                      "minimum": -1000000000000,
+                      "maximum": 1000000000000
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "label"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "points",
+              "series"
+            ]
+          }
+        },
+        "hasHistory": {
+          "type": "boolean"
+        },
+        "metrics": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "maxLength": 4000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "tone": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "warning",
+                  "negative"
+                ]
+              },
+              "detailEnabled": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "valueLabel"
+            ]
+          }
+        },
+        "disclosure": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "linkText": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 8000
+            }
+          },
+          "required": [
+            "text"
+          ]
+        },
+        "reportDateLabel": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "maskedScore": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "maskedValue": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "unknown": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "loading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "empty": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "noHistory": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "viewSelector": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "rangeSelector": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "scoreMeter": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "scoreDetails": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "historyChart": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "close": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "maskedScore",
+            "maskedValue",
+            "unknown",
+            "loading",
+            "empty",
+            "noHistory",
+            "viewSelector",
+            "rangeSelector",
+            "scoreMeter",
+            "scoreDetails",
+            "historyChart",
+            "close"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "dataStatus": {},
+          "scoreLabel": {},
+          "scorePosition": {},
+          "metrics": {},
+          "history": {},
+          "hasHistory": {},
+          "viewOptions": {},
+          "labels": {}
+        },
+        "required": [
+          "title",
+          "dataStatus",
+          "scoreLabel",
+          "scorePosition",
+          "metrics",
+          "history",
+          "hasHistory",
+          "viewOptions",
+          "labels"
+        ]
+      }
+    },
+    "LedgerEquityUpdatesNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-equity-updates"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "asOfLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stock": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "price": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "percent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "up": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "down": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "showMore": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "showLess": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "masked": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "stock",
+            "price",
+            "percent",
+            "up",
+            "down",
+            "showMore",
+            "showLess",
+            "masked"
+          ]
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "ticker": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "priceLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "percentColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "valueColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "ticker",
+              "name",
+              "priceLabel",
+              "percentLabel",
+              "valueLabel"
+            ]
+          }
+        },
+        "hasPositions": {
+          "type": "boolean"
+        },
+        "connected": {
+          "type": "boolean"
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "conversionNote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "noAccounts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "actionLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "title",
+            "description",
+            "actionLabel",
+            "query"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "asOfLabel": {},
+          "emptyLabel": {},
+          "labels": {},
+          "rows": {},
+          "hasPositions": {}
+        },
+        "required": [
+          "title",
+          "asOfLabel",
+          "emptyLabel",
+          "labels",
+          "rows",
+          "hasPositions"
+        ],
+        "if": {
+          "properties": {
+            "connected": {
+              "const": false
+            }
+          },
+          "required": [
+            "connected"
+          ]
+        },
+        "then": {
+          "properties": {
+            "noAccounts": {}
+          },
+          "required": [
+            "noAccounts"
+          ]
+        }
+      }
+    },
     "LedgerExactMoney": {
       "type": "object",
       "properties": {
@@ -1234,6 +2472,174 @@
         "amountLabel"
       ],
       "additionalProperties": false
+    },
+    "LedgerFinanceOnboardingNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-finance-onboarding"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "action": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "prompt",
+                "action"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        "threadMode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "systemHint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "icon": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "ctaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "linkId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initializing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "description": {}
+        },
+        "required": [
+          "title",
+          "description"
+        ],
+        "anyOf": [
+          {
+            "properties": {
+              "action": {}
+            },
+            "required": [
+              "action"
+            ]
+          },
+          {
+            "properties": {
+              "prompt": {}
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        ]
+      }
     },
     "LedgerFinanceStatusBannerNode": {
       "oneOf": [
@@ -1506,6 +2912,218 @@
         "hasIncome"
       ],
       "additionalProperties": false
+    },
+    "LedgerLowConfidenceCategoryCorrectionLegacyNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-low-confidence-category-correction-legacy"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "connected": {
+          "type": "boolean"
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "masked": {
+          "type": "boolean"
+        },
+        "showMoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "showLessLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "noAccounts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "actionLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "title",
+            "description",
+            "actionLabel",
+            "query"
+          ]
+        },
+        "transactions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "dateLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "amountLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "amountValue": {
+                "anyOf": [
+                  {
+                    "type": "number",
+                    "minimum": -1000000000000000,
+                    "maximum": 1000000000000000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "maskedAmountLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "categoryLabel": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              },
+              "logo": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000000
+              },
+              "logoAlt": {
+                "type": "string",
+                "maxLength": 1000
+              },
+              "fallbackGlyph": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "dateLabel",
+              "amountLabel",
+              "maskedAmountLabel",
+              "categoryLabel",
+              "query"
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "connected": {},
+          "emptyLabel": {},
+          "transactions": {}
+        },
+        "required": [
+          "title",
+          "connected",
+          "emptyLabel",
+          "transactions"
+        ]
+      }
     },
     "LedgerLowConfidenceCategoryCorrectionNode": {
       "type": "object",
@@ -1847,6 +3465,156 @@
         "records"
       ],
       "additionalProperties": false
+    },
+    "LedgerRepairBankConnectionNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-repair-bank-connection"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "action": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "prompt",
+                "action"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            }
+          },
+          "required": [
+            "kind",
+            "value"
+          ]
+        },
+        "threadMode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "systemHint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "iconSrc": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000000
+        },
+        "loadImageLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "icon": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "ctaLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "linkId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initializing": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "description": {}
+        },
+        "required": [
+          "title",
+          "description"
+        ]
+      }
     },
     "LedgerSource": {
       "type": "object",
@@ -2679,6 +4447,277 @@
       ],
       "additionalProperties": false
     },
+    "LedgerWatchlistNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "ledger-watchlist"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "status": {
+          "enum": [
+            "resolved",
+            "pending",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "asOfLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "emptyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "unknownLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stock": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "price": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "percent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "up": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "down": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "showMore": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "showLess": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "masked": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "stock",
+            "price",
+            "percent",
+            "up",
+            "down",
+            "showMore",
+            "showLess",
+            "masked"
+          ]
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "requestedLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "cancelledLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "rows": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "ticker": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "priceLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "percentDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "percentColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              },
+              "valueLabel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "valueDirection": {
+                "enum": [
+                  "up",
+                  "down",
+                  "flat"
+                ]
+              },
+              "valueColor": {
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "positive",
+                  "negative"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "ticker",
+              "name",
+              "priceLabel",
+              "percentLabel"
+            ]
+          }
+        },
+        "hasEntries": {
+          "type": "boolean"
+        },
+        "rowsToShow": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {},
+      "else": {
+        "properties": {
+          "title": {},
+          "asOfLabel": {},
+          "emptyLabel": {},
+          "labels": {},
+          "rows": {},
+          "hasEntries": {}
+        },
+        "required": [
+          "title",
+          "asOfLabel",
+          "emptyLabel",
+          "labels",
+          "rows",
+          "hasEntries"
+        ]
+      }
+    },
     "Node": {
       "oneOf": [
         {
@@ -2737,6 +4776,30 @@
         },
         {
           "$ref": "#/$defs/LedgerSpendByCategoryRecentTransactionsNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerFinanceOnboardingNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerRepairBankConnectionNode"
+        },
+        {
+          "$ref": "#/$defs/FinanceOnboardingSuggestionsNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerEquityUpdatesNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerWatchlistNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerCreditScoreNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerCreditScoreDetailNode"
+        },
+        {
+          "$ref": "#/$defs/LedgerLowConfidenceCategoryCorrectionLegacyNode"
         }
       ]
     },
