@@ -1,6 +1,6 @@
 # 组件进度
 
-158项完整实现覆盖：53项历史验收，105项完整实现待验。另1项部分实现Weather、97项未实现，总计256。协议注册162不是完成数。Link三项及TabbedSection/VisualCardCarousel独立普通功能复核通过；新源码原生与参考像素验收仍待完成。
+160项完整实现覆盖：53项历史验收，107项完整实现待验。另1项部分实现Weather、95项未实现，总计256。协议注册166与完成数分开。Ask两项独立8例及消费者7流程通过；统一164原生717/717仅覆盖固定74d版本，新Ask原生/参考像素未验。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -71,15 +71,15 @@
 | restaurant-menu | Restaurant Menu | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | entity-reviews | Entity Reviews | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | restaurant-availability | Reservation Time Pills Ref | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| scheduled-task-suggestion | Offer Scheduled Prompt | 未实现 | No implementation in the current library. |
+| scheduled-task-suggestion | Offer Scheduled Prompt | 完整实现待验 | Complete finite supplied-data functionality independently verified on164; new native and reference pixel acceptance remain pending. |
 | email-draft | Draft Email | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | task-expansion-card | Task Expansion Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | unit-converter | Unit Converter | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | asset-distribution | Ledger Account Breakdown | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | transaction-list | Ledger Recent Transactions | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | onboarding-selection | Onboarding Selection Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| entity-overview | Entity Overview | 未实现 | No implementation in the current library. |
-| entity-card | Entity Card | 未实现 | No implementation in the current library. |
+| entity-overview | Entity Overview | 完整实现待验 | Complete finite supplied-data functionality independently verified on164; new native and reference pixel acceptance remain pending. |
+| entity-card | Entity Card | 完整实现待验 | Complete finite supplied-data functionality independently verified on164; new native and reference pixel acceptance remain pending. |
 | prompt-suggestions | Follow Up | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | conversation-suggestions | Conversational Onboarding Follow Up Pills | 完整实现待验 | Supplied presentation, resolution and intent branches implemented and independently function-tested; native and reference-pixel acceptance remain pending. |
 | news-article | News Article | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -88,13 +88,13 @@
 | code-block | Code Block | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | writing-block | Writing Block | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | artist-upcoming-events | Artist Upcoming Events | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| ask-user-details | Ask User Details | 未实现 | No implementation in the current library. |
-| ask-user-files | Ask User Files | 未实现 | No implementation in the current library. |
+| ask-user-details | Ask User Details | 完整实现待验 | Complete finite local CTA contract and optional local review passed independent8 cases and consumer7 flows. New native/reference pixel acceptance remains pending. |
+| ask-user-files | Ask User Files | 完整实现待验 | Complete finite local CTA contract and optional local review passed independent8 cases and consumer7 flows. New native/reference pixel acceptance remains pending. |
 | ask-user-location | Ask User Location | 未实现 | No implementation in the current library. |
 | async-image | Async Image | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | async-image-group | Async Image Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | async-video-carousel | Async Video Carousel | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| automation-plan-summary | Automation Plan Summary | 未实现 | No implementation in the current library. |
+| automation-plan-summary | Automation Plan Summary | 完整实现待验 | Whole-plan-collapse/reset regression repaired; original negative replay and14 independent tests plus8 consumer flows passed. Native and reference pixel acceptance remain pending. |
 | basketball-tournament | Basketball Tournament | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | bento | Bento | 未实现 | No implementation in the current library. |
 | calculator-abcd2-score-for-transient-ischemic-attack | Calculator Abcd2 Score For Transient Ischemic Attack | 未实现 | No implementation in the current library. |
@@ -159,7 +159,7 @@
 | cricket-match-boxscore | Cricket Match Boxscore | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | digital-stopwatch | Digital Stopwatch | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | digital-timer | Digital Timer | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
-| display-automation | Display Automation | 未实现 | No implementation in the current library. |
+| display-automation | Display Automation | 完整实现待验 | Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending. |
 | election-results | Election Results | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | email-preview | Email Preview | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | entity | Entity | 未实现 | No implementation in the current library. |
@@ -214,7 +214,7 @@
 | ledger-watchlist | Ledger Watchlist | 未实现 | No implementation in the current library. |
 | link | Link | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
 | link-card | Link Card | 完整实现待验 | Original supplied Link-family functional contract independently reviewed; native and reference-pixel acceptance remain pending. |
-| list-automations | List Automations | 未实现 | No implementation in the current library. |
+| list-automations | List Automations | 完整实现待验 | Finite supplied-data functionality independently verified; no real scheduling operation; native and reference pixel acceptance pending. |
 | local-business | Local Business | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | multiple-choice-block-v2 | Multiple Choice Block V2 | 未实现 | No implementation in the current library. |
 | nba-game-boxscore | Nba Game Boxscore | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
@@ -249,22 +249,14 @@
 | stock-heatmap | Stock Heatmap | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | stop-push-drip-series | Stop Push Drip Series | 未实现 | No implementation in the current library. |
 | superbowl-riddle | Superbowl Riddle | 未实现 | No implementation in the current library. |
-| tabbed-section | Tabbed Section | 未实现 | No implementation in the current library. |
+| tabbed-section | Tabbed Section | 完整实现待验 | Complete ordinary functionality independently verified; native and reference pixel acceptance remain pending. |
 | tab-group | Tab Group | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | task-autopause-card | Task Autopause Card | 未实现 | No implementation in the current library. |
 | tennis-player-summary | Tennis Player Summary | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-| visual-card-carousel | Visual Card Carousel | 未实现 | No implementation in the current library. |
+| visual-card-carousel | Visual Card Carousel | 完整实现待验 | Complete ordinary functionality independently verified; native and reference pixel acceptance remain pending. |
 | weather-sidebar-title | Weather Sidebar Title | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
 | weather | Weather | 部分实现 | Incomplete functional contract. |
 | weather-widget-v3 | Weather Widget V3 | 历史验收 | Historical functional acceptance; no new native acceptance is implied. |
 | whats-new-capability-search | Whats New Capability Search | 未实现 | No implementation in the current library. |
 | whats-new-capability-welcome | Whats New Capability Welcome | 未实现 | No implementation in the current library. |
 | word-card | Word Card | 完整实现待验 | Implementation present; full reference and native acceptance remain pending. |
-
-Automation三项独立13项普通功能通过；仅供数与本地意图，无真实任务操作。
-
-AutomationPlanSummary原13项未覆盖整体折叠后的reset组合，现按已知功能回归降为partial；Display/List不受影响。
-
-后继修复：AutomationPlanSummary整体折叠/reset负控原样转绿，独立14项与8消费者流程通过，恢复implemented-pending；前述回退记录保留。
-
-164集成中Scheduled与Entity两项共13项独立检查、Automation原14项复验通过，三新项晋级implemented-pending。当前158/1/97，协议注册166；原生与参考像素另验。

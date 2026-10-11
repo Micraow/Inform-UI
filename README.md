@@ -1,3 +1,7 @@
+# Current functional scope:160 /1 /95
+
+AskUserDetails and AskUserFiles passed8 independent checks,7 consumer flows and117 author/related tests. Canonical coverage is160 implemented (53 historical acceptances,107 pending full acceptance),1 partial Weather and95 missing;166 protocols are registered. The fixed unified164 package at74d463 passed3160 Node and717 Chromium tests. Ask source has separate pending native/pixel acceptance. Earlier checkpoint statements below retain their original scope.
+
 # Local details/file request candidates
 
 Two original finite CTA views and optional local review UI add166 protocol registrations. Canonical functional scope stays158/1/97 until independent review. Files are represented only by explicitly selected local metadata; no contents are read or uploaded. The packaged164 CDN and its ongoing native run remain a separate immutable checkpoint. See [the contract](docs/ask-user-contract.md).

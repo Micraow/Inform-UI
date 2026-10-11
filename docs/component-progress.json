@@ -1,14 +1,14 @@
 {
-  "as_of_utc": "2026-10-11T13:05:52.496417+00:00",
+  "as_of_utc": "2026-10-11T13:24:37.634270+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 105,
+    "implemented_pending_verification": 107,
     "functionally_verified": 53,
-    "not_implemented": 97,
+    "not_implemented": 95,
     "partial": 1
   },
-  "completeImplementationCoverage": 158,
+  "completeImplementationCoverage": 160,
   "registeredProtocolNodes": 166,
   "components": [
     {
@@ -603,15 +603,15 @@
       "id": "ask-user-details",
       "name": "Ask User Details",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite local CTA contract and optional local review passed independent8 cases and consumer7 flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "ask-user-files",
       "name": "Ask User Files",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Complete finite local CTA contract and optional local review passed independent8 cases and consumer7 flows. New native/reference pixel acceptance remains pending."
     },
     {
       "id": "ask-user-location",
