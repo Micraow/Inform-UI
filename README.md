@@ -215,3 +215,5 @@ await writeFile('answer.html', await compileHtml(answer, { lang: 'zh-CN' }));
 This recovery branch now also restores the project-owned `f1-races` and `f1-standings` readers: supplied sessions and standings, local filters/sorts, and cancelable session intents. No live data providers are connected. The exact126 candidate passed 93 targeted tests, with an earlier418-test affected-area run. Its new generation controls turn seven reproduced failures into passing cases.
 
 The current-source browser workflow run on commit `b3903ff5e7eaddb7326d017308af052847ebb15f` belongs to124. It is not acceptance for126. This126 checkpoint is saved with `[skip ci]`; no126 full or native browser result is claimed. The124 workflow retains its explicit124 assertion until a separately scoped validation update.
+
+A subsequent source-only checkpoint adds the touch blur-validation fix and nine Node contracts (46 Forms tests passed). The tracked126 CDN files still identify the preceding frozen asset until the combined rebuild. Native touch revalidation is pending; no new CI run is triggered by this source checkpoint.

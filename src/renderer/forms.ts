@@ -252,16 +252,17 @@ export function createForms(c: RendererContext) {
     const submit = e('button', 'iui-button-primary');
     const cancel = e('button');
     let pointerAction: HTMLButtonElement | undefined, pointerId: number | undefined;
+    let touchAction = false;
     let blurTask: number | undefined;
     const deferredBlur = new Set<() => void>();
     const flushPointerBlur = (refresh = true) => {
       if (blurTask !== undefined) c.doc.defaultView?.clearTimeout(blurTask);
-      blurTask = undefined; pointerAction = undefined; pointerId = undefined;
+      blurTask = undefined; pointerAction = undefined; pointerId = undefined; touchAction = false;
       const callbacks = [...deferredBlur]; deferredBlur.clear();
       if (refresh) callbacks.forEach(callback => callback());
     };
     const local: FormScope = { fields: [], deferPointerBlur: (next, refresh) => {
-      if (!pointerAction || next !== pointerAction) return false;
+      if (!pointerAction || (next !== pointerAction && !(touchAction && next === null))) return false;
       deferredBlur.add(refresh); return true;
     } };
     let busy = false, transitioning = false;
@@ -304,13 +305,21 @@ export function createForms(c: RendererContext) {
       const target = (pointer.target as Element | null)?.closest?.('button');
       const localAction = target?.closest('.iui-root') === out.closest('.iui-root');
       if (!target || target.matches(':disabled') || !localAction) return;
-      flushPointerBlur(); pointerAction = target; pointerId = pointer.pointerId;
+      flushPointerBlur(); pointerAction = target; pointerId = pointer.pointerId; touchAction = pointer.pointerType === 'touch';
     });
     on(c.doc, 'pointerup', (event: Event) => {
       if (!pointerAction || (event as PointerEvent).pointerId !== pointerId) return;
-      // A task after pointerup runs after its native click, unlike a microtask.
+      // Touch compatibility focus/click can arrive in a later task. Keep the
+      // action stable until its real click; a cancelled/no-click gesture still
+      // gets bounded validation feedback. Mouse keeps its existing next-task path.
+      blurTask = c.doc.defaultView?.setTimeout(() => flushPointerBlur(), touchAction ? 500 : 0);
+    });
+    on(c.doc, 'click', (event: Event) => {
+      if (!touchAction || !pointerAction || (event.target as Element | null)?.closest?.('button') !== pointerAction) return;
+      if (blurTask !== undefined) c.doc.defaultView?.clearTimeout(blurTask);
       blurTask = c.doc.defaultView?.setTimeout(() => flushPointerBlur(), 0);
     });
+    on(c.doc, 'keydown', () => { if (touchAction) flushPointerBlur(); });
     on(c.doc, 'pointercancel', (event: Event) => {
       if ((event as PointerEvent).pointerId === pointerId) flushPointerBlur();
     });
