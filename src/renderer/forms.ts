@@ -336,7 +336,24 @@ export function createForms(c: RendererContext) {
       validate: () => { touched = true; refresh(); return !problem(); },
       reset: () => { touched = false; localError = ''; last = undefined; refresh(); },
       overwrite: () => { localError = ''; last = undefined; refresh(); },
-      focus: () => inputs.find(input => !disabled(input))?.focus()
+      focus: () => {
+        const target = c.lifecycle.during(() => inputs.find(input => !disabled(input)));
+        if (!target) return;
+        const form = c.lifecycle.during(() => target.form);
+        if (!form) return;
+        // Custom validation bypasses the browser's interactive invalid-field
+        // reveal step. Open only the containing disclosures inside this form;
+        // unrelated sections and host-owned ancestors remain untouched.
+        const disclosures: HTMLDetailsElement[] = [];
+        for (let parent = target.parentElement; parent && parent !== form; parent = parent.parentElement) {
+          if (parent.tagName === 'DETAILS' && !(parent as HTMLDetailsElement).open) {
+            const summary = parent.querySelector(':scope > summary');
+            if (!summary?.contains(target)) disclosures.unshift(parent as HTMLDetailsElement);
+          }
+        }
+        for (const disclosure of disclosures) c.lifecycle.during(() => { disclosure.open = true; });
+        c.lifecycle.during(() => target.focus());
+      }
     };
     scope?.fields.push(handle);
     const bound = fields.get(n.bind) ?? new Set<FieldHandle>();

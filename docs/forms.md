@@ -55,7 +55,7 @@ const controller = mount(host, document, {
 
 原生日期输入使用明确的YYYY-MM-DD字符串和minDate/maxDate范围，复用本表单生命周期；见[日期字段合同](date-field.md)。这是后续本地候选，尚未通过真实浏览器批次。
 
-表单快照与原生 reset 合同由文档中的 `form` 节点拥有。不要把带受控字段的挂载容器再包在宿主自己管理的 HTML form 中；外层原生表单会绕开该节点的快照/校验生命周期。普通 disabled fieldset 继承仍受支持。
+显式 `form` 节点拥有自己的提交快照、校验和 reset 生命周期，不应嵌套在另一个原生 HTML form 中。没有显式 `form` 节点的普通受控字段可以使用下述宿主表单适配。普通 disabled fieldset 继承仍受支持。
 
 ## Basic controls in a host form
 
@@ -68,3 +68,7 @@ Host controls opt into an owned task boundary after native default actions. Real
 The same host-form integration covers Input, Textarea, Radio and Segmented fields. Radio option groups share one edit revision; a disabled option does not prevent enabled peers from resetting the binding. Cancelled or blocked resets restore the latest public draft rather than replacing an invalid numeric draft with the last accepted numeric state. Accepted resets clear draft errors and touched feedback. New invalid drafts and explicit same-value host state writes also supersede an earlier queued reset. Browser-private partial date-segment buffers are not exposed as application state; the adapter preserves the control's public value.
 
 A pointer gesture on a native host Reset button holds pending blur validation until the gesture finishes. This prevents a newly visible error line from moving the button between pointerdown and click. The association must be the field's actual native form; ordinary keyboard blur and unrelated form buttons still validate immediately. Mouse completion, touch compatibility click, pointer cancellation, page blur, and disposal release the hold through the existing owned lifecycle. This does not change reset cancellation or after-default reconciliation.
+
+## 无效字段位于折叠区时
+
+提交校验会展开首个未禁用无效字段所在的本表单 Details 祖先，再将键盘焦点移到该字段。只展开这条包含路径，其他折叠区不变；不会展开表单外的宿主区域。禁用字段继续跳过。字段仍然无效时不会派发提交成功事件，也不会调用宿主提交适配器。更新或卸载会中止旧一代的展开与聚焦。
