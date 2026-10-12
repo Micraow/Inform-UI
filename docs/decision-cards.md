@@ -41,3 +41,12 @@ Browser acceptance remains unexecuted. Native popup behavior, pointer/touch, vis
 
 Safe source recovery consists only of the schema generator/subset map, public exports, core inspector/wiring, renderer/wiring/labels/CSS, fixture, this document, focused tests/type consumer/browser spec, and the core/schema count assertions. There are no credentials, capture files, private assets, compiled dependencies or generated CDN artifacts in the source patch.
 - Selected schema owner/closed-reference metrics, domain fixture compatibility, and CDN/source byte identity checks: 3/3 passed (`/tmp/inform-decision-cards-schema.log`).
+
+## Required schema-package semantics
+
+Structural schema acceptance must be followed by `validateDocument`. `inspectDecisionCard` preserves these additional checks:
+
+- Jobs IDs and product variant IDs are unique within their own list (`DUPLICATE_ID`). An explicit initial variant must occur in the supplied variants (`PRODUCT_VARIANT`), including when the list is empty.
+- Supplied posting and deadline dates must be real Gregorian dates in years 1000–9999 (`JOB_DATE`); if both exist the deadline may equal, but cannot precede, posting (`JOB_DATE_ORDER`). Salary minimum may equal maximum; a smaller maximum is rejected (`JOB_PAY_RANGE`). No observation-time inference is made.
+- The top-level source URL and each job URL require both an absolute HTTP(S) prefix and the core safe-URL policy (`UNSAFE_URL`). Images must satisfy both the embedded base64 PNG/JPEG/WebP prefix and the core safe-image policy (`PRODUCT_IMAGE`). A matching prefix alone does not establish safety.
+- Ordinary strings retain their declared length constraints without an additional trim/nonblank rule. Optional descriptions may be empty; whitespace is not silently normalized. Missing price remains missing rather than becoming zero. Initial quantity is a structural integer 1–20; the separate interactive quantity draft rules above do not loosen this input contract.

@@ -24,3 +24,12 @@ Source map: `scripts/generate-schema.mjs`, `scripts/schema-subsets.mjs`, `src/co
 
 Generation/build, CDN build, TypeScript no-emit, public type consumer, source-boundary and prepared browser-spec syntax checks passed. Initial component run: 41/41. Final component/decision-card/Forms run: 135/135 (`/tmp/inform-local-places-final.log`); separate core run: 19/19 (`/tmp/inform-local-places-core.log`). The CSS test verifies all referenced theme tokens exist and selectors use the mounted root. No browser run, screenshot approval or CI claim. Source-only commits preserve generated files unstaged for recovery; root handles remote backup and combined acceptance.
 Selected schema owner/closed-reference metrics, domain fixture compatibility and CDN/source byte identity checks also passed 3/3 (`/tmp/inform-local-places-schema.log`).
+
+## Required schema-package semantics
+
+Run `validateDocument` after structural validation. `inspectLocalPlace` adds:
+
+- Weekdays cannot repeat, and an explicit initial day must have a supplied record (`BUSINESS_DAY`). Exactly `status:'hours'` requires a nonempty period list; both `closed` and `unknown` require an empty list (`BUSINESS_HOURS`).
+- A period's end is its closing minute plus 1440 only when `nextDay:true`. Its duration must be greater than zero and at most 1440 minutes (`BUSINESS_PERIOD`). Equal clock times are therefore valid for an explicit next-day 24-hour period, but invalid for a same-day period. Each subsequent opening must be at or after the previous adjusted closing (`BUSINESS_OVERLAP`): touching intervals are accepted; unsorted or overlapping periods are rejected. No cross-day consistency is inferred.
+- Dining review IDs are unique (`DUPLICATE_ID`). Visit dates, when supplied, must be real Gregorian dates in years 1000–9999 (`DINING_DATE`). Ratings are optional numbers in 0–5, including valid zero; null is not a rating value.
+- Both the top-level source and each review source need an absolute HTTP(S) prefix plus the core safe-URL policy (`UNSAFE_URL`). Literal labels/text keep schema length constraints without extra trim/nonblank checks; optional descriptions and notes can be empty.

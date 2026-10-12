@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 148 migrated nodes and 70 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 152 migrated nodes and 66 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -118,3 +118,7 @@ The four `calculators/corrected-age`, `calculators/gcs`, `calculators/rox` and `
 ## Finite supplied readers
 
 `readers/supplied` owns the existing related-question, mail-preview and file-navigation declarations. Mandatory contracts preserve unknown answers, expanded IDs, safe links, real offset timestamps and bounded folder ancestry. No mailbox, filesystem or question-answer service is added.
+
+## Supplied decisions and places
+
+`decisions/supplied` owns the existing jobs, product-card, local-business and restaurant-reviews declarations. Required contracts include pay/date consistency, embedded image safety, exact supplied variants, weekday periods and attributed review dates. `SuppliedPrice` remains the single definition for later flight-result source migration. No provider or purchase action is added.
