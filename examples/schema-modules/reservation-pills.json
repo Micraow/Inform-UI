@@ -1,0 +1,248 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "reservation-time-pills-ref-carousel",
+      "id": "sample-carousel",
+      "label": "Supplied reservation cards",
+      "items": [
+        {
+          "id": "card1",
+          "referenceId": "ref1",
+          "voiceCard": {
+            "title": "Sample dining room",
+            "metadataLabel": "Supplied rating · Sample cuisine",
+            "hasRating": true,
+            "action": {
+              "kind": "entity",
+              "entityId": "sample-venue",
+              "available": true
+            },
+            "images": [
+              {
+                "id": "photo-0",
+                "src": "https://images.example.test/venue-0.png",
+                "alt": "Sample dining view 1"
+              },
+              {
+                "id": "photo-1",
+                "src": "https://images.example.test/venue-1.png",
+                "alt": "Sample dining view 2"
+              },
+              {
+                "id": "photo-2",
+                "src": "https://images.example.test/venue-2.png",
+                "alt": "Sample dining view 3"
+              }
+            ]
+          },
+          "groups": [
+            {
+              "id": "g1",
+              "dateLabel": "Friday, October 16",
+              "dateTimeLabel": "Friday at 6 pm",
+              "partySizeLabel": "2 people",
+              "providerName": "Provider A",
+              "times": [
+                {
+                  "id": "t1",
+                  "providerName": "Provider A",
+                  "launcher": {
+                    "providerId": "provider-a",
+                    "available": true
+                  },
+                  "timeLabel": "6:00 PM"
+                }
+              ],
+              "desktopSlots": [
+                {
+                  "id": "s1",
+                  "label": "6:00 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "bookingQuery": "Request the supplied 6 pm option"
+                }
+              ],
+              "mobileSlots": [
+                {
+                  "id": "early",
+                  "label": "5:30 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "5:30 PM",
+                  "bookingQuery": "Explore the supplied 5:30 pm option."
+                },
+                {
+                  "id": "main",
+                  "label": "6:00 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "bookingQuery": "Explore the supplied 6 pm option."
+                },
+                {
+                  "id": "unavailable",
+                  "label": "6:30 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "bookingQuery": "Request the supplied 6 pm option",
+                  "unavailable": true
+                },
+                {
+                  "id": "late",
+                  "label": "7:00 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "launcher": {
+                    "providerId": "sample-provider",
+                    "available": true
+                  }
+                },
+                {
+                  "id": "later",
+                  "label": "7:30 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "url": "https://example.com/dining"
+                },
+                {
+                  "id": "hidden",
+                  "label": "8:00 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "bookingQuery": "Request the supplied 6 pm option"
+                }
+              ],
+              "changeOptions": [
+                {
+                  "id": "a",
+                  "providerName": "Provider A",
+                  "launcher": {
+                    "providerId": "provider-a",
+                    "available": true
+                  }
+                }
+              ]
+            },
+            {
+              "id": "hidden-group",
+              "dateLabel": "Friday, October 16",
+              "dateTimeLabel": "Friday at 6 pm",
+              "partySizeLabel": "2 people",
+              "providerName": "Provider A",
+              "times": [
+                {
+                  "id": "t1",
+                  "providerName": "Provider A",
+                  "launcher": {
+                    "providerId": "provider-a",
+                    "available": true
+                  },
+                  "timeLabel": "6:00 PM"
+                }
+              ],
+              "desktopSlots": [
+                {
+                  "id": "s1",
+                  "label": "6:00 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "bookingQuery": "Request the supplied 6 pm option"
+                }
+              ],
+              "mobileSlots": [
+                {
+                  "id": "mobile",
+                  "label": "6:30 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:30 PM",
+                  "bookingQuery": "Request the supplied 6 pm option"
+                }
+              ],
+              "changeOptions": [
+                {
+                  "id": "a",
+                  "providerName": "Provider A",
+                  "launcher": {
+                    "providerId": "provider-a",
+                    "available": true
+                  }
+                }
+              ]
+            }
+          ],
+          "showMoreTimesLabel": "More supplied times"
+        },
+        {
+          "id": "card2",
+          "voiceCard": {
+            "title": "Second supplied dining room",
+            "metadataLabel": "Supplied rating · Sample cuisine",
+            "hasRating": true,
+            "action": {
+              "kind": "entity",
+              "entityId": "sample-venue",
+              "available": true
+            },
+            "images": []
+          },
+          "groups": [
+            {
+              "id": "second",
+              "dateLabel": "Friday, October 16",
+              "dateTimeLabel": "Friday at 6 pm",
+              "partySizeLabel": "2 people",
+              "providerName": "Provider A",
+              "times": [
+                {
+                  "id": "t1",
+                  "providerName": "Provider A",
+                  "launcher": {
+                    "providerId": "provider-a",
+                    "available": true
+                  },
+                  "timeLabel": "6:00 PM"
+                }
+              ],
+              "desktopSlots": [
+                {
+                  "id": "s1",
+                  "label": "6:00 PM",
+                  "providerName": "Provider A",
+                  "timeLabel": "6:00 PM",
+                  "bookingQuery": "Request the supplied 6 pm option"
+                }
+              ],
+              "mobileSlots": [],
+              "changeOptions": [
+                {
+                  "id": "retry",
+                  "providerName": "Provider A",
+                  "launcher": {
+                    "providerId": "provider-a",
+                    "available": true
+                  },
+                  "retryLauncher": {
+                    "providerId": "sample-retry",
+                    "available": true
+                  }
+                }
+              ],
+              "emptyLabel": "No matching times in this supplied snapshot."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "reservation-time-pills-ref-carousel",
+      "label": "Pending supplied cards",
+      "status": "pending",
+      "fallback": "Waiting for supplied options"
+    },
+    {
+      "type": "reservation-time-pills-ref-carousel",
+      "label": "Failed supplied cards",
+      "status": "failed",
+      "fallback": "No reservation data was supplied."
+    }
+  ]
+}

@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 120 migrated nodes and 98 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 123 migrated nodes and 95 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -90,3 +90,7 @@ Every registered module now declares `semanticContractPaths`. These are the auth
 ## Media dependencies
 
 `media/readers` and `media/lottie` register their maintained JSON definitions without changing full definition or node order. `learning/visualization` depends on `media/lottie`; `media/inline-host` depends on `media/readers`. Selecting these families includes the stated prerequisite nodes, which are visible in the selection manifest. Required semantics include the exact safe-source, ratio, bounded animation and local host-intent contracts. No full-output reverse slicing or second definition copy is maintained.
+
+## Composed demonstrations
+
+`learning/study-demo` selects its real quiz definition dependency. `reservations/pills` supplies the existing grouped and carousel contracts. `onboarding/search-capability` composes reservation data, location and media readers with explicit source dependencies and mandatory semantic reading. Selection manifests expose all included nodes; no provider or account runtime is added.

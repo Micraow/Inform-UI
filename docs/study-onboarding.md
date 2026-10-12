@@ -15,3 +15,9 @@ The three tabs support roving keyboard focus, RTL arrows, Home/End and cancellat
 Validation: 10 new source-build contracts and 55 combined study/advice/learning/core tests passed. Native browser scenarios are supplied separately and remain unexecuted for this source. The last frozen CDN is unified164; registering this source is not CDN/native acceptance or canonical promotion.
 
 A later local integration fix rebuilds both embedded quiz and chart on accepted native reset. The original chart checkbox/visible-series mismatch is preserved as a negative control; 11 domain checks now include canceled reset and newer chart input.
+
+## Source module and semantic checks
+
+`learning/study-demo` depends on the maintained `learning/basic` source module for `QuizQuestion`. Read its quiz contract and the chart rendering contract alongside this page. Full `validateDocument` checks present data even when a pending/failed presentation permits a section to be absent.
+
+`STUDY_TEXT` rejects whitespace-only top-level label, each supplied visual/quiz/mathGraph section label and question, and each orbit label. This precise list does not impose a new trim rule on other structurally valid captions, fallback or descriptions. `STUDY_ORBIT` rejects duplicate orbit IDs. Embedded quiz questions reuse `LEARNING_ID` uniqueness checks and `QUIZ_ANSWER` requirements: no repeated correct IDs, every correct ID names a supplied choice, and single-choice questions have exactly one correct ID. `STUDY_GRAPH` requires strictly increasing x values, including across null-y gaps; data is not sorted or interpolated. Structural limits additionally constrain orbit geometry, day steps, array sizes and numeric ranges.
