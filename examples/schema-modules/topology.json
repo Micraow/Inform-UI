@@ -1,0 +1,33 @@
+{
+  "version": "iui/1",
+  "state": {
+    "load": 2
+  },
+  "body": [
+    {
+      "type": "topology",
+      "nodes": [
+        {
+          "id": "a",
+          "label": "Draft"
+        },
+        {
+          "id": "b",
+          "label": "Review"
+        }
+      ],
+      "links": [
+        {
+          "from": "a",
+          "to": "b",
+          "label": "Local sequence",
+          "load": {
+            "$": "load"
+          }
+        }
+      ],
+      "highlight": "max-load",
+      "caption": "Supplied diagram, no task execution"
+    }
+  ]
+}

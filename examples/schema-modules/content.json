@@ -1,0 +1,52 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "markdown",
+      "value": "An original **packing** note."
+    },
+    {
+      "type": "writing-block",
+      "label": "Original draft",
+      "value": "Bring two notebooks.",
+      "editable": false
+    },
+    {
+      "type": "email-draft",
+      "label": "Original unsent draft",
+      "subject": "Supplies",
+      "body": "Please bring a notebook.",
+      "to": []
+    },
+    {
+      "type": "task-expansion-card",
+      "title": "Original plan",
+      "steps": [
+        {
+          "id": "pack",
+          "title": "Pack a notebook"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "value": "count = 2",
+      "language": "text"
+    },
+    {
+      "type": "math",
+      "latex": "2+3=5"
+    },
+    {
+      "type": "badge",
+      "value": "Original example"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "spacer",
+      "height": 8
+    }
+  ]
+}

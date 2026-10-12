@@ -47,4 +47,16 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 58 migrated nodes and 160 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 68 migrated nodes and 150 legacy nodes; this does not change the 218-node wire union.
+
+## content
+
+`foundations/content` owns markdown, writing-block, email-draft, task-expansion-card, code, math, badge, divider and spacer. Load the [bounded Markdown contract](markdown.md), [local writing contract](writing-block.md) and [code contract](code.md) for their specific behavior. Those historical documents retain their original release-stage notes; selection does not claim a new browser acceptance run.
+
+Code is displayed, never executed. Its inline branch excludes block copy/highlight controls; text is literal. Math takes authored LaTeX under the existing bounded renderer, not executable JavaScript. Badge values may use the shared expression grammar; divider and spacer are structural display nodes.
+
+Email drafts contain caller-supplied recipients, subject and body. They provide local review/editing, not email delivery or account access. Task expansion cards display supplied steps and local reviewed state, not a task executor. Writing, Markdown and email values are literal strings rather than references to a bound answer. Full semantic validation remains required, including component restrictions inside forms. Selection does not turn local edits into a submitted answer or persist them.
+
+## topology
+
+`graphics/topology` owns the existing supplied topology diagram: 2–24 named nodes and 1–40 directed links. A link's `from` and `to` refer to supplied node IDs; the full validator checks IDs and endpoints. Optional load values use the shared expression grammar and must resolve to nonnegative finite numbers under semantic validation; max-load highlighting only describes the supplied data. No network graph discovery, routing, remote loading or task execution is performed. Captions and labels are supplied by the author. The selected structural schema is used with the unchanged full semantic validator.
