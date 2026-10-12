@@ -83,3 +83,6 @@ export type {CorrectedAgeInput,CorrectedAgeResult,CorrectedAgeNode,CorrectedAgeD
 
 export {calculateGcs,GCS_VERSION} from './core/gcs.js';
 export type {GcsInput,GcsResult,GcsNode,GcsDetail,GcsComponentState,GcsInfoSection,GcsFieldPresentation} from './core/gcs.js';
+
+export {calculateRox,ROX_VERSION} from './core/rox.js';
+export type {RoxInput,RoxResult,RoxComparison,RoxNode,RoxDetail} from './core/rox.js';

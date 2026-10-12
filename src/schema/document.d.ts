@@ -245,7 +245,8 @@ export type Node =
   | GenImageNode
   | SpeechSynthesizerNode
   | CalculatorCorrectedAdjustedAgeOfPretermInfantsNode
-  | CalculatorGlasgowComaScaleGcsNode;
+  | CalculatorGlasgowComaScaleGcsNode
+  | CalculatorRoxIndexForHighFlowNasalCannulaNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -7137,4 +7138,75 @@ export interface GcsInput {
   eye?: number | string | null;
   verbal?: number | string | null;
   motor?: number | string | null;
+}
+export interface CalculatorRoxIndexForHighFlowNasalCannulaNode {
+  type: "calculator-rox-index-for-high-flow-nasal-cannula";
+  id?: string;
+  label: string;
+  initial?: RoxInput;
+  defaults?: RoxInput;
+  disabled?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  subtitle?: string;
+  /**
+   * @maxItems 30
+   */
+  notes?: string[];
+  /**
+   * @maxItems 12
+   */
+  infoSections?: {
+    id: string;
+    label: string;
+    body: string;
+  }[];
+  activeInfoId?: string;
+  resetLabel?: string;
+  copyLabel?: string;
+  summaryPrefix?: string;
+  fields?: {
+    version?: {
+      label?: string;
+      help?: string;
+    };
+    spo2Percent?: {
+      label?: string;
+      help?: string;
+    };
+    fio2?: {
+      label?: string;
+      help?: string;
+    };
+    fio2Unit?: {
+      label?: string;
+      help?: string;
+    };
+    respiratoryRate?: {
+      label?: string;
+      help?: string;
+    };
+    measuredHours?: {
+      label?: string;
+      help?: string;
+    };
+    comparisonVersion?: {
+      label?: string;
+      help?: string;
+    };
+    studyContextConfirmed?: {
+      label?: string;
+      help?: string;
+    };
+  };
+}
+export interface RoxInput {
+  version?: string | null;
+  spo2Percent?: number | string | null;
+  fio2?: number | string | null;
+  fio2Unit?: ("fraction" | "percent") | null;
+  respiratoryRate?: number | string | null;
+  measuredHours?: number | string | null;
+  comparisonVersion?: string | null;
+  studyContextConfirmed?: boolean | null;
 }

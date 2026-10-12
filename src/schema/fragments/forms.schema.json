@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:3ea8efb2899d85d3e6f93cc2ca2b26f7e5baa34ddd3c9e835c54f89af7d56abd:document:base+forms",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:7fbb96d7b5dfb23327340838c65c2d38245fe2b0f7907e3a7b4f864e884f5787:document:base+forms",
   "title": "Inform UI document subset: base, forms",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -2338,6 +2338,235 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "CalculatorRoxIndexForHighFlowNasalCannulaNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "calculator-rox-index-for-high-flow-nasal-cannula"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "$ref": "#/$defs/RoxInput"
+        },
+        "defaults": {
+          "$ref": "#/$defs/RoxInput"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "notes": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "maxLength": 8000
+          }
+        },
+        "infoSections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 8000
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "body"
+            ]
+          }
+        },
+        "activeInfoId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "copyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summaryPrefix": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "version": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "spo2Percent": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "fio2": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "fio2Unit": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "respiratoryRate": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "measuredHours": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "comparisonVersion": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            },
+            "studyContextConfirmed": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                }
+              }
+            }
+          }
         }
       },
       "required": [
@@ -11091,6 +11320,9 @@
         },
         {
           "$ref": "#/$defs/CalculatorGlasgowComaScaleGcsNode"
+        },
+        {
+          "$ref": "#/$defs/CalculatorRoxIndexForHighFlowNasalCannulaNode"
         }
       ]
     },
@@ -15652,6 +15884,101 @@
         "children"
       ],
       "additionalProperties": false
+    },
+    "RoxInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 64
+        },
+        "spo2Percent": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 64
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fio2": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 64
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fio2Unit": {
+          "anyOf": [
+            {
+              "enum": [
+                "fraction",
+                "percent"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "respiratoryRate": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 64
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "measuredHours": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 64
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "comparisonVersion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 64
+        },
+        "studyContextConfirmed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
     },
     "ScheduledTaskSuggestionNode": {
       "type": "object",
