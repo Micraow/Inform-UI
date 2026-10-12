@@ -1,6 +1,6 @@
 # 组件进度
 
-210项软件功能实现覆盖：53历史、157待完整验收，0部分、46未实现；215协议登记另计。GCS为原创供数评分与完整本地scorecard交互，NT/未知/异常不输出总分；不代表临床验证。当前分发CDN为fed5统一214（209功能范围），GCS及两个后继修复需源码构建；各原生证据按准确版本记录。
+211项软件功能实现覆盖：53历史、158待完整验收，0部分、45未实现；216协议登记另计。GCS与ROX均为原创供数计算和完整本地scorecard交互；未知/异常不输出错误结果，不代表临床验证。当前CDN仍为fed5统一214（209功能范围），两个计算器和后继修复需源码构建。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -135,7 +135,7 @@
 | calculator-revised-geneva-score-for-pulmonary-embolism | Calculator Revised Geneva Score For Pulmonary Embolism | 未实现 | No implementation in the current library. |
 | calculator-rochester-criteria-for-febrile-infants | Calculator Rochester Criteria For Febrile Infants | 未实现 | No implementation in the current library. |
 | calculator-rockall-score-for-upper-gi-bleeding | Calculator Rockall Score For Upper Gi Bleeding | 未实现 | No implementation in the current library. |
-| calculator-rox-index-for-high-flow-nasal-cannula | Calculator Rox Index For High Flow Nasal Cannula | 未实现 | No implementation in the current library. |
+| calculator-rox-index-for-high-flow-nasal-cannula | Calculator Rox Index For High Flow Nasal Cannula | 完整实现待验 | Original explicit-unit ROX arithmetic and complete local scorecard; exact optional Roca 2019 time/context comparison. Author21, independent13 and2 focused Chromium checks, consumer40 arithmetic and5 flows passed. No treatment instructions or clinical validation; full reference/pixel acceptance remains pending. |
 | calculator-sirs-criteria | Calculator Sirs Criteria | 未实现 | No implementation in the current library. |
 | calculator-sofa-score | Calculator Sofa Score | 未实现 | No implementation in the current library. |
 | calculator-stop-bang-score-for-obstructive-sleep-apnea | Calculator Stop Bang Score For Obstructive Sleep Apnea | 未实现 | No implementation in the current library. |
