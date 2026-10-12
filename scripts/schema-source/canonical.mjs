@@ -12,7 +12,6 @@ import {installCapabilitySearchSchema} from '../capability-search-schema.mjs';
 import {installReservationPillsSchema} from '../reservation-pills-schema.mjs';
 import {installSearchOnboardingSchema} from '../search-onboarding-schema.mjs';
 import {installStudyOnboardingSchema} from '../study-onboarding-schema.mjs';
-import {installLedgerCategorySchema} from '../ledger-category-schema.mjs';
 import {installEntitySchema} from '../entity-schema.mjs';
 import {installAutomationSchema} from '../automation-schema.mjs';
 import {promptChecklistSchema} from '../prompt-checklist-schema.mjs';
@@ -325,7 +324,7 @@ node('scheduled-task-suggestion',{label:short,action:choice('new-turn','task-opt
 installEntitySchema({node,defs});
 
 registry.use('requests/user');
-installLedgerCategorySchema({node,defs});
+registry.use('finance/category-views');
 registry.use('voice/cards');
 registry.use('onboarding/conversation');
 registry.use('onboarding/cards');

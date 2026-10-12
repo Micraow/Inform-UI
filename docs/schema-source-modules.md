@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 110 migrated nodes and 108 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 113 migrated nodes and 105 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -82,3 +82,7 @@ Every registered module now declares `semanticContractPaths`. These are the auth
 ## Supplied discovery, launchers, care and interactions
 
 `discovery/cards`, `launchers/cards`, `care/providers` and `interactions/local` register existing independent installers. Original local card names remain compatibility identifiers; their data does not provide private service interfaces or execute account, medical, booking or partner operations. Each family retains its exact required semantic checks and explicit empty-content exceptions. No new component or rule is introduced.
+
+## Supplied category views
+
+`finance/category-views` registers the existing three category and recent-transaction nodes from their original installer. Its explicit required reading is [the supplied category contract](ledger-category-contract.md). Selecting this family with finance entry or text modules uses the shared value dependency once; it does not add a financial service or calculate totals.

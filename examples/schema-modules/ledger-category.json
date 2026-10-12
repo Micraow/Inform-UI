@@ -1,0 +1,184 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-spend-by-category",
+      "label": "Original category summary",
+      "compactTitle": "Categories",
+      "months": [
+        {
+          "id": "first",
+          "label": "First supplied month",
+          "totalLabel": "900 units",
+          "segments": [
+            {
+              "id": "s1",
+              "label": "Independent weight",
+              "weight": 2,
+              "color": "blue"
+            },
+            {
+              "id": "s2",
+              "label": "Other weight",
+              "weight": 7,
+              "color": "orange"
+            }
+          ],
+          "topCategories": [
+            {
+              "id": "books",
+              "label": "Field guides",
+              "amountLabel": "12 units",
+              "percentLabel": "20%",
+              "filledPct": 20,
+              "color": "green",
+              "detailEnabled": true
+            },
+            {
+              "id": "zero",
+              "label": "Original zero",
+              "amountLabel": "0 units",
+              "percentLabel": "0%",
+              "filledPct": 0,
+              "color": "green",
+              "detailEnabled": true
+            }
+          ],
+          "categories": [
+            {
+              "id": "books",
+              "label": "Field guides",
+              "amountLabel": "12 units",
+              "percentLabel": "20%",
+              "filledPct": 20,
+              "color": "green",
+              "detailEnabled": true
+            },
+            {
+              "id": "zero",
+              "label": "Original zero",
+              "amountLabel": "0 units",
+              "percentLabel": "0%",
+              "filledPct": 0,
+              "color": "green",
+              "detailEnabled": true
+            },
+            {
+              "id": "unknown",
+              "label": "Unknown",
+              "amountLabel": null,
+              "percentLabel": "10%",
+              "filledPct": 10,
+              "color": "green",
+              "detailEnabled": true
+            }
+          ]
+        },
+        {
+          "id": "second",
+          "label": "Second supplied month",
+          "totalLabel": "900 units",
+          "segments": [
+            {
+              "id": "s1",
+              "label": "Independent weight",
+              "weight": 2,
+              "color": "blue"
+            },
+            {
+              "id": "s2",
+              "label": "Other weight",
+              "weight": 7,
+              "color": "orange"
+            }
+          ],
+          "topCategories": [
+            {
+              "id": "books",
+              "label": "Field guides",
+              "amountLabel": "12 units",
+              "percentLabel": "20%",
+              "filledPct": 20,
+              "color": "green",
+              "detailEnabled": true
+            },
+            {
+              "id": "zero",
+              "label": "Original zero",
+              "amountLabel": "0 units",
+              "percentLabel": "0%",
+              "filledPct": 0,
+              "color": "green",
+              "detailEnabled": true
+            }
+          ],
+          "categories": [
+            {
+              "id": "books",
+              "label": "Field guides",
+              "amountLabel": "12 units",
+              "percentLabel": "20%",
+              "filledPct": 20,
+              "color": "green",
+              "detailEnabled": true
+            },
+            {
+              "id": "zero",
+              "label": "Original zero",
+              "amountLabel": "0 units",
+              "percentLabel": "0%",
+              "filledPct": 0,
+              "color": "green",
+              "detailEnabled": true
+            },
+            {
+              "id": "unknown",
+              "label": "Unknown",
+              "amountLabel": null,
+              "percentLabel": "10%",
+              "filledPct": 10,
+              "color": "green",
+              "detailEnabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ledger-spend-by-category-detail",
+      "label": "Original category breakdown",
+      "groups": [
+        {
+          "id": "one",
+          "label": "Supplied zero",
+          "subtotalLabel": "0 units",
+          "filledPct": 0
+        },
+        {
+          "id": "two",
+          "label": "Unknown",
+          "subtotalLabel": null,
+          "filledPct": 25
+        }
+      ]
+    },
+    {
+      "type": "ledger-spend-by-category-recent-transactions",
+      "label": "Original recent records",
+      "transactions": [
+        {
+          "id": "one",
+          "title": "Fictional field guide",
+          "dateLabel": "Supplied date label",
+          "amountLabel": "12 units"
+        },
+        {
+          "id": "two",
+          "title": "Fictional refund",
+          "dateLabel": null,
+          "amountLabel": "0 units"
+        }
+      ]
+    }
+  ]
+}

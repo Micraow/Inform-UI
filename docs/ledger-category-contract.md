@@ -23,3 +23,11 @@ All three views support pending, failed fallback, resolved empty, and disconnect
 Months are bounded at60, category/group/transaction/segment arrays at100. IDs are unique within each list; totals and text are display strings, not numbers to parse. Colors are six fixed color roles or exact six-digit hex. Safe image URL policy and shared generation/owner, input, intent and native-reset facilities are reused. Every replaceable row generation owns its handlers. Same-turn owner removal permanently retires old controls; an explicit controller update creates the new view.
 
 The three schemas being registered is not canonical completion. Independent functional review, native execution and reference pixel acceptance are recorded separately.
+
+## Structural and semantic validation
+
+Use full `validateDocument` after structural schema validation. `CATEGORY_LABEL` rejects whitespace-only strings (by `trim()`) for the top-level `label`; overview month `label` and `totalLabel`, segment `label`, and each top/complete category's `label`, `amountLabel`, `percentLabel`; detail group `label` and `subtotalLabel`; and recent transaction `title`, `dateLabel`, `amountLabel`. Explicit null in nullable display labels remains valid and never means zero. This is a precise field list: other structurally valid display strings do not receive an additional trim rule.
+
+`CATEGORY_ID` rejects repeated IDs within each months, segments, topCategories, categories, groups or transactions list. IDs shared between separate top/complete lists are permitted. `CATEGORY_MONTH` requires a supplied `selectedMonthId` to identify an existing month, even in pending/disconnected presentations when supplied. `CATEGORY_SOURCE` checks each supplied transaction `logoSrc` with the shared safe-image URL policy.
+
+The structural conditional requires months/groups/transactions for a resolved ordinary view, but permits omission when status is pending/failed, `isLoading` is true or `hasConnectedAccounts` is false. Present data still undergoes semantic checks in those phases. Category/group bars are 0–100; segment weights are independently 0–1,000,000. No normalization, aggregation or parsing of display amounts is performed.
