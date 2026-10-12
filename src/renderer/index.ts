@@ -1,3 +1,5 @@
+import {renderQuestionnaire,type QuestionnaireAction} from './questionnaire.js';
+import questionnaireStyles from './questionnaire.css';
 import {renderQsofa} from './qsofa.js';
 import qsofaStyles from './qsofa.css';
 import {renderRox} from './rox.js';
@@ -184,7 +186,7 @@ import type { IUIDocument, Node, Value } from '../schema/document.js';
 import stylesheet from './style.css';
 import mathStyles from './math-style.css';
 import { formatNumber, presentationLabels } from './presentation.js';
-const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles + '\n' + tabbedVisualStyles + '\n' + automationStyles + '\n' + scheduledSuggestionStyles + '\n' + entityStyles + '\n' + askUserStyles + '\n' + ledgerCategoryStyles + '\n' + voiceCardsStyles + '\n' + conversationalOnboardingStyles + '\n' + onboardingCardsStyles + '\n' + studyOnboardingStyles + '\n' + weatherSuppliedStyles + '\n' + searchOnboardingStyles + '\n' + quizCardsStyles + '\n' + capabilityWelcomeStyles + '\n' + askLocationStyles + '\n' + reservationPillsStyles + '\n' + capabilitySearchStyles + '\n' + taskCardsStyles + '\n' + financeEntryStyles + '\n' + contextActionStyles + '\n' + equityWatchStyles + '\n' + suppliedLauncherStyles+'\n'+suppliedDiscoveryStyles+'\n'+suppliedCreditStyles+'\n'+suppliedInteractionStyles+'\n'+learningVizStyles+'\n'+careProviderStyles+'\n'+inlineHostMediaStyles+'\n'+correctedAgeStyles+'\n'+gcsStyles+'\n'+roxStyles+'\n'+qsofaStyles;
+const styles: string = stylesheet + '\n' + mathStyles + '\n' + transactionDetailStyles + '\n' + recommendationStyles + '\n' + financeStatusStyles + '\n' + promptChecklistStyles + '\n' + ledgerRecordsStyles + '\n' + playerSummaryStyles + '\n' + motorsportStyles + '\n' + boxscoreStyles + '\n' + suppliedResultsStyles + '\n' + matchScoresStyles + '\n' + learningMediaStyles + '\n' + weatherSidebarStyles + '\n' + categoryCorrectionStyles + '\n' + netWorthStyles + '\n' + pressableStyles + '\n' + feeInterestStyles + '\n' + htmlViewStyles + '\n' + searchImageStyles + '\n' + youtubeStyles + '\n' + asyncImageStyles + '\n' + incomeTrackerStyles + '\n' + asyncVideoStyles + '\n' + followUpActionStyles + '\n' + conversationSuggestionStyles + '\n' + imageGridStyles + '\n' + upcomingActivityStyles + '\n' + spendMonthStyles + '\n' + suppliedLinkStyles + '\n' + tabbedVisualStyles + '\n' + automationStyles + '\n' + scheduledSuggestionStyles + '\n' + entityStyles + '\n' + askUserStyles + '\n' + ledgerCategoryStyles + '\n' + voiceCardsStyles + '\n' + conversationalOnboardingStyles + '\n' + onboardingCardsStyles + '\n' + studyOnboardingStyles + '\n' + weatherSuppliedStyles + '\n' + searchOnboardingStyles + '\n' + quizCardsStyles + '\n' + capabilityWelcomeStyles + '\n' + askLocationStyles + '\n' + reservationPillsStyles + '\n' + capabilitySearchStyles + '\n' + taskCardsStyles + '\n' + financeEntryStyles + '\n' + contextActionStyles + '\n' + equityWatchStyles + '\n' + suppliedLauncherStyles+'\n'+suppliedDiscoveryStyles+'\n'+suppliedCreditStyles+'\n'+suppliedInteractionStyles+'\n'+learningVizStyles+'\n'+careProviderStyles+'\n'+inlineHostMediaStyles+'\n'+correctedAgeStyles+'\n'+gcsStyles+'\n'+roxStyles+'\n'+qsofaStyles+'\n'+questionnaireStyles;
 
 export interface Controller {
   update(document: unknown): void;
@@ -192,7 +194,7 @@ export interface Controller {
   getState(): Readonly<Record<string, string | number | boolean>>;
   setState(patch: Record<string, string | number | boolean>): void;
 }
-export interface MountOptions { styles?: boolean; actions?: Readonly<Record<string,FormAction>> }
+export interface MountOptions { styles?: boolean; actions?: Readonly<Record<string,FormAction>>; questionnaireActions?:Readonly<Record<string,QuestionnaireAction>> }
 export class InvalidDocumentError extends Error {
   readonly issues: readonly {code: string; path: string; message: string}[];
   constructor(issues: readonly {code: string; path: string; message: string}[]) {
@@ -388,6 +390,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'whats-new-capability-search':out=renderCapabilitySearch(context,n,root,container);break;
       case 'calculator-rox-index-for-high-flow-nasal-cannula':out=renderRox(context,n);break;
       case 'calculator-qsofa-score':out=renderQsofa(context,n);break;
+      case 'questionnaire':out=renderQuestionnaire(context,n);break;
       case 'calculator-glasgow-coma-scale-gcs':out=renderGcs(context,n);break;
       case 'calculator-corrected-adjusted-age-of-preterm-infants':out=renderCorrectedAge(context,n);break;
       case 'entity':case 'gen-image':case 'speech-synthesizer':out=renderInlineHostMedia(context,n,root,container);break;
@@ -568,7 +571,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
   }
   const start = lifetime.guard(() => {
     labels = during(() => presentationLabels(container));
-    context = during<RendererContext>(() => ({doc,prefix,allocateInternalId,lifecycle:lifetime,labels:()=>labels,element,svg,on,bind,cleanup:lifetime.own,value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{}}));
+    context = during<RendererContext>(() => ({doc,prefix,allocateInternalId,lifecycle:lifetime,labels:()=>labels,element,svg,on,bind,cleanup:lifetime.own,value,display,showValue,getState:()=>state,change,fromControl,render,actions:options.actions??{},questionnaireActions:options.questionnaireActions??{}}));
     forms = during(() => createForms(context));
     fieldLabels = during(() => createLabels(context));
     root=element('article','iui-root');

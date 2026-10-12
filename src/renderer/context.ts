@@ -1,3 +1,4 @@
+import type {QuestionnaireAction} from './questionnaire.js';
 import type { Node, Value } from '../schema/document.js';
 import type { Scalar, StateValue } from '../core/index.js';
 import type { presentationLabels } from './presentation.js';
@@ -25,4 +26,5 @@ export interface RendererContext {
   fromControl: (patch:Record<string,StateValue>, draftPolicy?:'preserve'|'replace'|'reset')=>void;
   render: (node:Node)=>HTMLElement|SVGElement;
   actions: Readonly<Record<string,FormAction>>;
+  questionnaireActions?: Readonly<Record<string,QuestionnaireAction>>;
 }

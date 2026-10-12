@@ -86,3 +86,7 @@ export type {RoxInput,RoxResult,RoxComparison,RoxNode,RoxDetail} from './core/ro
 
 export {calculateQsofa,QSOFA_VERSION} from './core/qsofa.js';
 export type {QsofaInput,QsofaResult,QsofaNode,QsofaDetail,QsofaMentation} from './core/qsofa.js';
+
+export {createQuestionnaireDraft,evaluateQuestionnaire} from './core/questionnaire.js';
+export type {QuestionnaireNode,QuestionnaireSnapshot,QuestionnaireField} from './core/questionnaire.js';
+export type {QuestionnaireAction,QuestionnaireActionContext} from './renderer/questionnaire.js';

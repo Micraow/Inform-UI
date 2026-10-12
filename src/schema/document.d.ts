@@ -247,7 +247,8 @@ export type Node =
   | CalculatorCorrectedAdjustedAgeOfPretermInfantsNode
   | CalculatorGlasgowComaScaleGcsNode
   | CalculatorRoxIndexForHighFlowNasalCannulaNode
-  | CalculatorQsofaScoreNode;
+  | CalculatorQsofaScoreNode
+  | QuestionnaireNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -931,6 +932,59 @@ export type CapabilitySearchTarget =
       kind: "capability";
       capabilityId: string;
       available?: boolean;
+    };
+export type QuestionnaireField =
+  | {
+      id: string;
+      label: string;
+      description?: string;
+      required?: boolean;
+      visibleWhen?: Value;
+      validWhen?: Value;
+      validationMessage?: string;
+      type: "text";
+      placeholder?: string;
+      minLength?: number;
+      maxLength?: number;
+    }
+  | {
+      id: string;
+      label: string;
+      description?: string;
+      required?: boolean;
+      visibleWhen?: Value;
+      validWhen?: Value;
+      validationMessage?: string;
+      type: "number";
+      placeholder?: string;
+      min?: number;
+      max?: number;
+      step?: number;
+    }
+  | {
+      id: string;
+      label: string;
+      description?: string;
+      required?: boolean;
+      visibleWhen?: Value;
+      validWhen?: Value;
+      validationMessage?: string;
+      type: "choice";
+      /**
+       * @minItems 1
+       * @maxItems 40
+       */
+      options: [QuestionnaireChoice, ...QuestionnaireChoice[]];
+    }
+  | {
+      id: string;
+      label: string;
+      description?: string;
+      required?: boolean;
+      visibleWhen?: Value;
+      validWhen?: Value;
+      validationMessage?: string;
+      type: "boolean";
     };
 
 /**
@@ -7283,4 +7337,44 @@ export interface QsofaInput {
         mode: "gcs";
         score?: number | "NT" | null;
       };
+}
+export interface QuestionnaireNode {
+  type: "questionnaire";
+  id?: string;
+  questionnaireId: string;
+  version: string;
+  title: string;
+  description?: string;
+  hiddenValuePolicy: "retain" | "clear";
+  /**
+   * @minItems 1
+   * @maxItems 40
+   */
+  fields: [QuestionnaireField, ...QuestionnaireField[]];
+  computed?: {
+    [k: string]: Value;
+  };
+  initialAnswers?: {
+    [k: string]: string | number | boolean | null;
+  };
+  defaults?: {
+    [k: string]: string | number | boolean | null;
+  };
+  /**
+   * @maxItems 20
+   */
+  sources?: QuestionnaireSource[];
+  disabled?: boolean;
+  action?: string;
+  submitLabel?: string;
+  resetLabel?: string;
+}
+export interface QuestionnaireChoice {
+  value: string;
+  label: string;
+}
+export interface QuestionnaireSource {
+  title: string;
+  url?: string;
+  version?: string;
 }

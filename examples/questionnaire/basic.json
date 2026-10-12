@@ -1,0 +1,182 @@
+{
+  "version": "iui/1",
+  "title": "活动打包：原创通用问卷",
+  "description": "完全合成、非医疗；仅本地填写和计算，无服务。",
+  "body": [
+    {
+      "type": "questionnaire",
+      "questionnaireId": "toy_event_packing",
+      "version": "1.0.0",
+      "title": "活动打包问卷",
+      "hiddenValuePolicy": "retain",
+      "fields": [
+        {
+          "id": "mode",
+          "label": "活动方式",
+          "type": "choice",
+          "required": true,
+          "options": [
+            {
+              "value": "onsite",
+              "label": "现场活动"
+            },
+            {
+              "value": "travel",
+              "label": "携带出行"
+            }
+          ]
+        },
+        {
+          "id": "participants",
+          "label": "参与人数（人）",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 20,
+          "step": 1
+        },
+        {
+          "id": "packsEach",
+          "label": "每人包数（包/人）",
+          "type": "number",
+          "required": true,
+          "min": 0,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "id": "borrowed",
+          "label": "是否有借用物品？",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "id": "seats",
+          "label": "已安排座位（个）",
+          "type": "number",
+          "required": true,
+          "min": 1,
+          "max": 80,
+          "step": 1,
+          "visibleWhen": {
+            "op": "eq",
+            "args": [
+              {
+                "$": "mode"
+              },
+              "travel"
+            ]
+          },
+          "validWhen": {
+            "op": "if",
+            "args": [
+              {
+                "op": "eq",
+                "args": [
+                  {
+                    "$": "seats"
+                  },
+                  null
+                ]
+              },
+              true,
+              {
+                "op": "if",
+                "args": [
+                  {
+                    "op": "eq",
+                    "args": [
+                      {
+                        "$": "participants"
+                      },
+                      null
+                    ]
+                  },
+                  true,
+                  {
+                    "op": "if",
+                    "args": [
+                      {
+                        "op": "lt",
+                        "args": [
+                          {
+                            "$": "seats"
+                          },
+                          {
+                            "$": "participants"
+                          }
+                        ]
+                      },
+                      false,
+                      true
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "validationMessage": "出行座位不能少于参与人数。"
+        }
+      ],
+      "computed": {
+        "totalPackets": {
+          "op": "mul",
+          "args": [
+            {
+              "$": "participants"
+            },
+            {
+              "$": "packsEach"
+            }
+          ]
+        },
+        "spareSeats": {
+          "op": "if",
+          "args": [
+            {
+              "op": "eq",
+              "args": [
+                {
+                  "$": "mode"
+                },
+                "travel"
+              ]
+            },
+            {
+              "op": "sub",
+              "args": [
+                {
+                  "$": "seats"
+                },
+                {
+                  "$": "participants"
+                }
+              ]
+            },
+            null
+          ]
+        }
+      },
+      "initialAnswers": {
+        "mode": "onsite",
+        "participants": null,
+        "packsEach": 3,
+        "borrowed": false,
+        "seats": null
+      },
+      "defaults": {
+        "mode": "onsite",
+        "participants": null,
+        "packsEach": 3,
+        "borrowed": false,
+        "seats": null
+      },
+      "sources": [
+        {
+          "title": "本示例原创活动打包规则，无外部评分标准",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  ]
+}

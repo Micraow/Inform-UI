@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:9a8054acdae650bc968d5164696c95552935acfa30e5bc1a209103bd75d305a6:document:base+learning",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:c59d34b171ee7cc54e278a857688d834363bbd6ff064f9ff503abfb74bdd0c92:document:base+learning",
   "title": "Inform UI document subset: base, learning",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -13021,6 +13021,9 @@
         },
         {
           "$ref": "#/$defs/CalculatorQsofaScoreNode"
+        },
+        {
+          "$ref": "#/$defs/QuestionnaireNode"
         }
       ]
     },
@@ -16175,6 +16178,403 @@
           ]
         }
       }
+    },
+    "QuestionnaireChoice": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "value",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "QuestionnaireField": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 2000
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "visibleWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validationMessage": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "type": {
+              "const": "text"
+            },
+            "placeholder": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 500
+            },
+            "minLength": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 12000
+            },
+            "maxLength": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 12000
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 2000
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "visibleWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validationMessage": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "type": {
+              "const": "number"
+            },
+            "placeholder": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 500
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "step": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 2000
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "visibleWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validationMessage": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "type": {
+              "const": "choice"
+            },
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 40,
+              "items": {
+                "$ref": "#/$defs/QuestionnaireChoice"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "type",
+            "options"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 2000
+            },
+            "required": {
+              "type": "boolean"
+            },
+            "visibleWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validWhen": {
+              "$ref": "#/$defs/Value"
+            },
+            "validationMessage": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "type": {
+              "const": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "type"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "QuestionnaireNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "questionnaire"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "questionnaireId": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "description": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 4000
+        },
+        "hiddenValuePolicy": {
+          "enum": [
+            "retain",
+            "clear"
+          ]
+        },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 40,
+          "items": {
+            "$ref": "#/$defs/QuestionnaireField"
+          }
+        },
+        "computed": {
+          "type": "object",
+          "maxProperties": 40,
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Value"
+          }
+        },
+        "initialAnswers": {
+          "type": "object",
+          "maxProperties": 40,
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 12000
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "defaults": {
+          "type": "object",
+          "maxProperties": 40,
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+          },
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 12000
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "$ref": "#/$defs/QuestionnaireSource"
+          }
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "action": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])"
+        },
+        "submitLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "questionnaireId",
+        "version",
+        "title",
+        "hiddenValuePolicy",
+        "fields"
+      ],
+      "additionalProperties": false
+    },
+    "QuestionnaireSource": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false
     },
     "QuizNode": {
       "type": "object",
