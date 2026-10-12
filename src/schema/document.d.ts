@@ -246,7 +246,8 @@ export type Node =
   | SpeechSynthesizerNode
   | CalculatorCorrectedAdjustedAgeOfPretermInfantsNode
   | CalculatorGlasgowComaScaleGcsNode
-  | CalculatorRoxIndexForHighFlowNasalCannulaNode;
+  | CalculatorRoxIndexForHighFlowNasalCannulaNode
+  | CalculatorQsofaScoreNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -7209,4 +7210,77 @@ export interface RoxInput {
   measuredHours?: number | string | null;
   comparisonVersion?: string | null;
   studyContextConfirmed?: boolean | null;
+}
+export interface CalculatorQsofaScoreNode {
+  type: "calculator-qsofa-score";
+  id?: string;
+  label: string;
+  initial?: QsofaInput;
+  defaults?: QsofaInput;
+  disabled?: boolean;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  subtitle?: string;
+  /**
+   * @maxItems 30
+   */
+  notes?: string[];
+  /**
+   * @maxItems 12
+   */
+  infoSections?: {
+    id: string;
+    label: string;
+    body: string;
+  }[];
+  activeInfoId?: string;
+  resetLabel?: string;
+  copyLabel?: string;
+  summaryPrefix?: string;
+  fields?: {
+    version?: {
+      label?: string;
+      help?: string;
+    };
+    population?: {
+      label?: string;
+      help?: string;
+    };
+    respiratoryRate?: {
+      label?: string;
+      help?: string;
+    };
+    systolicMmHg?: {
+      label?: string;
+      help?: string;
+    };
+    mentationMode?: {
+      label?: string;
+      help?: string;
+    };
+    altered?: {
+      label?: string;
+      help?: string;
+    };
+    gcs?: {
+      label?: string;
+      help?: string;
+    };
+  };
+}
+export interface QsofaInput {
+  version?: string | null;
+  population?: string | null;
+  respiratoryRate?: number | string | null;
+  systolicMmHg?: number | string | null;
+  mentation?:
+    | null
+    | {
+        mode: "assessment";
+        altered?: boolean | null;
+      }
+    | {
+        mode: "gcs";
+        score?: number | "NT" | null;
+      };
 }

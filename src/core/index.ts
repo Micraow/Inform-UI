@@ -1,3 +1,4 @@
+import {inspectQsofa} from './qsofa.js';
 import {inspectRox} from './rox.js';
 import {inspectGcs,inspectGcsPresentation} from './gcs.js';
 import {inspectCorrectedAge} from './corrected-age.js';
@@ -421,6 +422,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='reservation-time-pills-ref-carousel')inspectReservationPillsCarousel(node,path,add,isSafeURL);
     if(node.type==='whats-new-capability-search')inspectCapabilitySearch(node,path,add,isSafeURL);
     if(node.type==='calculator-rox-index-for-high-flow-nasal-cannula')inspectRox(node,path,add);
+    if(node.type==='calculator-qsofa-score')inspectQsofa(node,path,add);
     if(node.type==='calculator-glasgow-coma-scale-gcs'){inspectGcs(node,path,add);inspectGcsPresentation(node,path,add);}
     if(node.type==='calculator-corrected-adjusted-age-of-preterm-infants')inspectCorrectedAge(node,path,add);
     if(node.type==='entity'||node.type==='gen-image'||node.type==='speech-synthesizer')inspectInlineHostMedia(node,path,add,isSafeURL);
@@ -659,3 +661,6 @@ export type {GcsInput,GcsResult,GcsNode,GcsDetail,GcsComponentState,GcsInfoSecti
 
 export {calculateRox,ROX_VERSION} from './rox.js';
 export type {RoxInput,RoxResult,RoxComparison,RoxNode,RoxDetail} from './rox.js';
+
+export {calculateQsofa,QSOFA_VERSION} from './qsofa.js';
+export type {QsofaInput,QsofaResult,QsofaNode,QsofaDetail,QsofaMentation} from './qsofa.js';

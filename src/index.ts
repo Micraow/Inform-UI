@@ -86,3 +86,6 @@ export type {GcsInput,GcsResult,GcsNode,GcsDetail,GcsComponentState,GcsInfoSecti
 
 export {calculateRox,ROX_VERSION} from './core/rox.js';
 export type {RoxInput,RoxResult,RoxComparison,RoxNode,RoxDetail} from './core/rox.js';
+
+export {calculateQsofa,QSOFA_VERSION} from './core/qsofa.js';
+export type {QsofaInput,QsofaResult,QsofaNode,QsofaDetail,QsofaMentation} from './core/qsofa.js';
