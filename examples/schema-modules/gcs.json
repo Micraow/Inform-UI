@@ -1,0 +1,50 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "calculator-glasgow-coma-scale-gcs",
+      "id": "original-gcs-arithmetic",
+      "label": "Supplied GCS component arithmetic",
+      "initial": {
+        "version": "gcs-six-motor-levels",
+        "population": "adult",
+        "eye": 4,
+        "verbal": "NT",
+        "motor": 6
+      },
+      "subtitle": "Original software example. Ratings are supplied explicitly.",
+      "defaults": {
+        "version": "gcs-six-motor-levels",
+        "population": "adult",
+        "eye": null,
+        "verbal": null,
+        "motor": null
+      },
+      "infoSections": [
+        {
+          "id": "inputs",
+          "label": "Input record",
+          "body": "Use recorded component ratings; unknown and NT have different meanings."
+        },
+        {
+          "id": "method",
+          "label": "Arithmetic method",
+          "body": "Only three valid numeric ratings produce a sum. This view makes no severity classification."
+        }
+      ],
+      "notes": [
+        "Keep the three ratings beside any total.",
+        "This is an original synthetic example, not a patient assessment."
+      ],
+      "fields": {
+        "eye": {
+          "variant": "segmented",
+          "help": "Choose the score recorded for E.",
+          "optionHelp": {
+            "NT": "The supplied record says this component could not be tested."
+          }
+        }
+      }
+    }
+  ]
+}

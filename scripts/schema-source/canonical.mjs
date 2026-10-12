@@ -2,10 +2,6 @@ import {nullableNumber,probability,condition,timestamp,date} from './primitives.
 import {suppliedLinkProps} from './modules/layout.mjs';
 import {readFile} from 'node:fs/promises';
 import {createDocumentSchema} from './envelope.mjs';
-import {installQsofaSchema} from '../qsofa-schema.mjs';
-import {installRoxSchema} from '../rox-schema.mjs';
-import {installGcsSchema} from '../gcs-schema.mjs';
-import {installCorrectedAgeSchema} from '../corrected-age-schema.mjs';
 import {installSearchOnboardingSchema} from '../search-onboarding-schema.mjs';
 import {promptChecklistSchema} from '../prompt-checklist-schema.mjs';
 import {financeStatusSchema} from '../finance-status-schema.mjs';
@@ -339,10 +335,10 @@ registry.use('interactions/local');
 registry.use('learning/visualization');
 registry.use('care/providers');
 registry.use('media/inline-host');
-installCorrectedAgeSchema({node,defs});
-installGcsSchema({node,defs});
-installRoxSchema({node,defs});
-installQsofaSchema({node,defs});
+registry.use('calculators/corrected-age');
+registry.use('calculators/gcs');
+registry.use('calculators/rox');
+registry.use('calculators/qsofa');
 registry.use('forms/questionnaire');
 
 registry.finalize();

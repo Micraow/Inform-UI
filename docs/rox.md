@@ -40,3 +40,7 @@ Live output is updated on every edit; bad or unknown inputs remove any previous 
 - Roca et al., [2019 authors' reply](https://academic.oup.com/ajrccm/article/200/1/117/8496761), DOI10.1164/rccm.201903-0571LE, read for the limits of interpreting combinations and study observations.
 
 Only independently expressed facts, original code and bibliographic links are included. No article, figure, captured code, assessment chart or protected treatment narrative is republished. Open access, including a noncommercial/no-derivatives article license, is not represented as an MIT redistribution grant. Caller responsibility does not supply missing content rights or establish clinical safety.
+
+## Source module and document validation
+
+`calculators/rox` uses the unchanged original installer. Full document validation rejects whitespace-only label/resetLabel/copyLabel and supplied field labels (`ROX_TEXT`). Information IDs and labels must be nonblank, IDs unique, and activeInfoId must reference a supplied section (`ROX_INFO`). Help/body/notes and other structurally allowed content retain their empty-string allowance. Initial/default raw values deliberately include invalid or incomplete drafts. Structural acceptance does not establish a calculated ratio, eligible historical comparison or clinical validity; the unchanged pure function applies the explicit units, version, measurement-time and context gates above.

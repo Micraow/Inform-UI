@@ -1,0 +1,40 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "calculator-rox-index-for-high-flow-nasal-cannula",
+      "id": "original-rox-example",
+      "label": "Supplied ROX arithmetic",
+      "subtitle": "Original synthetic measurements; not a patient assessment.",
+      "initial": {
+        "version": "rox-roca-2016-arithmetic",
+        "spo2Percent": 95,
+        "fio2": 50,
+        "fio2Unit": "percent",
+        "respiratoryRate": 20,
+        "measuredHours": 2,
+        "comparisonVersion": "roca-2019-pneumonia-hfnc",
+        "studyContextConfirmed": true
+      },
+      "defaults": {
+        "version": "rox-roca-2016-arithmetic",
+        "fio2Unit": "percent"
+      },
+      "infoSections": [
+        {
+          "id": "units",
+          "label": "Explicit units",
+          "body": "SpO2 uses percent; FiO2 has its own explicit unit."
+        },
+        {
+          "id": "time",
+          "label": "Measurement time",
+          "body": "Hours are counted from HFNC initiation. Unknown time does not select a study threshold."
+        }
+      ],
+      "notes": [
+        "Confirm all inputs and the intended version before use."
+      ]
+    }
+  ]
+}

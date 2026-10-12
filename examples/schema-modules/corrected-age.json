@@ -1,0 +1,29 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "calculator-corrected-adjusted-age-of-preterm-infants",
+      "id": "fictional-weeks",
+      "label": "Fictional date arithmetic: weeks and days",
+      "initial": {
+        "basis": "gestation",
+        "birthDate": "2026-01-01",
+        "observationDate": "2026-04-23",
+        "gestationalWeeks": 32,
+        "gestationalDays": 0
+      }
+    },
+    {
+      "type": "calculator-corrected-adjusted-age-of-preterm-infants",
+      "id": "fictional-due-date",
+      "label": "Fictional date arithmetic: supplied due date",
+      "initial": {
+        "basis": "due-date",
+        "birthDate": "2026-01-01",
+        "observationDate": "2026-04-23",
+        "dueDate": "2026-02-26",
+        "confirmedPreterm": true
+      }
+    }
+  ]
+}

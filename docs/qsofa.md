@@ -30,3 +30,7 @@ The original view supports live totals, title/subtitle, field label/help overrid
 - [SCCM adult sepsis guidelines2026](https://sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026), official page checked2026-10-12, continues to favor other specified scores over qSOFA as a single hospital sepsis-screening tool. This contextual limitation does not silently replace the explicitly versioned2016 arithmetic.
 
 All descriptions and code here are original. No publication, figure, protected assessment table or captured implementation is redistributed. Public accessibility is not a redistribution license. Software test results do not establish clinical validity or safety for individual decisions.
+
+## Source module and document validation
+
+`calculators/qsofa` uses the unchanged original installer. Full document validation rejects whitespace-only label/resetLabel/copyLabel and supplied field labels (`QSOFA_TEXT`). Information IDs and labels must be nonblank, IDs unique, and activeInfoId must reference a supplied section (`QSOFA_INFO`). Help/body/notes and other structurally allowed content retain their empty-string allowance. Initial/default raw values may represent invalid or incomplete drafts; structural acceptance never establishes a total or a diagnosis. The unchanged pure function retains the exact 2016 version, adult population and active-mentation gates described above.

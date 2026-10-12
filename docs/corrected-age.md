@@ -58,3 +58,7 @@ The widget edits a local draft and computes only when Calculate is accepted. `iu
 The default labels distinguish the interval until a due date from the complete-week remainder. The visible arithmetic-only notice is not an optional label override. Extremely small positive gestation values remain software arithmetic inputs, not clinical plausibility or viability claims; use supplied qualified records. Product boundaries do not replace follow-up or professional assessment.
 
 If accepted Reset changes the basis and hides the focused input, focus returns to the visible Reset action. Canceled reset and still-visible fields retain their focus.
+
+## Source module and document validation
+
+`calculators/corrected-age` uses the unchanged original installer. Structural input types deliberately admit blank/null and malformed date/unit drafts so the pure calculation can return invalid/incomplete instead of inventing a result. Full document validation separately requires label, calculateLabel and resetLabel, when supplied, to be nonblank by trim() (`CORRECTED_AGE_LABEL`). The existing arithmetic/version/unsupported-window rules above remain unchanged; selected-schema acceptance is not a successful calculation or a clinical claim.
