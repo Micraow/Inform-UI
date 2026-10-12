@@ -23,3 +23,7 @@ Unknown fields are rejected. No overall score, global review count, inferred sta
 ## Verification scope
 
 The focused public API tests cover schema bounds, Unicode, missing ratings, exact error paths, immutable input, sorting/filtering, retained nodes and focus, form/reset/disabled boundaries, independent documents, atomic invalid updates, cleanup, and offline deterministic compilation. The prepared Playwright file covers 390/768/1100 light/dark, genuine first-visible Arabic RTL, native keyboard/touch/disclosure, forced colors, and locally intercepted link activation. These browser tests are prepared but unexecuted in this isolated implementation. Canonical acceptance remains pending integration and later accumulated browser acceptance.
+
+## Source selection and semantic scope
+
+The `content/supplied-records` source module owns this definition. Full validation reports repeated collection-local IDs as `DUPLICATE_ID`, impossible optional civil dates as `REVIEW_DATE`, and non-HTTP(S) or core-unsafe record/source links as `UNSAFE_URL`. Null ratings remain unknown. Literal text retains its original structural length and whitespace handling; no new blanket trim rule or aggregate rating is introduced.

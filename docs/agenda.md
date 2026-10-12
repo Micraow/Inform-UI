@@ -72,3 +72,7 @@ prepared only, not executed or visually reviewed in this isolated delivery.
 Real browser and canonical acceptance are deferred to the combined component
 batch. An isolated targeted test pass is not a full aggregate or browser pass.
 See `examples/agenda.json` for original Chinese examples, including empty data.
+
+## Source selection and semantic scope
+
+`content/supplied-records` owns the maintained agenda definition. Full document validation reports duplicate agenda-local event IDs as `DUPLICATE_ID`, impossible civil dates as `AGENDA_DATE`, non-increasing supplied end/start pairs as `AGENDA_TIME`, and non-HTTP(S) or core-unsafe event links as `UNSAFE_URL`. These are additional to structural bounds. The inspector does not introduce a blanket trim rule for structurally valid literal labels or descriptions. No date, timezone or overnight continuation is inferred.

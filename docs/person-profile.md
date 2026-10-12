@@ -11,3 +11,7 @@ The semantic article has a named heading, optional ordered definition list and n
 ## Verification scope
 
 Focused public API tests cover all 256 optional-field combinations, limits and Unicode, exact issue paths, literal content, order, disclosure identity/focus, update/disposal, roots and ownerDocuments, authored ID lookalikes, form values, deterministic offline compilation and closed base schema references. Browser cases are prepared in `tests/browser/person-profile.spec.mjs` for pointer/touch/keyboard, 390/768/1100 light/dark, actual first-visible Arabic, forced colors/reduced motion, busy-form reading, safe intercepted new-tab navigation and lifecycle. They are unexecuted in this implementation handoff. JSDOM cannot establish native activation inside a disabled fieldset, popup isolation, visual layout, contrast or real keyboard/touch behavior.
+
+## Source selection and semantic scope
+
+The `content/supplied-records` source module owns this definition. Full document validation checks fact IDs and link IDs independently (`DUPLICATE_ID`); sharing an ID across those two different lists is allowed. Link and supplied source URLs require absolute core-safe HTTP(S) (`UNSAFE_URL`). Structurally valid literal text retains its original whitespace handling; the inspector does not add a blanket trim rule or infer missing identity details.

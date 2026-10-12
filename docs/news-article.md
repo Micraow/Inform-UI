@@ -11,3 +11,7 @@ The browser owns the disclosure. It has no custom click or keyboard handler, sta
 There are no feeds, images, live/breaking/trending claims, recommendations, credibility scores, relative dates, account/save/share/provider actions or remote ingestion. Supplied links do not establish trust. Generated full and official Base schemas describe the same node; callers must use public `validateDocument` for date and URL semantics.
 
 Browser acceptance cases are prepared in `tests/browser/news.spec.mjs` for six width/theme views, real keyboard/pointer/touch disclosure, intercepted source navigation, Arabic-first RTL, forced colors and lifecycle. They are not executed by the isolated implementation pass; combined integration acceptance owns screenshots and browser results.
+
+## Source selection and semantic scope
+
+The `content/supplied-records` source module owns this definition. Full document validation checks real Gregorian publication dates (`NEWS_DATE`) and absolute core-safe HTTP(S) source links (`UNSAFE_URL`). The structural date pattern alone does not establish a real day. Literal text retains its existing structural length rules without a new blanket trim rule. No source credibility, date or article content is inferred.
