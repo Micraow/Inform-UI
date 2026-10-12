@@ -1,0 +1,17 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "title",
+      "value": "Original packing note"
+    },
+    {
+      "type": "text",
+      "value": "Bring a notebook."
+    },
+    {
+      "type": "caption",
+      "value": "Local display only"
+    }
+  ]
+}

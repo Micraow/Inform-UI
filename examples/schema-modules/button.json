@@ -1,0 +1,24 @@
+{
+  "version": "iui/1",
+  "state": {
+    "count": 1
+  },
+  "body": [
+    {
+      "type": "button",
+      "label": "Set count to two",
+      "action": {
+        "kind": "set",
+        "bind": "count",
+        "value": 2
+      }
+    },
+    {
+      "type": "button",
+      "label": "Reset count",
+      "action": {
+        "kind": "reset"
+      }
+    }
+  ]
+}

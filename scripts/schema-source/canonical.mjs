@@ -1,0 +1,419 @@
+import {suppliedLinkProps} from './modules/layout.mjs';
+import {readFile} from 'node:fs/promises';
+import {createDocumentSchema} from './envelope.mjs';
+import {installQsofaSchema} from '../qsofa-schema.mjs';
+import {installRoxSchema} from '../rox-schema.mjs';
+import {installGcsSchema} from '../gcs-schema.mjs';
+import {installCorrectedAgeSchema} from '../corrected-age-schema.mjs';
+import {installInlineHostMediaSchema} from '../inline-host-media-schema.mjs';
+import {installCareProvidersSchema} from '../care-providers-schema.mjs';
+import {installLearningVizSchema} from '../learning-viz-schema.mjs';
+import {installSuppliedInteractionsSchema} from '../supplied-interactions-schema.mjs';
+import {installCreditScoreSchema} from '../credit-score-schema.mjs';
+import {installSuppliedDiscoverySchema} from '../supplied-discovery-schema.mjs';
+import {installSuppliedLaunchersSchema} from '../supplied-launchers-schema.mjs';
+import {installEquityWatchSchema} from '../equity-watchlist-schema.mjs';
+import {installContextActionsSchema} from '../context-actions-schema.mjs';
+import {installFinanceEntrySchema} from '../finance-entry-schema.mjs';
+import {installTaskCardsSchema} from '../task-cards-schema.mjs';
+import {installCapabilitySearchSchema} from '../capability-search-schema.mjs';
+import {installReservationPillsSchema} from '../reservation-pills-schema.mjs';
+import {installAskLocationSchema} from '../ask-location-schema.mjs';
+import {installCapabilityWelcomeSchema} from '../capability-welcome-schema.mjs';
+import {installQuizCardsSchema} from '../quiz-cards-schema.mjs';
+import {installSearchOnboardingSchema} from '../search-onboarding-schema.mjs';
+import {installWeatherSuppliedSchema} from '../weather-supplied-schema.mjs';
+import {installStudyOnboardingSchema} from '../study-onboarding-schema.mjs';
+import {installOnboardingCardsSchema} from '../onboarding-cards-schema.mjs';
+import {installConversationalOnboardingSchema} from '../conversational-onboarding-schema.mjs';
+import {installVoiceCardsSchema} from '../voice-cards-schema.mjs';
+import {installLedgerCategorySchema} from '../ledger-category-schema.mjs';
+import {installAskUserSchema} from '../ask-user-schema.mjs';
+import {installEntitySchema} from '../entity-schema.mjs';
+import {installAutomationSchema} from '../automation-schema.mjs';
+import {promptChecklistSchema} from '../prompt-checklist-schema.mjs';
+import {financeStatusSchema} from '../finance-status-schema.mjs';
+import {recommendationCardSchema} from '../recommendation-card-schema.mjs';
+import {installTransactionDetail} from '../transaction-detail-schema.mjs';
+import {createSchemaRegistry} from './registry.mjs';
+import {string,short,number,bool,integer,choice,array,object,ref,key,color,weight,align,children,scalar} from './primitives.mjs';
+
+/** Legacy domains remain here until migrated; full order is preserved. */
+export async function buildCanonicalSchema(){
+const registry=createSchemaRegistry();
+const {defs,node,owners,nodes}=registry;
+registry.use('shared/value');
+registry.use('foundations/text');
+// Finite supplied agenda labels; semantic validation checks real dates and time ordering.
+const agendaDate = { type:'string', pattern:'^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$' };
+const agendaTime = { type:'string', pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$' };
+defs.AgendaEvent = object({ id:key, date:agendaDate, title:short, start:agendaTime, end:agendaTime, location:string(500), description:string(2000), status:choice('planned','cancelled'), url:string(2048,1) }, ['id','date','title']);
+defs.AgendaEvent.oneOf = [
+  object(defs.AgendaEvent.properties, ['start']),
+  object({ ...defs.AgendaEvent.properties, start:false, end:false })
+];
+node('agenda', { label:short, description:string(2000), events:array(ref('AgendaEvent'),0,100) }, ['label','events']);
+// Supplied, literal person information only; semantic checks own IDs and URL policy.
+defs.PersonFact = object({ id:key, label:short, value:string(2000,1) }, ['id','label','value']);
+defs.PersonLink = object({ id:key, label:short, url:string(2048,1) }, ['id','label','url']);
+defs.PersonSource = object({ label:short, url:string(2048,1) }, ['label']);
+node('person-profile', { name:short, role:short, organization:short, location:short, biography:string(6000), expanded:bool, facts:array(ref('PersonFact'),0,12), links:array(ref('PersonLink'),0,8), source:ref('PersonSource') }, ['name']);
+// Original finite article supplied by the author; no ingestion, verification or runtime state.
+node('news-article', { headline:string(300,1), source:object({label:short,url:string(2048,1)},['label']), summary:string(4000), author:short, published:agendaDate, paragraphs:array(string(4000,1),0,30), expanded:bool, tags:array(string(40,1),0,8) }, ['headline','source']);
+// A finite supplied collection, with explicit nullable ratings and strict calendar labels.
+defs.ReviewRecord = object({ id:{...key,pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'}, author:short, body:string(4000,1), rating:{anyOf:[integer(1,5),{type:'null'}]}, date:{...agendaDate,minLength:10,maxLength:10}, title:short, url:string(2048,1) }, ['id','author','body','rating']);
+defs.ReviewSource = object({label:short,url:string(2048,1)}, ['label']);
+node('entity-reviews', {label:short,description:string(2000),source:ref('ReviewSource'),items:array(ref('ReviewRecord'),0,50)}, ['label','items']);
+// Supplied venue wall times only; semantic checks enforce dates and unique choices.
+defs.RestaurantAvailabilitySlot = object({id:key,date:{...agendaDate,minLength:10,maxLength:10},time:{...agendaTime,minLength:5,maxLength:5},available:bool},['id','date','time','available']);
+defs.RestaurantAvailabilitySource = object({label:short,url:string(2048,1)},['label']);
+node('restaurant-availability',{title:short,venue:short,partySize:integer(1,20),timeZoneLabel:string(100,1),description:string(2000),source:ref('RestaurantAvailabilitySource'),slots:array(ref('RestaurantAvailabilitySlot'),0,100)},['title','venue','partySize','timeZoneLabel','slots']);
+// Original bounded local onboarding selection; no account/provider action.
+defs.OnboardingOption = object({id:{...key,pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'},label:short,description:string(1000)},['id','label']);
+node('onboarding-selection',{label:short,description:string(2000),options:array(ref('OnboardingOption'),2,12),mode:choice('single','multiple'),initial:array(key,0,12),minimum:integer(0,12),maximum:integer(1,12),disabled:bool,continueLabel:short},['label','options']);
+defs.OnboardingSelectionNode.oneOf=[object({...defs.OnboardingSelectionNode.properties,mode:{const:'single'},initial:array(key,0,1),minimum:integer(0,1),maximum:{const:1}}),object({...defs.OnboardingSelectionNode.properties,mode:{const:'multiple'}},['mode'])];
+// Original finite supplied-place and media contracts; no lookup or location services.
+const suppliedKey = {...key, pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'};
+// Original bounded local poll composer; incomplete text is a valid initial draft.
+defs.PollDraftOption=object({id:suppliedKey,label:string(200)},['id','label']);
+node('create-interactive-poll',{label:short,description:string(2000),question:string(500),options:array(ref('PollDraftOption'),2,8),multiple:bool,disabled:bool},['label','options']);
+defs.LocationChoiceOption = object({id:suppliedKey,label:short,address:string(1000),description:string(1000)},['id','label']);
+defs.LocationChoiceSource = object({label:short,url:string(2048,1)},['label']);
+node('location-choice-request',{label:short,description:string(2000),options:array(ref('LocationChoiceOption'),1,12),source:ref('LocationChoiceSource')},['label','options']);
+defs.BusinessGalleryImage = object({id:suppliedKey,src:string(500000,1),alt:string(2000,1),caption:string(2000)},['id','src','alt']);
+node('business-gallery',{label:short,description:string(2000),images:array(ref('BusinessGalleryImage'),1,12)},['label','images']);
+// Original supplied travel/events contracts. Civil validity and instant ordering are semantic.
+const travelDate = {type:'string',pattern:'^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])',minLength:10,maxLength:10};
+const travelTime = {type:'string',pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$(?![\\s\\S])',minLength:5,maxLength:5};
+const flightAt = {type:'string',pattern:'^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])',minLength:17,maxLength:22};
+defs.TravelEventSource = object({label:short,url:string(2048,1)},['label','url']);
+defs.FlightEndpoint = object({airport:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])'},at:flightAt,name:short},['airport','at']);
+defs.FlightLeg = object({id:suppliedKey,carrier:short,number:short,departure:ref('FlightEndpoint'),arrival:ref('FlightEndpoint'),cabin:short},['id','carrier','number','departure','arrival']);
+node('flight-option',{label:short,optionId:suppliedKey,legs:array(ref('FlightLeg'),1,8),description:string(2000),price:object({amount:{type:'number',minimum:0,maximum:1e12},currency:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])'}},['amount','currency']),note:string(2000),source:ref('TravelEventSource')},['label','optionId','legs']);
+defs.ArtistEvent = object({id:suppliedKey,title:short,date:travelDate,venue:short,start:travelTime,timeZoneLabel:short,location:short,description:string(2000),url:string(2048,1)},['id','title','date','venue']);
+node('artist-upcoming-events',{artist:short,label:short,events:array(ref('ArtistEvent'),0,40),description:string(2000),source:ref('TravelEventSource')},['artist','events']);
+// Original supplied tracker snapshots; operational state is never inferred or fetched.
+defs.TrackerSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.PackageMilestone=object({id:suppliedKey,label:short,state:choice('complete','current','pending'),occurredAt:flightAt,location:short,description:string(2000)},['id','label','state']);
+node('package-tracker',{label:short,description:string(2000),carrier:short,trackingId:short,status:choice('pre-transit','in-transit','out-for-delivery','delivered','exception','unknown'),observedAt:flightAt,destination:short,expectedDelivery:short,milestones:array(ref('PackageMilestone'),0,40),source:ref('TrackerSource')},['label','carrier','trackingId','status','observedAt','milestones']);
+defs.TrackedFlightEndpoint=object({airport:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3},name:short,scheduledAt:flightAt,estimatedAt:flightAt,actualAt:flightAt,terminal:short,gate:short},['airport','scheduledAt']);
+defs.FlightUpdate=object({id:suppliedKey,at:flightAt,message:short,kind:choice('information','change','disruption'),description:string(2000)},['id','at','message','kind']);
+node('flight-tracker',{label:short,description:string(2000),carrier:short,flightNumber:short,status:choice('scheduled','boarding','departed','landed','cancelled','diverted','unknown'),observedAt:flightAt,departure:ref('TrackedFlightEndpoint'),arrival:ref('TrackedFlightEndpoint'),updates:array(ref('FlightUpdate'),0,40),source:ref('TrackerSource')},['label','carrier','flightNumber','status','observedAt','departure','arrival','updates']);
+// Original supplied related-question reader, explicitly distinct from answer generation.
+defs.RelatedQuestionSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.RelatedQuestion=object({id:suppliedKey,question:string(500,1),answer:{anyOf:[string(10000),{type:'null'}]},sources:array(ref('RelatedQuestionSource'),0,5)},['id','question','answer']);
+node('sidebar-people-also-ask',{label:short,description:string(2000),items:array(ref('RelatedQuestion'),0,40),expanded:array(suppliedKey,0,40)},['label','items']);
+// Original supplied plain-text mail and finite file navigation; no provider/filesystem access.
+defs.ReaderSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.EmailPreviewPerson=object({name:short,address:string(320,1)},['address']);
+const readerMetadata={sizeBytes:integer(0,1e12),mediaType:short,description:string(2000)};
+defs.EmailPreviewAttachment=object({id:suppliedKey,name:short,...readerMetadata,url:string(2048,1)},['id','name']);
+node('email-preview',{subject:string(500,1),from:ref('EmailPreviewPerson'),to:array(ref('EmailPreviewPerson'),0,40),cc:array(ref('EmailPreviewPerson'),0,40),sentAt:flightAt,body:string(20000),quotedText:string(20000),attachments:array(ref('EmailPreviewAttachment'),0,20),source:ref('ReaderSource')},['subject','from','to','body']);
+const fileEntryCommon={id:suppliedKey,name:short,parentId:{anyOf:[suppliedKey,{type:'null'}]},description:string(2000)};
+defs.FileNavFolder=object({...fileEntryCommon,kind:{const:'folder'}},['id','name','kind']);
+defs.FileNavFile=object({...fileEntryCommon,...readerMetadata,kind:{const:'file'},category:choice('document','image','audio','video','archive','other'),modifiedAt:flightAt,url:string(2048,1)},['id','name','kind']);
+defs.FileNavEntry={oneOf:[ref('FileNavFolder'),ref('FileNavFile')]};
+node('file-nav-list',{label:short,description:string(2000),entries:array(ref('FileNavEntry'),0,120),initialFolderId:suppliedKey,source:ref('ReaderSource')},['label','entries']);
+// Original supplied job and product decision cards; all actions are explicitly local.
+defs.DecisionSource=object({label:short,url:string(2048,1)},['label','url']);
+defs.SuppliedPrice=object({amount:{type:'number',minimum:0,maximum:1e12},currency:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3}},['amount','currency']);
+defs.JobSalary=object({minimum:{type:'number',minimum:0,maximum:1e12},maximum:{type:'number',minimum:0,maximum:1e12},currency:{type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3},period:choice('hour','month','year')},['minimum','maximum','currency','period']);
+defs.SuppliedJob=object({id:suppliedKey,title:short,organization:short,location:short,workplace:choice('remote','hybrid','onsite','unknown'),employment:choice('full-time','part-time','contract','internship','unknown'),description:string(5000),salary:ref('JobSalary'),postedDate:travelDate,deadlineDate:travelDate,url:string(2048,1)},['id','title','organization','location','workplace','employment']);
+node('jobs',{label:short,description:string(2000),jobs:array(ref('SuppliedJob'),0,40),source:ref('DecisionSource')},['label','jobs']);
+defs.ProductVariant=object({id:suppliedKey,label:short,availability:choice('available','unavailable','unknown'),price:ref('SuppliedPrice')},['id','label','availability']);
+node('product-card',{productId:suppliedKey,name:short,brand:short,seller:short,description:string(5000),availability:choice('available','unavailable','unknown'),price:ref('SuppliedPrice'),variants:array(ref('ProductVariant'),0,12),initialVariantId:suppliedKey,initialQuantity:integer(1,20),disabled:bool,image:object({src:string(300000,1),alt:string(2000,1)},['src','alt']),source:ref('DecisionSource')},['productId','name','availability']);
+// Original supplied local-business hours and restaurant dining-review reader.
+defs.PlaceSource=object({label:short,url:string(2048,1)},['label','url']);
+const placeDay=choice('monday','tuesday','wednesday','thursday','friday','saturday','sunday');
+const placeTime={type:'string',pattern:'^(?:[01][0-9]|2[0-3]):[0-5][0-9]$(?![\\s\\S])'};
+defs.BusinessHoursPeriod=object({opens:placeTime,closes:placeTime,nextDay:bool},['opens','closes']);
+defs.BusinessHoursDay=object({day:placeDay,status:choice('hours','closed','unknown'),periods:array(ref('BusinessHoursPeriod'),0,4),note:string(1000)},['day','status','periods']);
+node('local-business',{name:short,category:short,address:string(1000,1),description:string(3000),phoneLabel:short,timezoneLabel:short,hours:array(ref('BusinessHoursDay'),0,7),initialDay:placeDay,services:array(short,0,20),accessibility:array(short,0,20),source:ref('PlaceSource')},['name','category','address','hours']);
+const diningScore={type:'number',minimum:0,maximum:5};
+defs.DiningReview=object({id:suppliedKey,author:short,text:string(6000,1),rating:diningScore,food:diningScore,service:diningScore,atmosphere:diningScore,visitDate:travelDate,occasion:choice('breakfast','lunch','dinner','other','unknown'),dishes:array(short,0,12),source:ref('PlaceSource')},['id','author','text','occasion']);
+node('restaurant-reviews',{label:short,restaurantName:short,reviews:array(ref('DiningReview'),0,60),description:string(2000),source:ref('PlaceSource')},['label','restaurantName','reviews']);
+// Original local flight search intent and supplied result exploration.
+const discoveryAirport={type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3};
+defs.DiscoveryAirport=object({code:discoveryAirport,label:short},['code','label']);
+node('flight-search-form',{label:short,description:string(2000),airports:array(ref('DiscoveryAirport'),2,80),initialOrigin:discoveryAirport,initialDestination:discoveryAirport,initialDepartureDate:travelDate,initialReturnDate:travelDate,initialTravelers:integer(1,9),disabled:bool},['label','airports']);
+defs.DiscoveryFlightResult=object({id:suppliedKey,label:short,legs:array(ref('FlightLeg'),1,8),price:ref('SuppliedPrice'),note:string(2000),source:ref('TravelEventSource')},['id','label','legs']);
+node('flight-results',{label:short,description:string(2000),results:array(ref('DiscoveryFlightResult'),0,40),source:ref('TravelEventSource')},['label','results']);
+// Original supplied activity preference matrix and event agenda sidebar.
+defs.ActivityParticipant=object({id:suppliedKey,label:short},['id','label']);
+defs.ActivityAvailability=object({participantId:suppliedKey,status:choice('available','unavailable','unknown')},['participantId','status']);
+defs.ActivityOption=object({id:suppliedKey,label:short,startsAt:flightAt,endsAt:flightAt,location:short,description:string(3000),availability:array(ref('ActivityAvailability'),0,12),source:ref('TravelEventSource')},['id','label','startsAt','endsAt','availability']);
+node('shared-activity-planner',{label:short,description:string(2000),participants:array(ref('ActivityParticipant'),1,12),options:array(ref('ActivityOption'),0,20),disabled:bool},['label','participants','options']);
+defs.EventAgendaEntry=object({id:suppliedKey,label:short,startsAt:flightAt,endsAt:flightAt,category:short,description:string(3000),speaker:short},['id','label','startsAt','endsAt','category']);
+node('event-sidebar',{eventId:suppliedKey,label:short,organizer:short,location:short,startsAt:flightAt,endsAt:flightAt,description:string(5000),agenda:array(ref('EventAgendaEntry'),0,40),source:ref('TravelEventSource')},['eventId','label','startsAt','endsAt','agenda']);
+// Original supplied vocabulary and explicit local clipboard workflow.
+defs.WordExample=object({text:string(1000,1),translation:string(1000)},['text']);
+node('word-card',{wordId:suppliedKey,term:string(200,1),definition:string(5000,1),pronunciation:short,partOfSpeech:short,translation:string(2000),examples:array(ref('WordExample'),0,8),initiallyRevealed:bool,disabled:bool,source:ref('TravelEventSource')},['wordId','term','definition']);
+defs.CopyWord=object({id:suppliedKey,text:string(200,1),note:string(1000)},['id','text']);
+node('copy-words',{label:short,description:string(2000),words:array(ref('CopyWord'),0,80),initialSelectedIds:array(suppliedKey,0,80),separator:choice('lines','comma','space'),disabled:bool},['label','words']);
+// Original supplied code-line and document-page citation readers.
+node('code-cite',{label:short,fileName:short,language:short,startLine:integer(1,10000000),lines:array(string(2000),1,120),citedStart:integer(1,10000000),citedEnd:integer(1,10000000),source:ref('TravelEventSource')},['label','fileName','startLine','lines']);
+defs.CitedFilePage=object({number:integer(1,10000000),label:short,text:string(6000,1),source:ref('TravelEventSource')},['number','text']);
+node('file-cite',{label:short,fileName:short,mediaType:short,totalPages:integer(1,10000000),pages:array(ref('CitedFilePage'),1,30),initialPage:integer(1,10000000),source:ref('TravelEventSource')},['label','fileName','pages']);
+// Original supplied attributed facts and local entity-thumbnail detail selection.
+defs.SidebarFact=object({id:suppliedKey,label:short,value:{anyOf:[string(2000),{type:'null'}]},unit:short,group:short,note:string(3000),observedAt:flightAt,source:ref('TravelEventSource')},['id','label','value']);
+node('sidebar-fact-table',{label:short,description:string(2000),facts:array(ref('SidebarFact'),0,80),source:ref('TravelEventSource')},['label','facts']);
+defs.EntityThumbnailField=object({label:short,value:string(2000)},['label','value']);
+defs.EntityThumbnailRecord=object({id:suppliedKey,label:short,category:short,description:string(3000),fields:array(ref('EntityThumbnailField'),0,8),image:object({src:string(140000,1),alt:string(2000,1)},['src','alt']),source:ref('TravelEventSource')},['id','label','category']);
+node('entity-thumbnail-list',{label:short,description:string(2000),entities:array(ref('EntityThumbnailRecord'),0,24),initialSelectedId:suppliedKey,disabled:bool},['label','entities']);
+// Original bounded reader for supplied discussion content; no provider integration.
+const threadScore = { anyOf: [integer(-1000000000, 1000000000), { type:'null' }] };
+defs.ThreadComment = object({ id:key, author:short, body:string(4000,1), score:threadScore, replies:array(ref('ThreadComment'),0,20) }, ['id','author','body']);
+node('reddit-thread-card', { title:string(300,1), author:short, body:string(6000), source:object({label:short,url:string(2048,1)},['label']), comments:array(ref('ThreadComment'),0,50), community:short, score:threadScore, expanded:bool }, ['title','author','body','source','comments']);
+node('markdown', { value: string() }, ['value']);
+node('writing-block', { label: short, value: string(), editable: bool, note: string(1000) }, ['label','value']);
+// Original supplied envelope and local plan review; no services or execution.
+node('email-draft', { label:short, subject:string(300), body:string(), to:array(string(320,1),0,20), cc:array(string(320,1),0,20), note:string(1000), editable:bool }, ['label','subject','body','to']);
+defs.TaskReviewStep = object({id:key,title:short,description:string(2000),details:string(6000),reviewed:bool}, ['id','title']);
+node('task-expansion-card', {title:short,summary:string(2000),steps:array(ref('TaskReviewStep'),1,20),disabled:ref('Value')}, ['title','steps']);
+node('code', { value: string(), language: short, inline: bool, copy: bool, highlight: bool }, ['value']);
+// Inline code cannot opt into block controls. Keep exact disjoint structural
+// branches so validator, generated public types and all domain subsets agree.
+defs.CodeNode.oneOf = [
+  object({ ...defs.CodeNode.properties, inline: { const: true }, copy: { const: false }, highlight: { const: false } }, ['inline']),
+  object({ ...defs.CodeNode.properties, inline: { const: false } })
+];
+node('math', { latex: string(6000, 1), block: bool }, ['latex']);
+node('badge', { value: ref('Value'), color }, ['value']);
+node('divider');
+node('spacer', { height: integer(0, 200) });
+registry.use('foundations/layout');
+registry.use('forms/fields');
+registry.use('foundations/button');
+node('topology', { nodes: array(object({ id: short, label: short, subtitle: string() }, ['id', 'label']), 2, 24), links: array(object({ from: short, to: short, label: string(), load: ref('Value') }, ['from', 'to']), 1, 40), highlight: choice('max-load', 'none'), caption: string() }, ['nodes', 'links'], 'graphics');
+node('chart', { kind: choice('line', 'bar', 'scatter', 'area', 'donut', 'pie'), xKey: short, xScale: choice('category', 'linear', 'time'), xLabel: short, xMin: number, xMax: number, timezone: short, data: array({ type: 'object', additionalProperties: ref('Value') }, 0, 300), series: array(object({ key: short, label: short, color: choice('blue', 'green', 'orange', 'red', 'purple', 'gray') }, ['key', 'label']), 1, 6), yMin: number, yMax: number, unit: string(), title: string(), note: string(), status: choice('ready', 'loading', 'error'), message: string() }, ['kind', 'xKey', 'data', 'series'], 'charts');
+const nullableNumber = { anyOf: [number, { type: 'null' }] };
+const probability = { anyOf: [{ type: 'number', minimum: 0, maximum: 100 }, { type: 'null' }] };
+const condition = choice('clear', 'partly-cloudy', 'cloudy', 'rain', 'snow', 'storm', 'fog', 'unknown');
+const timestamp = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$', maxLength: 40 };
+const date = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$' };
+// Original in-page time controls. No OS alarms, remote synchronization or persistence.
+node('clock', { title: short, timezone: short, mode: choice('live', 'snapshot'), at: timestamp, hourCycle: choice('h12', 'h23'), seconds: bool }, ['timezone', 'mode'], 'time');
+const { at: _snapshotOnly, ...liveClock } = defs.ClockNode.properties;
+defs.ClockNode.oneOf = [
+  object({ ...liveClock, mode: { const: 'live' } }, ['mode']),
+  object({ ...defs.ClockNode.properties, mode: { const: 'snapshot' } }, ['mode', 'at'])
+];
+node('stopwatch', { title: short, elapsedMs: integer(0, 604800000), laps: bool }, [], 'time');
+node('timer', { title: short, durationMs: integer(1, 604800000) }, ['durationMs'], 'time');
+node('weather', { location: object({ name: short, timezone: short }, ['name', 'timezone']), updatedAt: timestamp, source: object({ label: short, url: string(2048), synthetic: bool }, ['label', 'synthetic']), units: object({ temperature: choice('celsius', 'fahrenheit') }, ['temperature']), current: object({ time: timestamp, temperature: nullableNumber, feelsLike: nullableNumber, condition, humidity: probability }, ['time', 'temperature', 'condition']), daily: array(object({ date, low: nullableNumber, high: nullableNumber, condition, precipitationProbability: probability }, ['date', 'low', 'high', 'condition', 'precipitationProbability']), 0, 16), hourly: array(object({ time: timestamp, temperature: nullableNumber, precipitationProbability: probability }, ['time', 'temperature', 'precipitationProbability']), 0, 384), initialDate: date, status: choice('ready', 'loading', 'error'), message: string() }, ['location', 'updatedAt', 'source', 'units', 'current', 'daily', 'hourly'], 'weather');
+
+// Supplied motorsport snapshots: no live providers or inferred scoring rules.
+defs.MotorsportSession=object({id:suppliedKey,label:short,kind:choice('practice','qualifying','sprint','race','other'),status:choice('scheduled','complete','cancelled','postponed','unknown'),startsAt:{anyOf:[flightAt,{type:'null'}]},endsAt:flightAt,note:string(2000)},['id','label','kind','status','startsAt']);
+defs.MotorsportRace=object({id:suppliedKey,label:short,season:integer(1900,9999),round:integer(1,1000),circuit:short,location:short,sessions:array(ref('MotorsportSession'),0,20),source:ref('TravelEventSource')},['id','label','season','round','circuit','location','sessions']);
+node('f1-races',{label:short,description:string(3000),races:array(ref('MotorsportRace'),0,80),disabled:bool},['label','races'],'sports');
+defs.MotorsportStanding=object({id:suppliedKey,label:short,kind:choice('driver','constructor'),team:short,rank:{anyOf:[integer(1,1000),{type:'null'}]},points:{anyOf:[{type:'number',minimum:-1000000,maximum:1000000},{type:'null'}]},wins:{anyOf:[integer(0,10000),{type:'null'}]},note:string(2000),source:ref('TravelEventSource')},['id','label','kind','rank','points']);
+node('f1-standings',{label:short,description:string(3000),season:integer(1900,9999),observedAt:flightAt,standings:array(ref('MotorsportStanding'),0,100)},['label','season','standings'],'sports');
+// Shared project-owned sports model. Data is supplied; no provider or league rules are inferred.
+const sportsScore={anyOf:[integer(0,1000000),{type:'null'}]};
+defs.SportsTeam=object({id:key,name:short,shortName:string(16,1),color:choice('blue','green','orange','red','purple','gray')},['id','name']);
+defs.SportsGame=object({id:key,startAt:timestamp,homeTeam:key,awayTeam:key,status:choice('scheduled','live','final','postponed','cancelled'),homeScore:sportsScore,awayScore:sportsScore,period:short,clock:short,stage:short,venue:string(300),neutral:bool,winnerTeamId:key,detail:string(3000),periodScores:array(object({label:short,home:sportsScore,away:sportsScore},['label','home','away']),0,30),tieBreak:object({label:short,home:sportsScore,away:sportsScore},['label','home','away']),stats:array(object({label:short,home:{anyOf:[string(200),number,{type:'null'}]},away:{anyOf:[string(200),number,{type:'null'}]}},['label','home','away']),0,30)},['id','startAt','homeTeam','awayTeam','status','homeScore','awayScore']);
+defs.SportsStanding=object({teamId:key,group:short,rank:integer(1,10000),played:sportsScore,won:sportsScore,drawn:sportsScore,lost:sportsScore,points:nullableNumber,for:sportsScore,against:sportsScore,note:string(500)},['teamId','rank','played','won','drawn','lost','points']);
+defs.SportsData=object({league:object({id:key,name:short,sport:choice('football','basketball','baseball','hockey','other'),season:short},['id','name','sport']),timezone:short,updatedAt:timestamp,source:object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']),teams:array(ref('SportsTeam'),0,100),games:array(ref('SportsGame'),0,300),standings:array(ref('SportsStanding'),0,100)},['league','timezone','updatedAt','source','teams','games']);
+const sportsCommon={data:ref('SportsData'),status:choice('ready','loading','error'),message:string()};
+node('sports-schedule',{...sportsCommon,initialDate:date,initialTeamId:key,initialStage:short},['data'], 'sports');
+node('sports-scoreboard',{...sportsCommon,gameId:key},['data'], 'sports');
+node('sports-standings',{...sportsCommon,initialTeamId:key,initialGroup:short},['data'], 'sports');
+// Local learning components: supplied answers are teaching data, never secure exam secrets.
+defs.QuizQuestion=object({id:key,kind:choice('single','multiple'),prompt:string(6000,1),latex:string(6000,1),choices:array(object({id:key,label:string(2000,1)},['id','label']),2,20),correct:array(key,1,20),explanation:string(6000),explanationLatex:string(6000,1),points:integer(1,100)},['id','kind','prompt','choices','correct','explanation']);
+node('quiz',{title:short,description:string(),questions:array(ref('QuizQuestion'),0,100),status:choice('ready','loading','error'),message:string()},['title','questions'], 'learning');
+defs.Flashcard=object({id:key,front:string(6000,1),back:string(6000,1),frontLatex:string(6000,1),backLatex:string(6000,1),hint:string(2000)},['id','front','back']);
+node('flashcards',{title:short,description:string(),cards:array(ref('Flashcard'),0,100),status:choice('ready','loading','error'),message:string()},['title','cards'], 'learning');
+// Original finite sentence-embedded fill-in practice. Answer data is public teaching material.
+defs.FillBlankPart = { anyOf: [string(2000), object({blank:key}, ['blank'])] };
+defs.FillBlankEntry = object({id:key,label:short,answers:array(string(200,1),1,8),hint:string(1000),explanation:string(2000)},['id','label','answers']);
+node('fill-blank',{title:short,description:string(2000),parts:array(ref('FillBlankPart'),1,50),blanks:array(ref('FillBlankEntry'),1,12)},['title','parts','blanks'],'learning');
+// Original finite local sentence-builder; answers are public authored teaching data.
+defs.SentenceToken=object({id:key,text:short},['id','text']);
+node('sentence-builder',{title:short,prompt:string(2000),tokens:array(ref('SentenceToken'),1,30),answer:array(key,1,30),joiner:choice(' ',''),explanation:string(2000)},['title','tokens','answer'], 'learning');
+// Finite supplied vocabulary; no generated meaning or remote lookup.
+defs.VocabSense=object({id:key,meaning:string(2000,1),translation:string(1000),examples:array(string(2000,1),0,5)},['id','meaning']);
+node('vocab-card',{term:short,languageLabel:short,pronunciation:string(500,1),partOfSpeech:short,senses:array(ref('VocabSense'),1,10)},['term','senses'],'learning');
+// Supplied financial snapshots: no provider connection, trading action or implicit FX conversion.
+const price={anyOf:[{type:'number',minimum:0},{type:'null'}]};
+defs.FinanceSource=object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']);
+defs.FinanceInstrument=object({id:key,symbol:short,name:short,currency:{type:'string',pattern:'^[A-Z]{3}$'},exchange:short,timezone:short,asOf:timestamp,marketStatus:choice('open','closed','pre','post','halted','unknown'),delayMinutes:integer(0,10080),price,previousClose:price,history:array(object({time:timestamp,price},['time','price']),0,500)},['id','symbol','name','currency','timezone','asOf','marketStatus','delayMinutes','price','previousClose','history']);
+defs.FinanceRange=object({id:key,label:short,from:timestamp,to:timestamp},['id','label','from','to']);
+const financeCommon={title:short,source:ref('FinanceSource'),status:choice('ready','loading','error'),message:string()};
+node('finance-quote',{...financeCommon,instrument:ref('FinanceInstrument')},['source','instrument'], 'finance');
+node('finance-chart',{...financeCommon,instrument:ref('FinanceInstrument'),ranges:array(ref('FinanceRange'),0,12),initialRange:key},['source','instrument','ranges'], 'finance');
+node('finance-comparison',{...financeCommon,instruments:array(ref('FinanceInstrument'),2,6),baselineAt:timestamp,timezone:short,ranges:array(ref('FinanceRange'),0,12),initialRange:key},['source','instruments','baselineAt','ranges'], 'finance');
+node('finance-heatmap',{title:short,source:ref('FinanceSource'),asOf:timestamp,timezone:short,weightLabel:short,changeBasis:short,cells:array(object({id:key,symbol:short,name:short,sector:short,weight:price,price,currency:{type:'string',pattern:'^[A-Z]{3}$'},changePercent:nullableNumber,asOf:timestamp,marketStatus:choice('open','closed','pre','post','halted','unknown'),delayMinutes:integer(0,10080)},['id','symbol','name','sector','weight','price','currency','changePercent','asOf','marketStatus','delayMinutes']),0,200),initialSector:short,status:choice('ready','loading','error'),message:string()},['source','asOf','timezone','weightLabel','changeBasis','cells'], 'finance');
+// Bounded, supplied ledger views. No provider/account operations or implicit FX.
+const ledgerAmount = {type:'number',minimum:0,maximum:1e12};
+const ledgerCurrency = {type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3};
+defs.LedgerSource = object({label:short,url:string(2048,1)},['label','url']);
+defs.LedgerAccount = object({id:key,name:short,amount:{anyOf:[ledgerAmount,{type:'null'}]},currency:ledgerCurrency,category:short,note:string(2000)},['id','name','amount','currency']);
+defs.LedgerTransaction = object({id:key,date:{type:'string',pattern:'^[1-9]\\d{3}-\\d{2}-\\d{2}$'},description:string(1000,1),amount:ledgerAmount,currency:ledgerCurrency,direction:choice('debit','credit'),status:choice('pending','posted'),counterparty:short,note:string(2000)},['id','date','description','amount','currency','direction']);
+const ledgerCommon = {label:short,description:string(2000),source:ref('LedgerSource')};
+node('asset-distribution',{...ledgerCommon,observedAt:short,accounts:array(ref('LedgerAccount'),0,40)},['label','accounts'],'finance');
+node('transaction-list',{...ledgerCommon,transactions:array(ref('LedgerTransaction'),0,100)},['label','transactions'],'finance');
+// Supplied exact-text account and recurring record readers; no provider or financial action.
+defs.LedgerExactMoney=object({amount:{anyOf:[{type:'string',pattern:'^-?(?:0|[1-9][0-9]{0,17})(?:\\.[0-9]{1,18})?$(?![\\s\\S])',minLength:1,maxLength:40},{type:'null'}]},currency:ledgerCurrency},['amount','currency']);
+defs.LedgerAccountSnapshot=object({id:suppliedKey,label:short,institution:short,kind:choice('cash','credit','investment','loan','other','unknown'),status:choice('active','closed','unknown'),suffix:{type:'string',pattern:'^[A-Za-z0-9]{1,4}$(?![\\s\\S])'},balance:ref('LedgerExactMoney'),observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','institution','kind','status']);
+node('ledger-accounts',{...ledgerCommon,accounts:array(ref('LedgerAccountSnapshot'),0,40),initiallyRevealed:bool},['label','accounts'],'finance');
+defs.LedgerRecurringRecord=object({id:suppliedKey,label:short,counterparty:short,cadence:choice('weekly','monthly','yearly','other','unknown'),status:choice('scheduled','paused','unknown'),direction:choice('incoming','outgoing','unknown'),estimatedAmount:ref('LedgerExactMoney'),nextDate:travelDate,observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','cadence','status','direction']);
+node('ledger-recurring-transactions',{...ledgerCommon,records:array(ref('LedgerRecurringRecord'),0,60),initialReviewedIds:array(suppliedKey,0,60)},['label','records'],'finance');
+const matchCount={anyOf:[integer(0,1000000),{type:'null'}]};
+defs.ScoreTeam=object({id:suppliedKey,label:short,record:string(200)},['id','label']);
+defs.ScorePair=object({home:matchCount,away:matchCount},['home','away']);
+defs.ScorePeriod=object({id:suppliedKey,label:short,home:matchCount,away:matchCount},['id','label','home','away']);
+defs.ScoreLeader=object({id:suppliedKey,label:short,teamId:suppliedKey,points:matchCount,rebounds:matchCount,assists:matchCount},['id','label','teamId','points','rebounds','assists']);
+defs.SoccerEvent=object({id:suppliedKey,minute:short,kind:choice('goal','yellow-card','red-card','substitution','var','other'),teamId:{anyOf:[suppliedKey,{type:'null'}]},player:short,note:string(1000)},['id','minute','kind','teamId']);
+const scoreGame={id:suppliedKey,label:short,competition:short,startsAt:{anyOf:[flightAt,{type:'null'}]},homeTeamId:suppliedKey,awayTeamId:suppliedKey,status:choice('scheduled','live','final','postponed','cancelled','unknown'),homeScore:matchCount,awayScore:matchCount,outcome:choice('home-win','away-win','draw','unknown'),periodLabel:short,clock:short,venue:short,note:string(2000),source:ref('TravelEventSource')};
+defs.NbaScoreGame=object({...scoreGame,periods:array(ref('ScorePeriod'),0,20),leaders:array(ref('ScoreLeader'),0,8)},[...Object.keys(scoreGame).filter(k=>!['periodLabel','clock','venue','note','source'].includes(k)),'periods','leaders']);
+defs.SoccerScoreGame=object({...scoreGame,aggregate:{anyOf:[ref('ScorePair'),{type:'null'}]},penalties:{anyOf:[ref('ScorePair'),{type:'null'}]},events:array(ref('SoccerEvent'),0,120)},[...Object.keys(scoreGame).filter(k=>!['periodLabel','clock','venue','note','source'].includes(k)),'aggregate','penalties','events']);
+for(const[type,game]of[['nba-scores','NbaScoreGame'],['soccer-games','SoccerScoreGame']])node(type,{label:short,description:string(3000),timezone:short,teams:array(ref('ScoreTeam'),0,100),games:array(ref(game),0,100),observedAt:flightAt,source:ref('TravelEventSource')},['label','timezone','teams','games'],'sports');
+
+// Independent supplied football contract: periods, field situation and scoring events stay separate.
+defs.FootballPeriod=object({...defs.ScorePeriod.properties,kind:choice('quarter','overtime'),number:integer(1,20)},[...defs.ScorePeriod.required,'kind','number']);
+defs.FootballSituation=object({down:{anyOf:[integer(1,4),{type:'null'}]},distance:{anyOf:[integer(0,100),{type:'null'}]},ballOn:{anyOf:[short,{type:'null'}]}},['down','distance','ballOn']);
+defs.FootballScoringEvent=object({id:suppliedKey,periodId:{anyOf:[suppliedKey,{type:'null'}]},clock:{anyOf:[short,{type:'null'}]},kind:choice('touchdown','field-goal','extra-point','two-point','safety','other'),teamId:{anyOf:[suppliedKey,{type:'null'}]},points:matchCount,note:string(1000)},['id','periodId','clock','kind','teamId','points']);
+defs.FootballGame=object({...scoreGame,periods:array(ref('FootballPeriod'),0,24),possessionTeamId:{anyOf:[suppliedKey,{type:'null'}]},situation:{anyOf:[ref('FootballSituation'),{type:'null'}]},events:array(ref('FootballScoringEvent'),0,120)},[...Object.keys(scoreGame).filter(k=>!['periodLabel','clock','venue','note','source'].includes(k)),'periods','possessionTeamId','situation','events']);
+node('american-football-games',{label:short,description:string(3000),timezone:short,teams:array(ref('ScoreTeam'),0,100),games:array(ref('FootballGame'),0,100),observedAt:flightAt,source:ref('TravelEventSource')},['label','timezone','teams','games'],'sports');
+
+// Original supplied tournament and election readers; no winner or progression inference.
+const resultCount={anyOf:[integer(0,Number.MAX_SAFE_INTEGER),{type:'null'}]};
+const resultPercent={anyOf:[{type:'number',minimum:0,maximum:100},{type:'null'}]};
+defs.TournamentTeam=object({id:suppliedKey,label:short},['id','label']);
+defs.TournamentParticipant=object({teamId:{anyOf:[suppliedKey,{type:'null'}]},placeholder:short,score:{anyOf:[integer(0,1000000),{type:'null'}]}},['teamId','score']);
+defs.TournamentMatch=object({id:suppliedKey,label:short,status:choice('scheduled','live','final','postponed','cancelled','unknown'),participants:array(ref('TournamentParticipant'),2,2),winnerTeamId:{anyOf:[suppliedKey,{type:'null'}]},startsAt:flightAt,advancesTo:suppliedKey,note:string(2000),source:ref('TravelEventSource')},['id','label','status','participants','winnerTeamId']);
+defs.TournamentRound=object({id:suppliedKey,label:short,matches:array(ref('TournamentMatch'),0,32)},['id','label','matches']);
+node('basketball-tournament',{label:short,description:string(3000),teams:array(ref('TournamentTeam'),0,128),rounds:array(ref('TournamentRound'),0,12),observedAt:flightAt,source:ref('TravelEventSource')},['label','teams','rounds'],'sports');
+defs.ElectionCandidate=object({id:suppliedKey,label:short,party:short,votes:resultCount,voteShare:resultPercent,outcome:choice('elected','not-elected','unknown'),note:string(2000),source:ref('TravelEventSource')},['id','label','votes','voteShare','outcome']);
+defs.ElectionContest=object({id:suppliedKey,label:short,status:choice('pending','counting','complete','recount','unknown'),reportedPercent:resultPercent,totalVotes:resultCount,candidates:array(ref('ElectionCandidate'),0,50),observedAt:flightAt,note:string(2000),source:ref('TravelEventSource')},['id','label','status','reportedPercent','totalVotes','candidates']);
+node('election-results',{label:short,description:string(3000),contests:array(ref('ElectionContest'),0,40),observedAt:flightAt,source:ref('TravelEventSource')},['label','contests']);
+// Original supplied boxscores. Explicit totals/overs/averages remain source data.
+const boxCount={anyOf:[integer(0,1000000),{type:'null'}]};
+const boxText={anyOf:[string(200,1),{type:'null'}]};
+const boxRow={id:suppliedKey,label:short,note:string(2000),source:ref('TravelEventSource')};
+defs.BasketballBoxPlayer=object({...boxRow,starter:{anyOf:[bool,{type:'null'}]},minutes:boxText,points:boxCount,rebounds:boxCount,assists:boxCount,steals:boxCount,blocks:boxCount,turnovers:boxCount,plusMinus:{anyOf:[integer(-1000000,1000000),{type:'null'}]},fieldGoals:boxText,threePointers:boxText,freeThrows:boxText},['id','label','starter','minutes','points','rebounds','assists','steals','blocks','turnovers','plusMinus']);
+defs.BasketballBoxTeam=object({id:suppliedKey,label:short,score:boxCount,players:array(ref('BasketballBoxPlayer'),0,40),note:string(2000)},['id','label','score','players']);
+defs.CricketBoxTeam=object({id:suppliedKey,label:short},['id','label']);
+defs.CricketBattingRow=object({...boxRow,dismissal:boxText,runs:boxCount,balls:boxCount,fours:boxCount,sixes:boxCount,strikeRate:{anyOf:[{type:'number',minimum:0,maximum:1000000},{type:'null'}]}},['id','label','dismissal','runs','balls','fours','sixes','strikeRate']);
+defs.CricketBowlingRow=object({...boxRow,overs:boxText,maidens:boxCount,runs:boxCount,wickets:boxCount,economy:{anyOf:[{type:'number',minimum:0,maximum:1000000},{type:'null'}]}},['id','label','overs','maidens','runs','wickets','economy']);
+defs.CricketBoxInnings=object({id:suppliedKey,label:short,teamId:suppliedKey,runs:boxCount,wickets:boxCount,overs:boxText,extras:boxCount,batting:array(ref('CricketBattingRow'),0,30),bowling:array(ref('CricketBowlingRow'),0,30),note:string(2000),source:ref('TravelEventSource')},['id','label','teamId','runs','wickets','overs','extras','batting','bowling']);
+const boxCommon={label:short,description:string(3000),status:choice('scheduled','live','final','postponed','cancelled','unknown'),statusText:string(1000),observedAt:flightAt,source:ref('TravelEventSource')};
+node('nba-game-boxscore',{...boxCommon,teams:array(ref('BasketballBoxTeam'),2,2),periods:array(object({label:short,scores:array(boxCount,2,2)},['label','scores']),0,20)},['label','status','teams','periods'],'sports');
+node('cricket-match-boxscore',{...boxCommon,teams:array(ref('CricketBoxTeam'),2,2),innings:array(ref('CricketBoxInnings'),0,12)},['label','status','teams','innings'],'sports');
+const playerCount = {anyOf:[integer(0,1000000),{type:'null'}]};
+const playerRate = {anyOf:[{type:'number',minimum:0,maximum:10000},{type:'null'}]};
+const playerRank = {anyOf:[integer(1,1000000),{type:'null'}]};
+const playerRecordCommon = {id:suppliedKey,season:short,note:string(2000),source:ref('TravelEventSource')};
+defs.BasketballPlayerRecord=object({...playerRecordCommon,team:{anyOf:[short,{type:'null'}]},scope:choice('regular-season','playoffs','preseason','other','unknown'),games:playerCount,minutesPerGame:playerRate,pointsPerGame:playerRate,reboundsPerGame:playerRate,assistsPerGame:playerRate},['id','season','team','scope','games','minutesPerGame','pointsPerGame','reboundsPerGame','assistsPerGame']);
+defs.TennisPlayerRecord=object({...playerRecordCommon,surface:choice('hard','clay','grass','carpet','other','unknown'),matches:playerCount,wins:playerCount,losses:playerCount,titles:playerCount,rank:playerRank},['id','season','surface','matches','wins','losses','titles','rank']);
+const playerCommon={label:short,player:short,description:string(3000),observedAt:flightAt,source:ref('TravelEventSource')};
+node('nba-player-summary',{...playerCommon,records:array(ref('BasketballPlayerRecord'),0,100)},['label','player','records'],'sports');
+node('tennis-player-summary',{...playerCommon,records:array(ref('TennisPlayerRecord'),0,100)},['label','player','records'],'sports');
+// Local conversion controls use factual unit definitions and caller-supplied exchange snapshots.
+const unitRegistry=JSON.parse(await readFile(new URL('../../src/data/units.json',import.meta.url),'utf8'));
+const unitCode={enum:[...new Set(Object.values(unitRegistry).flatMap(category=>category.units.map(unit=>unit.id)))],description:Object.entries(unitRegistry).map(([name,category])=>name+': '+category.units.map(unit=>unit.id).join(', ')).join('; ')};
+node('unit-converter',{title:short,category:choice('length','mass','temperature','speed','area','volume','time','pressure','data'),amount:number,from:unitCode,to:unitCode,precision:{...integer(1,12),description:'Maximum significant digits, default 8; raw values are retained.'},temperatureMode:{...choice('absolute','difference'),description:'Temperature only. Absolute includes scale offsets and must be >= 0 K; difference converts signed intervals without offsets.'}},['category','amount','from','to'], 'converters');
+const currencyCode={type:'string',pattern:'^[A-Z]{3}$'};
+node('currency-converter',{title:short,source:ref('FinanceSource'),asOf:timestamp,base:currencyCode,rates:array(object({currency:currencyCode,rate:{anyOf:[{type:'number',exclusiveMinimum:0},{type:'null'}],description:'Units of this currency per one base-currency unit; null means unavailable.'}},['currency','rate']),0,200),amount:number,from:currencyCode,to:currencyCode,precision:integer(1,12),status:choice('ready','loading','error'),message:string()},['source','asOf','base','rates','amount'], 'converters');
+node('svg', { viewBox: { type: 'string', pattern: '^\\d+\\s+\\d+\\s+\\d+\\s+\\d+$' }, shapes: array(object({ tag: choice('rect', 'line', 'circle', 'path', 'text', 'polyline', 'polygon'), attrs: { type: 'object', maxProperties: 24, additionalProperties: { anyOf: [string(), number] } }, text: string() }, ['tag', 'attrs']), 1, 150), label: string() }, ['viewBox', 'shapes'], 'graphics');
+node('native', { name: choice('box', 'row', 'col', 'grid', 'grid-item', 'card', 'text', 'title', 'caption', 'badge', 'divider', 'code', 'blockquote', 'bold', 'italic', 'underline', 'strikethrough', 'spacer', 'list', 'list-item', 'table', 'table-row', 'table-cell', 'flow', 'flow-item'), props: { ...object({ gap: integer(0, 16), padding: integer(0, 16), columns: integer(1, 6), radius: choice('none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full'), border: bool, color, size: choice('xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'), weight, align: choice('start', 'center', 'end', 'stretch'), justify: choice('start', 'center', 'end', 'between', 'around'), width: { anyOf: [integer(20, 1400), choice('100%', 'auto')] }, height: integer(0, 1400), maxWidth: integer(20, 1400), minWidth: integer(0, 1400), background: choice('surface', 'surface-secondary', 'surface-tertiary', 'none'), marker: choice('bullet', 'number', 'none'), variant: choice('soft', 'solid', 'outline', 'ghost'), pill: bool, textAlign: align }), maxProperties: 18 }, children }, ['name', 'children'], 'compatibility');
+// Independent finite follow-up intents; no host-service execution.
+defs.FollowUpCardIntent = {oneOf:[object({kind:{const:'url'},url:string(2048,1)},['kind','url']),object({kind:{const:'query'},query:string(4000,1)},['kind','query']),object({kind:{const:'prefill'},surface:{const:'work'},query:string(4000,1)},['kind','surface','query'])]};
+defs.FollowUpCardItem=object({id:key,label:short,description:string(1000,1),emoji:string(32,1),iconData:string(100000,1),disabled:bool,intent:ref('FollowUpCardIntent')},['id','label','intent']);
+node('follow-up-card-group',{label:short,items:array(ref('FollowUpCardItem'),0,40),status:choice('ready','loading','error'),message:string(2000,1)},['label','items']);
+installTransactionDetail({defs,node});
+registry.nodeDefinition('recommendation-card',{...recommendationCardSchema(),type:'object',properties:{type:{const:'recommendation-card'}},required:['type']},'base');
+registry.nodeDefinition('prompt-checklist',{...promptChecklistSchema(),type:'object',properties:{type:{const:'prompt-checklist'}},required:['type']},'base');
+registry.nodeDefinition('ledger-finance-status-banner',{...financeStatusSchema(),type:'object',properties:{type:{const:'ledger-finance-status-banner'}},required:['type']},'finance');
+// Restored project139 schema definitions; exact node/dependency objects are retained.
+const learningMediaDefinitions=JSON.parse(await readFile(new URL('../learning-media-definitions.json',import.meta.url),'utf8'));
+for(const [name,definition]of Object.entries(learningMediaDefinitions)){
+  if(defs[name])throw new Error('Duplicate restored learning definition: '+name);
+  defs[name]=definition;
+  if(name.endsWith('Node')){nodes.push(ref(name));owners[definition.properties.type.const]='learning';}
+}
+defs.WeatherSidebarPlace=object({id:suppliedKey,label:short,timezone:short,observedAt:{anyOf:[flightAt,{type:'null'}]},temperature:{anyOf:[{type:'number',minimum:-1000000,maximum:1000000},{type:'null'}]},unit:choice('celsius','fahrenheit'),condition:{anyOf:[condition,{type:'null'}]},source:ref('TravelEventSource')},['id','label','timezone','observedAt','temperature','unit','condition']);
+node('weather-sidebar-title',{label:short,description:string(2000),places:array(ref('WeatherSidebarPlace'),0,30),initialPlaceId:suppliedKey,unit:choice('celsius','fahrenheit')},['label','places','unit'],'weather');
+
+defs.LedgerCorrectionCategory=object({id:suppliedKey,label:short},['id','label']);
+defs.LedgerCorrectionTransaction=object({id:suppliedKey,label:short,date:{anyOf:[travelDate,{type:'null'}]},money:ref('LedgerExactMoney'),originalCategoryId:{anyOf:[suppliedKey,{type:'null'}]},suggestedCategoryId:{anyOf:[suppliedKey,{type:'null'}]},confidence:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]},note:string(2000)},['id','label','date','money','originalCategoryId','suggestedCategoryId','confidence']);
+node('ledger-low-confidence-category-correction',{...ledgerCommon,snapshotId:suppliedKey,categories:array(ref('LedgerCorrectionCategory'),0,40),transactions:array(ref('LedgerCorrectionTransaction'),0,60),disabled:bool},['label','snapshotId','categories','transactions'],'finance');
+
+const netWorthDefinitions=JSON.parse(await readFile(new URL('../net-worth-definitions.json',import.meta.url),'utf8'));
+Object.assign(defs,netWorthDefinitions);nodes.push(ref('LedgerNetWorthNode'));owners['ledger-net-worth']='finance';
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../pressable-definitions.json',import.meta.url),'utf8')));nodes.push(ref('PressableNode'));owners.pressable='base';
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../fee-interest-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LedgerFeeInterestPaidNode'));owners['ledger-fee-interest-paid']='finance';
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../html-view-definitions.json',import.meta.url),'utf8')));nodes.push(ref('HtmlViewNode'));owners['html-view']='base';
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../media-reader-definitions.json',import.meta.url),'utf8')));nodes.push(ref('SearchImageNode'),ref('YoutubeNode'));owners['search-image']='base';owners.youtube='base';
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../async-image-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncImageNode'),ref('AsyncImageGroupNode'));owners['async-image']='base';owners['async-image-group']='base';
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../lottie-definitions.json',import.meta.url),'utf8')));nodes.push(ref('LottieNode'));owners.lottie='base';
+// Exact supplied income labels; no estimation, account lookup or date prediction.
+defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+defs.SuppliedSectionTab=object({id:key,label:short,title:short,content:string(12000),disabled:bool},['id','label','title','content']);
+node('tabbed-section',{label:short,tabs:array(ref('SuppliedSectionTab'),0,24),activeId:key,vertical:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:short},['label','tabs'],'base');
+defs.VisualEntityRequest=object({id:short,kind:short},['id','kind']);
+defs.VisualCardItem=object({id:key,label:short,title:short,query:short,caption:short,subtitle:short,source:short,metadata:short,reason:string(1200,1),summary:string(2000,1),image:ref('SearchImageRecord'),imageLoading:bool,imageIndex:integer(0,23),url:string(2048,1),entity:ref('VisualEntityRequest'),disabled:bool},['id','label']);
+node('visual-card-carousel',{title:short,items:array(ref('VisualCardItem'),0,24),viewerImages:array(ref('SearchImageRecord'),0,24),viewer:choice('local','intent'),mobile:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:short},['title','items'],'base');
+node('link-card',suppliedLinkProps,[],'base');
+node('recommendation-link-card',suppliedLinkProps,[],'base');
+defs.SpendTrendPoint=object({day:integer(0,31),value:{anyOf:[number,{type:'null'}]},label:{anyOf:[short,{type:'null'}]}},['day','value','label']);
+defs.SpendTrendSeries=object({id:key,label:short,totalValue:{anyOf:[number,{type:'null'}]},totalLabel:{anyOf:[short,{type:'null'}]},dayCount:integer(1,31),points:array(ref('SpendTrendPoint'),0,32),current:bool,daysElapsed:integer(0,31),groupLabel:short},['id','label','totalValue','totalLabel','dayCount','points']);
+defs.SpendCategory=object({id:key,label:short,amountLabel:{anyOf:[short,{type:'null'}]},fraction:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]}},['id','label','amountLabel','fraction']);
+node('ledger-spend-so-far-this-month',{label:short,periodLabel:short,totalLabel:{anyOf:[short,{type:'null'}]},categories:array(ref('SpendCategory'),0,24),months:array(ref('SpendTrendSeries'),1,24),averageSeries:ref('SpendTrendSeries'),previousSeries:ref('SpendTrendSeries'),selectedMonth:key,comparison:key,status:choice('pending','resolved','failed'),fallback:short,hasConnectedAccounts:bool,noAccountsLabel:short,previousLabel:short,averageLabel:short,comparisonLabel:short,emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool},['label','periodLabel','totalLabel','categories'],'finance');
+defs.UpcomingActivity=object({id:key,title:short,amountLabel:{anyOf:[short,{type:'null'}]},dateLabel:{anyOf:[short,{type:'null'}]},kind:choice('income','expense','other'),accountLabel:short,amountUnknown:bool,detailEnabled:bool,iconSrc:string(16000,1)},['id','title','amountLabel','dateLabel']);
+defs.UpcomingFlow=object({top:ref('UpcomingActivity'),items:array(ref('UpcomingActivity'),0,60),expandedItems:array(ref('UpcomingActivity'),0,60)},['items']);
+defs.UpcomingFlows=object({incoming:ref('UpcomingFlow'),outgoing:ref('UpcomingFlow')},['incoming','outgoing']);
+node('ledger-upcoming-activity',{label:short,activities:array(ref('UpcomingActivity'),0,60),emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool,flows:ref('UpcomingFlows'),activeFlow:choice('incoming','outgoing'),expanded:bool,showFlowTabs:bool,status:choice('pending','resolved','failed'),fallback:string(2000),hasConnectedAccounts:bool,noAccountsLabel:short,incomingLabel:short,outgoingLabel:short,moreLabel:short,lessLabel:short},['label','activities'],'finance');
+defs.ImageGridItem=object({id:key,src:string(16000,1),alt:short,caption:string(500)},['id','src','alt']);
+defs.ImageGridTile=object({imageId:key,aspectRatio:{type:'number',minimum:.1,maximum:20},flexGrow:{type:'number',minimum:.1,maximum:20}},['imageId']);
+defs.ImageGridRow=object({aspectRatio:{type:'number',minimum:.1,maximum:20},tiles:array(ref('ImageGridTile'),1,24)},['tiles']);
+defs.ImageGridPlaceholderTile=object({aspectRatio:{type:'number',minimum:.1,maximum:20},flexGrow:{type:'number',minimum:.1,maximum:20}});
+defs.ImageGridPlaceholderRow=object({aspectRatio:{type:'number',minimum:.1,maximum:20},tiles:array(ref('ImageGridPlaceholderTile'),1,24)},['tiles']);
+defs.ImageGridRecommendation=object({id:key,label:short,query:string(2000,1),thumbnailSrc:string(16000,1)},['id','label','query','thumbnailSrc']);
+node('image-grid',{label:short,images:array(ref('ImageGridItem'),0,24),columns:integer(1,4),fit:choice('contain','cover'),disabled:bool,presentation:choice('grid','mosaic','live'),rows:array(ref('ImageGridRow'),0,24),recommendations:array(ref('ImageGridRecommendation'),0,24),recommendationsExpanded:bool,status:choice('pending','resolved','failed'),fallback:string(2000),loading:bool,placeholderRows:array(ref('ImageGridPlaceholderRow'),0,8),viewer:choice('intent','local')},['images']);
+defs.ConversationSuggestion=object({id:key,label:short,prompt:string(2000,1),intent:choice('new-turn','start-voice'),iconSrc:string(16000,1),disabled:bool},['id','label','prompt']);
+node('conversation-suggestions',{label:short,suggestions:array(ref('ConversationSuggestion'),0,12),disabled:bool,status:choice('pending','resolved','failed'),fallback:string(2000)},['suggestions']);
+defs.FollowUpAction=object({id:key,label:short,query:{type:'string',maxLength:2000},intent:{enum:['new-turn','start-voice','open-image-composer']},iconSrc:{type:'string',maxLength:16000},disabled:bool},['id','label']);
+node('follow-up-action-bar',{label:short,actions:array(ref('FollowUpAction'),0,12),disabled:bool,presentation:{enum:['flat','footer','wrapped_pills']},status:{enum:['pending','resolved','failed']},fallback:{type:'string',maxLength:2000}},['actions']);
+node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimatedMonthlyIncomeLabel:short,incomeSourcesLabel:short,nextPaycheck:{anyOf:[ref('LedgerIncomePaycheck'),{type:'null'}]},emptyLabel:string(2000),masked:bool,maskedLabel:short,estimatedLabel:short,nextPaycheckLabel:short,recurringIncomeLabel:short,noUpcomingLabel:string(2000),dateUnavailableLabel:short,source:ref('LedgerSource')},['label','hasIncome'],'finance');
+registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../async-video-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncVideoCarouselNode'));owners['async-video-carousel']='base';
+
+installAutomationSchema({node,defs});
+node('scheduled-task-suggestion',{label:short,action:choice('new-turn','task-opt-in-accept'),creationGuidelines:string(12000,1),originSurface:choice('chat','work'),submitted:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:string(2000,1)},['label']);
+
+installEntitySchema({node,defs});
+
+installAskUserSchema({node,defs});
+installLedgerCategorySchema({node,defs});
+installVoiceCardsSchema({node,defs});
+installConversationalOnboardingSchema({node,defs});
+installOnboardingCardsSchema({node,defs});
+installWeatherSuppliedSchema({defs});
+installStudyOnboardingSchema({node,defs});
+installSearchOnboardingSchema({node,defs});
+installQuizCardsSchema({node,defs});
+installCapabilityWelcomeSchema({node,defs});
+installAskLocationSchema({node,defs});
+installReservationPillsSchema({node,defs});
+installCapabilitySearchSchema({node,defs});
+installTaskCardsSchema({node,defs});
+installFinanceEntrySchema({node,defs});
+installContextActionsSchema({node,defs});
+installEquityWatchSchema({node,defs});
+installSuppliedLaunchersSchema({node,defs});
+installSuppliedDiscoverySchema({node,defs});
+installCreditScoreSchema({node,defs});
+installSuppliedInteractionsSchema({node,defs});
+installLearningVizSchema({node,defs});
+installCareProvidersSchema({node,defs});
+installInlineHostMediaSchema({node,defs});
+installCorrectedAgeSchema({node,defs});
+installGcsSchema({node,defs});
+installRoxSchema({node,defs});
+installQsofaSchema({node,defs});
+registry.use('forms/questionnaire');
+
+registry.finalize();
+const schema = createDocumentSchema({...defs});
+return {schema,owners,nodes};
+}

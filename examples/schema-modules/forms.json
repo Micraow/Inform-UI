@@ -1,0 +1,30 @@
+{
+  "version": "iui/1",
+  "state": {
+    "name": "Guest",
+    "count": 2
+  },
+  "body": [
+    {
+      "type": "form",
+      "label": "Original supplies form",
+      "children": [
+        {
+          "type": "input",
+          "kind": "text",
+          "label": "Name",
+          "bind": "name",
+          "required": true
+        },
+        {
+          "type": "input",
+          "kind": "number",
+          "label": "Notebooks",
+          "bind": "count",
+          "min": 1,
+          "max": 5
+        }
+      ]
+    }
+  ]
+}
