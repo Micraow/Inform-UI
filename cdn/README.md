@@ -1,28 +1,17 @@
-# Current unified164 assets
+# Inform-UI browser assets
 
-This checkout packages164 protocol nodes. Use `iui.min.js` (ESM), `iui.global.min.js`, `iui.css` and `iui.schema.json` from the same fixed commit; `integrity.json` records all52 generated asset hashes and SRI values. Regenerate with `npm ci && npm run generate && npm run build && npm run build:cdn`.
+This snapshot contains 214 registered protocol nodes and 209 implemented software components. Use all JavaScript, CSS, schema, fonts and integrity metadata from the same immutable commit. The corrected-age component is bounded date arithmetic, not a clinically validated assessment or treatment tool.
 
-Local full validation passed3160/3160. The717-case Chromium batch is pending; old154 browser evidence is not a164 result. Canonical functional scope is158/1/97, separate from protocol registration. Earlier pinned examples below remain historical.
+- `iui.min.js`: self-contained ES module.
+- `iui.global.min.js`: classic script exposing `window.IUI`.
+- `iui.css`: external styles, including relative bundled KaTeX fonts.
+- `iui.schema.json` and `schema/`: complete protocol and discovery subsets.
+- `integrity.json`: byte lengths, SHA-256 and SHA-384 SRI for all 52 assets.
 
-# 可直接加载的浏览器构建
+The browser API provides `validateDocument`, `mount`, update/dispose and state controls. `compileHtml` is a Node API. JSON documents are not uploaded by this library; optional supplied remote media may require explicit host permission. Initial delivery from a third-party CDN itself requires a network request.
 
-这里是同一套 Intelligent-UI 库的公开预构建产物，不需要使用者安装 Node 或执行构建。只包含本项目原创实现及许可明确的 Ajv/KaTeX 依赖。
+Use a verified full commit SHA, for example `https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@<full-commit>/cdn/iui.global.min.js`. Never mix assets from different commits. Repository publication and third-party CDN cache availability are separate checks.
 
-- `iui.global.min.js`：普通 `<script>`，提供 `window.IUI`；适合无 agent 的网页聊天模型输出 HTML。
-- `iui.min.js`：ES module，供 `import { mount, validateDocument } from ...` 使用。
-- `iui.css`：同版本样式；加载后使用 `mount(container, spec, { styles: false })`。
-- `iui.schema.json`：公开 `iui/1` JSON Schema；使用者可以只读协议，无需阅读实现。
-- `integrity.json`：逐文件大小、SHA-256 和 SHA-384 SRI。
-- `LICENSE.txt` / `THIRD_PARTY_NOTICES.md`：随构建保留的许可。
+Rebuild with the pinned lockfile: `npm ci && npm run generate && npm run build && npm run build:cdn`. JavaScript includes licensed dependencies identified in `THIRD_PARTY_NOTICES.md`; fonts and their license are bundled. The library requires no OpenAI account or service.
 
-两个 JavaScript 文件是同一套库的模块格式，不是两种产品版本。MathML 使用浏览器/系统字体，没有字体 CDN、OpenAI 服务或账号依赖。
-
-浏览器接口：`validateDocument(input)` 返回 `{ ok: true, document }` 或 `{ ok: false, issues }`；`mount(element,input,options?)` 将 JSON 渲染为 HTML DOM，返回 `update`、`dispose`、`getState`、`setState` 控制器。`compileHtml` 是 Node API，不包含在浏览器入口中。
-
-固定 commit 的 jsDelivr URL 形如 `https://cdn.jsdelivr.net/gh/Micraow/Intelligent-UI@<完整提交SHA>/cdn/iui.global.min.js`。请使用已验证的完整 SHA，不使用 `main`、`master` 或 `latest`。jsDelivr 会持久缓存固定提交文件；发布修复时应更新到新的 SHA。
-
-CDN 只分发脚本、样式和协议。HTML 页面应保存为本地 `.html` 或放在你的站点；jsDelivr 出于安全原因将 HTML 按纯文本提供。初次 CDN 加载需要联网，通常会向 CDN 发送 IP 等常规 HTTP 请求；文档 JSON 不会由本库上传给 CDN。
-
-官方规则：[jsDelivr GitHub 用法与缓存](https://github.com/jsdelivr/jsdelivr#github)。可直接复制的固定链接和 HTML 示例见 [浏览器使用文档](../docs/cdn.md)；HTTP 可访问与实际浏览器渲染是分别验证的。
-
-维护者：`npm run build:cdn` 重新生成，CI 检查源码与公开构建未发生漂移。不要手改生成文件。
+Validation records are version-scoped. This candidate follows the previously validated 933 snapshot and adds the two host-form reset repairs and bounded date arithmetic. For the exact 214 assets, independent validation passed all 52 byte/hash/SRI checks and 15 focused real-Chromium cases. Consumer validation passed 12 positive and 8 negative schema cases per ESM/global entry, 8 combined DOM flows, and a real standalone document. These are focused results; historical full-suite counts are not new runs.

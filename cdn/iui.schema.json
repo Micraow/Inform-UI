@@ -30590,6 +30590,131 @@
       ],
       "additionalProperties": false
     },
+    "CorrectedAgeInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "anyOf": [
+            {
+              "enum": [
+                "gestation",
+                "due-date"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "birthDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observationDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dueDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gestationalWeeks": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 8
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gestationalDays": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 8
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confirmedPreterm": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "CalculatorCorrectedAdjustedAgeOfPretermInfantsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "calculator-corrected-adjusted-age-of-preterm-infants"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "$ref": "#/$defs/CorrectedAgeInput"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "calculateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -31230,6 +31355,9 @@
         },
         {
           "$ref": "#/$defs/SpeechSynthesizerNode"
+        },
+        {
+          "$ref": "#/$defs/CalculatorCorrectedAdjustedAgeOfPretermInfantsNode"
         }
       ]
     }
