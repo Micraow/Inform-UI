@@ -81,5 +81,10 @@
   "#/$defs/CareProviderSidebarNode",
   "#/$defs/EntityNode",
   "#/$defs/GenImageNode",
-  "#/$defs/SpeechSynthesizerNode"
+  "#/$defs/SpeechSynthesizerNode",
+  "#/$defs/CalculatorCorrectedAdjustedAgeOfPretermInfantsNode",
+  "#/$defs/CalculatorGlasgowComaScaleGcsNode",
+  "#/$defs/CalculatorRoxIndexForHighFlowNasalCannulaNode",
+  "#/$defs/CalculatorQsofaScoreNode",
+  "#/$defs/QuestionnaireNode"
 ]
