@@ -1,3 +1,7 @@
+## Current software scope: 209 / 256
+
+214 protocol nodes are registered. Functional coverage is 209 (53 historical, 156 pending comprehensive acceptance), with 0 partial and 47 unimplemented. The corrected-age component provides bounded date arithmetic and local input only; it is not clinically validated and does not assess development or guide care. Its final source passed 32 author checks, 13 independent checks, and 7 consumer flows. Native checks remain attributed to their exact predecessor versions. The distributed CDN remains the fixed 933 version; this source-only update does not replace it.
+
 # Corrected-age arithmetic source candidate
 
 An original, bounded date-arithmetic candidate is available for explicitly supplied dates and gestational units. It gives no developmental, treatment, vaccine or clinical assessment. Unknown, inconsistent, unsupported and out-of-window inputs have explicit non-age outcomes. Pure arithmetic was independently checked against 32 cases; author UI and offline execution checks are local. Independent runtime acceptance is pending. Registration is 214; completed scope remains 208 / 0 / 48. The distributed CDN remains unified213/933. See [the input, source and applicability contract](docs/corrected-age.md).

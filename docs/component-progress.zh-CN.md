@@ -1,6 +1,6 @@
 # 组件进度
 
-208项完整实现覆盖：53历史、155待完整验收，0部分、48未实现；213协议登记另计。独立普通功能与消费者验证闭合；新原生/像素未验，183冻结包范围不变。
+209项软件功能实现覆盖：53历史、156待完整验收，0部分、47未实现；214协议登记另计。新增矫正年龄仅限日期算术与本地输入，不代表临床验证。当前分发CDN仍为933固定版本（208项范围），各原生结果按准确版本分别记录。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -107,7 +107,7 @@
 | calculator-canadian-ct-head-rule | Calculator Canadian Ct Head Rule | 未实现 | No implementation in the current library. |
 | calculator-cha2ds2-vasc-score-for-atrial-fibrillation-stroke-risk | Calculator Cha2ds2 Vasc Score For Atrial Fibrillation Stroke Risk | 未实现 | No implementation in the current library. |
 | calculator-child-pugh-score-for-cirrhosis | Calculator Child Pugh Score For Cirrhosis | 未实现 | No implementation in the current library. |
-| calculator-corrected-adjusted-age-of-preterm-infants | Calculator Corrected Adjusted Age Of Preterm Infants | 未实现 | No implementation in the current library. |
+| calculator-corrected-adjusted-age-of-preterm-infants | Calculator Corrected Adjusted Age Of Preterm Infants | 完整实现待验 | Original bounded corrected-age date arithmetic and local UI; independent 13/13 and consumer 7 flows passed. No clinical validation or developmental judgment; native results remain scoped to their exact predecessor versions. |
 | calculator-curb65-score-for-pneumonia | Calculator Curb65 Score For Pneumonia | 未实现 | No implementation in the current library. |
 | calculator-duke-treadmill-score | Calculator Duke Treadmill Score | 未实现 | No implementation in the current library. |
 | calculator-four-tscore-for-heparin-induced-thrombocytopenia | Calculator Four TScore For Heparin Induced Thrombocytopenia | 未实现 | No implementation in the current library. |

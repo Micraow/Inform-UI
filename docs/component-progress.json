@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-11T18:11:24.594055+00:00",
+  "as_of_utc": "2026-10-12T00:35:41.223263+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 155,
+    "implemented_pending_verification": 156,
     "functionally_verified": 53,
-    "not_implemented": 48,
+    "not_implemented": 47,
     "partial": 0
   },
-  "completeImplementationCoverage": 208,
-  "registeredProtocolNodes": 213,
+  "completeImplementationCoverage": 209,
+  "registeredProtocolNodes": 214,
   "components": [
     {
       "id": "base-animate",
@@ -736,8 +736,8 @@
       "id": "calculator-corrected-adjusted-age-of-preterm-infants",
       "name": "Calculator Corrected Adjusted Age Of Preterm Infants",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original bounded corrected-age date arithmetic and local UI; independent 13/13 and consumer 7 flows passed. No clinical validation or developmental judgment; native results remain scoped to their exact predecessor versions."
     },
     {
       "id": "calculator-curb65-score-for-pneumonia",
