@@ -1,8 +1,14 @@
+## Current software scope: 210 / 256
+
+215 protocol nodes are registered. Software functionality covers210 canonical IDs (53 historical,157 pending comprehensive/reference acceptance), with0 partial and46 unimplemented. The original GCS scorecard supports explicit six-motor-level version/adult scope, numeric/NT/unknown handling, live results, information sections, selected-option help, independent reset defaults, and cancelable local summary-copy requests. It passed24 author tests,19 independent software scenarios,2 focused real-Chromium checks,143 consumer arithmetic cases and7 consumer flows. These are software checks, not clinical validation; the module gives no treatment instructions. See [GCS version and input contract](docs/gcs.md).
+
+The published CDN remains [unified214 at fed5f86](https://github.com/Micraow/Inform-UI/commit/fed5f86f49e73f908ac9ea98966b1515a3aaa597), covering209 functional components. It does not include the later overlay resource fix, collapsed-Details form-focus fix, or GCS source. Those require a source build until a separately identified asset update. Earlier checkpoint notes below preserve their original scopes and pending statuses.
+
 ## Unified 214 browser distribution
 
 The CDN assets now match the 214-node source and the 209/256 software implementation scope. Both host-form Reset fixes and bounded corrected-age date arithmetic are included. Exact assets passed 52 byte/hash/SRI checks, 15 focused real-Chromium cases, dual-entry consumer checks (12 positive and 8 negative cases per entry), 8 DOM flows, and standalone execution. No clinical validation is claimed. Earlier source-only and 933 snapshot notes below are historical; use one immutable commit for all new CDN files.
 
-## Current software scope: 209 / 256
+## Historical 209 source-only checkpoint
 
 214 protocol nodes are registered. Functional coverage is 209 (53 historical, 156 pending comprehensive acceptance), with 0 partial and 47 unimplemented. The corrected-age component provides bounded date arithmetic and local input only; it is not clinically validated and does not assess development or guide care. Its final source passed 32 author checks, 13 independent checks, and 7 consumer flows. Native checks remain attributed to their exact predecessor versions. The distributed CDN remains the fixed 933 version; this source-only update does not replace it.
 

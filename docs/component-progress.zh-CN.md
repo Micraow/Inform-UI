@@ -1,6 +1,6 @@
 # 组件进度
 
-209项软件功能实现覆盖：53历史、156待完整验收，0部分、47未实现；214协议登记另计。新增矫正年龄仅限日期算术与本地输入，不代表临床验证。当前分发CDN仍为933固定版本（208项范围），各原生结果按准确版本分别记录。
+210项软件功能实现覆盖：53历史、157待完整验收，0部分、46未实现；215协议登记另计。GCS为原创供数评分与完整本地scorecard交互，NT/未知/异常不输出总分；不代表临床验证。当前分发CDN为fed5统一214（209功能范围），GCS及两个后继修复需源码构建；各原生证据按准确版本记录。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -112,7 +112,7 @@
 | calculator-duke-treadmill-score | Calculator Duke Treadmill Score | 未实现 | No implementation in the current library. |
 | calculator-four-tscore-for-heparin-induced-thrombocytopenia | Calculator Four TScore For Heparin Induced Thrombocytopenia | 未实现 | No implementation in the current library. |
 | calculator-glasgow-blatchford-score-for-upper-gi-bleeding | Calculator Glasgow Blatchford Score For Upper Gi Bleeding | 未实现 | No implementation in the current library. |
-| calculator-glasgow-coma-scale-gcs | Calculator Glasgow Coma Scale Gcs | 未实现 | No implementation in the current library. |
+| calculator-glasgow-coma-scale-gcs | Calculator Glasgow Coma Scale Gcs | 完整实现待验 | Original supplied GCS scorecard with six-motor-level arithmetic, explicit version/adult scope, NT and invalid handling, live/info/help/defaults/copy interactions. Author24, independent19 plus2 focused Chromium, and consumer143 arithmetic/7 flows passed. No clinical validation or treatment recommendations; distributed CDN214 does not include this source yet. |
 | calculator-grace-score-for-acute-coronary-syndrome | Calculator Grace Score For Acute Coronary Syndrome | 未实现 | No implementation in the current library. |
 | calculator-has-bled-score-for-major-bleeding-risk | Calculator Has Bled Score For Major Bleeding Risk | 未实现 | No implementation in the current library. |
 | calculator-heart-score-for-major-cardiac-events | Calculator Heart Score For Major Cardiac Events | 未实现 | No implementation in the current library. |

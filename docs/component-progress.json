@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-12T00:35:41.223263+00:00",
+  "as_of_utc": "2026-10-12T02:38:20.156721+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 156,
+    "implemented_pending_verification": 157,
     "functionally_verified": 53,
-    "not_implemented": 47,
+    "not_implemented": 46,
     "partial": 0
   },
-  "completeImplementationCoverage": 209,
-  "registeredProtocolNodes": 214,
+  "completeImplementationCoverage": 210,
+  "registeredProtocolNodes": 215,
   "components": [
     {
       "id": "base-animate",
@@ -771,8 +771,8 @@
       "id": "calculator-glasgow-coma-scale-gcs",
       "name": "Calculator Glasgow Coma Scale Gcs",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original supplied GCS scorecard with six-motor-level arithmetic, explicit version/adult scope, NT and invalid handling, live/info/help/defaults/copy interactions. Author24, independent19 plus2 focused Chromium, and consumer143 arithmetic/7 flows passed. No clinical validation or treatment recommendations; distributed CDN214 does not include this source yet."
     },
     {
       "id": "calculator-grace-score-for-acute-coronary-syndrome",
