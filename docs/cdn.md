@@ -1,4 +1,8 @@
-# 无需安装：直接在浏览器使用
+# Browser use: current 218-node bundle
+
+Use the [current fixed assets and version lock](cdn-218.md) for new pages. The examples below retain their historical 66-node pins and verification records.
+
+## 无需安装：直接在浏览器使用
 
 网页聊天模型不需要读取库的实现，也不需要终端。它只需知道 `iui/1` 内容协议和下面的固定调用壳：填写 JSON，调用 `IUI.validateDocument`，再由 `IUI.mount` 渲染真正的 HTML DOM。
 
