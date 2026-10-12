@@ -11,3 +11,7 @@
 重置按钮恢复 initial 并清反馈。无绑定、不进入Forms快照或原生FormData；原生单选组使用独立保留名称和无宿主表单关联的内部ID。外层原生form.reset不改变这张卡的本地作答。无关setState及隐藏/重新显示保留DOM和选择；update/dispose清理。祖先fieldset disabled、原生首legend例外、隐藏/inert、脱离文档、事件构造钩子和同步重入均有定向测试。
 
 原生键盘单选导航、复选框Space、标签整卡点击、触摸、RTL、强制颜色与响应式主题须在真实浏览器矩阵验收。源代码中没有键盘重写、网络、存储或任意回调字符串。
+
+## Source module and semantic scope
+
+`choices/local` maintains this existing definition. Full `validateDocument` checks distinct option IDs and initial IDs (`DUPLICATE_ID`), initial references to actual options (`ONBOARDING_CHOICE`), and selection bounds (`ONBOARDING_RANGE`). Effective maximum is supplied maximum, otherwise option count for multiple mode or 1 for single/default mode. Effective minimum defaults to 1. Maximum cannot exceed option count, minimum cannot exceed maximum, and initial selection size cannot exceed maximum. Initial size below minimum remains a valid incomplete local selection. Structurally valid option text receives no additional blanket trim rule.

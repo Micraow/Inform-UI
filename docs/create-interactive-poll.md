@@ -36,3 +36,7 @@ Focused tests cover public schema/semantic parity, incomplete drafts, Unicode, e
 ## Ownership regression evidence
 
 An independent combined-runtime audit reproduced eight failures involving detached or externally moved question/option/mode controls, reclaimed option rows and validation focus outside the component. The repair keeps model restoration within owned controls and rechecks all draft inputs at readiness boundaries. Dedicated regressions also cover a host moving an option during event construction or dispatch. This is a lifecycle repair within the existing candidate, not an additional canonical component.
+
+## Source module and semantic scope
+
+`choices/local` maintains this existing definition. Full document validation requires unique initial option IDs (`DUPLICATE_ID`). Empty question and option text are intentionally legal initial drafts; draft preparation uses the existing local validation flow, so document acceptance is not a prepared or submitted poll. No blanket nonblank-text restriction is added during source-module migration.

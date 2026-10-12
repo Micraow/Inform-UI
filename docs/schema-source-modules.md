@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 136 migrated nodes and 82 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 141 migrated nodes and 77 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -106,3 +106,7 @@ The four `calculators/corrected-age`, `calculators/gcs`, `calculators/rox` and `
 ## Supplied records
 
 `content/supplied-records` maintains the existing agenda, person profile, news article and review definitions in one source module. Shared date/time patterns remain in primitives for later domains; full output order and bytes are preserved. The four explicit contracts cover civil dates, local ID scopes, safe URLs and passive supplied-data behavior.
+
+## Local choices and supplied gallery
+
+`choices/local` owns the original restaurant availability, onboarding selection, draft poll, location-choice and business-gallery declarations. Shared key/date patterns stay in primitives for remaining domains. Five explicit contracts preserve finite selection boundaries, legal incomplete drafts, per-list IDs, real dates and safe source URLs. No location, reservation, polling or media discovery service is added.

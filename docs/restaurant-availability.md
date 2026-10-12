@@ -34,3 +34,7 @@ Filter, Clear, mount, host state refresh and form reset emit no choice event. Cl
 The titled section has a persistent localized disclosure, visible selected date/time, live counts/status, native select/buttons, `aria-pressed`, exact LTR numeric time labels, scoped wrapping/RTL/forced-colors styles and 44px targets. Built-in labels are English and Chinese; other host languages fall back to English. No motion or remote assets are introduced.
 
 `examples/restaurant-availability.json` contains original synthetic data only. Focused public/schema/negative/lifecycle tests and a public type consumer are included. `tests/browser/availability.spec.mjs` prepares genuine pointer/touch/keyboard, six theme/width combinations, Arabic-first RTL, forced colors, no unsolicited requests and lifecycle checks. Browser cases are prepared but unexecuted in this isolated handoff; integration acceptance must execute them.
+
+## Source module and semantic scope
+
+`choices/local` maintains this existing definition. Full `validateDocument` rejects duplicate slot IDs (`DUPLICATE_ID`), duplicate date/time pairs even under distinct IDs (`DUPLICATE_SLOT`), impossible Gregorian dates (`AVAILABILITY_DATE`) and non-HTTP(S) or core-unsafe source links (`UNSAFE_URL`). Date/time are floating supplied labels; neither availability nor timezone meaning is inferred. These checks do not impose a new blanket trim rule on structurally valid literal text.

@@ -13,3 +13,7 @@ The shared image renderer sets lazy loading, asynchronous decoding and `no-refer
 There are no named controls, form values or submission actions. Unrelated state updates retain exact caption/image/consent DOM and focus. Invalid replacement is atomic. Valid replacement and disposal remove handlers. An already authorized in-flight browser image request cannot be revoked by this renderer, but old controls cannot start a deferred request after removal.
 
 See [the original synthetic example](../examples/business-gallery.json), [focused public tests](../tests/choice-gallery.test.mjs), and [prepared browser acceptance](../tests/browser/choice-gallery.spec.mjs). The example includes an original, deterministic 2×2 PNG checker swatch generated from project-owned RGB bytes; the external hosts are synthetic `example.invalid` paths. Browser tests route those synthetic URLs locally. Browser acceptance has not been executed in this isolated candidate, and no real third-party media was requested.
+
+## Source module and semantic scope
+
+`choices/local` maintains this existing definition. Full document validation requires image IDs unique within this gallery (`DUPLICATE_ID`) and every supplied image src to pass the shared safe-image URL policy (`UNSAFE_URL`). This validates URLs, not actual image content or decoding success. Structural literal-text length rules are preserved; no additional blanket trim rule is imposed.

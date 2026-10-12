@@ -18,3 +18,7 @@ An accepted event updates the local selection. `preventDefault()` preserves the 
 This component may appear in Forms but adds no names, bindings, state values or submission behavior. Unrelated host-state updates and outer native form reset preserve its existing DOM, local selection and focus. Invalid replacement is atomic; valid replacement resets local state and removes old handlers.
 
 See [the original fictional example](../examples/location-choice-request.json), [focused public tests](../tests/choice-gallery.test.mjs), and [prepared browser acceptance](../tests/browser/choice-gallery.spec.mjs). Browser acceptance is prepared, not executed in this isolated candidate. No location/provider integration or parity claim is made.
+
+## Source module and semantic scope
+
+`choices/local` maintains this existing definition. Full document validation requires option IDs unique within this component (`DUPLICATE_ID`) and any supplied source link to be absolute core-safe HTTP(S) (`UNSAFE_URL`). These records are supplied labels, not coordinates or discovered places. Structural length rules are preserved without an additional blanket trim rule.

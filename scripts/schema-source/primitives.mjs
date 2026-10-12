@@ -23,3 +23,5 @@ export const date = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$' };
 
 export const agendaDate = { type:'string', pattern:'^(?!0000)\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$' };
 export const agendaTime = { type:'string', pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$' };
+
+export const suppliedKey = {...key, pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'};
