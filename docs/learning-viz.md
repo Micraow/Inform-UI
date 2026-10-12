@@ -13,3 +13,7 @@ A visible local Reset restores time zero and the initial autoplay policy. Accept
 The parent completion timer uses shared generation acquisition and is released on pause, source replacement, retirement or disposal, including a timer registration that synchronously retires its owner before returning an ID. The existing engine keeps its own established resource implementation; this component does not claim to rewrite or independently certify all engine internals.
 
 Author DOM tests execute real SVG rendering. JSDOM uses explicit adapters only for its missing structuredClone and the engine's canvas bootstrap; this is not a native-browser result or an animation-engine mock. Native cases are discovered separately until a batched real-browser run occurs.
+
+## Validation and shared source dependency
+
+The source module explicitly depends on `media/lottie`; read [the complete bounded animation contract](lottie-recovery.md) as well as this component contract. Both supplied light/dark sources are checked by `lottieDataIssue`, even when a pending or failed presentation permits sources to be omitted. `LEARNING_VIZ_SOURCE` reports invalid supplied animation data. `LEARNING_VIZ_TEXT` rejects whitespace-only `label`, `playLabel`, `pauseLabel`, `resetLabel` and `loadImageLabel`. The optional `alt` and `fallback` strings retain their structural empty-string allowance; this is not a blanket trim rule. Resolved data requires both sources, alt and animated fields; no source or playback state is fabricated for missing data.

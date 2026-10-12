@@ -1,0 +1,18 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "search-image",
+      "alt": "No supplied image yet",
+      "searchImage": null,
+      "sourcePending": true,
+      "aspectRatio": "16:9"
+    },
+    {
+      "type": "youtube",
+      "label": "Supplied synthetic video ID",
+      "videoId": "abcdefghijk",
+      "loadMode": "on-demand"
+    }
+  ]
+}
