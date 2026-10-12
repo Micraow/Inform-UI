@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 90 migrated nodes and 128 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 100 migrated nodes and 118 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -74,3 +74,7 @@ Every registered module now declares `semanticContractPaths`. These are the auth
 ## Request and quiz card families
 
 `requests/user`, `requests/location`, `onboarding/welcome` and `learning/quiz-cards` register the existing single-source domain installers. They retain finite supplied input/intent and quiz-result contracts. Their explicit semantic documents include nonblank scopes, optional-empty exceptions, ID/reference constraints, source/capability rules and revision relationships. These are existing components, not additions to the paused specialized-calculator list.
+
+## Supplied finance and context views
+
+`finance/entry`, `context/actions`, `finance/equity-watch` and `finance/credit-display` reuse their original source installers. Their data is supplied display content and finite local intents, not bank connectivity, market retrieval, credit assessment or trading. Explicit contracts describe the actual nonblank checks and exceptions, exact supplied labels, identifier relationships and plotting domains. No numerical financial decision rule is added by this source registration.

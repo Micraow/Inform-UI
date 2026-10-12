@@ -31,3 +31,7 @@ A visible Reset restores disclosure and clears receipts. Native reset honors can
 ## Small shared style successor
 
 This source also corrects FinanceEntry and ContextAction CSS references from component-local-only `--iui-border` / `--iui-text` to established global `--iui-line` / `--iui-ink`. Prior pins remain unchanged. This is an explicit two-stylesheet correction, not a claim that prior pixel acceptance existed. Their original behavior tests are rerun with the combined source.
+
+## Complete semantic data constraints
+
+Full `validateDocument` checks every supplied top-level string except `fallback`, every string in `labels` and `noAccounts`, and each direct string property of every row for nonblank `trim()` content (`EQUITY_WATCH_TEXT`). Row IDs must be unique (`EQUITY_WATCH_ID`). Nullable display labels remain null; valid numeric-looking labels such as "0" are text, not missing values. Fallback retains its original empty/whitespace allowance. The validator does not derive direction or color from the label, recalculate a balance, infer an exchange rate, or reinterpret caller-supplied financial text. These checks supplement the structural schema and apply to supplied fields in all phases.

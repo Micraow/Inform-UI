@@ -35,3 +35,11 @@ The original meter artwork is not copied: the local gradient and marker are orig
 ## Narrow-header readability follow-up
 
 Actual Chromium screenshots at 390 pixels exposed a title squeezed to single-character lines by the supplied score and disclosure control. The local container now wraps the header below 576 pixels and gives the title its own full-width row; the wider layout is unchanged. The native composition test checks that each complete title word occupies one line box. Original screenshots and the negative geometry result are preserved; this change awaits its new exact-asset native recheck.
+
+## Complete semantic data constraints
+
+Full `validateDocument` checks the top-level `label`, every provided `labels` value, and overview `title` for nonblank `trim()` content (`CREDIT_TEXT`). It also checks IDs for the unique-ID lists: overview metrics, history periods and each period's points; detail rows and related items. IDs must be unique within their own list (`CREDIT_ID`). This is not a blanket nonblank rule for all credit display content. Existing structurally permitted empty/whitespace content labels, nullable score/value labels, notes, descriptions and fallback remain unchanged.
+
+Overview view-option values must be distinct; an active view must occur in the offered options when that list is nonempty. A selected period must exist when history is nonempty. For each history, `(yMin ?? 0) < (yMax ?? 100)` is required, series keys must be unique, point x coordinates must increase strictly, and every point-value key must name a supplied series. Missing series keys and null values are not synthesized. Display coordinates are caller-supplied and do not calculate creditworthiness. Structural numeric bounds, including percent positions, remain enforced separately.
+
+A supplied disclosure URL must pass the safe-link policy, and related-item logos the safe-image policy. A structured schema package alone does not run these relationship or URL checks; retain full validation before mounting/compiling. These rules apply to the supplied data and do not connect to credit bureaus, change an account or provide a financial recommendation.

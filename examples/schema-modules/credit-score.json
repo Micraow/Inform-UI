@@ -1,0 +1,205 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-credit-score",
+      "id": "credit-demo",
+      "label": "Original supplied credit display",
+      "dataStatus": "ready",
+      "title": "Original supplied score",
+      "scoreLabel": "900 supplied label",
+      "scorePosition": 15,
+      "activeView": "overview",
+      "viewOptions": [
+        {
+          "value": "overview",
+          "label": "Overview"
+        },
+        {
+          "value": "trend",
+          "label": "History"
+        }
+      ],
+      "selectedPeriod": "recent",
+      "history": [
+        {
+          "id": "recent",
+          "label": "Recent supplied dates",
+          "series": [
+            {
+              "key": "score",
+              "label": "Supplied score",
+              "tone": "positive"
+            },
+            {
+              "key": "other",
+              "label": "Independent comparison",
+              "tone": "negative"
+            }
+          ],
+          "points": [
+            {
+              "id": "a",
+              "x": 0,
+              "label": "First date",
+              "accessibilityLabel": "Original first date: zero, comparison seven",
+              "values": {
+                "score": 0,
+                "other": 7
+              }
+            },
+            {
+              "id": "b",
+              "x": 3,
+              "label": "Second date",
+              "accessibilityLabel": "Original second date: unknown, comparison eight",
+              "values": {
+                "score": null,
+                "other": 8
+              }
+            },
+            {
+              "id": "c",
+              "x": 12,
+              "label": "Last date",
+              "accessibilityLabel": "Original last date: forty, comparison unknown",
+              "values": {
+                "score": 40,
+                "other": null
+              }
+            }
+          ],
+          "yMin": -10,
+          "yMax": 100
+        },
+        {
+          "id": "older",
+          "label": "Older supplied dates",
+          "series": [
+            {
+              "key": "score",
+              "label": "Supplied score",
+              "tone": "positive"
+            },
+            {
+              "key": "other",
+              "label": "Independent comparison",
+              "tone": "negative"
+            }
+          ],
+          "points": [
+            {
+              "id": "old",
+              "x": 0,
+              "label": "Older date",
+              "accessibilityLabel": "Original older date: negative supplied value",
+              "values": {
+                "score": -5,
+                "other": null
+              }
+            }
+          ],
+          "yMin": -10,
+          "yMax": 100
+        }
+      ],
+      "hasHistory": true,
+      "metrics": [
+        {
+          "id": "original-factor",
+          "label": "Original supplied factor",
+          "valueLabel": "0 supplied value",
+          "tone": "negative",
+          "detailEnabled": true
+        },
+        {
+          "id": "unknown",
+          "label": "Unknown factor",
+          "valueLabel": null,
+          "tone": "positive"
+        }
+      ],
+      "disclosure": {
+        "text": "All labels and coordinates are fictional supplied values. No assessment is computed.",
+        "linkText": "Request supplied source",
+        "url": "https://example.test/credit-source"
+      },
+      "reportDateLabel": "Original report date text",
+      "labels": {
+        "maskedScore": "Score hidden",
+        "maskedValue": "Value hidden",
+        "unknown": "Not supplied",
+        "loading": "Loading supplied record",
+        "empty": "No supplied record",
+        "noHistory": "No supplied history",
+        "viewSelector": "Select supplied view",
+        "rangeSelector": "Select supplied range",
+        "scoreMeter": "Supplied position",
+        "scoreDetails": "Supplied score explanation",
+        "historyChart": "Supplied history",
+        "close": "Close explanation"
+      }
+    },
+    {
+      "type": "ledger-credit-score-detail",
+      "id": "detail-demo",
+      "label": "Original supplied factor detail",
+      "dataStatus": "ready",
+      "summaryLabel": "777 supplied summary",
+      "ratingLabel": "Original supplied rating",
+      "ratingTone": "warning",
+      "rows": [
+        {
+          "id": "zero",
+          "label": "Supplied zero",
+          "valueLabel": "0",
+          "progressPercent": 0
+        },
+        {
+          "id": "unknown",
+          "label": "Supplied unknown",
+          "valueLabel": null,
+          "progressPercent": null
+        },
+        {
+          "id": "independent",
+          "label": "Independent progress",
+          "valueLabel": "900 supplied value",
+          "progressPercent": 25
+        }
+      ],
+      "factors": [
+        {
+          "description": "Original supplied takeaway, not generated advice."
+        }
+      ],
+      "relatedTitle": "Original related records",
+      "relatedItems": [
+        {
+          "id": "first",
+          "label": "Fictional creditor",
+          "detailLabel": "Supplied detail",
+          "valueLabel": "0",
+          "valueAccessibilityLabel": "Original zero record",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "fallbackGlyph": "F"
+        },
+        {
+          "id": "second",
+          "label": "Other fictional creditor",
+          "detailLabel": null,
+          "valueLabel": null,
+          "fallbackGlyph": "O"
+        }
+      ],
+      "relatedNote": "Original supplied note.",
+      "labels": {
+        "maskedValue": "Value hidden",
+        "unknown": "Not supplied",
+        "loading": "Loading supplied record",
+        "empty": "No supplied record",
+        "takeaways": "Supplied takeaways"
+      }
+    }
+  ]
+}

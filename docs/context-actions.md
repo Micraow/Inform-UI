@@ -33,3 +33,9 @@ Accepted and cancelled requests only update a local receipt. The visible Reset c
 Original inline PNG fixtures are generated locally. External icon or logo URLs remain inactive until their separate `Load supplied image` control is clicked; capture cancellation and disabled state prevent activation. That consent control is outside the provider/plugin button. Image loading and cleanup reuse the supplied-image implementation. Theme changes are applied through document update, which retires previous image sources.
 
 This is an original implementation from observable presentation facts. Pixel matching and new native acceptance are separate from author DOM/standalone and schema checks. No private reference source or artwork is distributed.
+
+## Complete semantic data constraints
+
+Full `validateDocument` checks all supplied top-level strings except `fallback` for nonblank `trim()` content (`CONTEXT_ACTION_TEXT`); nullable labels remain null and optional omission stays distinct from whitespace. Fallback retains its original empty allowance. Metadata item labels must be nonblank. Provider URLs use the safe-link policy; provider logos, themed light/dark logos and plugin icons use the safe-image policy.
+
+Suggestion IDs and prompts must be nonblank; violations report `CONTEXT_ACTION_TEXT`. IDs must also be unique within the suggestion list; duplicate IDs report `CONTEXT_ACTION_ID`. Optional answer/entity identifiers must be nonblank when provided, with `CONTEXT_ACTION_TEXT` for blank values. The event's paired-hint behavior remains as documented; the validator does not invent a requirement to provide both IDs. Image URL checks are not generalized into arbitrary recursive string trimming. No provider lookup or plugin installation is performed by these data checks.

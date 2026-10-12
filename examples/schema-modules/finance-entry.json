@@ -1,0 +1,63 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-repair-bank-connection",
+      "id": "repair-demo",
+      "label": "Fictional bank connection",
+      "title": "Review a supplied connection",
+      "description": "This original fixture does not connect any account.",
+      "ctaLabel": "Request a local review",
+      "linkId": "fictional-link-12",
+      "prompt": "Review the supplied connection",
+      "systemHint": "Fixture text only"
+    },
+    {
+      "type": "ledger-finance-onboarding",
+      "id": "entry-demo",
+      "label": "Finance entry example",
+      "title": "Explore supplied records",
+      "description": "An original finite card with no account access.",
+      "icon": "◇",
+      "prompt": "Lower priority original prompt",
+      "action": {
+        "kind": "action",
+        "value": "original-entry-choice"
+      },
+      "threadMode": "local-demo"
+    },
+    {
+      "type": "finance-onboarding-suggestions",
+      "id": "ideas-demo",
+      "label": "Original finance suggestions",
+      "heading": "Choose a supplied question",
+      "prefillAvailable": true,
+      "items": [
+        {
+          "id": "one",
+          "label": "Review the supplied list",
+          "query": "Show the fictional list",
+          "emoji": "▤"
+        },
+        {
+          "id": "two",
+          "label": "Inspect the example categories",
+          "query": "Show the fictional categories",
+          "emoji": "◇"
+        },
+        {
+          "id": "three",
+          "label": "Read the original summary",
+          "query": "Show the fictional summary",
+          "emoji": "○"
+        }
+      ],
+      "followUp": {
+        "label": "Ask the original follow-up",
+        "query": "Continue this local example",
+        "event": "fixture-follow-up",
+        "icon": "↗"
+      }
+    }
+  ]
+}

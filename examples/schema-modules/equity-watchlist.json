@@ -1,0 +1,226 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-equity-updates",
+      "id": "equity-demo",
+      "label": "Original supplied equity updates",
+      "title": "Original equity overview",
+      "asOfLabel": "Supplied snapshot time",
+      "emptyLabel": "No supplied positions",
+      "hasPositions": true,
+      "connected": true,
+      "conversionNote": "All currency labels are independently supplied.",
+      "labels": {
+        "stock": "Supplied asset",
+        "price": "Supplied price",
+        "percent": "Supplied day percent",
+        "value": "Supplied day value",
+        "up": "↑ ",
+        "down": "↓ ",
+        "showMore": "Show all supplied rows",
+        "showLess": "Show five supplied rows",
+        "masked": "Hidden amount"
+      },
+      "rows": [
+        {
+          "id": "row-0",
+          "ticker": "EX0",
+          "name": "Original fictional asset 0",
+          "priceLabel": "0.00 USD",
+          "percentLabel": "0.00%",
+          "percentDirection": "flat",
+          "percentColor": "secondary",
+          "valueLabel": "900.000 USD",
+          "valueDirection": "up",
+          "valueColor": "positive"
+        },
+        {
+          "id": "row-1",
+          "ticker": "EX1",
+          "name": "Original fictional asset 1",
+          "priceLabel": null,
+          "percentLabel": null,
+          "percentDirection": "flat",
+          "percentColor": "secondary",
+          "valueLabel": null,
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-2",
+          "ticker": "EX2",
+          "name": "Original fictional asset 2",
+          "priceLabel": "102.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-3",
+          "ticker": "EX3",
+          "name": "Original fictional asset 3",
+          "priceLabel": "103.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-4",
+          "ticker": "EX4",
+          "name": "Original fictional asset 4",
+          "priceLabel": "104.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-5",
+          "ticker": "EX5",
+          "name": "Original fictional asset 5",
+          "priceLabel": "105.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-6",
+          "ticker": "EX6",
+          "name": "Original fictional asset 6",
+          "priceLabel": "106.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        }
+      ],
+      "noAccounts": {
+        "title": "No account is supplied",
+        "description": "This fixture cannot connect an account.",
+        "actionLabel": "Request local onboarding",
+        "query": "Show the original local onboarding choice"
+      }
+    },
+    {
+      "type": "ledger-watchlist",
+      "id": "watch-demo",
+      "label": "Original supplied watchlist",
+      "title": "Original watchlist overview",
+      "asOfLabel": "Another supplied snapshot",
+      "emptyLabel": "No supplied watch entries",
+      "hasEntries": true,
+      "rowsToShow": 2,
+      "labels": {
+        "stock": "Supplied asset",
+        "price": "Supplied price",
+        "percent": "Supplied day percent",
+        "value": "Supplied day value",
+        "up": "↑ ",
+        "down": "↓ ",
+        "showMore": "Show all supplied rows",
+        "showLess": "Show five supplied rows",
+        "masked": "Hidden amount"
+      },
+      "rows": [
+        {
+          "id": "row-0",
+          "ticker": "EX0",
+          "name": "Original fictional asset 0",
+          "priceLabel": "0.00 USD",
+          "percentLabel": "0.00%",
+          "percentDirection": "flat",
+          "percentColor": "secondary",
+          "valueLabel": "900.000 USD",
+          "valueDirection": "up",
+          "valueColor": "positive"
+        },
+        {
+          "id": "row-1",
+          "ticker": "EX1",
+          "name": "Original fictional asset 1",
+          "priceLabel": null,
+          "percentLabel": null,
+          "percentDirection": "flat",
+          "percentColor": "secondary",
+          "valueLabel": null,
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-2",
+          "ticker": "EX2",
+          "name": "Original fictional asset 2",
+          "priceLabel": "102.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-3",
+          "ticker": "EX3",
+          "name": "Original fictional asset 3",
+          "priceLabel": "103.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-4",
+          "ticker": "EX4",
+          "name": "Original fictional asset 4",
+          "priceLabel": "104.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-5",
+          "ticker": "EX5",
+          "name": "Original fictional asset 5",
+          "priceLabel": "105.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        },
+        {
+          "id": "row-6",
+          "ticker": "EX6",
+          "name": "Original fictional asset 6",
+          "priceLabel": "106.125 USD",
+          "percentLabel": "7.0%",
+          "percentDirection": "down",
+          "percentColor": "negative",
+          "valueLabel": "-3.50 USD",
+          "valueDirection": "down",
+          "valueColor": "negative"
+        }
+      ]
+    }
+  ]
+}

@@ -30,3 +30,7 @@ A visible local Reset clears receipts. A native form reset is cancelable and use
 ## Evidence boundary
 
 The finite presentation and request distinctions were implemented from observable behavior, with new source and fictional fixtures. This is not an implementation of an external financial provider or proprietary action payload. Author Node/standalone tests are reported separately from independent acceptance and native/pixel checks.
+
+## Complete semantic data constraints
+
+Full `validateDocument` checks each supplied top-level string except `fallback` for nonblank `trim()` content (`FINANCE_ENTRY_TEXT`). Empty/whitespace fallback retains its existing allowance. On suggestion lists, item IDs must be unique and nonblank; item labels and queries and any follow-up label/query must be nonblank. On the other two cards, an `action.value` must be nonblank, and an icon source must pass the existing safe-image policy. These checks apply to supplied fields regardless of phase; they do not invent a recursive trim rule or retrieve/validate any account. Structural schema validation alone does not enforce these constraints.
