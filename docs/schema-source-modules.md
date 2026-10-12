@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 123 migrated nodes and 95 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 128 migrated nodes and 90 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -94,3 +94,7 @@ Every registered module now declares `semanticContractPaths`. These are the auth
 ## Composed demonstrations
 
 `learning/study-demo` selects its real quiz definition dependency. `reservations/pills` supplies the existing grouped and carousel contracts. `onboarding/search-capability` composes reservation data, location and media readers with explicit source dependencies and mandatory semantic reading. Selection manifests expose all included nodes; no provider or account runtime is added.
+
+## Entity and automation views
+
+`automation/views` and `entities/cards` use their original finite source installers and explicit semantic contracts. They compose with text and other selected families without adding scheduler, account or entity lookup services. Their required documentation preserves nonblank exceptions, ID scopes, phase restrictions, safe-image rules and local intent boundaries.

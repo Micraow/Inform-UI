@@ -7,8 +7,6 @@ import {installRoxSchema} from '../rox-schema.mjs';
 import {installGcsSchema} from '../gcs-schema.mjs';
 import {installCorrectedAgeSchema} from '../corrected-age-schema.mjs';
 import {installSearchOnboardingSchema} from '../search-onboarding-schema.mjs';
-import {installEntitySchema} from '../entity-schema.mjs';
-import {installAutomationSchema} from '../automation-schema.mjs';
 import {promptChecklistSchema} from '../prompt-checklist-schema.mjs';
 import {financeStatusSchema} from '../finance-status-schema.mjs';
 import {recommendationCardSchema} from '../recommendation-card-schema.mjs';
@@ -313,10 +311,10 @@ node('follow-up-action-bar',{label:short,actions:array(ref('FollowUpAction'),0,1
 node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimatedMonthlyIncomeLabel:short,incomeSourcesLabel:short,nextPaycheck:{anyOf:[ref('LedgerIncomePaycheck'),{type:'null'}]},emptyLabel:string(2000),masked:bool,maskedLabel:short,estimatedLabel:short,nextPaycheckLabel:short,recurringIncomeLabel:short,noUpcomingLabel:string(2000),dateUnavailableLabel:short,source:ref('LedgerSource')},['label','hasIncome'],'finance');
 registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../async-video-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncVideoCarouselNode'));owners['async-video-carousel']='base';
 
-installAutomationSchema({node,defs});
+registry.use('automation/views');
 node('scheduled-task-suggestion',{label:short,action:choice('new-turn','task-opt-in-accept'),creationGuidelines:string(12000,1),originSurface:choice('chat','work'),submitted:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:string(2000,1)},['label']);
 
-installEntitySchema({node,defs});
+registry.use('entities/cards');
 
 registry.use('requests/user');
 registry.use('finance/category-views');

@@ -34,3 +34,9 @@ Tests cover resolved/pending/failed/empty data, validation, five-item list, chat
 Native reset anchors to the always-visible whole-plan header toggle when it
 exists. The completed toggle inside a hidden plan body cannot veto that reset;
 completed-only layouts continue to use their visible completed toggle.
+
+## Source selection and precise validation
+
+`automation/views` registers all three existing nodes from their single installer. `AUTOMATION_DATA` rejects whitespace-only strings on every top-level direct string field (including optional fallback and labels), every supplied item direct string field, viewAll label and each plan statusLabels value. Item URLs and viewAll URL must pass the safe link policy. Plan step titles must be nonblank; step/item IDs also have the schema's no-whitespace/control-character syntax. IDs must be unique within each item or step list, not across unrelated components.
+
+Resolved `steps: null` requires summaryErrorLabel. Show/hide plan labels must be supplied as a pair. Initially collapsed plans require that pair and cannot use library layout or language_learning planType. These are supplied presentation consistency checks, not task scheduling or completion inference. Structural conditionals forbid active item/items/viewAll/steps as specified for unresolved states; other present strings and relationships still receive semantic validation. Run full `validateDocument`, not only the selected structural schema.

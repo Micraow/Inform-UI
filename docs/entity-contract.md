@@ -31,3 +31,9 @@ Tests exercise validation, finite variants, empty/null/failure, image consent ca
 A separate adversarial probe identified an inherited shared-carousel limitation: a requestAnimationFrame registration that synchronously replaces the mount before returning its frame ID does not cancel that late ID on the older shared implementation. Ordinary update/dispose cleanup passes; this late-registration case needs a shared-carousel fix and retest before broad lifecycle acceptance. The entity domain does not duplicate or replace the shared carousel's resource machinery.
 
 The original late requestAnimationFrame ID registration failure is retained as negative evidence. The shared47c1d8 lifecycle repair was applied in this integration; the author independently replayed the same actual mount probe and observed cancellation of the late909 ID. Original entity domain files alone did not include that repair.
+
+## Source selection and precise validation
+
+`entities/cards` registers these two existing types from the original installer. `ENTITY_DATA` rejects whitespace-only top-level direct strings except subtitle; subtitle retains empty/whitespace support. For every overview item it checks all direct string fields, plus every metadata label and value. Image alt strings retain their structural empty/whitespace allowance; each supplied image src passes the shared safe-image URL policy. No extra blanket trim rule is applied to image alt.
+
+An actionLabel requires an actionId on the card or corresponding overview item. Overview item IDs must be unique within its selected collection. The structural single/carousel branches prohibit supplying both item and items; pending/failed branches prohibit item/items, while a card prohibits active image/actionId there. Any permitted fields still undergo semantic validation. The full `validateDocument` check remains required beyond the selected structural package, before mounting or compiling.
