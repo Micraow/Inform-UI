@@ -1,0 +1,64 @@
+{
+  "version": "iui/1",
+  "title": "Original synthetic supplied ledger upcoming example",
+  "description": "Fictional teaching data; no account, market, payment, or provider connection.",
+  "body": [
+    {
+      "type": "ledger-upcoming-activity",
+      "label": "Fictional supplied activities",
+      "activities": [
+        {
+          "id": "legacy",
+          "title": "Fictional legacy",
+          "amountLabel": null,
+          "dateLabel": null
+        }
+      ],
+      "flows": {
+        "incoming": {
+          "top": {
+            "id": "top",
+            "title": "Fictional top",
+            "amountLabel": "Unknown as supplied",
+            "dateLabel": null,
+            "amountUnknown": true
+          },
+          "items": [
+            {
+              "id": "sample",
+              "title": "Fictional sample",
+              "amountLabel": null,
+              "dateLabel": null
+            }
+          ],
+          "expandedItems": [
+            {
+              "id": "sample",
+              "title": "Fictional sample",
+              "amountLabel": null,
+              "dateLabel": null
+            },
+            {
+              "id": "extra",
+              "title": "Fictional extra",
+              "amountLabel": null,
+              "dateLabel": null
+            }
+          ]
+        },
+        "outgoing": {
+          "items": [
+            {
+              "id": "sample",
+              "title": "Fictional sample",
+              "amountLabel": null,
+              "dateLabel": null
+            }
+          ]
+        }
+      },
+      "activeFlow": "incoming",
+      "expanded": true
+    }
+  ]
+}

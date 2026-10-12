@@ -1,0 +1,151 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "nba-game-boxscore",
+      "label": "Fictional basketball supplied boxscore",
+      "status": "live",
+      "teams": [
+        {
+          "id": "cedar",
+          "label": "Cedar",
+          "score": 0,
+          "players": [
+            {
+              "id": "player_a",
+              "label": "Mira Stone",
+              "starter": null,
+              "minutes": null,
+              "points": 0,
+              "rebounds": null,
+              "assists": 3,
+              "steals": 0,
+              "blocks": null,
+              "turnovers": 1,
+              "plusMinus": -2,
+              "fieldGoals": "0 / 2",
+              "source": {
+                "label": "Original fictional sports snapshot",
+                "url": "https://example.invalid/supplied-sports"
+              }
+            }
+          ]
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor",
+          "score": null,
+          "players": []
+        }
+      ],
+      "periods": [
+        {
+          "label": "Opening period",
+          "scores": [
+            0,
+            null
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z"
+    },
+    {
+      "type": "cricket-match-boxscore",
+      "label": "Fictional cricket supplied boxscore",
+      "status": "unknown",
+      "teams": [
+        {
+          "id": "cedar",
+          "label": "Cedar"
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor"
+        }
+      ],
+      "innings": [
+        {
+          "id": "innings_a",
+          "label": "Supplied innings",
+          "teamId": "cedar",
+          "runs": 12,
+          "wickets": 1,
+          "overs": "3.2",
+          "extras": null,
+          "batting": [
+            {
+              "id": "row_a",
+              "label": "Remy Harbor",
+              "dismissal": null,
+              "runs": 8,
+              "balls": 7,
+              "fours": 1,
+              "sixes": 0,
+              "strikeRate": 114.3
+            }
+          ],
+          "bowling": [
+            {
+              "id": "row_a",
+              "label": "Avery Cedar",
+              "overs": "3.2",
+              "maidens": 0,
+              "runs": 12,
+              "wickets": 1,
+              "economy": null
+            }
+          ],
+          "source": {
+            "label": "Original fictional sports snapshot",
+            "url": "https://example.invalid/supplied-sports"
+          }
+        }
+      ]
+    },
+    {
+      "type": "nba-player-summary",
+      "label": "Fictional basketball supplied records",
+      "player": "Mira Stone",
+      "records": [
+        {
+          "id": "period_a",
+          "season": "Supplied sample period",
+          "team": null,
+          "scope": "unknown",
+          "games": 0,
+          "minutesPerGame": null,
+          "pointsPerGame": 1.25,
+          "reboundsPerGame": 0,
+          "assistsPerGame": null,
+          "source": {
+            "label": "Original fictional sports snapshot",
+            "url": "https://example.invalid/supplied-sports"
+          }
+        }
+      ]
+    },
+    {
+      "type": "tennis-player-summary",
+      "label": "Fictional tennis supplied records",
+      "player": "Remy Harbor",
+      "records": [
+        {
+          "id": "period_a",
+          "season": "Supplied sample period",
+          "surface": "unknown",
+          "matches": 0,
+          "wins": 1,
+          "losses": 2,
+          "titles": 3,
+          "rank": null,
+          "note": "Opaque supplied scopes; no inferred reconciliation."
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z",
+      "source": {
+        "label": "Original fictional sports snapshot",
+        "url": "https://example.invalid/supplied-sports"
+      }
+    }
+  ]
+}

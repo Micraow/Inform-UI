@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 152 migrated nodes and 66 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 178 migrated nodes and 40 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -122,3 +122,11 @@ The four `calculators/corrected-age`, `calculators/gcs`, `calculators/rox` and `
 ## Supplied decisions and places
 
 `decisions/supplied` owns the existing jobs, product-card, local-business and restaurant-reviews declarations. Required contracts include pay/date consistency, embedded image safety, exact supplied variants, weekday periods and attributed review dates. `SuppliedPrice` remains the single definition for later flight-result source migration. No provider or purchase action is added.
+
+## Financial snapshots and ledger records
+
+The existing finance snapshots, ledger lists, exact-money records, category correction, income, spending and upcoming-activity nodes now have maintained source installers. Shared source labels, exact money and income-paycheck definitions have explicit no-node providers; consumers select only the providers their chosen node modules need. Required semantic contracts preserve timestamps, ID references, null/unknown money, strict text rules and their existing exceptions. Sources remain supplied data, with no account or trading service.
+
+## Supplied sports and result records
+
+The existing motorsport, generic sports, match scores, tournament/election, boxscore and player-summary declarations have five maintained source modules. Four depend on the shared travel snapshot source definition; the generic sports model uses only shared values. Explicit required contracts preserve supplied scores, unknowns, record references, grouping and date rules without inferring winners, league rules or election outcomes.

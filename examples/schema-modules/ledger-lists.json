@@ -1,0 +1,49 @@
+{
+  "version": "iui/1",
+  "title": "Original synthetic supplied ledger lists example",
+  "description": "Fictional teaching data; no account, market, payment, or provider connection.",
+  "body": [
+    {
+      "type": "asset-distribution",
+      "label": "Supplied fictional assets",
+      "observedAt": "As labeled by the example author",
+      "accounts": [
+        {
+          "id": "known",
+          "name": "Fictional known account",
+          "amount": 0,
+          "currency": "USD"
+        },
+        {
+          "id": "unknown",
+          "name": "Fictional unknown account",
+          "amount": null,
+          "currency": "EUR"
+        }
+      ],
+      "source": {
+        "label": "Original fictional ledger example",
+        "url": "https://example.org/synthetic-ledger"
+      }
+    },
+    {
+      "type": "transaction-list",
+      "label": "Supplied fictional transactions",
+      "transactions": [
+        {
+          "id": "sample",
+          "date": "2026-10-01",
+          "description": "Original zero-value example",
+          "amount": 0,
+          "currency": "USD",
+          "direction": "debit",
+          "status": "pending"
+        }
+      ],
+      "source": {
+        "label": "Original fictional ledger example",
+        "url": "https://example.org/synthetic-ledger"
+      }
+    }
+  ]
+}

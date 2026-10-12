@@ -1,0 +1,68 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "f1-races",
+      "label": "Fictional Cedar Circuit weekend",
+      "races": [
+        {
+          "id": "cedar",
+          "label": "Cedar round",
+          "season": 2028,
+          "round": 1,
+          "circuit": "Cedar Circuit",
+          "location": "Fictional Harbor",
+          "sessions": [
+            {
+              "id": "practice",
+              "label": "Supplied practice",
+              "kind": "practice",
+              "status": "complete",
+              "startsAt": "2028-02-29T10:00Z",
+              "endsAt": "2028-02-29T11:15Z"
+            },
+            {
+              "id": "race",
+              "label": "Time not supplied",
+              "kind": "race",
+              "status": "unknown",
+              "startsAt": null
+            }
+          ],
+          "source": {
+            "label": "Original fictional sports snapshot",
+            "url": "https://example.invalid/supplied-sports"
+          }
+        }
+      ]
+    },
+    {
+      "type": "f1-standings",
+      "label": "Fictional supplied standings",
+      "season": 2028,
+      "observedAt": "2028-02-29T12:00Z",
+      "standings": [
+        {
+          "id": "driver_a",
+          "label": "Mira Stone",
+          "kind": "driver",
+          "team": "Cedar Team",
+          "rank": 1,
+          "points": 12.5,
+          "wins": null
+        },
+        {
+          "id": "constructor_a",
+          "label": "Harbor Team",
+          "kind": "constructor",
+          "rank": null,
+          "points": -0.5,
+          "source": {
+            "label": "Original fictional sports snapshot",
+            "url": "https://example.invalid/supplied-sports"
+          }
+        }
+      ]
+    }
+  ]
+}

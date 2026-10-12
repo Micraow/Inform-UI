@@ -1,0 +1,280 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "sports-schedule",
+      "data": {
+        "league": {
+          "id": "cedar_cup",
+          "name": "Fictional Cedar Cup",
+          "sport": "football",
+          "season": "Original sample"
+        },
+        "timezone": "UTC",
+        "updatedAt": "2028-02-29T12:00:30.125Z",
+        "source": {
+          "label": "Original fictional sample",
+          "synthetic": true
+        },
+        "teams": [
+          {
+            "id": "cedar",
+            "name": "Cedar"
+          },
+          {
+            "id": "harbor",
+            "name": "Harbor"
+          }
+        ],
+        "games": [
+          {
+            "id": "future",
+            "startAt": "2028-03-01T15:00Z",
+            "homeTeam": "cedar",
+            "awayTeam": "harbor",
+            "status": "scheduled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "Exhibition"
+          },
+          {
+            "id": "finished",
+            "startAt": "2028-02-29T09:00Z",
+            "homeTeam": "harbor",
+            "awayTeam": "cedar",
+            "status": "final",
+            "homeScore": 0,
+            "awayScore": 0,
+            "winnerTeamId": "cedar",
+            "tieBreak": {
+              "label": "Supplied decision",
+              "home": 3,
+              "away": 4
+            },
+            "periodScores": [
+              {
+                "label": "First",
+                "home": null,
+                "away": null
+              }
+            ],
+            "stats": [
+              {
+                "label": "Supplied observation",
+                "home": "missing",
+                "away": null
+              }
+            ]
+          }
+        ],
+        "standings": [
+          {
+            "teamId": "cedar",
+            "rank": 1,
+            "played": 1,
+            "won": 1,
+            "drawn": 0,
+            "lost": 0,
+            "points": 2.5,
+            "group": "Sample"
+          },
+          {
+            "teamId": "harbor",
+            "rank": 2,
+            "played": 1,
+            "won": 0,
+            "drawn": 0,
+            "lost": 1,
+            "points": -0.5,
+            "group": "Sample"
+          }
+        ]
+      },
+      "initialDate": "2028-03-02",
+      "initialStage": "Exhibition"
+    },
+    {
+      "type": "sports-scoreboard",
+      "data": {
+        "league": {
+          "id": "cedar_cup",
+          "name": "Fictional Cedar Cup",
+          "sport": "football",
+          "season": "Original sample"
+        },
+        "timezone": "UTC",
+        "updatedAt": "2028-02-29T12:00:30.125Z",
+        "source": {
+          "label": "Original fictional sample",
+          "synthetic": true
+        },
+        "teams": [
+          {
+            "id": "cedar",
+            "name": "Cedar"
+          },
+          {
+            "id": "harbor",
+            "name": "Harbor"
+          }
+        ],
+        "games": [
+          {
+            "id": "future",
+            "startAt": "2028-03-01T15:00Z",
+            "homeTeam": "cedar",
+            "awayTeam": "harbor",
+            "status": "scheduled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "Exhibition"
+          },
+          {
+            "id": "finished",
+            "startAt": "2028-02-29T09:00Z",
+            "homeTeam": "harbor",
+            "awayTeam": "cedar",
+            "status": "final",
+            "homeScore": 0,
+            "awayScore": 0,
+            "winnerTeamId": "cedar",
+            "tieBreak": {
+              "label": "Supplied decision",
+              "home": 3,
+              "away": 4
+            },
+            "periodScores": [
+              {
+                "label": "First",
+                "home": null,
+                "away": null
+              }
+            ],
+            "stats": [
+              {
+                "label": "Supplied observation",
+                "home": "missing",
+                "away": null
+              }
+            ]
+          }
+        ],
+        "standings": [
+          {
+            "teamId": "cedar",
+            "rank": 1,
+            "played": 1,
+            "won": 1,
+            "drawn": 0,
+            "lost": 0,
+            "points": 2.5,
+            "group": "Sample"
+          },
+          {
+            "teamId": "harbor",
+            "rank": 2,
+            "played": 1,
+            "won": 0,
+            "drawn": 0,
+            "lost": 1,
+            "points": -0.5,
+            "group": "Sample"
+          }
+        ]
+      },
+      "gameId": "finished"
+    },
+    {
+      "type": "sports-standings",
+      "data": {
+        "league": {
+          "id": "cedar_cup",
+          "name": "Fictional Cedar Cup",
+          "sport": "football",
+          "season": "Original sample"
+        },
+        "timezone": "UTC",
+        "updatedAt": "2028-02-29T12:00:30.125Z",
+        "source": {
+          "label": "Original fictional sample",
+          "synthetic": true
+        },
+        "teams": [
+          {
+            "id": "cedar",
+            "name": "Cedar"
+          },
+          {
+            "id": "harbor",
+            "name": "Harbor"
+          }
+        ],
+        "games": [
+          {
+            "id": "future",
+            "startAt": "2028-03-01T15:00Z",
+            "homeTeam": "cedar",
+            "awayTeam": "harbor",
+            "status": "scheduled",
+            "homeScore": null,
+            "awayScore": null,
+            "stage": "Exhibition"
+          },
+          {
+            "id": "finished",
+            "startAt": "2028-02-29T09:00Z",
+            "homeTeam": "harbor",
+            "awayTeam": "cedar",
+            "status": "final",
+            "homeScore": 0,
+            "awayScore": 0,
+            "winnerTeamId": "cedar",
+            "tieBreak": {
+              "label": "Supplied decision",
+              "home": 3,
+              "away": 4
+            },
+            "periodScores": [
+              {
+                "label": "First",
+                "home": null,
+                "away": null
+              }
+            ],
+            "stats": [
+              {
+                "label": "Supplied observation",
+                "home": "missing",
+                "away": null
+              }
+            ]
+          }
+        ],
+        "standings": [
+          {
+            "teamId": "cedar",
+            "rank": 1,
+            "played": 1,
+            "won": 1,
+            "drawn": 0,
+            "lost": 0,
+            "points": 2.5,
+            "group": "Sample"
+          },
+          {
+            "teamId": "harbor",
+            "rank": 2,
+            "played": 1,
+            "won": 0,
+            "drawn": 0,
+            "lost": 1,
+            "points": -0.5,
+            "group": "Sample"
+          }
+        ]
+      },
+      "initialTeamId": "cedar",
+      "initialGroup": "Sample"
+    }
+  ]
+}

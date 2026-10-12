@@ -1,0 +1,197 @@
+{
+  "version": "iui/1",
+  "title": "Original synthetic supplied finance snapshots example",
+  "description": "Fictional teaching data; no account, market, payment, or provider connection.",
+  "body": [
+    {
+      "type": "finance-quote",
+      "title": "Supplied unknown quote",
+      "source": {
+        "label": "Original synthetic market example",
+        "synthetic": true,
+        "url": "https://example.org/synthetic-market"
+      },
+      "instrument": {
+        "id": "cedar",
+        "symbol": "CEDAR",
+        "name": "Fictional cedar",
+        "currency": "USD",
+        "timezone": "UTC",
+        "asOf": "2026-10-01T14:00Z",
+        "marketStatus": "unknown",
+        "delayMinutes": 60,
+        "price": null,
+        "previousClose": 0,
+        "history": [
+          {
+            "time": "2026-10-01T12:00Z",
+            "price": 0
+          },
+          {
+            "time": "2026-10-01T13:00Z",
+            "price": null
+          },
+          {
+            "time": "2026-10-01T14:00Z",
+            "price": null
+          }
+        ]
+      }
+    },
+    {
+      "type": "finance-chart",
+      "source": {
+        "label": "Original synthetic market example",
+        "synthetic": true,
+        "url": "https://example.org/synthetic-market"
+      },
+      "instrument": {
+        "id": "birch",
+        "symbol": "BIRCH",
+        "name": "Fictional birch",
+        "currency": "USD",
+        "timezone": "UTC",
+        "asOf": "2026-10-01T14:00Z",
+        "marketStatus": "unknown",
+        "delayMinutes": 60,
+        "price": 15,
+        "previousClose": 0,
+        "history": [
+          {
+            "time": "2026-10-01T12:00Z",
+            "price": 0
+          },
+          {
+            "time": "2026-10-01T13:00Z",
+            "price": null
+          },
+          {
+            "time": "2026-10-01T14:00Z",
+            "price": 15
+          }
+        ]
+      },
+      "ranges": [
+        {
+          "id": "single",
+          "label": "One supplied instant",
+          "from": "2026-10-01T14:00Z",
+          "to": "2026-10-01T14:00Z"
+        }
+      ],
+      "initialRange": "single"
+    },
+    {
+      "type": "finance-comparison",
+      "source": {
+        "label": "Original synthetic market example",
+        "synthetic": true,
+        "url": "https://example.org/synthetic-market"
+      },
+      "instruments": [
+        {
+          "id": "cedar",
+          "symbol": "CEDAR",
+          "name": "Fictional cedar",
+          "currency": "USD",
+          "timezone": "UTC",
+          "asOf": "2026-10-01T14:00Z",
+          "marketStatus": "unknown",
+          "delayMinutes": 60,
+          "price": 0,
+          "previousClose": 0,
+          "history": [
+            {
+              "time": "2026-10-01T12:00Z",
+              "price": 0
+            },
+            {
+              "time": "2026-10-01T13:00Z",
+              "price": null
+            },
+            {
+              "time": "2026-10-01T14:00Z",
+              "price": 0
+            }
+          ]
+        },
+        {
+          "id": "birch",
+          "symbol": "BIRCH",
+          "name": "Fictional birch",
+          "currency": "EUR",
+          "timezone": "UTC",
+          "asOf": "2026-10-01T14:00Z",
+          "marketStatus": "unknown",
+          "delayMinutes": 60,
+          "price": 15,
+          "previousClose": 0,
+          "history": [
+            {
+              "time": "2026-10-01T12:00Z",
+              "price": 0
+            },
+            {
+              "time": "2026-10-01T13:00Z",
+              "price": null
+            },
+            {
+              "time": "2026-10-01T14:00Z",
+              "price": 15
+            }
+          ]
+        }
+      ],
+      "baselineAt": "2026-10-01T14:00+02:00",
+      "ranges": [
+        {
+          "id": "single",
+          "label": "One supplied instant",
+          "from": "2026-10-01T14:00Z",
+          "to": "2026-10-01T14:00Z"
+        }
+      ]
+    },
+    {
+      "type": "finance-heatmap",
+      "source": {
+        "label": "Original synthetic market example",
+        "synthetic": true,
+        "url": "https://example.org/synthetic-market"
+      },
+      "asOf": "2026-10-01T14:00Z",
+      "timezone": "UTC",
+      "weightLabel": "Synthetic common-unit weights",
+      "changeBasis": "Caller-supplied change labels",
+      "cells": [
+        {
+          "id": "cedar",
+          "symbol": "CDR",
+          "name": "Fictional Cedar",
+          "sector": "Example group",
+          "weight": 0,
+          "price": 0,
+          "currency": "USD",
+          "changePercent": null,
+          "asOf": "2026-10-01T14:00Z",
+          "marketStatus": "unknown",
+          "delayMinutes": 60
+        },
+        {
+          "id": "birch",
+          "symbol": "BRH",
+          "name": "Fictional Birch",
+          "sector": "Example group",
+          "weight": 4,
+          "price": null,
+          "currency": "EUR",
+          "changePercent": -1.25,
+          "asOf": "2026-10-01T14:00Z",
+          "marketStatus": "closed",
+          "delayMinutes": 60
+        }
+      ],
+      "initialSector": "Example group"
+    }
+  ]
+}

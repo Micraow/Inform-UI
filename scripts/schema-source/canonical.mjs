@@ -65,99 +65,19 @@ registry.use('charts/basic');
 registry.use('time/controls');
 registry.use('weather/snapshot');
 
-// Supplied motorsport snapshots: no live providers or inferred scoring rules.
-defs.MotorsportSession=object({id:suppliedKey,label:short,kind:choice('practice','qualifying','sprint','race','other'),status:choice('scheduled','complete','cancelled','postponed','unknown'),startsAt:{anyOf:[flightAt,{type:'null'}]},endsAt:flightAt,note:string(2000)},['id','label','kind','status','startsAt']);
-defs.MotorsportRace=object({id:suppliedKey,label:short,season:integer(1900,9999),round:integer(1,1000),circuit:short,location:short,sessions:array(ref('MotorsportSession'),0,20),source:ref('TravelEventSource')},['id','label','season','round','circuit','location','sessions']);
-node('f1-races',{label:short,description:string(3000),races:array(ref('MotorsportRace'),0,80),disabled:bool},['label','races'],'sports');
-defs.MotorsportStanding=object({id:suppliedKey,label:short,kind:choice('driver','constructor'),team:short,rank:{anyOf:[integer(1,1000),{type:'null'}]},points:{anyOf:[{type:'number',minimum:-1000000,maximum:1000000},{type:'null'}]},wins:{anyOf:[integer(0,10000),{type:'null'}]},note:string(2000),source:ref('TravelEventSource')},['id','label','kind','rank','points']);
-node('f1-standings',{label:short,description:string(3000),season:integer(1900,9999),observedAt:flightAt,standings:array(ref('MotorsportStanding'),0,100)},['label','season','standings'],'sports');
-// Shared project-owned sports model. Data is supplied; no provider or league rules are inferred.
-const sportsScore={anyOf:[integer(0,1000000),{type:'null'}]};
-defs.SportsTeam=object({id:key,name:short,shortName:string(16,1),color:choice('blue','green','orange','red','purple','gray')},['id','name']);
-defs.SportsGame=object({id:key,startAt:timestamp,homeTeam:key,awayTeam:key,status:choice('scheduled','live','final','postponed','cancelled'),homeScore:sportsScore,awayScore:sportsScore,period:short,clock:short,stage:short,venue:string(300),neutral:bool,winnerTeamId:key,detail:string(3000),periodScores:array(object({label:short,home:sportsScore,away:sportsScore},['label','home','away']),0,30),tieBreak:object({label:short,home:sportsScore,away:sportsScore},['label','home','away']),stats:array(object({label:short,home:{anyOf:[string(200),number,{type:'null'}]},away:{anyOf:[string(200),number,{type:'null'}]}},['label','home','away']),0,30)},['id','startAt','homeTeam','awayTeam','status','homeScore','awayScore']);
-defs.SportsStanding=object({teamId:key,group:short,rank:integer(1,10000),played:sportsScore,won:sportsScore,drawn:sportsScore,lost:sportsScore,points:nullableNumber,for:sportsScore,against:sportsScore,note:string(500)},['teamId','rank','played','won','drawn','lost','points']);
-defs.SportsData=object({league:object({id:key,name:short,sport:choice('football','basketball','baseball','hockey','other'),season:short},['id','name','sport']),timezone:short,updatedAt:timestamp,source:object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']),teams:array(ref('SportsTeam'),0,100),games:array(ref('SportsGame'),0,300),standings:array(ref('SportsStanding'),0,100)},['league','timezone','updatedAt','source','teams','games']);
-const sportsCommon={data:ref('SportsData'),status:choice('ready','loading','error'),message:string()};
-node('sports-schedule',{...sportsCommon,initialDate:date,initialTeamId:key,initialStage:short},['data'], 'sports');
-node('sports-scoreboard',{...sportsCommon,gameId:key},['data'], 'sports');
-node('sports-standings',{...sportsCommon,initialTeamId:key,initialGroup:short},['data'], 'sports');
+registry.use('sports/motorsport');
+registry.use('sports/model');
 registry.use('learning/basic');
-// Supplied financial snapshots: no provider connection, trading action or implicit FX conversion.
-const price={anyOf:[{type:'number',minimum:0},{type:'null'}]};
-defs.FinanceSource=object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']);
-defs.FinanceInstrument=object({id:key,symbol:short,name:short,currency:{type:'string',pattern:'^[A-Z]{3}$'},exchange:short,timezone:short,asOf:timestamp,marketStatus:choice('open','closed','pre','post','halted','unknown'),delayMinutes:integer(0,10080),price,previousClose:price,history:array(object({time:timestamp,price},['time','price']),0,500)},['id','symbol','name','currency','timezone','asOf','marketStatus','delayMinutes','price','previousClose','history']);
-defs.FinanceRange=object({id:key,label:short,from:timestamp,to:timestamp},['id','label','from','to']);
-const financeCommon={title:short,source:ref('FinanceSource'),status:choice('ready','loading','error'),message:string()};
-node('finance-quote',{...financeCommon,instrument:ref('FinanceInstrument')},['source','instrument'], 'finance');
-node('finance-chart',{...financeCommon,instrument:ref('FinanceInstrument'),ranges:array(ref('FinanceRange'),0,12),initialRange:key},['source','instrument','ranges'], 'finance');
-node('finance-comparison',{...financeCommon,instruments:array(ref('FinanceInstrument'),2,6),baselineAt:timestamp,timezone:short,ranges:array(ref('FinanceRange'),0,12),initialRange:key},['source','instruments','baselineAt','ranges'], 'finance');
-node('finance-heatmap',{title:short,source:ref('FinanceSource'),asOf:timestamp,timezone:short,weightLabel:short,changeBasis:short,cells:array(object({id:key,symbol:short,name:short,sector:short,weight:price,price,currency:{type:'string',pattern:'^[A-Z]{3}$'},changePercent:nullableNumber,asOf:timestamp,marketStatus:choice('open','closed','pre','post','halted','unknown'),delayMinutes:integer(0,10080)},['id','symbol','name','sector','weight','price','currency','changePercent','asOf','marketStatus','delayMinutes']),0,200),initialSector:short,status:choice('ready','loading','error'),message:string()},['source','asOf','timezone','weightLabel','changeBasis','cells'], 'finance');
-// Bounded, supplied ledger views. No provider/account operations or implicit FX.
-const ledgerAmount = {type:'number',minimum:0,maximum:1e12};
-const ledgerCurrency = {type:'string',pattern:'^[A-Z]{3}$(?![\\s\\S])',minLength:3,maxLength:3};
-defs.LedgerSource = object({label:short,url:string(2048,1)},['label','url']);
-defs.LedgerAccount = object({id:key,name:short,amount:{anyOf:[ledgerAmount,{type:'null'}]},currency:ledgerCurrency,category:short,note:string(2000)},['id','name','amount','currency']);
-defs.LedgerTransaction = object({id:key,date:{type:'string',pattern:'^[1-9]\\d{3}-\\d{2}-\\d{2}$'},description:string(1000,1),amount:ledgerAmount,currency:ledgerCurrency,direction:choice('debit','credit'),status:choice('pending','posted'),counterparty:short,note:string(2000)},['id','date','description','amount','currency','direction']);
-const ledgerCommon = {label:short,description:string(2000),source:ref('LedgerSource')};
-node('asset-distribution',{...ledgerCommon,observedAt:short,accounts:array(ref('LedgerAccount'),0,40)},['label','accounts'],'finance');
-node('transaction-list',{...ledgerCommon,transactions:array(ref('LedgerTransaction'),0,100)},['label','transactions'],'finance');
-// Supplied exact-text account and recurring record readers; no provider or financial action.
-defs.LedgerExactMoney=object({amount:{anyOf:[{type:'string',pattern:'^-?(?:0|[1-9][0-9]{0,17})(?:\\.[0-9]{1,18})?$(?![\\s\\S])',minLength:1,maxLength:40},{type:'null'}]},currency:ledgerCurrency},['amount','currency']);
-defs.LedgerAccountSnapshot=object({id:suppliedKey,label:short,institution:short,kind:choice('cash','credit','investment','loan','other','unknown'),status:choice('active','closed','unknown'),suffix:{type:'string',pattern:'^[A-Za-z0-9]{1,4}$(?![\\s\\S])'},balance:ref('LedgerExactMoney'),observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','institution','kind','status']);
-node('ledger-accounts',{...ledgerCommon,accounts:array(ref('LedgerAccountSnapshot'),0,40),initiallyRevealed:bool},['label','accounts'],'finance');
-defs.LedgerRecurringRecord=object({id:suppliedKey,label:short,counterparty:short,cadence:choice('weekly','monthly','yearly','other','unknown'),status:choice('scheduled','paused','unknown'),direction:choice('incoming','outgoing','unknown'),estimatedAmount:ref('LedgerExactMoney'),nextDate:travelDate,observedAt:flightAt,note:string(3000),source:ref('LedgerSource')},['id','label','cadence','status','direction']);
-node('ledger-recurring-transactions',{...ledgerCommon,records:array(ref('LedgerRecurringRecord'),0,60),initialReviewedIds:array(suppliedKey,0,60)},['label','records'],'finance');
-const matchCount={anyOf:[integer(0,1000000),{type:'null'}]};
-defs.ScoreTeam=object({id:suppliedKey,label:short,record:string(200)},['id','label']);
-defs.ScorePair=object({home:matchCount,away:matchCount},['home','away']);
-defs.ScorePeriod=object({id:suppliedKey,label:short,home:matchCount,away:matchCount},['id','label','home','away']);
-defs.ScoreLeader=object({id:suppliedKey,label:short,teamId:suppliedKey,points:matchCount,rebounds:matchCount,assists:matchCount},['id','label','teamId','points','rebounds','assists']);
-defs.SoccerEvent=object({id:suppliedKey,minute:short,kind:choice('goal','yellow-card','red-card','substitution','var','other'),teamId:{anyOf:[suppliedKey,{type:'null'}]},player:short,note:string(1000)},['id','minute','kind','teamId']);
-const scoreGame={id:suppliedKey,label:short,competition:short,startsAt:{anyOf:[flightAt,{type:'null'}]},homeTeamId:suppliedKey,awayTeamId:suppliedKey,status:choice('scheduled','live','final','postponed','cancelled','unknown'),homeScore:matchCount,awayScore:matchCount,outcome:choice('home-win','away-win','draw','unknown'),periodLabel:short,clock:short,venue:short,note:string(2000),source:ref('TravelEventSource')};
-defs.NbaScoreGame=object({...scoreGame,periods:array(ref('ScorePeriod'),0,20),leaders:array(ref('ScoreLeader'),0,8)},[...Object.keys(scoreGame).filter(k=>!['periodLabel','clock','venue','note','source'].includes(k)),'periods','leaders']);
-defs.SoccerScoreGame=object({...scoreGame,aggregate:{anyOf:[ref('ScorePair'),{type:'null'}]},penalties:{anyOf:[ref('ScorePair'),{type:'null'}]},events:array(ref('SoccerEvent'),0,120)},[...Object.keys(scoreGame).filter(k=>!['periodLabel','clock','venue','note','source'].includes(k)),'aggregate','penalties','events']);
-for(const[type,game]of[['nba-scores','NbaScoreGame'],['soccer-games','SoccerScoreGame']])node(type,{label:short,description:string(3000),timezone:short,teams:array(ref('ScoreTeam'),0,100),games:array(ref(game),0,100),observedAt:flightAt,source:ref('TravelEventSource')},['label','timezone','teams','games'],'sports');
-
-// Independent supplied football contract: periods, field situation and scoring events stay separate.
-defs.FootballPeriod=object({...defs.ScorePeriod.properties,kind:choice('quarter','overtime'),number:integer(1,20)},[...defs.ScorePeriod.required,'kind','number']);
-defs.FootballSituation=object({down:{anyOf:[integer(1,4),{type:'null'}]},distance:{anyOf:[integer(0,100),{type:'null'}]},ballOn:{anyOf:[short,{type:'null'}]}},['down','distance','ballOn']);
-defs.FootballScoringEvent=object({id:suppliedKey,periodId:{anyOf:[suppliedKey,{type:'null'}]},clock:{anyOf:[short,{type:'null'}]},kind:choice('touchdown','field-goal','extra-point','two-point','safety','other'),teamId:{anyOf:[suppliedKey,{type:'null'}]},points:matchCount,note:string(1000)},['id','periodId','clock','kind','teamId','points']);
-defs.FootballGame=object({...scoreGame,periods:array(ref('FootballPeriod'),0,24),possessionTeamId:{anyOf:[suppliedKey,{type:'null'}]},situation:{anyOf:[ref('FootballSituation'),{type:'null'}]},events:array(ref('FootballScoringEvent'),0,120)},[...Object.keys(scoreGame).filter(k=>!['periodLabel','clock','venue','note','source'].includes(k)),'periods','possessionTeamId','situation','events']);
-node('american-football-games',{label:short,description:string(3000),timezone:short,teams:array(ref('ScoreTeam'),0,100),games:array(ref('FootballGame'),0,100),observedAt:flightAt,source:ref('TravelEventSource')},['label','timezone','teams','games'],'sports');
-
-// Original supplied tournament and election readers; no winner or progression inference.
-const resultCount={anyOf:[integer(0,Number.MAX_SAFE_INTEGER),{type:'null'}]};
-const resultPercent={anyOf:[{type:'number',minimum:0,maximum:100},{type:'null'}]};
-defs.TournamentTeam=object({id:suppliedKey,label:short},['id','label']);
-defs.TournamentParticipant=object({teamId:{anyOf:[suppliedKey,{type:'null'}]},placeholder:short,score:{anyOf:[integer(0,1000000),{type:'null'}]}},['teamId','score']);
-defs.TournamentMatch=object({id:suppliedKey,label:short,status:choice('scheduled','live','final','postponed','cancelled','unknown'),participants:array(ref('TournamentParticipant'),2,2),winnerTeamId:{anyOf:[suppliedKey,{type:'null'}]},startsAt:flightAt,advancesTo:suppliedKey,note:string(2000),source:ref('TravelEventSource')},['id','label','status','participants','winnerTeamId']);
-defs.TournamentRound=object({id:suppliedKey,label:short,matches:array(ref('TournamentMatch'),0,32)},['id','label','matches']);
-node('basketball-tournament',{label:short,description:string(3000),teams:array(ref('TournamentTeam'),0,128),rounds:array(ref('TournamentRound'),0,12),observedAt:flightAt,source:ref('TravelEventSource')},['label','teams','rounds'],'sports');
-defs.ElectionCandidate=object({id:suppliedKey,label:short,party:short,votes:resultCount,voteShare:resultPercent,outcome:choice('elected','not-elected','unknown'),note:string(2000),source:ref('TravelEventSource')},['id','label','votes','voteShare','outcome']);
-defs.ElectionContest=object({id:suppliedKey,label:short,status:choice('pending','counting','complete','recount','unknown'),reportedPercent:resultPercent,totalVotes:resultCount,candidates:array(ref('ElectionCandidate'),0,50),observedAt:flightAt,note:string(2000),source:ref('TravelEventSource')},['id','label','status','reportedPercent','totalVotes','candidates']);
-node('election-results',{label:short,description:string(3000),contests:array(ref('ElectionContest'),0,40),observedAt:flightAt,source:ref('TravelEventSource')},['label','contests']);
-// Original supplied boxscores. Explicit totals/overs/averages remain source data.
-const boxCount={anyOf:[integer(0,1000000),{type:'null'}]};
-const boxText={anyOf:[string(200,1),{type:'null'}]};
-const boxRow={id:suppliedKey,label:short,note:string(2000),source:ref('TravelEventSource')};
-defs.BasketballBoxPlayer=object({...boxRow,starter:{anyOf:[bool,{type:'null'}]},minutes:boxText,points:boxCount,rebounds:boxCount,assists:boxCount,steals:boxCount,blocks:boxCount,turnovers:boxCount,plusMinus:{anyOf:[integer(-1000000,1000000),{type:'null'}]},fieldGoals:boxText,threePointers:boxText,freeThrows:boxText},['id','label','starter','minutes','points','rebounds','assists','steals','blocks','turnovers','plusMinus']);
-defs.BasketballBoxTeam=object({id:suppliedKey,label:short,score:boxCount,players:array(ref('BasketballBoxPlayer'),0,40),note:string(2000)},['id','label','score','players']);
-defs.CricketBoxTeam=object({id:suppliedKey,label:short},['id','label']);
-defs.CricketBattingRow=object({...boxRow,dismissal:boxText,runs:boxCount,balls:boxCount,fours:boxCount,sixes:boxCount,strikeRate:{anyOf:[{type:'number',minimum:0,maximum:1000000},{type:'null'}]}},['id','label','dismissal','runs','balls','fours','sixes','strikeRate']);
-defs.CricketBowlingRow=object({...boxRow,overs:boxText,maidens:boxCount,runs:boxCount,wickets:boxCount,economy:{anyOf:[{type:'number',minimum:0,maximum:1000000},{type:'null'}]}},['id','label','overs','maidens','runs','wickets','economy']);
-defs.CricketBoxInnings=object({id:suppliedKey,label:short,teamId:suppliedKey,runs:boxCount,wickets:boxCount,overs:boxText,extras:boxCount,batting:array(ref('CricketBattingRow'),0,30),bowling:array(ref('CricketBowlingRow'),0,30),note:string(2000),source:ref('TravelEventSource')},['id','label','teamId','runs','wickets','overs','extras','batting','bowling']);
-const boxCommon={label:short,description:string(3000),status:choice('scheduled','live','final','postponed','cancelled','unknown'),statusText:string(1000),observedAt:flightAt,source:ref('TravelEventSource')};
-node('nba-game-boxscore',{...boxCommon,teams:array(ref('BasketballBoxTeam'),2,2),periods:array(object({label:short,scores:array(boxCount,2,2)},['label','scores']),0,20)},['label','status','teams','periods'],'sports');
-node('cricket-match-boxscore',{...boxCommon,teams:array(ref('CricketBoxTeam'),2,2),innings:array(ref('CricketBoxInnings'),0,12)},['label','status','teams','innings'],'sports');
-const playerCount = {anyOf:[integer(0,1000000),{type:'null'}]};
-const playerRate = {anyOf:[{type:'number',minimum:0,maximum:10000},{type:'null'}]};
-const playerRank = {anyOf:[integer(1,1000000),{type:'null'}]};
-const playerRecordCommon = {id:suppliedKey,season:short,note:string(2000),source:ref('TravelEventSource')};
-defs.BasketballPlayerRecord=object({...playerRecordCommon,team:{anyOf:[short,{type:'null'}]},scope:choice('regular-season','playoffs','preseason','other','unknown'),games:playerCount,minutesPerGame:playerRate,pointsPerGame:playerRate,reboundsPerGame:playerRate,assistsPerGame:playerRate},['id','season','team','scope','games','minutesPerGame','pointsPerGame','reboundsPerGame','assistsPerGame']);
-defs.TennisPlayerRecord=object({...playerRecordCommon,surface:choice('hard','clay','grass','carpet','other','unknown'),matches:playerCount,wins:playerCount,losses:playerCount,titles:playerCount,rank:playerRank},['id','season','surface','matches','wins','losses','titles','rank']);
-const playerCommon={label:short,player:short,description:string(3000),observedAt:flightAt,source:ref('TravelEventSource')};
-node('nba-player-summary',{...playerCommon,records:array(ref('BasketballPlayerRecord'),0,100)},['label','player','records'],'sports');
-node('tennis-player-summary',{...playerCommon,records:array(ref('TennisPlayerRecord'),0,100)},['label','player','records'],'sports');
+// Existing supplied financial and ledger source modules; historical order is retained.
+registry.use('shared/finance-source');
+registry.use('finance/snapshots');
+registry.use('shared/ledger-source');
+registry.use('finance/ledger-lists');
+registry.use('shared/ledger-money');
+registry.use('finance/ledger-records');
+registry.use('sports/match-scores');
+registry.use('results/supplied');
+registry.use('sports/statistics');
 // Local conversion controls use factual unit definitions and caller-supplied exchange snapshots.
 const unitRegistry=JSON.parse(await readFile(new URL('../../src/data/units.json',import.meta.url),'utf8'));
 const unitCode={enum:[...new Set(Object.values(unitRegistry).flatMap(category=>category.units.map(unit=>unit.id)))],description:Object.entries(unitRegistry).map(([name,category])=>name+': '+category.units.map(unit=>unit.id).join(', ')).join('; ')};
@@ -184,9 +104,7 @@ for(const [name,definition]of Object.entries(learningMediaDefinitions)){
 defs.WeatherSidebarPlace=object({id:suppliedKey,label:short,timezone:short,observedAt:{anyOf:[flightAt,{type:'null'}]},temperature:{anyOf:[{type:'number',minimum:-1000000,maximum:1000000},{type:'null'}]},unit:choice('celsius','fahrenheit'),condition:{anyOf:[condition,{type:'null'}]},source:ref('TravelEventSource')},['id','label','timezone','observedAt','temperature','unit','condition']);
 node('weather-sidebar-title',{label:short,description:string(2000),places:array(ref('WeatherSidebarPlace'),0,30),initialPlaceId:suppliedKey,unit:choice('celsius','fahrenheit')},['label','places','unit'],'weather');
 
-defs.LedgerCorrectionCategory=object({id:suppliedKey,label:short},['id','label']);
-defs.LedgerCorrectionTransaction=object({id:suppliedKey,label:short,date:{anyOf:[travelDate,{type:'null'}]},money:ref('LedgerExactMoney'),originalCategoryId:{anyOf:[suppliedKey,{type:'null'}]},suggestedCategoryId:{anyOf:[suppliedKey,{type:'null'}]},confidence:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]},note:string(2000)},['id','label','date','money','originalCategoryId','suggestedCategoryId','confidence']);
-node('ledger-low-confidence-category-correction',{...ledgerCommon,snapshotId:suppliedKey,categories:array(ref('LedgerCorrectionCategory'),0,40),transactions:array(ref('LedgerCorrectionTransaction'),0,60),disabled:bool},['label','snapshotId','categories','transactions'],'finance');
+registry.use('finance/ledger-correction');
 
 const netWorthDefinitions=JSON.parse(await readFile(new URL('../net-worth-definitions.json',import.meta.url),'utf8'));
 Object.assign(defs,netWorthDefinitions);nodes.push(ref('LedgerNetWorthNode'));owners['ledger-net-worth']='finance';
@@ -197,7 +115,7 @@ registry.use('media/readers');
 registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../async-image-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncImageNode'),ref('AsyncImageGroupNode'));owners['async-image']='base';owners['async-image-group']='base';
 registry.use('media/lottie');
 // Exact supplied income labels; no estimation, account lookup or date prediction.
-defs.LedgerIncomePaycheck=object({name:{anyOf:[short,{type:'null'}]},amountLabel:{anyOf:[short,{type:'null'}]},nextPayment:{anyOf:[short,{type:'null'}]},frequency:{anyOf:[short,{type:'null'}]},accountDetail:{anyOf:[short,{type:'null'}]},logoUrl:string(8192,1),icon:choice('banknote','bank','briefcase','calendar')},[]);
+registry.use('shared/ledger-income-paycheck');
 defs.SuppliedSectionTab=object({id:key,label:short,title:short,content:string(12000),disabled:bool},['id','label','title','content']);
 node('tabbed-section',{label:short,tabs:array(ref('SuppliedSectionTab'),0,24),activeId:key,vertical:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:short},['label','tabs'],'base');
 defs.VisualEntityRequest=object({id:short,kind:short},['id','kind']);
@@ -205,14 +123,8 @@ defs.VisualCardItem=object({id:key,label:short,title:short,query:short,caption:s
 node('visual-card-carousel',{title:short,items:array(ref('VisualCardItem'),0,24),viewerImages:array(ref('SearchImageRecord'),0,24),viewer:choice('local','intent'),mobile:bool,disabled:bool,status:choice('pending','resolved','failed'),fallback:short},['title','items'],'base');
 node('link-card',suppliedLinkProps,[],'base');
 node('recommendation-link-card',suppliedLinkProps,[],'base');
-defs.SpendTrendPoint=object({day:integer(0,31),value:{anyOf:[number,{type:'null'}]},label:{anyOf:[short,{type:'null'}]}},['day','value','label']);
-defs.SpendTrendSeries=object({id:key,label:short,totalValue:{anyOf:[number,{type:'null'}]},totalLabel:{anyOf:[short,{type:'null'}]},dayCount:integer(1,31),points:array(ref('SpendTrendPoint'),0,32),current:bool,daysElapsed:integer(0,31),groupLabel:short},['id','label','totalValue','totalLabel','dayCount','points']);
-defs.SpendCategory=object({id:key,label:short,amountLabel:{anyOf:[short,{type:'null'}]},fraction:{anyOf:[{type:'number',minimum:0,maximum:1},{type:'null'}]}},['id','label','amountLabel','fraction']);
-node('ledger-spend-so-far-this-month',{label:short,periodLabel:short,totalLabel:{anyOf:[short,{type:'null'}]},categories:array(ref('SpendCategory'),0,24),months:array(ref('SpendTrendSeries'),1,24),averageSeries:ref('SpendTrendSeries'),previousSeries:ref('SpendTrendSeries'),selectedMonth:key,comparison:key,status:choice('pending','resolved','failed'),fallback:short,hasConnectedAccounts:bool,noAccountsLabel:short,previousLabel:short,averageLabel:short,comparisonLabel:short,emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool},['label','periodLabel','totalLabel','categories'],'finance');
-defs.UpcomingActivity=object({id:key,title:short,amountLabel:{anyOf:[short,{type:'null'}]},dateLabel:{anyOf:[short,{type:'null'}]},kind:choice('income','expense','other'),accountLabel:short,amountUnknown:bool,detailEnabled:bool,iconSrc:string(16000,1)},['id','title','amountLabel','dateLabel']);
-defs.UpcomingFlow=object({top:ref('UpcomingActivity'),items:array(ref('UpcomingActivity'),0,60),expandedItems:array(ref('UpcomingActivity'),0,60)},['items']);
-defs.UpcomingFlows=object({incoming:ref('UpcomingFlow'),outgoing:ref('UpcomingFlow')},['incoming','outgoing']);
-node('ledger-upcoming-activity',{label:short,activities:array(ref('UpcomingActivity'),0,60),emptyLabel:short,masked:bool,maskedLabel:short,disabled:bool,flows:ref('UpcomingFlows'),activeFlow:choice('incoming','outgoing'),expanded:bool,showFlowTabs:bool,status:choice('pending','resolved','failed'),fallback:string(2000),hasConnectedAccounts:bool,noAccountsLabel:short,incomingLabel:short,outgoingLabel:short,moreLabel:short,lessLabel:short},['label','activities'],'finance');
+registry.use('finance/ledger-spend');
+registry.use('finance/ledger-upcoming');
 defs.ImageGridItem=object({id:key,src:string(16000,1),alt:short,caption:string(500)},['id','src','alt']);
 defs.ImageGridTile=object({imageId:key,aspectRatio:{type:'number',minimum:.1,maximum:20},flexGrow:{type:'number',minimum:.1,maximum:20}},['imageId']);
 defs.ImageGridRow=object({aspectRatio:{type:'number',minimum:.1,maximum:20},tiles:array(ref('ImageGridTile'),1,24)},['tiles']);
@@ -224,7 +136,7 @@ defs.ConversationSuggestion=object({id:key,label:short,prompt:string(2000,1),int
 node('conversation-suggestions',{label:short,suggestions:array(ref('ConversationSuggestion'),0,12),disabled:bool,status:choice('pending','resolved','failed'),fallback:string(2000)},['suggestions']);
 defs.FollowUpAction=object({id:key,label:short,query:{type:'string',maxLength:2000},intent:{enum:['new-turn','start-voice','open-image-composer']},iconSrc:{type:'string',maxLength:16000},disabled:bool},['id','label']);
 node('follow-up-action-bar',{label:short,actions:array(ref('FollowUpAction'),0,12),disabled:bool,presentation:{enum:['flat','footer','wrapped_pills']},status:{enum:['pending','resolved','failed']},fallback:{type:'string',maxLength:2000}},['actions']);
-node('ledger-income-tracker',{label:short,subtitle:short,hasIncome:bool,estimatedMonthlyIncomeLabel:short,incomeSourcesLabel:short,nextPaycheck:{anyOf:[ref('LedgerIncomePaycheck'),{type:'null'}]},emptyLabel:string(2000),masked:bool,maskedLabel:short,estimatedLabel:short,nextPaycheckLabel:short,recurringIncomeLabel:short,noUpcomingLabel:string(2000),dateUnavailableLabel:short,source:ref('LedgerSource')},['label','hasIncome'],'finance');
+registry.use('finance/ledger-income');
 registry.importLegacyDefinitions(JSON.parse(await readFile(new URL('../async-video-definitions.json',import.meta.url),'utf8')));nodes.push(ref('AsyncVideoCarouselNode'));owners['async-video-carousel']='base';
 
 registry.use('automation/views');

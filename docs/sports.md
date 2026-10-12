@@ -51,3 +51,15 @@
 当前覆盖上述三个领域视图，不包含球员档案、逐球事件、投篮图、完整 box score、淘汰赛树、赛车圈速或赛道动画。一个带统计表的记分牌不代表这些组件已完成。
 
 语义诊断：`SPORTS_ID`、`SPORTS_TEAM`、`SPORTS_DATE`、`SPORTS_STATUS`、`SPORTS_RESULT`、`SPORTS_PERIOD`、`SPORTS_STAT`、`SPORTS_RECORD`、`SPORTS_FILTER`，以及共用 `TIMEZONE` / `UNSAFE_URL`。结构错误仍返回 `SCHEMA`。所有错误沿用 `{code,path,message}`，非法更新不会替换当前页面。
+
+## 源模块与精确校验边界
+
+`sports/model` 维护原有三个节点及其共享 `SportsData` 定义，依赖 `shared/value`。这套历史 sports 数据合同与 `sports/match-scores` 的 supplied 比分合同不同；不得互相套用状态、URL、时间或 ID 限制。选定结构 Schema 后仍须运行未改动的完整 `validateDocument`。
+
+- `short` 字段（如球队名、联赛名、来源名、分组、阶段、period/统计 label）长度为1–200，但没有额外 trim/nonblank 语义检查。`shortName` 为1–16。可选 venue（≤300）、detail（≤3000）、standing note（≤500）、message（≤12000）及 stats 字符串（≤200）可为空。
+- 球队、比赛、联赛和引用使用既有 `key` 正则，不替换为较严格的 `suppliedKey`。它以 ASCII 字母或下划线开头，后接至多79个 ASCII 字母、数字、下划线、点或连字符；保持原正则字面定义；当前 JavaScript/AJV 校验拒绝尾随换行符。引用按原字符串精确匹配。可选节点 id 沿用1–200字符及文档内唯一规则。
+- 球队 ID、比赛 ID 各在自己的列表唯一。periodScores label、stats label 各在每场自己的列表唯一；不同列表可以重用标签。standing 每队只出现一次，rank 为1–10000整数，允许并列。比分、场次、胜平负、进失球为0–1000000整数或 null；points 为数值或 null，可为负或小数。stats 数值不限定为整数。
+- 只有 scheduled 主客总分必须同时为 null；不要求其他状态分数非空。只有明确的 `winnerTeamId` 要求 final 且为该场参赛队，比分本身不会推断赢家。tieBreak 只允许 live/final；periodScores 没有该状态限制，也不要求各期求和等于总分。
+- played 非 null 时，已知 won/drawn/lost 之和不可大于 played；三者均已知则必须相等。played 为 null 时不作该求和检查。不校验 points 与胜平负的计分公式。
+- `updatedAt`/`startAt` 使用既有 timestamp helper：真实 `YYYY-MM-DD` 日期、显式 `Z` 或偏移，分钟后允许秒及1–3位小数秒，且须被 JavaScript 日期解析为有限值。这里不套用 `flightAt` 的1000年起点、仅分钟或14小时偏移上限；例如 `+15:00` 保留历史可解析行为。`initialDate` 必须通过真实日期回读检查，但可以没有对应比赛。时区由运行环境的 `Intl.DateTimeFormat` 识别。
+- 初始球队、比赛、阶段、分组必须引用已有相应内容。来源 URL 可省略或为空；非空时使用通用安全链接策略，允许安全的 HTTP(S)、受限 mailto/tel 或片段，不额外要求 HTTP(S)。不会请求来源、校验来源真实性或推断更新时间与开赛时间先后。

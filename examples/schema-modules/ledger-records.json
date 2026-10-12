@@ -1,0 +1,55 @@
+{
+  "version": "iui/1",
+  "title": "Original synthetic supplied ledger records example",
+  "description": "Fictional teaching data; no account, market, payment, or provider connection.",
+  "body": [
+    {
+      "type": "ledger-accounts",
+      "label": "Exact-text account snapshots",
+      "accounts": [
+        {
+          "id": "sample",
+          "label": "Fictional account",
+          "institution": "Example institution",
+          "kind": "cash",
+          "status": "unknown",
+          "balance": {
+            "amount": "-0.0000",
+            "currency": "USD"
+          },
+          "observedAt": "2026-10-01T14:00Z",
+          "suffix": "AB12"
+        }
+      ],
+      "source": {
+        "label": "Original fictional ledger example",
+        "url": "https://example.org/synthetic-ledger"
+      }
+    },
+    {
+      "type": "ledger-recurring-transactions",
+      "label": "Supplied recurring records",
+      "records": [
+        {
+          "id": "sample",
+          "label": "Fictional periodic record",
+          "cadence": "unknown",
+          "status": "unknown",
+          "direction": "incoming",
+          "estimatedAmount": {
+            "amount": null,
+            "currency": "USD"
+          },
+          "nextDate": "2026-10-05"
+        }
+      ],
+      "initialReviewedIds": [
+        "sample"
+      ],
+      "source": {
+        "label": "Original fictional ledger example",
+        "url": "https://example.org/synthetic-ledger"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "version": "iui/1",
+  "title": "Original synthetic supplied ledger spend example",
+  "description": "Fictional teaching data; no account, market, payment, or provider connection.",
+  "body": [
+    {
+      "type": "ledger-spend-so-far-this-month",
+      "label": "Fictional supplied spending",
+      "periodLabel": "Author-provided period",
+      "totalLabel": null,
+      "categories": [
+        {
+          "id": "sample",
+          "label": "Example category",
+          "amountLabel": "USD 0.00 supplied",
+          "fraction": 0
+        }
+      ],
+      "months": [
+        {
+          "id": "october",
+          "label": "Synthetic October",
+          "totalValue": 0,
+          "totalLabel": "USD 0.00 supplied",
+          "dayCount": 31,
+          "points": [
+            {
+              "day": 0,
+              "value": 0,
+              "label": "USD 0.00 supplied"
+            },
+            {
+              "day": 1,
+              "value": null,
+              "label": null
+            }
+          ],
+          "current": true,
+          "daysElapsed": 1
+        }
+      ],
+      "selectedMonth": "october",
+      "comparison": "previous"
+    }
+  ]
+}

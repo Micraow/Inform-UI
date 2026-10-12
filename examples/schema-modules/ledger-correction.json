@@ -1,0 +1,36 @@
+{
+  "version": "iui/1",
+  "title": "Original synthetic supplied ledger correction example",
+  "description": "Fictional teaching data; no account, market, payment, or provider connection.",
+  "body": [
+    {
+      "type": "ledger-low-confidence-category-correction",
+      "label": "Review a supplied category",
+      "snapshotId": "fictional_snapshot",
+      "categories": [
+        {
+          "id": "general",
+          "label": "General example"
+        }
+      ],
+      "transactions": [
+        {
+          "id": "sample",
+          "label": "Fictional record",
+          "date": null,
+          "money": {
+            "amount": "12.3400",
+            "currency": "USD"
+          },
+          "originalCategoryId": null,
+          "suggestedCategoryId": "general",
+          "confidence": null
+        }
+      ],
+      "source": {
+        "label": "Original fictional ledger example",
+        "url": "https://example.org/synthetic-ledger"
+      }
+    }
+  ]
+}

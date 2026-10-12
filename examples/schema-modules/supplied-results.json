@@ -1,0 +1,110 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "basketball-tournament",
+      "label": "Fictional Cedar bracket",
+      "teams": [
+        {
+          "id": "cedar",
+          "label": "Cedar"
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor"
+        }
+      ],
+      "rounds": [
+        {
+          "id": "opening",
+          "label": "Opening round",
+          "matches": [
+            {
+              "id": "first",
+              "label": "Supplied pairing",
+              "status": "final",
+              "participants": [
+                {
+                  "teamId": "cedar",
+                  "score": 75
+                },
+                {
+                  "teamId": "harbor",
+                  "score": 75
+                }
+              ],
+              "winnerTeamId": "cedar",
+              "advancesTo": "later",
+              "startsAt": "2028-02-29T12:00Z"
+            }
+          ]
+        },
+        {
+          "id": "later_round",
+          "label": "Later round",
+          "matches": [
+            {
+              "id": "later",
+              "label": "Pairing incomplete",
+              "status": "scheduled",
+              "participants": [
+                {
+                  "teamId": "cedar",
+                  "score": null
+                },
+                {
+                  "teamId": null,
+                  "placeholder": "Not supplied",
+                  "score": null
+                }
+              ],
+              "winnerTeamId": null
+            }
+          ]
+        }
+      ],
+      "source": {
+        "label": "Original fictional sports snapshot",
+        "url": "https://example.invalid/supplied-sports"
+      }
+    },
+    {
+      "type": "election-results",
+      "label": "Fictional neighborhood ballot",
+      "contests": [
+        {
+          "id": "garden",
+          "label": "Garden committee",
+          "status": "counting",
+          "reportedPercent": 25.5,
+          "totalVotes": null,
+          "candidates": [
+            {
+              "id": "candidate_a",
+              "label": "Avery Cedar",
+              "votes": 0,
+              "voteShare": 0,
+              "outcome": "unknown"
+            },
+            {
+              "id": "candidate_b",
+              "label": "Remy Harbor",
+              "votes": null,
+              "voteShare": null,
+              "outcome": "unknown",
+              "source": {
+                "label": "Original fictional sports snapshot",
+                "url": "https://example.invalid/supplied-sports"
+              }
+            }
+          ],
+          "observedAt": "2028-02-29T12:00Z"
+        }
+      ],
+      "source": {
+        "label": "Original fictional sports snapshot",
+        "url": "https://example.invalid/supplied-sports"
+      }
+    }
+  ]
+}

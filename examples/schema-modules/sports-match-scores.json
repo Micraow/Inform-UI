@@ -1,0 +1,168 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "nba-scores",
+      "label": "Original nba-scores sample",
+      "timezone": "UTC",
+      "teams": [
+        {
+          "id": "cedar",
+          "label": "Cedar"
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor",
+          "record": ""
+        }
+      ],
+      "games": [
+        {
+          "id": "sample",
+          "label": "Fictional supplied match",
+          "competition": "Original example league",
+          "startsAt": "2028-02-29T12:00Z",
+          "homeTeamId": "cedar",
+          "awayTeamId": "harbor",
+          "status": "live",
+          "homeScore": 0,
+          "awayScore": null,
+          "outcome": "unknown",
+          "periods": [
+            {
+              "id": "period_a",
+              "label": "First supplied period",
+              "home": 0,
+              "away": null
+            }
+          ],
+          "leaders": [
+            {
+              "id": "leader_a",
+              "label": "Mira Stone",
+              "teamId": "cedar",
+              "points": 0,
+              "rebounds": null,
+              "assists": 2
+            }
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z",
+      "source": {
+        "label": "Original fictional sports snapshot",
+        "url": "https://example.invalid/supplied-sports"
+      }
+    },
+    {
+      "type": "soccer-games",
+      "label": "Original soccer-games sample",
+      "timezone": "UTC",
+      "teams": [
+        {
+          "id": "cedar",
+          "label": "Cedar"
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor",
+          "record": ""
+        }
+      ],
+      "games": [
+        {
+          "id": "sample",
+          "label": "Fictional supplied match",
+          "competition": "Original example league",
+          "startsAt": "2028-02-29T12:00Z",
+          "homeTeamId": "cedar",
+          "awayTeamId": "harbor",
+          "status": "live",
+          "homeScore": 0,
+          "awayScore": null,
+          "outcome": "unknown",
+          "aggregate": {
+            "home": 1,
+            "away": null
+          },
+          "penalties": null,
+          "events": [
+            {
+              "id": "event_a",
+              "minute": "45+2",
+              "kind": "other",
+              "teamId": null,
+              "note": "Unattributed supplied event"
+            }
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z",
+      "source": {
+        "label": "Original fictional sports snapshot",
+        "url": "https://example.invalid/supplied-sports"
+      }
+    },
+    {
+      "type": "american-football-games",
+      "label": "Original american-football-games sample",
+      "timezone": "UTC",
+      "teams": [
+        {
+          "id": "cedar",
+          "label": "Cedar"
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor",
+          "record": ""
+        }
+      ],
+      "games": [
+        {
+          "id": "sample",
+          "label": "Fictional supplied match",
+          "competition": "Original example league",
+          "startsAt": "2028-02-29T12:00Z",
+          "homeTeamId": "cedar",
+          "awayTeamId": "harbor",
+          "status": "live",
+          "homeScore": 0,
+          "awayScore": null,
+          "outcome": "unknown",
+          "periods": [
+            {
+              "id": "quarter_a",
+              "label": "Supplied first quarter",
+              "home": 0,
+              "away": null,
+              "kind": "quarter",
+              "number": 1
+            }
+          ],
+          "possessionTeamId": "cedar",
+          "situation": {
+            "down": null,
+            "distance": 0,
+            "ballOn": null
+          },
+          "events": [
+            {
+              "id": "event_a",
+              "periodId": "quarter_a",
+              "clock": null,
+              "kind": "other",
+              "teamId": "cedar",
+              "points": null
+            }
+          ]
+        }
+      ],
+      "observedAt": "2028-02-29T12:00Z",
+      "source": {
+        "label": "Original fictional sports snapshot",
+        "url": "https://example.invalid/supplied-sports"
+      }
+    }
+  ]
+}
