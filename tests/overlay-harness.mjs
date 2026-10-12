@@ -4,6 +4,7 @@ import {build} from 'esbuild';
 import {fileURLToPath} from 'node:url';
 const fromSource=async name=>{const output=await build({entryPoints:[fileURLToPath(new URL('../src/renderer/'+name,import.meta.url))],bundle:true,write:false,format:'esm',platform:'node',target:'es2022'});return import('data:text/javascript;base64,'+Buffer.from(output.outputFiles[0].text).toString('base64'));};
 const {renderOverlay}=await fromSource('overlays.ts');
+const {renderGeneration}=await fromSource('generation.ts');
 const {overlayEnglish,overlayChinese}=await fromSource('overlay-labels.ts');
 export const tooltip = (label = 'Help', value = 'Original explanation') => ({ type: 'tooltip', label, value });
 export const popover = (label = 'Open details', children = [{type:'text',value:'Original details'}]) => ({ type: 'popover', label, children });
@@ -24,11 +25,12 @@ export function setup({ native = false, lang = 'en', theme = 'light', dom = new 
     proto.getBoundingClientRect = function () { return this.classList.contains('iui-overlay-surface') ? rect(0,0,280,150) : rect(80,80,100,44); };
   }
   let state = { text: 'Draft', count: 0, unrelated: 0 }, removers = [], bindings = [];
+  let life=renderGeneration(()=>true);
   const element = (tag, cls = '', text) => { const el = doc.createElement(tag); el.className = cls; if(text!==undefined) el.textContent=String(text); return el; };
   const context = {
-    doc, prefix, element,
-    on(target,name,fn) { target.addEventListener(name,fn); removers.push(()=>target.removeEventListener(name,fn)); },
-    cleanup(fn) { removers.push(fn); }, bind(fn) { bindings.push(fn); fn(); },
+    doc, prefix, element, get lifecycle(){return life;},
+    on(target,name,fn) { return life.listen(target,name,fn); },
+    cleanup(fn) { removers.push(fn); }, bind(fn) { const safe=life.guard(fn);bindings.push(safe);safe(); },
     getState:()=>state, value:v=>v&&typeof v==='object'&&'$'in v?state[v.$]:v,
     display:v=>String(v), showValue:(el,v)=>el.textContent=String(v),
     render(node) {
@@ -42,7 +44,7 @@ export function setup({ native = false, lang = 'en', theme = 'light', dom = new 
     change(patch) { state={...state,...patch}; for(const fn of bindings)fn(); },
     fromControl(patch) { context.change(patch); }, actions: {}, labels:()=>({}), svg:()=>{}
   };
-  const clear = () => { for(const fn of removers)fn(); removers=[]; bindings=[]; root.replaceChildren(); };
+  const clear = () => { life.dispose();for(const fn of removers)fn(); removers=[]; bindings=[]; root.replaceChildren();life=renderGeneration(()=>true); };
   return {dom,doc,win,host,root,context,metrics,
     mount(node) { const el=context.render(node); root.append(el); return el; },
     setState:context.change,

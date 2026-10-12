@@ -1,5 +1,6 @@
 import {internalId} from './internal-id.js';
 import type { RendererContext } from './context.js';
+import type { RenderGeneration } from './generation.js';
 import type { TooltipNode, PopoverNode } from '../schema/document.js';
 import type { OverlayLabels } from './overlay-labels.js';
 import { positionOverlay, type OverlayViewport } from './overlay-position.js';
@@ -107,11 +108,11 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
     if (win) win.clearTimeout(timer as number);
     else globalThis.clearTimeout(timer as ReturnType<typeof setTimeout>);
   };
-  let leaveTimer: ReturnType<typeof setTimer> | undefined;
+  let leaveTimer: RenderGeneration | undefined;
   let removePointerWatch: (() => void) | undefined;
-  let frame: number | undefined;
-  let observers: (() => void)[] = [];
-  const cancelLeave = () => { if (leaveTimer !== undefined) { clearTimer(leaveTimer); leaveTimer = undefined; } };
+  let frame: RenderGeneration | undefined;
+  let watching: RenderGeneration | undefined;
+  const cancelLeave = () => { const pending=leaveTimer;leaveTimer=undefined;pending?.dispose(); };
   const cancelPointer = () => {
     removePointerWatch?.(); removePointerWatch = undefined;
   };
@@ -123,8 +124,8 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
     height: win?.visualViewport?.height ?? (doc.documentElement.clientHeight || win?.innerHeight || 768)
   });
   const stopWatching = () => {
-    for (const remove of observers) remove(); observers = [];
-    if (frame !== undefined) { win?.cancelAnimationFrame(frame); frame = undefined; }
+    const previous=watching;watching=undefined;previous?.dispose();
+    const pending=frame;frame=undefined;pending?.dispose();
   };
   const hide = (reason: CloseReason) => {
     if (!opened) return;
@@ -155,24 +156,37 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   const schedule = () => {
     if (!opened || disposed || frame !== undefined) return;
     if (!win?.requestAnimationFrame) { reposition(); return; }
-    frame = win.requestAnimationFrame(() => { frame = undefined; reposition(); });
+    const pending=c.lifecycle.fork(()=>opened&&!disposed);frame=pending;
+    let registering=true, completed=false, registered=false;
+    try {
+      pending.acquire(()=>win.requestAnimationFrame(pending.guard(()=>{
+        completed=true;if(frame===pending)frame=undefined;
+        try {reposition();} finally {if(!registering)pending.dispose();}
+      })),id=>win.cancelAnimationFrame(id));
+      registered=true;
+    } finally {
+      registering=false;
+      if(!registered||completed){if(frame===pending)frame=undefined;pending.dispose();}
+    }
   };
   const watch = () => {
     if (!win) return;
+    // One replaceable open-session scope owns positioning resources. Register
+    // before entering host APIs; observe() itself can retire then register late.
+    const scope=c.lifecycle.fork(()=>opened&&!disposed);watching=scope;
     const listen = (target: EventTarget, name: string, capture = false) => {
-      target.addEventListener(name, schedule, capture);
-      observers.push(() => target.removeEventListener(name, schedule, capture));
+      scope.listen(target,name,schedule,capture);
     };
     listen(doc, 'scroll', true); listen(win, 'resize');
     if (win.visualViewport) { listen(win.visualViewport, 'resize'); listen(win.visualViewport, 'scroll'); }
     if (win.ResizeObserver) {
-      const observer = new win.ResizeObserver(schedule); observer.observe(trigger); observer.observe(surface);
-      observers.push(() => observer.disconnect());
+      const observer=scope.acquire(()=>new win.ResizeObserver(scope.guard(schedule)),value=>value.disconnect());
+      scope.acquire(()=>{observer.observe(trigger);return observer;},value=>value.disconnect());
+      scope.acquire(()=>{observer.observe(surface);return observer;},value=>value.disconnect());
     }
     if (win.MutationObserver && doc.documentElement) {
-      const observer = new win.MutationObserver(() => { if (opened && !visibleAnchor()) close('detached'); });
-      observer.observe(doc.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['hidden', 'inert', 'open', 'style', 'class'] });
-      observers.push(() => observer.disconnect());
+      const observer=scope.acquire(()=>new win.MutationObserver(scope.guard(()=>{if(opened&&!visibleAnchor())close('detached');})),value=>value.disconnect());
+      scope.acquire(()=>{observer.observe(doc.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','inert','open','style','class']});return observer;},value=>value.disconnect());
     }
   };
   const open = () => {
@@ -196,7 +210,19 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
   const delayedLeave = () => {
     cancelLeave();
     if (hoverTrigger || hoverSurface || focused || pinned) return;
-    leaveTimer = setTimer(() => { leaveTimer = undefined; if (!hoverTrigger && !hoverSurface && !focused && !pinned) close('leave'); }, 120);
+    const pending=c.lifecycle.fork(()=>!disposed);leaveTimer=pending;
+    let registering=true, completed=false, registered=false;
+    try {
+      pending.acquire(()=>setTimer(pending.guard(()=>{
+        completed=true;if(leaveTimer===pending)leaveTimer=undefined;
+        try {if(!hoverTrigger&&!hoverSurface&&!focused&&!pinned)close('leave');}
+        finally {if(!registering)pending.dispose();}
+      }),120),clearTimer);
+      registered=true;
+    } finally {
+      registering=false;
+      if(!registered||completed){if(leaveTimer===pending)leaveTimer=undefined;pending.dispose();}
+    }
   };
   c.on(surface, 'toggle', (event: Event) => {
     if (native && opened && (event as ToggleEvent).newState === 'closed' && !surface.matches(':popover-open')) close('toggle');
@@ -237,8 +263,8 @@ export function renderOverlay(c: RendererContext, n: TooltipNode | PopoverNode, 
         if ((event as PointerEvent).pointerId !== pointerId) return;
         if (pointerGesture) pointerGesture.cancelled = true; cancelPointer();
       };
-      doc.addEventListener('pointerup', release, true); doc.addEventListener('pointercancel', cancel, true);
-      removePointerWatch = () => { doc.removeEventListener('pointerup', release, true); doc.removeEventListener('pointercancel', cancel, true); };
+      const gestureScope=c.lifecycle.fork(()=>!disposed);removePointerWatch=()=>gestureScope.dispose();
+      gestureScope.listen(doc,'pointerup',release,true);gestureScope.listen(doc,'pointercancel',cancel,true);
     });
     if (win) c.on(win, 'blur', () => { pointerGesture = undefined; cancelPointer(); close('leave'); });
     c.on(trigger, 'click', (event: Event) => {
