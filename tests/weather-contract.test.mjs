@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createRequire,Module} from 'node:module';
+import {build} from 'esbuild';
+const root=new URL('../',import.meta.url).pathname;
+const require=createRequire(import.meta.url);
+const structural=require('../src/schema/validator.cjs');
+const compiled=await build({entryPoints:[root+'src/core/index.ts'],bundle:true,write:false,format:'cjs',platform:'node',target:'node22'});
+const module=new Module(root+'weather-contract-core.cjs');module.filename=root+'weather-contract-core.cjs';module.paths=Module._nodeModulePaths(root);module._compile(compiled.outputFiles[0].text,module.filename);
+const validate=module.exports.validateDocument;
+const base=JSON.parse(readFileSync(new URL('../examples/schema-modules/weather.json',import.meta.url))).body[0];
+const wrap=node=>({version:'iui/1',body:[node]});
+const check=(node,ok)=>{assert.equal(structural(wrap(node)),true);assert.equal(validate(wrap(node)).ok,ok,JSON.stringify(node));};
+test('source-unit bounds cover all temperature positions, null and exact endpoints',()=>{for(const[unit,min]of[['celsius',-273.15],['fahrenheit',-459.67]])for(const value of[min,1000,null,min-.01,1000.01])for(const place of['current','feelsLike','low','high','hourly']){const n=structuredClone(base);n.units.temperature=unit;if(place==='current')n.current.temperature=value;else if(place==='feelsLike')n.current.feelsLike=value;else if(place==='hourly')n.hourly=[{time:n.current.time,temperature:value,precipitationProbability:0}];else n.daily=[{date:'2026-01-01',low:place==='low'?value:null,high:place==='high'?value:null,condition:'clear',precipitationProbability:0}];check(n,value===null||value>=min&&value<=1000)}});
+test('daily range compares only two provided temperatures',()=>{for(const[low,high,ok]of[[10,5,false],[5,5,true],[null,5,true],[10,null,true]])check({...base,daily:[{date:'2026-01-01',low,high,condition:'clear',precipitationProbability:0}]},ok)});
+test('nonblank extension strings and legacy empty message remain distinct',()=>{const patches=[{regionLabel:' '},{labels:{current:'\t'}},{current:{...base.current,description:' '}},{current:{...base.current,temperatureLabels:{celsius:' ',fahrenheit:'F'}}},{share:{label:' '}},{locationAction:{label:'Location',query:'\n'}},{followUps:[{id:'a',label:' ',query:'x'}]},{daily:[{date:'2026-01-01',low:null,high:null,condition:'clear',precipitationProbability:0,description:' '}]},{hourly:[{time:base.current.time,temperature:null,precipitationProbability:0,label:' '}]}];for(const patch of patches)check({...base,...patch},false);check({...base,message:''},true);check({...base,share:{label:'Share'}},true)});
+test('mandatory semantic document names numerical and textual constraints',()=>{const doc=readFileSync(new URL('../docs/weather.md',import.meta.url),'utf8');for(const text of['low <= high','[-273.15, 1000]','[-459.67, 1000]','current.feelsLike','hourly[].temperature','trim()','followUps[]','message: ""','WEATHER_RANGE','WEATHER_SUPPLIED_DATA'])assert.ok(doc.includes(text),text)});

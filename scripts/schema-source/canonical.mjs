@@ -1,3 +1,4 @@
+import {nullableNumber,probability,condition,timestamp,date} from './primitives.mjs';
 import {suppliedLinkProps} from './modules/layout.mjs';
 import {readFile} from 'node:fs/promises';
 import {createDocumentSchema} from './envelope.mjs';
@@ -22,7 +23,6 @@ import {installAskLocationSchema} from '../ask-location-schema.mjs';
 import {installCapabilityWelcomeSchema} from '../capability-welcome-schema.mjs';
 import {installQuizCardsSchema} from '../quiz-cards-schema.mjs';
 import {installSearchOnboardingSchema} from '../search-onboarding-schema.mjs';
-import {installWeatherSuppliedSchema} from '../weather-supplied-schema.mjs';
 import {installStudyOnboardingSchema} from '../study-onboarding-schema.mjs';
 import {installOnboardingCardsSchema} from '../onboarding-cards-schema.mjs';
 import {installConversationalOnboardingSchema} from '../conversational-onboarding-schema.mjs';
@@ -170,21 +170,8 @@ registry.use('forms/fields');
 registry.use('foundations/button');
 registry.use('graphics/topology');
 registry.use('charts/basic');
-const nullableNumber = { anyOf: [number, { type: 'null' }] };
-const probability = { anyOf: [{ type: 'number', minimum: 0, maximum: 100 }, { type: 'null' }] };
-const condition = choice('clear', 'partly-cloudy', 'cloudy', 'rain', 'snow', 'storm', 'fog', 'unknown');
-const timestamp = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(?::\\d{2}(?:\\.\\d{1,3})?)?(?:Z|[+-]\\d{2}:\\d{2})$', maxLength: 40 };
-const date = { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$' };
-// Original in-page time controls. No OS alarms, remote synchronization or persistence.
-node('clock', { title: short, timezone: short, mode: choice('live', 'snapshot'), at: timestamp, hourCycle: choice('h12', 'h23'), seconds: bool }, ['timezone', 'mode'], 'time');
-const { at: _snapshotOnly, ...liveClock } = defs.ClockNode.properties;
-defs.ClockNode.oneOf = [
-  object({ ...liveClock, mode: { const: 'live' } }, ['mode']),
-  object({ ...defs.ClockNode.properties, mode: { const: 'snapshot' } }, ['mode', 'at'])
-];
-node('stopwatch', { title: short, elapsedMs: integer(0, 604800000), laps: bool }, [], 'time');
-node('timer', { title: short, durationMs: integer(1, 604800000) }, ['durationMs'], 'time');
-node('weather', { location: object({ name: short, timezone: short }, ['name', 'timezone']), updatedAt: timestamp, source: object({ label: short, url: string(2048), synthetic: bool }, ['label', 'synthetic']), units: object({ temperature: choice('celsius', 'fahrenheit') }, ['temperature']), current: object({ time: timestamp, temperature: nullableNumber, feelsLike: nullableNumber, condition, humidity: probability }, ['time', 'temperature', 'condition']), daily: array(object({ date, low: nullableNumber, high: nullableNumber, condition, precipitationProbability: probability }, ['date', 'low', 'high', 'condition', 'precipitationProbability']), 0, 16), hourly: array(object({ time: timestamp, temperature: nullableNumber, precipitationProbability: probability }, ['time', 'temperature', 'precipitationProbability']), 0, 384), initialDate: date, status: choice('ready', 'loading', 'error'), message: string() }, ['location', 'updatedAt', 'source', 'units', 'current', 'daily', 'hourly'], 'weather');
+registry.use('time/controls');
+registry.use('weather/snapshot');
 
 // Supplied motorsport snapshots: no live providers or inferred scoring rules.
 defs.MotorsportSession=object({id:suppliedKey,label:short,kind:choice('practice','qualifying','sprint','race','other'),status:choice('scheduled','complete','cancelled','postponed','unknown'),startsAt:{anyOf:[flightAt,{type:'null'}]},endsAt:flightAt,note:string(2000)},['id','label','kind','status','startsAt']);
@@ -358,7 +345,6 @@ installLedgerCategorySchema({node,defs});
 installVoiceCardsSchema({node,defs});
 installConversationalOnboardingSchema({node,defs});
 installOnboardingCardsSchema({node,defs});
-installWeatherSuppliedSchema({defs});
 installStudyOnboardingSchema({node,defs});
 installSearchOnboardingSchema({node,defs});
 installQuizCardsSchema({node,defs});

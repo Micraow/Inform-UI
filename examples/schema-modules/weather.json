@@ -1,0 +1,34 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "weather",
+      "location": {
+        "name": "Original fictional field",
+        "timezone": "UTC"
+      },
+      "updatedAt": "2026-01-01T12:00:00Z",
+      "source": {
+        "label": "Original supplied example",
+        "synthetic": true
+      },
+      "units": {
+        "temperature": "celsius"
+      },
+      "current": {
+        "time": "2026-01-01T12:00:00Z",
+        "temperature": 0,
+        "condition": "cloudy",
+        "description": "Authored text"
+      },
+      "daily": [],
+      "hourly": [],
+      "presentation": "compact",
+      "resetLabel": "Reset view",
+      "share": {
+        "label": "Request sharing",
+        "available": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "clock",
+      "timezone": "UTC",
+      "mode": "snapshot",
+      "at": "2026-01-01T12:00:00Z"
+    },
+    {
+      "type": "stopwatch",
+      "elapsedMs": 1200
+    },
+    {
+      "type": "timer",
+      "durationMs": 60000
+    }
+  ]
+}

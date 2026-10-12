@@ -18,6 +18,16 @@
 
 温度、湿度或降水概率未知时用 `null`；湿度与降水概率单位为百分比 `0–100`，`0` 不代表缺测。日期必须递增且不重复；逐小时顺序根据真实时间，而不是本地时钟文字。夏令时出现两次 `01:00` 时，数据表和读数保留各自偏移。
 
+## 完整语义校验：温度与文字
+
+结构 Schema 通过并不表示这些跨字段规则已经通过。挂载或编译前仍须使用完整 `validateDocument`：
+
+- 每个 `daily[]` 条目在 `low`、`high` 都非 `null` 时必须满足 `low <= high`；允许二者相等。任一为 `null` 时不比较大小，也不推算缺测值。
+- `current.temperature`、可选的 `current.feelsLike`、`daily[].low/high`、`hourly[].temperature` 的已提供数值，按 `units.temperature` 的源单位校验：摄氏闭区间 `[-273.15, 1000]`，华氏闭区间 `[-459.67, 1000]`。边界可取，`null` 表示缺测；可选字段可以省略。上限 1000 是本库显示输入边界，并不表示该值适合作为实际天气观测。切换显示温标不改变源数据的合法区间。
+- 增量展示和请求文字如被提供，不得全为空白（`trim()` 后必须非空）：顶层 `regionLabel/tableDateLabel/resetLabel/requestedLabel/cancelledLabel`、`labels` 的每个值；`current.description`、`daily[].label/description`、`hourly[].label/description`；所有温度文字对象中的 `celsius/fahrenheit/a11yCelsius/a11yFahrenheit`；`share.label`、`locationAction.label/query`；顶层与逐日 `followUps[]` 中的 `id/label/query`。空白无效不会被自动替换为默认值。该要求只覆盖上述明确列出的增量字段，不将旧 `message: ""` 等原有合法输入收紧。
+
+例如，源摄氏温度 `-274` 或 `1001`、逐日 `low: 10, high: 5`、`share.label: " "` 可通过结构检查，却会分别被完整语义检查以 `WEATHER_RANGE` 或 `WEATHER_SUPPLIED_DATA` 拒绝。该区别同样适用于按需生成的分类 Schema。
+
 状态测试文档见 [weather/states.json](../examples/weather/states.json)。它们可直接作为后续统一组件 Demo 的可编辑 JSON 输入。旧固定CDN只支持其对应Schema；新固定入口与本页合同一起列于cdn.md，真实加载验收由该提交的CI记录。
 
 ## 可选供数展示与本地意图

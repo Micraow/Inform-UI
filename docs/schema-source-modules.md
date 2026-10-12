@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 68 migrated nodes and 150 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 72 migrated nodes and 146 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -60,3 +60,7 @@ Email drafts contain caller-supplied recipients, subject and body. They provide 
 ## topology
 
 `graphics/topology` owns the existing supplied topology diagram: 2–24 named nodes and 1–40 directed links. A link's `from` and `to` refer to supplied node IDs; the full validator checks IDs and endpoints. Optional load values use the shared expression grammar and must resolve to nonnegative finite numbers under semantic validation; max-load highlighting only describes the supplied data. No network graph discovery, routing, remote loading or task execution is performed. Captions and labels are supplied by the author. The selected structural schema is used with the unchanged full semantic validator.
+
+## Time and weather
+
+`time/controls` provides the local clock, stopwatch and timer. `weather/snapshot` provides the complete supplied weather node, including its additive presentation, labels and local intent options. Weather's extension installer is invoked only by its owning module, before that module is registered as complete; the canonical merge does not modify it afterward. Both have self-contained examples and explicit `semanticContractPaths` for their [time](time.md) and [weather](weather.md) contracts. These optional catalog paths identify required semantic reading; ordinary links in those documents remain navigation, not an instruction to import every linked release guide into a prompt. Existing `contractPath` is retained for compatibility. No timer service, weather lookup or new runtime behavior is introduced.
