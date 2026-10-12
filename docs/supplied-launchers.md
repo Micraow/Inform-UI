@@ -27,3 +27,7 @@ Provider logos follow the same explicit external-image activation rule; the Load
 `iui:supplied-launcher` is bubbling, cancelable and non-composed. Its frozen detail includes `id`, `component`, `intent` and only the intent's supplied fields. Source disabled, fieldset/first-legend, ARIA, inert/hidden and capture cancellation are honored. Shared generation ownership, intent admission and native-reset handling prevent stale controls and reentrant requests from acting after update or disposal.
 
 Pending and failed outer phases render supplied placeholders/fallbacks without active domain controls. All examples and their PNG are original fixtures. Author DOM/compiler checks and browser discovery are separate from actual native-browser or reference-pixel acceptance. Distributed assets remain the earlier unified183 release until a later unified build is explicitly frozen.
+
+## Complete semantic validation boundary
+
+Full `validateDocument` checks supplied top-level strings for nonblank `trim()` content except `fallback`, `error` and `alt` (`SUPPLIED_LAUNCHER_TEXT`). The exceptions retain their existing content allowance. Homework option values and labels must be nonblank; option values must be unique (`SUPPLIED_LAUNCHER_ID` for duplication). Image-gen URL and partner logo use the safe-image policy. Each supplied direct string in a partner `launcher` record must be nonblank. These checks apply to supplied values regardless of phase and do not turn the launcher payload into an executable callback, private API request or external service connection.

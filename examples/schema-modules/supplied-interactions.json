@@ -1,0 +1,113 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-low-confidence-category-correction-legacy",
+      "id": "legacy-demo",
+      "label": "Original supplied category review list",
+      "title": "Original category review",
+      "connected": true,
+      "emptyLabel": "No supplied records need review",
+      "showMoreLabel": "Show all supplied records",
+      "showLessLabel": "Show first three records",
+      "transactions": [
+        {
+          "id": "0",
+          "name": "Fictional merchant 0",
+          "dateLabel": "Original date 0",
+          "amountLabel": "900.000000000000000001 USD",
+          "amountValue": 0,
+          "maskedAmountLabel": "Amount hidden",
+          "categoryLabel": "Original supplied category",
+          "query": "Review only original record 0",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "logoAlt": "Original blue square"
+        },
+        {
+          "id": "1",
+          "name": "Fictional merchant 1",
+          "dateLabel": "Original date 1",
+          "amountLabel": "0 USD",
+          "amountValue": 1,
+          "maskedAmountLabel": "Amount hidden",
+          "categoryLabel": "Original supplied category",
+          "query": "Review only original record 1",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "logoAlt": "Original blue square"
+        },
+        {
+          "id": "2",
+          "name": "Fictional merchant 2",
+          "dateLabel": "Original date 2",
+          "amountLabel": "0 USD",
+          "amountValue": null,
+          "maskedAmountLabel": "Amount hidden",
+          "categoryLabel": "Original supplied category",
+          "query": "Review only original record 2",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "logoAlt": "Original blue square"
+        },
+        {
+          "id": "3",
+          "name": "Fictional merchant 3",
+          "dateLabel": "Original date 3",
+          "amountLabel": "0 USD",
+          "amountValue": null,
+          "maskedAmountLabel": "Amount hidden",
+          "categoryLabel": "Original supplied category",
+          "query": "Review only original record 3",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "logoAlt": "Original blue square"
+        },
+        {
+          "id": "4",
+          "name": "Fictional merchant 4",
+          "dateLabel": "Original date 4",
+          "amountLabel": "0 USD",
+          "amountValue": null,
+          "maskedAmountLabel": "Amount hidden",
+          "categoryLabel": "Original supplied category",
+          "query": "Review only original record 4",
+          "logo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "logoAlt": "Original blue square"
+        }
+      ]
+    },
+    {
+      "type": "superbowl-riddle",
+      "id": "riddle-demo",
+      "label": "Original river puzzle",
+      "title": "Three travelers and a boat",
+      "instructions": "Carry one item. Do not leave the chicken alone with the fox or grain.",
+      "labels": {
+        "fox": "Fox",
+        "chicken": "Chicken",
+        "grain": "Grain",
+        "leftBank": "Starting bank",
+        "rightBank": "Destination bank",
+        "boat": "Boat",
+        "cross": "Cross the river",
+        "unload": "Unload cargo",
+        "wonTitle": "All across",
+        "wonDescription": "The three items reached the destination safely.",
+        "lostTitle": "Unsafe crossing",
+        "lostDescription": "An unattended pair was left together. Reset to try a different route.",
+        "followups": "Original follow-up choices"
+      },
+      "wonFollowups": [
+        {
+          "id": "why",
+          "label": "Explain the safe sequence",
+          "query": "Explain this original puzzle solution"
+        }
+      ],
+      "lostFollowups": [
+        {
+          "id": "retry",
+          "label": "Discuss an alternative move",
+          "query": "Discuss a safe first move for this original puzzle"
+        }
+      ]
+    }
+  ]
+}

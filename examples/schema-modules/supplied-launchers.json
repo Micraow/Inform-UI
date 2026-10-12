@@ -1,0 +1,57 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "homework-helper-v2",
+      "id": "homework-demo",
+      "label": "Original learning mode choice",
+      "question": "Choose how to work through this fictional exercise.",
+      "options": [
+        {
+          "value": "guided",
+          "label": "Walk through the original steps"
+        },
+        {
+          "value": "show_answer",
+          "label": "Show the supplied explanation"
+        },
+        {
+          "value": "quiz_me",
+          "label": "Request a local practice prompt"
+        },
+        {
+          "value": "voice",
+          "label": "Request a voice conversation"
+        },
+        {
+          "value": "unavailable-example",
+          "label": "Unsupported supplied mode"
+        }
+      ],
+      "selectedValue": "guided",
+      "preventRepeatedSubmission": false,
+      "submitLabel": "Request this mode"
+    },
+    {
+      "type": "image-gen",
+      "id": "image-demo",
+      "label": "Original supplied generated-image result",
+      "imageStatus": "succeeded",
+      "url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+      "alt": "Original blue square drawn locally"
+    },
+    {
+      "type": "internal-partner-app",
+      "id": "partner-demo",
+      "label": "Original finite partner app card",
+      "title": "Original fictional partner",
+      "buttonLabel": "Request this local partner view",
+      "providerLogo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+      "launcher": {
+        "appId": "fictional-partner",
+        "viewId": "original-view",
+        "query": "Use the supplied original fixture"
+      }
+    }
+  ]
+}

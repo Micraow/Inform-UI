@@ -1,0 +1,89 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "bento",
+      "id": "bento-demo",
+      "label": "Original four-card discovery",
+      "largeCard": {
+        "query": "Explore the original large illustration",
+        "context": "Only supplied context",
+        "imageUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+        "imageAlt": "Original blue square"
+      },
+      "smallCardA": {
+        "title": "Original linked card",
+        "body": "Supplied first-card description.",
+        "url": "https://example.test/first",
+        "query": "Ignored when URL is supplied"
+      },
+      "smallCardB": {
+        "title": "Original detail card",
+        "body": "An independent local detail request.",
+        "query": "Explore the supplied second topic",
+        "context": "Second supplied context",
+        "bodyIsTitle": true
+      },
+      "mediumCard": {
+        "title": "Original source card",
+        "body": "A longer supplied description with no network lookup or inferred source details.",
+        "bodySize": "md",
+        "url": "https://example.test/source",
+        "linkHost": "example.test",
+        "iconSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg=="
+      }
+    },
+    {
+      "type": "open-detail",
+      "id": "detail-demo",
+      "label": "Original finite action list",
+      "title": "Choose a supplied detail",
+      "action": "original-detail-action",
+      "actions": [
+        {
+          "id": "0",
+          "label": "Original option 0",
+          "payload": null
+        },
+        {
+          "id": "1",
+          "label": "Original option 1",
+          "payload": ""
+        },
+        {
+          "id": "2",
+          "label": "Original option 2",
+          "payload": "Supplied payload 2"
+        },
+        {
+          "id": "3",
+          "label": "Original option 3",
+          "payload": "Supplied payload 3"
+        },
+        {
+          "id": "4",
+          "label": "Original option 4",
+          "payload": "Supplied payload 4"
+        },
+        {
+          "id": "5",
+          "label": "Original option 5",
+          "payload": "Supplied payload 5"
+        }
+      ]
+    },
+    {
+      "type": "openai",
+      "id": "profile-demo",
+      "label": "Original organization profile fixture",
+      "name": "Fictional research studio",
+      "tagline": "Entirely supplied demonstration text.",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+      "imageAlt": "Original blue square, not an organization logo",
+      "websiteUrl": "https://example.test/studio",
+      "morePrompt": "Explain this supplied fictional studio",
+      "websiteLabel": "Request website",
+      "moreLabel": "Request supplied prompt"
+    }
+  ]
+}

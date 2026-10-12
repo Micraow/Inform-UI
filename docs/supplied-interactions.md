@@ -27,3 +27,9 @@ A stable visible Reset anchors native form handling. Source disabled, fieldset/f
 Author DOM/compiler checks, native test discovery, independent consumers and actual browser/pixel acceptance remain separate. The distributed/native-validated unified183 assets are unchanged by this source candidate.
 
 Accepted game reset moves focus to the visible Reset button only when the currently focused cargo, terminal action or bank item will become hidden. Cancelled reset and a newer game input retain focus and state. Existing pick/unload/cross focus destinations still take precedence. This is a local focus correction; the shared reset contract is unchanged.
+
+## Complete semantic validation boundary
+
+Full `validateDocument` requires a nonblank top-level label (`INTERACTION_TEXT`). In the legacy category-correction card, title and every direct transaction string except `logoAlt` must be nonblank; transaction IDs must be unique (`INTERACTION_ID`), and logos safe images. A disconnected (`connected:false`) card requires its supplied no-account view (`INTERACTION_NO_ACCOUNTS`). This preserves the existing limited check rather than adding a blanket trim rule to every top-level content field.
+
+For the finite river puzzle, every supplied `labels` value is nonblank. Won and lost follow-up IDs must each be nonblank and unique within their list; this validator does not add a new trim rule to follow-up label/query beyond their structural bounds. If an initial snapshot is supplied, fox, chicken and grain must each occur exactly once across left bank, right bank and cargo (`RIDDLE_SNAPSHOT`). The local state machine remains unchanged; no inference about external activities is made.

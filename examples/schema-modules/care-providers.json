@@ -1,0 +1,1227 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "care-provider-results",
+      "id": "original-results",
+      "label": "Original fictional provider results",
+      "resultStatus": "partial",
+      "partialNotice": "Some supplied directory entries are unavailable.",
+      "title": "Fictional provider list",
+      "providers": [
+        {
+          "id": "provider-0",
+          "name": "Fictional Provider 0",
+          "initials": "FP",
+          "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "photoAlt": "Original blue square, not a real person",
+          "specialty": "Supplied directory category",
+          "ratingLabel": "0.0",
+          "reviewCountLabel": "0",
+          "networkLabel": "Supplied network label",
+          "inNetwork": false,
+          "summary": "Fictional directory data for interface testing.",
+          "profile": {
+            "url": "https://example.test/profile/0"
+          },
+          "locations": [
+            {
+              "id": "loc-0",
+              "label": "Fictional location 0",
+              "distanceLabel": "0 supplied distance",
+              "modality": "in-person",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 0",
+              "action": {
+                "query": "Original local request 0"
+              }
+            },
+            {
+              "id": "loc-1",
+              "label": "Fictional location 1",
+              "distanceLabel": "0 supplied distance",
+              "modality": "telehealth",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 1",
+              "action": {
+                "query": "Original local request 1"
+              }
+            }
+          ]
+        },
+        {
+          "id": "provider-1",
+          "name": "Fictional Provider 1",
+          "initials": "FP",
+          "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "photoAlt": "Original blue square, not a real person",
+          "specialty": "Supplied directory category",
+          "ratingLabel": "0.0",
+          "reviewCountLabel": "0",
+          "networkLabel": "Supplied network label",
+          "inNetwork": false,
+          "summary": "Fictional directory data for interface testing.",
+          "profile": {
+            "url": "https://example.test/profile/1"
+          },
+          "locations": [
+            {
+              "id": "loc-2",
+              "label": "Fictional location 2",
+              "distanceLabel": "0 supplied distance",
+              "modality": "in-person",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 2",
+              "action": {
+                "query": "Original local request 2"
+              }
+            },
+            {
+              "id": "loc-3",
+              "label": "Fictional location 3",
+              "distanceLabel": "0 supplied distance",
+              "modality": "telehealth",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 3",
+              "action": {
+                "query": "Original local request 3"
+              }
+            }
+          ]
+        },
+        {
+          "id": "provider-2",
+          "name": "Fictional Provider 2",
+          "initials": "FP",
+          "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "photoAlt": "Original blue square, not a real person",
+          "specialty": "Supplied directory category",
+          "ratingLabel": "0.0",
+          "reviewCountLabel": "0",
+          "networkLabel": "Supplied network label",
+          "inNetwork": false,
+          "summary": "Fictional directory data for interface testing.",
+          "profile": {
+            "url": "https://example.test/profile/2"
+          },
+          "locations": [
+            {
+              "id": "loc-4",
+              "label": "Fictional location 4",
+              "distanceLabel": "0 supplied distance",
+              "modality": "in-person",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 4",
+              "action": {
+                "query": "Original local request 4"
+              }
+            },
+            {
+              "id": "loc-5",
+              "label": "Fictional location 5",
+              "distanceLabel": "0 supplied distance",
+              "modality": "telehealth",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 5",
+              "action": {
+                "query": "Original local request 5"
+              }
+            }
+          ]
+        },
+        {
+          "id": "provider-3",
+          "name": "Fictional Provider 3",
+          "initials": "FP",
+          "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+          "photoAlt": "Original blue square, not a real person",
+          "specialty": "Supplied directory category",
+          "ratingLabel": "0.0",
+          "reviewCountLabel": "0",
+          "networkLabel": "Supplied network label",
+          "inNetwork": false,
+          "summary": "Fictional directory data for interface testing.",
+          "profile": {
+            "url": "https://example.test/profile/3"
+          },
+          "locations": [
+            {
+              "id": "loc-6",
+              "label": "Fictional location 6",
+              "distanceLabel": "0 supplied distance",
+              "modality": "in-person",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 6",
+              "action": {
+                "query": "Original local request 6"
+              }
+            },
+            {
+              "id": "loc-7",
+              "label": "Fictional location 7",
+              "distanceLabel": "0 supplied distance",
+              "modality": "telehealth",
+              "days": [
+                {
+                  "date": "2026-12-01",
+                  "label": "Original date 1",
+                  "accessibilityLabel": "Original date choice 1",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "1",
+                          "label": "Supplied time 1",
+                          "accessibilityLabel": "Original appointment choice 1",
+                          "url": "https://example.test/booking/1",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "11",
+                          "label": "Supplied time 11",
+                          "accessibilityLabel": "Original appointment choice 11",
+                          "url": "https://example.test/booking/11"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "date": "2026-12-02",
+                  "label": "Original date 2",
+                  "accessibilityLabel": "Original date choice 2",
+                  "countLabel": "900 supplied choices",
+                  "groups": [
+                    {
+                      "label": "Supplied morning group",
+                      "slots": [
+                        {
+                          "id": "2",
+                          "label": "Supplied time 2",
+                          "accessibilityLabel": "Original appointment choice 2",
+                          "url": "https://example.test/booking/2",
+                          "chooseLabel": "Choose supplied visit category",
+                          "dismissLabel": "Dismiss supplied visit category",
+                          "options": [
+                            {
+                              "id": "first",
+                              "label": "First visit",
+                              "accessibilityLabel": "Original first visit",
+                              "url": "https://example.test/first"
+                            },
+                            {
+                              "id": "return",
+                              "label": "Return visit",
+                              "accessibilityLabel": "Original return visit",
+                              "url": "https://example.test/return"
+                            }
+                          ]
+                        },
+                        {
+                          "id": "12",
+                          "label": "Supplied time 12",
+                          "accessibilityLabel": "Original appointment choice 12",
+                          "url": "https://example.test/booking/12"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actionLabel": "Request location 7",
+              "action": {
+                "query": "Original local request 7"
+              }
+            }
+          ]
+        }
+      ],
+      "providersToShow": 2,
+      "expandedProvidersToShow": 4,
+      "showMoreLabel": "Show four supplied providers",
+      "noAvailabilityLabel": "No supplied availability",
+      "selectedLocationId": "loc-0",
+      "selectedDate": "2026-12-01",
+      "hasMoreResults": true,
+      "moreResultsLabel": "Request next supplied page",
+      "moreResultsQuery": "Original next page request",
+      "nextCursor": ""
+    },
+    {
+      "type": "care-provider-sidebar",
+      "id": "original-sidebar",
+      "label": "Original fictional provider sidebar",
+      "provider": {
+        "id": "provider-0",
+        "name": "Fictional Provider 0",
+        "initials": "FP",
+        "photo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAFklEQVR4nGNQCFhAEmIY1TCqYfhqAAAbcBAQnOlMywAAAABJRU5ErkJggg==",
+        "photoAlt": "Original blue square, not a real person",
+        "specialty": "Supplied directory category",
+        "ratingLabel": "0.0",
+        "reviewCountLabel": "0",
+        "networkLabel": "Supplied network label",
+        "inNetwork": false,
+        "summary": "Fictional directory data for interface testing.",
+        "profile": {
+          "url": "https://example.test/profile/0"
+        },
+        "locations": [
+          {
+            "id": "loc-0",
+            "label": "Fictional location 0",
+            "distanceLabel": "0 supplied distance",
+            "modality": "in-person",
+            "days": [
+              {
+                "date": "2026-12-01",
+                "label": "Original date 1",
+                "accessibilityLabel": "Original date choice 1",
+                "countLabel": "900 supplied choices",
+                "groups": [
+                  {
+                    "label": "Supplied morning group",
+                    "slots": [
+                      {
+                        "id": "1",
+                        "label": "Supplied time 1",
+                        "accessibilityLabel": "Original appointment choice 1",
+                        "url": "https://example.test/booking/1",
+                        "chooseLabel": "Choose supplied visit category",
+                        "dismissLabel": "Dismiss supplied visit category",
+                        "options": [
+                          {
+                            "id": "first",
+                            "label": "First visit",
+                            "accessibilityLabel": "Original first visit",
+                            "url": "https://example.test/first"
+                          },
+                          {
+                            "id": "return",
+                            "label": "Return visit",
+                            "accessibilityLabel": "Original return visit",
+                            "url": "https://example.test/return"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "11",
+                        "label": "Supplied time 11",
+                        "accessibilityLabel": "Original appointment choice 11",
+                        "url": "https://example.test/booking/11"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "date": "2026-12-02",
+                "label": "Original date 2",
+                "accessibilityLabel": "Original date choice 2",
+                "countLabel": "900 supplied choices",
+                "groups": [
+                  {
+                    "label": "Supplied morning group",
+                    "slots": [
+                      {
+                        "id": "2",
+                        "label": "Supplied time 2",
+                        "accessibilityLabel": "Original appointment choice 2",
+                        "url": "https://example.test/booking/2",
+                        "chooseLabel": "Choose supplied visit category",
+                        "dismissLabel": "Dismiss supplied visit category",
+                        "options": [
+                          {
+                            "id": "first",
+                            "label": "First visit",
+                            "accessibilityLabel": "Original first visit",
+                            "url": "https://example.test/first"
+                          },
+                          {
+                            "id": "return",
+                            "label": "Return visit",
+                            "accessibilityLabel": "Original return visit",
+                            "url": "https://example.test/return"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "12",
+                        "label": "Supplied time 12",
+                        "accessibilityLabel": "Original appointment choice 12",
+                        "url": "https://example.test/booking/12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "actionLabel": "Request location 0",
+            "action": {
+              "query": "Original local request 0"
+            }
+          },
+          {
+            "id": "loc-1",
+            "label": "Fictional location 1",
+            "distanceLabel": "0 supplied distance",
+            "modality": "telehealth",
+            "days": [
+              {
+                "date": "2026-12-01",
+                "label": "Original date 1",
+                "accessibilityLabel": "Original date choice 1",
+                "countLabel": "900 supplied choices",
+                "groups": [
+                  {
+                    "label": "Supplied morning group",
+                    "slots": [
+                      {
+                        "id": "1",
+                        "label": "Supplied time 1",
+                        "accessibilityLabel": "Original appointment choice 1",
+                        "url": "https://example.test/booking/1",
+                        "chooseLabel": "Choose supplied visit category",
+                        "dismissLabel": "Dismiss supplied visit category",
+                        "options": [
+                          {
+                            "id": "first",
+                            "label": "First visit",
+                            "accessibilityLabel": "Original first visit",
+                            "url": "https://example.test/first"
+                          },
+                          {
+                            "id": "return",
+                            "label": "Return visit",
+                            "accessibilityLabel": "Original return visit",
+                            "url": "https://example.test/return"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "11",
+                        "label": "Supplied time 11",
+                        "accessibilityLabel": "Original appointment choice 11",
+                        "url": "https://example.test/booking/11"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "date": "2026-12-02",
+                "label": "Original date 2",
+                "accessibilityLabel": "Original date choice 2",
+                "countLabel": "900 supplied choices",
+                "groups": [
+                  {
+                    "label": "Supplied morning group",
+                    "slots": [
+                      {
+                        "id": "2",
+                        "label": "Supplied time 2",
+                        "accessibilityLabel": "Original appointment choice 2",
+                        "url": "https://example.test/booking/2",
+                        "chooseLabel": "Choose supplied visit category",
+                        "dismissLabel": "Dismiss supplied visit category",
+                        "options": [
+                          {
+                            "id": "first",
+                            "label": "First visit",
+                            "accessibilityLabel": "Original first visit",
+                            "url": "https://example.test/first"
+                          },
+                          {
+                            "id": "return",
+                            "label": "Return visit",
+                            "accessibilityLabel": "Original return visit",
+                            "url": "https://example.test/return"
+                          }
+                        ]
+                      },
+                      {
+                        "id": "12",
+                        "label": "Supplied time 12",
+                        "accessibilityLabel": "Original appointment choice 12",
+                        "url": "https://example.test/booking/12"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "actionLabel": "Request location 1",
+            "action": {
+              "query": "Original local request 1"
+            }
+          }
+        ]
+      },
+      "locationLabel": "Fictional selected location",
+      "modality": "telehealth",
+      "locationOptions": [
+        {
+          "id": "a",
+          "label": "Selected fictional place",
+          "accessibilityLabel": "Selected place",
+          "selected": true,
+          "action": {
+            "query": "Choose place A"
+          }
+        },
+        {
+          "id": "b",
+          "label": "Other fictional place",
+          "accessibilityLabel": "Other place",
+          "selected": false,
+          "action": {
+            "query": "Choose place B"
+          }
+        }
+      ],
+      "directions": {
+        "label": "Request supplied directions",
+        "url": "https://example.test/directions"
+      },
+      "profileLink": {
+        "label": "Request supplied profile",
+        "url": "https://example.test/profile"
+      },
+      "appointmentsHeading": "Supplied appointment times",
+      "noAppointmentsLabel": "No supplied times",
+      "days": [
+        {
+          "date": "2026-12-01",
+          "label": "Original date 1",
+          "accessibilityLabel": "Original date choice 1",
+          "countLabel": "900 supplied choices",
+          "groups": [
+            {
+              "label": "Supplied morning group",
+              "slots": [
+                {
+                  "id": "1",
+                  "label": "Supplied time 1",
+                  "accessibilityLabel": "Original appointment choice 1",
+                  "url": "https://example.test/booking/1"
+                },
+                {
+                  "id": "11",
+                  "label": "Supplied time 11",
+                  "accessibilityLabel": "Original appointment choice 11",
+                  "url": "https://example.test/booking/11"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-12-02",
+          "label": "Original date 2",
+          "accessibilityLabel": "Original date choice 2",
+          "countLabel": "900 supplied choices",
+          "groups": [
+            {
+              "label": "Supplied morning group",
+              "slots": [
+                {
+                  "id": "2",
+                  "label": "Supplied time 2",
+                  "accessibilityLabel": "Original appointment choice 2",
+                  "url": "https://example.test/booking/2"
+                },
+                {
+                  "id": "12",
+                  "label": "Supplied time 12",
+                  "accessibilityLabel": "Original appointment choice 12",
+                  "url": "https://example.test/booking/12"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "date": "2026-12-03",
+          "label": "Original date 3",
+          "accessibilityLabel": "Original date choice 3",
+          "countLabel": "900 supplied choices",
+          "groups": [
+            {
+              "label": "Supplied morning group",
+              "slots": [
+                {
+                  "id": "3",
+                  "label": "Supplied time 3",
+                  "accessibilityLabel": "Original appointment choice 3",
+                  "url": "https://example.test/booking/3"
+                },
+                {
+                  "id": "13",
+                  "label": "Supplied time 13",
+                  "accessibilityLabel": "Original appointment choice 13",
+                  "url": "https://example.test/booking/13"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "selectedDate": "2026-12-01",
+      "selectedMonth": 0,
+      "months": [
+        {
+          "id": "m1",
+          "label": "Original December",
+          "firstAvailableDate": "2026-12-01",
+          "days": [
+            {
+              "date": "2026-11-30",
+              "label": "30",
+              "accessibilityLabel": "Outside month",
+              "currentMonth": false,
+              "available": false
+            },
+            {
+              "date": "2026-12-01",
+              "label": "1",
+              "accessibilityLabel": "First supplied day",
+              "currentMonth": true,
+              "available": true
+            },
+            {
+              "date": "2026-12-02",
+              "label": "2",
+              "accessibilityLabel": "Second supplied day",
+              "currentMonth": true,
+              "available": false
+            }
+          ]
+        },
+        {
+          "id": "m2",
+          "label": "Original second calendar view",
+          "firstAvailableDate": "2026-12-03",
+          "days": [
+            {
+              "date": "2026-12-03",
+              "label": "3",
+              "accessibilityLabel": "Third supplied day",
+              "currentMonth": true,
+              "available": true
+            }
+          ]
+        }
+      ],
+      "weekdayLabels": [
+        "Su",
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr",
+        "Sa"
+      ],
+      "previousMonthLabel": "Previous supplied month",
+      "nextMonthLabel": "Next supplied month",
+      "closeLabel": "Close supplied locations"
+    }
+  ]
+}

@@ -27,3 +27,13 @@ Images use the shared image renderer; external images require explicit Load acti
 ## Narrow-calendar readability follow-up
 
 Actual 390-pixel screenshots exposed a supplied month name squeezed into single-character lines between the Previous/Next controls. Below a 576-pixel local component width, the month gets a complete row and the two navigation controls share the next row. Wider layout and all selection semantics are unchanged. Native word-range geometry supplements screenshot review; original negative evidence is retained.
+
+## Complete semantic validation boundary
+
+Use full `validateDocument` after structure validation. Care recursively checks string properties for nonblank `trim()` content (`CARE_TEXT`), except properties named `fallback`, `summary`, `subtitle`, `emptyMessage`, `errorMessage`, `partialNotice`, `photoAlt` or `nextCursor`. These named content exceptions preserve their structural empty/whitespace allowance. Every supplied `url`, `photo` and `partnerLogo` also follows safe-link or safe-image validation. A request object must provide a URL or query (`CARE_REQUEST`). No request executes a booking or medical service.
+
+Provider IDs, each provider's location IDs, slot IDs within a group, option IDs within a slot, sidebar location-option IDs and month IDs must be nonblank and unique in their respective lists (`CARE_ID` for duplication). Results also require location IDs unique across the whole result set. Dates must be unique within each availability-day list (`CARE_DATE`); the component does not infer missing dates or clinical availability from calendar labels.
+
+A direct slot requires its supplied URL (`CARE_BOOKING_URL`): this includes slots with fewer than two options, and every sidebar slot. Sidebar slots cannot carry options (`CARE_SIDEBAR_SLOT`). Results with `hasMoreResults` require both more-results label and query; error result status requires retry label and query (`CARE_MORE` / `CARE_RETRY`). A selected location must occur in the results (`CARE_SELECTION`). The expanded provider count must not be smaller than the initial count, using 0 for each omitted count (`CARE_COUNT`).
+
+When sidebar months are supplied, selectedMonth (default 0) must be in range (`CARE_MONTH`). Each non-null firstAvailableDate and each current-month day marked available must reference supplied sidebar availability (`CARE_DATE`). All traversed slot entries, including combined-day views, plus calendar cells must total at most 2000 (`CARE_BUDGET`). Structural array bounds still apply. These are supplied-data consistency rules, not provider verification, triage or a medical recommendation.
