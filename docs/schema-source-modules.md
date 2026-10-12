@@ -44,3 +44,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 ## questionnaire
 
 `forms/questionnaire` provides the independently tested generic questionnaire. Its unknown/invalid, hidden-answer policy, immutable snapshots and cancellation contract are described in [the questionnaire contract](questionnaire-contract.md). This does not add any dedicated medical formula or revive the paused component expansion.
+
+## charts and learning
+
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 58 migrated nodes and 160 legacy nodes; this does not change the 218-node wire union.

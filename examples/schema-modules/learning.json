@@ -1,0 +1,89 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "quiz",
+      "title": "Original color practice",
+      "questions": [
+        {
+          "id": "q",
+          "kind": "single",
+          "prompt": "Choose the named color blue.",
+          "choices": [
+            {
+              "id": "blue",
+              "label": "Blue"
+            },
+            {
+              "id": "green",
+              "label": "Green"
+            }
+          ],
+          "correct": [
+            "blue"
+          ],
+          "explanation": "The prompt names blue."
+        }
+      ]
+    },
+    {
+      "type": "flashcards",
+      "title": "Original notebook terms",
+      "cards": [
+        {
+          "id": "a",
+          "front": "Notebook",
+          "back": "A place for written notes."
+        }
+      ]
+    },
+    {
+      "type": "fill-blank",
+      "title": "Original phrase",
+      "parts": [
+        "Bring a ",
+        {
+          "blank": "item"
+        },
+        "."
+      ],
+      "blanks": [
+        {
+          "id": "item",
+          "label": "Item",
+          "answers": [
+            "notebook"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "sentence-builder",
+      "title": "Original sentence",
+      "tokens": [
+        {
+          "id": "a",
+          "text": "Bring"
+        },
+        {
+          "id": "b",
+          "text": "notes"
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "type": "vocab-card",
+      "term": "notebook",
+      "senses": [
+        {
+          "id": "a",
+          "meaning": "Pages used for written notes."
+        }
+      ]
+    }
+  ]
+}

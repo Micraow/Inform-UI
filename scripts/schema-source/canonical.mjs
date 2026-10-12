@@ -185,7 +185,7 @@ registry.use('foundations/layout');
 registry.use('forms/fields');
 registry.use('foundations/button');
 node('topology', { nodes: array(object({ id: short, label: short, subtitle: string() }, ['id', 'label']), 2, 24), links: array(object({ from: short, to: short, label: string(), load: ref('Value') }, ['from', 'to']), 1, 40), highlight: choice('max-load', 'none'), caption: string() }, ['nodes', 'links'], 'graphics');
-node('chart', { kind: choice('line', 'bar', 'scatter', 'area', 'donut', 'pie'), xKey: short, xScale: choice('category', 'linear', 'time'), xLabel: short, xMin: number, xMax: number, timezone: short, data: array({ type: 'object', additionalProperties: ref('Value') }, 0, 300), series: array(object({ key: short, label: short, color: choice('blue', 'green', 'orange', 'red', 'purple', 'gray') }, ['key', 'label']), 1, 6), yMin: number, yMax: number, unit: string(), title: string(), note: string(), status: choice('ready', 'loading', 'error'), message: string() }, ['kind', 'xKey', 'data', 'series'], 'charts');
+registry.use('charts/basic');
 const nullableNumber = { anyOf: [number, { type: 'null' }] };
 const probability = { anyOf: [{ type: 'number', minimum: 0, maximum: 100 }, { type: 'null' }] };
 const condition = choice('clear', 'partly-cloudy', 'cloudy', 'rain', 'snow', 'storm', 'fog', 'unknown');
@@ -218,21 +218,7 @@ const sportsCommon={data:ref('SportsData'),status:choice('ready','loading','erro
 node('sports-schedule',{...sportsCommon,initialDate:date,initialTeamId:key,initialStage:short},['data'], 'sports');
 node('sports-scoreboard',{...sportsCommon,gameId:key},['data'], 'sports');
 node('sports-standings',{...sportsCommon,initialTeamId:key,initialGroup:short},['data'], 'sports');
-// Local learning components: supplied answers are teaching data, never secure exam secrets.
-defs.QuizQuestion=object({id:key,kind:choice('single','multiple'),prompt:string(6000,1),latex:string(6000,1),choices:array(object({id:key,label:string(2000,1)},['id','label']),2,20),correct:array(key,1,20),explanation:string(6000),explanationLatex:string(6000,1),points:integer(1,100)},['id','kind','prompt','choices','correct','explanation']);
-node('quiz',{title:short,description:string(),questions:array(ref('QuizQuestion'),0,100),status:choice('ready','loading','error'),message:string()},['title','questions'], 'learning');
-defs.Flashcard=object({id:key,front:string(6000,1),back:string(6000,1),frontLatex:string(6000,1),backLatex:string(6000,1),hint:string(2000)},['id','front','back']);
-node('flashcards',{title:short,description:string(),cards:array(ref('Flashcard'),0,100),status:choice('ready','loading','error'),message:string()},['title','cards'], 'learning');
-// Original finite sentence-embedded fill-in practice. Answer data is public teaching material.
-defs.FillBlankPart = { anyOf: [string(2000), object({blank:key}, ['blank'])] };
-defs.FillBlankEntry = object({id:key,label:short,answers:array(string(200,1),1,8),hint:string(1000),explanation:string(2000)},['id','label','answers']);
-node('fill-blank',{title:short,description:string(2000),parts:array(ref('FillBlankPart'),1,50),blanks:array(ref('FillBlankEntry'),1,12)},['title','parts','blanks'],'learning');
-// Original finite local sentence-builder; answers are public authored teaching data.
-defs.SentenceToken=object({id:key,text:short},['id','text']);
-node('sentence-builder',{title:short,prompt:string(2000),tokens:array(ref('SentenceToken'),1,30),answer:array(key,1,30),joiner:choice(' ',''),explanation:string(2000)},['title','tokens','answer'], 'learning');
-// Finite supplied vocabulary; no generated meaning or remote lookup.
-defs.VocabSense=object({id:key,meaning:string(2000,1),translation:string(1000),examples:array(string(2000,1),0,5)},['id','meaning']);
-node('vocab-card',{term:short,languageLabel:short,pronunciation:string(500,1),partOfSpeech:short,senses:array(ref('VocabSense'),1,10)},['term','senses'],'learning');
+registry.use('learning/basic');
 // Supplied financial snapshots: no provider connection, trading action or implicit FX conversion.
 const price={anyOf:[{type:'number',minimum:0},{type:'null'}]};
 defs.FinanceSource=object({label:short,synthetic:bool,url:string(2048)},['label','synthetic']);

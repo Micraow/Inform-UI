@@ -1,0 +1,26 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "chart",
+      "kind": "bar",
+      "xKey": "day",
+      "data": [
+        {
+          "day": "Monday",
+          "count": 2
+        },
+        {
+          "day": "Tuesday",
+          "count": 3
+        }
+      ],
+      "series": [
+        {
+          "key": "count",
+          "label": "Notebooks"
+        }
+      ]
+    }
+  ]
+}
