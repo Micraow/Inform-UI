@@ -1,15 +1,15 @@
 {
-  "as_of_utc": "2026-10-12T03:02:05.940165+00:00",
+  "as_of_utc": "2026-10-12T03:41:00.891217+00:00",
   "scope": "Public project progress over256 canonical IDs; protocol registration is a separate metric.",
   "criterion": "Complete functional implementation and acceptance are distinct. Partial functional subsets are not counted as complete implementations.",
   "counts": {
-    "implemented_pending_verification": 158,
+    "implemented_pending_verification": 159,
     "functionally_verified": 53,
-    "not_implemented": 45,
+    "not_implemented": 44,
     "partial": 0
   },
-  "completeImplementationCoverage": 211,
-  "registeredProtocolNodes": 216,
+  "completeImplementationCoverage": 212,
+  "registeredProtocolNodes": 217,
   "components": [
     {
       "id": "base-animate",
@@ -890,8 +890,8 @@
       "id": "calculator-qsofa-score",
       "name": "Calculator Qsofa Score",
       "layer": "domain",
-      "status": "not_implemented",
-      "note": "No implementation in the current library."
+      "status": "implemented_pending_verification",
+      "note": "Original Sepsis-3 2016 consensus arithmetic with explicit adult/version and assessment or GCS mentation modes; missing/NT has no total. Author17 plus45 related, independent12 and2 focused Chromium checks, consumer49 arithmetic and5 flows passed. No sepsis diagnosis, treatment instructions or clinical validation; comprehensive reference/pixel acceptance remains pending."
     },
     {
       "id": "calculator-ranson-criteria-for-pancreatitis",

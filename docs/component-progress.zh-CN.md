@@ -1,6 +1,6 @@
 # 组件进度
 
-211项软件功能实现覆盖：53历史、158待完整验收，0部分、45未实现；216协议登记另计。GCS与ROX均为原创供数计算和完整本地scorecard交互；未知/异常不输出错误结果，不代表临床验证。当前CDN仍为fed5统一214（209功能范围），两个计算器和后继修复需源码构建。
+212项软件功能实现覆盖：53历史、159待完整验收，0部分、44未实现；217协议登记另计。qSOFA采用明确2016共识版本，GCS14计入而NT/未知无总分；不输出脓毒症诊断或治疗指令。当前CDN仍为fed5统一214（209功能范围）；后继软件需源码构建。
 
 | ID | 名称 | 状态 | 功能边界 |
 |---|---|---|---|
@@ -129,7 +129,7 @@
 | calculator-pediatric-early-warning-score-pews | Calculator Pediatric Early Warning Score Pews | 未实现 | No implementation in the current library. |
 | calculator-perc-rule-for-pulmonary-embolism | Calculator Perc Rule For Pulmonary Embolism | 未实现 | No implementation in the current library. |
 | calculator-pneumonia-severity-index-psi-port | Calculator Pneumonia Severity Index Psi Port | 未实现 | No implementation in the current library. |
-| calculator-qsofa-score | Calculator Qsofa Score | 未实现 | No implementation in the current library. |
+| calculator-qsofa-score | Calculator Qsofa Score | 完整实现待验 | Original Sepsis-3 2016 consensus arithmetic with explicit adult/version and assessment or GCS mentation modes; missing/NT has no total. Author17 plus45 related, independent12 and2 focused Chromium checks, consumer49 arithmetic and5 flows passed. No sepsis diagnosis, treatment instructions or clinical validation; comprehensive reference/pixel acceptance remains pending. |
 | calculator-ranson-criteria-for-pancreatitis | Calculator Ranson Criteria For Pancreatitis | 未实现 | No implementation in the current library. |
 | calculator-revised-cardiac-risk-index-rcri | Calculator Revised Cardiac Risk Index Rcri | 未实现 | No implementation in the current library. |
 | calculator-revised-geneva-score-for-pulmonary-embolism | Calculator Revised Geneva Score For Pulmonary Embolism | 未实现 | No implementation in the current library. |

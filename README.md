@@ -1,8 +1,8 @@
-## Current software scope: 211 / 256
+## Current software scope: 212 / 256
 
-216 protocol nodes are registered. Software functionality covers211 canonical IDs (53 historical,158 pending comprehensive/reference acceptance), with0 partial and45 unimplemented. The original ROX scorecard supports explicit units and formula version, live results, independent reset defaults, information tabs, notes and local summary-copy requests. Its optional Roca2019 numerical comparison requires caller-declared study context and exact2/6/12-hour measurement time from HFNC initiation; classification uses the unrounded value. It passed21 author tests,13 independent software cases,2 focused Chromium checks,40 consumer arithmetic cases and5 consumer flows. These are software checks, not clinical validation. See [ROX software contract](docs/rox.md) and [GCS version and input contract](docs/gcs.md).
+217 protocol nodes are registered. Software functionality covers212 canonical IDs (53 historical,159 pending comprehensive/reference acceptance), with0 partial and44 unimplemented. The original qSOFA scorecard uses explicit Sepsis-3 2016 consensus rules and adult scope. It keeps caller assessment and supplied GCS modes distinct, clears totals on unknown/NT, and supports live results, local information tabs, reset defaults and cancelable summary-copy requests. It passed17 author cases plus45 related GCS/ROX cases,12 independent scenarios,2 focused Chromium checks,49 consumer arithmetic cases and5 consumer flows. These are software checks, not clinical validation. It does not diagnose or exclude sepsis or recommend treatment. See [qSOFA version and software contract](docs/qsofa.md).
 
-The published CDN remains [unified214 at fed5f86](https://github.com/Micraow/Inform-UI/commit/fed5f86f49e73f908ac9ea98966b1515a3aaa597), covering209 functional components. Later overlay resource and collapsed-Details focus fixes, GCS and ROX require a source build. Earlier checkpoint notes below preserve their original scopes.
+The published CDN remains [unified214 at fed5f86](https://github.com/Micraow/Inform-UI/commit/fed5f86f49e73f908ac9ea98966b1515a3aaa597), covering209 functional components. Later source fixes and GCS/ROX/qSOFA require a source build. Earlier checkpoint notes below preserve their original scopes.
 
 ## Unified 214 browser distribution
 
