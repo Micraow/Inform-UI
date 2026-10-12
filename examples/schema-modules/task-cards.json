@@ -1,0 +1,44 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "push-drip-series-intro",
+      "id": "intro",
+      "label": "Tip series introduction",
+      "introPrefix": "You are viewing ",
+      "introLinkLabel": "a supplied series",
+      "introSuffix": ".",
+      "confirmationTitle": "Stop these supplied tips?",
+      "confirmationMessage": "The service action is unavailable in this local example.",
+      "confirmLabel": "Stop tips",
+      "cancelLabel": "Keep tips",
+      "stoppedLabel": "Supplied series is stopped"
+    },
+    {
+      "type": "stop-push-drip-series",
+      "id": "stop",
+      "label": "Series controls",
+      "actionLabel": "Review stop options",
+      "confirmationLayout": "card",
+      "actionStyle": "outline-keep",
+      "confirmationTitle": "Stop these supplied tips?",
+      "confirmationMessage": "The service action is unavailable in this local example.",
+      "confirmLabel": "Stop tips",
+      "cancelLabel": "Keep tips",
+      "stoppedLabel": "Supplied series is stopped"
+    },
+    {
+      "type": "task-autopause-card",
+      "id": "task",
+      "label": "Paused task request",
+      "taskId": "fictional-task-1",
+      "taskTitle": "Review supplied examples",
+      "prompt": "Continue this supplied task?",
+      "showBody": true,
+      "body": "The task status is supplied. No scheduler is connected.",
+      "continueLabel": "Request continuation",
+      "settingsLabel": "Review task settings",
+      "deleteLabel": "Request task deletion"
+    }
+  ]
+}

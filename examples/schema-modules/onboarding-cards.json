@@ -1,0 +1,100 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "onboarding-feature-card",
+      "label": "Explore features",
+      "title": "More ways to work",
+      "features": [
+        {
+          "id": "thinking",
+          "featureId": "intelligence",
+          "title": "Think carefully",
+          "description": "Consider a supplied problem."
+        },
+        {
+          "id": "image",
+          "featureId": "images",
+          "title": "Imagine something",
+          "description": "Describe an idea."
+        }
+      ],
+      "benefits": [
+        {
+          "id": "work",
+          "title": "Work on a plan",
+          "description": "A useful planning space.",
+          "featureId": "work"
+        },
+        {
+          "id": "info",
+          "title": "Included tools",
+          "description": "Supplied information."
+        }
+      ]
+    },
+    {
+      "type": "onboarding-plugin-suggestions",
+      "label": "Suggested apps",
+      "title": "Connect useful apps",
+      "canConnect": true,
+      "canBrowse": true,
+      "browseLabel": "Browse apps",
+      "plugins": [
+        {
+          "id": "notes",
+          "label": "Notes app",
+          "status": "available",
+          "connectLabel": "Connect notes"
+        },
+        {
+          "id": "calendar",
+          "label": "Calendar app",
+          "status": "connected"
+        },
+        {
+          "id": "files",
+          "label": "Files app",
+          "status": "unavailable",
+          "statusLabel": "Not offered"
+        }
+      ]
+    },
+    {
+      "type": "onboarding-starter-tasks",
+      "label": "Starter ideas",
+      "heading": "Choose an idea",
+      "tasks": [
+        {
+          "id": "outline",
+          "label": "Outline a plan",
+          "prompt": "Prepare a sample outline.",
+          "completed": true
+        },
+        {
+          "id": "preview",
+          "label": "Preview an idea",
+          "prompt": "Preview this example.",
+          "requiresSitePreview": true
+        }
+      ],
+      "canRequestSitePreview": true
+    },
+    {
+      "type": "onboarding-starter-tasks",
+      "label": "Starter ideas",
+      "heading": "Choose an idea",
+      "tasks": [
+        {
+          "id": "one",
+          "label": "First idea"
+        },
+        {
+          "id": "two",
+          "label": "Second idea"
+        }
+      ],
+      "variant": "selection"
+    }
+  ]
+}

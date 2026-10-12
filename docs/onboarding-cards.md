@@ -43,3 +43,9 @@ All events bubble, are cancelable, and do not cross shadow boundaries. Construct
 Native reset clears receipts and restores the initial local selection. Canceling reset preserves current state. A new selection is local input and supersedes an already queued reset; other request intents wait until reset reconciliation settles. Document updates replace all local state with the newest supplied data. Image resources, carousel resources and reset listeners are generation-owned and released on disposal.
 
 Integration entry points are `installOnboardingCardsSchema({node, defs})`, `inspectOnboardingCards(node, path, add, safe)`, and `renderOnboardingCards(context, node, owner, host)`, with `onboarding-cards.css`. The central integration owns registry, generated schema, API exports and bundled stylesheets.
+
+## Required nonblank semantic checks
+
+Full `validateDocument` rejects every supplied top-level string that is blank after `trim()` on these three nodes, including labels, titles, optional IDs, welcome content, fallback and action/receipt labels. It likewise checks every direct string property in each supplied `features[]`, `benefits[]`, `plugins[]` or `tasks[]` record. This covers IDs, descriptions, prompts and optional image-source strings; image URLs must additionally pass the existing safe-image validator. Failures use `ONBOARDING_CARD_DATA`. These checks apply even to provided fields in pending/failed phases. Optional fields may be omitted; supplied whitespace is not a default.
+
+IDs must be unique within each list. Browse capability requires a nonblank `browseLabel`. Non-selection task presentations require a nonblank prompt for every task and cannot supply `selectedTaskId`. Selection presentation requires any selected ID to identify a supplied task and rejects task prompt, starter-prompt and site-preview payloads. Do not broaden the direct-property check into an invented recursive prohibition on every possible nested value.

@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 72 migrated nodes and 146 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 83 migrated nodes and 135 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -64,3 +64,9 @@ Email drafts contain caller-supplied recipients, subject and body. They provide 
 ## Time and weather
 
 `time/controls` provides the local clock, stopwatch and timer. `weather/snapshot` provides the complete supplied weather node, including its additive presentation, labels and local intent options. Weather's extension installer is invoked only by its owning module, before that module is registered as complete; the canonical merge does not modify it afterward. Both have self-contained examples and explicit `semanticContractPaths` for their [time](time.md) and [weather](weather.md) contracts. These optional catalog paths identify required semantic reading; ordinary links in those documents remain navigation, not an instruction to import every linked release guide into a prompt. Existing `contractPath` is retained for compatibility. No timer service, weather lookup or new runtime behavior is introduced.
+
+## Supplied onboarding, voice and task cards
+
+`voice/cards`, `onboarding/conversation`, `onboarding/cards` and `tasks/cards` register the existing independently maintained domain installers directly. Their original schema scripts remain the only definition source; no new copy is extracted from generated JSON. Voice practice takes supplied capabilities, phases and results, while task and onboarding controls emit the existing local intents rather than running services. Each family has an isolated example and an explicit list of mandatory semantic contracts.
+
+Every registered module now declares `semanticContractPaths`. These are the authoritative required readings, including shared expression/safety rules and cross-field constraints. A consumer should load the union for selected modules and their dependencies. Ordinary Markdown links remain navigation; they do not automatically expand the mandatory set to release guides, CDN inventories or the README. `contractPath` remains a compatible discovery entry. This runtime catalog addition does not by itself assert that a downstream consumer has adopted this loading policy.

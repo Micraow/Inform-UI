@@ -29,3 +29,9 @@ Supplied disabled, native fieldsets/first legends, ARIA, hidden/inert ancestry, 
 Original examples use a fictional task identifier. Author tests cover strict public Node/browser schemas, each presentation and supplied phase, cancellation, unavailable confirmation, three task intents, native reset, disabled/first-legend behavior, real dispatch reentry, replacement/disposal, listener release, ShadowRoot events and executable standalone compilation. Native cases are provided separately; discovery is not a passing browser run.
 
 Accepted cancellation restores focus to the opening control only when focus was inside the confirmation panel. A cancelled intent or an action invoked while focus is elsewhere does not move focus. The original source checkpoint lacked this focus return; its independent failing case is retained separately.
+
+## Required nonblank semantic checks
+
+After structural schema validation, full `validateDocument` checks all supplied top-level strings on `push-drip-series-intro`, `stop-push-drip-series` and `task-autopause-card`: they must be nonblank after `trim()`, with exactly four existing exceptions: `introPrefix`, `introSuffix`, `body` and `fallback`. Those four content fields retain their original empty/whitespace allowance where the node's schema permits them. No new trimming or runtime behavior is introduced. Invalid checked text reports `TASK_CARD_TEXT`.
+
+The checked set includes top-level `label`/optional `id`, task identifiers/titles/prompts, confirmation text, link/action/continue/settings/delete labels, stopped/unavailable labels and reset/request/cancel labels, whenever supplied. The same rule applies in pending/failed phases, although those phases may omit fields that the conditional schema requires only for resolved cards. Omitted optional text, allowed empty content and invalid blank labels must not be conflated.

@@ -19,3 +19,9 @@ A replaceable child generation owns the selected content and image resources. Sw
 ## Scope
 
 Advice and Writing are separate canonical candidates. Search and Study have additional weather/stock/news and orbit/chart/quiz contracts and are not represented by these two tabbed demonstrations. Schema registration alone does not establish completed functionality. Native and reference-pixel results are recorded separately from Node/DOM checks.
+
+## Required nonblank semantic checks
+
+Full `validateDocument` checks a specific set of strings beyond the structural schema: top-level `label` and optional `askLabel`, each supplied tab's `label` and `question`, and every `stepByStep.steps[]` string. Each must be nonblank after `trim()`; violations use `ONBOARDING_TEXT`. These checks also apply when a supplied field is present in pending or failed phases. Optional omission does not become an empty string. The advice image still follows the existing safe-image rule.
+
+This is not a blanket restriction on all content. Existing structurally permitted empty content remains valid, such as `recipe.content`, `translation.sourceText`, `translation.translatedText`, `email.content`, `message.content`, and `stepByStep.imageAlt`. Whitespace in other payload text is governed by its existing schema and specialized checks, not by a new generic trim rule. The component does not silently rewrite supplied strings.
