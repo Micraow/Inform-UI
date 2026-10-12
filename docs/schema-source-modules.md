@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 83 migrated nodes and 135 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 90 migrated nodes and 128 legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -70,3 +70,7 @@ Email drafts contain caller-supplied recipients, subject and body. They provide 
 `voice/cards`, `onboarding/conversation`, `onboarding/cards` and `tasks/cards` register the existing independently maintained domain installers directly. Their original schema scripts remain the only definition source; no new copy is extracted from generated JSON. Voice practice takes supplied capabilities, phases and results, while task and onboarding controls emit the existing local intents rather than running services. Each family has an isolated example and an explicit list of mandatory semantic contracts.
 
 Every registered module now declares `semanticContractPaths`. These are the authoritative required readings, including shared expression/safety rules and cross-field constraints. A consumer should load the union for selected modules and their dependencies. Ordinary Markdown links remain navigation; they do not automatically expand the mandatory set to release guides, CDN inventories or the README. `contractPath` remains a compatible discovery entry. This runtime catalog addition does not by itself assert that a downstream consumer has adopted this loading policy.
+
+## Request and quiz card families
+
+`requests/user`, `requests/location`, `onboarding/welcome` and `learning/quiz-cards` register the existing single-source domain installers. They retain finite supplied input/intent and quiz-result contracts. Their explicit semantic documents include nonblank scopes, optional-empty exceptions, ID/reference constraints, source/capability rules and revision relationships. These are existing components, not additions to the paused specialized-calculator list.

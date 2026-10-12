@@ -1,0 +1,47 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ask-user-details",
+      "label": "Original details request",
+      "enabled": true,
+      "buttonLabel": "Add details",
+      "submitLabel": "Review locally",
+      "invitation": "Add a topic and format for this fictional example.",
+      "localReview": true,
+      "questions": [
+        {
+          "id": "topic",
+          "label": "Topic",
+          "required": true,
+          "maxLength": 200
+        },
+        {
+          "id": "format",
+          "label": "Format",
+          "kind": "select",
+          "options": [
+            {
+              "value": "brief",
+              "label": "Brief"
+            },
+            {
+              "value": "outline",
+              "label": "Outline"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ask-user-files",
+      "label": "Original file request",
+      "kind": "file",
+      "buttonLabel": "Choose example files",
+      "localReview": true,
+      "multiple": true,
+      "maxFiles": 3,
+      "maxFileBytes": 1000000
+    }
+  ]
+}

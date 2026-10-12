@@ -36,3 +36,7 @@ The component performs no telemetry, impression logging, account action, locatio
 `tests/capability-welcome.test.mjs` compiles the actual domain renderer and checks the installer with strict AJV and strict required-property validation. Coverage includes all action kinds, missing mapping, immutable/canceled requests, disabled and capability tampering, native/shadow reset, constructor/getter reentry, update/dispose, repeated ownership cleanup, and late icon-source setters.
 
 `tests/browser/capability-welcome.spec.mjs` covers native keyboard/reset and narrow/RTL/disabled behavior. Test discovery is not proof of browser execution. The integrating commit owns shared registration, schema/type generation, public exports, bundled CSS, public mount and CDN checks. The independent domain contains no private reference material.
+
+## Complete semantic strings, identifiers and URLs
+
+Full `validateDocument` checks every supplied top-level string and every direct string property on each `items[]` and `actions[]` record for nonblank `trim()` content (`CAPABILITY_WELCOME_DATA`). Optional fields may be omitted, but supplied whitespace is not a default. Item IDs must be unique within items and action IDs unique within actions. Item icon sources pass the existing safe-image policy; URL actions pass the safe-link policy. This is a direct-property rule, not an invented recursive content transformation. Missing or unavailable action associations retain the documented disabled behavior rather than causing service execution.

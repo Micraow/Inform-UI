@@ -1,0 +1,193 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "follow-up-quiz",
+      "id": "preferences",
+      "label": "Outing preferences",
+      "title": "A few preferences",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "submitLabel": "Use these answers",
+      "submitQueryPrefix": "Use these supplied outing preferences:"
+    },
+    {
+      "type": "multiple-choice-block-v2",
+      "id": "self-check",
+      "label": "A supplied arithmetic self-check",
+      "title": "How many corners does a square have?",
+      "options": [
+        {
+          "id": "three",
+          "label": "Three"
+        },
+        {
+          "id": "four",
+          "label": "Four"
+        }
+      ],
+      "correctChoiceId": "four"
+    },
+    {
+      "type": "multiple-choice-block-v2",
+      "id": "query-choice",
+      "label": "Choose a supplied explanation request",
+      "options": [
+        {
+          "id": "overview",
+          "label": "A short overview",
+          "query": "Explain the supplied example briefly."
+        },
+        {
+          "id": "steps",
+          "label": "A worked example",
+          "query": "Walk through the supplied example step by step."
+        }
+      ]
+    },
+    {
+      "type": "personality-quiz",
+      "id": "outing-quiz",
+      "label": "Supplied outing idea quiz",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": true,
+      "started": false,
+      "initialIndex": 0,
+      "initialAnswers": [],
+      "progressRevision": 0,
+      "savedRevision": 0,
+      "cardSize": "md"
+    },
+    {
+      "type": "personality-quiz",
+      "id": "supplied-result",
+      "label": "Supplied result snapshot",
+      "title": "Plan a small outing",
+      "description": "An informal example. This view never infers personality from your choices.",
+      "questionCountLabel": "Two supplied questions",
+      "questions": [
+        {
+          "id": "place",
+          "prompt": "Which setting would you choose?",
+          "choices": [
+            {
+              "id": "garden",
+              "label": "A quiet garden"
+            },
+            {
+              "id": "gallery",
+              "label": "A small gallery"
+            }
+          ]
+        },
+        {
+          "id": "activity",
+          "prompt": "What would you bring?",
+          "choices": [
+            {
+              "id": "camera",
+              "label": "A camera"
+            },
+            {
+              "id": "notebook",
+              "label": "A notebook"
+            }
+          ]
+        }
+      ],
+      "generationComplete": true,
+      "available": true,
+      "started": true,
+      "initialIndex": 2,
+      "initialAnswers": [
+        {
+          "questionId": "place",
+          "choiceId": "garden"
+        },
+        {
+          "questionId": "activity",
+          "choiceId": "notebook"
+        }
+      ],
+      "progressRevision": 3,
+      "savedRevision": 3,
+      "cardSize": "md",
+      "resultRevision": 3,
+      "resultStatus": "complete",
+      "result": {
+        "name": "Example result supplied by the author",
+        "description": "A short garden visit with a notebook.",
+        "quote": "Leave room to notice something new.",
+        "paragraphs": [
+          "This is authored sample content, not a conclusion computed from answers."
+        ]
+      },
+      "canCopy": true,
+      "copyText": "Sample idea: a short garden visit with a notebook.",
+      "canShare": true,
+      "canCreate": true,
+      "createPrompt": "Draft a two-question recreational outing quiz."
+    }
+  ]
+}

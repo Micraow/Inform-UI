@@ -25,3 +25,7 @@ The visible `Reset location request` control (supply `resetLabel` to change it) 
 The original example uses `https://example.test/location-help`, not a live service. Author tests exercise public Node/browser validation, pending/failed states, all three local intents, cancellation, form reset, first-legend behavior, actual recursive dispatch, update/dispose, ShadowRoot boundaries, repeated listener release and real standalone compilation. Native browser tests are provided separately; discovery is not execution.
 
 For composed supplied views, the internal renderer accepts an optional third `{ gate }` argument reusing an existing `intentGate`. The child keeps its own owned generation and reset lifecycle; parents should preserve it rather than reconstruct it in response to unrelated native resets. Parent streaming or capability restrictions must be projected into the actual child `disabled` input.
+
+## Complete semantic text and URL checks
+
+Full `validateDocument` rejects every supplied top-level string that is blank after `trim()`, including optional identifiers, labels, descriptions, fallback and informational-link fields (`ASK_LOCATION_DATA`). The rule applies in all phases. Optional omission is distinct from supplying whitespace; no legacy empty-string exception is introduced for this node. `learnMoreUrl`, when present, must also pass the existing safe-link policy (`ASK_LOCATION_URL`). Structure-only selected schemas do not replace this semantic gate. The permission request remains a local intent and never grants location access by itself.

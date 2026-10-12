@@ -18,13 +18,9 @@ import {installContextActionsSchema} from '../context-actions-schema.mjs';
 import {installFinanceEntrySchema} from '../finance-entry-schema.mjs';
 import {installCapabilitySearchSchema} from '../capability-search-schema.mjs';
 import {installReservationPillsSchema} from '../reservation-pills-schema.mjs';
-import {installAskLocationSchema} from '../ask-location-schema.mjs';
-import {installCapabilityWelcomeSchema} from '../capability-welcome-schema.mjs';
-import {installQuizCardsSchema} from '../quiz-cards-schema.mjs';
 import {installSearchOnboardingSchema} from '../search-onboarding-schema.mjs';
 import {installStudyOnboardingSchema} from '../study-onboarding-schema.mjs';
 import {installLedgerCategorySchema} from '../ledger-category-schema.mjs';
-import {installAskUserSchema} from '../ask-user-schema.mjs';
 import {installEntitySchema} from '../entity-schema.mjs';
 import {installAutomationSchema} from '../automation-schema.mjs';
 import {promptChecklistSchema} from '../prompt-checklist-schema.mjs';
@@ -336,16 +332,16 @@ node('scheduled-task-suggestion',{label:short,action:choice('new-turn','task-opt
 
 installEntitySchema({node,defs});
 
-installAskUserSchema({node,defs});
+registry.use('requests/user');
 installLedgerCategorySchema({node,defs});
 registry.use('voice/cards');
 registry.use('onboarding/conversation');
 registry.use('onboarding/cards');
 installStudyOnboardingSchema({node,defs});
 installSearchOnboardingSchema({node,defs});
-installQuizCardsSchema({node,defs});
-installCapabilityWelcomeSchema({node,defs});
-installAskLocationSchema({node,defs});
+registry.use('learning/quiz-cards');
+registry.use('onboarding/welcome');
+registry.use('requests/location');
 installReservationPillsSchema({node,defs});
 installCapabilitySearchSchema({node,defs});
 registry.use('tasks/cards');
