@@ -1,0 +1,39 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "unit-converter",
+      "title": "Local signed temperature difference",
+      "category": "temperature",
+      "amount": -10,
+      "from": "C",
+      "to": "F",
+      "temperatureMode": "difference",
+      "precision": 8
+    },
+    {
+      "type": "currency-converter",
+      "title": "Original synthetic exchange snapshot",
+      "source": {
+        "label": "Original fictional supplied rates",
+        "synthetic": true
+      },
+      "asOf": "2028-02-29T12:00:30.125Z",
+      "base": "XYZ",
+      "rates": [
+        {
+          "currency": "ABC",
+          "rate": 0.5
+        },
+        {
+          "currency": "DEF",
+          "rate": null
+        }
+      ],
+      "amount": 0,
+      "from": "XYZ",
+      "to": "DEF",
+      "precision": 8
+    }
+  ]
+}

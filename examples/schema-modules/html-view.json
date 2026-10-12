@@ -1,0 +1,14 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied html view example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "html-view",
+      "title": "Original authored markup",
+      "html": "<p>Original static teaching content. No scripts or external resources.</p>",
+      "height": 160,
+      "width": "100%"
+    }
+  ]
+}

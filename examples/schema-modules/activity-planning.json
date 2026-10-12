@@ -1,0 +1,64 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "shared-activity-planner",
+      "label": "Fictional shared studio session",
+      "participants": [
+        {
+          "id": "person_a",
+          "label": "Avery"
+        },
+        {
+          "id": "person_b",
+          "label": "Remy"
+        }
+      ],
+      "options": [
+        {
+          "id": "studio",
+          "label": "Original studio option",
+          "startsAt": "2028-02-29T10:00Z",
+          "endsAt": "2028-02-29T12:00Z",
+          "availability": [
+            {
+              "participantId": "person_a",
+              "status": "unknown"
+            }
+          ],
+          "source": {
+            "label": "Original fictional supplied sample",
+            "url": "https://example.invalid/supplied-sample"
+          }
+        }
+      ]
+    },
+    {
+      "type": "event-sidebar",
+      "eventId": "studio_day",
+      "label": "Fictional studio day",
+      "startsAt": "2028-02-29T10:00Z",
+      "endsAt": "2028-02-29T12:00Z",
+      "agenda": [
+        {
+          "id": "intro",
+          "label": "Opening session",
+          "startsAt": "2028-02-29T10:00Z",
+          "endsAt": "2028-02-29T11:00Z",
+          "category": "Discussion"
+        },
+        {
+          "id": "parallel",
+          "label": "Parallel supplied session",
+          "startsAt": "2028-02-29T10:30Z",
+          "endsAt": "2028-02-29T12:00Z",
+          "category": "Workshop"
+        }
+      ],
+      "source": {
+        "label": "Original fictional supplied sample",
+        "url": "https://example.invalid/supplied-sample"
+      }
+    }
+  ]
+}

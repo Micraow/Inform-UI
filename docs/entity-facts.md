@@ -23,3 +23,13 @@ Source map: generator/subset map, entity-facts core inspector/wiring, entity-fac
 ## Checkpoint verification
 
 Initial component tests:39/39. Final facts/entities/citations/shared-guard/Forms/core tests:174/174 (`/tmp/inform-entity-facts-final.log`). Selected schema ownership/closed-reference metrics, domain fixture compatibility and CDN/source identity:3/3 (`/tmp/inform-entity-facts-schema.log`). Generation/build, no-emit types, public type consumer, CDN build, source-boundary and prepared browser syntax checks passed. No uncaught host-listener errors appeared in the final suite. Browser/image-decoding/visual acceptance remains outstanding. No CI or remote push was performed by this component slot; root owns source backup and cohort acceptance.
+
+## Maintained source selection and precise semantic boundary
+
+`entities/facts` owns these existing declarations and depends on `travel/snapshots` for `TravelEventSource`. Dependency nodes are visible in selected manifests. Always run unchanged full `validateDocument` after the selected structural schema.
+
+Fact IDs and entity IDs use strict supplied keys, are unique within their respective node's list, and reject trailing newlines. An initial entity selection must reference a supplied entity; an empty entity list therefore cannot have an initial selection. Repeated field labels inside an entity are allowed. Optional authored node IDs retain shared document-wide uniqueness.
+
+Short root/fact/entity/field labels, category, unit, group and source label have structural length 1–200 without additional trim/nonblank checks. Whitespace-only nonempty values remain accepted. Fact values are literal strings of 0–2000 characters or null; entity field values are strings of 0–2000, not null. Root descriptions (≤2000), entity descriptions (≤3000) and fact notes (≤3000) may be empty. Images require nonempty alt text (1–2000) and a bounded source (1–140000), with no alt-text trim check. Semantic image policy permits only safe embedded base64 PNG/JPEG/WebP; it rejects remote URLs, GIF and SVG. This is a source-syntax policy, not proof the image bytes decode; renderer decode failures retain their existing fallback.
+
+Optional fact observation timestamps are real Gregorian minute timestamps, years 1000–9999, with `Z` or offsets through ±14:00. Seconds/fractions/newlines are rejected; no sorting, freshness or date-value parsing is required. Root/fact/entity sources require safe absolute HTTP(S). A fact's value, unit, observation and attribution remain supplied content with no inferred truth, numeric conversion or identity lookup.

@@ -1,0 +1,26 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied tabbed section example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "tabbed-section",
+      "label": "Original supplied sections",
+      "tabs": [
+        {
+          "id": "first",
+          "label": "First",
+          "title": "First section",
+          "content": "**Supplied** text only. [Example label](https://example.org) stays passive."
+        },
+        {
+          "id": "second",
+          "label": "Second",
+          "title": "Second section",
+          "content": ""
+        }
+      ],
+      "activeId": "first"
+    }
+  ]
+}

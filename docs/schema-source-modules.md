@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 178 migrated nodes and 40 legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 218 migrated nodes and zero legacy nodes; this does not change the 218-node wire union.
 
 ## content
 
@@ -130,3 +130,11 @@ The existing finance snapshots, ledger lists, exact-money records, category corr
 ## Supplied sports and result records
 
 The existing motorsport, generic sports, match scores, tournament/election, boxscore and player-summary declarations have five maintained source modules. Four depend on the shared travel snapshot source definition; the generic sports model uses only shared values. Explicit required contracts preserve supplied scores, unknowns, record references, grouping and date rules without inferring winners, league rules or election outcomes.
+
+## Local snapshots, history and portable graphics
+
+Maintained modules now own existing request bars, finite checklist/status cards, supplied financial history, nested lookup snapshots and SVG. The native compatibility node is registered for structural recognition only: full semantic validation still rejects it. Explicit lookup dependencies include Weather and Finance. This migration adds no runtime behavior or remote service.
+
+## Complete maintained-source coverage
+
+All 218 existing wire node definitions now resolve through the source registry. Activity, citation, vocabulary, converter, media collection and remaining reader families use their original declarations or original maintained definition JSON. Full-schema output remains byte-for-byte compatible. This is schema-source coverage, not an increase in runtime functionality or clinical validation. Structural compatibility-only native nodes still fail full semantic validation. The full WebChat schema and selective closure share the same providers.

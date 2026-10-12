@@ -1,0 +1,46 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "word-card",
+      "wordId": "serene",
+      "term": "serene",
+      "definition": "Calm and peaceful. Original example wording.",
+      "translation": "宁静的",
+      "examples": [
+        {
+          "text": "The fictional harbor was serene.",
+          "translation": ""
+        }
+      ],
+      "source": {
+        "label": "Original fictional supplied sample",
+        "url": "https://example.invalid/supplied-sample"
+      }
+    },
+    {
+      "type": "copy-words",
+      "label": "Original supplied practice words",
+      "words": [
+        {
+          "id": "first",
+          "text": "serene"
+        },
+        {
+          "id": "second",
+          "text": "serene",
+          "note": "Repeated text is intentionally retained."
+        },
+        {
+          "id": "third",
+          "text": "harbor"
+        }
+      ],
+      "initialSelectedIds": [
+        "first",
+        "second"
+      ],
+      "separator": "lines"
+    }
+  ]
+}

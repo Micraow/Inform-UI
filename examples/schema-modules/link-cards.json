@@ -1,0 +1,20 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied link cards example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "link-card",
+      "title": "Example document",
+      "url": "https://example.org/teaching",
+      "source": "Supplied example domain",
+      "snippet": "Original local host-intent example."
+    },
+    {
+      "type": "recommendation-link-card",
+      "title": "Example recommendation",
+      "url": "https://example.org/reading",
+      "imageSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC"
+    }
+  ]
+}

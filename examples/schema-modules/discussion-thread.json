@@ -1,0 +1,32 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "reddit-thread-card",
+      "title": "Fictional studio discussion",
+      "author": "Avery",
+      "body": "Original supplied text only. No provider account is connected.",
+      "source": {
+        "label": "Original fictional discussion"
+      },
+      "score": null,
+      "comments": [
+        {
+          "id": "comment_a",
+          "author": "Remy",
+          "body": "An original example reply.",
+          "score": -1,
+          "replies": [
+            {
+              "id": "reply_a",
+              "author": "Avery",
+              "body": "A second original sample.",
+              "score": 0
+            }
+          ]
+        }
+      ],
+      "expanded": true
+    }
+  ]
+}

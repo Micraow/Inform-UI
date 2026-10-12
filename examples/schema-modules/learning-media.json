@@ -1,0 +1,55 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied learning media example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "learning-audio-label-card",
+      "label": "Listen to a supplied clip",
+      "prompt": "Which word does this fictional silent teaching clip represent?",
+      "audio": {
+        "src": "data:audio/wav;base64,UklGRnQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVAAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==",
+        "transcript": "This silent fixture represents the supplied word quiet."
+      },
+      "answers": [
+        "quiet"
+      ]
+    },
+    {
+      "type": "learning-image-choice-card",
+      "label": "Choose a supplied picture",
+      "prompt": "Select the first fictional option.",
+      "options": [
+        {
+          "id": "first",
+          "label": "First supplied option",
+          "image": {
+            "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+            "alt": "One original blue pixel"
+          }
+        },
+        {
+          "id": "second",
+          "label": "Second supplied option",
+          "image": {
+            "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+            "alt": "One original blue pixel"
+          }
+        }
+      ],
+      "answerId": "first"
+    },
+    {
+      "type": "learning-image-label-card",
+      "label": "Name the supplied pixel",
+      "prompt": "Use the supplied word blue.",
+      "image": {
+        "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+        "alt": "One original blue pixel"
+      },
+      "answers": [
+        "blue"
+      ]
+    }
+  ]
+}

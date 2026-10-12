@@ -1,0 +1,39 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied image grid example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "image-grid",
+      "label": "Original supplied pixel grid",
+      "images": [
+        {
+          "id": "pixel",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+          "alt": "Original blue pixel",
+          "caption": "Programmatically authored sample"
+        }
+      ],
+      "presentation": "mosaic",
+      "rows": [
+        {
+          "tiles": [
+            {
+              "imageId": "pixel",
+              "aspectRatio": 1
+            }
+          ]
+        }
+      ],
+      "recommendations": [
+        {
+          "id": "related",
+          "label": "Related supplied example",
+          "query": "original blue pixels",
+          "thumbnailSrc": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC"
+        }
+      ],
+      "viewer": "intent"
+    }
+  ]
+}

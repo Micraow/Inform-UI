@@ -1,0 +1,35 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "weather-sidebar-title",
+      "label": "Fictional supplied weather headers",
+      "places": [
+        {
+          "id": "cedar",
+          "label": "Cedar Studio",
+          "timezone": "UTC",
+          "observedAt": "2028-02-29T10:00Z",
+          "temperature": 0,
+          "unit": "celsius",
+          "condition": "unknown",
+          "source": {
+            "label": "Original fictional supplied sample",
+            "url": "https://example.invalid/supplied-sample"
+          }
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor Studio",
+          "timezone": "Asia/Shanghai",
+          "observedAt": null,
+          "temperature": null,
+          "unit": "fahrenheit",
+          "condition": null
+        }
+      ],
+      "initialPlaceId": "cedar",
+      "unit": "fahrenheit"
+    }
+  ]
+}

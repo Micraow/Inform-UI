@@ -1,0 +1,61 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "flight-search-form",
+      "label": "Local fictional route draft",
+      "airports": [
+        {
+          "code": "AAA",
+          "label": "Fictional Cedar Airport"
+        },
+        {
+          "code": "BBB",
+          "label": "Fictional Harbor Airport"
+        }
+      ],
+      "initialOrigin": "AAA",
+      "initialDestination": "BBB",
+      "initialDepartureDate": "2028-02-29",
+      "initialReturnDate": "2028-02-29",
+      "initialTravelers": 1
+    },
+    {
+      "type": "flight-results",
+      "label": "Supplied fictional route options",
+      "results": [
+        {
+          "id": "route_a",
+          "label": "Original sample itinerary",
+          "legs": [
+            {
+              "id": "leg_a",
+              "carrier": "Example Carrier",
+              "number": "EX 1",
+              "departure": {
+                "airport": "AAA",
+                "at": "2028-02-29T10:00Z"
+              },
+              "arrival": {
+                "airport": "BBB",
+                "at": "2028-02-29T12:00Z"
+              }
+            }
+          ],
+          "price": {
+            "amount": 0,
+            "currency": "XYZ"
+          },
+          "source": {
+            "label": "Original fictional supplied sample",
+            "url": "https://example.invalid/supplied-sample"
+          }
+        }
+      ],
+      "source": {
+        "label": "Original fictional supplied sample",
+        "url": "https://example.invalid/supplied-sample"
+      }
+    }
+  ]
+}

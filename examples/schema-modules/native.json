@@ -1,0 +1,10 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "native",
+      "name": "box",
+      "children": []
+    }
+  ]
+}

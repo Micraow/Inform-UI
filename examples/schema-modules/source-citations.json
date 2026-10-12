@@ -1,0 +1,46 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "code-cite",
+      "label": "Original literal code excerpt",
+      "fileName": "example.txt",
+      "language": "plain text",
+      "startLine": 10,
+      "lines": [
+        "let sample = 1;",
+        "",
+        "sample += 2;"
+      ],
+      "citedStart": 11,
+      "citedEnd": 12,
+      "source": {
+        "label": "Original fictional supplied sample",
+        "url": "https://example.invalid/supplied-sample"
+      }
+    },
+    {
+      "type": "file-cite",
+      "label": "Original fictional document excerpts",
+      "fileName": "sample-notes.pdf",
+      "mediaType": "Supplied text excerpts",
+      "totalPages": 20,
+      "pages": [
+        {
+          "number": 8,
+          "text": "Original page-eight sample text.",
+          "source": {
+            "label": "Original fictional supplied sample",
+            "url": "https://example.invalid/supplied-sample"
+          }
+        },
+        {
+          "number": 3,
+          "label": "Earlier supplied page",
+          "text": "Original page-three sample text."
+        }
+      ],
+      "initialPage": 3
+    }
+  ]
+}

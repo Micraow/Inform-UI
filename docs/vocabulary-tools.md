@@ -28,3 +28,15 @@ Generation/build, final CDN rebuild, no-emit TypeScript, public type consumer an
 ## Manual-focus follow-up
 
 Independent review reproduced a post-focus ownership gap: moving or disabling a selected word during preview focus still allowed native selection. Three old-code controls (moved word, disabled word, new pending clipboard operation) each reproduced unwanted select calls. The manual handler now rechecks selected-control ownership, pending state and a local draft revision after focus; a newer selection draft also aborts native selection. Final vocabulary regression suite passed 46/46 (`/tmp/inform-vocabulary-focus-guard-final.log`). No clipboard request or current107 acceptance code is changed by this follow-up.
+
+### Copy progress and host disablement
+
+CopyWords announces an in-flight write with `aria-busy` and the copying label. A local single-flight lock blocks repeated activation until that write settles. It does not publish `aria-disabled` for its own busy/empty state: the common reader guard treats that attribute as actual control disablement, which would also cancel the accepted operation. An empty selection remains activatable to explain that words must be selected. Explicit host `aria-disabled="true"`, native/fieldset disablement, hidden/inert context and ownership checks still block activation. Local paints preserve the host's ARIA attribute. If host disablement occurs while a write is pending, its settlement produces no stale success/failure feedback; the component cannot undo a clipboard write already handed to the browser.
+
+## Maintained source selection and precise field boundaries
+
+`vocabulary/supplied` owns the two existing declarations and depends on `travel/snapshots` for `TravelEventSource`. Its dependency nodes are reported in the selection manifest. Structural selection does not replace full `validateDocument` or the existing local event/clipboard ownership contract.
+
+WordId, word-list IDs and initial selection IDs use strict supplied keys with no trailing newline. Word-list IDs must be unique; text may repeat. Initial selection IDs must be unique and refer to supplied words; an explicit empty selection is legal. WordId is a supplied record identity, not a lookup key or a separate global uniqueness constraint. Optional authored node IDs retain document-wide uniqueness.
+
+Term/text are 1–200 characters, definition 1–5000, example text 1–1000, pronunciation/partOfSpeech/source label 1–200. These inspectors do not trim or add nonblank validation: whitespace-only nonempty text remains accepted. Optional word translation (≤2000), example translation (≤1000), list description (≤2000) and word note (≤1000) may be empty. Word-card has 0–8 examples; copy-words has 0–80 words and at most 80 initial IDs. Safe sources require absolute HTTP(S). No language detection, unique-term rule, Unicode normalization, dictionary retrieval, speech, mastery calculation or external persistence is added. Explicit user activation and an uncanceled local intent are still prerequisites for the existing clipboard call; selecting this source module alone performs no clipboard operation.

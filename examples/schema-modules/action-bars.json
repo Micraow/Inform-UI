@@ -1,0 +1,46 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "conversation-suggestions",
+      "label": "Choose supplied text",
+      "suggestions": [
+        {
+          "id": "review",
+          "label": "Review summary",
+          "prompt": "Review only the supplied summary."
+        },
+        {
+          "id": "compare",
+          "label": "Compare options",
+          "prompt": "Compare these supplied options."
+        },
+        {
+          "id": "unavailable",
+          "label": "Unavailable",
+          "prompt": "This supplied prompt is disabled.",
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "type": "follow-up-action-bar",
+      "label": "Continue with supplied information",
+      "actions": [
+        {
+          "id": "review",
+          "label": "Review the supplied summary"
+        },
+        {
+          "id": "compare",
+          "label": "Compare the supplied options"
+        },
+        {
+          "id": "unavailable",
+          "label": "Unavailable action",
+          "disabled": true
+        }
+      ]
+    }
+  ]
+}

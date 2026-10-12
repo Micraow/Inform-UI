@@ -17,3 +17,7 @@ Pending uses a 140px local loading presentation; failed uses explicit fallback t
 Source-build tests include actual standalone compilation. Native browser tests are supplied separately; discovery alone does not establish browser or reference-pixel acceptance. The frozen CDN still belongs to unified164 until a later unified asset build.
 
 Local integration follow-up: carousel resource notifications (resize, scroll, media/font lifecycle) do not enter the user-input gate or change the reset revision. The parent observes actual nested Weather date/readout changes for keyboard and pointer input, so a later embedded interaction supersedes a queued parent reset. Original keyboard-reset and Window-as-Node failures are retained;15 domain checks and the original10 independent checks passed on the correction.
+
+## Required source-package validation
+
+`SEARCH_TEXT` checks node label; each supplied weather/stock/news label and question; news item id/title/sourceLabel; each summary text. News IDs are unique (`SEARCH_ID`) and summary sourceId must refer to a supplied item (`SEARCH_SOURCE`). News URL/imageSrc/faviconSrc use core link/image safety when present. Other strings retain structural constraints without blanket trim. Weather child runs extension and supplied-text checks plus source safety; stock runs full Finance checks. The explicit required Weather and Finance contracts are part of this package. Supplied child data is validated even when pending/failed; no live lookup occurs.

@@ -1,0 +1,31 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied async images example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "async-image",
+      "images": [
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+          "title": "Original one-pixel fixture"
+        }
+      ],
+      "status": "resolved",
+      "alt": "Original pixel",
+      "interactive": false
+    },
+    {
+      "type": "async-image-group",
+      "images": [
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+          "title": "Original one-pixel fixture"
+        }
+      ],
+      "status": "resolved",
+      "layout": "bento",
+      "interactive": false
+    }
+  ]
+}

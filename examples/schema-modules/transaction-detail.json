@@ -1,0 +1,55 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-transaction-detail",
+      "id": "supplied-transaction",
+      "label": "Supplied teaching transaction detail",
+      "data": {
+        "transactionId": "bookshop_01",
+        "name": "Example bookshop",
+        "amountLabel": "USD 0.00",
+        "maskedAmountLabel": "\u2022\u2022\u2022",
+        "merchant": "Example bookshop",
+        "dateLabel": "Date not supplied",
+        "account": "Example account \u00b7\u00b7 1234",
+        "category": "Books",
+        "labels": {
+          "merchant": "Merchant",
+          "date": "Date",
+          "account": "Account",
+          "category": "Category",
+          "budget": "Monthly category budget",
+          "related": "Related supplied transactions",
+          "empty": "No related transactions were supplied.",
+          "masked": "\u2022\u2022\u2022"
+        },
+        "budget": {
+          "limitLabel": "USD 100.00",
+          "progressPct": 35,
+          "color": "info"
+        },
+        "related": [
+          {
+            "id": "bookshop_refund",
+            "name": "Example book return",
+            "dateLabel": "Oct 2",
+            "amountLabel": "\u2212USD 4.00",
+            "maskedAmountLabel": "\u2022\u2022\u2022",
+            "actionLabel": "Inspect the supplied book return"
+          },
+          {
+            "id": "bookshop_pending",
+            "name": "Example pending purchase",
+            "dateLabel": "Oct 3",
+            "amountLabel": "Not supplied",
+            "maskedAmountLabel": "\u2022\u2022\u2022",
+            "pending": true,
+            "actionLabel": "Inspect the supplied pending purchase",
+            "pendingLabel": "Pending"
+          }
+        ]
+      }
+    }
+  ]
+}

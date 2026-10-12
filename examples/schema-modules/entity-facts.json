@@ -1,0 +1,64 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "sidebar-fact-table",
+      "label": "Original fictional observations",
+      "facts": [
+        {
+          "id": "blank",
+          "label": "Empty value supplied",
+          "value": "",
+          "unit": "literal units",
+          "observedAt": "2028-02-29T10:00Z",
+          "source": {
+            "label": "Original fictional supplied sample",
+            "url": "https://example.invalid/supplied-sample"
+          }
+        },
+        {
+          "id": "unknown",
+          "label": "Value not supplied",
+          "value": null,
+          "group": "Unverified"
+        }
+      ],
+      "source": {
+        "label": "Original fictional supplied sample",
+        "url": "https://example.invalid/supplied-sample"
+      }
+    },
+    {
+      "type": "entity-thumbnail-list",
+      "label": "Original fictional place cards",
+      "entities": [
+        {
+          "id": "cedar",
+          "label": "Cedar Studio",
+          "category": "Fictional studio",
+          "fields": [
+            {
+              "label": "Note",
+              "value": ""
+            },
+            {
+              "label": "Note",
+              "value": "Repeated field labels are legal."
+            }
+          ],
+          "source": {
+            "label": "Original fictional supplied sample",
+            "url": "https://example.invalid/supplied-sample"
+          }
+        },
+        {
+          "id": "harbor",
+          "label": "Harbor Studio",
+          "category": "Fictional studio",
+          "description": "No image is supplied."
+        }
+      ],
+      "initialSelectedId": "cedar"
+    }
+  ]
+}

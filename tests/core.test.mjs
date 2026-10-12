@@ -18,7 +18,7 @@ const slider = { type: 'slider', label: 'Gain', bind: 'gain', min: 0, max: 10, s
 const chart = { type: 'chart', kind: 'line', xKey: 'x', data: [{ x: 'A', y: 1 }, { x: 'B', y: null }], series: [{ key: 'y', label: 'Value' }] };
 const svg = (attrs) => ({ type: 'svg', viewBox: '0 0 100 100', shapes: [{ tag: 'rect', attrs }] });
 
-test('all original examples validate; current public contract has the exact 213-node registry', async () => {
+test('all original examples validate; current public contract has the exact 218-node registry and preserves the original 213-node prefix', async () => {
   for (const file of await readdir(new URL('../examples/', import.meta.url))) {
     if (!file.endsWith('.json')) continue;
     const input = JSON.parse(await readFile(new URL(`../examples/${file}`, import.meta.url), 'utf8'));
@@ -27,9 +27,20 @@ test('all original examples validate; current public contract has the exact 213-
   }
   const schema = JSON.parse(await readFile(new URL('../src/schema/iui.schema.json', import.meta.url), 'utf8'));
   assert.equal(schema.$schema, 'https://json-schema.org/draft/2020-12/schema');
-  assert.deepEqual(schema.$defs.Node.oneOf,JSON.parse(await readFile(new URL('./current-node-order-213.json',import.meta.url),'utf8')));
-  assert.equal(schema.$defs.Node.oneOf.length,213);
-  assert.deepEqual(schema.$defs.Node.oneOf.filter(item=>!['#/$defs/LinkCardNode','#/$defs/RecommendationLinkCardNode','#/$defs/TabbedSectionNode','#/$defs/VisualCardCarouselNode','#/$defs/DisplayAutomationNode','#/$defs/ListAutomationsNode','#/$defs/AutomationPlanSummaryNode','#/$defs/ScheduledTaskSuggestionNode','#/$defs/EntityCardNode','#/$defs/EntityOverviewNode','#/$defs/AskUserDetailsNode','#/$defs/AskUserFilesNode','#/$defs/LedgerSpendByCategoryNode','#/$defs/LedgerSpendByCategoryDetailNode','#/$defs/LedgerSpendByCategoryRecentTransactionsNode','#/$defs/LearningVoiceModeLauncherCardNode','#/$defs/OfferVoiceConversationNode','#/$defs/LearningSpeakCardNode','#/$defs/ConversationalOnboardingAdviceNode','#/$defs/ConversationalOnboardingWritingNode','#/$defs/OnboardingFeatureCardNode','#/$defs/OnboardingPluginSuggestionsNode','#/$defs/OnboardingStarterTasksNode','#/$defs/ConversationalOnboardingStudyNode','#/$defs/ConversationalOnboardingSearchNode','#/$defs/FollowUpQuizNode','#/$defs/MultipleChoiceBlockV2Node','#/$defs/PersonalityQuizNode','#/$defs/WhatsNewCapabilityWelcomeNode','#/$defs/AskUserLocationNode','#/$defs/ReservationTimePillsRefCarouselNode','#/$defs/WhatsNewCapabilitySearchNode','#/$defs/PushDripSeriesIntroNode','#/$defs/StopPushDripSeriesNode','#/$defs/TaskAutopauseCardNode','#/$defs/LedgerFinanceOnboardingNode','#/$defs/LedgerRepairBankConnectionNode','#/$defs/FinanceOnboardingSuggestionsNode','#/$defs/PlacesMetadataBarNode','#/$defs/PluginFollowupNode','#/$defs/InstantSuggestionsNode','#/$defs/LedgerEquityUpdatesNode','#/$defs/LedgerWatchlistNode','#/$defs/HomeworkHelperV2Node','#/$defs/ImageGenNode','#/$defs/InternalPartnerAppNode','#/$defs/BentoNode','#/$defs/OpenDetailNode','#/$defs/OpenaiNode','#/$defs/LedgerCreditScoreNode','#/$defs/LedgerCreditScoreDetailNode','#/$defs/LedgerLowConfidenceCategoryCorrectionLegacyNode','#/$defs/SuperbowlRiddleNode','#/$defs/LearningVizDilNode','#/$defs/CareProviderResultsNode','#/$defs/CareProviderSidebarNode','#/$defs/EntityNode','#/$defs/GenImageNode','#/$defs/SpeechSynthesizerNode'].includes(item.$ref)),JSON.parse(await readFile(new URL('./current-node-order-154.json',import.meta.url),'utf8')));
+  const original213=JSON.parse(await readFile(new URL('./current-node-order-213.json',import.meta.url),'utf8'));
+  assert.equal(original213.length,213);
+  // Explicit already-shipped additions: do not derive the expected order from the schema under test.
+  const additions=[
+    '#/$defs/CalculatorCorrectedAdjustedAgeOfPretermInfantsNode',
+    '#/$defs/CalculatorGlasgowComaScaleGcsNode',
+    '#/$defs/CalculatorRoxIndexForHighFlowNasalCannulaNode',
+    '#/$defs/CalculatorQsofaScoreNode',
+    '#/$defs/QuestionnaireNode'
+  ].map($ref=>({$ref}));
+  assert.deepEqual(schema.$defs.Node.oneOf,[...original213,...additions]);
+  assert.equal(schema.$defs.Node.oneOf.length,218);
+  assert.deepEqual(schema.$defs.Node.oneOf.slice(0,213),original213);
+  assert.deepEqual(original213.filter(item=>!['#/$defs/LinkCardNode','#/$defs/RecommendationLinkCardNode','#/$defs/TabbedSectionNode','#/$defs/VisualCardCarouselNode','#/$defs/DisplayAutomationNode','#/$defs/ListAutomationsNode','#/$defs/AutomationPlanSummaryNode','#/$defs/ScheduledTaskSuggestionNode','#/$defs/EntityCardNode','#/$defs/EntityOverviewNode','#/$defs/AskUserDetailsNode','#/$defs/AskUserFilesNode','#/$defs/LedgerSpendByCategoryNode','#/$defs/LedgerSpendByCategoryDetailNode','#/$defs/LedgerSpendByCategoryRecentTransactionsNode','#/$defs/LearningVoiceModeLauncherCardNode','#/$defs/OfferVoiceConversationNode','#/$defs/LearningSpeakCardNode','#/$defs/ConversationalOnboardingAdviceNode','#/$defs/ConversationalOnboardingWritingNode','#/$defs/OnboardingFeatureCardNode','#/$defs/OnboardingPluginSuggestionsNode','#/$defs/OnboardingStarterTasksNode','#/$defs/ConversationalOnboardingStudyNode','#/$defs/ConversationalOnboardingSearchNode','#/$defs/FollowUpQuizNode','#/$defs/MultipleChoiceBlockV2Node','#/$defs/PersonalityQuizNode','#/$defs/WhatsNewCapabilityWelcomeNode','#/$defs/AskUserLocationNode','#/$defs/ReservationTimePillsRefCarouselNode','#/$defs/WhatsNewCapabilitySearchNode','#/$defs/PushDripSeriesIntroNode','#/$defs/StopPushDripSeriesNode','#/$defs/TaskAutopauseCardNode','#/$defs/LedgerFinanceOnboardingNode','#/$defs/LedgerRepairBankConnectionNode','#/$defs/FinanceOnboardingSuggestionsNode','#/$defs/PlacesMetadataBarNode','#/$defs/PluginFollowupNode','#/$defs/InstantSuggestionsNode','#/$defs/LedgerEquityUpdatesNode','#/$defs/LedgerWatchlistNode','#/$defs/HomeworkHelperV2Node','#/$defs/ImageGenNode','#/$defs/InternalPartnerAppNode','#/$defs/BentoNode','#/$defs/OpenDetailNode','#/$defs/OpenaiNode','#/$defs/LedgerCreditScoreNode','#/$defs/LedgerCreditScoreDetailNode','#/$defs/LedgerLowConfidenceCategoryCorrectionLegacyNode','#/$defs/SuperbowlRiddleNode','#/$defs/LearningVizDilNode','#/$defs/CareProviderResultsNode','#/$defs/CareProviderSidebarNode','#/$defs/EntityNode','#/$defs/GenImageNode','#/$defs/SpeechSynthesizerNode'].includes(item.$ref)),JSON.parse(await readFile(new URL('./current-node-order-154.json',import.meta.url),'utf8')));
 });
 
 test('successful validation clones, normalizes and deeply freezes data', () => {

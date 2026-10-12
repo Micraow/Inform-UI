@@ -1,0 +1,273 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "conversational-onboarding-search",
+      "label": "Original offline lookup examples",
+      "weather": {
+        "label": "Weather example",
+        "question": "Read a fictional weather snapshot.",
+        "snapshot": {
+          "type": "weather",
+          "id": "weather-demo",
+          "location": {
+            "name": "San Francisco",
+            "timezone": "America/Los_Angeles"
+          },
+          "updatedAt": "2026-11-01T00:30:00-07:00",
+          "source": {
+            "label": "Inform UI synthetic fixture",
+            "synthetic": true
+          },
+          "units": {
+            "temperature": "celsius"
+          },
+          "current": {
+            "time": "2026-11-01T00:00:00-07:00",
+            "temperature": 14.2,
+            "feelsLike": 13.4,
+            "condition": "partly-cloudy",
+            "humidity": 72
+          },
+          "daily": [
+            {
+              "date": "2026-11-01",
+              "low": 12.1,
+              "high": 18.6,
+              "condition": "partly-cloudy",
+              "precipitationProbability": 15
+            },
+            {
+              "date": "2026-11-02",
+              "low": 11.4,
+              "high": 17.5,
+              "condition": "rain",
+              "precipitationProbability": 75
+            },
+            {
+              "date": "2026-11-03",
+              "low": 10.7,
+              "high": 16.2,
+              "condition": "rain",
+              "precipitationProbability": 60
+            },
+            {
+              "date": "2026-11-04",
+              "low": 11.2,
+              "high": 18.7,
+              "condition": "cloudy",
+              "precipitationProbability": 20
+            },
+            {
+              "date": "2026-11-05",
+              "low": 12.4,
+              "high": 20.1,
+              "condition": "clear",
+              "precipitationProbability": 5
+            },
+            {
+              "date": "2026-11-06",
+              "low": null,
+              "high": null,
+              "condition": "unknown",
+              "precipitationProbability": null
+            }
+          ],
+          "hourly": [
+            {
+              "time": "2026-11-01T00:00:00-07:00",
+              "temperature": 14.2,
+              "precipitationProbability": 5
+            },
+            {
+              "time": "2026-11-01T01:00:00-07:00",
+              "temperature": 13.6,
+              "precipitationProbability": 10
+            },
+            {
+              "time": "2026-11-01T01:00:00-08:00",
+              "temperature": 13.1,
+              "precipitationProbability": 10
+            },
+            {
+              "time": "2026-11-01T03:00:00-08:00",
+              "temperature": 12.1,
+              "precipitationProbability": 15
+            },
+            {
+              "time": "2026-11-01T07:00:00-08:00",
+              "temperature": null,
+              "precipitationProbability": 10
+            },
+            {
+              "time": "2026-11-01T10:00:00-08:00",
+              "temperature": 16.4,
+              "precipitationProbability": 5
+            },
+            {
+              "time": "2026-11-01T15:00:00-08:00",
+              "temperature": 18.6,
+              "precipitationProbability": 0
+            },
+            {
+              "time": "2026-11-01T19:00:00-08:00",
+              "temperature": 15.5,
+              "precipitationProbability": null
+            },
+            {
+              "time": "2026-11-01T23:00:00-08:00",
+              "temperature": 13.9,
+              "precipitationProbability": 15
+            },
+            {
+              "time": "2026-11-02T04:00:00-08:00",
+              "temperature": 11.4,
+              "precipitationProbability": 60
+            },
+            {
+              "time": "2026-11-02T12:00:00-08:00",
+              "temperature": 17.5,
+              "precipitationProbability": 75
+            },
+            {
+              "time": "2026-11-02T20:00:00-08:00",
+              "temperature": 13.4,
+              "precipitationProbability": 40
+            },
+            {
+              "time": "2026-11-03T12:00:00-08:00",
+              "temperature": 16.2,
+              "precipitationProbability": 60
+            },
+            {
+              "time": "2026-11-04T12:00:00-08:00",
+              "temperature": 18.7,
+              "precipitationProbability": 20
+            },
+            {
+              "time": "2026-11-05T12:00:00-08:00",
+              "temperature": 20.1,
+              "precipitationProbability": 5
+            },
+            {
+              "time": "2026-11-06T12:00:00-08:00",
+              "temperature": null,
+              "precipitationProbability": null
+            }
+          ],
+          "initialDate": "2026-11-01",
+          "status": "ready"
+        }
+      },
+      "stock": {
+        "label": "Market example",
+        "question": "Inspect an invented market series.",
+        "snapshot": {
+          "type": "finance-chart",
+          "id": "history",
+          "title": "\u5e26\u7f3a\u6d4b\u7684\u4ef7\u683c\u5386\u53f2",
+          "source": {
+            "label": "Inform UI original synthetic market fixture",
+            "synthetic": true
+          },
+          "instrument": {
+            "id": "orbit",
+            "symbol": "ORBT",
+            "name": "Orbit Meadow Synthetic Research Index",
+            "currency": "USD",
+            "exchange": "SYNTHETIC",
+            "timezone": "America/Los_Angeles",
+            "asOf": "2026-11-01T06:15:00-08:00",
+            "marketStatus": "closed",
+            "delayMinutes": 15,
+            "price": 112,
+            "previousClose": 100,
+            "history": [
+              {
+                "time": "2026-11-01T00:30:00-07:00",
+                "price": 100
+              },
+              {
+                "time": "2026-11-01T01:00:00-07:00",
+                "price": 102
+              },
+              {
+                "time": "2026-11-01T01:00:00-08:00",
+                "price": 105
+              },
+              {
+                "time": "2026-11-01T02:00:00-08:00",
+                "price": null
+              },
+              {
+                "time": "2026-11-01T05:30:00-08:00",
+                "price": 108
+              },
+              {
+                "time": "2026-11-01T06:00:00-08:00",
+                "price": 112
+              }
+            ]
+          },
+          "ranges": [
+            {
+              "id": "all",
+              "label": "\u5b8c\u6574\u65f6\u6bb5",
+              "from": "2026-11-01T00:30:00-07:00",
+              "to": "2026-11-01T06:15:00-08:00"
+            },
+            {
+              "id": "dst",
+              "label": "\u91cd\u590d\u7684 01:00",
+              "from": "2026-11-01T01:00:00-07:00",
+              "to": "2026-11-01T01:00:00-08:00"
+            },
+            {
+              "id": "point",
+              "label": "\u5355\u70b9",
+              "from": "2026-11-01T06:00:00-08:00",
+              "to": "2026-11-01T06:15:00-08:00"
+            },
+            {
+              "id": "empty",
+              "label": "\u7a7a\u65f6\u6bb5",
+              "from": "2026-10-31T10:00:00-07:00",
+              "to": "2026-10-31T11:00:00-07:00"
+            }
+          ],
+          "initialRange": "all"
+        }
+      },
+      "news": {
+        "label": "News example",
+        "question": "Read supplied fictional updates.",
+        "summaries": [
+          {
+            "text": "An imaginary club shared its timetable.",
+            "sourceId": "club"
+          },
+          {
+            "text": "A fictional library opened a display.",
+            "sourceId": "library"
+          }
+        ],
+        "items": [
+          {
+            "id": "club",
+            "title": "Imaginary field club timetable",
+            "url": "https://example.test/club",
+            "sourceLabel": "Original Club",
+            "dateLabel": "Supplied day one"
+          },
+          {
+            "id": "library",
+            "title": "Fictional library display",
+            "url": "https://example.test/library",
+            "sourceLabel": "Original Library",
+            "dateLabel": "Supplied day two"
+          }
+        ]
+      }
+    }
+  ]
+}

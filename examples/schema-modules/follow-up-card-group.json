@@ -1,0 +1,41 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "follow-up-card-group",
+      "id": "follow-up-demo",
+      "label": "Suggested next steps",
+      "items": [
+        {
+          "id": "explain",
+          "label": "Explain the assumptions",
+          "description": "Use the supplied prompt in your host application.",
+          "emoji": "\ud83d\udca1",
+          "intent": {
+            "kind": "query",
+            "query": "Explain this example\u2019s assumptions."
+          }
+        },
+        {
+          "id": "reference",
+          "label": "Read the reference",
+          "description": "A destination intent; the component does not open it.",
+          "emoji": "\ud83d\udcd6",
+          "intent": {
+            "kind": "url",
+            "url": "https://example.org/reference"
+          }
+        },
+        {
+          "id": "workspace",
+          "label": "Start a working draft",
+          "intent": {
+            "kind": "prefill",
+            "surface": "work",
+            "query": "Prepare an outline from these supplied notes."
+          }
+        }
+      ]
+    }
+  ]
+}

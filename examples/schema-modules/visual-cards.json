@@ -1,0 +1,34 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied visual cards example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "visual-card-carousel",
+      "title": "Original supplied collection",
+      "items": [
+        {
+          "id": "pixel",
+          "label": "Open an original pixel",
+          "title": "An authored pixel",
+          "image": {
+            "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+            "title": "Original one-pixel fixture"
+          },
+          "imageIndex": 0,
+          "entity": {
+            "id": "fictional_pixel",
+            "kind": "example"
+          }
+        }
+      ],
+      "viewerImages": [
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGOwLdgMAAJOAWG3ff9oAAAAAElFTkSuQmCC",
+          "title": "Original one-pixel fixture"
+        }
+      ],
+      "viewer": "intent"
+    }
+  ]
+}

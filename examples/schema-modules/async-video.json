@@ -1,0 +1,13 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied async video example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "async-video-carousel",
+      "status": "resolved",
+      "hoverPreview": false,
+      "items": []
+    }
+  ]
+}

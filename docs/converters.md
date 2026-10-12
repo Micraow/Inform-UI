@@ -60,3 +60,13 @@ Node测试覆盖九类独立已知值、绝对零度、温差、空/坏输入、
 - [NIST SP811换算因子](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8)：国际英尺、英里、海里、加仑、英亩、压力等
 - [NIST SP811脚注](https://www.nist.gov/pml/special-publication-811/nist-guide-si-footnotes)：国际磅0.45359237 kg等精确定义
 - [NIST二进制前缀](https://physics.nist.gov/cuu/Units/binary.html)：kB/MB与KiB/MiB的区别
+
+## 源模块与不收紧的历史边界
+
+`converters/local` 维护既有两个换算节点，依赖 `shared/value` 与仅提供 `FinanceSource` 的 `shared/finance-source`。单位代码和 Schema 中的类别说明直接读取维护中的 `src/data/units.json`，不从全量 Schema 反切或另存一份常量表。模块读取注册表后同步安装声明；所选结构 Schema 后仍须执行原有完整 `validateDocument`。
+
+单位 Schema 的 from/to 枚举包含注册表的所有单位；同一类别检查由语义层完成。跨类别代码即使分别是有效单位也会被拒绝。amount 可为负数和零；绝对温度按各原温标阈值校验，温差可为负。非温度类别只要出现 temperatureMode 就报错，不能因为值为 absolute 而忽略它。换算溢出及非零值下溢成零均报数值范围错误；不会悄悄返回 Infinity 或把非零量当作零。已有浮点策略和默认精度保持不变。
+
+货币 rates 为0–200条，币种必须三位大写 ASCII 字母；不校验 ISO 名单或可交易性。重复条目总会被拒绝，显式 base 条目必须恰为1，不能为 null。初始 from/to 必须存在于 base 或已供列表；其汇率可以为 null。相同币种直接保留 amount；跨币种缺测返回未知，输入为0也不补成结果0。有限极端汇率使用既有数值实现，最终溢出或非零结果下溢报错；金额不被默认理解为交易、账户余额或支付指令。
+
+`asOf` 使用原有通用 timestamp 规则，真实日期、显式 `Z` 或偏移，允许秒和1–3位小数秒且须能解析成有限瞬间；不套用 `flightAt` 的仅分钟、1000年起点或14小时偏移上限。非空来源 URL 使用通用安全链接策略（受限 HTTP(S)/mailto/tel/片段），可省略或为空；这里不强加供源 reader 的 HTTP(S) 专用规则。可选 title 与必填 source.label 为1–200字符，不额外 trim 或判定 nonblank；message（≤12000）可为空。不同状态仍做相同结构和语义检查，无当前时钟、汇率新鲜度、舍入费用、税务或交易规则推断。

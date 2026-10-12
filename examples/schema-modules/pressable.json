@@ -1,0 +1,18 @@
+{
+  "version": "iui/1",
+  "title": "Original supplied pressable example",
+  "description": "Original fictional teaching data. Inline image and silent audio bytes are programmatically authored; no provider content is fetched for validation.",
+  "body": [
+    {
+      "type": "pressable",
+      "label": "Request a local example action",
+      "actionId": "example_action",
+      "children": [
+        {
+          "type": "text",
+          "value": "Original passive teaching content"
+        }
+      ]
+    }
+  ]
+}

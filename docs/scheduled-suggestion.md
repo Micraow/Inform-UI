@@ -11,3 +11,7 @@ Both branches are local host integration requests. An application must separatel
 Native button semantics, supplied/native/ARIA disabled gates, fieldset first-legend behavior, constructor reentry, cancellation, update/dispose and permanent ancestor ownership retirement use existing shared lifecycle machinery. Ordinary exceptions remain observable. The observed reference's two action branches and one-shot visible state inform this finite model; no captured implementation or remote runtime is included.
 
 Source-build tests cover both branches, cancellation/retry, submitted/reset/update, phase states, plain text, constructor errors/reentry and compiled standalone behavior. Native/pixel parity is not claimed. The packaged CDN remains the older frozen unified154 until an explicit combined asset build.
+
+## Required source-package validation
+
+Any supplied label, creationGuidelines or fallback must be nonblank (`SCHEDULED_SUGGESTION_TEXT`). Default status is resolved, default action new-turn: that combination requires nonblank guidelines (`SCHEDULED_SUGGESTION_GUIDELINES`). Pending/failed or task-opt-in-accept may omit them, but supplied blank still fails. Local request data is not an automatic scheduler.
