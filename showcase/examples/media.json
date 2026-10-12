@@ -1,0 +1,86 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "search-image",
+      "alt": "Original geometric artwork from the repository",
+      "searchImage": {
+        "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmklEQVR4nO3WsQmAMBBAUfdxBDdyBBdxLgexEextLSTBBPGMD357kHvNpVu3XYm6118QPECAAAECFDhAgAABqmqZhnMtA/XjnC2tU2DUMtClzl0jQIAAAQL0DJArlgf63j+obMn62eIAAQIECBAgQIAAxV8SECBAgAABAgQIECBAgILNAgIEqB2gXwUIECBAgAIHCBAgQIACdwCO7WrYAlZ7/wAAAABJRU5ErkJggg==",
+        "title": "Original geometry"
+      },
+      "aspectRatio": "16:9",
+      "frame": true,
+      "hoverZoom": true
+    },
+    {
+      "type": "image-grid",
+      "label": "Original geometry studies",
+      "columns": 2,
+      "viewer": "local",
+      "images": [
+        {
+          "id": "geometry0",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmklEQVR4nO3WsQmAMBBAUfdxBDdyBBdxLgexEextLSTBBPGMD357kHvNpVu3XYm6118QPECAAAECFDhAgAABqmqZhnMtA/XjnC2tU2DUMtClzl0jQIAAAQL0DJArlgf63j+obMn62eIAAQIECBAgQIAAxV8SECBAgAABAgQIECBAgILNAgIEqB2gXwUIECBAgAIHCBAgQIACdwCO7WrYAlZ7/wAAAABJRU5ErkJggg==",
+          "alt": "原创几何缩略图：三条高度递增的柱形和一个圆点",
+          "caption": "Study 1"
+        },
+        {
+          "id": "geometry1",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmElEQVR4nO3WsQmAMBBAUffSuZzAxvFcw1IXsLWQBBPEMz747UHuNZdu3XYl6l5/QfAAAQIECFDgAAECBKiqZerPtQw0jHO2tE6BUctAlzp3jQABAgQI0DNArlge6Hv/oLIl62eLAwQIECBAgAABAhR/SUCAAAECBAgQIECAAAEKNgsIEKB2gH4VIECAAAEKHCBAgAABCtwB2+pMM86eI7wAAAAASUVORK5CYII=",
+          "alt": "原创几何缩略图：三条高度递增的柱形和一个圆点",
+          "caption": "Study 2"
+        },
+        {
+          "id": "geometry2",
+          "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmUlEQVR4nO3WsQmAMBBAUfdyBieycwB3cwprncDWQhJMEM/44LcHuddcunXflKh7/QXBAwQIECBAgQMECBCgqpa5P9cy0DCN2dI6BUYtA13q3DUCBAgQIEDPALlieaDv/YPKlqyfLQ4QIECAAAECBAhQ/CUBAQIECBAgQIAAAQIEKNgsIECA2gH6VYAAAQIEKHCAAAECBChwByj2LY7mJOIMAAAAAElFTkSuQmCC",
+          "alt": "原创几何缩略图：三条高度递增的柱形和一个圆点",
+          "caption": "Study 3"
+        }
+      ]
+    },
+    {
+      "type": "async-video-carousel",
+      "status": "resolved",
+      "hoverPreview": false,
+      "items": [
+        {
+          "provider": "tiktok",
+          "videoId": "1234567890",
+          "title": "Fictional design lesson · local request only",
+          "url": "https://www.tiktok.com/@fictional-example/video/1234567890",
+          "thumbnailUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmklEQVR4nO3WsQmAMBBAUfdxBDdyBBdxLgexEextLSTBBPGMD357kHvNpVu3XYm6118QPECAAAECFDhAgAABqmqZhnMtA/XjnC2tU2DUMtClzl0jQIAAAQL0DJArlgf63j+obMn62eIAAQIECBAgQIAAxV8SECBAgAABAgQIECBAgILNAgIEqB2gXwUIECBAgAIHCBAgQIACdwCO7WrYAlZ7/wAAAABJRU5ErkJggg=="
+        }
+      ]
+    },
+    {
+      "type": "async-image",
+      "status": "resolved",
+      "alt": "Supplied original geometry",
+      "interactive": true,
+      "images": [
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmklEQVR4nO3WsQmAMBBAUfdxBDdyBBdxLgexEextLSTBBPGMD357kHvNpVu3XYm6118QPECAAAECFDhAgAABqmqZhnMtA/XjnC2tU2DUMtClzl0jQIAAAQL0DJArlgf63j+obMn62eIAAQIECBAgQIAAxV8SECBAgAABAgQIECBAgILNAgIEqB2gXwUIECBAgAIHCBAgQIACdwCO7WrYAlZ7/wAAAABJRU5ErkJggg==",
+          "title": "Original geometry"
+        }
+      ]
+    },
+    {
+      "type": "async-image-group",
+      "status": "resolved",
+      "images": [
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmklEQVR4nO3WsQmAMBBAUfdxBDdyBBdxLgexEextLSTBBPGMD357kHvNpVu3XYm6118QPECAAAECFDhAgAABqmqZhnMtA/XjnC2tU2DUMtClzl0jQIAAAQL0DJArlgf63j+obMn62eIAAQIECBAgQIAAxV8SECBAgAABAgQIECBAgILNAgIEqB2gXwUIECBAgAIHCBAgQIACdwCO7WrYAlZ7/wAAAABJRU5ErkJggg==",
+          "title": "Original study 1"
+        },
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmElEQVR4nO3WsQmAMBBAUffSuZzAxvFcw1IXsLWQBBPEMz747UHuNZdu3XYl6l5/QfAAAQIECFDgAAECBKiqZerPtQw0jHO2tE6BUctAlzp3jQABAgQI0DNArlge6Hv/oLIl62eLAwQIECBAgAABAhR/SUCAAAECBAgQIECAAAEKNgsIEKB2gH4VIECAAAEKHCBAgAABCtwB2+pMM86eI7wAAAAASUVORK5CYII=",
+          "title": "Original study 2"
+        },
+        {
+          "content_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAA2CAIAAAC3LQuFAAAAmUlEQVR4nO3WsQmAMBBAUfdyBieycwB3cwprncDWQhJMEM/44LcHuddcunXflKh7/QXBAwQIECBAgQMECBCgqpa5P9cy0DCN2dI6BUYtA13q3DUCBAgQIEDPALlieaDv/YPKlqyfLQ4QIECAAAECBAhQ/CUBAQIECBAgQIAAAQIEKNgsIECA2gH6VYAAAQIEKHCAAAECBChwByj2LY7mJOIMAAAAAElFTkSuQmCC",
+          "title": "Original study 3"
+        }
+      ]
+    }
+  ]
+}

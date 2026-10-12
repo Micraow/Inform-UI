@@ -40,7 +40,10 @@
     "check": "npm run generate && npm run build && npm run build:cdn && npm run typecheck && npm run check:queues && npm test && npm run test:types && npm run check:boundary",
     "check:queues": "node scripts/check-owned-queues.mjs",
     "test:types": "tsc --noEmit --strict --module NodeNext --target ES2022 --skipLibCheck tests/types-consumer.mts",
-    "build:cdn": "node scripts/build-cdn.mjs"
+    "build:cdn": "node scripts/build-cdn.mjs",
+    "build:showcase": "node scripts/build-showcase.mjs",
+    "showcase": "npm run build && npm run build:showcase && node scripts/serve-showcase.mjs",
+    "test:showcase": "playwright test --config playwright.showcase.config.mjs"
   },
   "dependencies": {
     "ajv": "8.20.0",

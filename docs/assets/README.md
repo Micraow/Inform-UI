@@ -12,3 +12,7 @@
 合成数据仅用于表达交互和排版，不是实测结果。素材随项目采用 MIT 许可；这些早期截图的字体由测试浏览器环境提供；当前版本另行分发官方 MIT KaTeX 数学字体。
 
 2026-10-08 更新：两张当前README截图来自本项目原创合成fixture，在 e6cad9c 对应 [CI37806665644](https://github.com/Micraow/Intelligent-UI/actions/runs/37806665644) 的Chromium生成。当前数学字形由官方MIT KaTeX字体提供，中文由CI发行源安装的Noto CJK无衬线字体提供。没有原版截图或抓取资源。
+
+## Component studio
+
+`component-studio.png` is a real Chromium capture of the studio at a 1440px viewport, light theme. It shows the live preview and exact JSON panes for [`showcase/examples/chart.json`](../../showcase/examples/chart.json). The screenshot is captured by `tests/showcase-browser/studio.spec.mjs`; it uses original fictional reading data and contains no private reference material.

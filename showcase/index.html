@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore every Inform UI component, try its live preview, and copy the exact JSON behind it.">
+  <meta name="color-scheme" content="light dark">
+  <title>Inform UI · Component studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%235445d7'/%3E%3Cpath d='M12 12h6v6h-6zm10 0h6v16h-6zM12 22h6v6h-6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./showcase.css">
+  <script type="module" src="./showcase.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to the component</a>
+  <header class="topbar">
+    <a class="brand" href="#chart" aria-label="Inform UI home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Inform <b>UI</b></span></a>
+    <div class="topbar-middle"><span class="status-dot"></span> COMPONENT STUDIO <span class="version">iui/1</span></div>
+    <nav aria-label="Project"><a href="https://github.com/Micraow/Inform-UI" target="_blank" rel="noopener noreferrer">GitHub</a><button id="theme-toggle" class="icon-button" type="button" aria-label="Use dark theme">◐</button></nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div><p class="eyebrow">COMPOSABLE BY DESIGN</p><h1 id="hero-title">Small JSON.<br><span>Real interfaces.</span></h1><p class="hero-copy">Explore the building blocks. Try the interactions.<br>Take the exact JSON with you.</p></div>
+      <div class="hero-aside"><div class="hero-code" aria-hidden="true"><span>{</span><div><em>"type"</em>: <strong>"text"</strong>,<br><em>"value"</em>: <strong>"Hello, world."</strong></div><span>}</span></div><p>One open format. Your own data.<br>No account or API required.</p><div class="stats" aria-label="Catalog coverage"><div><b id="preview-count">…</b><span>live previews</span></div><div><b id="module-count">…</b><span>source modules</span></div><div><b id="boundary-count">…</b><span>explicit boundary</span></div></div></div>
+    </section>
+    <section class="studio" aria-label="Component explorer">
+      <aside class="catalog" aria-label="Component catalog">
+        <div class="catalog-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a component…" aria-label="Search components"><kbd aria-hidden="true">/</kbd></label><label class="filter-label" for="category">Browse by category</label><select id="category"><option value="all">All components</option></select><div class="catalog-caption"><span id="result-count" role="status">Loading catalog…</span><button id="clear-filters" type="button" hidden>Clear</button></div></div>
+        <nav id="component-list" class="component-list" aria-label="Components"></nav>
+      </aside>
+      <section id="workspace" class="workspace" tabindex="-1" aria-label="Selected component">
+        <div id="loading" class="loading-message" role="status">Preparing the component studio…</div>
+        <div id="component-content" hidden>
+          <header class="component-header"><div><div class="component-kicker"><span id="component-group"></span><span id="component-status" class="status-pill"></span></div><h2 id="component-title"></h2><p id="component-description"></p></div><button id="copy-link" class="subtle-button" type="button">Copy link</button></header>
+          <div class="example-grid">
+            <section class="preview-pane" aria-labelledby="preview-label"><div class="pane-toolbar"><h3 id="preview-label"><span class="status-dot"></span> Live preview</h3><button id="reset" type="button">Reset</button></div><div class="preview-background"><div id="preview" class="preview-host" lang="en"></div></div><div class="preview-footnote">Local, fictional sample data · changes are not saved</div></section>
+            <section class="json-pane" aria-labelledby="json-label"><div class="pane-toolbar"><h3 id="json-label">{ } Mounted JSON</h3><div><button id="download-json" type="button" aria-label="Download JSON">Save</button><button id="copy-json" type="button">Copy JSON</button></div></div><div class="code-scroll" tabindex="0" aria-label="Exact JSON mounted in the live preview"><pre><code id="json-code"></code></pre></div><div class="code-footnote"><span id="json-size"></span><span>Valid iui/1 document</span></div></section>
+          </div>
+          <div class="detail-grid">
+            <section class="context-panel"><h3>Good to know</h3><ul id="component-notes"></ul><div id="contracts" class="contract-links"></div></section>
+            <section class="context-panel"><h3>Composition</h3><p class="detail-label">Owner module</p><div id="owner-module" class="token-list"></div><details><summary>Dependencies & included components</summary><p class="detail-label">Declared dependencies</p><div id="declared-deps" class="token-list"></div><p class="detail-label">Resolved modules for this example</p><div id="resolved-deps" class="token-list"></div><p class="detail-label">Node types in the mounted JSON</p><div id="included-types" class="token-list"></div></details><details><summary>Schema fields</summary><p class="detail-label">Required</p><div id="required-fields" class="token-list"></div><p class="detail-label">All supported fields</p><div id="all-fields" class="token-list"></div></details></section>
+          </div>
+          <details class="event-panel"><summary>Local activity <span id="event-count">0 events</span></summary><p>Interact with the preview to inspect its state and intent events. Requests are not sent to a service.</p><pre id="state-view">{}</pre><ol id="event-log"></ol></details>
+          <p class="example-source" id="example-source"></p>
+        </div>
+      </section>
+    </section>
+  </main>
+  <footer><span class="footer-brand">Inform UI</span><span>Built from the canonical schema. Every preview has its JSON.</span><a href="https://github.com/Micraow/Inform-UI/blob/recovery/portable-124-20261011/LICENSE" target="_blank" rel="noopener noreferrer">MIT licensed</a></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript>This interactive gallery needs JavaScript. Every original JSON example is also available in the repository’s examples directory.</noscript>
+</body>
+</html>

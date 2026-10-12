@@ -1,0 +1,8 @@
+{
+  "version": "iui/1",
+  "state": {"name":"A curious reader"},
+  "body": [
+    {"type":"label","text":"Click this label to focus the input","target":"reader-name"},
+    {"type":"input","id":"reader-name","label":"Reader name","kind":"text","bind":"name"}
+  ]
+}

@@ -1,4 +1,4 @@
-name: Validate current portable183 source
+name: Validate current Inform UI source
 on:
   push:
     branches: [recovery/portable-124-20261011]
@@ -40,13 +40,27 @@ jobs:
       - name: Verify generated projections and record current asset identity
         run: |
           node scripts/check-generated.mjs 2>&1 | tee artifacts/generated-check.log
-          node --input-type=module -e "import fs from 'node:fs'; const schema=JSON.parse(fs.readFileSync('src/schema/iui.schema.json')); if(schema.\$defs.Node.oneOf.length!==183) throw Error('Expected183 nodes'); fs.writeFileSync('artifacts/current-source-identity.json',JSON.stringify({source:process.env.GITHUB_SHA,nodeTypes:schema.\$defs.Node.oneOf.length,assets:JSON.parse(fs.readFileSync('cdn/integrity.json'))},null,2));"
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          import { SCHEMA_MODULES } from './scripts/schema-source/catalog.mjs';
+          const schema = JSON.parse(fs.readFileSync('src/schema/iui.schema.json'));
+          const nodes = schema.$defs.Node.oneOf.map(ref => schema.$defs[ref.$ref.slice('#/$defs/'.length)].properties.type.const).sort();
+          const catalog = SCHEMA_MODULES.flatMap(module => module.nodeTypes).sort();
+          assert.deepEqual(nodes, catalog, 'Canonical schema and source catalog must match');
+          assert.equal(new Set(nodes).size, nodes.length, 'Node types must be unique');
+          fs.writeFileSync('artifacts/current-source-identity.json', JSON.stringify({source: process.env.GITHUB_SHA, nodeTypes: nodes.length, modules: SCHEMA_MODULES.length, assets: JSON.parse(fs.readFileSync('cdn/integrity.json'))}, null, 2));
+          NODE
       - name: Install the lock-pinned Playwright Chromium build
         run: node node_modules/@playwright/test/cli.js install --with-deps chromium
       - name: Install the exact licensed test font
         run: |
           node scripts/prepare-test-font.mjs --install "$RUNNER_TEMP/inform-ui-fonts"
           echo "FONTCONFIG_FILE=$RUNNER_TEMP/inform-ui-fonts/fonts.conf" >> "$GITHUB_ENV"
+      - name: Build and verify the complete component studio
+        run: |
+          npm run build:showcase 2>&1 | tee artifacts/showcase-build.log
+          npm run test:showcase 2>&1 | tee artifacts/showcase-browser.log
       - name: Run synthetic browsers against this checkout
         run: node node_modules/@playwright/test/cli.js test --config playwright.recovery.config.mjs 2>&1 | tee artifacts/current-source-browser.log
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # official v4

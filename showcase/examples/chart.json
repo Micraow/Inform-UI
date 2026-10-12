@@ -1,0 +1,11 @@
+{
+  "version": "iui/1",
+  "body": [
+    {"type":"card","children":[
+      {"type":"caption","value":"THE READING ROOM · SAMPLE DATA"},
+      {"type":"title","level":2,"value":"Make room for a good idea."},
+      {"type":"text","value":"A small, fictional reading log. Hover a point or open the data table to explore."},
+      {"type":"chart","kind":"line","xKey":"month","data":[{"month":"May","pages":120},{"month":"Jun","pages":180},{"month":"Jul","pages":145},{"month":"Aug","pages":260},{"month":"Sep","pages":235},{"month":"Oct","pages":320}],"series":[{"key":"pages","label":"Pages read","color":"purple"}]}
+    ]}
+  ]
+}
