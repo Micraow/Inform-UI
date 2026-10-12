@@ -30715,6 +30715,286 @@
       ],
       "additionalProperties": false
     },
+    "GcsInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 64
+        },
+        "population": {
+          "anyOf": [
+            {
+              "enum": [
+                "adult",
+                "other"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "eye": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verbal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "motor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "CalculatorGlasgowComaScaleGcsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "calculator-glasgow-coma-scale-gcs"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "$ref": "#/$defs/GcsInput"
+        },
+        "defaults": {
+          "$ref": "#/$defs/GcsInput"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "resultMode": {
+          "enum": [
+            "live",
+            "on-demand"
+          ]
+        },
+        "scoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summaryPrefix": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "copyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "infoSections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 8000
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "body"
+            ]
+          }
+        },
+        "activeInfoId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "notes": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "maxLength": 8000
+          }
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "eye": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                },
+                "optionHelp": {
+                  "type": "object",
+                  "maxProperties": 7,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 8000
+                  }
+                },
+                "variant": {
+                  "enum": [
+                    "select",
+                    "segmented"
+                  ]
+                }
+              }
+            },
+            "verbal": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                },
+                "optionHelp": {
+                  "type": "object",
+                  "maxProperties": 7,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 8000
+                  }
+                },
+                "variant": {
+                  "enum": [
+                    "select",
+                    "segmented"
+                  ]
+                }
+              }
+            },
+            "motor": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                },
+                "optionHelp": {
+                  "type": "object",
+                  "maxProperties": 7,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 8000
+                  }
+                },
+                "variant": {
+                  "enum": [
+                    "select",
+                    "segmented"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "calculateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -31358,6 +31638,9 @@
         },
         {
           "$ref": "#/$defs/CalculatorCorrectedAdjustedAgeOfPretermInfantsNode"
+        },
+        {
+          "$ref": "#/$defs/CalculatorGlasgowComaScaleGcsNode"
         }
       ]
     }

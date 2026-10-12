@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:41c6132a7b628a7b197b5d3ac47f816bb45f5031f3bca7cc1e20c65354d147d6:document:base+time",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:3ea8efb2899d85d3e6f93cc2ca2b26f7e5baa34ddd3c9e835c54f89af7d56abd:document:base+time",
   "title": "Inform UI document subset: base, time",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -2113,6 +2113,218 @@
         },
         "initial": {
           "$ref": "#/$defs/CorrectedAgeInput"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "calculateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "CalculatorGlasgowComaScaleGcsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "calculator-glasgow-coma-scale-gcs"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "$ref": "#/$defs/GcsInput"
+        },
+        "defaults": {
+          "$ref": "#/$defs/GcsInput"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "resolved",
+            "failed"
+          ]
+        },
+        "fallback": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "resultMode": {
+          "enum": [
+            "live",
+            "on-demand"
+          ]
+        },
+        "scoreLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summaryPrefix": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "copyLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "infoSections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "body": {
+                "type": "string",
+                "maxLength": 8000
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "body"
+            ]
+          }
+        },
+        "activeInfoId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "notes": {
+          "type": "array",
+          "maxItems": 30,
+          "items": {
+            "type": "string",
+            "maxLength": 8000
+          }
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "eye": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                },
+                "optionHelp": {
+                  "type": "object",
+                  "maxProperties": 7,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 8000
+                  }
+                },
+                "variant": {
+                  "enum": [
+                    "select",
+                    "segmented"
+                  ]
+                }
+              }
+            },
+            "verbal": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                },
+                "optionHelp": {
+                  "type": "object",
+                  "maxProperties": 7,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 8000
+                  }
+                },
+                "variant": {
+                  "enum": [
+                    "select",
+                    "segmented"
+                  ]
+                }
+              }
+            },
+            "motor": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "help": {
+                  "type": "string",
+                  "maxLength": 8000
+                },
+                "optionHelp": {
+                  "type": "object",
+                  "maxProperties": 7,
+                  "additionalProperties": {
+                    "type": "string",
+                    "maxLength": 8000
+                  }
+                },
+                "variant": {
+                  "enum": [
+                    "select",
+                    "segmented"
+                  ]
+                }
+              }
+            }
+          }
         },
         "disabled": {
           "type": "boolean"
@@ -7366,6 +7578,74 @@
         ]
       }
     },
+    "GcsInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 64
+        },
+        "population": {
+          "anyOf": [
+            {
+              "enum": [
+                "adult",
+                "other"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "eye": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verbal": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "motor": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 32
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
     "GenImageNode": {
       "type": "object",
       "properties": {
@@ -10605,6 +10885,9 @@
         },
         {
           "$ref": "#/$defs/CalculatorCorrectedAdjustedAgeOfPretermInfantsNode"
+        },
+        {
+          "$ref": "#/$defs/CalculatorGlasgowComaScaleGcsNode"
         }
       ]
     },

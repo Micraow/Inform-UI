@@ -1,3 +1,4 @@
+import {inspectGcs,inspectGcsPresentation} from './gcs.js';
 import {inspectCorrectedAge} from './corrected-age.js';
 import {inspectInlineHostMedia} from './inline-host-media.js';
 import {inspectCareProvider} from './care-providers.js';
@@ -418,6 +419,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='follow-up-quiz'||node.type==='multiple-choice-block-v2'||node.type==='personality-quiz')inspectQuizCards(node,path,add,isSafeURL);
     if(node.type==='reservation-time-pills-ref-carousel')inspectReservationPillsCarousel(node,path,add,isSafeURL);
     if(node.type==='whats-new-capability-search')inspectCapabilitySearch(node,path,add,isSafeURL);
+    if(node.type==='calculator-glasgow-coma-scale-gcs'){inspectGcs(node,path,add);inspectGcsPresentation(node,path,add);}
     if(node.type==='calculator-corrected-adjusted-age-of-preterm-infants')inspectCorrectedAge(node,path,add);
     if(node.type==='entity'||node.type==='gen-image'||node.type==='speech-synthesizer')inspectInlineHostMedia(node,path,add,isSafeURL);
     if(node.type==='care-provider-results'||node.type==='care-provider-sidebar')inspectCareProvider(node,path,add,isSafeURL);
@@ -649,3 +651,6 @@ export function evaluateState(document: IUIDocument, stateOverride: Readonly<Rec
 
 export {calculateCorrectedAge} from './corrected-age.js';
 export type {CorrectedAgeInput,CorrectedAgeResult,CorrectedAgeNode,CorrectedAgeDetail} from './corrected-age.js';
+
+export {calculateGcs,GCS_VERSION} from './gcs.js';
+export type {GcsInput,GcsResult,GcsNode,GcsDetail,GcsComponentState,GcsInfoSection,GcsFieldPresentation} from './gcs.js';

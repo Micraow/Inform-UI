@@ -80,3 +80,6 @@ export type {InlineHostMediaNode,InlineHostMediaDetail,InlineHostAction,EntityNo
 
 export {calculateCorrectedAge} from './core/corrected-age.js';
 export type {CorrectedAgeInput,CorrectedAgeResult,CorrectedAgeNode,CorrectedAgeDetail} from './core/corrected-age.js';
+
+export {calculateGcs,GCS_VERSION} from './core/gcs.js';
+export type {GcsInput,GcsResult,GcsNode,GcsDetail,GcsComponentState,GcsInfoSection,GcsFieldPresentation} from './core/gcs.js';

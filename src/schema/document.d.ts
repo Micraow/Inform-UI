@@ -244,7 +244,8 @@ export type Node =
   | EntityNode
   | GenImageNode
   | SpeechSynthesizerNode
-  | CalculatorCorrectedAdjustedAgeOfPretermInfantsNode;
+  | CalculatorCorrectedAdjustedAgeOfPretermInfantsNode
+  | CalculatorGlasgowComaScaleGcsNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -7073,4 +7074,67 @@ export interface CorrectedAgeInput {
   gestationalWeeks?: number | string | null;
   gestationalDays?: number | string | null;
   confirmedPreterm?: boolean | null;
+}
+export interface CalculatorGlasgowComaScaleGcsNode {
+  type: "calculator-glasgow-coma-scale-gcs";
+  id?: string;
+  label: string;
+  initial?: GcsInput;
+  defaults?: GcsInput;
+  status?: "pending" | "resolved" | "failed";
+  fallback?: string;
+  subtitle?: string;
+  resultMode?: "live" | "on-demand";
+  scoreLabel?: string;
+  summaryPrefix?: string;
+  copyLabel?: string;
+  /**
+   * @maxItems 12
+   */
+  infoSections?: {
+    id: string;
+    label: string;
+    body: string;
+  }[];
+  activeInfoId?: string;
+  /**
+   * @maxItems 30
+   */
+  notes?: string[];
+  fields?: {
+    eye?: {
+      label?: string;
+      help?: string;
+      optionHelp?: {
+        [k: string]: string;
+      };
+      variant?: "select" | "segmented";
+    };
+    verbal?: {
+      label?: string;
+      help?: string;
+      optionHelp?: {
+        [k: string]: string;
+      };
+      variant?: "select" | "segmented";
+    };
+    motor?: {
+      label?: string;
+      help?: string;
+      optionHelp?: {
+        [k: string]: string;
+      };
+      variant?: "select" | "segmented";
+    };
+  };
+  disabled?: boolean;
+  calculateLabel?: string;
+  resetLabel?: string;
+}
+export interface GcsInput {
+  version?: string | null;
+  population?: ("adult" | "other") | null;
+  eye?: number | string | null;
+  verbal?: number | string | null;
+  motor?: number | string | null;
 }
