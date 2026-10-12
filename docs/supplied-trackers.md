@@ -45,3 +45,9 @@ Structural failures report `SCHEMA`. Semantic failures use exact paths:
 - `UNSAFE_URL`: supplied source URL
 
 Public Node/browser validation, renderer/compiler parity, Unicode/literal text, native local controls, reset/cancel/disabled/dispose races and original synthetic fixtures have focused tests. Prepared browser specs cover real mouse/keyboard/touch, light/dark at 390/768/1100, RTL, forced colors/reduced motion, layout, focus, pending controls, safe links and absence of runtime requests. Prepared specs are not browser acceptance evidence. Neither structural node counts nor these candidates alter canonical accepted totals.
+
+## Source module and exact validation
+
+`travel/snapshots` owns these existing definitions. Full document validation checks observedAt, supplied milestone occurrence times, all supplied flight endpoint times and update times as real Gregorian minute timestamps with explicit offsets (`TRACKER_TIME`). Years are 1000–9999 and offsets are bounded by 14:00. Source URLs must be absolute core-safe HTTP(S) (`UNSAFE_URL`). IDs are unique within milestones or updates (`DUPLICATE_ID`).
+
+For a package snapshot, at most one milestone may have state current (`TRACKER_CURRENT`); a pending milestone cannot carry occurredAt (`TRACKER_PENDING`). No relationship between supplied overall status and milestone progress is inferred. For a flight snapshot, each category scheduledAt/estimatedAt/actualAt is compared independently when both endpoints supply it: arrival must be strictly later than departure after offset adjustment (`TRACKER_ORDER`). Missing estimates/actuals are not invented, and different categories are not silently compared to one another or observedAt. Literal text retains existing structural length and whitespace rules; no new blanket trim rule is added.

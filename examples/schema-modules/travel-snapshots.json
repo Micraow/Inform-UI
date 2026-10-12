@@ -1,0 +1,181 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "flight-option",
+      "id": "illustrative-flight",
+      "label": "Example Air: two supplied legs",
+      "optionId": "example-itinerary",
+      "description": "Compare the supplied route and fare description locally.",
+      "price": {
+        "amount": 420.5,
+        "currency": "USD"
+      },
+      "legs": [
+        {
+          "id": "outbound",
+          "carrier": "Example Air",
+          "number": "EX 101",
+          "departure": {
+            "airport": "LHR",
+            "at": "2028-02-29T09:00Z",
+            "name": "London Heathrow"
+          },
+          "arrival": {
+            "airport": "JFK",
+            "at": "2028-02-29T07:00-05:00",
+            "name": "New York JFK"
+          },
+          "cabin": "Economy, as supplied"
+        },
+        {
+          "id": "connection",
+          "carrier": "Example Air",
+          "number": "EX 202",
+          "departure": {
+            "airport": "JFK",
+            "at": "2028-02-29T09:00-05:00",
+            "name": "New York JFK"
+          },
+          "arrival": {
+            "airport": "ORD",
+            "at": "2028-02-29T10:00-06:00",
+            "name": "Chicago O'Hare"
+          },
+          "cabin": "Economy, as supplied"
+        }
+      ],
+      "note": "Illustrative fare description: baggage and change terms must be checked with the provider independently. No booking is performed here.",
+      "source": {
+        "label": "Illustrative source",
+        "url": "https://example.com/supplied-flight"
+      }
+    },
+    {
+      "type": "artist-upcoming-events",
+      "artist": "Example Ensemble",
+      "label": "Supplied performance dates",
+      "description": "The caller's order is preserved, including historical and repeated dates.",
+      "events": [
+        {
+          "id": "march",
+          "title": "Evening set",
+          "date": "2028-03-10",
+          "start": "19:30",
+          "timeZoneLabel": "Venue time as supplied",
+          "venue": "Example Hall",
+          "location": "Example City",
+          "description": "Illustrative supplied program description.",
+          "url": "https://example.com/supplied-event"
+        },
+        {
+          "id": "february",
+          "title": "Acoustic set",
+          "date": "2028-02-29",
+          "start": "18:00",
+          "timeZoneLabel": "UTC+01:00 label, not converted",
+          "venue": "Example Studio",
+          "description": "An independently supplied date and time."
+        },
+        {
+          "id": "historical",
+          "title": "Historical supplied date",
+          "date": "2020-01-15",
+          "venue": "Example Hall",
+          "description": "This record is retained without a system-clock filter."
+        }
+      ],
+      "source": {
+        "label": "Illustrative source",
+        "url": "https://example.com/supplied-events"
+      }
+    },
+    {
+      "type": "artist-upcoming-events",
+      "artist": "Another example artist",
+      "events": []
+    },
+    {
+      "type": "package-tracker",
+      "label": "Example shipment",
+      "carrier": "Example Parcel",
+      "trackingId": "SYNTHETIC-PARCEL-001",
+      "status": "in-transit",
+      "observedAt": "2028-02-29T10:15+01:00",
+      "destination": "Example destination city",
+      "expectedDelivery": "March 2, as supplied; not guaranteed",
+      "source": {
+        "label": "Synthetic source",
+        "url": "https://example.org/package"
+      },
+      "milestones": [
+        {
+          "id": "label",
+          "label": "Shipping label created",
+          "state": "complete",
+          "occurredAt": "2028-02-28T15:00+01:00"
+        },
+        {
+          "id": "hub",
+          "label": "At supplied transit hub",
+          "state": "current",
+          "occurredAt": "2028-02-29T08:00+01:00",
+          "location": "Example hub",
+          "description": "This is an original illustrative tracking milestone."
+        },
+        {
+          "id": "delivery",
+          "label": "Delivery milestone",
+          "state": "pending"
+        }
+      ]
+    },
+    {
+      "type": "flight-tracker",
+      "label": "Example flight snapshot",
+      "carrier": "Example Air",
+      "flightNumber": "EX 101",
+      "status": "boarding",
+      "observedAt": "2028-02-29T08:30Z",
+      "departure": {
+        "airport": "LHR",
+        "name": "Example departure",
+        "scheduledAt": "2028-02-29T09:00Z",
+        "estimatedAt": "2028-02-29T09:20Z",
+        "terminal": "Example T1",
+        "gate": "Example A2"
+      },
+      "arrival": {
+        "airport": "JFK",
+        "name": "Example arrival",
+        "scheduledAt": "2028-02-29T07:00-05:00",
+        "estimatedAt": "2028-02-29T07:20-05:00"
+      },
+      "source": {
+        "label": "Synthetic source",
+        "url": "https://example.org/flight"
+      },
+      "updates": [
+        {
+          "id": "boarding",
+          "at": "2028-02-29T08:30Z",
+          "message": "Boarding status supplied",
+          "kind": "information"
+        },
+        {
+          "id": "gate",
+          "at": "2028-02-29T08:10Z",
+          "message": "Gate label updated",
+          "kind": "change",
+          "description": "The source supplied gate Example A2. No airport feed is connected."
+        },
+        {
+          "id": "delay",
+          "at": "2028-02-29T08:00Z",
+          "message": "Estimate changed",
+          "kind": "disruption"
+        }
+      ]
+    }
+  ]
+}

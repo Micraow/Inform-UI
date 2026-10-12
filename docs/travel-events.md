@@ -40,3 +40,9 @@ All sources/event links require explicit absolute HTTP(S) URLs accepted by the e
 Internal IDs are reserved `iui-flight-internal-…` and `iui-events-internal-…`; styles are scoped to `.iui-root`, use logical dimensions and visible focus, and support narrow layouts/forced colors without motion. English and Chinese labels are provided; authored RTL text is rendered literally with direction isolation for timestamps and routes.
 
 Focused public/schema/negative/lifecycle tests and type consumers are supplied. `tests/browser/travel-events.spec.mjs` is a prepared real input/layout acceptance suite, not evidence of an executed browser pass. The handoff report records exactly which checks ran. The current frozen 30-candidate acceptance scope remains unchanged.
+
+## Source selection and precise semantic checks
+
+`travel/snapshots` maintains the original flight-option and artist-event declarations together with supplied trackers. Full `validateDocument` still validates real dates and links after structural schema validation. Travel civil dates are years 1000–9999. Offset timestamps have minute precision, explicit Z or signed offset through 14:00, and real Gregorian civil fields; they are not parsed using locale or the current timezone.
+
+For flight options, leg IDs are unique (`DUPLICATE_ID`); invalid real timestamps report `FLIGHT_TIME`. Arrival must be strictly later than that leg's departure after offset adjustment (`FLIGHT_ORDER`), and a subsequent departure may equal but not precede the previous arrival. This does not impose airport-connection, airline or itinerary feasibility rules. Artist event IDs are unique; real event dates use `ARTIST_EVENT_DATE`. Source and event links require absolute core-safe HTTP(S), with `UNSAFE_URL` for failures. Structurally valid literal text keeps its original whitespace handling without a new blanket trim rule.

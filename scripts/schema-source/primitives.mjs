@@ -25,3 +25,7 @@ export const agendaDate = { type:'string', pattern:'^(?!0000)\\d{4}-(?:0[1-9]|1[
 export const agendaTime = { type:'string', pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$' };
 
 export const suppliedKey = {...key, pattern:'^[A-Za-z_][A-Za-z0-9_.-]{0,79}$(?![\\s\\S])'};
+
+export const travelDate = {type:'string',pattern:'^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$(?![\\s\\S])',minLength:10,maxLength:10};
+export const travelTime = {type:'string',pattern:'^(?:[01]\\d|2[0-3]):[0-5]\\d$(?![\\s\\S])',minLength:5,maxLength:5};
+export const flightAt = {type:'string',pattern:'^[1-9]\\d{3}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d(?:Z|[+-](?:(?:0\\d|1[0-3]):[0-5]\\d|14:00))$(?![\\s\\S])',minLength:17,maxLength:22};
