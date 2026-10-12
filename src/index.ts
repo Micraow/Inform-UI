@@ -77,3 +77,6 @@ export type {LearningVizNode,LearningVizDetail} from './core/learning-viz.js';
 export type {CareProviderNode,CareResultsNode,CareSidebarNode,CareProviderDetail,CareProvider,CareLocation,CareDay,CareSlot,CareCalendarMonth,CareRequest} from './core/care-providers.js';
 
 export type {InlineHostMediaNode,InlineHostMediaDetail,InlineHostAction,EntityNode,GenImageNode,SpeechSynthesizerNode,ImageDimension} from './core/inline-host-media.js';
+
+export {calculateCorrectedAge} from './core/corrected-age.js';
+export type {CorrectedAgeInput,CorrectedAgeResult,CorrectedAgeNode,CorrectedAgeDetail} from './core/corrected-age.js';

@@ -1,3 +1,4 @@
+import {inspectCorrectedAge} from './corrected-age.js';
 import {inspectInlineHostMedia} from './inline-host-media.js';
 import {inspectCareProvider} from './care-providers.js';
 import {inspectLearningViz} from './learning-viz.js';
@@ -417,6 +418,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     if(node.type==='follow-up-quiz'||node.type==='multiple-choice-block-v2'||node.type==='personality-quiz')inspectQuizCards(node,path,add,isSafeURL);
     if(node.type==='reservation-time-pills-ref-carousel')inspectReservationPillsCarousel(node,path,add,isSafeURL);
     if(node.type==='whats-new-capability-search')inspectCapabilitySearch(node,path,add,isSafeURL);
+    if(node.type==='calculator-corrected-adjusted-age-of-preterm-infants')inspectCorrectedAge(node,path,add);
     if(node.type==='entity'||node.type==='gen-image'||node.type==='speech-synthesizer')inspectInlineHostMedia(node,path,add,isSafeURL);
     if(node.type==='care-provider-results'||node.type==='care-provider-sidebar')inspectCareProvider(node,path,add,isSafeURL);
     if(node.type==='learning-viz-dil')inspectLearningViz(node,path,add);
@@ -644,3 +646,6 @@ export function evaluateState(document: IUIDocument, stateOverride: Readonly<Rec
   if (trusted.get(document)! + textUnits(state) > LIMITS.text) return { ok: false, issues: [issue('TEXT_LIMIT', '/state', 'The total text budget was exceeded.')] };
   return resolveState(document, state);
 }
+
+export {calculateCorrectedAge} from './corrected-age.js';
+export type {CorrectedAgeInput,CorrectedAgeResult,CorrectedAgeNode,CorrectedAgeDetail} from './corrected-age.js';

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:07baf67bb5d4521703fe59a176017a3c8f56c5e596f41c1e704c212d1f62d6e2:document:base+converters",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:41c6132a7b628a7b197b5d3ac47f816bb45f5031f3bca7cc1e20c65354d147d6:document:base+converters",
   "title": "Inform UI document subset: base, converters",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -2092,6 +2092,45 @@
         "type",
         "label",
         "action"
+      ],
+      "additionalProperties": false
+    },
+    "CalculatorCorrectedAdjustedAgeOfPretermInfantsNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "calculator-corrected-adjusted-age-of-preterm-infants"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "initial": {
+          "$ref": "#/$defs/CorrectedAgeInput"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "calculateLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "resetLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "type",
+        "label"
       ],
       "additionalProperties": false
     },
@@ -4370,6 +4409,92 @@
         "words"
       ],
       "additionalProperties": false
+    },
+    "CorrectedAgeInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "anyOf": [
+            {
+              "enum": [
+                "gestation",
+                "due-date"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "birthDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observationDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dueDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 10
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gestationalWeeks": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 8
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gestationalDays": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "maxLength": 8
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confirmedPreterm": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
     },
     "CreateInteractivePollNode": {
       "type": "object",
@@ -10458,6 +10583,9 @@
         },
         {
           "$ref": "#/$defs/SpeechSynthesizerNode"
+        },
+        {
+          "$ref": "#/$defs/CalculatorCorrectedAdjustedAgeOfPretermInfantsNode"
         }
       ]
     },

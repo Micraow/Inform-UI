@@ -1,0 +1,92 @@
+[
+  {
+    "birthDate": "2026-01-01",
+    "observationDate": "2026-04-23",
+    "gestationalWeeks": 32,
+    "gestationalDays": 0,
+    "dueDate": "2026-02-26",
+    "correctionDays": 56,
+    "chronologicalDays": 112,
+    "correctedDays": 56
+  },
+  {
+    "birthDate": "2024-02-01",
+    "observationDate": "2024-03-28",
+    "gestationalWeeks": 32,
+    "gestationalDays": 0,
+    "dueDate": "2024-03-28",
+    "correctionDays": 56,
+    "chronologicalDays": 56,
+    "correctedDays": 0
+  },
+  {
+    "birthDate": "2023-12-20",
+    "observationDate": "2024-02-03",
+    "gestationalWeeks": 34,
+    "gestationalDays": 3,
+    "dueDate": "2024-01-28",
+    "correctionDays": 39,
+    "chronologicalDays": 45,
+    "correctedDays": 6
+  },
+  {
+    "birthDate": "2024-02-29",
+    "observationDate": "2024-04-10",
+    "gestationalWeeks": 34,
+    "gestationalDays": 1,
+    "dueDate": "2024-04-10",
+    "correctionDays": 41,
+    "chronologicalDays": 41,
+    "correctedDays": 0
+  },
+  {
+    "birthDate": "2026-01-01",
+    "observationDate": "2026-01-23",
+    "gestationalWeeks": 36,
+    "gestationalDays": 6,
+    "dueDate": "2026-01-23",
+    "oracleCorrectedDays": 0,
+    "status": "calculated",
+    "outputCorrectedDays": 0
+  },
+  {
+    "birthDate": "2026-01-01",
+    "observationDate": "2026-01-22",
+    "gestationalWeeks": 36,
+    "gestationalDays": 6,
+    "dueDate": "2026-01-23",
+    "oracleCorrectedDays": -1,
+    "status": "before-due-date",
+    "outputCorrectedDays": null
+  },
+  {
+    "birthDate": "2024-01-04",
+    "observationDate": "2026-02-27",
+    "gestationalWeeks": 32,
+    "gestationalDays": 0,
+    "dueDate": "2024-02-29",
+    "oracleCorrectedDays": 729,
+    "status": "calculated",
+    "outputCorrectedDays": 729
+  },
+  {
+    "birthDate": "2024-01-04",
+    "observationDate": "2026-02-28",
+    "gestationalWeeks": 32,
+    "gestationalDays": 0,
+    "dueDate": "2024-02-29",
+    "oracleCorrectedDays": 730,
+    "status": "boundary",
+    "outputCorrectedDays": 730
+  },
+  {
+    "birthDate": "2024-01-04",
+    "observationDate": "2026-03-01",
+    "gestationalWeeks": 32,
+    "gestationalDays": 0,
+    "dueDate": "2024-02-29",
+    "oracleCorrectedDays": 731,
+    "status": "outside-supported-window",
+    "outputCorrectedDays": null
+  }
+]

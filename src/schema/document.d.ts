@@ -243,7 +243,8 @@ export type Node =
   | CareProviderSidebarNode
   | EntityNode
   | GenImageNode
-  | SpeechSynthesizerNode;
+  | SpeechSynthesizerNode
+  | CalculatorCorrectedAdjustedAgeOfPretermInfantsNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -7054,4 +7055,22 @@ export interface SpeechSynthesizerNode {
   stopLabel?: string;
   unavailableLabel?: string;
   statusLabel?: string;
+}
+export interface CalculatorCorrectedAdjustedAgeOfPretermInfantsNode {
+  type: "calculator-corrected-adjusted-age-of-preterm-infants";
+  id?: string;
+  label: string;
+  initial?: CorrectedAgeInput;
+  disabled?: boolean;
+  calculateLabel?: string;
+  resetLabel?: string;
+}
+export interface CorrectedAgeInput {
+  basis?: ("gestation" | "due-date") | null;
+  birthDate?: string | null;
+  observationDate?: string | null;
+  dueDate?: string | null;
+  gestationalWeeks?: number | string | null;
+  gestationalDays?: number | string | null;
+  confirmedPreterm?: boolean | null;
 }

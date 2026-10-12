@@ -1,3 +1,7 @@
+# Corrected-age arithmetic source candidate
+
+An original, bounded date-arithmetic candidate is available for explicitly supplied dates and gestational units. It gives no developmental, treatment, vaccine or clinical assessment. Unknown, inconsistent, unsupported and out-of-window inputs have explicit non-age outcomes. Pure arithmetic was independently checked against 32 cases; author UI and offline execution checks are local. Independent runtime acceptance is pending. Registration is 214; completed scope remains 208 / 0 / 48. The distributed CDN remains unified213/933. See [the input, source and applicability contract](docs/corrected-age.md).
+
 # Host-form fields and reliable Reset clicks
 
 The current source extends the host-form reset adapter to Input, Textarea, Radio and Segmented fields. It preserves invalid drafts on cancellation, restores supplied defaults on acceptance, and lets newer input win. Pointer blur validation no longer moves a host Reset button before its first click. The exact successor passed 139 related Node checks, 12 independent real Chromium scenarios and 5 independent consumer flows. Scope remains 208 implementations and 213 protocols. These are source-only changes; the distributed CDN remains the exact unified213/933 package below.

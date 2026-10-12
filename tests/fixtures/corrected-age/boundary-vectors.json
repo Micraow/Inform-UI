@@ -1,0 +1,38 @@
+[
+  {
+    "input": "1900-02-29",
+    "valid": false
+  },
+  {
+    "input": "2000-02-29",
+    "valid": true
+  },
+  {
+    "input": "2100-02-29",
+    "valid": false
+  },
+  {
+    "gestationalWeeks": 37,
+    "gestationalDays": 0,
+    "status": "unsupported"
+  },
+  {
+    "gestationalWeeks": 40,
+    "gestationalDays": 0,
+    "status": "unsupported"
+  },
+  {
+    "birthDate": "2026-01-01",
+    "dueDate": "2026-01-22",
+    "confirmedPreterm": true,
+    "status": "invalid-inconsistent-basis"
+  },
+  {
+    "birthDate": "2199-12-31",
+    "gestationalWeeks": 0,
+    "gestationalDays": 1,
+    "arithmeticDueDate": "2200-10-06",
+    "windowEndDate": "2202-10-06",
+    "note": "Software arithmetic extreme only; no clinical validity claim."
+  }
+]
