@@ -13,7 +13,8 @@ export function renderRating(c: RendererContext, n: RatingNode, labels: RatingLa
   output.id=`${id}-output`;output.setAttribute('aria-live','polite');output.setAttribute('aria-atomic','true');
   feedback.id=`${id}-feedback`;feedback.setAttribute('role','status');feedback.setAttribute('aria-atomic','true');
   const description=[output.id,feedback.id];out.append(legend);
-  if(n.hint){const hint=c.element('p','iui-caption iui-rating-hint',n.hint);hint.id=`${id}-hint`;description.unshift(hint.id);out.append(hint);}
+  const hint=c.element('p','iui-caption iui-rating-hint',n.hint);hint.id=`${id}-hint`;hint.hidden=!n.hint;
+  if(n.hint)description.unshift(hint.id);out.append(hint);
   out.setAttribute('aria-describedby',description.join(' '));
   const inputs=Array.from({length:max},(_,index)=>{
     const value=index+1,label=c.element('label','iui-rating-choice'),input=c.element('input');
@@ -46,6 +47,10 @@ export function renderRating(c: RendererContext, n: RatingNode, labels: RatingLa
   }
   function paint(){
     if(!alive)return;
+    legend.textContent=n.label;hint.textContent=n.hint??'';hint.hidden=!n.hint;
+    const description=[...(n.hint?[hint.id]:[]),output.id,feedback.id].join(' ');
+    out.setAttribute('aria-describedby',description);
+    for(const input of inputs)input.setAttribute('aria-describedby',description);
     const current=c.getState()[n.bind] as number;
     if(current!==last)localError='';last=current;
     out.disabled=n.disabled!==undefined&&c.value(n.disabled)===true;

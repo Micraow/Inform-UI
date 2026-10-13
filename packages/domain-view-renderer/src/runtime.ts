@@ -132,7 +132,7 @@ const shorten=(s:string,limit:number)=>Array.from(s).length>limit?Array.from(s).
 export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,unknown>,external:DomainContext,options:DomainOptions):DomainHandle {
  const doc=external.document;
  if(external.partial||external.signal?.aborted){const element=doc.createElement('p');element.className='if-status';element.textContent=descriptor.name+' · Preview';return{element,dispose(){element.remove();}};}
- let currentProps=props;
+ let currentProps=props,propsRevision=0;
  const data=props.data;
  if(!data||typeof data!=='object'||Array.isArray(data))throw new TypeError(descriptor.name+' requires its validated data object');
  if(Object.hasOwn(data,'type')||Object.hasOwn(data,'id'))throw new TypeError('View data cannot contain old protocol type or id');
@@ -177,7 +177,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  const refreshers:Array<()=>void>=[];
  const bind=(fn:()=>void)=>{const safe=lifetime.guard(fn);refreshers.push(safe);safe();return lifetime.own(()=>{const i=refreshers.indexOf(safe);if(i>=0)refreshers.splice(i,1);});};
  const notify=()=>{for(const fn of [...refreshers]){lifetime.check();fn();}};
- const change=(patch:Record<string,any>)=>{for(const[key,next]of Object.entries(patch)){lifetime.check();const prop=mapped.get(key);if(prop&&Object.hasOwn(external.bindings??{},prop)){const result=external.writeBinding?.(prop,next);if(!result?.ok)throw new Error(result?.issues?.[0]?.message??'Binding change rejected');if(!lifetime.current())return;state[key]=next;}else if(prop){state[key]=next;}else throw new Error('Undeclared View state field: '+key);}notify();};
+ const change=(patch:Record<string,any>)=>{for(const[key,next]of Object.entries(patch)){lifetime.check();const prop=mapped.get(key);if(prop&&Object.hasOwn(external.bindings??{},prop)){const revision=propsRevision,result=external.writeBinding?.(prop,next);if(!result?.ok)throw new Error(result?.issues?.[0]?.message??'Binding change rejected');if(!lifetime.current())return;if(revision===propsRevision)state[key]=next;}else if(prop){state[key]=next;}else throw new Error('Undeclared View state field: '+key);}notify();};
  const fromControl=(patch:Record<string,any>,_policy?:unknown)=>{try{change(patch);}catch(error){container.dataset.bindingError=error instanceof Error?error.message:String(error);notify();}};
  const value=(v:any):any=>{if(v!==null&&typeof v==='object')throw new TypeError('Old expression values are not accepted by V2 Views');return v;};
  const on=lifetime.listen;
@@ -198,6 +198,25 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
   return{...context,lifecycle:life,on:life.listen,cleanup:life.own,bind:fn=>life.own(bind(life.guard(fn)))};
  };
  const registerSlotted=(refresh:()=>void)=>{refreshSlotted=refresh;};
+ // Bound choice controls retain native radio nodes, while structural changes own
+ // a fresh generation. Only these actual catalog Views opt into this contract.
+ const boundControl=descriptor.oldType==='rating'||descriptor.oldType==='segmented';
+ const controlShape=(n:any)=>JSON.stringify(n.type==='rating'?[n.max??5,n.clearable!==false]:(n.options??[]).map((option:any)=>option.value));
+ let boundShape=boundControl?controlShape(node):'',boundLife:ReturnType<typeof renderGeneration>|undefined;
+ let boundIcons:Array<{node:any;handle:DomainHandle}>=[];
+ const boundContext=():RendererContext=>{
+  const life=lifetime.fork();boundLife=life;
+  const scoped={...context,lifecycle:life,on:life.listen,cleanup:life.own,
+   bind:(fn:()=>void)=>life.own(bind(life.guard(fn))),
+   change:(patch:Record<string,any>)=>life.during(()=>context.change(patch)),
+   fromControl:(patch:Record<string,any>,policy?:unknown)=>{life.guard(()=>context.fromControl(patch,policy as any))();}};
+  (scoped as any).officialIcon=(name:string,iconOptions:any)=>{
+   if(options.renderIcon)return options.renderIcon(doc,name,iconOptions);
+   const node={type:'element',typeName:'Icon',props:{name,...(iconOptions?.label?{label:iconOptions.label}:{})},partial:false},handle=ownChild(node);
+   boundIcons.push({node,handle});return handle.element;
+  };
+  return scoped;
+ };
  // Opaque capabilities are deliberately excluded from topology comparison;
  // their real, newly evaluated objects are always reconciled below.
  const slotShape=(value:any):any=>{
@@ -433,7 +452,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;const refresh=()=>{input.checked=state[n.bind]===true;};bind(refresh);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));forms.nativeControl(out,[input],n.bind,refresh);break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}const refresh=()=>{input.value=String(n.options.findIndex(o=>o.value===state[n.bind]));};bind(refresh);on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);forms.nativeControl(out,[input],n.bind,refresh);break;}
       case 'button': out=renderButton(context,n,labels.buttonUI,current.state??{});break;
-      case 'input': case 'textarea': case 'radio': case 'segmented': out=forms.field(n);break;
+      case 'input': case 'textarea': case 'radio': case 'segmented': out=n===node&&boundControl?createForms(boundContext()).field(n):forms.field(n);break;
       case 'field': out=forms.group(n);break;
       case 'form': out=createForms(slottedContext()).form(n,registerSlotted);break;
       case 'topology': out=topology(n);break;
@@ -454,7 +473,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
       case 'restaurant-availability':out=renderAvailability(context,n,labels.availabilityUI);break;
       case 'reddit-thread-card':out=renderThread(context,n,labels.threadUI);break;
       case 'agenda': out=renderAgenda(context,n,labels.agendaUI); break;
-      case 'rating': out=renderRating(context,n,labels.ratingUI); break;
+      case 'rating': out=renderRating(n===node&&boundControl?boundContext():context,n,labels.ratingUI); break;
       case 'rating-summary': out=renderRatingSummary(context,n); break;
       case 'vocab-card': out=renderVocabCard(context,n,labels.vocabUI); break;
       case 'checklist': out=renderChecklist(context,n,labels.checklistUI); break;
@@ -499,13 +518,26 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
   if(descriptor.oldType==='pressable'&&props.onPress){lifetime.listen(container,'inform:view-press',event=>{queueMicrotask(lifetime.guard(()=>{if(!event.defaultPrevented)external.dispatchLocal?.(props.onPress);}));});}
   const structural=['details','section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);
   const slotted=descriptor.oldType==='form'||descriptor.oldType==='tab-group';
-  const update=structural||slotted?(next:Record<string,unknown>)=>{
+  const update=structural||slotted||boundControl?(next:Record<string,unknown>)=>{
    if(disposed||external.signal?.aborted)return;nextChildren=new Set();
    for(const key of Object.keys(node))if(key!=='type')delete node[key];
    Object.assign(node,next.data);for(const[key,value]of Object.entries(next))if(key!=='data')node[key]=value;
-   currentProps=next;
+   currentProps=next;propsRevision++;
+   for(const spec of bindingSpecs){const source=spec.dataProp??spec.prop;const value=Object.hasOwn(next,spec.prop)?next[spec.prop]:node[source];node[source]=value;state[spec.prop]=value;}
+   if(boundControl)node.bind=bindingSpecs[0].prop;
    let content:HTMLElement|SVGElement|null=null;
-   if(slotted){
+   if(boundControl){
+    const shape=controlShape(node);
+    if(shape===boundShape){
+     // Even decorative fallback children pass through host reconciliation.
+     for(const icon of boundIcons){const next=ownChild(icon.node);if(next.element!==icon.handle.element)icon.handle.element.replaceWith(next.element);icon.handle=next;}
+     notify();
+    }else{
+     boundLife?.dispose();boundIcons=[];
+     for(const handle of childrenHandles)handle.dispose();childrenHandles.clear();
+     content=render(node);boundShape=shape;
+    }
+   }else if(slotted){
     mapSlottedNode();const shape=JSON.stringify(slotShape(next.children));
     if(shape===slottedShape&&refreshSlotted)refreshSlotted();
     else{

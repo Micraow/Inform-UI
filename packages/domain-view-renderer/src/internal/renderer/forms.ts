@@ -142,14 +142,13 @@ export function createForms(c: RendererContext) {
     const group = choice ? e('fieldset', `iui-choices${n.type === 'segmented' ? ' iui-segmented' : ''}`) : undefined;
     const label = choice ? e('legend', 'iui-field-label', n.label) : e('label', 'iui-field-label', n.label);
     if (!choice) (label as HTMLLabelElement).htmlFor = id;
-    if (n.required) {
-      const required = e('span', 'iui-field-required', ' *');
-      required.setAttribute('aria-hidden', 'true');
-      label.append(required);
-    }
+    const requiredMarker = e('span', 'iui-field-required', ' *');
+    requiredMarker.setAttribute('aria-hidden', 'true');
+    if (n.required) label.append(requiredMarker);
     (group ?? out).append(label);
     if (group) out.append(group);
     const inputs: (HTMLInputElement | HTMLTextAreaElement)[] = [];
+    const optionLabels: HTMLElement[] = [];
     let drafts: { value: string; checked: boolean }[] = [];
     const rememberDrafts = () => { drafts = inputs.map(input => ({value: input.value, checked: 'checked' in input && input.checked})); };
     const restoreDrafts = () => {
@@ -191,14 +190,16 @@ export function createForms(c: RendererContext) {
         input.id = `${id}-${i}`;
         input.value = String(i);
         setupInput(input);
-        optionLabel.append(input, e('span', 'iui-choice-text', option.label));
+        const optionText = e('span', 'iui-choice-text', option.label);
+        optionLabels.push(optionText);
+        optionLabel.append(input, optionText);
         optionsHost.append(optionLabel);
         on(input, 'change', () => {
           if (disabled(input)) { refresh(); return; }
           if (!input.checked) return;
           touched = true;
           localError = '';
-          try { c.change({ [n.bind]: option.value }); }
+          try { c.change({ [n.bind]: n.options[i].value }); }
           catch { localError = c.labels().invalidChoice; }
           refresh();
         });
@@ -307,6 +308,22 @@ export function createForms(c: RendererContext) {
     }
 
     function refresh() {
+      if (!c.lifecycle.current()) return;
+      // The View adapter refreshes this real validated node on each revision.
+      // Choice metadata can change without detaching native radio controls.
+      if (choice) {
+        label.textContent = n.label;
+        if (n.required) label.append(requiredMarker);
+        hint.textContent = n.hint ?? '';
+        hint.hidden = !n.hint;
+        const description = [n.hint ? hint.id : '', error.id].filter(Boolean).join(' ');
+        inputs.forEach((input, i) => {
+          optionLabels[i].textContent = n.options[i].label;
+          input.required = !!n.required;
+          input.setAttribute('aria-required', String(!!n.required));
+          input.setAttribute('aria-describedby', description);
+        });
+      }
       const current = c.getState()[n.bind];
       const off = n.disabled !== undefined && c.value(n.disabled) === true;
       if (group) group.disabled = off;
