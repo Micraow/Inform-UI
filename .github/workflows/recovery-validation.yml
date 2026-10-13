@@ -1,11 +1,12 @@
 name: Validate current Inform UI source
 on:
   push:
-    branches: [recovery/portable-124-20261011]
+    branches: [main, recovery/portable-124-20261011]
+  pull_request:
 permissions:
   contents: read
 concurrency:
-  group: portable124-${{ github.ref }}
+  group: current-source-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   current-source:
