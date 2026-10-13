@@ -12,7 +12,7 @@ export function renderChecklist(c:RendererContext,n:ChecklistNode,t:ChecklistLab
  const filter=e('select'),filterLabel=e('label','',t.filter);filter.id=base+'-filter';filterLabel.htmlFor=filter.id;
  for(const [value,label] of [['all',t.all],['open',t.open],['done',t.done]]){const option=e('option','',label);option.value=value;filter.append(option);}
  if(n.filter!==false){const group=e('div','iui-checklist-filter');group.append(filterLabel,filter);controls.append(group);}
- const check=e('button','',t.checkAll),clear=e('button','',t.clearAll);check.type=clear.type='button';if(n.bulk!==false)controls.append(check,clear);
+ const check=e('button','iui-button-secondary',t.checkAll),clear=e('button','iui-button-secondary',t.clearAll);check.type=clear.type='button';if(n.bulk!==false)controls.append(check,clear);
  root.append(controls);const list=e('ul','iui-checklist-items');root.append(list);
  const entries=n.items.map(item=>{const row=e('li','iui-checklist-item');row.dataset.item=item.id;const field=c.render({type:'input',kind:'checkbox',label:item.label,bind:item.bind,...(item.hint?{hint:item.hint}:{}),...(item.disabled===undefined?{}:{disabled:item.disabled})});row.append(field);list.append(row);const input=row.querySelector<HTMLInputElement>('input')!;return{item,row,input};});
  const empty=e('p','iui-caption'),feedback=e('p','iui-checklist-feedback');feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');root.append(empty,feedback);

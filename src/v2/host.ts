@@ -25,12 +25,16 @@ export function mountProfile(container:HTMLElement,profile:HostProfile,runtime:H
   units=0;const created:ViewRecord[]=[];
   const renderNode=(node:FoundationNode,path='root',previous?:ViewRecord):ViewRecord=>{
    budget.consume();const definition=profile.components[node.typeName];if(!definition||definition.renderer.kind!=='dom')throw Error('No DOM adapter: '+node.typeName);
-   // Only adapters with an explicit in-place update contract may retain their DOM.
-   // A fresh snapshot refreshes the actual opaque handles, never their public names.
+   // In-place updates refresh actual opaque handles, never their public names.
+   // Local-only retention is a separate contract: no bindings and no child records
+   // may bypass reconciliation, even when their serialized props look unchanged.
    let record:ViewRecord;
-   if(!replaceTree&&previous?.alive&&previous.node.typeName===node.typeName&&previous.renderer===definition.renderer&&previous.handle.update&&bindingIdentity(previous.node)===bindingIdentity(node)){
+   const compatible=!replaceTree&&previous?.alive&&previous.node.typeName===node.typeName&&previous.renderer===definition.renderer&&bindingIdentity(previous.node)===bindingIdentity(node);
+   if(compatible&&previous.handle.update){
     record=previous;record.node=node;record.revision=revision;record.childIndex=0;record.handle.update!(node.props);
     for(const child of record.children.splice(record.childIndex))child.handle.dispose();
+   }else if(compatible&&!Object.keys(node.bindings??{}).length&&!previous.children.length&&previous.handle.retainUnchanged?.(node.props)){
+    record=previous;record.node=node;record.revision=revision;
    }else{
     previous?.handle.dispose();
     record={node,renderer:definition.renderer,handle:null as unknown as FoundationHandle,abort:new AbortController(),children:[],childIndex:0,revision,alive:true};created.push(record);
@@ -40,7 +44,7 @@ export function mountProfile(container:HTMLElement,profile:HostProfile,runtime:H
      dispatchLocal:action=>{if(disposed||!record.alive||record.revision!==renderRevision)return error([{code:'STALE_VIEW',message:'This view is no longer active'}]);const result=runtime.dispatchLocal(action);if(!result.ok){error(result.issues);return result;}return{ok:true,value:null};},
      allowImageURL:options.allowImageURL,allowAnimationURL:options.allowAnimationURL,allowMediaURL:options.allowMediaURL};
     const owned=definition.renderer.create(node.props,context) as FoundationHandle;
-    record.handle={element:owned.element,...(owned.update?{update:(props:Record<string,unknown>)=>owned.update!(props)}:{}),dispose(){if(!record.alive)return;record.alive=false;record.abort.abort();owned.dispose();for(const child of record.children)child.handle.dispose();record.children=[];}};
+    record.handle={element:owned.element,...(owned.update?{update:(props:Record<string,unknown>)=>owned.update!(props)}:{}),...(owned.retainUnchanged?{retainUnchanged:(props:Record<string,unknown>)=>owned.retainUnchanged!(props)}:{}),dispose(){if(!record.alive)return;record.alive=false;record.abort.abort();owned.dispose();for(const child of record.children)child.handle.dispose();record.children=[];}};
    }
    record.handle.element.dataset.ifNode=path;
    const binding=node.bindings?.value??node.bindings?.checked;

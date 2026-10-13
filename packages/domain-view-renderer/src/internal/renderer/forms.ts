@@ -388,7 +388,7 @@ export function createForms(c: RendererContext) {
     const status = e('p', 'iui-form-status');
     const actions = e('div', 'iui-form-actions');
     const submit = e('button', 'iui-button-primary');
-    const cancel = e('button');
+    const cancel = e('button', 'iui-button-secondary');
     let pointerAction: HTMLButtonElement | undefined, pointerId: number | undefined;
     let touchAction = false;
     let blurTask: (() => void) | undefined;

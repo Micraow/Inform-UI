@@ -135,6 +135,11 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  const data=props.data;
  if(!data||typeof data!=='object'||Array.isArray(data))throw new TypeError(descriptor.name+' requires its validated data object');
  if(Object.hasOwn(data,'type')||Object.hasOwn(data,'id'))throw new TypeError('View data cannot contain old protocol type or id');
+ // Only validated data-only descriptors can retain local interaction state.
+ // Capture before rendering: renderer-owned state never becomes source data.
+ // Capability-bearing or slotted Views still require an explicit update adapter.
+ const localOnly=!Object.keys(descriptor.slots??{}).length&&!descriptor.bindings?.length&&!descriptor.bindingProps?.length&&!descriptor.actionProps?.length;
+ const retainedProps=localOnly?JSON.stringify(props):undefined;
  let disposed=false,serial=0;
  const lifetime=renderGeneration(()=>!disposed&&!external.signal?.aborted),during=lifetime.during;
  const prefix=`inform-view-${++viewSerial}-`;
@@ -477,6 +482,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
    const content=renderFoundationNode(node);if(content&&root.firstChild!==content)root.replaceChildren(content);
    for(const handle of childrenHandles)if(!nextChildren.has(handle)){handle.dispose();childrenHandles.delete(handle);}nextChildren=null;
   }:undefined;
-  return{element:container,dispose,...(update?{update}:{})};
+  const retainUnchanged=localOnly?(next:Record<string,unknown>)=>!disposed&&!external.signal?.aborted&&JSON.stringify(next)===retainedProps:undefined;
+  return{element:container,dispose,...(update?{update}:{}),...(retainUnchanged?{retainUnchanged}:{})};
  }catch(error){dispose();throw error;}
 }
