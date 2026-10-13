@@ -1,5 +1,6 @@
 import { z } from '@inform/component-contract/zod';
-import { freezeData } from '@inform/component-contract';
+import { freezeData,withRuntimeRule } from '@inform/component-contract';
+import {viewRuntimeRule} from './prompt-semantics';
 import type { ComponentDefinition, ModuleDefinition, RendererAdapter, RuntimeResource, SlotSpec } from '@inform/component-contract';
 import raw from './specs.json';
 import { compileDataField, compileDataRecord, validateDataSchema } from './schema';
@@ -36,7 +37,7 @@ export function createViewModules(options:ViewModuleOptions):readonly ModuleDefi
   const data=specs.map(spec=>{const schema=compileDataRecord(spec.dataSchema);return{name:spec.dataName!,schema,orderedProps:Object.keys(schema.shape),description:'Strict supplied record for '+spec.name+'. Conditional variants are enforced by the same bounded validator.'};});
   const components:ComponentDefinition[]=specs.map(spec=>({name:spec.name,layer:'domain',description:'Supplied '+spec.oldType.replaceAll('-',' ')+' View rendered with the shared Inform foundation theme.',orderedProps:spec.orderedProps,
    props:context=>{const shape:Record<string,z.ZodType>={data:context.data(spec.dataName!)};for(const[key,slot]of Object.entries(spec.slots))shape[key]=context.children(slot);for(const binding of spec.bindings){const field=compileDataField(binding.schema);shape[binding.prop]=context.binding(binding.optional?field.optional():field);}for(const action of spec.actions)shape[action.prop]=context.action();return z.strictObject(shape);},
-   semantics:{static:[],evaluated:[(props,{budget})=>validateDataSchema(spec.dataSchema,props.data,budget,'/data'),(props,{budget})=>validateDomainSemantics(spec,props,viewSpecs,budget)]},
+   semantics:{static:[],evaluated:[withRuntimeRule({id:'data-schema-'+spec.dataName,paths:['data'],rule:'The supplied data must satisfy every bound, required field and conditional branch in '+spec.dataName+'.'},(props,{budget})=>validateDataSchema(spec.dataSchema,props.data,budget,'/data')),withRuntimeRule(viewRuntimeRule(spec.oldType), (props,{budget})=>validateDomainSemantics(spec,props,viewSpecs,budget))]},
    renderer:options.adapters[spec.name]??{kind:'unbound',key:spec.rendererKey},
    docs:'Use '+spec.name+'(data'+(Object.keys(spec.slots).length?', '+Object.keys(spec.slots).join(', '):'')+'). data is a strict supplied record; child slots accept actual DSL elements. Actions are runtime-issued local handles. Host-looking identifiers in data grant no execution permission. '+(spec.classification==='host'?'This host-dependent View requires an explicitly policy-gated adapter. ':''),
    examples:[{id:spec.oldType,description:'Synthetic supplied record. '+viewExamples[spec.name].provenance,source:options.examples?.[spec.name]?.source??viewExamples[spec.name].source}],

@@ -3,7 +3,8 @@ import { createLibrary, defineComponent, tagSchemaId } from '../vendor/openui/sr
 import { generatePrompt } from '../vendor/openui/src/parser/prompt';
 import { isBuiltin, isReservedCall } from '../vendor/openui/src/parser/builtins';
 import { markReactive } from '../vendor/openui/src/reactive';
-import { schemaSignature } from '../vendor/openui/src/signature';
+import { preserveTupleInputArity } from '../vendor/openui/src/json-schema';
+import { schemaPromptSignature,schemaPromptRelations,schemaPromptNotation,schemaPromptUsage } from './prompt-constraints';
 import { assertName, ContractError, createBudget, freezeData, inspectData, isRecord, FORBIDDEN_KEYS } from './safety';
 import type { ComponentDefinition, ComponentRule, DataDefinition, ElementNode, InformProfile, Issue, ModuleDefinition, RuntimeResource, SchemaContext, SlotSpec, ValidationResult } from './types';
 
@@ -113,8 +114,13 @@ export function buildProfile(options: {
   const schema = upstream.toJSONSchema();
   schema.$defs ??= {};
   for (const [name, def] of Object.entries(data)) {
-    const { $schema: ignored, ...definition } = z.toJSONSchema(def.schema);
+    const { $schema: ignored, ...definition } = z.toJSONSchema(def.schema, { override: preserveTupleInputArity });
     schema.$defs[name] = { ...definition, description: def.description };
+  }
+  for (const [name, def] of Object.entries(components)) {
+    const hooks=[...def.semantics.static,...def.semantics.evaluated];
+    const runtimeRules=hooks.map((hook,index)=>hook.promptRule??{id:'undocumented-'+index,rule:'Additional runtime validation applies; its complete rules are not yet projected. Validate with the actual Inform runtime.',complete:false});
+    if(runtimeRules.length)(schema.$defs[name] as Record<string,unknown>)['x-inform-runtime-rules']=runtimeRules;
   }
   assertRefs(schema, new Set(Object.keys(schema.$defs)));
   const rules: Record<string, ComponentRule> = Object.create(null);
@@ -191,16 +197,16 @@ export function buildProfile(options: {
       // Keep prompt examples bounded; binary/media fixtures belong in the searchable manifest.
       const examples = allExamples.filter(source => source.length <= 4000 && !/data:[^,]*;base64,/i.test(source)).slice(0, 6);
       const promptSpec = upstream.toSpec();
-      if (compiled.Icon && (compiled.Icon.props as z.ZodObject).shape.name) {
-        const promptProps = z.strictObject({...((compiled.Icon.props as z.ZodObject).shape), name:z.string()});
-        promptSpec.components = {...promptSpec.components, Icon:{...promptSpec.components.Icon,signature:schemaSignature('Icon',promptProps)}};
-      }
-      const dataSignatures = Object.values(data).map(def => `${schemaSignature(def.name, def.schema)}: ${def.description}`).join('\n');
+      const schemaOptions={componentNames:Object.keys(components),catalogEnums:{'Icon.name':'IconName (exact bundled catalog)'}};
+      promptSpec.components=Object.fromEntries(Object.entries(components).map(([name,def])=>[name,{...promptSpec.components[name],signature:schemaPromptSignature(name,schema.$defs![name],{...schemaOptions,orderedProps:def.orderedProps,bindingProps:rules[name].bindingProps,actionProps:rules[name].actionProps})}]));
+      const dataSignatures=Object.values(data).map(def=>`${schemaPromptSignature(def.name,schema.$defs![def.name],{...schemaOptions,orderedProps:def.orderedProps})}: ${def.description}`).join('\n');
+      const schemaRelations=schemaPromptRelations(schema.$defs!);
       const generated = generatePrompt({ ...promptSpec, allowedActionSteps: ['Set','Reset'], toolCalls: false, bindings: promptOptions.bindings ?? true, builtinFunctions: promptOptions.builtinFunctions ?? true,
         preamble: 'Generate an Inform UI 2 document using the pinned OpenUI language. This profile is local-only. Use only the component and data constructors listed below.',
         examples,
         additionalRules: [
           'Component means any available UI component in this profile. Data constructors are not UI children.',
+          schemaPromptNotation,
           'The positional parameter order is an ABI. Never emit named arguments, unknown props, callback functions, raw HTML, arbitrary CSS, imports, Query, Mutation, @Run, @OpenUrl or @ToAssistant.',
           'All mutable variables must be explicitly declared. Use direct declared $variables for ordinary writable bindings. $value is reserved for assignment-binding input; it is not standalone state. Arbitrary callbacks or JavaScript functions are forbidden.',
           'Only @Set, @Reset and Action([...]) are local action syntax. Actions have no authority to call external services.',
@@ -209,7 +215,9 @@ export function buildProfile(options: {
           'Inform semantics: == and != compare scalar values strictly; logical operators require booleans. Sort uses deterministic lexicographic string order and rejects mixed number/string keys. Filter relational operators require numbers. @Each uses an inline template with a named item, no index parameter or JavaScript lambda.',
           'Display supplied facts accurately. Domain modules do not fetch, verify or transact on data.',
           ...(components.Icon ? ['Icon.name must match an exact name from the bundled searchable icon catalog. Search the catalog by purpose and include only the names needed for this answer; the runtime still validates its full enum.'] : []),
+          ...schemaPromptUsage(selected),
           ...Object.values(components).flatMap(def => def.limitations.map(limit => `${def.name}: ${limit}`)),
+          ...(schemaRelations?[schemaRelations]:[]),
           ...(dataSignatures ? [`Data constructors (not renderers):\n${dataSignatures}`] : []),
         ] });
       return generated.replace('Undeclared $variables are auto-created with null default.', 'Undeclared $variables are errors in Inform UI.')
@@ -220,7 +228,7 @@ export function buildProfile(options: {
       format: 'inform-component-contract/2', id: options.id, root: options.root, openuiRevision: 'cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7',
       requestedModules: [...options.select], modules: [...profile.modules], runtimeResources: [...profile.runtimeResources],
       moduleDefinitions:selected.map(mod=>({id:mod.id,layer:mod.layer,dependsOn:[...mod.dependsOn],runtimeRequires:[...mod.runtimeRequires],components:mod.components.map(c=>c.name),dataShapes:(mod.data??[]).map(d=>d.name)})),
-      components: Object.values(components).map(def => ({ name: def.name, moduleId:selected.find(mod=>mod.components.some(item=>item.name===def.name))!.id, layer: def.layer, orderedProps: [...def.orderedProps], slots: rules[def.name].slots, bindingProps: rules[def.name].bindingProps, actionProps: rules[def.name].actionProps, renderer: { kind: def.renderer.kind, key: def.renderer.key }, capabilities: def.capabilities, limitations: def.limitations, docs: def.docs, examples: def.examples })),
+      components: Object.values(components).map(def => ({ name: def.name, moduleId:selected.find(mod=>mod.components.some(item=>item.name===def.name))!.id, layer: def.layer, orderedProps: [...def.orderedProps], slots: rules[def.name].slots, bindingProps: rules[def.name].bindingProps, actionProps: rules[def.name].actionProps, renderer: { kind: def.renderer.kind, key: def.renderer.key }, capabilities: def.capabilities, runtimeRules: (schema.$defs![def.name] as Record<string,unknown>)['x-inform-runtime-rules'] ?? [], limitations: def.limitations, docs: def.docs, examples: def.examples })),
       dataShapes: Object.values(data).map(def => ({ name: def.name, moduleId:selected.find(mod=>mod.data?.some(item=>item.name===def.name))!.id, orderedProps: def.orderedProps, description: def.description })),
       externalServices: [],
     }; },

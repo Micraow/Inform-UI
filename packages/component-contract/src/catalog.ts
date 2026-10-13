@@ -1,3 +1,4 @@
+import {withRuntimeRule} from './runtime-rules';
 import { z } from './zod';
 import type { ComponentDefinition, ModuleDefinition, RendererAdapter, RuntimeResource, SchemaContext, SemanticHook } from './types';
 import { ContractError, freezeData } from './safety';
@@ -16,29 +17,29 @@ const options = () => z.array(option).min(1).max(128);
 const scalar = z.union([z.string().max(2048), z.number().finite(), z.boolean(), z.null()]);
 const pathIssue = (code: string, path: string, message: string) => ({ code, path, message });
 const noSemantics = { static: [], evaluated: [] };
-const selectedValue: SemanticHook = (props, { budget }) => {
+const selectedValue: SemanticHook = withRuntimeRule({"id":"selection-membership","paths":["value","options"],"rule":"Option values must be unique. The current value must equal one supplied option value."}, (props, { budget }) => {
   const list = props.options as { label: string; value: string }[]; const ids = new Set<string>();
   for (const opt of list) { budget.consume(); if (ids.has(opt.value)) return [pathIssue('duplicate-option', '/options', 'Option values must be unique.')]; ids.add(opt.value); }
   return ids.has(props.value as string) ? [] : [pathIssue('invalid-selection', '/value', 'Selection must be one of the supplied option values.')];
-};
-const sliderRange: SemanticHook = (props) => {
+});
+const sliderRange: SemanticHook = withRuntimeRule({"id":"slider-range","paths":["value","min","max","step"],"rule":"min < max; min <= value <= max; 0 < step <= max-min. If step is omitted the runtime uses 1."}, (props) => {
   const { value, min, max, step = 1 } = props as { value: number; min: number; max: number; step?: number };
   return min >= max || value < min || value > max || step <= 0 || step > max - min
     ? [pathIssue('invalid-range', '/value', 'Slider requires min < max, bounded value and 0 < step <= max - min.')] : [];
-};
-const chartSeries: SemanticHook = (props, { budget }) => {
+});
+const chartSeries: SemanticHook = withRuntimeRule({"id":"series-alignment","paths":["labels","series"],"rule":"Series names must be unique; each values array has exactly one finite value per label."}, (props, { budget }) => {
   const labels = props.labels as string[], series = props.series as { name: string; values: number[] }[];
   const names = new Set<string>();
   for (const item of series) { budget.consume(item.values.length + 1); if (names.has(item.name)) return [pathIssue('duplicate-series', '/series', 'Series names must be unique.')]; names.add(item.name); if (item.values.length !== labels.length) return [pathIssue('chart-length', '/series', 'Every series must have one finite value per label.')]; }
   return [];
-};
-const tableRows: SemanticHook = (props, { budget }) => {
+});
+const tableRows: SemanticHook = withRuntimeRule({"id":"table-column-membership","paths":["columns","rows"],"rule":"Column keys must be unique. Row keys must name declared columns; rows may omit a declared column."}, (props, { budget }) => {
   const columns = props.columns as { key: string; label: string }[], rows = props.rows as Record<string, unknown>[];
   const keys = new Set<string>();
   for (const col of columns) { budget.consume(); if (keys.has(col.key)) return [pathIssue('duplicate-column', '/columns', 'Column keys must be unique.')]; keys.add(col.key); }
   for (const [index, row] of rows.entries()) { budget.consume(); for (const key of Object.keys(row)) { budget.consume(); if (!keys.has(key)) return [pathIssue('unknown-column', `/rows/${index}/${key}`, 'Row key has no declared column.')]; } }
   return [];
-};
+});
 export const resources: readonly RuntimeResource[] = freezeData([
   { id: 'inform/safety-kernel', kind: 'kernel', dependsOn: [] },
   { id: 'inform/tokens', kind: 'style', dependsOn: [] },
@@ -64,7 +65,7 @@ export function createCatalog(config: { adapters: Readonly<Record<string, Render
   const Row = define({ name: 'Row', layer: 'layout', orderedProps: ['children', 'gap', 'align'], props: c => z.strictObject({ children: c.children(), gap: gap(), align: z.enum(['start', 'center', 'end', 'stretch']).optional() }), description: 'Wrapping horizontal flow.', docs: 'Uses a wrapping row. Choose start, center, end or stretch alignment.', examples: example('row', 'root = Row([Text("Hello")], "sm", "center")', { children: [childExample], gap: 'sm', align: 'center' }) });
   const Grid = define({ name: 'Grid', layer: 'layout', orderedProps: ['children', 'columns', 'gap'], props: c => z.strictObject({ children: c.children(), columns: z.number().int().min(1).max(6).optional(), gap: gap() }), description: 'Responsive bounded column grid.', docs: 'Columns is a maximum requested column count; narrow layouts may use fewer columns.', examples: example('grid', 'root = Grid([Text("Hello")], 2, "md")', { children: [childExample], columns: 2, gap: 'md' }) });
   const Card = define({ name: 'Card', layer: 'layout', orderedProps: ['children', 'title'], props: c => z.strictObject({ children: c.children(), title: short().optional() }), description: 'Grouped surface with optional title.', docs: 'Use a card for one coherent section. Card owns its child slot, not external services.', examples: example('card', 'root = Card([Text("Hello")], "Overview")', { children: [childExample], title: 'Overview' }) });
-  const Image = define({ name: 'Image', layer: 'base', orderedProps: ['src', 'alt', 'caption'], props: () => z.strictObject({ src: z.string().min(1).max(1_000_000), alt: z.string().max(2048), caption: short().optional() }), description: 'Image subject to the host media policy.', docs: 'Alt text is required; empty alt is for decoration. The default renderer must not fetch a remote image without a host media allowlist.', semantics: { static: [], evaluated: [(props) => /^(data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*|https:\/\/[^\s]+)$/.test(props.src as string) ? [] : [pathIssue('unsafe-media-url', '/src', 'Only bounded raster data URLs or policy-gated HTTPS URLs are accepted.')] ] }, examples: example('image', 'root = Image("https://example.com/image.png", "Supplied image")', { src: 'https://example.com/image.png', alt: 'Supplied image' }), limitations: ['HTTPS is syntactically allowed but remains blocked until the host media policy explicitly permits it. SVG data URLs are rejected.'] });
+  const Image = define({ name: 'Image', layer: 'base', orderedProps: ['src', 'alt', 'caption'], props: () => z.strictObject({ src: z.string().min(1).max(1_000_000), alt: z.string().max(2048), caption: short().optional() }), description: 'Image subject to the host media policy.', docs: 'Alt text is required; empty alt is for decoration. The default renderer must not fetch a remote image without a host media allowlist.', semantics: { static: [], evaluated: [withRuntimeRule({id:'raster-image-source',paths:['src'],rule:'src must be a bounded PNG/JPEG/WebP/GIF base64 data URL or HTTPS URL with no whitespace. SVG data URLs are rejected. HTTPS still requires host approval to fetch.'},(props) => /^(data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/]+=*|https:\/\/[^\s]+)$/.test(props.src as string) ? [] : [pathIssue('unsafe-media-url', '/src', 'Only bounded raster data URLs or policy-gated HTTPS URLs are accepted.')]) ] }, examples: example('image', 'root = Image("https://example.com/image.png", "Supplied image")', { src: 'https://example.com/image.png', alt: 'Supplied image' }), limitations: ['HTTPS is syntactically allowed but remains blocked until the host media policy explicitly permits it. SVG data URLs are rejected.'] });
   const Button = define({ name: 'Button', layer: 'control', orderedProps: ['label', 'onPress', 'variant', 'disabled'], props: c => z.strictObject({ label: short(), onPress: c.action(), variant: z.enum(VARIANTS).optional(), disabled: disabled() }), description: 'Explicit local state action button.', docs: 'onPress is a runtime-issued local action. Use @Set, @Reset or Action; literal action-like objects are forbidden.', capabilities: ['display', 'local-action'], limitations: ['No host tools, navigation, account access or message sending.'], examples: example('button', '$count = 0\nroot = Button("Reset", @Reset($count), "secondary")') });
   const Input = define({ name: 'Input', layer: 'control', orderedProps: ['label', 'value', 'placeholder', 'disabled'], props: c => z.strictObject({ label: short(), value: c.binding(z.string().max(4096)), placeholder: z.string().max(512).optional(), disabled: disabled() }), description: 'Labeled single-line text input bound to local state.', docs: 'Pass a direct declared $variable to value to allow edits. Literal values render read-only. Draft text is not committed when validation fails.', capabilities: ['display', 'local-state'], examples: example('input', '$answer = ""\nroot = Input("Name", $answer, "Your name")', { label: 'Name', value: '', placeholder: 'Your name' }) });
   const Textarea = define({ name: 'Textarea', layer: 'control', orderedProps: ['label', 'value', 'rows', 'placeholder', 'disabled'], props: c => z.strictObject({ label: short(), value: c.binding(z.string().max(20_000)), rows: z.number().int().min(2).max(20).optional(), placeholder: z.string().max(512).optional(), disabled: disabled() }), description: 'Labeled multiline text input.', docs: 'Writable through a direct declared $variable; an invalid transaction must preserve the previous committed value.', capabilities: ['display', 'local-state'], examples: example('textarea', '$notes = ""\nroot = Textarea("Notes", $notes, 4)', { label: 'Notes', value: '', rows: 4 }) });

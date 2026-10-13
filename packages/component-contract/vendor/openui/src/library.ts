@@ -1,3 +1,4 @@
+import { preserveTupleInputArity } from './json-schema';
 import { object as zObject } from "zod/v4";
 import * as z from "zod/v4/core";
 import { extendDefinition } from "./extend";
@@ -336,7 +337,7 @@ export function createLibrary<C = unknown, A extends AnyAction = never>(
 
   // Component refs resolve against the library's top-level $defs
   function toCallJSONSchema(schema: z.$ZodType): Record<string, unknown> {
-    const { $schema: _, $defs: __, ...rest } = z.toJSONSchema(schema, { metadata: reg });
+    const { $schema: _, $defs: __, ...rest } = z.toJSONSchema(schema, { metadata: reg, override: preserveTupleInputArity });
     return rest;
   }
 
@@ -361,7 +362,7 @@ export function createLibrary<C = unknown, A extends AnyAction = never>(
     const combinedSchema = zObject(
       Object.fromEntries(Object.entries(componentsRecord).map(([k, v]) => [k, v.props])) as any,
     );
-    const schema = z.toJSONSchema(combinedSchema, { metadata: reg }) as LibraryJSONSchema;
+    const schema = z.toJSONSchema(combinedSchema, { metadata: reg, override: preserveTupleInputArity }) as LibraryJSONSchema;
     // zod only serializes what lives on the zod schemas / the metadata
     // registry, so component descriptions (a defineComponent field) must be
     // merged in explicitly — without this the serialized library loses them.

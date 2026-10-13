@@ -179,8 +179,10 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  let fieldLabels:ReturnType<typeof createLabels>;
  const children=(parent:HTMLElement,nodes:readonly Node[])=>{for(const n of nodes)parent.append(render(n));};
  function formula(latex:string,block=true){const target=element(block?'div':'span','iui-math');try{target.innerHTML=katex.renderToString(latex,{output:'htmlAndMathml',displayMode:block,throwOnError:true,trust:false,strict:'error',maxExpand:200,maxSize:20});}catch{target.textContent=latex;target.classList.add('iui-math-error');}return target;}
+ let retainedDetails:{element:HTMLDetailsElement;summary:HTMLElement;body:HTMLElement}|undefined;
  function renderFoundationNode(n:any):HTMLElement|SVGElement|null {
   if(n.type==='element')return null;
+  if(n===node&&n.type==='details'){if(!retainedDetails){const outer=element('details'),summary=element('summary'),body=element('div','iui-layout iui-details-body');outer.append(summary,body);retainedDetails={element:outer,summary,body};}retainedDetails.summary.textContent=text(n.summary);const content=child('Stack',{children:n.children??[],gap:'sm'});if(retainedDetails.body.firstChild!==content)retainedDetails.body.replaceChildren(content);return retainedDetails.element;}
   if(n.type==='html-view'){const out=element('section','if-alert');out.dataset.hostBoundary='html';out.append(element('strong','if-alert-title',n.title??'Embedded HTML'),element('p','if-text','This view requires an explicit sandboxed host renderer. Supplied HTML is shown as text.'),element('pre','if-code',n.html));return out;}
   const baseNode=(typeName:string,props:Record<string,unknown>)=>({type:'element',typeName,props,partial:false});
   const textNode=(content:unknown,tone?:string)=>baseNode('Text',{content:text(content),...(tone?{tone}:{})});
@@ -191,7 +193,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
    if(n.type==='metric-grid')return child('Grid',{children:n.children??[],columns:n.columns??2,gap:'md'});
    if(n.type==='list'){const list=element(n.ordered?'ol':'ul','if-domain-list');for(const item of n.items??[]){const li=element('li');li.append(item&&typeof item==='object'&&item.type==='element'?render(item):child('Text',{content:display(item)}));list.append(li);}return list;}
    const contents=[...(n.children??[])];if(n.type==='section'&&n.heading)contents.unshift(baseNode('Heading',{content:n.heading,level:2}));if(n.type==='figure'&&n.caption)contents.push(textNode(n.caption,'muted'));
-   const out=child('Stack',{children:contents,gap:'sm'});if(n.type==='figure'){out.setAttribute('role','figure');if(n.caption)out.setAttribute('aria-label',n.caption);}if(n.type==='spacer'){out.style.height=String(n.height??16)+'px';out.setAttribute('aria-hidden','true');}if(n.type==='grid-item'){out.style.gridColumn='span '+(n.colSpan??1);out.style.gridRow='span '+(n.rowSpan??1);}return out;
+   const out=child('Stack',{children:contents,gap:'sm'});if(n.type==='figure'){out.setAttribute('role','figure');if(n.caption)out.setAttribute('aria-label',n.caption);else out.removeAttribute('aria-label');}if(n.type==='spacer'){out.style.height=String(n.height??16)+'px';out.setAttribute('aria-hidden','true');}if(n.type==='grid-item'){out.style.gridColumn='span '+(n.colSpan??1);out.style.gridRow='span '+(n.rowSpan??1);}return out;
   }
   if(n.type==='image')return child('Image',{src:n.src,alt:n.alt??''});
   if(n.type==='icon'){
@@ -466,7 +468,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
   for(const checkbox of container.querySelectorAll<HTMLInputElement>('input[type=checkbox]')){const parent=checkbox.parentElement;if(!parent||parent.querySelector(':scope > .if-domain-choice-check'))continue;parent.classList.add('if-domain-choice-owner');const glyph=(context as any).officialIcon('Check',{size:16,className:'if-domain-choice-check'});checkbox.after(glyph);}
 
   if(descriptor.oldType==='pressable'&&props.onPress){lifetime.listen(container,'inform:view-press',event=>{queueMicrotask(lifetime.guard(()=>{if(!event.defaultPrevented)external.dispatchLocal?.(props.onPress);}));});}
-  const structural=['section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);
+  const structural=['details','section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);
   const update=structural?(next:Record<string,unknown>)=>{
    for(const key of Object.keys(node))if(key!=='type')delete node[key];
    Object.assign(node,next.data);for(const[key,value]of Object.entries(next))if(key!=='data')node[key]=value;

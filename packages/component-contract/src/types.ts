@@ -39,7 +39,8 @@ export type RendererAdapter = Readonly<
   | { kind: 'react'; key: string; component: unknown }
   | { kind: 'unbound'; key: string }
 >;
-export type SemanticHook = (props: Readonly<Record<string, unknown>>, context: { budget: Budget }) => readonly Issue[];
+export interface RuntimeSemanticRule { readonly id:string; readonly rule:string; readonly paths?:readonly string[]; readonly complete?:boolean }
+export type SemanticHook = ((props: Readonly<Record<string, unknown>>, context: { budget: Budget }) => readonly Issue[]) & { readonly promptRule?:RuntimeSemanticRule };
 export interface SlotSpec { readonly min: number; readonly max: number; readonly accepts: 'all' | readonly string[] }
 export interface SchemaContext {
   /** A bounded component slot, compiled against the selected immutable profile. */

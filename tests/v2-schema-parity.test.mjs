@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {pathToFileURL} from 'node:url';
+import Ajv2020 from 'ajv/dist/2020.js';
+const api=await import(process.env.INFORM_TEST_RUNTIME?pathToFileURL(process.env.INFORM_TEST_RUNTIME).href:new URL('../dist/v2/node.mjs',import.meta.url).href);
+const p=api.createProfile({select:['base/layout','base/charts','views/content'],viewNames:['CodeView']});
+const ajv=new Ajv2020({strict:false});ajv.removeKeyword('id');
+for(const name of ['MiniAreaChart','MiniBarChart','MiniLineChart'])test(name+' independent JSON Schema matches runtime at every size boundary',()=>{const validate=ajv.compile({$defs:p.schema.$defs,$ref:'#/$defs/'+name});for(const size of [99,100,320,321,100.5]){const props={title:'Trend',values:[1,2],options:{size}};assert.equal(validate(props),p.componentRules[name].validateProps(props).ok,JSON.stringify({size,errors:validate.errors}));}});
+test('calendar tuple lengths agree in independent JSON Schema and runtime',()=>{const validate=ajv.compile({$defs:p.schema.$defs,$ref:'#/$defs/CalendarHeatmap'});for(const length of [0,1,3,4,5]){const props={title:'Days',days:[],options:{thresholds:Array.from({length},(_,i)=>i)}};assert.equal(validate(props),p.componentRules.CalendarHeatmap.validateProps(props).ok,String(length));}});
+test('conditional Code Data oneOf agrees in JSON Schema and runtime',()=>{const validate=ajv.compile(p.schema.$defs.CodeData);for(const data of [{value:'x'},{value:'x',inline:true},{value:'x',inline:true,copy:true},{value:'x',inline:true,copy:false},{value:'x',inline:false,copy:true},{inline:true}])assert.equal(validate(data),p.dataShapeRules.CodeData.validateProps(data).ok,JSON.stringify(data));});
