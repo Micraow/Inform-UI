@@ -4,7 +4,7 @@ import type{SearchImageNode}from'../schema/document.js';import type{RendererCont
 export function renderSearchImage(c:RendererContext,n:SearchImageNode,owner:HTMLElement,host:HTMLElement):HTMLElement{
  const root=c.element('div','iui-search-image');c=suppliedReaderContext(c,root,()=>schedule());root.dataset.phase='loading';if(n.frame)root.dataset.frame='';if(n.hoverZoom)root.dataset.hoverZoom='';
  const dimension=(v:number|string)=>typeof v==='number'?`${v}px`:v;
- const ratio=searchImageRatio(n.aspectRatio);for(const key of['width','height','minWidth','minHeight','maxWidth','maxHeight']as const)if(n[key]!==undefined)root.style[key]=dimension(n[key]!);if(ratio)root.style.aspectRatio=String(ratio);if(n.radius!==undefined)root.style.borderRadius=`${n.radius}px`;
+ const ratio=searchImageRatio(n.aspectRatio);for(const key of['width','height','minWidth','minHeight','maxWidth','maxHeight']as const)if(n[key]!==undefined)root.style[key]=dimension(n[key]!);if(ratio){root.style.aspectRatio=String(ratio);if(n.width===undefined&&n.height===undefined)root.style.width='100%';}if(n.radius!==undefined)root.style.borderRadius=`${n.radius}px`;
  const loading=c.element('div','iui-search-image-loading');loading.setAttribute('aria-hidden','true');root.append(loading);
  if(n.frame){const frame=c.element('div','iui-search-image-frame');frame.setAttribute('aria-hidden','true');root.append(frame);}
  const record=n.searchImage,primary=record?.content_url||record?.thumbnail_url||'',fallback=record?.content_url&&record.thumbnail_url&&record.content_url!==record.thumbnail_url?record.thumbnail_url:'';
