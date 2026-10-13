@@ -26,6 +26,8 @@ export const migratedControlCSS=`
 .if-root .if-domain :is(.if-click-card,.if-click-row):focus-visible{outline-offset:-3px}
 .if-root .if-domain :is(pre,code,kbd,samp){font-family:var(--if-mono);font-style:normal;tab-size:2}
 .if-root .if-domain pre{box-sizing:border-box;min-width:0;max-width:100%;overflow:auto;white-space:pre;font-size:13px;line-height:1.65;border-radius:12px;padding:16px;background:var(--if-surface);color:var(--if-text)}
+.if-root .if-domain .iui-heatmap-filter{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px;align-items:center}
+.if-root .if-domain .iui-heatmap-filter select{width:100%;min-width:0}
 .if-root .if-domain .iui-automation-copy{gap:4px}
 .if-root .if-domain :is(.iui-automation-title,.iui-automation-schedule){white-space:normal;overflow-wrap:anywhere}
 .if-root .if-domain .iui-onboarding-feature{align-items:stretch;justify-content:flex-start}
