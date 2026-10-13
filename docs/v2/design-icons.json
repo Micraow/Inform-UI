@@ -1,0 +1,193 @@
+{
+  "repository": "https://github.com/openai/apps-sdk-ui",
+  "commit": "0f00143c7a639906f1621fe58e1b6be7b5bea46d",
+  "license": "MIT",
+  "scope": "Canonical glyphs selected for original Inform UI examples; purpose mapping is project-authored.",
+  "icons": [
+    {
+      "name": "Clock",
+      "category": "time-planning",
+      "aliases": [
+        "clock"
+      ],
+      "keywords": [
+        "clock"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/Clock",
+      "source": {
+        "path": "src/components/Icon/svg/Clock.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/Clock.tsx",
+        "gitBlobSha": "855568424611b20420ead9317bba7194a9c470df",
+        "sha256": "177d20cb6c811e2c7cb507e91167082fa046a6dff6bdd1f6b145430536423c54"
+      }
+    },
+    {
+      "name": "Calendar",
+      "category": "time-planning",
+      "aliases": [
+        "calendar"
+      ],
+      "keywords": [
+        "calendar"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/Calendar",
+      "source": {
+        "path": "src/components/Icon/svg/Calendar.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/Calendar.tsx",
+        "gitBlobSha": "f7506ba4f0edd08915380a3d26252d2ad36e34e8",
+        "sha256": "3b5ce6687c45ef20db2245bb445de6bc03174d5a618b2501a1336f54260b9394"
+      }
+    },
+    {
+      "name": "Lightbulb",
+      "category": "general",
+      "aliases": [],
+      "keywords": [
+        "lightbulb"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/Lightbulb",
+      "source": {
+        "path": "src/components/Icon/svg/Lightbulb.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/Lightbulb.tsx",
+        "gitBlobSha": "b913340d97f10c220f669bc30d966d87c44020af",
+        "sha256": "491d60ecb3e59ec7f01abcca284bf827c1e77666e039795176e47d0910408129"
+      }
+    },
+    {
+      "name": "ImageSquare",
+      "category": "media-audio-video",
+      "aliases": [
+        "image"
+      ],
+      "keywords": [
+        "image",
+        "square"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/ImageSquare",
+      "source": {
+        "path": "src/components/Icon/svg/ImageSquare.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/ImageSquare.tsx",
+        "gitBlobSha": "aba0347ab7c0db230aba584aa7973c4b137e7a77",
+        "sha256": "008cc1ccd42ada5e19f0a3ed889ee3d780c348b579ccf938f9e4ad85f40622d5"
+      }
+    },
+    {
+      "name": "CheckCircle",
+      "category": "status-feedback",
+      "aliases": [
+        "success"
+      ],
+      "keywords": [
+        "check",
+        "circle"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/CheckCircle",
+      "source": {
+        "path": "src/components/Icon/svg/CheckCircle.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/CheckCircle.tsx",
+        "gitBlobSha": "18360cc84af987666328e2595e6c0a21e02529bc",
+        "sha256": "607e6fc5e9ce983ea8e77ad5fe01321a45d8e2fbeb463a267ad2e62ca1810509"
+      }
+    },
+    {
+      "name": "InfoCircle",
+      "category": "status-feedback",
+      "aliases": [
+        "info"
+      ],
+      "keywords": [
+        "info",
+        "circle"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/InfoCircle",
+      "source": {
+        "path": "src/components/Icon/svg/InfoCircle.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/InfoCircle.tsx",
+        "gitBlobSha": "c31b2b255b0813b40fe8576d9fc337ad1eb474ac",
+        "sha256": "75c9f7905218bb30b8e43855336ab2bcc2b5710a1b4f790b012bcd289e589f47"
+      }
+    },
+    {
+      "name": "TriangleExclamationErrorWarning",
+      "category": "status-feedback",
+      "aliases": [
+        "warning"
+      ],
+      "keywords": [
+        "triangle",
+        "exclamation",
+        "error",
+        "warning"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/TriangleExclamationErrorWarning",
+      "source": {
+        "path": "src/components/Icon/svg/TriangleExclamationErrorWarning.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/TriangleExclamationErrorWarning.tsx",
+        "gitBlobSha": "afb717e6d94a2203af01c48ebce16334c4f1adcd",
+        "sha256": "56edb744930b0cdff1afcda8dd9599226b6d0d2ccf9cfc15bc0669a87fdb6f57"
+      }
+    },
+    {
+      "name": "MapPin",
+      "category": "places-travel",
+      "aliases": [
+        "location"
+      ],
+      "keywords": [
+        "map",
+        "pin"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/MapPin",
+      "source": {
+        "path": "src/components/Icon/svg/MapPin.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/MapPin.tsx",
+        "gitBlobSha": "43ff38d2af9de553ff216c89b6a83f59c909f64a",
+        "sha256": "427bbcefb3cbc9f9c4cba684ead86f4479dab24e6f23f451515ee33561804a90"
+      }
+    },
+    {
+      "name": "BookOpen",
+      "category": "learning-health",
+      "aliases": [],
+      "keywords": [
+        "book",
+        "open"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/BookOpen",
+      "source": {
+        "path": "src/components/Icon/svg/BookOpen.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/BookOpen.tsx",
+        "gitBlobSha": "e9a9412f92aa2bad6705a2629f4b7470fd214c45",
+        "sha256": "3eacfcbbffe4136f7bfccfd1b57050e4c3fc8e997aa5eb61e2add9c5e20754d6"
+      }
+    },
+    {
+      "name": "ArrowRight",
+      "category": "arrows-navigation",
+      "aliases": [
+        "arrow-right"
+      ],
+      "keywords": [
+        "arrow",
+        "right"
+      ],
+      "viewBox": "0 0 24 24",
+      "importSubpath": "@micraow/inform-ui/icons/ArrowRight",
+      "source": {
+        "path": "src/components/Icon/svg/ArrowRight.tsx",
+        "url": "https://github.com/openai/apps-sdk-ui/blob/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg/ArrowRight.tsx",
+        "gitBlobSha": "4ae471daec7cbdb680a5c348954749fd993efb1a",
+        "sha256": "3f71076c026cb98d36bd74b3eba9f126ca8d0cef1bd7d92a66fec50a8af3154a"
+      }
+    }
+  ]
+}

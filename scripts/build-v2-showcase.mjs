@@ -2,6 +2,7 @@ import {build} from 'esbuild';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createDefaultProfile,createRuntime} from '../dist/v2/node.mjs';
+import {createDesignExamples} from '../showcase-next/design-examples.mjs';
 import {samples as curatedSamples} from '../showcase-next/examples.mjs';
 const profile=createDefaultProfile();
 const answer=await readFile('showcase-next/answer.openui','utf8');
@@ -22,10 +23,13 @@ for(const component of Object.values(profile.components)){
  }
  samples[component.name]=source;
 }
+const designExamples=createDesignExamples(curatedSamples.Image.match(/data:image\/png;base64,[A-Za-z0-9+/=]+/)[0]);
+for(const example of designExamples)samples[example.id]=example.source;
+const colorTokens=JSON.parse(await readFile('docs/color-tokens.json','utf8'));
 for(const [name,source]of Object.entries({Answer:answer,...samples})){const runtime=createRuntime(profile);const result=runtime.commit(source);runtime.dispose();if(!result.ok)throw Error(name+': '+JSON.stringify(result.issues));}
 const manifest=profile.manifest();
 const selectionCatalog={components:manifest.components.map(({name,moduleId})=>({name,moduleId})),dataShapes:manifest.dataShapes.map(({name,moduleId})=>({name,moduleId}))};
-const data={selectionCatalog,version:'2.0.0-alpha.1',phase:'Architecture preview',sourceCount:Object.keys(profile.components).length,iconCount:catalog.iconCount,icons:catalog.icons.map(({name,category,aliases,keywords})=>({name,category,aliases,keywords})),answer,samples,components:Object.values(profile.components).map(c=>({name:c.name,layer:c.layer,description:c.description,docs:c.docs,params:c.orderedProps})),prompt:profile.prompt({bindings:true,builtinFunctions:true}),schema:profile.schema};
+const data={designExamples,colorTokens,selectionCatalog,version:'2.0.0-alpha.1',phase:'Architecture preview',sourceCount:Object.keys(profile.components).length,iconCount:catalog.iconCount,icons:catalog.icons.map(({name,category,aliases,keywords})=>({name,category,aliases,keywords})),answer,samples,components:Object.values(profile.components).map(c=>({name:c.name,layer:c.layer,description:c.description,docs:c.docs,params:c.orderedProps})),prompt:profile.prompt({bindings:true,builtinFunctions:true}),schema:profile.schema};
 const escape=value=>JSON.stringify(value).replace(/[<>&\u2028\u2029]/g,c=>({'<':'\\u003c','>':'\\u003e','&':'\\u0026','\u2028':'\\u2028','\u2029':'\\u2029'}[c]));
 const runtime=await readFile('dist/v2/inform-ui.global.js','utf8');
 let html=await readFile('showcase-next/index.html','utf8');
