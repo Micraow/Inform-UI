@@ -18,7 +18,7 @@ const report={target,file,sha256:expectedSha,mode:'trusted Playwright mouse/keyb
 try{
  for(const width of [1440,390]){
   const page=await browser.newPage({viewport:{width,height:1000}});page.on('pageerror',e=>report.errors.push(e.message));
-  const response=await page.goto(target);if(response){const servedSha=createHash('sha256').update(await response.body()).digest('hex');if(expectedSha&&servedSha!==expectedSha)throw Error('Served bytes differ from --artifact');report.sha256=servedSha;}await page.waitForSelector('html[data-ready="true"]');
+  const response=await page.goto(target);if(response){const servedSha=createHash('sha256').update(await response.body().catch(async error=>{if(!String(error).includes('evicted from inspector cache'))throw error;report.artifactVerification='Independent HTTP GET after Chromium inspector body eviction';const fetched=await fetch(target);if(!fetched.ok)throw Error('Artifact HTTP verification failed');return Buffer.from(await fetched.arrayBuffer());})).digest('hex');if(expectedSha&&servedSha!==expectedSha)throw Error('Served bytes differ from --artifact');report.sha256=servedSha;}await page.waitForSelector('html[data-ready="true"]');
   for(const sample of ['Slider','Answer']){
    if(sample==='Slider')await page.locator('.component-link[data-name="Slider"]').click();else await page.locator('#answer-nav').click();
    const selector='#preview input[type=range]';await page.locator(selector).scrollIntoViewIfNeeded();if(sample==='Answer')await page.locator('#preview [data-chart=BarChart],#preview [data-component=BarChart]').waitFor({state:'attached'});
