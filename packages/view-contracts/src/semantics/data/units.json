@@ -1,0 +1,427 @@
+{
+  "length": {
+    "zh": "长度",
+    "en": "Length",
+    "units": [
+      {
+        "id": "m",
+        "symbol": "m",
+        "zh": "米",
+        "en": "metre",
+        "factor": 1
+      },
+      {
+        "id": "cm",
+        "symbol": "cm",
+        "zh": "厘米",
+        "en": "centimetre",
+        "factor": 0.01
+      },
+      {
+        "id": "mm",
+        "symbol": "mm",
+        "zh": "毫米",
+        "en": "millimetre",
+        "factor": 0.001
+      },
+      {
+        "id": "km",
+        "symbol": "km",
+        "zh": "千米",
+        "en": "kilometre",
+        "factor": 1000
+      },
+      {
+        "id": "in",
+        "symbol": "in",
+        "zh": "英寸",
+        "en": "inch",
+        "factor": 0.0254
+      },
+      {
+        "id": "ft",
+        "symbol": "ft",
+        "zh": "国际英尺",
+        "en": "international foot",
+        "factor": 0.3048
+      },
+      {
+        "id": "yd",
+        "symbol": "yd",
+        "zh": "码",
+        "en": "yard",
+        "factor": 0.9144
+      },
+      {
+        "id": "mi",
+        "symbol": "mi",
+        "zh": "国际英里",
+        "en": "international mile",
+        "factor": 1609.344
+      },
+      {
+        "id": "nmi",
+        "symbol": "nmi",
+        "zh": "海里",
+        "en": "nautical mile",
+        "factor": 1852
+      }
+    ]
+  },
+  "mass": {
+    "zh": "质量",
+    "en": "Mass",
+    "units": [
+      {
+        "id": "kg",
+        "symbol": "kg",
+        "zh": "千克",
+        "en": "kilogram",
+        "factor": 1
+      },
+      {
+        "id": "g",
+        "symbol": "g",
+        "zh": "克",
+        "en": "gram",
+        "factor": 0.001
+      },
+      {
+        "id": "mg",
+        "symbol": "mg",
+        "zh": "毫克",
+        "en": "milligram",
+        "factor": 0.000001
+      },
+      {
+        "id": "t",
+        "symbol": "t",
+        "zh": "公吨",
+        "en": "tonne",
+        "factor": 1000
+      },
+      {
+        "id": "lb",
+        "symbol": "lb",
+        "zh": "磅（常衡）",
+        "en": "pound (avoirdupois)",
+        "factor": 0.45359237
+      },
+      {
+        "id": "oz",
+        "symbol": "oz",
+        "zh": "盎司（常衡）",
+        "en": "ounce (avoirdupois)",
+        "factor": 0.028349523125
+      }
+    ]
+  },
+  "temperature": {
+    "zh": "温度",
+    "en": "Temperature",
+    "units": [
+      {
+        "id": "K",
+        "symbol": "K",
+        "zh": "开尔文",
+        "en": "kelvin",
+        "factor": 1
+      },
+      {
+        "id": "C",
+        "symbol": "°C",
+        "zh": "摄氏度",
+        "en": "degree Celsius",
+        "factor": 1
+      },
+      {
+        "id": "F",
+        "symbol": "°F",
+        "zh": "华氏度",
+        "en": "degree Fahrenheit",
+        "factor": 0.5555555555555556
+      }
+    ]
+  },
+  "speed": {
+    "zh": "速度",
+    "en": "Speed",
+    "units": [
+      {
+        "id": "m-s",
+        "symbol": "m/s",
+        "zh": "米每秒",
+        "en": "metre per second",
+        "factor": 1
+      },
+      {
+        "id": "km-h",
+        "symbol": "km/h",
+        "zh": "千米每小时",
+        "en": "kilometre per hour",
+        "factor": 0.2777777777777778
+      },
+      {
+        "id": "ft-s",
+        "symbol": "ft/s",
+        "zh": "英尺每秒",
+        "en": "foot per second",
+        "factor": 0.3048
+      },
+      {
+        "id": "mph",
+        "symbol": "mph",
+        "zh": "英里每小时",
+        "en": "mile per hour",
+        "factor": 0.44704
+      },
+      {
+        "id": "kn",
+        "symbol": "kn",
+        "zh": "节",
+        "en": "knot",
+        "factor": 0.5144444444444445
+      }
+    ]
+  },
+  "area": {
+    "zh": "面积",
+    "en": "Area",
+    "units": [
+      {
+        "id": "m2",
+        "symbol": "m²",
+        "zh": "平方米",
+        "en": "square metre",
+        "factor": 1
+      },
+      {
+        "id": "cm2",
+        "symbol": "cm²",
+        "zh": "平方厘米",
+        "en": "square centimetre",
+        "factor": 0.0001
+      },
+      {
+        "id": "km2",
+        "symbol": "km²",
+        "zh": "平方千米",
+        "en": "square kilometre",
+        "factor": 1000000
+      },
+      {
+        "id": "ft2",
+        "symbol": "ft²",
+        "zh": "平方国际英尺",
+        "en": "square international foot",
+        "factor": 0.09290304
+      },
+      {
+        "id": "ha",
+        "symbol": "ha",
+        "zh": "公顷",
+        "en": "hectare",
+        "factor": 10000
+      },
+      {
+        "id": "acre",
+        "symbol": "acre",
+        "zh": "英亩（国际英尺）",
+        "en": "acre (international foot)",
+        "factor": 4046.8564224
+      }
+    ]
+  },
+  "volume": {
+    "zh": "体积",
+    "en": "Volume",
+    "units": [
+      {
+        "id": "L",
+        "symbol": "L",
+        "zh": "升",
+        "en": "litre",
+        "factor": 1
+      },
+      {
+        "id": "mL",
+        "symbol": "mL",
+        "zh": "毫升",
+        "en": "millilitre",
+        "factor": 0.001
+      },
+      {
+        "id": "m3",
+        "symbol": "m³",
+        "zh": "立方米",
+        "en": "cubic metre",
+        "factor": 1000
+      },
+      {
+        "id": "gal-us",
+        "symbol": "US gal",
+        "zh": "美制液体加仑",
+        "en": "US liquid gallon",
+        "factor": 3.785411784
+      },
+      {
+        "id": "gal-imp",
+        "symbol": "imp gal",
+        "zh": "英制加仑",
+        "en": "Imperial gallon",
+        "factor": 4.54609
+      }
+    ]
+  },
+  "time": {
+    "zh": "时长",
+    "en": "Duration",
+    "units": [
+      {
+        "id": "s",
+        "symbol": "s",
+        "zh": "秒",
+        "en": "second",
+        "factor": 1
+      },
+      {
+        "id": "ms",
+        "symbol": "ms",
+        "zh": "毫秒",
+        "en": "millisecond",
+        "factor": 0.001
+      },
+      {
+        "id": "min",
+        "symbol": "min",
+        "zh": "分钟",
+        "en": "minute",
+        "factor": 60
+      },
+      {
+        "id": "h",
+        "symbol": "h",
+        "zh": "小时",
+        "en": "hour",
+        "factor": 3600
+      },
+      {
+        "id": "d",
+        "symbol": "d",
+        "zh": "日（86400秒）",
+        "en": "day (86400 seconds)",
+        "factor": 86400
+      }
+    ]
+  },
+  "pressure": {
+    "zh": "压强",
+    "en": "Pressure",
+    "units": [
+      {
+        "id": "Pa",
+        "symbol": "Pa",
+        "zh": "帕斯卡",
+        "en": "pascal",
+        "factor": 1
+      },
+      {
+        "id": "kPa",
+        "symbol": "kPa",
+        "zh": "千帕",
+        "en": "kilopascal",
+        "factor": 1000
+      },
+      {
+        "id": "MPa",
+        "symbol": "MPa",
+        "zh": "兆帕",
+        "en": "megapascal",
+        "factor": 1000000
+      },
+      {
+        "id": "bar",
+        "symbol": "bar",
+        "zh": "巴",
+        "en": "bar",
+        "factor": 100000
+      },
+      {
+        "id": "atm",
+        "symbol": "atm",
+        "zh": "标准大气压",
+        "en": "standard atmosphere",
+        "factor": 101325
+      },
+      {
+        "id": "psi",
+        "symbol": "psi",
+        "zh": "磅力每平方英寸",
+        "en": "pound-force per square inch",
+        "factor": 6894.757293168361
+      }
+    ]
+  },
+  "data": {
+    "zh": "数据量",
+    "en": "Data size",
+    "units": [
+      {
+        "id": "B",
+        "symbol": "B",
+        "zh": "字节",
+        "en": "byte",
+        "factor": 1
+      },
+      {
+        "id": "bit",
+        "symbol": "bit",
+        "zh": "比特",
+        "en": "bit",
+        "factor": 0.125
+      },
+      {
+        "id": "kB",
+        "symbol": "kB",
+        "zh": "千字节（十进制）",
+        "en": "kilobyte (decimal)",
+        "factor": 1000
+      },
+      {
+        "id": "MB",
+        "symbol": "MB",
+        "zh": "兆字节（十进制）",
+        "en": "megabyte (decimal)",
+        "factor": 1000000
+      },
+      {
+        "id": "GB",
+        "symbol": "GB",
+        "zh": "吉字节（十进制）",
+        "en": "gigabyte (decimal)",
+        "factor": 1000000000
+      },
+      {
+        "id": "KiB",
+        "symbol": "KiB",
+        "zh": "二进制千字节",
+        "en": "kibibyte",
+        "factor": 1024
+      },
+      {
+        "id": "MiB",
+        "symbol": "MiB",
+        "zh": "二进制兆字节",
+        "en": "mebibyte",
+        "factor": 1048576
+      },
+      {
+        "id": "GiB",
+        "symbol": "GiB",
+        "zh": "二进制吉字节",
+        "en": "gibibyte",
+        "factor": 1073741824
+      }
+    ]
+  }
+}

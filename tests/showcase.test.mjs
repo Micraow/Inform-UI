@@ -74,3 +74,28 @@ test('authored layouts demonstrate composition instead of minimized security fix
     assert.equal(find(type).document.body[1].type, type);
   }
 });
+
+test('animate starts with visible, explicitly replayable content rather than an empty boundary',()=>{
+ const entry=catalog.entries.find(entry=>entry.type==='animate');assert.equal(entry.sourceExample,'showcase/examples/animate.json');const n=entry.document.body[0];assert.equal(n.type,'animate');assert.ok(n.children.length>0);assert.equal(n.effect,'rise');assert.equal(n.duration,800);assert.match(JSON.stringify(n.children),/Reduce motion/);
+});
+
+test('native video is a supplemental html-view demonstration, never a fictional wire type',()=>{
+ assert.equal(catalog.inventoryCount,catalog.entries.length);assert.equal(catalog.entries.some(entry=>entry.type==='video'),false);
+ assert.equal(catalog.demonstrations.length,1);const demo=catalog.demonstrations[0];assert.equal(demo.type,'video');assert.equal(demo.wireType,'html-view');assert.equal(demo.document.body[0].type,'html-view');assert.equal(demo.sourceExample,'showcase/examples/video.json');assert.equal(validateDocument(demo.document).ok,true);assert.ok(catalog.entries.some(entry=>entry.type==='youtube'));
+});
+
+test('fail-fast structural validation still rejects invalid envelopes, unknown nodes and unknown fields',()=>{
+ for(const document of [{version:'wrong',body:[]},{version:'iui/1',body:[{type:'not-a-node'}]},{version:'iui/1',body:[{type:'text',value:'visible',unexpected:true}]}])assert.equal(structural(document),false);
+});
+
+test('fee overview demonstrates semantic categories without the test-fixture placeholder logo', async () => {
+  const catalog = await createShowcaseCatalog();
+  const entry = catalog.entries.find(item => item.type === 'ledger-fee-interest-paid');
+  assert.equal(entry.sourceExample, 'showcase/examples/ledger-fee-interest-paid.json');
+  const node = entry.document.body[0];
+  assert.equal(node.ranges.length, 2);
+  assert.ok(node.ranges[0].transactions.some(row => row.categoryIcon === 'receipt'));
+  assert.ok(node.ranges[0].transactions.some(row => row.categoryIcon === 'percent'));
+  assert.ok(node.ranges.every(range => range.transactions.every(row => row.logoUrl === undefined)));
+  assert.equal(node.ranges[1].transactions.length, 0);
+});

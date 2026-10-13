@@ -146,3 +146,18 @@ test('standalone licenses stay readable and rebuilding the same sources is deter
   assert.equal(repeat.sha256, result.sha256);
   assert.equal(await readFile(join(directory, 'repeat.html'), 'utf8'), html);
 });
+
+
+test('standalone icon catalog is complete and opens without a sibling-file request', () => {
+  const trigger = doc.getElementById('open-standalone-icons'), dialog = doc.getElementById('standalone-icons'), frame = doc.getElementById('standalone-icons-frame');
+  const source = JSON.parse(doc.getElementById('iui-standalone-icons-document').textContent);
+  const embedded = new JSDOM(source);
+  const icons = JSON.parse(embedded.window.document.getElementById('iui-icon-catalog').textContent);
+  assert.equal(icons.iconCount, 755);assert.equal(icons.icons.length, 755);
+  assert.equal(result.iconCount, 755);
+  assert.equal(doc.querySelector('a[href="./icons.html"]'), null);
+  trigger.focus();trigger.click();assert.equal(dialog.open, true);assert.equal(frame.srcdoc, source);
+  doc.getElementById('close-standalone-icons').click();
+  assert.equal(dialog.open, false);assert.equal(frame.getAttribute('srcdoc'), null);assert.equal(doc.activeElement, trigger);
+  embedded.window.close();
+});

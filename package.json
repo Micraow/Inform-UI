@@ -1,8 +1,8 @@
 {
   "name": "@micraow/inform-ui",
-  "version": "0.1.0",
+  "version": "2.0.0-alpha.1",
   "private": true,
-  "description": "Independent, deterministic scientific UI from iui/1 JSON",
+  "description": "Declarative, interactive answers from a compact DSL, shared Intelligent-style controls, and composable views.",
   "type": "module",
   "license": "MIT",
   "engines": {
@@ -18,7 +18,24 @@
       "import": "./dist/browser.js"
     },
     "./schema": "./src/schema/iui.schema.json",
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./icons": {
+      "types": "./dist/types/icons/index.d.ts",
+      "import": "./dist/icons/index.js"
+    },
+    "./icons/all": {
+      "types": "./dist/types/icons/all.d.ts",
+      "import": "./dist/icons/all.js"
+    },
+    "./icons/catalog.json": "./dist/icons/catalog.json",
+    "./icons/manifest.json": "./dist/icons/manifest.json",
+    "./icons/LICENSE": "./dist/icons/LICENSE",
+    "./icons/*": {
+      "types": "./dist/types/icons/definitions/*.d.ts",
+      "import": "./dist/icons/definitions/*.js"
+    },
+    "./next": "./dist/v2/inform-ui.js",
+    "./next/core": "./dist/v2/inform-core.js"
   },
   "bin": {
     "iui": "./bin/iui.mjs"
@@ -39,16 +56,32 @@
     "check:boundary": "node scripts/check-boundary.mjs",
     "check": "npm run generate && npm run build && npm run build:cdn && npm run typecheck && npm run check:queues && npm test && npm run test:types && npm run check:boundary",
     "check:queues": "node scripts/check-owned-queues.mjs",
-    "test:types": "tsc --noEmit --strict --module NodeNext --target ES2022 --skipLibCheck tests/types-consumer.mts",
+    "test:types": "tsc --noEmit --strict --module NodeNext --target ES2022 --skipLibCheck tests/types-consumer.mts && tsc --noEmit --strict --module NodeNext --target ES2022 --skipLibCheck tests/icons-types-consumer.mts",
     "build:cdn": "node scripts/build-cdn.mjs",
     "build:showcase": "node scripts/build-showcase.mjs",
     "showcase": "npm run build && npm run build:showcase && node scripts/serve-showcase.mjs",
-    "test:showcase": "playwright test --config playwright.showcase.config.mjs"
+    "test:showcase": "playwright test --config playwright.showcase.config.mjs",
+    "build:next": "node scripts/build-v2.mjs",
+    "showcase:next": "npm run build:next && node scripts/build-v2-showcase.mjs",
+    "test:next": "node --test --test-concurrency=1 tests/v2/*.test.mjs",
+    "typecheck:next": "tsc -p tsconfig.v2.json --noEmit"
   },
   "dependencies": {
     "ajv": "8.20.0",
     "katex": "0.18.2",
-    "lottie-web": "5.13.0"
+    "lottie-web": "5.13.0",
+    "@floating-ui/react-dom": "2.1.6",
+    "@radix-ui/react-separator": "1.1.7",
+    "@radix-ui/react-slot": "1.2.4",
+    "@radix-ui/react-tooltip": "1.2.7",
+    "clsx": "2.1.1",
+    "d3-scale": "4.0.2",
+    "d3-selection": "3.0.0",
+    "d3-shape": "3.2.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "zod": "4.1.12",
+    "zustand": "5.0.8"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",
@@ -58,6 +91,12 @@
     "jsdom": "26.1.0",
     "json-schema-to-typescript": "15.0.4",
     "parse5": "7.3.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "@types/d3-scale": "4.0.9",
+    "@types/d3-selection": "3.0.11",
+    "@types/d3-shape": "3.1.8",
+    "@types/react": "19.1.16",
+    "@types/react-dom": "19.1.9",
+    "sass": "1.93.2"
   }
 }

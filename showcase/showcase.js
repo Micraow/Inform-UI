@@ -45,10 +45,20 @@ function logEvent(type, detail) {
 }
 function renderList() {
   const query = $('search').value.trim().toLowerCase(), category = $('category').value;
+  const demoMatches = (catalog.demonstrations ?? []).filter(entry => (category === 'all' || entry.group === category) && `${entry.type} ${entry.moduleTitle} ${entry.wireType}`.toLowerCase().includes(query));
   const matches = catalog.entries.filter(entry => (category === 'all' || entry.group === category) && `${entry.type} ${entry.moduleId} ${entry.moduleTitle} ${entry.category}`.toLowerCase().includes(query));
   $('result-count').textContent = `${matches.length} of ${catalog.inventoryCount} schema nodes`;
   $('clear-filters').hidden = !query && category === 'all';
   const fragment = document.createDocumentFragment();
+  if (demoMatches.length) {
+    fragment.append(node('h3', 'Local demonstrations'));
+    for (const entry of demoMatches) {
+      const link = node('a', 'video · native playback', 'demo-link'); link.href = '#video'; link.dataset.type = 'video';
+      link.setAttribute('aria-label', 'video, native HTML demonstration');
+      if (entry.type === selected?.type) link.setAttribute('aria-current', 'page');
+      fragment.append(link);
+    }
+  }
   for (const group of catalog.groups) {
     const items = matches.filter(entry => entry.group === group.id);
     if (!items.length) continue;
@@ -62,8 +72,14 @@ function renderList() {
       fragment.append(link);
     }
   }
-  if (!matches.length) fragment.append(node('p', 'No matching components. Try another name or clear your filters.', 'no-results'));
+  if (!matches.length && !demoMatches.length) fragment.append(node('p', 'No matching components. Try another name or clear your filters.', 'no-results'));
   $('component-list').replaceChildren(fragment);
+}
+function resetPreviewScroll() {
+  for (const pane of document.querySelectorAll('.preview-background, .code-scroll')) {
+    pane.scrollTop = 0;
+    pane.scrollLeft = 0;
+  }
 }
 function renderPreview() {
   controller?.dispose(); controller = undefined;
@@ -79,6 +95,7 @@ function renderPreview() {
     $('json-label').textContent = '{ } Rejected example';
     document.querySelector('.code-footnote span:last-child').textContent = 'Expected semantic rejection';
     $('preview-label').lastChild.textContent = ' Validation boundary';
+    resetPreviewScroll();
     return;
   }
   $('json-label').textContent = '{ } Mounted JSON';
@@ -92,18 +109,20 @@ function renderPreview() {
     warning.append(node('strong', 'This preview could not mount.'), node('pre', error.message));
     $('preview').append(warning); $('preview').dataset.status = 'error';
   }
+  resetPreviewScroll();
 }
 function choose(type, { reveal = false } = {}) {
-  const next = catalog.entries.find(entry => entry.type === type);
+  const next = [...catalog.entries, ...(catalog.demonstrations ?? [])].find(entry => entry.type === type);
   if (!next) { toast(`Unknown component: ${type}`); return; }
   selected = next;
   const group = catalog.groups.find(item => item.id === selected.group);
   $('component-group').textContent = group.title;
   $('component-title').textContent = selected.type;
   $('component-description').textContent = selected.moduleTitle;
-  $('component-status').textContent = selected.status === 'rejected' ? 'Rejected by design' : 'Schema + semantics checked';
+  $('component-status').textContent = selected.kind === 'demonstration' ? 'Local playback · html-view' : selected.status === 'rejected' ? 'Rejected by design' : 'Schema + semantics checked';
   $('component-status').classList.toggle('rejected', selected.status === 'rejected');
   $('component-notes').replaceChildren(...selected.notes.map(note => node('li', note)));
+  if (selected.type === 'youtube') { const item = node('li'); const link = node('a', 'Open playable local video'); link.href = '#video'; item.append(link); $('component-notes').prepend(item); }
   tokens('owner-module', [selected.moduleId]); tokens('declared-deps', selected.declaredDependencies); tokens('resolved-deps', selected.resolvedModules); tokens('included-types', selected.includes, true); tokens('required-fields', selected.requiredFields); tokens('all-fields', selected.properties);
   $('contracts').replaceChildren(...selected.contractPaths.map(path => {
     const link = node('a', `${path.split('/').at(-1).replace('.md', '').split('#')[0]}`); link.href = repo + path; link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
@@ -161,6 +180,6 @@ try {
     logEvent(event, e.detail);
   });
   const type = hashType();
-  if (!catalog.entries.some(entry => entry.type === type)) { history.replaceState(null, '', '#chart'); choose('chart'); toast('That component was not found. Showing chart.'); }
+  if (![...catalog.entries, ...(catalog.demonstrations ?? [])].some(entry => entry.type === type)) { history.replaceState(null, '', '#chart'); choose('chart'); toast('That component was not found. Showing chart.'); }
   else choose(type);
 } catch (error) { $('loading').textContent = `The studio could not load: ${error.message}. Start it with npm run showcase.`; }

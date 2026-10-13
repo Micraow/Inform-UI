@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search all 755 pinned OpenAI Apps SDK UI icons, inspect the original artwork, and copy a lightweight Inform UI import.">
+  <meta name="color-scheme" content="light dark">
+  <title>Inform UI · Icon library</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%232d2d2d'/%3E%3Cpath d='M12 12h6v6h-6zm10 0h6v16h-6zM12 22h6v6h-6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./icons.css">
+</head>
+<body>
+  <a class="skip-link" href="#icon-search">Skip to icon search</a>
+  <header class="topbar">
+    <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Inform <b>UI</b></span></a>
+    <nav aria-label="Project"><a href="./index.html">Components</a><a href="./gallery.html">Gallery</a><a class="current" href="./icons.html" aria-current="page">Icons</a><button id="theme-toggle" class="theme-button" type="button" aria-label="Use dark theme" aria-pressed="false"><span aria-hidden="true">◐</span></button></nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow">THE ICON LIBRARY</p><h1 id="hero-title">Small shapes.<br><span>Endless possibilities.</span></h1><p class="intro">The complete, pinned OpenAI Apps SDK UI icon set.<br>Find a glyph. Inspect the original. Take just what you need.</p></div>
+      <dl class="library-stats" aria-label="Icon library coverage"><div><dt>Official icons</dt><dd id="total-count">755</dd></div><div><dt>Browse categories</dt><dd id="category-count">16</dd></div><div><dt>Open source</dt><dd>MIT</dd></div></dl>
+    </section>
+    <section class="explorer" aria-label="Searchable icon catalog">
+      <div class="filter-bar">
+        <label class="search-field" for="icon-search"><span class="search-symbol" aria-hidden="true">⌕</span><span class="sr-only">Search icons by name, alias, keyword or category</span><input id="icon-search" type="search" autocomplete="off" spellcheck="false" placeholder="Search names, aliases, keywords…"><kbd aria-hidden="true">/</kbd></label>
+        <label class="category-field"><span class="sr-only">Icon category</span><select id="icon-category"><option value="all">All categories</option></select></label>
+        <button id="download-catalog" class="secondary-button" type="button">Download JSON</button>
+      </div>
+      <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Preparing 755 icons…</p><button id="clear-filters" class="text-button" type="button" hidden>Clear filters</button><span class="keyboard-hint">Choose an icon to inspect &amp; copy</span></div>
+      <p class="catalog-error" id="catalog-error" role="alert" hidden></p>
+      <div id="empty-state" class="empty-state" hidden><p class="empty-mark" aria-hidden="true">∅</p><h2>No matching icons</h2><p>Try a different name, alias or keyword, or clear the category filter. Unknown names are never replaced with a fallback glyph.</p><button id="reset-empty" class="secondary-button" type="button">Show all icons</button></div>
+      <ul id="icon-grid" class="icon-grid" aria-label="Official icons"></ul>
+    </section>
+    <section class="library-notes" aria-label="Source and integration notes">
+      <div><h2>Original artwork, native SVG.</h2><p>Original viewBoxes, colors and local clipping are preserved. Monochrome icons inherit the text color. Each icon is rendered with Inform UI’s createIcon API; React and Tailwind are not required.</p><p>This icon package is independent of the 219 schema nodes. Migration of existing component icons is not yet complete. Categories and semantic aliases are Inform UI additions; canonical names retain the upstream spelling.</p></div>
+      <div><h2>Pinned &amp; traceable.</h2><p><a id="upstream-link" target="_blank" rel="noopener noreferrer">OpenAI Apps SDK UI</a> · MIT</p><p class="source-commit">Commit <a id="commit-link" target="_blank" rel="noopener noreferrer"></a></p><p>All icon data, rendering code and license text are embedded in this file. Search and previews work offline. Source links open the upstream repository when you choose them.</p></div>
+    </section>
+    <details class="license-notices"><summary>Bundled licenses &amp; attribution</summary><pre id="license-text"><!-- ICON_LICENSES --></pre></details>
+  </main>
+  <footer><span>Inform UI · Icon library</span><span>755 icons. Original geometry. Zero runtime requests.</span></footer>
+  <dialog id="icon-dialog" aria-labelledby="icon-title">
+    <div class="dialog-header"><p class="eyebrow">ICON DETAILS</p><button id="close-icon" class="secondary-button" type="button" autofocus>Close</button></div>
+    <div class="detail-layout">
+      <section class="artwork-column" aria-label="Original icon preview"><div id="icon-preview" class="preview-stage"></div><label class="size-control" for="preview-size">Preview size<select id="preview-size"><option value="24">24 px</option><option value="32">32 px</option><option value="48">48 px</option><option value="64" selected>64 px</option><option value="96">96 px</option></select></label><p class="preview-note">Original viewBox &amp; colors.<br>Size changes do not alter the artwork.</p></section>
+      <section class="icon-details"><h2 id="icon-title"></h2><p id="icon-group" class="detail-category"></p><dl class="detail-metadata"><div><dt>viewBox</dt><dd id="icon-viewbox"></dd></div><div><dt>Semantic aliases</dt><dd id="icon-aliases"></dd></div><div><dt>Keywords</dt><dd id="icon-keywords"></dd></div></dl><div class="code-heading"><h3>Import only this icon</h3><button id="copy-import" class="secondary-button" type="button">Copy code</button></div><pre class="import-code" tabindex="0" aria-label="Copyable icon import example"><code id="import-example"></code></pre><p class="api-note">Pass a label for a meaningful image. Omit label for decorative icons; they are hidden from assistive technology by default.</p><div class="detail-links"><a id="icon-source" target="_blank" rel="noopener noreferrer">View official source ↗</a><button id="download-icon" class="text-button" type="button">Download icon JSON</button></div><p id="dialog-status" class="dialog-status" role="status" aria-live="polite"></p></section>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript>This icon explorer needs JavaScript. The bundled catalog and license text remain available in this HTML file.</noscript>
+  <!-- ICON_DATA -->
+  <script type="module" src="./icons.js"></script>
+</body>
+</html>

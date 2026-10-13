@@ -1,0 +1,1905 @@
+[
+  {
+    "name": "AgendaView",
+    "oldType": "agenda",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PersonProfileView",
+    "oldType": "person-profile",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "NewsArticleView",
+    "oldType": "news-article",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EntityReviewsView",
+    "oldType": "entity-reviews",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RestaurantAvailabilityView",
+    "oldType": "restaurant-availability",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OnboardingSelectionView",
+    "oldType": "onboarding-selection",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CreateInteractivePollView",
+    "oldType": "create-interactive-poll",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LocationChoiceRequestView",
+    "oldType": "location-choice-request",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "BusinessGalleryView",
+    "oldType": "business-gallery",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FlightOptionView",
+    "oldType": "flight-option",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ArtistUpcomingEventsView",
+    "oldType": "artist-upcoming-events",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PackageTrackerView",
+    "oldType": "package-tracker",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FlightTrackerView",
+    "oldType": "flight-tracker",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SidebarPeopleAlsoAskView",
+    "oldType": "sidebar-people-also-ask",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EmailPreviewView",
+    "oldType": "email-preview",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FileNavListView",
+    "oldType": "file-nav-list",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "JobsView",
+    "oldType": "jobs",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ProductCardView",
+    "oldType": "product-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LocalBusinessView",
+    "oldType": "local-business",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RestaurantReviewsView",
+    "oldType": "restaurant-reviews",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FlightSearchFormView",
+    "oldType": "flight-search-form",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FlightResultsView",
+    "oldType": "flight-results",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SharedActivityPlannerView",
+    "oldType": "shared-activity-planner",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EventSidebarView",
+    "oldType": "event-sidebar",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WordCardView",
+    "oldType": "word-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CopyWordsView",
+    "oldType": "copy-words",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CodeCiteView",
+    "oldType": "code-cite",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FileCiteView",
+    "oldType": "file-cite",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SidebarFactTableView",
+    "oldType": "sidebar-fact-table",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EntityThumbnailListView",
+    "oldType": "entity-thumbnail-list",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RedditThreadCardView",
+    "oldType": "reddit-thread-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "MarkdownView",
+    "oldType": "markdown",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WritingBlockView",
+    "oldType": "writing-block",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EmailDraftView",
+    "oldType": "email-draft",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TaskExpansionCardView",
+    "oldType": "task-expansion-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CodeView",
+    "oldType": "code",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "MathView",
+    "oldType": "math",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SpacerView",
+    "oldType": "spacer",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LinkView",
+    "oldType": "link",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 32,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FaviconView",
+    "oldType": "favicon",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "GridItemView",
+    "oldType": "grid-item",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 30,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "BlockquoteView",
+    "oldType": "blockquote",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 30,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SectionView",
+    "oldType": "section",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FigureView",
+    "oldType": "figure",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "DetailsView",
+    "oldType": "details",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TooltipView",
+    "oldType": "tooltip",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PopoverView",
+    "oldType": "popover",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 20,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PulseIndicatorView",
+    "oldType": "pulse-indicator",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LoadingView",
+    "oldType": "loading",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LoadingBlockView",
+    "oldType": "loading-block",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CitationView",
+    "oldType": "citation",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WebLinkCardsView",
+    "oldType": "web-link-cards",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PromptSuggestionsView",
+    "oldType": "prompt-suggestions",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AnimateView",
+    "oldType": "animate",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 50,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CelebrationView",
+    "oldType": "celebration",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CarouselView",
+    "oldType": "carousel",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TabPanelView",
+    "oldType": "tab-panel",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TabGroupView",
+    "oldType": "tab-group",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 20,
+        "accepts": [
+          "TabPanelView"
+        ]
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ListView",
+    "oldType": "list",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RestaurantMenuView",
+    "oldType": "restaurant-menu",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "MetricView",
+    "oldType": "metric",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "MetricGridView",
+    "oldType": "metric-grid",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 12,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "StepsView",
+    "oldType": "steps",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LabelView",
+    "oldType": "label",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ChecklistView",
+    "oldType": "checklist",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RatingView",
+    "oldType": "rating",
+    "classification": "view",
+    "slots": {},
+    "bindings": [
+      {
+        "prop": "value",
+        "dataProp": null,
+        "schema": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "optional": false
+      }
+    ],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SegmentedView",
+    "oldType": "segmented",
+    "classification": "view",
+    "slots": {},
+    "bindings": [
+      {
+        "prop": "value",
+        "dataProp": null,
+        "schema": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 12000
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "optional": false
+      }
+    ],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FieldView",
+    "oldType": "field",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 20,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FormView",
+    "oldType": "form",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 0,
+        "max": 500,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [
+      {
+        "prop": "onSubmit",
+        "scope": "local",
+        "required": true
+      }
+    ],
+    "actionProps": [
+      "onSubmit"
+    ]
+  },
+  {
+    "name": "TopologyView",
+    "oldType": "topology",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ClockView",
+    "oldType": "clock",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "StopwatchView",
+    "oldType": "stopwatch",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TimerView",
+    "oldType": "timer",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WeatherView",
+    "oldType": "weather",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "F1RacesView",
+    "oldType": "f1-races",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "F1StandingsView",
+    "oldType": "f1-standings",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SportsScheduleView",
+    "oldType": "sports-schedule",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SportsScoreboardView",
+    "oldType": "sports-scoreboard",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SportsStandingsView",
+    "oldType": "sports-standings",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "QuizView",
+    "oldType": "quiz",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FlashcardsView",
+    "oldType": "flashcards",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FillBlankView",
+    "oldType": "fill-blank",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SentenceBuilderView",
+    "oldType": "sentence-builder",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "VocabCardView",
+    "oldType": "vocab-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FinanceQuoteView",
+    "oldType": "finance-quote",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FinanceChartView",
+    "oldType": "finance-chart",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FinanceComparisonView",
+    "oldType": "finance-comparison",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FinanceHeatmapView",
+    "oldType": "finance-heatmap",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AssetDistributionView",
+    "oldType": "asset-distribution",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TransactionListView",
+    "oldType": "transaction-list",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerAccountsView",
+    "oldType": "ledger-accounts",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerRecurringTransactionsView",
+    "oldType": "ledger-recurring-transactions",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "NbaScoresView",
+    "oldType": "nba-scores",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SoccerGamesView",
+    "oldType": "soccer-games",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AmericanFootballGamesView",
+    "oldType": "american-football-games",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "BasketballTournamentView",
+    "oldType": "basketball-tournament",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ElectionResultsView",
+    "oldType": "election-results",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "NbaGameBoxscoreView",
+    "oldType": "nba-game-boxscore",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CricketMatchBoxscoreView",
+    "oldType": "cricket-match-boxscore",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "NbaPlayerSummaryView",
+    "oldType": "nba-player-summary",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TennisPlayerSummaryView",
+    "oldType": "tennis-player-summary",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "UnitConverterView",
+    "oldType": "unit-converter",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CurrencyConverterView",
+    "oldType": "currency-converter",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SvgView",
+    "oldType": "svg",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FollowUpCardGroupView",
+    "oldType": "follow-up-card-group",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerTransactionDetailView",
+    "oldType": "ledger-transaction-detail",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RecommendationCardView",
+    "oldType": "recommendation-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PromptChecklistView",
+    "oldType": "prompt-checklist",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerFinanceStatusBannerView",
+    "oldType": "ledger-finance-status-banner",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LearningAudioLabelCardView",
+    "oldType": "learning-audio-label-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LearningImageChoiceCardView",
+    "oldType": "learning-image-choice-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LearningImageLabelCardView",
+    "oldType": "learning-image-label-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WeatherSidebarTitleView",
+    "oldType": "weather-sidebar-title",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerLowConfidenceCategoryCorrectionView",
+    "oldType": "ledger-low-confidence-category-correction",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerNetWorthView",
+    "oldType": "ledger-net-worth",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PressableView",
+    "oldType": "pressable",
+    "classification": "view",
+    "slots": {
+      "children": {
+        "min": 1,
+        "max": 30,
+        "accepts": "all"
+      }
+    },
+    "bindings": [],
+    "actions": [
+      {
+        "prop": "onPress",
+        "scope": "local",
+        "required": true
+      }
+    ],
+    "actionProps": [
+      "onPress"
+    ]
+  },
+  {
+    "name": "LedgerFeeInterestPaidView",
+    "oldType": "ledger-fee-interest-paid",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "HtmlViewView",
+    "oldType": "html-view",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "YoutubeView",
+    "oldType": "youtube",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SearchImageView",
+    "oldType": "search-image",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AsyncImageGroupView",
+    "oldType": "async-image-group",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AsyncImageView",
+    "oldType": "async-image",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LottieView",
+    "oldType": "lottie",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TabbedSectionView",
+    "oldType": "tabbed-section",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "VisualCardCarouselView",
+    "oldType": "visual-card-carousel",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LinkCardView",
+    "oldType": "link-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RecommendationLinkCardView",
+    "oldType": "recommendation-link-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerSpendSoFarThisMonthView",
+    "oldType": "ledger-spend-so-far-this-month",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerUpcomingActivityView",
+    "oldType": "ledger-upcoming-activity",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ImageGridView",
+    "oldType": "image-grid",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ConversationSuggestionsView",
+    "oldType": "conversation-suggestions",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FollowUpActionBarView",
+    "oldType": "follow-up-action-bar",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerIncomeTrackerView",
+    "oldType": "ledger-income-tracker",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AsyncVideoCarouselView",
+    "oldType": "async-video-carousel",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "DisplayAutomationView",
+    "oldType": "display-automation",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ListAutomationsView",
+    "oldType": "list-automations",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AutomationPlanSummaryView",
+    "oldType": "automation-plan-summary",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ScheduledTaskSuggestionView",
+    "oldType": "scheduled-task-suggestion",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EntityCardView",
+    "oldType": "entity-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EntityOverviewView",
+    "oldType": "entity-overview",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AskUserDetailsView",
+    "oldType": "ask-user-details",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AskUserFilesView",
+    "oldType": "ask-user-files",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerSpendByCategoryView",
+    "oldType": "ledger-spend-by-category",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerSpendByCategoryDetailView",
+    "oldType": "ledger-spend-by-category-detail",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerSpendByCategoryRecentTransactionsView",
+    "oldType": "ledger-spend-by-category-recent-transactions",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LearningVoiceModeLauncherCardView",
+    "oldType": "learning-voice-mode-launcher-card",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OfferVoiceConversationView",
+    "oldType": "offer-voice-conversation",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LearningSpeakCardView",
+    "oldType": "learning-speak-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ConversationalOnboardingAdviceView",
+    "oldType": "conversational-onboarding-advice",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ConversationalOnboardingWritingView",
+    "oldType": "conversational-onboarding-writing",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OnboardingFeatureCardView",
+    "oldType": "onboarding-feature-card",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OnboardingPluginSuggestionsView",
+    "oldType": "onboarding-plugin-suggestions",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OnboardingStarterTasksView",
+    "oldType": "onboarding-starter-tasks",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ConversationalOnboardingStudyView",
+    "oldType": "conversational-onboarding-study",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ConversationalOnboardingSearchView",
+    "oldType": "conversational-onboarding-search",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FollowUpQuizView",
+    "oldType": "follow-up-quiz",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "MultipleChoiceBlockV2View",
+    "oldType": "multiple-choice-block-v2",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PersonalityQuizView",
+    "oldType": "personality-quiz",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WhatsNewCapabilityWelcomeView",
+    "oldType": "whats-new-capability-welcome",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "AskUserLocationView",
+    "oldType": "ask-user-location",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ReservationTimePillsRefCarouselView",
+    "oldType": "reservation-time-pills-ref-carousel",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "WhatsNewCapabilitySearchView",
+    "oldType": "whats-new-capability-search",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PushDripSeriesIntroView",
+    "oldType": "push-drip-series-intro",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "StopPushDripSeriesView",
+    "oldType": "stop-push-drip-series",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "TaskAutopauseCardView",
+    "oldType": "task-autopause-card",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerFinanceOnboardingView",
+    "oldType": "ledger-finance-onboarding",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerRepairBankConnectionView",
+    "oldType": "ledger-repair-bank-connection",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "FinanceOnboardingSuggestionsView",
+    "oldType": "finance-onboarding-suggestions",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PlacesMetadataBarView",
+    "oldType": "places-metadata-bar",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "PluginFollowupView",
+    "oldType": "plugin-followup",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "InstantSuggestionsView",
+    "oldType": "instant-suggestions",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerEquityUpdatesView",
+    "oldType": "ledger-equity-updates",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerWatchlistView",
+    "oldType": "ledger-watchlist",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "HomeworkHelperV2View",
+    "oldType": "homework-helper-v2",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "ImageGenView",
+    "oldType": "image-gen",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "InternalPartnerAppView",
+    "oldType": "internal-partner-app",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "BentoView",
+    "oldType": "bento",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OpenDetailView",
+    "oldType": "open-detail",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "OpenaiView",
+    "oldType": "openai",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerCreditScoreView",
+    "oldType": "ledger-credit-score",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerCreditScoreDetailView",
+    "oldType": "ledger-credit-score-detail",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LedgerLowConfidenceCategoryCorrectionLegacyView",
+    "oldType": "ledger-low-confidence-category-correction-legacy",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SuperbowlRiddleView",
+    "oldType": "superbowl-riddle",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "LearningVizDilView",
+    "oldType": "learning-viz-dil",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CareProviderResultsView",
+    "oldType": "care-provider-results",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CareProviderSidebarView",
+    "oldType": "care-provider-sidebar",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "EntityView",
+    "oldType": "entity",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "GenImageView",
+    "oldType": "gen-image",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "SpeechSynthesizerView",
+    "oldType": "speech-synthesizer",
+    "classification": "host",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CalculatorCorrectedAdjustedAgeOfPretermInfantsView",
+    "oldType": "calculator-corrected-adjusted-age-of-preterm-infants",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CalculatorGlasgowComaScaleGcsView",
+    "oldType": "calculator-glasgow-coma-scale-gcs",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CalculatorRoxIndexForHighFlowNasalCannulaView",
+    "oldType": "calculator-rox-index-for-high-flow-nasal-cannula",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "CalculatorQsofaScoreView",
+    "oldType": "calculator-qsofa-score",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "QuestionnaireView",
+    "oldType": "questionnaire",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  },
+  {
+    "name": "RatingSummaryView",
+    "oldType": "rating-summary",
+    "classification": "view",
+    "slots": {},
+    "bindings": [],
+    "actions": [],
+    "actionProps": []
+  }
+]

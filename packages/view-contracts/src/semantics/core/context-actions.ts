@@ -1,0 +1,15 @@
+import type{Issue}from'./index.js';
+interface ContextBase{id?:string;label:string;status?:'resolved'|'pending'|'failed';fallback?:string;disabled?:boolean;resetLabel?:string;requestedLabel?:string;cancelledLabel?:string;loadImageLabel?:string}
+export interface ThemedContextIcon{light?:string;dark?:string}
+export interface PlacesMetadataNode extends ContextBase{type:'places-metadata-bar';ratingLabel?:string|null;reviewCountLabel?:string|null;providerLabel?:string;providerUrl?:string;providerLogo?:string|ThemedContextIcon;providerLogoWidth?:number;items?:{label:string;color?:'primary'|'secondary'|'positive'|'negative'|'warning'}[]}
+export interface PluginFollowupNode extends ContextBase{type:'plugin-followup';available?:boolean;hidden?:boolean;pending?:boolean;streaming?:boolean;showContext?:boolean;context?:string;offerId?:string;actionLabel?:string;pluginId?:string;icon?:ThemedContextIcon}
+export interface InstantSuggestionsNode extends ContextBase{type:'instant-suggestions';title?:string;category?:string;suggestions?:{id:string;prompt:string;answerId?:string;entityId?:string;disabled?:boolean}[]}
+export type ContextActionNode=PlacesMetadataNode|PluginFollowupNode|InstantSuggestionsNode;
+export interface ContextActionDetail{readonly id:string|null;readonly component:ContextActionNode['type'];readonly intent:'open-provider'|'accept-plugin'|'suggest-prompt';readonly url?:string;readonly offerId?:string;readonly pluginId?:string;readonly itemId?:string;readonly prompt?:string;readonly hint?:Readonly<{answerId:string;entityId:string}>}
+export function inspectContextAction(n:ContextActionNode,path:string,add:(i:Issue)=>void,safe:(url:string,kind:'image'|'link')=>boolean):void{
+ const text=(v:unknown,p:string)=>{if(typeof v==='string'&&!v.trim())add({code:'CONTEXT_ACTION_TEXT',path:p,message:'Supply nonblank text.'})};for(const[k,v]of Object.entries(n))if(k!=='fallback')text(v,path+'/'+k);
+ const image=(v:string|undefined,p:string)=>{if(v&&!safe(v,'image'))add({code:'UNSAFE_URL',path:p,message:'Supply a safe image URL.'})};
+ if(n.type==='places-metadata-bar'){if(n.providerUrl&&!safe(n.providerUrl,'link'))add({code:'UNSAFE_URL',path:path+'/providerUrl',message:'Supply a safe provider URL.'});if(typeof n.providerLogo==='string')image(n.providerLogo,path+'/providerLogo');else if(n.providerLogo){image(n.providerLogo.light,path+'/providerLogo/light');image(n.providerLogo.dark,path+'/providerLogo/dark')}(n.items??[]).forEach((x,i)=>text(x.label,`${path}/items/${i}/label`));}
+ else if(n.type==='plugin-followup'){image(n.icon?.light,path+'/icon/light');image(n.icon?.dark,path+'/icon/dark')}
+ else{const ids=new Set<string>();for(const[x,i]of(n.suggestions??[]).map((x,i)=>[x,i]as const)){text(x.id,`${path}/suggestions/${i}/id`);text(x.prompt,`${path}/suggestions/${i}/prompt`);if(ids.has(x.id))add({code:'CONTEXT_ACTION_ID',path:`${path}/suggestions/${i}/id`,message:'Supply distinct suggestion IDs.'});ids.add(x.id);if(x.answerId!==undefined)text(x.answerId,`${path}/suggestions/${i}/answerId`);if(x.entityId!==undefined)text(x.entityId,`${path}/suggestions/${i}/entityId`);}}
+}

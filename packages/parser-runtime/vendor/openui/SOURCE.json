@@ -1,0 +1,49 @@
+{
+  "repository": "https://github.com/thesysdev/openui",
+  "revision": "cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "archiveUrl": "https://codeload.github.com/thesysdev/openui/tar.gz/cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "archiveSha256": "27db4fa5f4f8e02773eb7d214ea42a405e5e65b3263415b4e4ae28e462de3d40",
+  "scope": "Five parser source files, original root LICENSE, and one new local builtin name table. Not a full lang-core package.",
+  "license": "MIT",
+  "modified": true,
+  "files": [
+    {
+      "upstreamPath": "packages/lang-core/src/parser/lexer.ts",
+      "localPath": "parser/lexer.ts",
+      "upstreamSha256": "6752d2e13bcaa16919c2d1b9dfa5672f2296b0ee3028eb64c06b258513aaa33b",
+      "localSha256": "de3e2ad6f047742c426fd90239eb097cdd5d03eb41d5094bbb8e87c41ea6307a",
+      "modified": true
+    },
+    {
+      "upstreamPath": "packages/lang-core/src/parser/expressions.ts",
+      "localPath": "parser/expressions.ts",
+      "upstreamSha256": "822a626c0702ffbd87fbe94f4afd9302e36685a90ff2c20b8821373fc5b237a0",
+      "localSha256": "8d560173da421af8e2c75c5a669d933d18ac43af9f52d41d51202184daf8ce3c",
+      "modified": true
+    },
+    {
+      "upstreamPath": "packages/lang-core/src/parser/tokens.ts",
+      "localPath": "parser/tokens.ts",
+      "upstreamSha256": "4396c55354cdef5031d2f9834f855e17d322d7158ec412a5e997b2962da4a9b6",
+      "localSha256": "4396c55354cdef5031d2f9834f855e17d322d7158ec412a5e997b2962da4a9b6",
+      "modified": false
+    },
+    {
+      "upstreamPath": "packages/lang-core/src/parser/ast.ts",
+      "localPath": "parser/ast.ts",
+      "upstreamSha256": "274a633b88f42646d874cc71d27789aa0ea123dfb7ccadf8d07b77081c1cb35a",
+      "localSha256": "274a633b88f42646d874cc71d27789aa0ea123dfb7ccadf8d07b77081c1cb35a",
+      "modified": false
+    },
+    {
+      "upstreamPath": "packages/lang-core/src/parser/statements.ts",
+      "localPath": "parser/statements.ts",
+      "upstreamSha256": "c0fac046141a0e5be2ffd7b9dab78454afd40256fa9b65b0e492169ae6b69f21",
+      "localSha256": "4a040f437f1c446e7bc493e9a9a231599acc16c8908ef2401fb4d2f462a577c2",
+      "modified": true
+    }
+  ],
+  "localAdditions": [
+    "parser/builtin-names.ts"
+  ]
+}

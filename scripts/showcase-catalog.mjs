@@ -20,7 +20,7 @@ export const groups = [
 ];
 // Curated compositions explain each layout's purpose; shortest test fixtures do not.
 export const curatedExamples = Object.freeze(Object.fromEntries(
-  ['chart', 'col', 'row', 'grid', 'box', 'card', 'section', 'figure', 'details', 'carousel', 'flow', 'divider', 'spacer']
+  ['animate', 'ledger-fee-interest-paid', 'chart', 'col', 'row', 'grid', 'box', 'card', 'section', 'figure', 'details', 'carousel', 'flow', 'divider', 'spacer']
     .map(type => [type, `showcase/examples/${type}.json`]).concat([['grid-item', 'showcase/examples/grid.json']])
 ));
 const known = new Set(SCHEMA_MODULES.flatMap(module => module.nodeTypes));
@@ -65,6 +65,8 @@ function notes(type, category, host, includes) {
   if (['finance', 'sports', 'results', 'weather', 'travel', 'care', 'entities'].includes(category)) result.push('Displayed records are supplied, fictional sample data. No account, market, booking, weather or directory service is connected.');
   if (category === 'calculators') result.push('Software demonstration only. These bounded calculations are not clinically validated and must not guide diagnosis or treatment.');
   if (['requests', 'tasks', 'automation', 'onboarding', 'launchers', 'context', 'reservations'].includes(category)) result.push('Actions produce local intent events. This demo does not send messages, schedule work, book services or grant permissions.');
+  if (type === 'automation-plan-summary') result.push('Step markers show supplied status and are read-only. Use Show/Hide plan or the completed-steps disclosure to expand and collapse content.');
+  if (type === 'youtube') result.push('For working local playback, open the video demonstration. This compatibility example cannot contact YouTube while offline.');
   if (category === 'media' || includes.some(t => ['youtube', 'search-image'].includes(t))) result.push('Supplied media stays local. Third-party playback is intercepted in this gallery; no video, image-generation or speech service is connected.');
   if (['rating', 'toggle'].includes(type)) result.push('Project-local input extension; no claim of matching an original read-only rating display or source toggle mapping.');
   if (type === 'rating-summary') result.push('Read-only supplied rating label and review count. This is not an editable rating input or a verified review service.');
@@ -81,6 +83,8 @@ export async function createShowcaseCatalog() {
   const sources = [...await documents('showcase/examples'), ...await documents('examples')];
   const candidates = new Map();
   for (const { path, document } of sources) {
+    // Supplementary demos have their own entry and do not replace canonical examples.
+    if (path === 'showcase/examples/video.json') continue;
     if (!validateDocument(document).ok) continue;
     const options = [trimDocument(document, document.body)];
     for (const node of childNodes(document.body)) options.push(trimDocument(document, [node]));
@@ -126,6 +130,15 @@ export async function createShowcaseCatalog() {
       notes: notes(type, module.category, host, includes), document: chosen.document,
     });
   }
+  const videoDocument = await readJSON('showcase/examples/video.json');
+  if (!validateDocument(videoDocument).ok || !nodeTypes(videoDocument).has('html-view')) throw Error('Invalid native video demonstration');
+  const videoHost = entries.find(entry => entry.type === 'html-view');
+  const demonstrations = [{ ...videoHost, type: 'video', kind: 'demonstration', wireType: 'html-view',
+    group: 'media', category: 'media', moduleTitle: 'Native video in an isolated html-view',
+    sourceExample: 'showcase/examples/video.json', document: videoDocument, host: 'html-view', includes: ['html-view'],
+    notes: ['This extra demonstration uses the existing html-view protocol node. It is not a new video wire type.',
+      'The original silent clip and captions are embedded in this file. Native browser controls provide playback, pause and seeking without an external service.',
+      'The YouTube protocol remains available for existing documents. Its external service cannot play inside an offline showcase.'] }];
   const eventNames = new Set();
   for (const entry of await readdir('src/renderer')) if (entry.endsWith('.ts')) {
     const source = await readFile(`src/renderer/${entry}`, 'utf8');
@@ -136,6 +149,6 @@ export async function createShowcaseCatalog() {
     inventoryCount: inventory.length, renderableCount: entries.filter(x => x.status === 'renderable').length,
     rejectedCount: entries.filter(x => x.status === 'rejected').length, moduleCount: SCHEMA_MODULES.length,
     groups, modules: SCHEMA_MODULES.map(({ install, ...metadata }) => metadata),
-    events: [...eventNames].sort(), entries,
+    events: [...eventNames].sort(), entries, demonstrations,
   };
 }

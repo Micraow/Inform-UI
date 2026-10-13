@@ -3,6 +3,7 @@ import type {RendererContext} from './context.js';
 import {suppliedReaderContext,suppliedReaderPainter} from './supplied-reader-lifecycle.js';
 import {readerBlocked,readerNativeReset} from './reader-controls.js';
 import {intentGate} from './intent-gate.js';
+import {renderOfficialIcon} from './official-icons.js';
 /** Supplied content and cancelable local intents only. This renderer has no scheduler. */
 export function renderAutomation(parent:RendererContext,node:AutomationNode):HTMLElement {
  const root=parent.element('section','iui-automation iui-'+node.type),c=suppliedReaderContext(parent,root),life=c.lifecycle,write=life.during,gate=intentGate(life);
@@ -60,9 +61,15 @@ export function renderAutomation(parent:RendererContext,node:AutomationNode):HTM
   const start=Math.max(0,steps.findIndex(s=>s.status==='in_progress'));
   const upcoming=steps.slice(start).filter(s=>s.status!=='completed').slice(0,node.mobile?3:5);
   const visible=library?steps:[...done,...upcoming];
-  for(const step of visible){
-   const row=c.element('li','iui-automation-step'),marker=c.element('span','iui-automation-marker',step.status==='completed'?'✓':learning?String(steps.indexOf(step)+1):step.status==='in_progress'?'◉':'○'),label=c.element('span','iui-automation-step-title',step.title);
-   write(()=>{row.dataset.status=step.status;marker.setAttribute('role','img');marker.setAttribute('aria-label',node.statusLabels?.[step.status]??step.status);});write(()=>row.append(marker,label));write(()=>list.append(row));if(grouped&&step.status==='completed')completedRows.push(row);
+  for(const [index,step] of visible.entries()){
+   const last=index===visible.length-1,statusLabel=node.statusLabels?.[step.status]??step.status;
+   const row=c.element('li','iui-automation-step'),marker=c.element('span','iui-automation-marker'),glyph=c.element('span','iui-automation-marker-glyph'),copy=c.element('span','iui-automation-step-copy'),label=c.element('span','iui-automation-step-title',step.title),status=c.element('span','iui-automation-step-status',statusLabel);
+   write(()=>{row.dataset.status=step.status;row.dataset.last=String(last);marker.setAttribute('role','img');marker.setAttribute('aria-label',statusLabel);status.setAttribute('aria-hidden','true');marker.append(glyph);});
+   if(learning&&step.status!=='completed')write(()=>{glyph.textContent=String(steps.indexOf(step)+1);});
+   else if(step.status==='in_progress'){const spinner=c.element('span','iui-automation-status-spinner');write(()=>{spinner.setAttribute('aria-hidden','true');glyph.append(spinner);});}
+   else{const icon=write(()=>renderOfficialIcon(c,step.status==='completed'?'CheckCircleFilled':'EmptyCircle',{size:20}));write(()=>glyph.append(icon));}
+   if(!library&&!last){const connector=c.element('span','iui-automation-marker-connector');write(()=>{connector.setAttribute('aria-hidden','true');marker.append(connector);});}
+   write(()=>{copy.append(label,status);row.append(marker,copy);list.append(row);});if(grouped&&step.status==='completed')completedRows.push(row);
   }
  }
  // The header toggle remains visible while the completed control is inside

@@ -1,0 +1,19 @@
+// Geometry/layout only: helper controls, tables and dividers use the Intelligent foundation CSS.
+@use '../vendor/openui/packages/react-ui/src/components/Charts/charts';
+.if-chart-mount,.if-openui-chart{min-width:0;width:100%;max-width:100%}
+.if-openui-chart{margin:0;display:grid;gap:var(--if-chart-gap);font:inherit;color:var(--if-text)}
+.if-openui-chart>figcaption{overflow-wrap:anywhere}
+.if-openui-chart-visual{min-width:0;max-width:100%;overflow-x:auto;overflow-y:hidden}
+.if-openui-chart .openui-mini-chart{max-width:100%;margin-inline:auto}
+.if-chart-empty{padding:var(--if-chart-space-lg) var(--if-chart-space-md);text-align:center;color:var(--if-muted);border:1px dashed var(--if-border);border-radius:var(--if-chart-radius)}
+.if-chart-data{min-width:0;font:inherit;color:var(--if-muted)}
+.if-chart-data summary{cursor:pointer;min-height:var(--if-chart-control);display:list-item;align-content:center;overflow-wrap:anywhere}
+.if-chart-data-scroll{max-height:360px}
+.if-openui-chart [role=button]:focus-visible,.if-chart-data summary:focus-visible{outline:2px solid var(--if-focus);outline-offset:3px}
+.if-openui-chart [role=button]{min-height:var(--if-chart-control)}
+.if-openui-chart .if-chart-icon-button{width:var(--if-chart-hit);min-width:var(--if-chart-hit);height:var(--if-chart-hit);min-height:var(--if-chart-hit);padding:var(--if-chart-space-sm);border-radius:var(--if-chart-radius)}
+.if-openui-chart .openui-icon-button-icon{display:inline-flex;align-items:center;justify-content:center}
+.if-openui-chart .openui-chart-vertical-scroll-buttons-container{width:calc(var(--if-chart-hit) + 4px)}
+.if-openui-chart [data-official-icon]{width:1.25em;height:1.25em;flex:none}
+.openui-chart-label-tooltip{max-width:280px;padding:var(--openui-space-xs) var(--openui-space-s);border-radius:var(--openui-radius-m);border:1px solid var(--openui-border-default);background:var(--openui-foreground);color:var(--openui-text-neutral-primary);font:var(--openui-text-label-xs);box-shadow:var(--openui-shadow-s);overflow-wrap:anywhere;z-index:1000}
+@media(prefers-reduced-motion:reduce){.if-openui-chart *{animation:none!important;transition:none!important}}

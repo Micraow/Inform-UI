@@ -1,0 +1,13 @@
+import type {Issue} from './index.js';
+interface EntryBase{id?:string;label:string;status?:'resolved'|'pending'|'failed';fallback?:string;disabled?:boolean;resetLabel?:string;requestedLabel?:string;cancelledLabel?:string}
+export interface EntryTarget{kind:'prompt'|'action';value:string}
+export interface FinanceEntryCard extends EntryBase{type:'ledger-finance-onboarding'|'ledger-repair-bank-connection';title?:string;description?:string;prompt?:string;action?:EntryTarget;threadMode?:string;systemHint?:string;iconSrc?:string;loadImageLabel?:string;icon?:string;ctaLabel?:string;linkId?:string;initializing?:boolean}
+export interface FinanceEntryItem{id:string;label:string;query:string;emoji?:string;disabled?:boolean}
+export interface FinanceEntrySuggestions extends EntryBase{type:'finance-onboarding-suggestions';heading?:string;items?:FinanceEntryItem[];prefillAvailable?:boolean;followUp?:{label:string;query:string;event?:string;icon?:string;disabled?:boolean}}
+export type FinanceEntryNode=FinanceEntryCard|FinanceEntrySuggestions;
+export interface FinanceEntryDetail{readonly id:string|null;readonly component:FinanceEntryNode['type'];readonly intent:'repair-bank-connection'|'open-finance-onboarding'|'prefill'|'follow-up';readonly itemId?:string;readonly query?:string;readonly action?:Readonly<EntryTarget>;readonly title?:string;readonly linkId?:string;readonly threadMode?:string;readonly systemHint?:string;readonly event?:string}
+export function inspectFinanceEntry(n:FinanceEntryNode,path:string,add:(issue:Issue)=>void,safe:(url:string,context:'image'|'link')=>boolean):void{
+ for(const[k,v]of Object.entries(n))if(typeof v==='string'&&k!=='fallback'&&!v.trim())add({code:'FINANCE_ENTRY_TEXT',path:path+'/'+k,message:'Supply nonblank text.'});
+ if(n.type==='finance-onboarding-suggestions'){const ids=new Set<string>();for(const [i,x] of (n.items??[]).entries()){if(!x.id.trim()||ids.has(x.id))add({code:'FINANCE_ENTRY_ID',path:`${path}/items/${i}/id`,message:'Supply a unique nonblank item ID.'});ids.add(x.id);for(const k of ['label','query']as const)if(!x[k].trim())add({code:'FINANCE_ENTRY_TEXT',path:`${path}/items/${i}/${k}`,message:'Supply nonblank text.'});}if(n.followUp)for(const k of ['label','query']as const)if(!n.followUp[k].trim())add({code:'FINANCE_ENTRY_TEXT',path:`${path}/followUp/${k}`,message:'Supply nonblank text.'});}
+ else{if(n.iconSrc&&!safe(n.iconSrc,'image'))add({code:'UNSAFE_URL',path:path+'/iconSrc',message:'Supply a safe image URL.'});if(n.action&&!n.action.value.trim())add({code:'FINANCE_ENTRY_TEXT',path:path+'/action/value',message:'Supply nonblank target text.'});}
+}

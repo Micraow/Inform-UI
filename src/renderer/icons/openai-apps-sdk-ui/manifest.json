@@ -1,0 +1,83 @@
+{
+  "repository": "https://github.com/openai/apps-sdk-ui",
+  "commit": "0f00143c7a639906f1621fe58e1b6be7b5bea46d",
+  "license": {
+    "path": "LICENSE",
+    "gitBlobSha": "b8ac8dc0f960bbe0b0cc90cd06d58b672151773f"
+  },
+  "icons": [
+    {
+      "name": "InfoCircle",
+      "path": "src/components/Icon/svg/InfoCircle.tsx",
+      "gitBlobSha": "c31b2b255b0813b40fe8576d9fc337ad1eb474ac"
+    },
+    {
+      "name": "Check",
+      "path": "src/components/Icon/svg/Check.tsx",
+      "gitBlobSha": "fb2189f81fbec6da6d36763cbf816cda166dec15"
+    },
+    {
+      "name": "TriangleExclamationErrorWarning",
+      "path": "src/components/Icon/svg/TriangleExclamationErrorWarning.tsx",
+      "gitBlobSha": "afb717e6d94a2203af01c48ebce16334c4f1adcd"
+    },
+    {
+      "name": "XCircle",
+      "path": "src/components/Icon/svg/XCircle.tsx",
+      "gitBlobSha": "8d7cae23baf73779f66951ee20e42ec4c5144651"
+    },
+    {
+      "name": "Plus",
+      "path": "src/components/Icon/svg/Plus.tsx",
+      "gitBlobSha": "f0d33a6d999beaf6c9acdbb01285be7cfcf50b94"
+    },
+    {
+      "name": "Minus",
+      "path": "src/components/Icon/svg/Minus.tsx",
+      "gitBlobSha": "25765caec99a36ce216eaa147d5a34ebd37e82da"
+    },
+    {
+      "name": "ArrowLeft",
+      "path": "src/components/Icon/svg/ArrowLeft.tsx",
+      "gitBlobSha": "8ab2c229072f10edcf6808906d9258234b56227e"
+    },
+    {
+      "name": "ArrowRight",
+      "path": "src/components/Icon/svg/ArrowRight.tsx",
+      "gitBlobSha": "4ae471daec7cbdb680a5c348954749fd993efb1a"
+    },
+    {
+      "name": "ExternalLink",
+      "path": "src/components/Icon/svg/ExternalLink.tsx",
+      "gitBlobSha": "5311db4f174a018863a3db80f0069ee82e6ddeba"
+    },
+    {
+      "name": "Clock",
+      "path": "src/components/Icon/svg/Clock.tsx",
+      "gitBlobSha": "855568424611b20420ead9317bba7194a9c470df"
+    },
+    {
+      "name": "StarFilled",
+      "path": "src/components/Icon/svg/StarFilled.tsx",
+      "gitBlobSha": "48703dae289c2cc43cc06d43deb977a7731bf2a9"
+    },
+    {
+      "name": "CheckCircleFilled",
+      "path": "src/components/Icon/svg/CheckCircleFilled.tsx",
+      "gitBlobSha": "c93b78c66ac9fa53919f712baab3a9f40d2795ff"
+    },
+    {
+      "name": "EmptyCircle",
+      "path": "src/components/Icon/svg/EmptyCircle.tsx",
+      "gitBlobSha": "4e5c70eb61dda4a56c1e1a18b8fbe24b4556f0a1"
+    }
+  ],
+  "supportingSources": [
+    {
+      "file": "LoadingIndicator.module.css.txt",
+      "path": "src/components/Indicator/LoadingIndicator.module.css",
+      "gitBlobSha": "b3dd935df972209c4de5c8bfe10198a92d596d4b",
+      "adaptedIn": "src/renderer/automation.css"
+    }
+  ]
+}

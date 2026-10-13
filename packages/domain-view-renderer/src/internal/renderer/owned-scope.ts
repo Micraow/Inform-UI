@@ -1,0 +1,2 @@
+import type {RendererContext} from './context.js';
+export function ownedScope(parent:RendererContext){const life=parent.lifecycle.fork(),bindings:Array<()=>void>=[];const c:RendererContext={...parent,lifecycle:life,on:life.listen,cleanup:life.own,bind:fn=>{const guarded=life.guard(fn);bindings.push(guarded);guarded();return life.own(()=>{const index=bindings.indexOf(guarded);if(index>=0)bindings.splice(index,1);});}};return{c,refresh:life.guard(()=>{for(const fn of [...bindings]){if(!life.current())break;fn();}}),dispose:life.dispose};}

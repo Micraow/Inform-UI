@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "paths": {
+      "@inform/foundation-tokens": [
+        "./src/v2/foundation/tokens.ts"
+      ],
+      "@inform/official-icons/*": [
+        "./src/icons/definitions/*"
+      ],
+      "@inform/component-contract": [
+        "./packages/component-contract/src/index.ts"
+      ],
+      "@inform/component-contract/zod": [
+        "./packages/component-contract/src/zod.ts"
+      ]
+    }
+  },
+  "include": [
+    "src/v2/**/*.ts",
+    "packages/component-contract/src/**/*.ts",
+    "packages/parser-runtime/src/**/*.ts",
+    "packages/chart-extension/src/**/*.ts",
+    "packages/chart-extension/src/**/*.tsx",
+    "packages/view-contracts/src/**/*.ts",
+    "packages/domain-view-renderer/src/**/*.ts"
+  ]
+}

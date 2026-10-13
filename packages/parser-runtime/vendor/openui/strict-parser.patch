@@ -1,0 +1,219 @@
+--- a/packages/lang-core/src/parser/lexer.ts
++++ b/vendor/openui/parser/lexer.ts
+@@ -125,8 +125,7 @@
+         tokens.push({ t: T.And });
+         i += 2;
+       } else {
+-        tokens.push({ t: T.And });
+-        i++;
++        throw new SyntaxError("Use && for logical AND");
+       }
+       continue;
+     }
+@@ -137,8 +136,7 @@
+         tokens.push({ t: T.Or });
+         i += 2;
+       } else {
+-        tokens.push({ t: T.Or });
+-        i++;
++        throw new SyntaxError("Use || for logical OR");
+       }
+       continue;
+     }
+@@ -209,10 +207,7 @@
+         const validJsonString = isClosed ? rawString : rawString + '"';
+         tokens.push({ t: T.Str, v: JSON.parse(validJsonString) });
+       } catch {
+-        // Fallback if JSON.parse fails (e.g., malformed unicode escape during streaming)
+-        // Strip the quotes and return the raw text so the UI doesn't crash
+-        const stripped = rawString.replace(/^"|"$/g, "");
+-        tokens.push({ t: T.Str, v: stripped });
++        throw new SyntaxError("Invalid string escape or unterminated string");
+       }
+       continue;
+     }
+@@ -231,7 +226,16 @@
+             else if (esc === "\\") result += "\\";
+             else if (esc === "n") result += "\n";
+             else if (esc === "t") result += "\t";
+-            else result += esc; // pass through other escaped chars
++            else if (esc === "r") result += "\r";
++            else if (esc === "b") result += "\b";
++            else if (esc === "f") result += "\f";
++            else if (esc === '"' || esc === '/') result += esc;
++            else if (esc === "u") {
++              const digits = src.slice(i + 1, i + 5);
++              if (!/^[0-9a-fA-F]{4}$/.test(digits)) throw new SyntaxError("Invalid unicode escape");
++              result += String.fromCharCode(parseInt(digits, 16));
++              i += 4;
++            } else throw new SyntaxError("Invalid single-quoted string escape");
+             i++;
+           }
+         } else if (src[i] === "'") {
+@@ -239,11 +243,12 @@
+           isClosed = true;
+           break;
+         } else {
++          if (src.charCodeAt(i) < 32) throw new SyntaxError("Unescaped string control character");
+           result += src[i];
+           i++;
+         }
+       }
+-      void isClosed; // consumed for streaming parity with double-quote path
++      if (!isClosed) throw new SyntaxError("Unterminated string");
+       tokens.push({ t: T.Str, v: result });
+       continue;
+     }
+@@ -372,7 +377,7 @@
+       continue;
+     }
+ 
+-    i++; // skip any other character (e.g. #, emojis)
++    throw new SyntaxError(`Unexpected character at ${i}: ${src[i]}`);
+   }
+ 
+   tokens.push({ t: T.EOF });
+--- a/packages/lang-core/src/parser/expressions.ts
++++ b/vendor/openui/parser/expressions.ts
+@@ -3,7 +3,7 @@
+ // ─────────────────────────────────────────────────────────────────────────────
+ 
+ import type { ASTNode } from "./ast";
+-import { isBuiltin } from "./builtins";
++import { isBuiltin } from "./builtin-names";
+ import { T, type Token } from "./tokens";
+ 
+ // ── Precedence levels (from spec Section 2.11) ─────────────────────────────
+@@ -23,6 +23,7 @@
+  */
+ export function parseExpression(tokens: Token[]): ASTNode {
+   let pos = 0;
++  let parseDepth = 0;
+ 
+   const cur = (): Token => tokens[pos] ?? { t: T.EOF };
+   const adv = (): Token => {
+@@ -31,7 +32,8 @@
+     return tok;
+   };
+   const eat = (kind: T): void => {
+-    if (cur().t === kind) pos++;
++    if (cur().t !== kind) throw new SyntaxError(`Expected token ${kind}, got ${cur().t}`);
++    pos++;
+   };
+ 
+   // ── Infix precedence lookup ─────────────────────────────────────────────
+@@ -68,11 +70,12 @@
+ 
+   // ── Main Pratt loop ─────────────────────────────────────────────────────
+   function parseExpr(minPrec: number = 0): ASTNode {
+-    let left = parsePrefix();
+-    while (getInfixPrec(cur()) > minPrec) {
+-      left = parseInfix(left);
+-    }
+-    return left;
++    if (++parseDepth > 64) throw new RangeError("Expression depth exceeds 64");
++    try {
++      let left = parsePrefix();
++      while (getInfixPrec(cur()) > minPrec) left = parseInfix(left);
++      return left;
++    } finally { parseDepth--; }
+   }
+ 
+   // ── Prefix / atoms ─────────────────────────────────────────────────────
+@@ -173,9 +176,7 @@
+       return inner;
+     }
+ 
+-    // Unknown token — skip and return Null
+-    adv();
+-    return { k: "Null" };
++    throw new SyntaxError(`Unexpected expression token ${tok.t}`);
+   }
+ 
+   // ── Infix / postfix ────────────────────────────────────────────────────
+@@ -267,7 +268,7 @@
+           ? (adv(), String(fieldTok.v))
+           : fieldTok.t === T.StateVar
+             ? (adv(), (fieldTok.v as string).replace(/^\$/, ""))
+-            : (adv(), "?");
++            : (() => { throw new SyntaxError("Expected member or object key"); })();
+       return { k: "Member", obj: left, field };
+     }
+ 
+@@ -294,6 +295,7 @@
+     while (cur().t !== T.RParen && cur().t !== T.EOF) {
+       args.push(parseExpr(0));
+       if (cur().t === T.Comma) adv();
++      else if (cur().t !== T.RParen) throw new SyntaxError("Expected comma between arguments");
+     }
+     eat(T.RParen);
+     return { k: "Comp", name, args };
+@@ -306,6 +308,7 @@
+     while (cur().t !== T.RBrack && cur().t !== T.EOF) {
+       els.push(parseExpr(0));
+       if (cur().t === T.Comma) adv();
++      else if (cur().t !== T.RBrack) throw new SyntaxError("Expected comma between array items");
+     }
+     eat(T.RBrack);
+     return { k: "Arr", els };
+@@ -322,14 +325,17 @@
+           ? (adv(), String(kt.v))
+           : kt.t === T.StateVar
+             ? (adv(), (kt.v as string).replace(/^\$/, ""))
+-            : (adv(), "?");
++            : (() => { throw new SyntaxError("Expected member or object key"); })();
+       eat(T.Colon);
+       entries.push([key, parseExpr(0)]);
+       if (cur().t === T.Comma) adv();
++      else if (cur().t !== T.RBrace) throw new SyntaxError("Expected comma between object fields");
+     }
+     eat(T.RBrace);
+     return { k: "Obj", entries };
+   }
+ 
+-  return parseExpr(0);
++  const parsed = parseExpr(0);
++  if (pos !== tokens.length && cur().t !== T.EOF) throw new SyntaxError("Unexpected trailing expression tokens");
++  return parsed;
+ }
+--- a/packages/lang-core/src/parser/statements.ts
++++ b/vendor/openui/parser/statements.ts
+@@ -67,7 +67,7 @@
+  * Accepts `Ident`, `Type`, and `StateVar` as statement identifiers.
+  * For StateVar, the id is the full token value including $ (e.g., "$count").
+  *
+- * Invalid lines (no `=`, or no identifier) are silently skipped.
++ * Invalid lines and empty expressions are rejected in the Inform strict dialect.
+  */
+ export function split(tokens: Token[]): RawStmt[] {
+   const stmts: RawStmt[] = [];
+@@ -81,8 +81,7 @@
+     // Expect: Ident|Type|StateVar = expression
+     const tok = tokens[pos];
+     if (tok.t !== T.Ident && tok.t !== T.Type && tok.t !== T.StateVar) {
+-      while (pos < tokens.length && tokens[pos].t !== T.Newline && tokens[pos].t !== T.EOF) pos++;
+-      continue;
++      throw new SyntaxError("Expected named statement: name = expression");
+     }
+     const id = tok.v as string;
+     const idTokenType = tok.t;
+@@ -90,8 +89,7 @@
+ 
+     // Must be followed by `=`
+     if (pos >= tokens.length || tokens[pos].t !== T.Equals) {
+-      while (pos < tokens.length && tokens[pos].t !== T.Newline && tokens[pos].t !== T.EOF) pos++;
+-      continue;
++      throw new SyntaxError("Expected named statement: name = expression");
+     }
+     pos++;
+ 
+@@ -130,7 +128,8 @@
+       expr.push(tokens[pos++]);
+     }
+ 
+-    if (expr.length) stmts.push({ id, idTokenType, tokens: expr });
++    if (!expr.length) throw new SyntaxError("Expected statement expression");
++    stmts.push({ id, idTokenType, tokens: expr });
+   }
+ 
+   return stmts;

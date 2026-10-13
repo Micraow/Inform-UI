@@ -1,0 +1,15 @@
+$name = "Ada"
+$checked = false
+$count = 0
+root = Stack([
+  Heading("Local form", 2),
+  Input("Name", $name, "Your name"),
+  Checkbox("Show details", $checked),
+  Text("Hello " + $name),
+  $checked ? Text("This form only changes local state.") : null,
+  Row([
+    Button("Add one", @Set($count, $count + 1)),
+    Button("Reset", Action([@Reset($name, $checked), @Set($count, 0)]), "secondary")
+  ], "sm"),
+  Text("Count: " + $count)
+], "md")

@@ -1,0 +1,24 @@
+hero="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAC0CAIAAABqhmJGAAAEcUlEQVR4nO3TzU1kRwCF0ZeaEyAF7xGRQBzE4AjYeOkt8moklmZoaIZfyer2xhoJa+bh6lsXjnQCqFtV33L/8AqUWuInAFYTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBQTMBRbtg+vQCkBQzEBQ7Fl++0VKCVgKCZgKCZgKCZgKCZgKCZgKLZsv70ApQQMxQoC/uXX394SPxtkTR3wf6QrY5g64B+sV8N8ZpMG/FP1aphPa8aAV9SrYT6n6QJeXa+G+YQEDMXmCvid9WqYz0bAUEzAUGy5+/Yyj/8l4PgKOBgBQzEBQzEBQzEBQzEBQ7Hl7v5lKu+tN31+OCQBQ7HpAn5Pw/GTw4HNGPC6huNnhsObNOCfbTh+WoiYN+Afbzh+TkiZOuB/SBfeUhAw8BYBQzEBQzEBM9zRyUVc/BIGETDDxesVMKwXr1fAsF683o8d8DMMFa93H3D+HkYQMMPF6/3IAd/eP8NQ8XqPTi7ilzCIgBkuXq+AYb14vQKG9eL1ChjWi9crYFgvXq+AYb14vQKG9eL1ChjWi9f7oQPePsNQ8Xp3AacvYRABM1y8XgHDevF6BQzrxesVMKwXr1fAsF68XgEz3PHpZdygafF6Bcxw8XoF3EjAs4jXK+BGAp5FvF4BNxLwLOL1CriRgGcRr1fAjQQ8i3i9Am60bLbPzCBe7/Hp5aBp8XqPTi7i7zuIgGcRr1fAjQQ8i3i9Am4k4FnE6xVwIwHPIl6vgBsJeBbxegXcSMCziNcr4EYCnkW8XgE3WjbbJ2YQr3cf8JBp8Xr3AeefeAQBzyJer4AbCXgW8XoF3EjAs4jXK+BGy+buiRnE690FPGZavN5dwOn3HUTAs4jXK+BGAp5FvF4BNxLwLOL1CriRgGcRr1fAjQQ8i3i9Am4k4FnE6xVwIwHPIl6vgBuVBXx2fhU3aFq8XgE3ErCABVxsubl7KhKv9+z8atC0eL3Hp5eDpsXrPTq5iH/dQQQsYAEXE7CABVxMwAIWcDEBC1jAxQQsYAEXE7CABVxMwAIWcDEBC1jAxQQsYAEXE7CABVxMwAIWcDEBC1jAxQQsYAEXE7CABVxsubl9KhKvdxfwmGnxencBj5kWr3cXcPrrDiJgAQu4mIAFLOBiy83tY5F4vfuAh0yL17sPeMi0eL37gPO/dwQBC1jAxQQsYAEXE7CABVxs+Xr7WCRe79n51aBp8XqPTy8HTYvXe3RyEf+6gwhYwAIuJmABC7iYgAUs4GICFrCAiwlYwAIuJmABC7iYgAUs4GJlAQP/JmAoJmAoJmAoNiTg3//4AnxHwFCsJmDgMAQMxQQMxQQMxZavm0eglIChmIChmICh2HK9eQRKCRiKCRiKCRiKCRiKCRiKLdebB6CUgKGYgKGYgKHYkID//HINfEfAUEzAUEzAUKwmYOAwBAzFBAzFBAzFBAzFBAzFBAzFluubB6DU8tfNA1BKwFBMwFBMwFDsbxAUisJ0ZvwmAAAAAElFTkSuQmCC"
+$budget=160
+$order="asc"
+$chosen="Nothing selected yet"
+trips=[{name:"Riverside weekend",cost:95,description:"A quiet town, a riverside walk, and a small local museum."},{name:"Coastal escape",cost:145,description:"A beach walk, fresh air, and a late lunch by the harbour."},{name:"Mountain retreat",cost:210,description:"A scenic trail and a relaxed evening in the hills."}]
+visible=@Sort(@Filter(trips,"cost","<=",$budget),"cost",$order)
+root=Stack([
+ Badge("AN INTERACTIVE ANSWER"),
+ Heading("A weekend that fits your plans",1),
+ Text("Here are three illustrative options. Adjust the budget, compare the shortlist, and choose a favourite. Everything below runs locally; these are sample prices, not live offers.","muted"),
+ Image(hero,"An original abstract color study","Original illustration for this fictional itinerary"),
+ Grid([
+  Card([Slider("Maximum sample budget",$budget,80,240,5),Select("Sort options",$order,[{label:"Lowest cost first",value:"asc"},{label:"Highest cost first",value:"desc"}])],"Make it yours"),
+  Card([Heading("Your shortlist",2),Text(@Count(visible)+" options within budget"),Text("Selected: "+$chosen),Button("Reset selection",@Reset($chosen),"secondary")],"At a glance")
+ ],2,"lg"),
+ @Count(visible)==0 ? Alert("No options in this range","Increase the budget to see a few ideas.","warning") : Stack(@Each(visible,"trip",Card([
+  Row([Icon("MapPin"),Heading(trip.name,3)],"sm"),
+  Text(trip.description),
+  Row([Badge("Sample cost: "+trip.cost),Button("Choose this option",@Set($chosen,trip.name),"secondary")],"lg")
+ ])),"lg"),
+ BarChart("Compare the current shortlist",visible.name,[Series("Sample cost",visible.cost)]),
+ Divider(),
+ Alert("A suggestion, not a booking","Choosing an option only updates this local answer. No reservation, payment, or external request occurs.","default")
+],"xl")

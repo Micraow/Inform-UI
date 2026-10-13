@@ -69,3 +69,11 @@ The catalog test compares every entry against the canonical schema and source ca
 ## Single-file offline delivery
 
 After building, run `node scripts/export-showcase-html.mjs`. Open `output/showcase-standalone.html` directly, with no local server. The file includes the complete current component catalog, full JSON examples, renderer, styles and licenses. Its bundled gallery is a separate composition view; counts describe protocol coverage, not completed visual equivalence. See [current alignment scope](control-alignment.md).
+
+## Purposeful demos and local media
+
+Layout entries use authored compositions: `col` has three vertically stacked cards, `row` places siblings horizontally, and `grid` demonstrates desktop spans with a one-column mobile layout. Divider and spacer samples retain surrounding content. The animate sample contains a visible card, explicit playback and stop controls; reduced-motion preferences keep content visible without movement.
+
+The supplementary **video · native playback** entry (`#video`) plays an original eight-second clip using the existing `html-view` node and native HTML video controls. Its video, poster, captions and transcript are embedded; it needs no account, cookie, remote embed or external request. It is an additional demonstration, not a new protocol node. The `youtube` entry is retained for compatibility and points to the working local demonstration.
+
+Code blocks, code citations and the displayed JSON use upright Consolas / Source Code Pro. The original Adobe WOFF2 files and complete SIL Open Font License are bundled so the exported HTML works without downloading a font.

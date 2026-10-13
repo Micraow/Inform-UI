@@ -1,0 +1,14 @@
+{
+  "format": "inform-ui-original-media/1",
+  "origin": "Original generated geometric animation; no captured or third-party imagery",
+  "license": "MIT",
+  "generator": "scripts/generate-showcase-video.mjs",
+  "codec": "H.264 Constrained Baseline",
+  "width": 320,
+  "height": 180,
+  "fps": 8,
+  "seconds": 8,
+  "audio": false,
+  "bytes": 11033,
+  "sha256": "e0195a2a53ca6eae2c63b836a5e77a570802ed0f8e590e21e2723b0e3fd5b776"
+}

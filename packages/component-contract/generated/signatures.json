@@ -1,0 +1,23 @@
+{
+  "BarChart": {
+    "orderedProps": [
+      "title",
+      "labels",
+      "series"
+    ],
+    "childSlots": [],
+    "slots": {},
+    "bindingProps": [],
+    "actionProps": []
+  },
+  "Text": {
+    "orderedProps": [
+      "content",
+      "tone"
+    ],
+    "childSlots": [],
+    "slots": {},
+    "bindingProps": [],
+    "actionProps": []
+  }
+}

@@ -80,7 +80,8 @@ test('rating-summary uses one hidden solid star and passive literal text without
   assert.equal(x.root.querySelector('svg').getAttribute('aria-hidden'), 'true');
   assert.equal(x.root.querySelector('svg').getAttribute('focusable'), 'false');
   assert.equal(x.root.querySelector('svg').getAttribute('fill'), 'currentColor');
-  assert.equal(x.root.querySelectorAll('polygon').length, 1);
+  assert.equal(x.root.querySelectorAll('[data-iui-icon=StarFilled]').length, 1);
+  assert.equal(x.root.querySelectorAll('.iui-rating-summary-star path').length, 1);
   assert.equal(x.root.getAttribute('role'), null);
   assert.equal(x.root.getAttribute('tabindex'), null);
   assert.equal(x.root.querySelectorAll('a,input,button,output,[role=slider],[role=img],[aria-live]').length, 0);

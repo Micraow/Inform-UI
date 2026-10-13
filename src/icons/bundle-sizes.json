@@ -1,0 +1,53 @@
+{
+  "commit": "0f00143c7a639906f1621fe58e1b6be7b5bea46d",
+  "iconCount": 755,
+  "tool": {
+    "esbuild": "0.25.10",
+    "target": "es2022",
+    "format": "esm",
+    "minify": true,
+    "legalComments": "eof",
+    "gzip": "node:zlib gzipSync default level"
+  },
+  "scope": "Self-contained public ESM bundles, retaining the MIT license; excludes raw source snapshots and catalog JSON.",
+  "bundles": [
+    {
+      "name": "runtime-api",
+      "rawBytes": 5115,
+      "gzipBytes": 2177,
+      "definitionModules": 0
+    },
+    {
+      "name": "single-check-definition",
+      "rawBytes": 1467,
+      "gzipBytes": 958,
+      "definitionModules": 1
+    },
+    {
+      "name": "single-check-with-runtime",
+      "rawBytes": 6573,
+      "gzipBytes": 3106,
+      "definitionModules": 1
+    },
+    {
+      "name": "all-definitions-registry",
+      "rawBytes": 1021148,
+      "gzipBytes": 323988,
+      "definitionModules": 755
+    },
+    {
+      "name": "all-definitions-with-runtime",
+      "rawBytes": 1026319,
+      "gzipBytes": 326238,
+      "definitionModules": 755
+    }
+  ],
+  "sourceStorage": {
+    "upstreamTsxBytes": 1104678,
+    "adaptedTsModulesBytes": 2020658
+  },
+  "catalog": {
+    "rawBytes": 489426,
+    "gzipBytes": 75894
+  }
+}

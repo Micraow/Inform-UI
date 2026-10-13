@@ -1,0 +1,5 @@
+{
+  "name":"@micraow/inform-component-contract-prototype","version":"2.0.0-alpha.0","private":true,"type":"module","license":"MIT",
+  "scripts":{"build":"node scripts/build.mjs","test":"npm run build && node --test tests/*.test.mjs","typecheck":"tsc --noEmit","generate":"npm run build && node scripts/generate.mjs","check":"npm run typecheck && npm test && npm run generate"},
+  "dependencies":{"zod":"4.1.12"},"devDependencies":{"esbuild":"0.25.10","typescript":"5.9.3","jsdom":"26.1.0","@types/node":"22.18.6"}
+}

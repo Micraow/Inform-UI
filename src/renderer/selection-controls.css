@@ -1,0 +1,208 @@
+/* Original shared form-control presentation. Native elements retain their labels,
+   validation, keyboard handling and browser pickers. Load after component styles.
+   Range, segmented choices, rating inputs and read-only status marks are separate. */
+.iui-root {
+  --iui-control-height: 44px;
+  --iui-control-radius: 8px;
+  --iui-control-gutter: 12px;
+  --iui-choice-size: 18px;
+  --iui-choice-gap: 8px;
+  --iui-choice-ink: var(--iui-ink);
+  --iui-choice-surface: var(--iui-surface-primary);
+}
+
+/* Shared dimensions also cover business filters and calculator inputs that do
+   not use the generic field renderer. Intrinsic/inline field widths stay local. */
+.iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select) {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  min-block-size: var(--iui-control-height);
+  padding: 9px var(--iui-control-gutter);
+  border: 1px solid var(--iui-line);
+  border-radius: var(--iui-control-radius);
+  color: var(--iui-ink);
+  background-color: var(--iui-surface-primary);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.iui-root select {
+  appearance: auto;
+  cursor: pointer;
+}
+.iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select):enabled:hover {
+  border-color: var(--iui-tertiary);
+}
+.iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select):focus-visible {
+  outline: 2px solid var(--iui-focus);
+  outline-offset: 2px;
+}
+.iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select)[aria-invalid=true] {
+  border-color: var(--iui-danger);
+}
+.iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select):disabled {
+  color: var(--iui-disabled-text);
+  background-color: var(--iui-disabled-bg);
+  border-color: var(--iui-disabled-border);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.iui-root :is(input, textarea)::placeholder {
+  color: var(--iui-muted);
+  opacity: 1;
+}
+
+/* A compact visual indicator sits inside its full-height native label target.
+   Do not hide, replace, re-role, or intercept the native inputs. */
+.iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input)) {
+  appearance: none;
+  position: relative;
+  display: inline-grid;
+  place-content: center;
+  box-sizing: border-box;
+  flex: 0 0 var(--iui-choice-size);
+  inline-size: var(--iui-choice-size);
+  block-size: var(--iui-choice-size);
+  min-inline-size: var(--iui-choice-size);
+  min-block-size: var(--iui-choice-size);
+  max-inline-size: var(--iui-choice-size);
+  max-block-size: var(--iui-choice-size);
+  margin: 1px 0 0;
+  padding: 0;
+  border: 1px solid var(--iui-tertiary);
+  border-radius: 4px;
+  color: var(--iui-choice-ink);
+  background: var(--iui-choice-surface);
+  accent-color: var(--iui-choice-ink);
+  box-shadow: none;
+  vertical-align: middle;
+  cursor: pointer;
+  opacity: 1;
+}
+.iui-root input[type=radio]:not(:where(.iui-segmented input, .iui-rating input)) {
+  border-radius: 50%;
+}
+.iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input)):enabled:hover {
+  border-color: var(--iui-muted);
+}
+.iui-root input[type=radio]:not(:where(.iui-segmented input, .iui-rating input)):checked {
+  border: 5px solid var(--iui-choice-ink);
+}
+.iui-root input[type=checkbox]:checked,
+.iui-root input[type=checkbox]:indeterminate {
+  border-color: var(--iui-choice-ink);
+  background-color: var(--iui-choice-ink);
+}
+.iui-root input[type=checkbox]::after {
+  content: '';
+  box-sizing: border-box;
+  inline-size: 9px;
+  block-size: 5px;
+  margin-block-start: -2px;
+  border-left: 2px solid var(--iui-choice-surface);
+  border-bottom: 2px solid var(--iui-choice-surface);
+  transform: rotate(-45deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.iui-root input[type=checkbox]:checked::after { opacity: 1; }
+.iui-root input[type=checkbox]:indeterminate::after {
+  inline-size: 9px;
+  block-size: 0;
+  margin: 0;
+  border-left: 0;
+  transform: none;
+  opacity: 1;
+}
+.iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input)):focus-visible {
+  outline: 2px solid var(--iui-focus);
+  outline-offset: 3px;
+}
+.iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input))[aria-invalid=true] {
+  outline: 1px solid var(--iui-danger);
+  outline-offset: 2px;
+}
+.iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input))[aria-invalid=true]:focus-visible {
+  outline: 2px solid var(--iui-focus);
+  outline-offset: 3px;
+}
+.iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input)):disabled {
+  --iui-choice-ink: var(--iui-disabled-text);
+  border-color: var(--iui-disabled-text);
+  background-color: var(--iui-disabled-bg);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.iui-root input[type=checkbox]:disabled:checked,
+.iui-root input[type=checkbox]:disabled:indeterminate {
+  background-color: var(--iui-disabled-text);
+}
+.iui-root label:has(> input:is([type=checkbox], [type=radio])):not(:where(.iui-segmented label, .iui-rating label)) {
+  box-sizing: border-box;
+  min-block-size: var(--iui-control-height);
+  min-inline-size: var(--iui-control-height);
+  gap: var(--iui-choice-gap);
+  cursor: pointer;
+}
+.iui-root label:has(> input:is([type=checkbox], [type=radio]):disabled):not(:where(.iui-segmented label, .iui-rating label)) {
+  cursor: not-allowed;
+}
+.iui-root .iui-field-checkbox { column-gap: var(--iui-choice-gap); }
+.iui-root .iui-field-checkbox > .iui-field-label {
+  min-block-size: var(--iui-control-height);
+}
+.iui-root .iui-field-checkbox:has(> input:disabled) > .iui-field-label {
+  color: var(--iui-disabled-text);
+  cursor: not-allowed;
+}
+
+/* Choice cards keep their content layout and correct/incorrect feedback. Only
+   the ordinary selected border is neutral, like the indicator it accompanies. */
+.iui-root .iui-onboarding-option[data-selected=true] {
+  border-color: var(--iui-choice-ink);
+  background-color: var(--iui-surface-secondary);
+}
+.iui-root .iui-learning-media-option[data-selected=true] {
+  outline-color: var(--iui-choice-ink);
+}
+.iui-root :is(.iui-gcs-rating-option, .iui-rox-rating-option, .iui-qsofa-rating-option) {
+  padding-inline: var(--iui-choice-gap);
+}
+
+/* System colors and native indicators remain legible when author colors are
+   removed. Segmented, rating and range controls keep their own adaptations. */
+@media (forced-colors: active) {
+  .iui-root { --iui-focus: Highlight; --iui-danger: CanvasText; }
+  .iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select) {
+    color: FieldText;
+    background-color: Field;
+    border-color: ButtonText;
+    forced-color-adjust: auto;
+  }
+  .iui-root :is(input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number], input[type=date], input[type=time], input[type=datetime-local], input[type=month], input[type=week], textarea, select):disabled {
+    color: GrayText;
+    border-color: GrayText;
+  }
+  .iui-root input:is([type=checkbox], [type=radio]):not(:where(.iui-segmented input, .iui-rating input)):is(:enabled, :disabled, :checked, :indeterminate),
+  .iui-root input[type=checkbox]:disabled:is(:checked, :indeterminate) {
+    appearance: auto;
+    border: 0;
+    background: none;
+    accent-color: auto;
+    forced-color-adjust: auto;
+  }
+  .iui-root input[type=checkbox]::after { display: none; }
+  .iui-root :is(input, select, textarea):not(:where(.iui-segmented input, .iui-rating input, input[type=range])):focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 3px;
+  }
+  .iui-root :is(input, select, textarea):not(:where(.iui-segmented input, .iui-rating input, input[type=range]))[aria-invalid=true]:not(:focus-visible) {
+    outline: 2px dashed CanvasText;
+    outline-offset: 2px;
+  }
+  .iui-root :is(.iui-onboarding-option, .iui-learning-media-option)[data-selected=true] {
+    border-color: Highlight;
+    outline-color: Highlight;
+  }
+}

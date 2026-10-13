@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "BarChart": {
+      "$ref": "#/$defs/BarChart"
+    },
+    "Text": {
+      "$ref": "#/$defs/Text"
+    }
+  },
+  "required": [
+    "BarChart",
+    "Text"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "BarChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "labels": {
+          "minItems": 1,
+          "maxItems": 128,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "series": {
+          "minItems": 1,
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "values": {
+                "minItems": 1,
+                "maxItems": 128,
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "minimum": -1e+100,
+                  "maximum": 1e+100
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "BarChart",
+      "description": "Categorical supplied-data bar chart with named finite series."
+    },
+    "Text": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "tone": {
+          "type": "string",
+          "enum": [
+            "default",
+            "muted",
+            "success",
+            "warning",
+            "error"
+          ]
+        }
+      },
+      "required": [
+        "content"
+      ],
+      "additionalProperties": false,
+      "id": "Text",
+      "description": "Plain text with a semantic tone. HTML is displayed literally."
+    },
+    "Series": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "values": {
+          "minItems": 1,
+          "maxItems": 128,
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -1e+100,
+            "maximum": 1e+100
+          }
+        }
+      },
+      "required": [
+        "name",
+        "values"
+      ],
+      "additionalProperties": false,
+      "description": "Named finite numeric series, one value per category."
+    },
+    "Slice": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "Labeled nonnegative share. Data only; no Pie renderer is implied."
+    },
+    "Point": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": -1e+100,
+          "maximum": 1e+100
+        },
+        "y": {
+          "type": "number",
+          "minimum": -1e+100,
+          "maximum": 1e+100
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "description": "Finite Cartesian point. Data only; no Scatter renderer is implied."
+    }
+  }
+}

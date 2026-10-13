@@ -1,0 +1,38 @@
+[
+  {
+    "file": "flight-discovery.ts",
+    "line": 20,
+    "value": " → ",
+    "context": "first.departure.airport} → ${"
+  },
+  {
+    "file": "flight-option.ts",
+    "line": 21,
+    "value": " → ",
+    "context": "leg.departure.airport} → ${"
+  },
+  {
+    "file": "heatmap.ts",
+    "line": 12,
+    "value": "色阶：−10% 或更低 / 0 / +10% 或更高；原始幅度保留在详情与表格。",
+    "context": "legend:'色阶：−10% 或更低 / 0 / +10% 或更高；原始幅度保留在详情与表格。'"
+  },
+  {
+    "file": "heatmap.ts",
+    "line": 12,
+    "value": "Color scale: −10% or lower / 0 / +10% or higher; exact changes remain in details and the table.",
+    "context": "legend:'Color scale: −10% or lower / 0 / +10% or higher; exact changes remain in details and the table.'"
+  },
+  {
+    "file": "net-worth.ts",
+    "line": 38,
+    "value": "↗",
+    "context": "delta>0?'↗':'↘'"
+  },
+  {
+    "file": "net-worth.ts",
+    "line": 38,
+    "value": "↘",
+    "context": "delta>0?'↗':'↘'"
+  }
+]

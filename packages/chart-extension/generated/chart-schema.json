@@ -1,0 +1,1640 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "AreaChart": {
+      "$ref": "#/$defs/AreaChart"
+    },
+    "BarChart": {
+      "$ref": "#/$defs/BarChart"
+    },
+    "HorizontalBarChart": {
+      "$ref": "#/$defs/HorizontalBarChart"
+    },
+    "LineChart": {
+      "$ref": "#/$defs/LineChart"
+    },
+    "HeatmapChart": {
+      "$ref": "#/$defs/HeatmapChart"
+    },
+    "RadarChart": {
+      "$ref": "#/$defs/RadarChart"
+    },
+    "PieChart": {
+      "$ref": "#/$defs/PieChart"
+    },
+    "RadialChart": {
+      "$ref": "#/$defs/RadialChart"
+    },
+    "FunnelChart": {
+      "$ref": "#/$defs/FunnelChart"
+    },
+    "SegmentedBar": {
+      "$ref": "#/$defs/SegmentedBar"
+    },
+    "SingleStackedBar": {
+      "$ref": "#/$defs/SingleStackedBar"
+    },
+    "ScatterChart": {
+      "$ref": "#/$defs/ScatterChart"
+    },
+    "CalendarHeatmap": {
+      "$ref": "#/$defs/CalendarHeatmap"
+    },
+    "MiniAreaChart": {
+      "$ref": "#/$defs/MiniAreaChart"
+    },
+    "MiniBarChart": {
+      "$ref": "#/$defs/MiniBarChart"
+    },
+    "MiniLineChart": {
+      "$ref": "#/$defs/MiniLineChart"
+    }
+  },
+  "required": [
+    "AreaChart",
+    "BarChart",
+    "HorizontalBarChart",
+    "LineChart",
+    "HeatmapChart",
+    "RadarChart",
+    "PieChart",
+    "RadialChart",
+    "FunnelChart",
+    "SegmentedBar",
+    "SingleStackedBar",
+    "ScatterChart",
+    "CalendarHeatmap",
+    "MiniAreaChart",
+    "MiniBarChart",
+    "MiniLineChart"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "AreaChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "labels": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "series": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "values": {
+                "maxItems": 256,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "grid": {
+              "type": "boolean"
+            },
+            "condensed": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            },
+            "xAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "yAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "tickVariant": {
+              "type": "string",
+              "enum": [
+                "singleLine",
+                "multiLine",
+                "angled"
+              ]
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "linear",
+                "natural",
+                "step"
+              ]
+            },
+            "stacked": {
+              "type": "boolean"
+            },
+            "crosshair": {
+              "type": "boolean"
+            },
+            "highlight": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "AreaChart",
+      "description": "Multi-series area chart, including stacked and signed values."
+    },
+    "BarChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "labels": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "series": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "values": {
+                "maxItems": 256,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "grid": {
+              "type": "boolean"
+            },
+            "condensed": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            },
+            "xAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "yAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "tickVariant": {
+              "type": "string",
+              "enum": [
+                "singleLine",
+                "multiLine",
+                "angled"
+              ]
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "grouped",
+                "stacked"
+              ]
+            },
+            "orientation": {
+              "type": "string",
+              "enum": [
+                "vertical",
+                "horizontal"
+              ]
+            },
+            "barRadius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 16
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "BarChart",
+      "description": "Grouped or stacked vertical/horizontal bar chart."
+    },
+    "HorizontalBarChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "labels": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "series": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "values": {
+                "maxItems": 256,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "grid": {
+              "type": "boolean"
+            },
+            "condensed": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            },
+            "xAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "yAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "tickVariant": {
+              "type": "string",
+              "enum": [
+                "singleLine",
+                "multiLine",
+                "angled"
+              ]
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "grouped",
+                "stacked"
+              ]
+            },
+            "barRadius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 16
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "HorizontalBarChart",
+      "description": "Horizontal orientation of the same upstream BarChart engine."
+    },
+    "LineChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "labels": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "series": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "values": {
+                "maxItems": 256,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "grid": {
+              "type": "boolean"
+            },
+            "condensed": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            },
+            "xAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "yAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "tickVariant": {
+              "type": "string",
+              "enum": [
+                "singleLine",
+                "multiLine",
+                "angled"
+              ]
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "linear",
+                "natural",
+                "step"
+              ]
+            },
+            "showDots": {
+              "type": "boolean"
+            },
+            "crosshair": {
+              "type": "boolean"
+            },
+            "highlight": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "LineChart",
+      "description": "Multi-series line chart with configurable interpolation and dots."
+    },
+    "HeatmapChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "labels": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "series": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "values": {
+                "maxItems": 256,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "rampMode": {
+              "type": "string",
+              "enum": [
+                "sequential",
+                "diverging"
+              ]
+            },
+            "showColorScale": {
+              "type": "boolean"
+            },
+            "showCellLabels": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "HeatmapChart",
+      "description": "Value heatmap with missing cells and signed diverging color scales."
+    },
+    "RadarChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "labels": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 240
+          }
+        },
+        "series": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "values": {
+                "maxItems": 256,
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "values"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "grid": {
+              "type": "boolean"
+            },
+            "gridShape": {
+              "type": "string",
+              "enum": [
+                "circle",
+                "polygon"
+              ]
+            },
+            "gridLevels": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "line",
+                "area"
+              ]
+            },
+            "showDots": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "additionalProperties": false,
+      "id": "RadarChart",
+      "description": "Multi-series radar chart with polygon or circular grids."
+    },
+    "PieChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "slices": {
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "pie",
+                "donut"
+              ]
+            },
+            "appearance": {
+              "type": "string",
+              "enum": [
+                "circular",
+                "semiCircular"
+              ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "percentage",
+                "number"
+              ]
+            },
+            "legendVariant": {
+              "type": "string",
+              "enum": [
+                "default",
+                "stacked"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "slices"
+      ],
+      "additionalProperties": false,
+      "id": "PieChart",
+      "description": "Pie or donut chart with a keyboard-accessible interactive legend."
+    },
+    "RadialChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "slices": {
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "circular",
+                "semiCircular"
+              ]
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "percentage",
+                "number"
+              ]
+            },
+            "legendVariant": {
+              "type": "string",
+              "enum": [
+                "default",
+                "stacked"
+              ]
+            },
+            "grid": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "slices"
+      ],
+      "additionalProperties": false,
+      "id": "RadialChart",
+      "description": "Circular or semicircular radial magnitude chart."
+    },
+    "FunnelChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "slices": {
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "orientation": {
+              "type": "string",
+              "enum": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            "edges": {
+              "type": "string",
+              "enum": [
+                "curved",
+                "straight"
+              ]
+            },
+            "layers": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 6
+            },
+            "showLabels": {
+              "type": "boolean"
+            },
+            "showValues": {
+              "type": "boolean"
+            },
+            "showPercentage": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "slices"
+      ],
+      "additionalProperties": false,
+      "id": "FunnelChart",
+      "description": "Actual curved/straight multi-stage funnel with upstream geometry."
+    },
+    "SegmentedBar": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "slices": {
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "legendVariant": {
+              "type": "string",
+              "enum": [
+                "default",
+                "stacked"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "slices"
+      ],
+      "additionalProperties": false,
+      "id": "SegmentedBar",
+      "description": "Proportional segmented bar with interactive legend."
+    },
+    "SingleStackedBar": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "slices": {
+          "maxItems": 64,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "legendVariant": {
+              "type": "string",
+              "enum": [
+                "default",
+                "stacked"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "slices"
+      ],
+      "additionalProperties": false,
+      "id": "SingleStackedBar",
+      "description": "Compatibility name for the same upstream SegmentedBar core."
+    },
+    "ScatterChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "datasets": {
+          "maxItems": 12,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 240
+              },
+              "points": {
+                "maxItems": 512,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    },
+                    "y": {
+                      "type": "number",
+                      "minimum": -1000000000000000,
+                      "maximum": 1000000000000000
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "name",
+              "points"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 160,
+              "maximum": 800
+            },
+            "legend": {
+              "type": "boolean"
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "grid": {
+              "type": "boolean"
+            },
+            "verticalGrid": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            },
+            "xAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "yAxisLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "dotRadius": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 12
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "datasets"
+      ],
+      "additionalProperties": false,
+      "id": "ScatterChart",
+      "description": "Multiple named scatter datasets with finite signed coordinates."
+    },
+    "CalendarHeatmap": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "days": {
+          "maxItems": 732,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "date",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "integer",
+              "minimum": 120,
+              "maximum": 600
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "range": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "6m",
+                    "12m"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "string",
+                      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                    }
+                  ]
+                }
+              ]
+            },
+            "thresholds": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1000000000000000
+                },
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1000000000000000
+                },
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1000000000000000
+                },
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1000000000000000
+                }
+              ]
+            },
+            "layout": {
+              "type": "string",
+              "enum": [
+                "fluid",
+                "fill"
+              ]
+            },
+            "weekStartDay": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6
+            },
+            "showMonthLabels": {
+              "type": "boolean"
+            },
+            "weekdayTickFilter": {
+              "type": "string",
+              "enum": [
+                "all",
+                "odd",
+                "even"
+              ]
+            },
+            "weekdayLabelFormat": {
+              "type": "string",
+              "enum": [
+                "full",
+                "initial"
+              ]
+            },
+            "legendVariant": {
+              "type": "string",
+              "enum": [
+                "swatches",
+                "gradient",
+                "none"
+              ]
+            },
+            "valueLabel": {
+              "type": "string",
+              "maxLength": 240
+            },
+            "patterns": {
+              "maxItems": 5,
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "diagonal",
+                      "dots",
+                      "cross",
+                      "horizontal",
+                      "vertical"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "days"
+      ],
+      "additionalProperties": false,
+      "id": "CalendarHeatmap",
+      "description": "Contribution calendar with real date geometry, sparse days and level patterns."
+    },
+    "MiniAreaChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "values": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -1000000000000000,
+            "maximum": 1000000000000000
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 320
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "linear",
+                "natural",
+                "step"
+              ]
+            },
+            "useGradient": {
+              "type": "boolean"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "values"
+      ],
+      "additionalProperties": false,
+      "id": "MiniAreaChart",
+      "description": "Compact upstream area sparkline with signed values."
+    },
+    "MiniBarChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "values": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -1000000000000000,
+            "maximum": 1000000000000000
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 320
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 12
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "values"
+      ],
+      "additionalProperties": false,
+      "id": "MiniBarChart",
+      "description": "Compact upstream bar sparkline with signed values."
+    },
+    "MiniLineChart": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "values": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": -1000000000000000,
+            "maximum": 1000000000000000
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 320
+            },
+            "animate": {
+              "type": "boolean"
+            },
+            "variant": {
+              "type": "string",
+              "enum": [
+                "linear",
+                "natural",
+                "step"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "title",
+        "values"
+      ],
+      "additionalProperties": false,
+      "id": "MiniLineChart",
+      "description": "Compact upstream line sparkline with signed values."
+    },
+    "Series": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "values": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -1000000000000000,
+                "maximum": 1000000000000000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "name",
+        "values"
+      ],
+      "additionalProperties": false,
+      "description": "Named finite series; null is supported only by HeatmapChart as a missing cell."
+    },
+    "Slice": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000000
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "Named non-negative magnitude for pie, radial, funnel or segmented charts."
+    },
+    "Point": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": -1000000000000000,
+          "maximum": 1000000000000000
+        },
+        "y": {
+          "type": "number",
+          "minimum": -1000000000000000,
+          "maximum": 1000000000000000
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "description": "A finite scatter coordinate. Negative and zero values are supported."
+    },
+    "ScatterSeries": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "points": {
+          "maxItems": 512,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number",
+                "minimum": -1000000000000000,
+                "maximum": 1000000000000000
+              },
+              "y": {
+                "type": "number",
+                "minimum": -1000000000000000,
+                "maximum": 1000000000000000
+              }
+            },
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "name",
+        "points"
+      ],
+      "additionalProperties": false,
+      "description": "Named scatter dataset containing finite Point values."
+    },
+    "CalendarDay": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000000000000000
+        }
+      },
+      "required": [
+        "date",
+        "value"
+      ],
+      "additionalProperties": false,
+      "description": "ISO calendar day and non-negative magnitude. Duplicate dates are summed by the upstream calendar."
+    }
+  }
+}

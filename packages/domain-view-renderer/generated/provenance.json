@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/micraow/Inform-UI",
+  "baseline": "219 public schema nodes",
+  "license": "MIT",
+  "rendererSha256": "daab05fdd800dd00021fb2a4782a88b4d42c2fbd7528d155115c538e21e76944",
+  "notes": "Original renderer routines retained; no old protocol parser, validator, document mount, private captures or service credentials."
+}

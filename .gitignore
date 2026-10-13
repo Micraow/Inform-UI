@@ -11,3 +11,12 @@ private-evidence/
 .env*
 
 /src/renderer/lottie-player.generated.js
+
+# Local integration receipts are not product source.
+/packages/*/DELIVERY.json
+
+# Rebuilt package reports; executable definitions remain under src.
+/packages/view-contracts/generated/schema.json
+/packages/view-contracts/generated/migration-map.json
+/packages/view-contracts/generated/prompt.txt
+/packages/chart-extension/generated/build-metafile.json

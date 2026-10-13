@@ -1,0 +1,12 @@
+$minimum = 2
+$direction = "desc"
+rows = [{name:"Alpha",score:8},{name:"Beta",score:3},{name:"Gamma",score:5},{name:"Delta",score:1}]
+visible = @Sort(@Filter(rows, "score", ">=", $minimum), "score", $direction)
+root = Stack([
+  Heading("Supplied scores", 2),
+  Slider("Minimum score", $minimum, 0, 10, 1),
+  Select("Order", $direction, [{label:"Highest first",value:"desc"},{label:"Lowest first",value:"asc"}]),
+  Text("Matching items: " + @Count(visible)),
+  @Count(visible) > 0 ? BarChart("Scores", visible.name, [Series("Score", @Each(visible, "item", item.score))]) : Text("No matching items"),
+  @Each(visible, "item", Row([Text(item.name), Text("Score: " + item.score)], "sm"))
+], "md")

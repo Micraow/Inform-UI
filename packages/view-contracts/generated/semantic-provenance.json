@@ -1,0 +1,411 @@
+{
+  "license": "MIT",
+  "origin": "https://github.com/micraow/Inform-UI",
+  "scope": "Pure inspectors only; no validateDocument, evaluateState, old parser, mutable state owner or renderer",
+  "sources": [
+    {
+      "source": "src/core/activity-planning.ts",
+      "sha256": "4daaffe7a41fc7f848296a3781289e00c28801357efdcf41d4d3f4a8446f8a30"
+    },
+    {
+      "source": "src/core/agenda.ts",
+      "sha256": "33657e22c5f76c148daca412b2c3cd41a3e1eba82d32b1b01f801889c5efa0fc"
+    },
+    {
+      "source": "src/core/ask-location.ts",
+      "sha256": "db249ebb4237efdbf907b0dde570ae1fff2af03b7f1646970a3de312613b1e42"
+    },
+    {
+      "source": "src/core/ask-user.ts",
+      "sha256": "f808ddb03f8a001c63c3e0407b526c870a71b4f9aa64b35e69da8de55773735f"
+    },
+    {
+      "source": "src/core/async-image.ts",
+      "sha256": "6b3ce28bb6a3837e50f42417c3770317b5042720db31a429c4c221cd159c83b8"
+    },
+    {
+      "source": "src/core/async-video.ts",
+      "sha256": "2adc9e41ef8c8741d0e61633435c29df3e22b9a64367a5c4d2783b1e54368f14"
+    },
+    {
+      "source": "src/core/automation.ts",
+      "sha256": "4f823f6e885ea8cae48f0e5fbf3757b2d57560ec1d4ec36088c0f58deef0d94b"
+    },
+    {
+      "source": "src/core/availability.ts",
+      "sha256": "f4143f2990cf15ae834887187493a80242bbb5ebce8894287363f4b3b29137b9"
+    },
+    {
+      "source": "src/core/boxscores.ts",
+      "sha256": "e1ff7ad789d95bbfa012dd4dd25fc53f3152181e1bf5adef37c98ee2ce6732ed"
+    },
+    {
+      "source": "src/core/capability-search.ts",
+      "sha256": "d400e182ee2e4cfe8e0f881b329afc32e78acadf0f1c8319db44d794bcf5d22f"
+    },
+    {
+      "source": "src/core/capability-welcome.ts",
+      "sha256": "33db5bcd078424d6755503279fa52ee5d30c0b6f18feec22ffbcceb8cc1b3cb2"
+    },
+    {
+      "source": "src/core/care-providers.ts",
+      "sha256": "320c84cf055bd6c8387aaf1ae05de336306e80e29d05790677ad9b60c280e4ea"
+    },
+    {
+      "source": "src/core/category-correction.ts",
+      "sha256": "6fe85c1693f135387bc03fa793df08a22c38947bb9f7484a16f079646737f804"
+    },
+    {
+      "source": "src/core/checklist.ts",
+      "sha256": "7b266830b52eb83424fadeab891ecc3f19eebb14a8d7bf7ed4436e8d6300befb"
+    },
+    {
+      "source": "src/core/choice-gallery.ts",
+      "sha256": "d01d477e8597fa997c9ee36e9c2d14b5b7d46731f6c5f434083a8b0259001043"
+    },
+    {
+      "source": "src/core/context-actions.ts",
+      "sha256": "31d162b540281268cff45ea63a225a914cf8f303eae055c5bb7e78a1285c7ef2"
+    },
+    {
+      "source": "src/core/conversation-suggestions.ts",
+      "sha256": "72f0ca01ffe420c4e504a3380cd3fd63d33183432c72b84ff3bf7b08388a65d9"
+    },
+    {
+      "source": "src/core/conversational-onboarding.ts",
+      "sha256": "51ad28412452330aff8ba760d34a685f11590d1c8e45fcb8693454aceb5c420b"
+    },
+    {
+      "source": "src/core/converters.ts",
+      "sha256": "2dff2ada07e69c42e90eff38fcd276195c9f780a53693edee4d0f9338ba374df"
+    },
+    {
+      "source": "src/core/corrected-age.ts",
+      "sha256": "8af0475611ecc4fabacad4b8d4f4823ffccac87a0b4bb6ef489ea465bee78b2d"
+    },
+    {
+      "source": "src/core/credit-score.ts",
+      "sha256": "37efad9f9d0ca6105aa2110ad2e42afd1b39e0e917682787025bddcb3a72fa08"
+    },
+    {
+      "source": "src/core/decision-cards.ts",
+      "sha256": "e04fb83c5ae03133ad027aef3ec16b5feb3e3a5bfee77567b7ecac6da6ce4b73"
+    },
+    {
+      "source": "src/core/entity-facts.ts",
+      "sha256": "beab5e8226ff50f476a3af0a05efb322358de3e6767e6a4b19bad4e44422da2f"
+    },
+    {
+      "source": "src/core/entity-reviews.ts",
+      "sha256": "613eb23b32d4c89147c98dbe15c4559ac81755bfc22db1908a751e51138de615"
+    },
+    {
+      "source": "src/core/entity.ts",
+      "sha256": "56b5ed9303bcc6b26297a11cfeb554737affd3ea9ac5ebe817bf5275277bd045"
+    },
+    {
+      "source": "src/core/equity-watchlist.ts",
+      "sha256": "fcd036fc79f1280bb0a5744e67394d1f1eb6602601320ac0b5f63a031f085c25"
+    },
+    {
+      "source": "src/core/extensions.ts",
+      "sha256": "0b4f0f63391000c8fc0a58ce7a13db4b74f8a96d432a9a121e423180e05aa4f5"
+    },
+    {
+      "source": "src/core/fee-interest.ts",
+      "sha256": "a2036d63910b27b024a7c639e2ddd4358d40c603581ea32f97e7c816a7604560"
+    },
+    {
+      "source": "src/core/fill-blank.ts",
+      "sha256": "f896303f164d788aaea3f35ad160760b3ad9c2cdc3c60ae89cd9c7b8b7beda94"
+    },
+    {
+      "source": "src/core/finance-entry.ts",
+      "sha256": "5f2597496c4bf94d56a70a34c8750f02246e579088a9051ce22d0e307d1e54d3"
+    },
+    {
+      "source": "src/core/finance-status.ts",
+      "sha256": "561a92c21757a85e0fc1373240ddd2bbd8a6bd21feff641b9e04825565598c84"
+    },
+    {
+      "source": "src/core/finance.ts",
+      "sha256": "0d7608a6e31cb8153bffb6ed5d2b32cd3032fd53295b8fc954e4271b8e7445fc"
+    },
+    {
+      "source": "src/core/flight-discovery.ts",
+      "sha256": "f3b554af027ad6fd07b9b1ce5ad9959348ef189a4671b95a66efbdaf6897d588"
+    },
+    {
+      "source": "src/core/follow-up-action-bar.ts",
+      "sha256": "a7d9ae56001cf9d4778238dd05e5ffc715291bcbfbd7c7aec31cb5e8f6ee9298"
+    },
+    {
+      "source": "src/core/follow-up-card-group.ts",
+      "sha256": "83086a5cdd6f784488d029b096bd95aa2e871fecb39e562ff37b9ebac974289f"
+    },
+    {
+      "source": "src/core/gcs.ts",
+      "sha256": "a0954e6c36d35f47561e6582bee958ca540b80b6be0cc5bfa7a0d56884899853"
+    },
+    {
+      "source": "src/core/heatmap.ts",
+      "sha256": "e2643f80f4b22a6dd0089c1d6e8f5a7307fe14bb05a1a08cd0d35e07242f5e56"
+    },
+    {
+      "source": "src/core/html-view.ts",
+      "sha256": "cb4c8bb956f83716f900bfc4d9350ff03f8835940af7f7f9c89b4dd2f409b162"
+    },
+    {
+      "source": "src/core/image-grid.ts",
+      "sha256": "6dae366e0403a61e30e4b78c94d92621a930800ddb59339631988d38995affcb"
+    },
+    {
+      "source": "src/core/income-tracker.ts",
+      "sha256": "552ff213a7b94a5c1ab0420a4dcfc7dc79614a5cbf8b0a69879fc67ac0496fd6"
+    },
+    {
+      "source": "src/core/inline-host-media.ts",
+      "sha256": "aa9e2da03037dd67f8bb000e2ef39053fa768910f11366e672176828f025bff8"
+    },
+    {
+      "source": "src/core/learning-media.ts",
+      "sha256": "3f127c1da9660cfbee1cd37d1e5d3dd92ce37d79e20b54a190253eced5909565"
+    },
+    {
+      "source": "src/core/learning-viz.ts",
+      "sha256": "ae61bd88173dce6aeb0929ac81f2e3bfbd77297550f35ab16717fe0da703fc23"
+    },
+    {
+      "source": "src/core/learning.ts",
+      "sha256": "5d445a1e81cc984260a379361916e098499be789cf889fd90d376f7450ba8780"
+    },
+    {
+      "source": "src/core/ledger-category.ts",
+      "sha256": "79df41bbd65b07227b07be697606e0f90b1e2a978fb3ece4751b92ec0b19ef7d"
+    },
+    {
+      "source": "src/core/ledger-records.ts",
+      "sha256": "b14493b4add879a7cc9723f1288e329074437b4dfc76b8fa42c57ecfb91cdb84"
+    },
+    {
+      "source": "src/core/ledger.ts",
+      "sha256": "88bb773af1e9ae67c57c5676f35856b2a6a2d24cc425e8de30aac5bd2dc8f3c6"
+    },
+    {
+      "source": "src/core/local-places.ts",
+      "sha256": "9c48e6979a2445810a41f2351c81bf84c5dbd4548f8749c7944f0d39acc00044"
+    },
+    {
+      "source": "src/core/lottie.ts",
+      "sha256": "a1509ceb13b3811823ad4d6e6e6bbd576be071d92ede32ff6ea6761effc67ad2"
+    },
+    {
+      "source": "src/core/mail-files.ts",
+      "sha256": "f56b3d25c0e436a4f7da80993e2c839c0d1d77d503c9cb8a3d386147296d50db"
+    },
+    {
+      "source": "src/core/match-scores.ts",
+      "sha256": "fe4b88ca66e8ede96a98e0f7193abc753034b1bb5574bf8743d8da1e48ef8c00"
+    },
+    {
+      "source": "src/core/menu.ts",
+      "sha256": "d9fbcc4edede9bd81f7d15f13a229584bb9676bbfa4e2f0108d4105569954713"
+    },
+    {
+      "source": "src/core/motorsport.ts",
+      "sha256": "466919febe88231b6d0644dd1f9330a6aab22cbdcf086c964e0c1ac885906628"
+    },
+    {
+      "source": "src/core/net-worth.ts",
+      "sha256": "027b4ab700cd506765e62d7448406f5fd62846709068f9866915ec03cbeddc95"
+    },
+    {
+      "source": "src/core/news.ts",
+      "sha256": "d79626c81b18a3596140c24e77d15801431a1662d255170b33a7b0a3551e4ec1"
+    },
+    {
+      "source": "src/core/onboarding-cards.ts",
+      "sha256": "5baa0c33aab06fa57953d698fa418dd1cb0d7d00f0234d07be07af3a09bb3ef9"
+    },
+    {
+      "source": "src/core/onboarding.ts",
+      "sha256": "6da183abeeb9b7ac4c7d6b2bb4aad3c3eced773aa659a680b60f3e571a9baad1"
+    },
+    {
+      "source": "src/core/person-profile.ts",
+      "sha256": "3fa294d6f21b2c718662825754b070970386d599ec42f1fbf02483fff2a48c2c"
+    },
+    {
+      "source": "src/core/player-summaries.ts",
+      "sha256": "d66d7e1ea97629b9bf013f92328c804eb57f563e7ed7898bb8b5818d0bb63655"
+    },
+    {
+      "source": "src/core/poll.ts",
+      "sha256": "4ea7f769b8df89acbcb2b8e793d0c18864423e7203b60ced004e0780b11c1486"
+    },
+    {
+      "source": "src/core/pressable.ts",
+      "sha256": "00aa65523cfcc3ef04523ffb27565d59e0d482c5af9356c50b56da921c731e03"
+    },
+    {
+      "source": "src/core/prompt-checklist.ts",
+      "sha256": "ce78dd6efae677c93f4abf1f70f63e8caee4b0a72cfd9ad3684744fdb491e589"
+    },
+    {
+      "source": "src/core/qsofa.ts",
+      "sha256": "845fe824ce23b67169ed075e72efe0b2ae363e20f5559d5227b002f974ce89e8"
+    },
+    {
+      "source": "src/core/questionnaire.ts",
+      "sha256": "2ab55f1e6dd89271b625f6136058f506e917f6c2f811c296fc9007ef084bcb99"
+    },
+    {
+      "source": "src/core/quiz-cards.ts",
+      "sha256": "2afc2b77728e357a95fa640f0d622c95aeb008e7b977b1d520ba03b85531ac6d"
+    },
+    {
+      "source": "src/core/rating-summary.ts",
+      "sha256": "1fab54d818a10dc6f3ec84082ab284d944c43a6ac80fe945ee6db7d0e92632a1"
+    },
+    {
+      "source": "src/core/rating.ts",
+      "sha256": "9f268ddcdd394dfb130de157429e4483c134cd3e9aa0be027ed376f8787b5936"
+    },
+    {
+      "source": "src/core/recommendation-card.ts",
+      "sha256": "644500900f1a18f0da7b8aec7fc0acb6aba99af68226d1d2001577d437c1fef4"
+    },
+    {
+      "source": "src/core/related-questions.ts",
+      "sha256": "cc3a12348662f1571f7c1c4b06eead2b0d6ba00f92ec5980571f5212d21d0ba0"
+    },
+    {
+      "source": "src/core/reservation-pills.ts",
+      "sha256": "bd220d29957250c203cde97f15228b46a56d9b076678cce8f185eaec6210b9e3"
+    },
+    {
+      "source": "src/core/rox.ts",
+      "sha256": "08ef3d043bf092bd556cd1c6139d8ac0229e64c4b1f5b23e574f8e3a2d04e6ac"
+    },
+    {
+      "source": "src/core/scheduled-suggestion.ts",
+      "sha256": "50b0eeaad6656c8da86b814c31cce4e133482d8605878d83c87b08ae10ce0549"
+    },
+    {
+      "source": "src/core/search-image.ts",
+      "sha256": "ef3237a7a0942c34f46603e8386f7d437505300ec9d15cbd41345b90bf06d563"
+    },
+    {
+      "source": "src/core/search-onboarding.ts",
+      "sha256": "f2f3adac86644883a53bd7f968bab13bfa8f164530e6780cc0c453ab0edb5382"
+    },
+    {
+      "source": "src/core/sentence-builder.ts",
+      "sha256": "7e5831674f27313486c832c3e17786dbe5fa128cc0ea37140adc265f5813460d"
+    },
+    {
+      "source": "src/core/source-citations.ts",
+      "sha256": "6ce2366b9c9473873b67f54f2346b6072ea2fb7f27400978d27123792e36c48c"
+    },
+    {
+      "source": "src/core/spend-month.ts",
+      "sha256": "c4d05fa3116179d5eb2513a3a60a5fd7c376853c0cead4a5638c5780243eb211"
+    },
+    {
+      "source": "src/core/sports.ts",
+      "sha256": "a58bdef3f1194f71ec7ef7988bcf1509b21b37ac253784879f51747f7969c8c4"
+    },
+    {
+      "source": "src/core/study-onboarding.ts",
+      "sha256": "97cc946764c36157a1b6b46c4e1c168661c6d64ab4dd0617f872d778e45e839c"
+    },
+    {
+      "source": "src/core/suggestions.ts",
+      "sha256": "132307bf2be1f2e0376db867b75e38df3234648f9bae65a29591d6888a661dde"
+    },
+    {
+      "source": "src/core/supplied-discovery.ts",
+      "sha256": "85fc21bb5a749b9700149250928eed0fa0c59dcfaa21d27aaf55599fcc2c0e73"
+    },
+    {
+      "source": "src/core/supplied-interactions.ts",
+      "sha256": "a16a760eec58d1046d1c796f515a43f51a85a6e82b13c997f61b896bed9bded7"
+    },
+    {
+      "source": "src/core/supplied-launchers.ts",
+      "sha256": "4016d01b3999c54d713f3c8adc146cdc12e6d89b45d17403a94c69586a04eeb7"
+    },
+    {
+      "source": "src/core/supplied-links.ts",
+      "sha256": "3ad00eba37a14c1f7cc028abb8fd3d310e920b7eb080fccf02bdbd5bbaf4cc4b"
+    },
+    {
+      "source": "src/core/supplied-results.ts",
+      "sha256": "caee30d8f24d6bbba1ee5acb8d0a0b38e375897e2479fb01a2106e5439a2008f"
+    },
+    {
+      "source": "src/core/tabbed-visual.ts",
+      "sha256": "b82cfdeb040d360329cca07c608480cae503a769b8585a70f3a32e4843e25d52"
+    },
+    {
+      "source": "src/core/table.ts",
+      "sha256": "8a03183bc623ad664e420333823a3d7b402f3342a1485c12b0dfdbdcb051e786"
+    },
+    {
+      "source": "src/core/task-cards.ts",
+      "sha256": "ed2ec1245fcd2ba7da824680269c8dd10489ead052ac46871c686e310369146c"
+    },
+    {
+      "source": "src/core/thread.ts",
+      "sha256": "d37632839eb3f5ee27f937abd6cf45501f1461cb6105ef12fad1f2606bf8f2c6"
+    },
+    {
+      "source": "src/core/time.ts",
+      "sha256": "f64c4b5a49f5f2ce9d4ed08498c8ce23661e54ffa2e73760ca3bd7fd4aeec67d"
+    },
+    {
+      "source": "src/core/trackers.ts",
+      "sha256": "0e6f8b7dbd6b628abe0e1c7834b0a0310f37b3c1150872b7d2df8554b5fb388c"
+    },
+    {
+      "source": "src/core/transaction-detail.ts",
+      "sha256": "73a7e7869ce51f4d7833866fa7dcd59a2ff734c9a2bb704bc60255d8dcd6bd4f"
+    },
+    {
+      "source": "src/core/travel-events.ts",
+      "sha256": "c5499c342a7abfcb021a8158535404dc3b2dc26c9bb7f59417a98fb470667424"
+    },
+    {
+      "source": "src/core/units.ts",
+      "sha256": "c7fad948a569b167c340acd0767a2afce4b7e823d73ffcff4477609fc690e7af"
+    },
+    {
+      "source": "src/core/upcoming-activity.ts",
+      "sha256": "8c2b119094daa871121a70b2766505af482837b25c903c0fb245d06ad091761a"
+    },
+    {
+      "source": "src/core/vocab.ts",
+      "sha256": "8701e48d511d40eb4175a9453492bae73c0d934595d25d2624725c4c30d14a9c"
+    },
+    {
+      "source": "src/core/vocabulary.ts",
+      "sha256": "e3c9bd34ff67596bb143a97a4aa4ce1af5fba24a85f5e494a186f86e2dc80486"
+    },
+    {
+      "source": "src/core/voice-cards.ts",
+      "sha256": "90c3fc66b74046cf59abcaede83459ee12174b147fad858545d61f18d4e661e1"
+    },
+    {
+      "source": "src/core/weather-sidebar.ts",
+      "sha256": "4cbf3c3d56a0ed868114bb8d71ec8a0110a3fdf8e01187c6c122eb5f767e1695"
+    },
+    {
+      "source": "src/core/weather-supplied.ts",
+      "sha256": "a23065b46509a0c920f9ab322453f3d8fb3c6932d789bade0d0dd0712bcf1949"
+    },
+    {
+      "source": "src/core/youtube.ts",
+      "sha256": "1d42de7a9f3ad443bec5bf4b1d46f18cae60f2419d2e3adaf6caba1b1d26d018"
+    }
+  ]
+}

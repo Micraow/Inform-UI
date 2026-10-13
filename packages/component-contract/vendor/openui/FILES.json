@@ -1,0 +1,74 @@
+[
+  {
+    "path": "src/extend.ts",
+    "upstreamSha256": "c0fb3485c6241a82806e4862f597dae429311f6e6bcefd66879b4794997bc532",
+    "sha256": "c0fb3485c6241a82806e4862f597dae429311f6e6bcefd66879b4794997bc532",
+    "modified": false
+  },
+  {
+    "path": "src/functions.ts",
+    "upstreamSha256": "d902e83e7eec910f187b0da0e6ec743c06423c9ecd9803050585a3323a794c64",
+    "sha256": "d902e83e7eec910f187b0da0e6ec743c06423c9ecd9803050585a3323a794c64",
+    "modified": false
+  },
+  {
+    "path": "src/library.ts",
+    "upstreamSha256": "d1d95e82b7d1a29bb605defdf96d52df3cd72be8397366f7e58bd113e3f1362e",
+    "sha256": "d1d95e82b7d1a29bb605defdf96d52df3cd72be8397366f7e58bd113e3f1362e",
+    "modified": false
+  },
+  {
+    "path": "src/parser/ast.ts",
+    "upstreamSha256": "274a633b88f42646d874cc71d27789aa0ea123dfb7ccadf8d07b77081c1cb35a",
+    "sha256": "274a633b88f42646d874cc71d27789aa0ea123dfb7ccadf8d07b77081c1cb35a",
+    "modified": false
+  },
+  {
+    "path": "src/parser/builtins.ts",
+    "upstreamSha256": "2ec6af1e5e16ff300af4e96289c108e1a346a9ff2ebe6ca63c725b2647d44960",
+    "sha256": "2ec6af1e5e16ff300af4e96289c108e1a346a9ff2ebe6ca63c725b2647d44960",
+    "modified": false
+  },
+  {
+    "path": "src/parser/cloud-config.ts",
+    "upstreamSha256": "a5f0d91ee451c8d1f43facb2f73c47b0887feac879db7471a1ff4ba008178a9b",
+    "sha256": "a5f0d91ee451c8d1f43facb2f73c47b0887feac879db7471a1ff4ba008178a9b",
+    "modified": false
+  },
+  {
+    "path": "src/parser/prompt.ts",
+    "upstreamSha256": "22139500cfa39d2c9b64b2a322b745725a863ed8b097e9a867a766063cfc07a3",
+    "sha256": "67d133b5d3ba5b7f76ea899377c4762ef2a69e79998419d1490b1b6289190a0b",
+    "modified": true
+  },
+  {
+    "path": "src/parser/types.ts",
+    "upstreamSha256": "108fcce39eb6f930fb5519a87ad151676f27d349ff90285833b7a6484a799c07",
+    "sha256": "108fcce39eb6f930fb5519a87ad151676f27d349ff90285833b7a6484a799c07",
+    "modified": false
+  },
+  {
+    "path": "src/parser/validate-library.ts",
+    "upstreamSha256": "048963d2d4b7144c658ec1b5dcc3cc77a26000c1bc99f92def3971f7d1b1ea15",
+    "sha256": "048963d2d4b7144c658ec1b5dcc3cc77a26000c1bc99f92def3971f7d1b1ea15",
+    "modified": false
+  },
+  {
+    "path": "src/reactive.ts",
+    "upstreamSha256": "af148da679f5d1e3d9ce6fdd4e9bf1a1ab3b8c8d05989af09606d52a85de17fe",
+    "sha256": "af148da679f5d1e3d9ce6fdd4e9bf1a1ab3b8c8d05989af09606d52a85de17fe",
+    "modified": false
+  },
+  {
+    "path": "src/signature.ts",
+    "upstreamSha256": "27b9384f2e414779c91d70b19720d7e21855d08e2e44f118aa4920a998192f57",
+    "sha256": "27b9384f2e414779c91d70b19720d7e21855d08e2e44f118aa4920a998192f57",
+    "modified": false
+  },
+  {
+    "path": "src/telemetry/runtime.ts",
+    "upstreamSha256": "a1f9badf5226b5b7bebb3e34fc6839653ca4262095821d9637fbae77aaf9aea9",
+    "sha256": "adf3d4f0302b2471ee026f59c55039715c19e0a90af1493fa6f42c4a32a2dae2",
+    "modified": true
+  }
+]

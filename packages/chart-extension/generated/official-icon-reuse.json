@@ -1,0 +1,28 @@
+{
+  "repository": "https://github.com/openai/apps-sdk-ui",
+  "revision": "0f00143c7a639906f1621fe58e1b6be7b5bea46d",
+  "geometryModified": false,
+  "duplicateGeometryRegistry": false,
+  "icons": [
+    {
+      "name": "ChevronDown",
+      "canonicalHostPath": "src/icons/definitions/ChevronDown.ts",
+      "sha256": "7fc1cbffa6228c7a4e7717a7c6f91b87a584e6154f7b50030d3957a724805862"
+    },
+    {
+      "name": "ChevronUp",
+      "canonicalHostPath": "src/icons/definitions/ChevronUp.ts",
+      "sha256": "814c0b0394658a5ef27c663f573dc6ae66f4814573913af5768666596d467633"
+    },
+    {
+      "name": "ChevronLeft",
+      "canonicalHostPath": "src/icons/definitions/ChevronLeft.ts",
+      "sha256": "e1f417317bd1ff525ee032181c92f45facacf1b9108c1cbefefa97375f50e58b"
+    },
+    {
+      "name": "ChevronRight",
+      "canonicalHostPath": "src/icons/definitions/ChevronRight.ts",
+      "sha256": "f4452dc17540323989ec8700bea2e86c47f23b0c1404e2e2fe066fabecda3986"
+    }
+  ]
+}

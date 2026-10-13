@@ -1,0 +1,1093 @@
+{
+  "repository": "https://github.com/thesysdev/openui",
+  "revision": "cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "archiveSha256": "27db4fa5f4f8e02773eb7d214ea42a405e5e65b3263415b4e4ae28e462de3d40",
+  "license": "MIT",
+  "scope": "14 chart-family implementation/dependency source closure and required Sass. HorizontalBarChart and SingleStackedBar reuse existing families.",
+  "modifications": [
+    {
+      "path": "components/Charts/shared/core/DefaultLegend/DefaultLegend.tsx",
+      "change": "Add keyboard role/tabindex/aria-pressed toggles and canonical official OpenAI chevron icons. Chart geometry unchanged."
+    },
+    {
+      "path": "components/Charts/shared/core/StackedLegend/StackedLegendView.tsx",
+      "change": "Add keyboard role/tabindex/aria-pressed toggles and canonical official OpenAI chevron icons. Chart geometry unchanged."
+    },
+    {
+      "path": "components/Charts/shared/core/LabelTooltip/LabelTooltip.tsx",
+      "change": "Propagate upstream portalThemeClassName to axis-label tooltips."
+    },
+    {
+      "path": "components/Charts/shared/cartesian/ScrollButtonsHorizontal/ScrollButtonsHorizontal.tsx",
+      "change": "Use canonical official OpenAI chevron icon bridge, not Lucide."
+    },
+    {
+      "path": "components/Charts/shared/cartesian/ScrollButtonsVertical/ScrollButtonsVertical.tsx",
+      "change": "Use canonical official OpenAI chevron icon bridge, not Lucide."
+    },
+    {
+      "path": "components/Button/Button.tsx",
+      "change": "Use host Intelligent if-button/if-divider class and variant contract; upstream control skins are not compiled."
+    },
+    {
+      "path": "components/IconButton/IconButton.tsx",
+      "change": "Use host Intelligent if-button/if-divider class and variant contract; upstream control skins are not compiled."
+    },
+    {
+      "path": "components/Separator/Separator.tsx",
+      "change": "Use host Intelligent if-button/if-divider class and variant contract; upstream control skins are not compiled."
+    }
+  ],
+  "files": [
+    {
+      "path": "src/chart-styles.scss",
+      "sha256": "42b518a65402a774e2f6ffb17f9987b150461f403ab9662a2ee2f18a717a54c3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/LICENSE",
+      "sha256": "b6bdd2d3d161722fb3f3afc039114cfa9f3236f036e1c98e0853bc3a85f6cd9e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/package.json",
+      "sha256": "637294fcce74a5e3988ceb470329026693a4a0e25d50b021a7d3e93576d9cacd",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Button/Button.tsx",
+      "sha256": "00667589bd2943c988d32fa40f386e337d34b36e7b1f17827397da2df585a634",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Button/index.ts",
+      "sha256": "110d7e174d33c60048e92b5ba21cce29a0cf7fdce40a2a1a5b78cde6b8de54ed",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/AreaChart/AreaChart.tsx",
+      "sha256": "6de468c6eea45a7d8a02dfb8bca26209f4b8a3ba9e4b49a251108491b4b19678",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/AreaChart/areaChart.scss",
+      "sha256": "8cf07f99941c459ecfd33529e511a52769ace47dd61597695180b2f80e37b3d5",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/AreaChart/parts/AreaSeries.tsx",
+      "sha256": "49db87715509f01b8caa8203e5f6abf96aff7c71037e8e3f27292bc2e446ed73",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/AreaChart/parts/GradientDefs.tsx",
+      "sha256": "de5a336b73f7fa4705804dce161cfcf2a57c1c7ed13443ab7b043bc02e824c4e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/AreaChart/types.ts",
+      "sha256": "a4d30e019a2b978d3326f008b02e69a720059350737e40834e27ddb1e89f72e8",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/BarChart.tsx",
+      "sha256": "dd0fc988d89b98aed45a3a197e9f9dcc06fa1d6d74b003e7f3cd52324d79666b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/HorizontalBarChart.tsx",
+      "sha256": "4f608e54770df73e48d91a4234f556c0f8aac27b6d003992c3b43a70a13314ad",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/barChart.scss",
+      "sha256": "6cace09bf252fc0a1789a07f26c1665ebee1c51f04522a231dd739372859c94b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/horizontalBarChart.scss",
+      "sha256": "b9b320339e5ca05da44cb93d86ff2f23b4bde705db32f352ee0494f6aa59aeba",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/BarSeries.tsx",
+      "sha256": "ffd462a27c6fb3c96d49bab9ea85488326eb0e6bbee69fcc90fb83870dbc6371",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/Crosshair.tsx",
+      "sha256": "fa3042afc62eada087de5be41336d6af9e1fc8051834beac42f758384836b639",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/HorizontalBarChartImpl.tsx",
+      "sha256": "fe385197b112e804c54e694d382f0a395ae1ead4b4c7b761e06f3d6e3fbbf544",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/HorizontalBarSeries.tsx",
+      "sha256": "05b71ac09453d79d91a22aa6b4213f9f60a321533b103fc3e4e418f36d0815cd",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/HorizontalCrosshair.tsx",
+      "sha256": "45c61fe9f7b6f6da666c29a090b2ca570bd98626571c3c9b811fc57c2c65c39d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/horizontalBarGeometry.ts",
+      "sha256": "a71302288eabf50d0e6c8949007241722ef27d7a381976bdeed720c4a14b5855",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/parts/verticalBarRadii.ts",
+      "sha256": "e0ed9b6c1f349bd4da9a4b18cd5045d75c766516e4b53f14ba23b7bca6e68b14",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/types.ts",
+      "sha256": "b321a7f52032f0b0f1d758c1837953aad007931fd09af0390cfef3a27cf350ca",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/CalendarHeatmap.tsx",
+      "sha256": "845a6ccaff40d1d9bee854bc780defe6172fd12864439cb5dd158148c1784cb0",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/calendarHeatmap.scss",
+      "sha256": "a35de1a65533f27f7e2bc053a148a4bceb4c07724e7ade90c87ad5619e6d935b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/CalendarCells.tsx",
+      "sha256": "555852fdff1e30220e84aa6511dac22ee582829a5ab57db7a7bd10dfc76b10f1",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/CalendarLegend.tsx",
+      "sha256": "11698b00bd993fdf77978c74ebe65bad11d9ced3a20901831f492c2d98696704",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/CalendarPatternDefs.tsx",
+      "sha256": "deab512ccd63dcd9165de8eaa47255c6ee8484d7916a9d0ba79ab5316a3a9875",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/CalendarSeparators.tsx",
+      "sha256": "c07caa85e702bd6cf4aad004527bfda41fec05accc356b3ca0b9286a921d9b4e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/MonthAxis.tsx",
+      "sha256": "24937b94c0504b9df84a07bf0264ed21908eb14606aa27719b114c083b347d9e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/WeekdayAxis.tsx",
+      "sha256": "7dfe91c6880ac7c833c9943acc1001ed8a373c00e2139703062f4863ed5668eb",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/calendarMath.ts",
+      "sha256": "5ab5f53d3f64144a4e67a6e7f5f1b901cadef05486d5f48c539d2974df3aef78",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/levelScale.ts",
+      "sha256": "c2173522a68e363585a312d0a71f01ab622cb2ab6530b7509c8ac8c0b33231a3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/separatorLayout.ts",
+      "sha256": "2372fc5531068d8011a747eaca9de1471aac31401be74eab2c8037e1ffd2f605",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/staggerSeed.ts",
+      "sha256": "d9fe4a58911e0c8ccc2765d57c2afe5b36142747d33d634c945f50079e16ac3f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/parts/useDelayedHover.ts",
+      "sha256": "109ad4bcbfec99c53f2392d4c1f0130c42ccae3ae694ccf749c66b97e9567b73",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/types.ts",
+      "sha256": "64b67806ab398bff39f94e487bfe441becf1140b4910b19541a1870baa66f2d1",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/FunnelChart/FunnelChart.tsx",
+      "sha256": "2b85023533e4ac639a38942cdfc3930452522f5f13504fac7f7112b8267261e7",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/FunnelChart/funnelChart.scss",
+      "sha256": "01aee411de3df480a98c4b359f9f6086a33a0fc0a35232e2d40ef7cc3feee99d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/FunnelChart/parts/FunnelStages.tsx",
+      "sha256": "66ae09a179a60cbf8d3539eb6469923f946ce570c90efe3bedf48cef3e5f1aad",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/FunnelChart/parts/funnelGeometry.ts",
+      "sha256": "717569473a0d7ace237104beaf72593423684ce98c265e0a1e14f3d81cf3e26d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/FunnelChart/types.ts",
+      "sha256": "033ee22065511addad19cedf53ed2dbe5d8dab7cbf438bdc1e2424d7dd181a4d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/HeatmapChart.tsx",
+      "sha256": "5f9bc3baee018a3f80c1aa22a829375be89af9208d9dc31902ee9092ba588913",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/heatmapChart.scss",
+      "sha256": "ea506da0dc690c2bbc81bf3cbbda31f11521221a17c8edac7b577b071c0cb4bf",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/parts/HeatmapCells.tsx",
+      "sha256": "41eabd4794b4aa0fe657cf1e8efada817d2f3979b3ce688f78bdfb018a2ea2f4",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/parts/HeatmapColorScale.tsx",
+      "sha256": "636abd6ca033f33724cdb77011403c094e104062f2fbf6e7813c85381fb6d64f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/parts/HeatmapYAxis.tsx",
+      "sha256": "0811e3ad48b2ac6736d1e9b00f31461289fcbf354a4e56955fc1bf50ac8605d3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/types.ts",
+      "sha256": "d9e3ea9ebe25ce3c2090d00a02400405641f5186c2c85c0c20bac597198dc38f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/LineChart/LineChart.tsx",
+      "sha256": "e0f5e88ce8287cf235b46946660a1e87fecf822566923cf0218311e038384017",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/LineChart/lineChart.scss",
+      "sha256": "3148ef7422d3dca6e74920c0c094e2feeb2b30d82b7a31de5155df982764f183",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/LineChart/parts/LineSeries.tsx",
+      "sha256": "696796c13a0376d1f0ff72badd4537783fb1388bba9fcf370cf2ee860627f37f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/LineChart/types.ts",
+      "sha256": "b59e86f2e6959289709e9c39cebbad3ff0620d3bd6947011f86ad056ac223f09",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/MiniAreaChart/MiniAreaChart.tsx",
+      "sha256": "9dd9a3079a42de70dfc84e48c3e24c61ad50777711410bb6860308fe51f16e18",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/MiniAreaChart/types.ts",
+      "sha256": "29e9885955bb9c7419269ba9f5bcbd8e9564344b242ceacf7c23437014114549",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/MiniBarChart/MiniBarChart.tsx",
+      "sha256": "112ef9c741bd5e6e1e253f5d756e775967b5edef09e9e10717903a57d4e317af",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/MiniBarChart/types.ts",
+      "sha256": "1c3f161a268b73eb45180bbd6f0cf8ad85be2ef64eb84a3a4c1afe06f13abac4",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/MiniLineChart/MiniLineChart.tsx",
+      "sha256": "2e2f74c5d2399baf219afa086b3a199b484f1eac79b9f1639c1a9f14d5415752",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/MiniLineChart/types.ts",
+      "sha256": "8f4b51be053e6d5a8334ee05eebb69e5f6e8c4498d4ae30ad5f80cb236e889fc",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/PieChart/PieChart.tsx",
+      "sha256": "768d60ae9e9d5348823eab8f2df52819bbc1eb370b449ae0371ea98330499d5b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/PieChart/parts/PieSlices.tsx",
+      "sha256": "7551ef33f396a7efab5d68dadad8e361b956bb2b24fa2ffb559a8ce6d6c2e168",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/PieChart/pieChart.scss",
+      "sha256": "f2b3971e5b9c61507ec4a71135d617fff6f19f1e617c670f2e2863d921022200",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/PieChart/types.ts",
+      "sha256": "d61f4455b960addbd274bccdff17168c263e01a9da5457d44f004b05b7ca9880",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/RadarChart.tsx",
+      "sha256": "79adbb92aafef7b9be59a01b526fc3992fdb2c7b7587da9b0f31fcb214789273",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/parts/RadarAxisLabels.tsx",
+      "sha256": "60f61845f1ef00531008ec1e637e9042d72b3c3ace41e41a01685b4f89c22283",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/parts/RadarGrid.tsx",
+      "sha256": "5e52048eb89c163c99baf10de37b8074629a07f132b0ff9b3ca77da63bc4ac7d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/parts/RadarSeries.tsx",
+      "sha256": "a010bbcad9988deda0ed63d7a97f32c460bee30af33ec54b4dc472c721435d74",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/radarChart.scss",
+      "sha256": "6f8eeccf2352044522cb98ad61bb2394cf883516d03d886c984c1581fbad8884",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/types.ts",
+      "sha256": "e1094a0543e1a527a2144e2d2469e44d6f6e3454422db32e0ec594311bd06957",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadialChart/RadialChart.tsx",
+      "sha256": "9f29547a9010617d4d74b34402cc8b4f2f72f4bfcec742af5f66b5618ddc40d1",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadialChart/parts/RadialBars.tsx",
+      "sha256": "d4c5f38781e8fc099449f7bb10b62d35b9354d8829b9b43aa2ad33919f8519ae",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadialChart/parts/RadialGrid.tsx",
+      "sha256": "eff416c05e32f137caab32edc219a6040989b701516fd5073209f06e140a762c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadialChart/radialChart.scss",
+      "sha256": "3670ecb3d9509fbad045fc0c638007f1a6651c982753b3794c0e2e31da524fa9",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/RadialChart/types.ts",
+      "sha256": "77567b0700a6d54cc5d641c7d339ac0838b219ac91ecf07659984c1ebed2476f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/ScatterChart/ScatterChart.tsx",
+      "sha256": "1b776e57d39f583bf649e48443fa45c28273cc939761a9553b8cd6401559595a",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/ScatterChart/parts/ScatterDots.tsx",
+      "sha256": "e0bdf0791e2a8f870295f2a2df4a32b1e19e150197d7c62c7b94505250d3672a",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/ScatterChart/scatterChart.scss",
+      "sha256": "cf2806002774ad4723172e06f29fbc2ad7e3310b606d7a4748e0b8282fb31f6c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/ScatterChart/types.ts",
+      "sha256": "16080f3d1da57069e6bd0fcf10d0af278ff22cc623e3070e16572201672ca270",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/SegmentedBar.tsx",
+      "sha256": "4d004c3396f03cfb554be6c5137add986f02fff6b8b36220a76858c92baca531",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/SingleStackedBar.tsx",
+      "sha256": "25110076790f200fb4f74b7a38ec6273346557a7776a2c53cbbd6c1c5b107394",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/parts/segmentedBarGeometry.ts",
+      "sha256": "8007f35727eefd2956589b65499f2a2ccda74c30018bf5913208b9c6b1c95786",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/segmentedBar.scss",
+      "sha256": "4c5a5c645bf8cfca6aacdeb328c36cbf9b340294bcf4cde6603a37853a303166",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/types.ts",
+      "sha256": "9f90351254cf751a693115d062656947ae15f6052d260a3118a7bd3bac8f3ac6",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/_prefix.scss",
+      "sha256": "b22ea22ca3dffbd08a031085a917885c80776fd89359a434f749a4bf981977f5",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/charts.scss",
+      "sha256": "007f7245fbefaa3965d3a269bb9d345f68fbb6e553cd2be640c8c97cb21a7c4a",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/index.ts",
+      "sha256": "f5d988f36fc1d665a05c8ae2c5533a3cb7443e7b3551579204d2568ebe1534f2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/orchestratorTypes.ts",
+      "sha256": "a215bb9e6cc2465cdbe011a7e73897f1eefb48b844930bafa1e75f4b97396fd2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useAutoAngleCalculation.ts",
+      "sha256": "100ad8322648a6701b870ec1feec46d24289f280f329f7d71da5cc69ef4d675d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useCalendarHeatmapOrchestrator.ts",
+      "sha256": "a56968e41b541179b3e222a28a3e41768954784a22f26e1cf128bd5faf73c772",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useCartesianChartOrchestrator.ts",
+      "sha256": "9a624fa287d308ff8cb06538f59523d9b5c22eabd1aa3da70b6ceab11ca4b8f4",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useChartDimensions.ts",
+      "sha256": "082bf0021e0746ad3f3b24ba62488d3858882663b71afeffb0950219f1cbf198",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useChartScroll.ts",
+      "sha256": "8ed0285349d4520934515e1f3201033b2571a8f99193bee0fbdfb5753608c175",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useFunnelChartOrchestrator.ts",
+      "sha256": "953853e78a3e60fd0451c03d917cf6fe078579dc9aea72956216a4e0572554ae",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useHeatmapChartOrchestrator.ts",
+      "sha256": "6fcb39e961e7b3e0fc0445bbcbbaa878126f095dc2c8b42e54cfbb3a571e52a0",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useHorizontalBarChartOrchestrator.ts",
+      "sha256": "b08948ace7c90243d87483a54f618b89f5bea452e9c8eab1a48c3dde1df261cc",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useMaxLabelWidth.ts",
+      "sha256": "97c248e04bf2fd21c69dbce5d377b922cec7da6205bcbff36a6e593aa7d783bc",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useScatterChartOrchestrator.ts",
+      "sha256": "da46d5c72783a1637ce744139c3555c40d528601ca4252ba9c40421d45967ab1",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useStackedData.ts",
+      "sha256": "74c7248ede71287419736cf1c82a476fd3906f0e0d8abb2b93ec885f42fc9454",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useXAxisHeight.ts",
+      "sha256": "bb388c6e5b301514b441be6b79596a98e0d77944c1f2c7df400217666e7d3f25",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useXAxisLabelLayout.ts",
+      "sha256": "ce0962a4126e1761c57047efebae447d80bb3150ba304dabddfe1eed4c233ba3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useXBandScale.ts",
+      "sha256": "11305f3decdad243fb7e12065179c4c2ddedf1c9ee98ab5b06de0aff7a151a09",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useXScale.ts",
+      "sha256": "418bcab99a2e03e072c5b9bc46824a410586433db0a228d0f150c9c8a3459724",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useYAxisWidth.ts",
+      "sha256": "7fdd815232fbf91e3b1ba64be4389c64e643cac764018e62d49bd7eff9f6e509",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/cartesian/useYScale.ts",
+      "sha256": "df521ccd4d0463e8e36f04bf26f8264bde6c14f3221e569e2faacc789fab55c8",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/index.ts",
+      "sha256": "548ddea18d3fe47a18c4b4b36329ebb9b7a360e5768d2d4f5ec18ef2342c1efc",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/measureFontScope.ts",
+      "sha256": "e33cc9b85fa9cda241cb6108b60e6b6d4d6992d559ae911ad3d7dab13b1ae333",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useCanvasContextForLabelSize.ts",
+      "sha256": "da23cf9bcbc92b2773811b5c3c4f1bc1430e7d5822d0644a6382f2753c178dc6",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useCategoricalChartData.ts",
+      "sha256": "86b54cf4b4acbd52ba0dd4aee18cda1c7792db1f427fb62b27bc73b388f62c87",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useChartData.ts",
+      "sha256": "c6e62dc0a5ec7f722eacc48209697567e941addc1b1345b4324b7e0b8b10e14a",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useChartHover.ts",
+      "sha256": "520ed53df9900122db7ffac9348f5805cf653a7912fbe5e7fac6d8bdd17ca892",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useChartShell.ts",
+      "sha256": "9b06133e6a155ad3fa41aea1515a056c58ef3b533f1e5841ead3e7d26e5498ef",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useContainerSize.ts",
+      "sha256": "e0ca42b6ee2bd006e40400824dc6ea08786003c442015a42550b11c9ffe799ad",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useEffectiveAnimation.ts",
+      "sha256": "ab9c8b44b45287f95abb1d107ed6380d903a1dda462c93ca36829e1596739b33",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useExportChartData.ts",
+      "sha256": "64e161d113ed303d171de333ce85c9192703104de14f1ccfcc3699eab61ac6dd",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useHydrated.ts",
+      "sha256": "568738ac8b3ddd32bafdbd2197a1d8cf7b4402968763d10d26a5207acb29caae",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useIndexedClickHandler.ts",
+      "sha256": "d8a485afa3f33ddaa2d1cb7031f084fba13421a04d785bd825ad28c98badeaac",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useIsomorphicLayoutEffect.ts",
+      "sha256": "644bc7f1d237a4378c65106047b523c97729755c772fdeecec1376958410216f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useLegendHeight.ts",
+      "sha256": "9717c7ae82f94754d19ef599695cc11f1e0875f548549bafb9f993a1fbd05e49",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/usePerElementHover.ts",
+      "sha256": "348b17e3e1c8d33c517066df131dd8fa0cac5b76ea8a67f2579e98ed1cb99524",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/usePrintContext.ts",
+      "sha256": "1665fd06c95d76ad66472d5c626fdfc87afbef352746ab0fb0988d39b0229c1b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useSeriesVisibility.ts",
+      "sha256": "29868724a67a897c4b79a813e9054c22f9a518504b2180e1d24ce67dffde60af",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useTooltipPayload.ts",
+      "sha256": "966b42d5992f4f65452d22711a6da0fb9f549c7fad50aa108c750782f076a6e5",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/core/useTransformedKeys.ts",
+      "sha256": "7c207a80e9d4634da3ad800edca5d35819af5d0048024c442bdd93420227d6de",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/index.ts",
+      "sha256": "863f81610b7f781d1a1fab39ed31c8f9e89b3d2ed9334b3d9d4bad43ab198337",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/polar/index.ts",
+      "sha256": "26b591942b9ebcd380760d2ca599d1fc789ca5b2aae32be29b95a4a2be73c612",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/polar/useCategoricalChartOrchestrator.ts",
+      "sha256": "5702957f784e786eca422a38f316667e0c207d040f91fc64c76ae2c1b09d2a93",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/hooks/polar/useRadarChartOrchestrator.ts",
+      "sha256": "b412c7e4bbfe57b27232d759ec9944e3d359a82b51cdaf4364764a7e08284e0e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/AnimatedPath.tsx",
+      "sha256": "3365049b0158f31d4aedac473eca78e83d36a142f9ad0caa5436e91fc50d9157",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/ClipDefs.tsx",
+      "sha256": "c14818e983ef05d083fdeedd2ed3c09e465a0d419ea744b8d952b1d8fb14d4ad",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/Grid.tsx",
+      "sha256": "a78ae348cfb2307e9c980cac2508f913e916c02bbc6cc5585068d8c86d868658",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/LineDotCrosshair.tsx",
+      "sha256": "f40c1c2c093b115b4235227561dea02442887691f0e10054ba9128395d361b65",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/ScrollButtonsHorizontal/ScrollButtonsHorizontal.tsx",
+      "sha256": "101f814332c6f201ea3aba1473f81ce24379f692fd4538dedd7c3c682159bcb7",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/ScrollButtonsHorizontal/scrollButtonsHorizontal.scss",
+      "sha256": "c8a99a702e6ca052f6bba6b748f7fcce5312a554561b195a923536c71d024e20",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/ScrollButtonsVertical/ScrollButtonsVertical.tsx",
+      "sha256": "6ac0f4ff332c2b4886150fa63a89efc6b1b6284fae0f9844c5b858756447aa40",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/ScrollButtonsVertical/scrollButtonsVertical.scss",
+      "sha256": "6301bc94737e36623303ab41af07f148545960503d037e466369bf983178c569",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/VerticalGrid.tsx",
+      "sha256": "2309d48e4697c6bf53f5cca06f8f8f7a9edd2362a9602c3bb5130a21563f267c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/axes/CartesianXAxis.tsx",
+      "sha256": "d7981a88d4a1b45b42aa743bc92987f5a5a033ac52fb9cdc10ba818cf05ac8ff",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/axes/CondensedXAxis.tsx",
+      "sha256": "d00cec27a477df5bf1d0a89b057d133e323ee17ae714a20345a87e0a7cc5516f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/axes/NumericXAxis.tsx",
+      "sha256": "eef1853a6f3c5245d76045c68865ce7c9ef68ef7bc55cc162c92457fb13a1796",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/axes/XAxis.tsx",
+      "sha256": "bd20effc6655941cc9a15dd741c63112ecb4c77de118f7f7e125cb5b263ca605",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/axes/YAxis.tsx",
+      "sha256": "7668c60cd187e23b0ef6d497b675bd07b1f294382b349b5935939e35e774b18e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/chartBase.scss",
+      "sha256": "72a3b031bcfce72fab97198fe6f612c244723660573d2f8a1a3bd3e5da5b84e7",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/layouts/CartesianChartLayout.tsx",
+      "sha256": "d7ab332abb43cf48b68fbb8cd7eeed22074a4b38b34d8d3f6d14631a1f7ddda2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/roundedBarPath.ts",
+      "sha256": "7a6394b7d04aa37eb7eb84860f0e97f7d7489c98c99863b71b0e56222e4f6b1e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/cartesian/seriesGeometry.ts",
+      "sha256": "2663bbdde8a52838bbc9695c46e07a2bb76f0df3129ef9449bae9428b02b6c5e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/ChartShell.tsx",
+      "sha256": "3e166aa6d47c039e51211c1248c90fe2f54b2012e6b1c1b284d0c7be57890012",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/DefaultLegend/DefaultLegend.tsx",
+      "sha256": "f52e2ad9aa5d302a93f4330fc449aba80f53d95c14b46c23cd4e159be0e9b6ac",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/DefaultLegend/defaultLegend.scss",
+      "sha256": "b9ff8631027568dbb805ce11e98d6d97fce268ef08d075207fb5ffb15bf13708",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/DefaultLegend/hooks/useDefaultLegend.ts",
+      "sha256": "3c46d0565aeef754973df7c68f50ec587eb4efdb4fae76d3123fc5e0eeec191d",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/LabelTooltip/LabelTooltip.tsx",
+      "sha256": "0c9acc31980c630868eb65b4037a375c4fc76e06f11de5d46943c4d8b64a7e82",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/PortalTooltip/ChartTooltip.tsx",
+      "sha256": "3c73a34e9a72dda8b93d51bdbd2ca1ce43872c3fe8c8b597c03f7ba9d07bf761",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/PortalTooltip/portalTooltip.scss",
+      "sha256": "c055a42419a6ec4f07593a43dfb895ae266b72e81571109a4771840ba19de488",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/PortalTooltip/utils/index.ts",
+      "sha256": "3fbc27ab27346c9347abd023a097292dad66acb6d90a789d700650c6ace92702",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/StackedLegend/ChartWithStackedLegend.tsx",
+      "sha256": "9f55fc4812aa1ef4739d947adf53a6395d9f2ca18a5c52f82a94d488a22069ea",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/StackedLegend/StackedLegend.tsx",
+      "sha256": "bcd8b8c5010befd188d65e5a6525cdcf61cdd5c3fdb2ec2c3499ff400fcfef48",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/StackedLegend/StackedLegendView.tsx",
+      "sha256": "a456e29cb814cca39419e8627e9344a8798beb1e2ae72ab4652345f581421b70",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/StackedLegend/index.ts",
+      "sha256": "3a8efc687c9902bb4f2283f1f1212a66dab7f80e4fe3789a2e5e1de9a848dd24",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/StackedLegend/stackedLegend.scss",
+      "sha256": "85dd14b5b1f84d743457a39b89cc3a6d4151d20e3ebf95c442bdd95b6fea7ef2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/StackedLegend/stackedLegendLayout.ts",
+      "sha256": "b1081a894167adcbf44f72244b60e9973373148a88d35914c1f9106f12a241be",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/legend/LegendStoreProvider.tsx",
+      "sha256": "9f954b6eb2a39fec12c736ba00bf0f6f73b114fdf6a3d06eb7bd21bf556c8640",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/legend/index.ts",
+      "sha256": "34877a254e24d771f8e53e2a7bea48e0af6303530bd2df2b279fd163600eae4b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/legend/legendSelectors.ts",
+      "sha256": "3322b6e582c0ba82ac0d8cdb85a36b648e3f93ac64e1510fc3e1c4b5241b9c6f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/legend/legendStore.ts",
+      "sha256": "490ebec47954a5d59e58886659421268dce71526d4e86e9ba5c4cd4414fc7720",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/legend/types.ts",
+      "sha256": "2b673a977e78d96dc4627ea267ab3c8c3b27fa50954d6d6cb7bcf33cd95e2725",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/FadeFollower.tsx",
+      "sha256": "98fe66093ebfd6539b608d7eefd98f7790bbf4a3c8dbaf756fb3cea73bb3106c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/dataMorph.ts",
+      "sha256": "83cccbec5b08898d86260fe894e87b9e625d2dcc67e229e49dfb13d431241f58",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/index.ts",
+      "sha256": "bbb07c897d3f6e0c72a23bf06b9c4bfa8d92e8512740f12297bb8856b3525e4c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/presets.ts",
+      "sha256": "4747d71a94bec92ddb1ca946c953521a999d317a74dbd6152e839d4a9eb875a8",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/spring.ts",
+      "sha256": "5078b3e6cec1d3c880e9f61a0c27ec609ea346bb054617e7ac88c6072dd31c2c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/ticker.ts",
+      "sha256": "22a3940d56ccd8398501440c46a8c11b309fa0209d26ceaae2ef63ff7f468309",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/useDataMorph.ts",
+      "sha256": "2759c2b5889a1360074270285f4190f58dbf5a254dc8cfc5fcd9207dcfbbcbcc",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/useSeededAim.ts",
+      "sha256": "eba8768bddd5e9c8b5cd6a801c97b28f7fbc095e8339c6ff53bc24275ac79461",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/useSpring.ts",
+      "sha256": "64d4fcad3ba47514bd8d9bb65aea2aed9685ed33537a6c9f05c7a06882d2729e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/core/spring/useTranslate.ts",
+      "sha256": "c63d4ac2616cb5b45eb294816e1b387d9c2f4283f30cf96427472bc109143862",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/mini/MiniChartFrame.tsx",
+      "sha256": "3909b4ac471bbf7d6ffce62b72b84937057867045507299fe53c90312f3f81f5",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/mini/miniChart.scss",
+      "sha256": "3ea0de52a5b3499f67d8ae1819c87fccf72451785f088e092d6169eac585b508",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/shared/mini/miniChartUtils.ts",
+      "sha256": "6fa4aec1b4d2d676e3b6e8a2e2ef23e6fb3cdd96a594cca1e290b5e1c8ca1c4a",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/types/common.ts",
+      "sha256": "c4ea2fd9e1972877a7661195adb5d25e6f55515580d2266de42606de865656b7",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/types/exportChartData.ts",
+      "sha256": "e3f816df65b1ea4110796f85d020060e7f85288cc68482fd224fee834ff8faf2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/types/index.ts",
+      "sha256": "5f633b603851a194406dee2da2af179ddefe9beb58b66fed779e2074cda19eeb",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/buildContainerStyle.ts",
+      "sha256": "88afc8439352b9899c891c001cd7c726535b406cdede50d840cc55cca647faff",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/colorLuminance.ts",
+      "sha256": "646bcd2190f5551b4f17f73f22b22b0b36cd8be33f72cb9eb85cadc1cf25f7d2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/constants.ts",
+      "sha256": "c8e1abc457db4b1a1181536c435b0e5e997c12a23b48217729d4041cab1d8f27",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/dataUtils.ts",
+      "sha256": "b8e55d5e73fd8ff8e094ee45ae106daa3ef7b77b05558fc1927410f998487fd6",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/entranceUtils.ts",
+      "sha256": "71321b87ffe4ab04a6849d6f50f04524911e84bbb39345dcb895c1c3c9e997fb",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/heatmapUtils.ts",
+      "sha256": "8d4f34ce4148ed7f35eb2a7116a43dbec3c9d10a55b0081e76dcdd560033de43",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/labelWrap.ts",
+      "sha256": "e063268575ff6f9a66b1ebbebe24af5adf242673edca48791953f504b8bf1cd3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/mouseUtils.ts",
+      "sha256": "9f8912316e68a34a0362d3d926d0fc6c9628386b252e609933d3efb375e9850f",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/paletteUtils.ts",
+      "sha256": "b60217980242420b2129bff506d2ee673ed1fd847e3f8eb82efc956f0cb41f20",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/polarUtils.ts",
+      "sha256": "4f4a10f55fd19885e7dc4de73cad1e3179307283323ce95ac65abc332444dcd8",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/radarLabelLayout.ts",
+      "sha256": "1f34112b9145b93b9facc6d84513e0d24d02539116e276af965ee2c5624eea6e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/rampUtils.ts",
+      "sha256": "bd23a06c30c8d5bed7b82aa60038540d8790fc6b0a525be5b900aa1b1bceace3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/resolveShouldFitLegend.ts",
+      "sha256": "9485b8cd6d5a03656960182a13512763073cb0bd5ca7766d7fd05bd4f1efa0dc",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/scrollUtils.ts",
+      "sha256": "677cfebac02125e0f2f6a7740cf65b3b0194804672da872dd7e3e58f53e50f2a",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/styleUtils.ts",
+      "sha256": "04cde91f0693f89b7c9edbe896c891e5593bbcdbcb0d5859989eb537d59441d2",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/xAxisLabelLayout.ts",
+      "sha256": "3a8b357bb99b66da0883579dbaf60f3b8a02ca46f66028c989b74d47b726218e",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Charts/utils/yDomain.ts",
+      "sha256": "45815d7522824b34bfc3c3146693862070662ac5342a6019d1650919b7548204",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/IconButton/IconButton.tsx",
+      "sha256": "c2ee10f38e8899252079ade15959c67ea24feb03ca96240268ef469c4fc32046",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/IconButton/index.ts",
+      "sha256": "119e16abe69fc03c56d1b0bcb8f9f5c5c85f30a9d71f6aaaf5acff57a1745ba1",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Separator/Separator.tsx",
+      "sha256": "08cf69862ee8371bd5b8d67957b416b6e93e69ce59d383a412c73a10c3643b88",
+      "modified": true
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/Separator/index.ts",
+      "sha256": "d004337bfd4ad99252bb622c7d7c810ab7eab01365a31cf9f1e698b105d45fe4",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/ThemeProvider.tsx",
+      "sha256": "61f46f8e3e82a1514623fbd5872af3950a11f8eed27d2f031461c94b2811bb76",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/defaultTheme.ts",
+      "sha256": "820ef8dd31e33395a4e63049f55baf683d67ae02cc7c1d2daf642a9382c626bf",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/index.ts",
+      "sha256": "882b56ae666cd0db821859e9ea0bcd80784e2bcb0934c78c6df8101bdb199906",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/swatches.ts",
+      "sha256": "400c6bdb7df4ffe74d717e96714b167ebb273d6bdbaeb0861bddbc0c22bd87b3",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/types.ts",
+      "sha256": "8ec5603828f16a68d88812e666bce75a2af9caa41b3900d219b61571843e4156",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/useSystemThemeMode.ts",
+      "sha256": "9d795ebf06f017d5a01f4bb401e0a35604d6cb81b28de056d5da84219b2039e4",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/useThemeModePreference.ts",
+      "sha256": "cd2c262f340325d122b4c35623762cbeb7125fcc4765513cb2a9863c751d2504",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/components/ThemeProvider/utils.ts",
+      "sha256": "7957e80fd56eec6547d09135cdec962603de5f19821ffce634d2fe0f07e5862c",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/context/PrintContext.tsx",
+      "sha256": "c52fd537110ac2ffb6b503589f911df5489dcd0560760f79bf9a883e184e72a7",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/cssUtils.scss",
+      "sha256": "14ae2d7bb217526b36ed5dc6b36b595d74148fcca2657db6b1ba1e1d4bf2616b",
+      "modified": false
+    },
+    {
+      "path": "vendor/openui/packages/react-ui/src/utils/preferences.ts",
+      "sha256": "db9287c27ef44a94aa532868c480e5d150fe4fd463ba18da9eeaca14af42345a",
+      "modified": false
+    }
+  ]
+}

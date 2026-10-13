@@ -1,0 +1,4151 @@
+{
+  "total": 219,
+  "contractViews": 195,
+  "actualAdapterBound": 0,
+  "publicBaseComposed": 0,
+  "browserVerified": 0,
+  "entries": [
+    {
+      "oldType": "text",
+      "name": "Text",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Text"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "title",
+      "name": "Heading",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Heading"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "caption",
+      "name": "Text",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Text"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "agenda",
+      "name": "AgendaView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "person-profile",
+      "name": "PersonProfileView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "news-article",
+      "name": "NewsArticleView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "entity-reviews",
+      "name": "EntityReviewsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "restaurant-availability",
+      "name": "RestaurantAvailabilityView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "onboarding-selection",
+      "name": "OnboardingSelectionView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "create-interactive-poll",
+      "name": "CreateInteractivePollView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "location-choice-request",
+      "name": "LocationChoiceRequestView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "business-gallery",
+      "name": "BusinessGalleryView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "flight-option",
+      "name": "FlightOptionView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "artist-upcoming-events",
+      "name": "ArtistUpcomingEventsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "package-tracker",
+      "name": "PackageTrackerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "flight-tracker",
+      "name": "FlightTrackerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "sidebar-people-also-ask",
+      "name": "SidebarPeopleAlsoAskView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "email-preview",
+      "name": "EmailPreviewView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "file-nav-list",
+      "name": "FileNavListView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "jobs",
+      "name": "JobsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "product-card",
+      "name": "ProductCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "local-business",
+      "name": "LocalBusinessView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "restaurant-reviews",
+      "name": "RestaurantReviewsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "flight-search-form",
+      "name": "FlightSearchFormView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "flight-results",
+      "name": "FlightResultsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "shared-activity-planner",
+      "name": "SharedActivityPlannerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "event-sidebar",
+      "name": "EventSidebarView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "word-card",
+      "name": "WordCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "copy-words",
+      "name": "CopyWordsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "code-cite",
+      "name": "CodeCiteView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "file-cite",
+      "name": "FileCiteView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "sidebar-fact-table",
+      "name": "SidebarFactTableView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "entity-thumbnail-list",
+      "name": "EntityThumbnailListView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "reddit-thread-card",
+      "name": "RedditThreadCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "markdown",
+      "name": "MarkdownView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "writing-block",
+      "name": "WritingBlockView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "email-draft",
+      "name": "EmailDraftView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "task-expansion-card",
+      "name": "TaskExpansionCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "code",
+      "name": "CodeView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "math",
+      "name": "MathView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "badge",
+      "name": "Badge",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Badge"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "divider",
+      "name": "Divider",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Divider"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "spacer",
+      "name": "SpacerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "link",
+      "name": "LinkView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "favicon",
+      "name": "FaviconView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "image",
+      "name": "Image",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Image"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "box",
+      "name": "Stack",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "card",
+      "name": "Card",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "row",
+      "name": "Row",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Row"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "col",
+      "name": "Stack",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "grid",
+      "name": "Grid",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Grid"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "grid-item",
+      "name": "GridItemView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "blockquote",
+      "name": "BlockquoteView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "section",
+      "name": "SectionView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "figure",
+      "name": "FigureView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "details",
+      "name": "DetailsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "tooltip",
+      "name": "TooltipView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "popover",
+      "name": "PopoverView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "flow",
+      "name": "Row",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Row"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "icon",
+      "name": "Icon",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "pulse-indicator",
+      "name": "PulseIndicatorView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "loading",
+      "name": "LoadingView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "loading-block",
+      "name": "LoadingBlockView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "citation",
+      "name": "CitationView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "web-link-cards",
+      "name": "WebLinkCardsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "prompt-suggestions",
+      "name": "PromptSuggestionsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "animate",
+      "name": "AnimateView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "celebration",
+      "name": "CelebrationView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "carousel",
+      "name": "CarouselView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "tab-panel",
+      "name": "TabPanelView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "tab-group",
+      "name": "TabGroupView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "list",
+      "name": "ListView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "restaurant-menu",
+      "name": "RestaurantMenuView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "table",
+      "name": "Table",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Table"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "metric",
+      "name": "MetricView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "metric-grid",
+      "name": "MetricGridView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "steps",
+      "name": "StepsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "callout",
+      "name": "Alert",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Alert"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "label",
+      "name": "LabelView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "slider",
+      "name": "Slider",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Slider"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "checklist",
+      "name": "ChecklistView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "rating",
+      "name": "RatingView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "toggle",
+      "name": "Switch",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Switch"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "select",
+      "name": "Select",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "input",
+      "name": "Input",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Input"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "textarea",
+      "name": "Textarea",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Textarea"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "radio",
+      "name": "RadioGroup",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "RadioGroup"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "segmented",
+      "name": "SegmentedView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "field",
+      "name": "FieldView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "form",
+      "name": "FormView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "button",
+      "name": "Button",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "topology",
+      "name": "TopologyView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "chart",
+      "name": "BarChart",
+      "classification": "base",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "BarChart"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "clock",
+      "name": "ClockView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "stopwatch",
+      "name": "StopwatchView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "timer",
+      "name": "TimerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "weather",
+      "name": "WeatherView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Icon",
+        "Select",
+        "Table"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "f1-races",
+      "name": "F1RacesView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "f1-standings",
+      "name": "F1StandingsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "sports-schedule",
+      "name": "SportsScheduleView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "sports-scoreboard",
+      "name": "SportsScoreboardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "sports-standings",
+      "name": "SportsStandingsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "quiz",
+      "name": "QuizView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "flashcards",
+      "name": "FlashcardsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "fill-blank",
+      "name": "FillBlankView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "sentence-builder",
+      "name": "SentenceBuilderView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "vocab-card",
+      "name": "VocabCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "finance-quote",
+      "name": "FinanceQuoteView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "finance-chart",
+      "name": "FinanceChartView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "finance-comparison",
+      "name": "FinanceComparisonView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "finance-heatmap",
+      "name": "FinanceHeatmapView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "asset-distribution",
+      "name": "AssetDistributionView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "transaction-list",
+      "name": "TransactionListView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-accounts",
+      "name": "LedgerAccountsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-recurring-transactions",
+      "name": "LedgerRecurringTransactionsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "nba-scores",
+      "name": "NbaScoresView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "soccer-games",
+      "name": "SoccerGamesView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "american-football-games",
+      "name": "AmericanFootballGamesView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "basketball-tournament",
+      "name": "BasketballTournamentView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "election-results",
+      "name": "ElectionResultsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "nba-game-boxscore",
+      "name": "NbaGameBoxscoreView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "cricket-match-boxscore",
+      "name": "CricketMatchBoxscoreView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "nba-player-summary",
+      "name": "NbaPlayerSummaryView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "tennis-player-summary",
+      "name": "TennisPlayerSummaryView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "unit-converter",
+      "name": "UnitConverterView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "currency-converter",
+      "name": "CurrencyConverterView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "svg",
+      "name": "SvgView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "native",
+      "name": "NativeView",
+      "classification": "refusal",
+      "contractDefined": false,
+      "oldRendererPresent": false,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "follow-up-card-group",
+      "name": "FollowUpCardGroupView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-transaction-detail",
+      "name": "LedgerTransactionDetailView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "recommendation-card",
+      "name": "RecommendationCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "prompt-checklist",
+      "name": "PromptChecklistView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-finance-status-banner",
+      "name": "LedgerFinanceStatusBannerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "learning-audio-label-card",
+      "name": "LearningAudioLabelCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "learning-image-choice-card",
+      "name": "LearningImageChoiceCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "learning-image-label-card",
+      "name": "LearningImageLabelCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "weather-sidebar-title",
+      "name": "WeatherSidebarTitleView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Icon",
+        "Select",
+        "Table"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-low-confidence-category-correction",
+      "name": "LedgerLowConfidenceCategoryCorrectionView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-net-worth",
+      "name": "LedgerNetWorthView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "pressable",
+      "name": "PressableView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-fee-interest-paid",
+      "name": "LedgerFeeInterestPaidView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "html-view",
+      "name": "HtmlViewView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "youtube",
+      "name": "YoutubeView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "search-image",
+      "name": "SearchImageView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "async-image-group",
+      "name": "AsyncImageGroupView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "async-image",
+      "name": "AsyncImageView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "lottie",
+      "name": "LottieView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "tabbed-section",
+      "name": "TabbedSectionView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "visual-card-carousel",
+      "name": "VisualCardCarouselView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "link-card",
+      "name": "LinkCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "recommendation-link-card",
+      "name": "RecommendationLinkCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-spend-so-far-this-month",
+      "name": "LedgerSpendSoFarThisMonthView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-upcoming-activity",
+      "name": "LedgerUpcomingActivityView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "image-grid",
+      "name": "ImageGridView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "conversation-suggestions",
+      "name": "ConversationSuggestionsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "follow-up-action-bar",
+      "name": "FollowUpActionBarView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-income-tracker",
+      "name": "LedgerIncomeTrackerView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "async-video-carousel",
+      "name": "AsyncVideoCarouselView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "display-automation",
+      "name": "DisplayAutomationView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "list-automations",
+      "name": "ListAutomationsView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "automation-plan-summary",
+      "name": "AutomationPlanSummaryView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "scheduled-task-suggestion",
+      "name": "ScheduledTaskSuggestionView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "entity-card",
+      "name": "EntityCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "entity-overview",
+      "name": "EntityOverviewView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ask-user-details",
+      "name": "AskUserDetailsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ask-user-files",
+      "name": "AskUserFilesView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-spend-by-category",
+      "name": "LedgerSpendByCategoryView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-spend-by-category-detail",
+      "name": "LedgerSpendByCategoryDetailView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-spend-by-category-recent-transactions",
+      "name": "LedgerSpendByCategoryRecentTransactionsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "learning-voice-mode-launcher-card",
+      "name": "LearningVoiceModeLauncherCardView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "offer-voice-conversation",
+      "name": "OfferVoiceConversationView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "learning-speak-card",
+      "name": "LearningSpeakCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "conversational-onboarding-advice",
+      "name": "ConversationalOnboardingAdviceView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "conversational-onboarding-writing",
+      "name": "ConversationalOnboardingWritingView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "onboarding-feature-card",
+      "name": "OnboardingFeatureCardView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "onboarding-plugin-suggestions",
+      "name": "OnboardingPluginSuggestionsView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "onboarding-starter-tasks",
+      "name": "OnboardingStarterTasksView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "conversational-onboarding-study",
+      "name": "ConversationalOnboardingStudyView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "conversational-onboarding-search",
+      "name": "ConversationalOnboardingSearchView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "follow-up-quiz",
+      "name": "FollowUpQuizView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "multiple-choice-block-v2",
+      "name": "MultipleChoiceBlockV2View",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "personality-quiz",
+      "name": "PersonalityQuizView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "whats-new-capability-welcome",
+      "name": "WhatsNewCapabilityWelcomeView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ask-user-location",
+      "name": "AskUserLocationView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "reservation-time-pills-ref-carousel",
+      "name": "ReservationTimePillsRefCarouselView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "whats-new-capability-search",
+      "name": "WhatsNewCapabilitySearchView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "push-drip-series-intro",
+      "name": "PushDripSeriesIntroView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "stop-push-drip-series",
+      "name": "StopPushDripSeriesView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "task-autopause-card",
+      "name": "TaskAutopauseCardView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-finance-onboarding",
+      "name": "LedgerFinanceOnboardingView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-repair-bank-connection",
+      "name": "LedgerRepairBankConnectionView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "finance-onboarding-suggestions",
+      "name": "FinanceOnboardingSuggestionsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "places-metadata-bar",
+      "name": "PlacesMetadataBarView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "plugin-followup",
+      "name": "PluginFollowupView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "instant-suggestions",
+      "name": "InstantSuggestionsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Button",
+        "Icon"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-equity-updates",
+      "name": "LedgerEquityUpdatesView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-watchlist",
+      "name": "LedgerWatchlistView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "homework-helper-v2",
+      "name": "HomeworkHelperV2View",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "image-gen",
+      "name": "ImageGenView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "internal-partner-app",
+      "name": "InternalPartnerAppView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "bento",
+      "name": "BentoView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "open-detail",
+      "name": "OpenDetailView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "openai",
+      "name": "OpenaiView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-credit-score",
+      "name": "LedgerCreditScoreView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-credit-score-detail",
+      "name": "LedgerCreditScoreDetailView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "ledger-low-confidence-category-correction-legacy",
+      "name": "LedgerLowConfidenceCategoryCorrectionLegacyView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Row",
+        "Badge",
+        "Table",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "superbowl-riddle",
+      "name": "SuperbowlRiddleView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "learning-viz-dil",
+      "name": "LearningVizDilView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "care-provider-results",
+      "name": "CareProviderResultsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "care-provider-sidebar",
+      "name": "CareProviderSidebarView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "entity",
+      "name": "EntityView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "gen-image",
+      "name": "GenImageView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Image",
+        "Text",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "speech-synthesizer",
+      "name": "SpeechSynthesizerView",
+      "classification": "host",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Row",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "calculator-corrected-adjusted-age-of-preterm-infants",
+      "name": "CalculatorCorrectedAdjustedAgeOfPretermInfantsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "calculator-glasgow-coma-scale-gcs",
+      "name": "CalculatorGlasgowComaScaleGcsView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "calculator-rox-index-for-high-flow-nasal-cannula",
+      "name": "CalculatorRoxIndexForHighFlowNasalCannulaView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "calculator-qsofa-score",
+      "name": "CalculatorQsofaScoreView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "questionnaire",
+      "name": "QuestionnaireView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Card",
+        "Heading",
+        "Text",
+        "Stack",
+        "Input",
+        "RadioGroup",
+        "Select",
+        "Button"
+      ],
+      "evidence": []
+    },
+    {
+      "oldType": "rating-summary",
+      "name": "RatingSummaryView",
+      "classification": "view",
+      "contractDefined": true,
+      "oldRendererPresent": true,
+      "actualAdapterBound": false,
+      "browserVerified": false,
+      "publicBaseComposed": false,
+      "requiredPublicBases": [
+        "Stack",
+        "Text",
+        "Input",
+        "RadioGroup",
+        "Button"
+      ],
+      "evidence": []
+    }
+  ]
+}

@@ -1349,3 +1349,6 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 
 @keyframes iui-follow-up-loading-pulse{from{filter:brightness(1);opacity:1}to{filter:brightness(1.04);opacity:.86}}
 @media(prefers-reduced-motion:reduce){.iui-follow-up-card-loading{animation:none}}
+
+/* Explicit, upright code typography, independent of surrounding prose. */
+.iui-root :is(pre,code,kbd,samp,.iui-code,.iui-code-citation-line code),.iui-root :is(pre,code,.iui-code) *{font-family:Consolas,"Source Code Pro",ui-monospace,monospace;font-style:normal}

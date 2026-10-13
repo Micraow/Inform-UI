@@ -1,0 +1,130 @@
+{
+  "format": "inform-component-contract/2",
+  "id": "inform/representative-2",
+  "root": "BarChart",
+  "openuiRevision": "cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "requestedModules": [
+    "base/text",
+    "base/charts"
+  ],
+  "modules": [
+    "base/chart-data",
+    "base/charts",
+    "base/text"
+  ],
+  "runtimeResources": [
+    "inform/safety-kernel",
+    "inform/tokens",
+    "inform/foundation",
+    "inform/charts"
+  ],
+  "components": [
+    {
+      "name": "BarChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "BarChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "This profile only declares the chart kinds with an actual bound renderer. Other OpenUI chart exports are not implied."
+      ],
+      "docs": "Series(name, values) is data, not a UI child. Every values array has exactly one value per category. Negative values require a zero baseline.",
+      "examples": [
+        {
+          "id": "bar-chart",
+          "description": "Minimal bar-chart example using supplied data.",
+          "source": "root = BarChart(\"Quarterly\", [\"Q1\", \"Q2\"], [Series(\"Revenue\", [20, 30])])",
+          "props": {
+            "title": "Quarterly",
+            "labels": [
+              "Q1",
+              "Q2"
+            ],
+            "series": [
+              {
+                "name": "Revenue",
+                "values": [
+                  20,
+                  30
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "layer": "base",
+      "orderedProps": [
+        "content",
+        "tone"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "Text"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [],
+      "docs": "Use for prose. Newlines remain text; markup and code are not executed.",
+      "examples": [
+        {
+          "id": "text",
+          "description": "Minimal text example using supplied data.",
+          "source": "root = Text(\"Hello\")",
+          "props": {
+            "content": "Hello"
+          }
+        }
+      ]
+    }
+  ],
+  "dataShapes": [
+    {
+      "name": "Series",
+      "orderedProps": [
+        "name",
+        "values"
+      ],
+      "description": "Named finite numeric series, one value per category."
+    },
+    {
+      "name": "Slice",
+      "orderedProps": [
+        "label",
+        "value"
+      ],
+      "description": "Labeled nonnegative share. Data only; no Pie renderer is implied."
+    },
+    {
+      "name": "Point",
+      "orderedProps": [
+        "x",
+        "y"
+      ],
+      "description": "Finite Cartesian point. Data only; no Scatter renderer is implied."
+    }
+  ],
+  "externalServices": [],
+  "schemaSha256": "9ad12929a86c31f6985c7c306c191a1fdd0f5969f61d6fef1889fc0aec6d6d9b",
+  "promptSha256": "5d02d46170490275cecf1e4954f3bd98aaddddd3a9448893fb669f1ab9a90553",
+  "signatureSha256": "84b1038dc602f6026002a6880e88f05e4d901afe84f96b04c54681db476143c7",
+  "docsSha256": "f7434b78595737cfd6c93bb88f99c0f6fee6a71bc107697094ea6efacd84bb5b"
+}

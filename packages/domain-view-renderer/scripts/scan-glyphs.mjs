@@ -1,0 +1,4 @@
+import ts from'typescript';import fs from'node:fs';import path from'node:path';
+const dir='src/internal/renderer';const matches=[];
+for(const file of fs.readdirSync(dir).filter(x=>x.endsWith('.ts')&&!x.endsWith('.d.ts')&&!x.includes('-labels')&&!['presentation.ts','lottie-player.generated.ts'].includes(x))){const source=fs.readFileSync(path.join(dir,file),'utf8'),ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true);function walk(node){if((ts.isStringLiteral(node)||ts.isNoSubstitutionTemplateLiteral(node)||ts.isTemplateHead(node)||ts.isTemplateMiddle(node)||ts.isTemplateTail(node))&&/[\u2190-\u2bff\u{1f000}-\u{1faff}]/u.test(node.text)){const line=ast.getLineAndCharacterOfPosition(node.pos).line+1;matches.push({file,line,value:node.text,context:node.parent.getText(ast).slice(0,220)});}ts.forEachChild(node,walk);}walk(ast);}
+console.log(JSON.stringify(matches,null,2));fs.writeFileSync('generated/glyph-scan.json',JSON.stringify(matches,null,2));

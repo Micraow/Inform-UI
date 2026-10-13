@@ -1,0 +1,1367 @@
+[
+  {
+    "name": "AgendaView",
+    "ok": true,
+    "elements": 56,
+    "text": "阅读小组 · 供数日程筛选日期查看已提供的记录。没有填写时间的记录不会推断全天时长。Dates and times are shown as supplied.",
+    "units": 57
+  },
+  {
+    "name": "PersonProfileView",
+    "ok": true,
+    "elements": 35,
+    "text": "Alex River (fictional)Role: Workshop coordinatorOrganization: Example Reading Ci",
+    "units": 36
+  },
+  {
+    "name": "NewsArticleView",
+    "ok": true,
+    "elements": 31,
+    "text": "虚构社区图书角完成纸质目录试验Supplied source虚构的榆叶社区简报 (Opens in a new tab)Supplied author虚构作者林",
+    "units": 32
+  },
+  {
+    "name": "EntityReviewsView",
+    "ok": true,
+    "elements": 60,
+    "text": "Fictional reading-room reviewsUse the local filters and sort to explore only the",
+    "units": 61
+  },
+  {
+    "name": "RestaurantAvailabilityView",
+    "ok": true,
+    "elements": 49,
+    "text": "Choose a supplied dinner timeAvailability is supplied for this example and has n",
+    "units": 50
+  },
+  {
+    "name": "OnboardingSelectionView",
+    "ok": true,
+    "elements": 33,
+    "text": "本次想先练习什么？请选择一至两项，随后可在本页继续或重置。Local choices only. Continue does not create an acc",
+    "units": 28
+  },
+  {
+    "name": "CreateInteractivePollView",
+    "ok": true,
+    "elements": 43,
+    "text": "Compose an example activity pollSynthetic draft. No invitation or vote collectio",
+    "units": 42
+  },
+  {
+    "name": "LocationChoiceRequestView",
+    "ok": true,
+    "elements": 23,
+    "text": "Meeting place optionsChoose among the supplied labels.These are supplied places.",
+    "units": 24
+  },
+  {
+    "name": "BusinessGalleryView",
+    "ok": true,
+    "elements": 18,
+    "text": "Example courtyard photosSupplied demonstration media, not a verified business li",
+    "units": 19
+  },
+  {
+    "name": "FlightOptionView",
+    "ok": true,
+    "elements": 56,
+    "text": "Example Air: two supplied legsCompare the supplied route and fare description lo",
+    "units": 57
+  },
+  {
+    "name": "ArtistUpcomingEventsView",
+    "ok": true,
+    "elements": 48,
+    "text": "Example EnsembleSupplied performance datesThe caller's order is preserved, inclu",
+    "units": 49
+  },
+  {
+    "name": "PackageTrackerView",
+    "ok": true,
+    "elements": 55,
+    "text": "Example shipmentSupplied shipment snapshot. No carrier connection, live tracking",
+    "units": 56
+  },
+  {
+    "name": "FlightTrackerView",
+    "ok": true,
+    "elements": 86,
+    "text": "Example flight snapshotSupplied flight snapshot. Times and status are not live o",
+    "units": 87
+  },
+  {
+    "name": "SidebarPeopleAlsoAskView",
+    "ok": true,
+    "elements": 28,
+    "text": "Questions about the supplied sampleOriginal demonstration text; no remote answer",
+    "units": 29
+  },
+  {
+    "name": "EmailPreviewView",
+    "ok": true,
+    "elements": 60,
+    "text": "Example itinerary notesSupplied plain-text message preview. No mailbox access, r",
+    "units": 61
+  },
+  {
+    "name": "FileNavListView",
+    "ok": true,
+    "elements": 110,
+    "text": "Example supplied filesSynthetic metadata, not a filesystem connection.Supplied f",
+    "units": 111
+  },
+  {
+    "name": "JobsView",
+    "ok": true,
+    "elements": 71,
+    "text": "Example supplied opportunitiesFictional records for demonstrating local filterin",
+    "units": 70
+  },
+  {
+    "name": "ProductCardView",
+    "ok": true,
+    "elements": 31,
+    "text": "Example notebookExample brandExample sellerSupplied product snapshot. Selection ",
+    "units": 32
+  },
+  {
+    "name": "LocalBusinessView",
+    "ok": true,
+    "elements": 64,
+    "text": "Example Corner KitchenSupplied business information. Hours are a weekly snapshot",
+    "units": 65
+  },
+  {
+    "name": "RestaurantReviewsView",
+    "ok": true,
+    "elements": 93,
+    "text": "Supplied dining experiencesSupplied dining reviews. Ratings and authorship are n",
+    "units": 94
+  },
+  {
+    "name": "FlightSearchFormView",
+    "ok": true,
+    "elements": 32,
+    "text": "Prepare a local flight searchPrepare a local search request using supplied airpo",
+    "units": 31
+  },
+  {
+    "name": "FlightResultsView",
+    "ok": true,
+    "elements": 97,
+    "text": "Supplied illustrative itinerariesSupplied itineraries only. Availability and pri",
+    "units": 98
+  },
+  {
+    "name": "SharedActivityPlannerView",
+    "ok": true,
+    "elements": 48,
+    "text": "Compare supplied activity optionsSupplied activity options and availability. Pre",
+    "units": 49
+  },
+  {
+    "name": "EventSidebarView",
+    "ok": true,
+    "elements": 44,
+    "text": "Example community eventSupplied event snapshot. No live status, registration or ",
+    "units": 45
+  },
+  {
+    "name": "WordCardView",
+    "ok": true,
+    "elements": 22,
+    "text": "sereneSupplied vocabulary. Reveal and self-marks stay local; no dictionary looku",
+    "units": 23
+  },
+  {
+    "name": "CopyWordsView",
+    "ok": true,
+    "elements": 40,
+    "text": "Original supplied practice wordsSelect supplied words and copy the exact preview",
+    "units": 35
+  },
+  {
+    "name": "CodeCiteView",
+    "ok": true,
+    "elements": 22,
+    "text": "Original literal code excerptSupplied code citation. Text is displayed literally",
+    "units": 23
+  },
+  {
+    "name": "FileCiteView",
+    "ok": true,
+    "elements": 25,
+    "text": "Original fictional document excerptsSupplied document excerpts, not a file previ",
+    "units": 26
+  },
+  {
+    "name": "SidebarFactTableView",
+    "ok": true,
+    "elements": 53,
+    "text": "Supplied example factsSupplied facts and attribution. Values are displayed liter",
+    "units": 54
+  },
+  {
+    "name": "EntityThumbnailListView",
+    "ok": true,
+    "elements": 67,
+    "text": "Supplied example entitiesSupplied entity records and embedded thumbnails. No loo",
+    "units": 62
+  },
+  {
+    "name": "RedditThreadCardView",
+    "ok": true,
+    "elements": 75,
+    "text": "Fictional reading-room discussionCommunity: Fictional Field Notes ClubAuthor: Fi",
+    "units": 76
+  },
+  {
+    "name": "MarkdownView",
+    "ok": true,
+    "elements": 29,
+    "text": "Markdown notesOverviewScopeDetailsLimitsEndLiteral Unicode 中文 😀 עברית. Emphasis",
+    "units": 30
+  },
+  {
+    "name": "WritingBlockView",
+    "ok": true,
+    "elements": 15,
+    "text": "Draft a short updateThis is an original, local example.\nEdit this text and copy ",
+    "units": 16
+  },
+  {
+    "name": "EmailDraftView",
+    "ok": true,
+    "elements": 31,
+    "text": "Fictional email draftSubjectReview the supplied outlineToAlex <alex@example.inva",
+    "units": 32
+  },
+  {
+    "name": "TaskExpansionCardView",
+    "ok": true,
+    "elements": 38,
+    "text": "Review the supplied outlineThese are supplied plan details for local reading. No",
+    "units": 33
+  },
+  {
+    "name": "CodeView",
+    "ok": true,
+    "elements": 3,
+    "text": "original_example_original_example_original_example_original_example_original_exa",
+    "units": 4
+  },
+  {
+    "name": "MathView",
+    "ok": true,
+    "elements": 167,
+    "text": "Umax⁡=max⁡(0.8,U2,0.9),Wnew=0.95×100Umax⁡+5U_{\\max}=\\max(0.8,U_2,0.9),\\qquad W_{",
+    "units": 3
+  },
+  {
+    "name": "SpacerView",
+    "ok": true,
+    "elements": 2,
+    "text": "",
+    "units": 3
+  },
+  {
+    "name": "LinkView",
+    "ok": true,
+    "elements": 2,
+    "text": "公开配色参考",
+    "units": 3
+  },
+  {
+    "name": "FaviconView",
+    "ok": true,
+    "elements": 4,
+    "text": "UI",
+    "units": 7
+  },
+  {
+    "name": "GridItemView",
+    "ok": true,
+    "elements": 3,
+    "text": "Supplied nested content",
+    "units": 4
+  },
+  {
+    "name": "BlockquoteView",
+    "ok": true,
+    "elements": 4,
+    "text": "Supplied nested content本项目原创合成示例",
+    "units": 5
+  },
+  {
+    "name": "SectionView",
+    "ok": true,
+    "elements": 3,
+    "text": "调用方提供的进度与占位",
+    "units": 4
+  },
+  {
+    "name": "FigureView",
+    "ok": true,
+    "elements": 3,
+    "text": "原创图形：输入、处理、输出。",
+    "units": 4
+  },
+  {
+    "name": "DetailsView",
+    "ok": true,
+    "elements": 4,
+    "text": "01 · 横向阅读",
+    "units": 5
+  },
+  {
+    "name": "TooltipView",
+    "ok": true,
+    "elements": 4,
+    "text": "关闭后会丢草稿吗？关闭说明面板不会重建表单。取消表单才会恢复初始数值；刷新页面不会保留本地状态。",
+    "units": 5
+  },
+  {
+    "name": "PopoverView",
+    "ok": true,
+    "elements": 9,
+    "text": "Open detailsLocal detailsCloseSupplied nested content",
+    "units": 10
+  },
+  {
+    "name": "PulseIndicatorView",
+    "ok": true,
+    "elements": 6,
+    "text": "作者给定的练习状态 Idle",
+    "units": 7
+  },
+  {
+    "name": "LoadingView",
+    "ok": true,
+    "elements": 7,
+    "text": "作者给定的练习强度比例30%",
+    "units": 8
+  },
+  {
+    "name": "LoadingBlockView",
+    "ok": true,
+    "elements": 7,
+    "text": "形状占位演示，不表示正在发送请求",
+    "units": 8
+  },
+  {
+    "name": "CitationView",
+    "ok": true,
+    "elements": 11,
+    "text": "[1]虚构方法说明（仅格式示例）合成出版方example.invalid引用编号由作者给定；组件不判断资料是否支持页面中的结论。Opens in a new t",
+    "units": 12
+  },
+  {
+    "name": "WebLinkCardsView",
+    "ok": true,
+    "elements": 31,
+    "text": "三个虚构资料条目Previous linksNext links合成资料甲：输入与数值example.invalid演示说明文字、目标域名和原生外链，不会自动读",
+    "units": 32
+  },
+  {
+    "name": "PromptSuggestionsView",
+    "ok": true,
+    "elements": 20,
+    "text": "Choose a reading topicOriginal sample prompts supplied with this document. The h",
+    "units": 21
+  },
+  {
+    "name": "AnimateView",
+    "ok": true,
+    "elements": 5,
+    "text": "Read at restNo content to preview.",
+    "units": 6
+  },
+  {
+    "name": "CelebrationView",
+    "ok": true,
+    "elements": 16,
+    "text": "A supplied messageSupplied message; not a verified achievement or completion.Tha",
+    "units": 17
+  },
+  {
+    "name": "CarouselView",
+    "ok": true,
+    "elements": 6,
+    "text": "三条合成笔记No items",
+    "units": 9
+  },
+  {
+    "name": "TabPanelView",
+    "ok": true,
+    "elements": 2,
+    "text": "",
+    "units": 3
+  },
+  {
+    "name": "TabGroupView",
+    "ok": true,
+    "elements": 8,
+    "text": "PanelPanel content",
+    "units": 9
+  },
+  {
+    "name": "ListView",
+    "ok": true,
+    "elements": 6,
+    "text": "改变一个输入。比较指标、图表和表格。",
+    "units": 7
+  },
+  {
+    "name": "RestaurantMenuView",
+    "ok": true,
+    "elements": 67,
+    "text": "纸间小馆 · 合成菜单Supplied menu有限的提供数据，在本页按名称、描述或标签搜索。Source: 原创合成样例 (opens in a new ta",
+    "units": 68
+  },
+  {
+    "name": "MetricView",
+    "ok": true,
+    "elements": 4,
+    "text": "Count1",
+    "units": 5
+  },
+  {
+    "name": "MetricGridView",
+    "ok": true,
+    "elements": 3,
+    "text": "Supplied nested content",
+    "units": 4
+  },
+  {
+    "name": "StepsView",
+    "ok": true,
+    "elements": 11,
+    "text": "读取三个负载比两侧固定为 0.80 和 0.90，中间值由控件给出。取路径最大值中间值降到 0.60 时，路径最大值仍为 0.90。按最大值计算窗口初始窗口结果",
+    "units": 12
+  },
+  {
+    "name": "LabelView",
+    "ok": true,
+    "elements": 2,
+    "text": "额外标签：点击这里聚焦输入",
+    "units": 3
+  },
+  {
+    "name": "ChecklistView",
+    "ok": true,
+    "elements": 40,
+    "text": "演示交付检查0 of 3 completeShow itemsAllOpenDoneSelect all enabled itemsClear enabled ",
+    "units": 35
+  },
+  {
+    "name": "RatingView",
+    "ok": true,
+    "elements": 38,
+    "text": "清晰程度选择整数评分。清除后回到尚未评分。12345UnratedClear rating",
+    "units": 29
+  },
+  {
+    "name": "SegmentedView",
+    "ok": true,
+    "elements": 13,
+    "text": "结果精度整数两位小数选择结果显示精度，也可用方向键切换。",
+    "units": 14
+  },
+  {
+    "name": "FieldView",
+    "ok": true,
+    "elements": 4,
+    "text": "复习选项Supplied nested content",
+    "units": 5
+  },
+  {
+    "name": "FormView",
+    "ok": true,
+    "elements": 8,
+    "text": "Local draftSubmitCancel",
+    "units": 9
+  },
+  {
+    "name": "TopologyView",
+    "ok": true,
+    "elements": 31,
+    "text": "U₁ = 0.80U1 = 0.80U₂（滑块控制）U2 = 1.20U₃ = 0.90U3 = 0.90源端源端交换 A交换 A交换 B交换 B目的端目的端高",
+    "units": 134
+  },
+  {
+    "name": "ClockView",
+    "ok": true,
+    "elements": 9,
+    "text": "固定时区示例 · Snapshot00:00:00Saturday, October 10, 2026Asia/ShanghaiFixed supplied i",
+    "units": 10
+  },
+  {
+    "name": "StopwatchView",
+    "ok": true,
+    "elements": 23,
+    "text": "练习秒表00:00:00.00Hours : minutes : seconds . hundredthsReadyStartPauseResetLapIn-p",
+    "units": 24
+  },
+  {
+    "name": "TimerView",
+    "ok": true,
+    "elements": 11,
+    "text": "Local timer00:01:00.00Hours : minutes : seconds . hundredthsReadyStartPauseReset",
+    "units": 12
+  },
+  {
+    "name": "WeatherView",
+    "ok": true,
+    "elements": 178,
+    "text": "San FranciscoAmerica/Los_Angeles°C°F14.2°CCurrentPartly cloudyObserved: Nov 1, 2",
+    "units": 706
+  },
+  {
+    "name": "F1RacesView",
+    "ok": true,
+    "elements": 83,
+    "text": "Supplied fictional race weekendsSupplied snapshot only. No live feed, inferred r",
+    "units": 84
+  },
+  {
+    "name": "F1StandingsView",
+    "ok": true,
+    "elements": 91,
+    "text": "Supplied fictional standingsSupplied snapshot only. No live feed, inferred race ",
+    "units": 92
+  },
+  {
+    "name": "SportsScheduleView",
+    "ok": true,
+    "elements": 189,
+    "text": "Football · 2026 合成赛季星河合成杯ScheduleGame dateAllSun, Nov 1, 2026Mon, Nov 2, 2026Tue",
+    "units": 190
+  },
+  {
+    "name": "SportsScoreboardView",
+    "ok": true,
+    "elements": 62,
+    "text": "Football · 2026 合成赛季星河合成杯ScoreboardChoose a game天琴 – 白桦 · Nov 1, 2026, 01:00 GMT",
+    "units": 63
+  },
+  {
+    "name": "SportsStandingsView",
+    "ok": true,
+    "elements": 114,
+    "text": "Football · 2026 合成赛季星河合成杯StandingsTeamAll天琴队白桦队跨越山谷的长队名示例：青色海岸联合队银帆队GroupAll示例组另",
+    "units": 115
+  },
+  {
+    "name": "QuizView",
+    "ok": true,
+    "elements": 73,
+    "text": "Self-check缓存与平均延迟：自测原创教学题。先作答，再查看解释；本地计分，不保存到服务。Progress: 0 / 21 / 2 · 命中耗时10 ms",
+    "units": 30
+  },
+  {
+    "name": "FlashcardsView",
+    "ok": true,
+    "elements": 25,
+    "text": "Flashcards缓存概念：翻面与自评这些掌握标记只用于本轮复习，不代表学习诊断。Rated: 0 / 2Mastered: 0 / 2Card 1 / 2平",
+    "units": 26
+  },
+  {
+    "name": "FillBlankView",
+    "ok": true,
+    "elements": 40,
+    "text": "Fill in the blanks参考信息与实际结果填写给定句子中的三个概念。可以修改后重查，也可以单独查看参考答案。Match a supplied ans",
+    "units": 41
+  },
+  {
+    "name": "SentenceBuilderView",
+    "ok": true,
+    "elements": 37,
+    "text": "同一个词，可以出现两次Sentence builder按参考句的顺序选择词块：I think therefore I am。点击后可以前移、后移或移除。0 of",
+    "units": 73
+  },
+  {
+    "name": "VocabCardView",
+    "ok": true,
+    "elements": 43,
+    "text": "resolveLanguageEnglishPronunciation/rɪˈzɒlv/Part of speechverbShow meaningReset ",
+    "units": 44
+  },
+  {
+    "name": "FinanceQuoteView",
+    "ok": true,
+    "elements": 25,
+    "text": "行情快照ORBTOrbit Meadow Synthetic Research IndexSYNTHETIC112 USD+12 USD(+12%)From p",
+    "units": 41
+  },
+  {
+    "name": "FinanceChartView",
+    "ok": true,
+    "elements": 98,
+    "text": "带缺测的价格历史ORBTOrbit Meadow Synthetic Research IndexSYNTHETIC112 USD+12 USD(+12%)Fr",
+    "units": 207
+  },
+  {
+    "name": "FinanceComparisonView",
+    "ok": true,
+    "elements": 149,
+    "text": "同一时刻为基准的相对表现Common baseline instant: Nov 1, 2026, 00:30:00 GMT-7Each series is n",
+    "units": 310
+  },
+  {
+    "name": "FinanceHeatmapView",
+    "ok": true,
+    "elements": 137,
+    "text": "面积与变动，是两种不同的信息Area: 示意权重（非真实市值） · Change basis: 较合成前收盘SectorAll sectors技术能源工业Col",
+    "units": 255
+  },
+  {
+    "name": "AssetDistributionView",
+    "ok": true,
+    "elements": 114,
+    "text": "Synthetic supplied account amountsKnown amounts are grouped by their supplied cu",
+    "units": 115
+  },
+  {
+    "name": "TransactionListView",
+    "ok": true,
+    "elements": 83,
+    "text": "Synthetic supplied transactionsDates, magnitudes, directions and statuses are au",
+    "units": 84
+  },
+  {
+    "name": "LedgerAccountsView",
+    "ok": true,
+    "elements": 63,
+    "text": "Supplied example accountsSupplied account snapshots. No bank connection, live ba",
+    "units": 68
+  },
+  {
+    "name": "LedgerRecurringTransactionsView",
+    "ok": true,
+    "elements": 70,
+    "text": "Supplied recurring examplesSupplied recurring records. Dates and amounts are not",
+    "units": 71
+  },
+  {
+    "name": "NbaScoresView",
+    "ok": true,
+    "elements": 145,
+    "text": "Fictional nba-scores snapshotSupplied score snapshot only. No live feed, running",
+    "units": 146
+  },
+  {
+    "name": "SoccerGamesView",
+    "ok": true,
+    "elements": 130,
+    "text": "Fictional soccer-games snapshotSupplied score snapshot only. No live feed, runni",
+    "units": 131
+  },
+  {
+    "name": "AmericanFootballGamesView",
+    "ok": true,
+    "elements": 188,
+    "text": "Fictional american-football-games snapshotSupplied score snapshot only. No live ",
+    "units": 189
+  },
+  {
+    "name": "BasketballTournamentView",
+    "ok": true,
+    "elements": 89,
+    "text": "Supplied fictional tournamentSupplied rounds only. No live feed, inferred winner",
+    "units": 90
+  },
+  {
+    "name": "ElectionResultsView",
+    "ok": true,
+    "elements": 113,
+    "text": "Supplied fictional election snapshotSupplied election snapshot only. No live fee",
+    "units": 114
+  },
+  {
+    "name": "NbaGameBoxscoreView",
+    "ok": true,
+    "elements": 171,
+    "text": "Supplied fictional basketball boxscoreSupplied boxscore only. No live feed, infe",
+    "units": 172
+  },
+  {
+    "name": "CricketMatchBoxscoreView",
+    "ok": true,
+    "elements": 169,
+    "text": "Supplied fictional cricket boxscoreSupplied boxscore only. No live feed, inferre",
+    "units": 170
+  },
+  {
+    "name": "NbaPlayerSummaryView",
+    "ok": true,
+    "elements": 110,
+    "text": "Supplied basketball recordsAlex ExampleSupplied player snapshots only. No live f",
+    "units": 111
+  },
+  {
+    "name": "TennisPlayerSummaryView",
+    "ok": true,
+    "elements": 101,
+    "text": "Supplied tennis recordsCasey ExampleSupplied player snapshots only. No live feed",
+    "units": 102
+  },
+  {
+    "name": "UnitConverterView",
+    "ok": true,
+    "elements": 49,
+    "text": "绝对温度和温差不同CategoryLengthMassTemperatureSpeedAreaVolumeDurationPressureData sizeTe",
+    "units": 50
+  },
+  {
+    "name": "CurrencyConverterView",
+    "ok": true,
+    "elements": 61,
+    "text": "调用方提供的汇率快照AmountFrom currencyUSDEURJPYGBP · MissingSwapTo currencyUSDEURJPYGBP ·",
+    "units": 79
+  },
+  {
+    "name": "SvgView",
+    "ok": true,
+    "elements": 6,
+    "text": "",
+    "units": 28
+  },
+  {
+    "name": "FollowUpCardGroupView",
+    "ok": true,
+    "elements": 15,
+    "text": "💡Explain the assumptionsUse the supplied prompt in your host application.📖Read",
+    "units": 16
+  },
+  {
+    "name": "LedgerTransactionDetailView",
+    "ok": true,
+    "elements": 62,
+    "text": "Example bookshopUSD 0.00MerchantExample bookshopDateDate not suppliedAccountExam",
+    "units": 57
+  },
+  {
+    "name": "RecommendationCardView",
+    "ok": true,
+    "elements": 7,
+    "text": "📡Review network measurementsContinue discussing RTT gaps and supplied WiFi meas",
+    "units": 8
+  },
+  {
+    "name": "PromptChecklistView",
+    "ok": true,
+    "elements": 15,
+    "text": "Review the supplied study planExplore the idea",
+    "units": 12
+  },
+  {
+    "name": "LedgerFinanceStatusBannerView",
+    "ok": true,
+    "elements": 10,
+    "text": "Some practice transactions are missingThis synthetic snapshot does not include O",
+    "units": 9
+  },
+  {
+    "name": "LearningAudioLabelCardView",
+    "ok": true,
+    "elements": 22,
+    "text": "Label the supplied toneListen or read the transcript, then type tone or beep in ",
+    "units": 24
+  },
+  {
+    "name": "LearningImageChoiceCardView",
+    "ok": true,
+    "elements": 29,
+    "text": "Choose a supplied colorChoose the blue square.Local practice using supplied medi",
+    "units": 32
+  },
+  {
+    "name": "LearningImageLabelCardView",
+    "ok": true,
+    "elements": 20,
+    "text": "Label the supplied squareType blue in lowercase.Local practice using supplied me",
+    "units": 22
+  },
+  {
+    "name": "WeatherSidebarTitleView",
+    "ok": true,
+    "elements": 32,
+    "text": "Fictional supplied weather headersSupplied weather snapshots only. Place selecti",
+    "units": 33
+  },
+  {
+    "name": "LedgerLowConfidenceCategoryCorrectionView",
+    "ok": true,
+    "elements": 44,
+    "text": "Review a supplied categoryReview caller-supplied category suggestions. Changes r",
+    "units": 45
+  },
+  {
+    "name": "LedgerNetWorthView",
+    "ok": true,
+    "elements": 36,
+    "text": "Sample balance history900 USD-25 USD (↘ -2.7%)·Supplied month comparisonInvented",
+    "units": 108
+  },
+  {
+    "name": "PressableView",
+    "ok": true,
+    "elements": 8,
+    "text": "Supplied nested contentA local request for the host to review supplied content. ",
+    "units": 9
+  },
+  {
+    "name": "LedgerFeeInterestPaidView",
+    "ok": true,
+    "elements": 25,
+    "text": "Synthetic fees and interestSupplied monthExplicit zeroUnknown totalInvented teac",
+    "units": 22
+  },
+  {
+    "name": "HtmlViewView",
+    "ok": true,
+    "elements": 5,
+    "text": "Offline counter sampleThis view requires an explicit sandboxed host renderer. Su",
+    "units": 6
+  },
+  {
+    "name": "YoutubeView",
+    "ok": true,
+    "elements": 8,
+    "text": "Loading connects to YouTube and shares your IP address and page origin. The thir",
+    "units": 9
+  },
+  {
+    "name": "SearchImageView",
+    "ok": true,
+    "elements": 3,
+    "text": "",
+    "units": 4
+  },
+  {
+    "name": "AsyncImageGroupView",
+    "ok": true,
+    "elements": 25,
+    "text": "Supplied image group unavailableSupplied image group unavailableSupplied image g",
+    "units": 26
+  },
+  {
+    "name": "AsyncImageView",
+    "ok": true,
+    "elements": 9,
+    "text": "Supplied image unavailable",
+    "units": 10
+  },
+  {
+    "name": "LottieView",
+    "ok": true,
+    "elements": 3,
+    "text": "",
+    "units": 4
+  },
+  {
+    "name": "TabbedSectionView",
+    "ok": true,
+    "elements": 13,
+    "text": "FirstSecondFirst sectionSupplied text only. Example label stays passive.",
+    "units": 14
+  },
+  {
+    "name": "VisualCardCarouselView",
+    "ok": true,
+    "elements": 17,
+    "text": "Original supplied collectionPreviousNextAn authored pixel",
+    "units": 18
+  },
+  {
+    "name": "LinkCardView",
+    "ok": true,
+    "elements": 7,
+    "text": "Supplied example domainExample documentOriginal local host-intent example.",
+    "units": 8
+  },
+  {
+    "name": "RecommendationLinkCardView",
+    "ok": true,
+    "elements": 9,
+    "text": "Example recommendation",
+    "units": 10
+  },
+  {
+    "name": "LedgerSpendSoFarThisMonthView",
+    "ok": true,
+    "elements": 26,
+    "text": "Fictional supplied spendingSynthetic OctoberPrevious monthSynthetic OctoberUSD 0",
+    "units": 82
+  },
+  {
+    "name": "LedgerUpcomingActivityView",
+    "ok": true,
+    "elements": 25,
+    "text": "Fictional supplied activitiesOutgoingIncomingIncomingFictional topUnknown dateUn",
+    "units": 26
+  },
+  {
+    "name": "ImageGridView",
+    "ok": true,
+    "elements": 52,
+    "text": "Compare the blue panelCompare the orange panelCompare the green panelCompare the",
+    "units": 53
+  },
+  {
+    "name": "ConversationSuggestionsView",
+    "ok": true,
+    "elements": 10,
+    "text": "Review summaryCompare optionsUnavailable",
+    "units": 11
+  },
+  {
+    "name": "FollowUpActionBarView",
+    "ok": true,
+    "elements": 10,
+    "text": "Review the supplied summaryCompare the supplied optionsUnavailable action",
+    "units": 11
+  },
+  {
+    "name": "LedgerIncomeTrackerView",
+    "ok": true,
+    "elements": 29,
+    "text": "Supplied income snapshotEstimated monthly incomeUSD 900.001 suppliedNext paychec",
+    "units": 25
+  },
+  {
+    "name": "AsyncVideoCarouselView",
+    "ok": true,
+    "elements": 22,
+    "text": "TikTokPreviousNext",
+    "units": 21
+  },
+  {
+    "name": "DisplayAutomationView",
+    "ok": true,
+    "elements": 10,
+    "text": "📓Review field notesEvery weekday at 09:00",
+    "units": 9
+  },
+  {
+    "name": "ListAutomationsView",
+    "ok": true,
+    "elements": 13,
+    "text": "Scheduled tasksReview field notesEvery weekday at 09:00View all tasks",
+    "units": 12
+  },
+  {
+    "name": "AutomationPlanSummaryView",
+    "ok": true,
+    "elements": 45,
+    "text": "Your planPrepare a field guideHide plan2 completedSelect a topicCompletedGather ",
+    "units": 40
+  },
+  {
+    "name": "ScheduledTaskSuggestionView",
+    "ok": true,
+    "elements": 7,
+    "text": "Review the supplied weekly study plan",
+    "units": 6
+  },
+  {
+    "name": "EntityCardView",
+    "ok": true,
+    "elements": 8,
+    "text": "Original observatoryAn authored description",
+    "units": 9
+  },
+  {
+    "name": "EntityOverviewView",
+    "ok": true,
+    "elements": 14,
+    "text": "Original landmark 1DistrictNorth quarterTypePublic gardenA supplied example desc",
+    "units": 15
+  },
+  {
+    "name": "AskUserDetailsView",
+    "ok": true,
+    "elements": 21,
+    "text": "Add a topic and format for this fictional example.Add detailsTopicFormatSelect a",
+    "units": 22
+  },
+  {
+    "name": "AskUserFilesView",
+    "ok": true,
+    "elements": 12,
+    "text": "Choose example filesNo files selectedReview selected filesCancel",
+    "units": 13
+  },
+  {
+    "name": "LedgerSpendByCategoryView",
+    "ok": true,
+    "elements": 32,
+    "text": "CategoriesFirst supplied monthSecond supplied monthFirst supplied month900 units",
+    "units": 33
+  },
+  {
+    "name": "LedgerSpendByCategoryDetailView",
+    "ok": true,
+    "elements": 15,
+    "text": "Original category breakdownSupplied zero0 unitsUnknownUnknown",
+    "units": 16
+  },
+  {
+    "name": "LedgerSpendByCategoryRecentTransactionsView",
+    "ok": true,
+    "elements": 15,
+    "text": "Original recent records↗Fictional field guideSupplied date label12 units↗Fiction",
+    "units": 16
+  },
+  {
+    "name": "LearningVoiceModeLauncherCardView",
+    "ok": true,
+    "elements": 7,
+    "text": "Describe an invented roomA local supplied prompt.Request practice",
+    "units": 8
+  },
+  {
+    "name": "OfferVoiceConversationView",
+    "ok": true,
+    "elements": 6,
+    "text": "Request a conversationOnly a local request is emitted.",
+    "units": 7
+  },
+  {
+    "name": "LearningSpeakCardView",
+    "ok": true,
+    "elements": 20,
+    "text": "Original speaking practiceA quiet blue roomCompletedTry againListenPrevious exer",
+    "units": 21
+  },
+  {
+    "name": "ConversationalOnboardingAdviceView",
+    "ok": true,
+    "elements": 17,
+    "text": "Everyday taskRecipe exampleTroubleshootingAsk“How do I tidy an empty tray?”Origi",
+    "units": 18
+  },
+  {
+    "name": "ConversationalOnboardingWritingView",
+    "ok": true,
+    "elements": 14,
+    "text": "TranslationEmail exampleMessage exampleAsk“Translate this invented sentence.”Fir",
+    "units": 15
+  },
+  {
+    "name": "OnboardingFeatureCardView",
+    "ok": true,
+    "elements": 29,
+    "text": "Explore featuresPrevious itemsNext itemsThink carefullyConsider a supplied probl",
+    "units": 30
+  },
+  {
+    "name": "OnboardingPluginSuggestionsView",
+    "ok": true,
+    "elements": 20,
+    "text": "Connect useful appsBrowse appsNotes appConnect notesCalendar appConnectedFiles a",
+    "units": 21
+  },
+  {
+    "name": "OnboardingStarterTasksView",
+    "ok": true,
+    "elements": 11,
+    "text": "Choose an ideaOutline a planPreview an idea",
+    "units": 12
+  },
+  {
+    "name": "ConversationalOnboardingStudyView",
+    "ok": true,
+    "elements": 112,
+    "text": "Orbit toyLocal quizData graphAsk“Explore a fictional orbit.”Day 00 cyclesRestart",
+    "units": 232
+  },
+  {
+    "name": "ConversationalOnboardingSearchView",
+    "ok": true,
+    "elements": 190,
+    "text": "Weather exampleMarket exampleNews exampleAsk“Read a fictional weather snapshot.”",
+    "units": 718
+  },
+  {
+    "name": "FollowUpQuizView",
+    "ok": true,
+    "elements": 36,
+    "text": "A few preferencesNo follow-up questions suppliedAll supplied questions visitedWh",
+    "units": 29
+  },
+  {
+    "name": "MultipleChoiceBlockV2View",
+    "ok": true,
+    "elements": 14,
+    "text": "How many corners does a square have?ThreeFourReset quiz",
+    "units": 15
+  },
+  {
+    "name": "PersonalityQuizView",
+    "ok": true,
+    "elements": 58,
+    "text": "Plan a small outingTwo supplied questionsAn informal example. This view never in",
+    "units": 59
+  },
+  {
+    "name": "WhatsNewCapabilityWelcomeView",
+    "ok": true,
+    "elements": 25,
+    "text": "⌕Explore a supplied topic↗Request the example guide✦Request a creative example♥V",
+    "units": 26
+  },
+  {
+    "name": "AskUserLocationView",
+    "ok": true,
+    "elements": 14,
+    "text": "◎Choose whether to share a locationLocation can help a connected host offer near",
+    "units": 15
+  },
+  {
+    "name": "ReservationTimePillsRefCarouselView",
+    "ok": true,
+    "elements": 60,
+    "text": "Supplied reservation cardsPrevious itemsNext itemsSample dining roomSupplied rat",
+    "units": 58
+  },
+  {
+    "name": "WhatsNewCapabilitySearchView",
+    "ok": true,
+    "elements": 173,
+    "text": "Explore the supplied examples together.◎Results use a supplied area.◎Use a suppl",
+    "units": 174
+  },
+  {
+    "name": "PushDripSeriesIntroView",
+    "ok": true,
+    "elements": 14,
+    "text": "You are viewing a supplied series.Stop these supplied tips?The service action is",
+    "units": 15
+  },
+  {
+    "name": "StopPushDripSeriesView",
+    "ok": true,
+    "elements": 14,
+    "text": "Review stop optionsStop these supplied tips?The service action is unavailable in",
+    "units": 15
+  },
+  {
+    "name": "TaskAutopauseCardView",
+    "ok": true,
+    "elements": 13,
+    "text": "Review supplied examplesContinue this supplied task?The task status is supplied.",
+    "units": 14
+  },
+  {
+    "name": "LedgerFinanceOnboardingView",
+    "ok": true,
+    "elements": 9,
+    "text": "◇Explore supplied recordsAn original finite card with no account access.Reset lo",
+    "units": 10
+  },
+  {
+    "name": "LedgerRepairBankConnectionView",
+    "ok": true,
+    "elements": 9,
+    "text": "Review a supplied connectionThis original fixture does not connect any account.R",
+    "units": 10
+  },
+  {
+    "name": "FinanceOnboardingSuggestionsView",
+    "ok": true,
+    "elements": 25,
+    "text": "Choose a supplied question▤+Review the supplied list◇+Inspect the example catego",
+    "units": 26
+  },
+  {
+    "name": "PlacesMetadataBarView",
+    "ok": true,
+    "elements": 22,
+    "text": "0.0 supplied0 reviews supplied•Original district•Supplied open statusReset local",
+    "units": 21
+  },
+  {
+    "name": "PluginFollowupView",
+    "ok": true,
+    "elements": 12,
+    "text": "Original context supplied by the fixture.Request this local plugin choiceReset l",
+    "units": 13
+  },
+  {
+    "name": "InstantSuggestionsView",
+    "ok": true,
+    "elements": 18,
+    "text": "Choose a supplied prompt↪Show the original location overview↪Read the supplied n",
+    "units": 19
+  },
+  {
+    "name": "LedgerEquityUpdatesView",
+    "ok": true,
+    "elements": 68,
+    "text": "Original equity overviewSupplied snapshot timeAll currency labels are independen",
+    "units": 69
+  },
+  {
+    "name": "LedgerWatchlistView",
+    "ok": true,
+    "elements": 59,
+    "text": "Original watchlist overviewAnother supplied snapshotSupplied assetSupplied price",
+    "units": 60
+  },
+  {
+    "name": "HomeworkHelperV2View",
+    "ok": true,
+    "elements": 23,
+    "text": "Choose how to work through this fictional exercise.Walk through the original ste",
+    "units": 24
+  },
+  {
+    "name": "ImageGenView",
+    "ok": true,
+    "elements": 6,
+    "text": "",
+    "units": 7
+  },
+  {
+    "name": "InternalPartnerAppView",
+    "ok": true,
+    "elements": 12,
+    "text": "Original fictional partnerRequest this local partner viewReset local view",
+    "units": 13
+  },
+  {
+    "name": "BentoView",
+    "ok": true,
+    "elements": 26,
+    "text": "Original linked cardSupplied first-card description.Original detail cardAn indep",
+    "units": 27
+  },
+  {
+    "name": "OpenDetailView",
+    "ok": true,
+    "elements": 32,
+    "text": "Choose a supplied detailOriginal option 0Original option 1Original option 2Origi",
+    "units": 21
+  },
+  {
+    "name": "OpenaiView",
+    "ok": true,
+    "elements": 14,
+    "text": "Fictional research studioEntirely supplied demonstration text.Request websiteReq",
+    "units": 15
+  },
+  {
+    "name": "LedgerCreditScoreView",
+    "ok": true,
+    "elements": 77,
+    "text": "Original supplied score900 supplied labelSupplied score explanationAll labels an",
+    "units": 200
+  },
+  {
+    "name": "LedgerCreditScoreDetailView",
+    "ok": true,
+    "elements": 45,
+    "text": "777 supplied summary · Original supplied ratingSupplied zero0Supplied unknownNot",
+    "units": 46
+  },
+  {
+    "name": "LedgerLowConfidenceCategoryCorrectionLegacyView",
+    "ok": true,
+    "elements": 73,
+    "text": "Original category reviewFictional merchant 0Original date 0 · 900.00000000000000",
+    "units": 74
+  },
+  {
+    "name": "SuperbowlRiddleView",
+    "ok": true,
+    "elements": 30,
+    "text": "Three travelers and a boatCarry one item. Do not leave the chicken alone with th",
+    "units": 31
+  },
+  {
+    "name": "LearningVizDilView",
+    "ok": true,
+    "elements": 9,
+    "text": "Pause original animationReset original animation",
+    "units": 10
+  },
+  {
+    "name": "CareProviderResultsView",
+    "ok": true,
+    "elements": 324,
+    "text": "Some supplied directory entries are unavailable.Fictional Provider 0Supplied dir",
+    "units": 325
+  },
+  {
+    "name": "CareProviderSidebarView",
+    "ok": true,
+    "elements": 79,
+    "text": "Fictional Provider 0Supplied directory category0.0(0)Supplied network labelFPFic",
+    "units": 80
+  },
+  {
+    "name": "EntityView",
+    "ok": true,
+    "elements": 19,
+    "text": "Fictional placeFictional place details0Original category, Second categorySupplie",
+    "units": 20
+  },
+  {
+    "name": "GenImageView",
+    "ok": true,
+    "elements": 10,
+    "text": "View original supplied imagesReset image view",
+    "units": 11
+  },
+  {
+    "name": "SpeechSynthesizerView",
+    "ok": true,
+    "elements": 7,
+    "text": "idleRequest original speechRequest speech stopReset speech receipt",
+    "units": 8
+  },
+  {
+    "name": "CalculatorCorrectedAdjustedAgeOfPretermInfantsView",
+    "ok": true,
+    "elements": 39,
+    "text": "Fictional date arithmetic: weeks and daysDate arithmetic only. Use gestational a",
+    "units": 40
+  },
+  {
+    "name": "CalculatorGlasgowComaScaleGcsView",
+    "ok": true,
+    "elements": 93,
+    "text": "Supplied GCS component arithmeticOriginal software example. Ratings are supplied",
+    "units": 94
+  },
+  {
+    "name": "CalculatorRoxIndexForHighFlowNasalCannulaView",
+    "ok": true,
+    "elements": 55,
+    "text": "Supplied ROX arithmeticOriginal synthetic measurements; not a patient assessment",
+    "units": 56
+  },
+  {
+    "name": "CalculatorQsofaScoreView",
+    "ok": true,
+    "elements": 68,
+    "text": "Supplied three-criterion arithmeticFictional software example; no diagnosis infe",
+    "units": 69
+  },
+  {
+    "name": "QuestionnaireView",
+    "ok": true,
+    "elements": 38,
+    "text": "活动打包问卷Questions活动方式Unknown现场活动携带出行参与人数（人）每人包数（包/人）是否有借用物品？UnknownYesNo已安排座位（个）Co",
+    "units": 39
+  },
+  {
+    "name": "RatingSummaryView",
+    "ok": true,
+    "elements": 6,
+    "text": "4.8 (120 reviews)",
+    "units": 5
+  }
+]

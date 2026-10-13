@@ -1,0 +1,6 @@
+import type{ConversationalOnboardingAdviceNode,ConversationalOnboardingWritingNode}from'../schema/document.js';import type{Issue}from'./index.js';
+export function inspectConversationalOnboarding(node:ConversationalOnboardingAdviceNode|ConversationalOnboardingWritingNode,path:string,add:(issue:Issue)=>void,safe:(url:string,kind?:'link'|'image')=>boolean):void{
+ const check=(value:string|undefined,at:string)=>{if(value!==undefined&&!value.trim())add({code:'ONBOARDING_TEXT',path:path+at,message:'Supply nonblank labels and questions.'});};check(node.label,'/label');check(node.askLabel,'/askLabel');
+ if(node.type==='conversational-onboarding-advice'){for(const key of['stepByStep','recipe','quickFix']as const){const tab=node[key];if(tab){check(tab.label,'/'+key+'/label');check(tab.question,'/'+key+'/question');}}if(node.stepByStep?.imageSrc!==undefined&&!safe(node.stepByStep.imageSrc,'image'))add({code:'ONBOARDING_IMAGE',path:path+'/stepByStep/imageSrc',message:'Supply a safe demonstration image.'});node.stepByStep?.steps.forEach((step,i)=>check(step,'/stepByStep/steps/'+i));}
+ else for(const key of['translation','email','message']as const){const tab=node[key];if(tab){check(tab.label,'/'+key+'/label');check(tab.question,'/'+key+'/question');}}
+}

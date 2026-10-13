@@ -1,0 +1,248 @@
+[
+  {
+    "name": "@floating-ui/core",
+    "version": "1.8.0",
+    "license": "MIT",
+    "file": "licenses/@floating-ui__core.txt"
+  },
+  {
+    "name": "@floating-ui/dom",
+    "version": "1.8.0",
+    "license": "MIT",
+    "file": "licenses/@floating-ui__dom.txt"
+  },
+  {
+    "name": "@floating-ui/react-dom",
+    "version": "2.1.6",
+    "license": "MIT",
+    "file": "licenses/@floating-ui__react-dom.txt"
+  },
+  {
+    "name": "@floating-ui/utils",
+    "version": "0.2.12",
+    "license": "MIT",
+    "file": "licenses/@floating-ui__utils.txt"
+  },
+  {
+    "name": "@radix-ui/primitive",
+    "version": "1.1.2",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__primitive.txt"
+  },
+  {
+    "name": "@radix-ui/react-arrow",
+    "version": "1.1.7",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-arrow.txt"
+  },
+  {
+    "name": "@radix-ui/react-compose-refs",
+    "version": "1.1.2",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-compose-refs.txt"
+  },
+  {
+    "name": "@radix-ui/react-context",
+    "version": "1.1.2",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-context.txt"
+  },
+  {
+    "name": "@radix-ui/react-dismissable-layer",
+    "version": "1.1.10",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-dismissable-layer.txt"
+  },
+  {
+    "name": "@radix-ui/react-id",
+    "version": "1.1.1",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-id.txt"
+  },
+  {
+    "name": "@radix-ui/react-popper",
+    "version": "1.2.7",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-popper.txt"
+  },
+  {
+    "name": "@radix-ui/react-portal",
+    "version": "1.1.9",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-portal.txt"
+  },
+  {
+    "name": "@radix-ui/react-presence",
+    "version": "1.1.4",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-presence.txt"
+  },
+  {
+    "name": "@radix-ui/react-primitive",
+    "version": "2.1.3",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-primitive.txt"
+  },
+  {
+    "name": "@radix-ui/react-separator",
+    "version": "1.1.7",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-separator.txt"
+  },
+  {
+    "name": "@radix-ui/react-slot",
+    "version": "1.2.4",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-slot.txt"
+  },
+  {
+    "name": "@radix-ui/react-tooltip",
+    "version": "1.2.7",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-tooltip.txt"
+  },
+  {
+    "name": "@radix-ui/react-use-callback-ref",
+    "version": "1.1.1",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-use-callback-ref.txt"
+  },
+  {
+    "name": "@radix-ui/react-use-controllable-state",
+    "version": "1.2.2",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-use-controllable-state.txt"
+  },
+  {
+    "name": "@radix-ui/react-use-effect-event",
+    "version": "0.0.2",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-use-effect-event.txt"
+  },
+  {
+    "name": "@radix-ui/react-use-escape-keydown",
+    "version": "1.1.1",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-use-escape-keydown.txt"
+  },
+  {
+    "name": "@radix-ui/react-use-layout-effect",
+    "version": "1.1.1",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-use-layout-effect.txt"
+  },
+  {
+    "name": "@radix-ui/react-use-size",
+    "version": "1.1.1",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-use-size.txt"
+  },
+  {
+    "name": "@radix-ui/react-visually-hidden",
+    "version": "1.2.3",
+    "license": "MIT",
+    "file": "licenses/@radix-ui__react-visually-hidden.txt"
+  },
+  {
+    "name": "clsx",
+    "version": "2.1.1",
+    "license": "MIT",
+    "file": "licenses/clsx.txt"
+  },
+  {
+    "name": "d3-array",
+    "version": "3.2.4",
+    "license": "ISC",
+    "file": "licenses/d3-array.txt"
+  },
+  {
+    "name": "d3-color",
+    "version": "3.1.0",
+    "license": "ISC",
+    "file": "licenses/d3-color.txt"
+  },
+  {
+    "name": "d3-format",
+    "version": "3.1.2",
+    "license": "ISC",
+    "file": "licenses/d3-format.txt"
+  },
+  {
+    "name": "d3-interpolate",
+    "version": "3.0.1",
+    "license": "ISC",
+    "file": "licenses/d3-interpolate.txt"
+  },
+  {
+    "name": "d3-path",
+    "version": "3.1.0",
+    "license": "ISC",
+    "file": "licenses/d3-path.txt"
+  },
+  {
+    "name": "d3-scale",
+    "version": "4.0.2",
+    "license": "ISC",
+    "file": "licenses/d3-scale.txt"
+  },
+  {
+    "name": "d3-selection",
+    "version": "3.0.0",
+    "license": "ISC",
+    "file": "licenses/d3-selection.txt"
+  },
+  {
+    "name": "d3-shape",
+    "version": "3.2.0",
+    "license": "ISC",
+    "file": "licenses/d3-shape.txt"
+  },
+  {
+    "name": "d3-time",
+    "version": "3.1.0",
+    "license": "ISC",
+    "file": "licenses/d3-time.txt"
+  },
+  {
+    "name": "d3-time-format",
+    "version": "4.1.0",
+    "license": "ISC",
+    "file": "licenses/d3-time-format.txt"
+  },
+  {
+    "name": "internmap",
+    "version": "2.0.3",
+    "license": "ISC",
+    "file": "licenses/internmap.txt"
+  },
+  {
+    "name": "react",
+    "version": "19.1.1",
+    "license": "MIT",
+    "file": "licenses/react.txt"
+  },
+  {
+    "name": "react-dom",
+    "version": "19.1.1",
+    "license": "MIT",
+    "file": "licenses/react-dom.txt"
+  },
+  {
+    "name": "scheduler",
+    "version": "0.26.0",
+    "license": "MIT",
+    "file": "licenses/scheduler.txt"
+  },
+  {
+    "name": "zod",
+    "version": "4.1.12",
+    "license": "MIT",
+    "file": "licenses/zod.txt"
+  },
+  {
+    "name": "zustand",
+    "version": "5.0.8",
+    "license": "MIT",
+    "file": "licenses/zustand.txt"
+  }
+]

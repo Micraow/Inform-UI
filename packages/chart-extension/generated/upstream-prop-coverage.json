@@ -1,0 +1,553 @@
+[
+  {
+    "name": "AreaChart",
+    "family": "AreaChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/AreaChart/AreaChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "labels",
+      "series",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "grid",
+      "condensed",
+      "showYAxis",
+      "xAxisLabel",
+      "yAxisLabel",
+      "tickVariant",
+      "variant",
+      "stacked",
+      "crosshair",
+      "highlight"
+    ],
+    "mapped": {
+      "labels": "data[].__if_label__ + categoryKey",
+      "series": "data[].<series name>",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "onClick",
+      "customPalette",
+      "icons",
+      "className",
+      "width",
+      "fitLegendInHeight",
+      "density",
+      "yTickCount",
+      "activeDots"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "BarChart",
+    "family": "BarChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/BarChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "labels",
+      "series",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "grid",
+      "condensed",
+      "showYAxis",
+      "xAxisLabel",
+      "yAxisLabel",
+      "tickVariant",
+      "variant",
+      "orientation",
+      "barRadius"
+    ],
+    "mapped": {
+      "labels": "data[].__if_label__ + categoryKey",
+      "series": "data[].<series name>",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "maxBarWidth",
+      "internalLine",
+      "internalLineColor",
+      "internalLineWidth",
+      "onClick",
+      "customPalette",
+      "icons",
+      "className",
+      "width",
+      "fitLegendInHeight",
+      "density",
+      "yTickCount"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "HorizontalBarChart",
+    "family": "BarChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/BarChart/BarChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "labels",
+      "series",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "grid",
+      "condensed",
+      "showYAxis",
+      "xAxisLabel",
+      "yAxisLabel",
+      "tickVariant",
+      "variant",
+      "barRadius"
+    ],
+    "mapped": {
+      "labels": "data[].__if_label__ + categoryKey",
+      "series": "data[].<series name>",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "orientation",
+      "maxBarWidth",
+      "internalLine",
+      "internalLineColor",
+      "internalLineWidth",
+      "onClick",
+      "customPalette",
+      "icons",
+      "className",
+      "width",
+      "fitLegendInHeight",
+      "density",
+      "yTickCount"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "LineChart",
+    "family": "LineChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/LineChart/LineChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "labels",
+      "series",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "grid",
+      "condensed",
+      "showYAxis",
+      "xAxisLabel",
+      "yAxisLabel",
+      "tickVariant",
+      "variant",
+      "showDots",
+      "crosshair",
+      "highlight"
+    ],
+    "mapped": {
+      "labels": "data[].__if_label__ + categoryKey",
+      "series": "data[].<series name>",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "dotRadius",
+      "onClick",
+      "customPalette",
+      "icons",
+      "className",
+      "width",
+      "fitLegendInHeight",
+      "density",
+      "yTickCount",
+      "activeDots"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "HeatmapChart",
+    "family": "HeatmapChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/HeatmapChart/HeatmapChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "labels",
+      "series",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "rampMode",
+      "showColorScale",
+      "showCellLabels",
+      "showYAxis"
+    ],
+    "mapped": {
+      "labels": "data[].__if_label__ + categoryKey",
+      "series": "data[].<series name>",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "cellGap",
+      "cellRadius",
+      "width",
+      "fitLegendInHeight",
+      "className",
+      "onClick"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "RadarChart",
+    "family": "RadarChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/RadarChart/RadarChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "labels",
+      "series",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "grid",
+      "gridShape",
+      "gridLevels",
+      "variant",
+      "showDots"
+    ],
+    "mapped": {
+      "labels": "data[].__if_label__ + categoryKey",
+      "series": "data[].<series name>",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "icons",
+      "areaOpacity",
+      "dotRadius",
+      "fillOpacity",
+      "maxChartSize",
+      "minChartSize",
+      "width",
+      "fitLegendInHeight",
+      "className",
+      "onClick"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "PieChart",
+    "family": "PieChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/PieChart/PieChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "slices",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "variant",
+      "appearance",
+      "format",
+      "legendVariant"
+    ],
+    "mapped": {
+      "slices": "data + categoryKey + dataKey",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "legendKey",
+      "cornerRadius",
+      "paddingAngle",
+      "maxChartSize",
+      "minChartSize",
+      "width",
+      "fitLegendInHeight",
+      "className",
+      "onClick"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "RadialChart",
+    "family": "RadialChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/RadialChart/RadialChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "slices",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "variant",
+      "format",
+      "legendVariant",
+      "grid"
+    ],
+    "mapped": {
+      "slices": "data + categoryKey + dataKey",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "legendKey",
+      "cornerRadius",
+      "maxChartSize",
+      "minChartSize",
+      "width",
+      "fitLegendInHeight",
+      "className",
+      "onClick"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "FunnelChart",
+    "family": "FunnelChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/FunnelChart/FunnelChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "slices",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "orientation",
+      "edges",
+      "layers",
+      "showLabels",
+      "showValues",
+      "showPercentage"
+    ],
+    "mapped": {
+      "slices": "data + categoryKey + dataKey",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "width",
+      "fitLegendInHeight",
+      "className",
+      "onClick"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "SegmentedBar",
+    "family": "SegmentedBar",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/SegmentedBar.tsx",
+    "dslOrderedProps": [
+      "title",
+      "slices",
+      "options"
+    ],
+    "directOptions": [
+      "legend",
+      "legendVariant"
+    ],
+    "mapped": {
+      "slices": "data + categoryKey + dataKey",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "className",
+      "style"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "SingleStackedBar",
+    "family": "SegmentedBar",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/SegmentedBar/SegmentedBar.tsx",
+    "dslOrderedProps": [
+      "title",
+      "slices",
+      "options"
+    ],
+    "directOptions": [
+      "legend",
+      "legendVariant"
+    ],
+    "mapped": {
+      "slices": "data + categoryKey + dataKey",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "className",
+      "style"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "ScatterChart",
+    "family": "ScatterChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/ScatterChart/ScatterChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "datasets",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "legend",
+      "grid",
+      "verticalGrid",
+      "showYAxis",
+      "xAxisLabel",
+      "yAxisLabel",
+      "dotRadius"
+    ],
+    "mapped": {
+      "datasets": "data[].name + data[].data",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "xAxisDataKey",
+      "yAxisDataKey",
+      "customPalette",
+      "className",
+      "width",
+      "fitLegendInHeight",
+      "onClick"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "CalendarHeatmap",
+    "family": "CalendarHeatmap",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/CalendarHeatmap/CalendarHeatmap.tsx",
+    "dslOrderedProps": [
+      "title",
+      "days",
+      "options"
+    ],
+    "directOptions": [
+      "height",
+      "range",
+      "thresholds",
+      "layout",
+      "weekStartDay",
+      "showMonthLabels",
+      "weekdayTickFilter",
+      "weekdayLabelFormat",
+      "legendVariant",
+      "valueLabel"
+    ],
+    "mapped": {
+      "days": "data",
+      "options.animate": "isAnimationActive",
+      "options.patterns": "levelStyles[].pattern"
+    },
+    "upstreamPropsNotExposed": [
+      "levelColors",
+      "binSize",
+      "gap",
+      "hideGhostCells",
+      "rowOpacity",
+      "animationDuration",
+      "width",
+      "customPalette",
+      "columnSeparators",
+      "legendLabels",
+      "formatTooltipLabel",
+      "tooltipDelay",
+      "onClick",
+      "className"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "MiniAreaChart",
+    "family": "MiniAreaChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/MiniAreaChart/MiniAreaChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "values",
+      "options"
+    ],
+    "directOptions": [
+      "size",
+      "variant",
+      "useGradient",
+      "opacity"
+    ],
+    "mapped": {
+      "values": "data",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "onAreaClick",
+      "className",
+      "areaColor"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "MiniBarChart",
+    "family": "MiniBarChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/MiniBarChart/MiniBarChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "values",
+      "options"
+    ],
+    "directOptions": [
+      "size",
+      "radius"
+    ],
+    "mapped": {
+      "values": "data",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "onBarsClick",
+      "className",
+      "barColor"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  },
+  {
+    "name": "MiniLineChart",
+    "family": "MiniLineChart",
+    "implementation": "vendor/openui/packages/react-ui/src/components/Charts/MiniLineChart/MiniLineChart.tsx",
+    "dslOrderedProps": [
+      "title",
+      "values",
+      "options"
+    ],
+    "directOptions": [
+      "size",
+      "variant"
+    ],
+    "mapped": {
+      "values": "data",
+      "options.animate": "isAnimationActive"
+    },
+    "upstreamPropsNotExposed": [
+      "customPalette",
+      "strokeWidth",
+      "onLineClick",
+      "className",
+      "lineColor"
+    ],
+    "scopeNote": "Working source-family coverage, not exhaustive upstream-prop parity. Callback/formatter/service/custom-color props intentionally remain outside this DSL; all omissions are explicit."
+  }
+]

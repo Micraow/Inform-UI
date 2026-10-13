@@ -1,0 +1,63 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "ledger-fee-interest-paid",
+      "id": "sample-fees",
+      "label": "Fees & interest",
+      "description": "Fictional sample records. This preview does not connect to a bank or move money.",
+      "initialRangeId": "october",
+      "showMoreLabel": "Show all records",
+      "showLessLabel": "Show fewer records",
+      "ranges": [
+        {
+          "id": "october",
+          "label": "October 2026",
+          "totalPaid": 27.5,
+          "totalPaidLabel": "USD 27.50",
+          "conversionNote": "All supplied amounts are in USD.",
+          "transactions": [
+            {
+              "id": "account-fee",
+              "displayName": "Monthly account fee",
+              "dateLabel": "October 1",
+              "categoryLabel": "Account fee",
+              "accountDetail": "Sample account",
+              "amountLabel": "USD 5.00",
+              "amountTone": "negative",
+              "categoryIcon": "receipt"
+            },
+            {
+              "id": "card-interest",
+              "displayName": "Card interest",
+              "dateLabel": "October 8",
+              "categoryLabel": "Interest",
+              "accountDetail": "Sample card",
+              "amountLabel": "USD 18.50",
+              "amountTone": "negative",
+              "categoryIcon": "percent"
+            },
+            {
+              "id": "service-fee",
+              "displayName": "Transfer service fee",
+              "dateLabel": "October 12",
+              "categoryLabel": "Service fee",
+              "accountDetail": "Sample account",
+              "amountLabel": "USD 4.00",
+              "amountTone": "negative",
+              "categoryIcon": "receipt"
+            }
+          ]
+        },
+        {
+          "id": "september",
+          "label": "September 2026",
+          "totalPaid": 0,
+          "totalPaidLabel": "USD 0.00",
+          "emptyLabel": "No fees or interest in this supplied sample.",
+          "transactions": []
+        }
+      ]
+    }
+  ]
+}

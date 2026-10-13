@@ -1,0 +1,5 @@
+import type{LottieData}from'../schema/document.js';
+import type{Issue}from'./index.js';import{lottieDataIssue}from'./lottie.js';
+export interface LearningVizNode{type:'learning-viz-dil';id?:string;label:string;status?:'resolved'|'pending'|'failed';fallback?:string;disabled?:boolean;sources?:{light:LottieData;dark:LottieData};theme?:'light'|'dark'|'auto';alt?:string;animated?:boolean;playLabel?:string;pauseLabel?:string;resetLabel?:string;loadImageLabel?:string}
+export interface LearningVizDetail{readonly id:string|null;readonly intent:'play'|'pause'|'restart'|'reset';readonly currentTime:number;readonly duration:number}
+export function inspectLearningViz(n:LearningVizNode,path:string,add:(i:Issue)=>void):void{for(const k of['label','playLabel','pauseLabel','resetLabel','loadImageLabel']as const)if(typeof n[k]==='string'&&!n[k]!.trim())add({code:'LEARNING_VIZ_TEXT',path:path+'/'+k,message:'Supply nonblank labels.'});for(const theme of['light','dark']as const){const source=n.sources?.[theme];if(source){const error=lottieDataIssue(source);if(error)add({code:'LEARNING_VIZ_SOURCE',path:path+'/sources/'+theme,message:error});}}}

@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/thesysdev/openui",
+  "revision": "cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "archiveUrl": "https://codeload.github.com/thesysdev/openui/tar.gz/cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "archiveSha256": "27db4fa5f4f8e02773eb7d214ea42a405e5e65b3263415b4e4ae28e462de3d40",
+  "scope": "Minimal recursive source closure of packages/lang-core/src/library.ts, parser/prompt.ts and reactive.ts; see FILES.json. Not the complete package or monorepo.",
+  "license": "MIT",
+  "modified": true,
+  "patches": "PATCHES.md"
+}

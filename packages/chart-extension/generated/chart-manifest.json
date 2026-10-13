@@ -1,0 +1,915 @@
+{
+  "format": "inform-component-contract/2",
+  "id": "inform/charts-test",
+  "root": "AreaChart",
+  "openuiRevision": "cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7",
+  "requestedModules": [
+    "base/charts"
+  ],
+  "modules": [
+    "base/chart-data",
+    "base/charts"
+  ],
+  "runtimeResources": [
+    "inform/tokens",
+    "inform/charts-css",
+    "inform/safety-kernel",
+    "inform/foundation",
+    "inform/charts"
+  ],
+  "components": [
+    {
+      "name": "AreaChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/AreaChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Null values are rejected; signed values retain the upstream zero baseline.",
+      "examples": [
+        {
+          "id": "area-chart",
+          "description": "Supplied-data AreaChart example.",
+          "source": "root = AreaChart(\"Quarterly revenue\", [\"Q1\", \"Q2\", \"Q3\", \"Q4\"], [Series(\"Revenue\", [24,38,30,47]), Series(\"Plan\", [20,30,35,40])])",
+          "props": {
+            "title": "Quarterly revenue",
+            "labels": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "series": [
+              {
+                "name": "Revenue",
+                "values": [
+                  24,
+                  38,
+                  30,
+                  47
+                ]
+              },
+              {
+                "name": "Plan",
+                "values": [
+                  20,
+                  30,
+                  35,
+                  40
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "BarChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/BarChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Negative, positive and zero values are supported. Options.orientation selects horizontal layout.",
+      "examples": [
+        {
+          "id": "bar-chart",
+          "description": "Supplied-data BarChart example.",
+          "source": "root = BarChart(\"Quarterly revenue\", [\"Q1\", \"Q2\", \"Q3\", \"Q4\"], [Series(\"Revenue\", [24,38,30,47]), Series(\"Plan\", [20,30,35,40])])",
+          "props": {
+            "title": "Quarterly revenue",
+            "labels": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "series": [
+              {
+                "name": "Revenue",
+                "values": [
+                  24,
+                  38,
+                  30,
+                  47
+                ]
+              },
+              {
+                "name": "Plan",
+                "values": [
+                  20,
+                  30,
+                  35,
+                  40
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HorizontalBarChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/HorizontalBarChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. This is the BarChart horizontal variant, not an additional source chart family.",
+      "examples": [
+        {
+          "id": "horizontal-bar-chart",
+          "description": "Supplied-data HorizontalBarChart example.",
+          "source": "root = HorizontalBarChart(\"Quarterly revenue\", [\"Q1\", \"Q2\", \"Q3\", \"Q4\"], [Series(\"Revenue\", [24,38,30,47]), Series(\"Plan\", [20,30,35,40])])",
+          "props": {
+            "title": "Quarterly revenue",
+            "labels": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "series": [
+              {
+                "name": "Revenue",
+                "values": [
+                  24,
+                  38,
+                  30,
+                  47
+                ]
+              },
+              {
+                "name": "Plan",
+                "values": [
+                  20,
+                  30,
+                  35,
+                  40
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "LineChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/LineChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Null is rejected instead of silently changing a missing measurement to zero.",
+      "examples": [
+        {
+          "id": "line-chart",
+          "description": "Supplied-data LineChart example.",
+          "source": "root = LineChart(\"Quarterly revenue\", [\"Q1\", \"Q2\", \"Q3\", \"Q4\"], [Series(\"Revenue\", [24,38,30,47]), Series(\"Plan\", [20,30,35,40])])",
+          "props": {
+            "title": "Quarterly revenue",
+            "labels": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "series": [
+              {
+                "name": "Revenue",
+                "values": [
+                  24,
+                  38,
+                  30,
+                  47
+                ]
+              },
+              {
+                "name": "Plan",
+                "values": [
+                  20,
+                  30,
+                  35,
+                  40
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HeatmapChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/HeatmapChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Series correspond to rows and labels to columns. Null cells retain missing-value semantics. Use rampMode=\"diverging\" for signed values.",
+      "examples": [
+        {
+          "id": "heatmap-chart",
+          "description": "Supplied-data HeatmapChart example.",
+          "source": "root = HeatmapChart(\"Delta heatmap\", [\"Q1\",\"Q2\",\"Q3\",\"Q4\"], [Series(\"Delta\",[-2,0,null,4])], {rampMode:\"diverging\",showCellLabels:true})",
+          "props": {
+            "title": "Quarterly revenue",
+            "labels": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "series": [
+              {
+                "name": "Delta",
+                "values": [
+                  -2,
+                  0,
+                  null,
+                  4
+                ]
+              }
+            ],
+            "options": {
+              "rampMode": "diverging",
+              "showCellLabels": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "RadarChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "labels",
+        "series",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/RadarChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Non-negative values only. Null is rejected. Labels identify radial axes.",
+      "examples": [
+        {
+          "id": "radar-chart",
+          "description": "Supplied-data RadarChart example.",
+          "source": "root = RadarChart(\"Quarterly revenue\", [\"Q1\", \"Q2\", \"Q3\", \"Q4\"], [Series(\"Revenue\", [24,38,30,47]), Series(\"Plan\", [20,30,35,40])])",
+          "props": {
+            "title": "Quarterly revenue",
+            "labels": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "series": [
+              {
+                "name": "Revenue",
+                "values": [
+                  24,
+                  38,
+                  30,
+                  47
+                ]
+              },
+              {
+                "name": "Plan",
+                "values": [
+                  20,
+                  30,
+                  35,
+                  40
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PieChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "slices",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/PieChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Non-negative slices; no fabricated equal wedges when the sum is zero.",
+      "examples": [
+        {
+          "id": "pie-chart",
+          "description": "Supplied-data PieChart example.",
+          "source": "root = PieChart(\"Channel mix\", [Slice(\"Direct\",48), Slice(\"Search\",32), Slice(\"Referral\",20)])",
+          "props": {
+            "title": "Channel mix",
+            "slices": [
+              {
+                "label": "Direct",
+                "value": 48
+              },
+              {
+                "label": "Search",
+                "value": 32
+              },
+              {
+                "label": "Referral",
+                "value": 20
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "RadialChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "slices",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/RadialChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Non-negative magnitudes; empty and zero-total inputs are explicitly identified.",
+      "examples": [
+        {
+          "id": "radial-chart",
+          "description": "Supplied-data RadialChart example.",
+          "source": "root = RadialChart(\"Channel mix\", [Slice(\"Direct\",48), Slice(\"Search\",32), Slice(\"Referral\",20)])",
+          "props": {
+            "title": "Channel mix",
+            "slices": [
+              {
+                "label": "Direct",
+                "value": 48
+              },
+              {
+                "label": "Search",
+                "value": 32
+              },
+              {
+                "label": "Referral",
+                "value": 20
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "FunnelChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "slices",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/FunnelChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Stage order is supplied order. Percentages are relative to the first stage, not the sum. Non-negative values; no forced monotonic reordering. When the first stage is zero but later stages are positive, set showPercentage:false because retention is undefined.",
+      "examples": [
+        {
+          "id": "funnel-chart",
+          "description": "Supplied-data FunnelChart example.",
+          "source": "root = FunnelChart(\"Conversion\", [Slice(\"Visits\",1000), Slice(\"Trials\",250), Slice(\"Paid\",80)])",
+          "props": {
+            "title": "Conversion",
+            "slices": [
+              {
+                "label": "Visits",
+                "value": 1000
+              },
+              {
+                "label": "Trials",
+                "value": 250
+              },
+              {
+                "label": "Paid",
+                "value": 80
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "SegmentedBar",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "slices",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/SegmentedBar"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Non-negative magnitudes. SingleStackedBar is an upstream alias and does not count as a separate chart family.",
+      "examples": [
+        {
+          "id": "segmented-bar",
+          "description": "Supplied-data SegmentedBar example.",
+          "source": "root = SegmentedBar(\"Channel mix\", [Slice(\"Direct\",48), Slice(\"Search\",32), Slice(\"Referral\",20)])",
+          "props": {
+            "title": "Channel mix",
+            "slices": [
+              {
+                "label": "Direct",
+                "value": 48
+              },
+              {
+                "label": "Search",
+                "value": 32
+              },
+              {
+                "label": "Referral",
+                "value": 20
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "SingleStackedBar",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "slices",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/SingleStackedBar"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Non-negative magnitudes. SingleStackedBar is an upstream alias and does not count as a separate chart family.",
+      "examples": [
+        {
+          "id": "single-stacked-bar",
+          "description": "Supplied-data SingleStackedBar example.",
+          "source": "root = SingleStackedBar(\"Channel mix\", [Slice(\"Direct\",48), Slice(\"Search\",32), Slice(\"Referral\",20)])",
+          "props": {
+            "title": "Channel mix",
+            "slices": [
+              {
+                "label": "Direct",
+                "value": 48
+              },
+              {
+                "label": "Search",
+                "value": 32
+              },
+              {
+                "label": "Referral",
+                "value": 20
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ScatterChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "datasets",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/ScatterChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Each ScatterSeries(name, points) contains Point(x,y) data, not UI children.",
+      "examples": [
+        {
+          "id": "scatter-chart",
+          "description": "Supplied-data ScatterChart example.",
+          "source": "root = ScatterChart(\"Latency by load\", [ScatterSeries(\"Sample\", [Point(-2,3),Point(0,0),Point(4,5)])])",
+          "props": {
+            "title": "Latency by load",
+            "datasets": [
+              {
+                "name": "Sample",
+                "points": [
+                  {
+                    "x": -2,
+                    "y": 3
+                  },
+                  {
+                    "x": 0,
+                    "y": 0
+                  },
+                  {
+                    "x": 4,
+                    "y": 5
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CalendarHeatmap",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "days",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/CalendarHeatmap"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Use CalendarDay(\"YYYY-MM-DD\",value). Dates are calendar days, duplicates sum, absent days are zero. Real dates, ascending thresholds and a maximum 732-day range are validated.",
+      "examples": [
+        {
+          "id": "calendar-heatmap",
+          "description": "Supplied-data CalendarHeatmap example.",
+          "source": "root = CalendarHeatmap(\"Activity\", [CalendarDay(\"2026-10-01\",1), CalendarDay(\"2026-10-03\",4), CalendarDay(\"2026-10-07\",2)], {range:[\"2026-10-01\",\"2026-10-31\"]})",
+          "props": {
+            "title": "Activity",
+            "days": [
+              {
+                "date": "2026-10-01",
+                "value": 1
+              },
+              {
+                "date": "2026-10-03",
+                "value": 4
+              },
+              {
+                "date": "2026-10-07",
+                "value": 2
+              }
+            ],
+            "options": {
+              "range": [
+                "2026-10-01",
+                "2026-10-31"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "MiniAreaChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "values",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/MiniAreaChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Mini charts are intentionally square (100–320 px) and use the most recent values that fit, as upstream. The expandable data table always retains all original input values; no data is deleted.",
+      "examples": [
+        {
+          "id": "mini-area-chart",
+          "description": "Supplied-data MiniAreaChart example.",
+          "source": "root = MiniAreaChart(\"Trend\", [-2,0,4,3,7,5])",
+          "props": {
+            "title": "Trend",
+            "values": [
+              -2,
+              0,
+              4,
+              3,
+              7,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "MiniBarChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "values",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/MiniBarChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Mini charts are intentionally square (100–320 px) and use the most recent values that fit, as upstream. The expandable data table always retains all original input values; no data is deleted.",
+      "examples": [
+        {
+          "id": "mini-bar-chart",
+          "description": "Supplied-data MiniBarChart example.",
+          "source": "root = MiniBarChart(\"Trend\", [-2,0,4,3,7,5])",
+          "props": {
+            "title": "Trend",
+            "values": [
+              -2,
+              0,
+              4,
+              3,
+              7,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "MiniLineChart",
+      "layer": "chart",
+      "orderedProps": [
+        "title",
+        "values",
+        "options"
+      ],
+      "slots": {},
+      "bindingProps": [],
+      "actionProps": [],
+      "renderer": {
+        "kind": "dom",
+        "key": "openui/MiniLineChart"
+      },
+      "capabilities": [
+        "display"
+      ],
+      "limitations": [
+        "Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.",
+        "Legend visibility is local presentation state, not a second DSL state store.",
+        "Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL."
+      ],
+      "docs": "Renders the MIT OpenUI React/D3 implementation pinned at cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7. Supplied data only; no services, callbacks, downloads or telemetry. Empty input produces an explicit empty state; all-zero input remains zero. A keyboard-operable data table provides every original value. Theme colors inherit Inform tokens, including portaled tooltips. Animation defaults off and respects reduced motion. Mini charts are intentionally square (100–320 px) and use the most recent values that fit, as upstream. The expandable data table always retains all original input values; no data is deleted.",
+      "examples": [
+        {
+          "id": "mini-line-chart",
+          "description": "Supplied-data MiniLineChart example.",
+          "source": "root = MiniLineChart(\"Trend\", [-2,0,4,3,7,5])",
+          "props": {
+            "title": "Trend",
+            "values": [
+              -2,
+              0,
+              4,
+              3,
+              7,
+              5
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "dataShapes": [
+    {
+      "name": "Series",
+      "orderedProps": [
+        "name",
+        "values"
+      ],
+      "description": "Named finite series; null is supported only by HeatmapChart as a missing cell."
+    },
+    {
+      "name": "Slice",
+      "orderedProps": [
+        "label",
+        "value"
+      ],
+      "description": "Named non-negative magnitude for pie, radial, funnel or segmented charts."
+    },
+    {
+      "name": "Point",
+      "orderedProps": [
+        "x",
+        "y"
+      ],
+      "description": "A finite scatter coordinate. Negative and zero values are supported."
+    },
+    {
+      "name": "ScatterSeries",
+      "orderedProps": [
+        "name",
+        "points"
+      ],
+      "description": "Named scatter dataset containing finite Point values."
+    },
+    {
+      "name": "CalendarDay",
+      "orderedProps": [
+        "date",
+        "value"
+      ],
+      "description": "ISO calendar day and non-negative magnitude. Duplicate dates are summed by the upstream calendar."
+    }
+  ],
+  "externalServices": []
+}

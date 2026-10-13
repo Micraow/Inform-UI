@@ -1,0 +1,162 @@
+Generate an Inform UI 2 document using the pinned OpenUI language. This profile is local-only. Use only the component and data constructors listed below.
+
+## Syntax Rules
+
+1. Each statement is on its own line: `identifier = Expression`
+2. `root` is the entry point — every program must define `root = AreaChart(...)`
+3. Expressions are: strings ("..."), numbers, booleans (true/false), null, arrays ([...]), objects ({...}), or component calls TypeName(arg1, arg2, ...)
+4. Use references for readability: define `name = ...` on one line, then use `name` later
+5. EVERY variable (except root) MUST be referenced by at least one other variable. Unreferenced variables do not render; connect intended output to root. Always include defined variables in their parent's children/items array.
+6. Arguments are POSITIONAL (order matters, not names). Write `SomeComp([children], "row", "l")` NOT `SomeComp([children], direction: "row", gap: "l")` — colon syntax is rejected
+7. Optional arguments can be omitted from the end
+8. Declare mutable state with `$varName = defaultValue`. Components marked with `$binding` can read/write these. Undeclared $variables are errors in Inform UI.
+9. String concatenation: `"text" + $var + "more"`
+10. Dot member access: `query.field` reads a field; on arrays it extracts that field from every element
+11. Index access: `arr[0]`, `data[index]`
+12. Arithmetic operators: +, -, *, /, % (work on numbers; + is string concat when either side is a string)
+13. Comparison: ==, !=, >, <, >=, <=
+14. Logical: &&, ||, ! (prefix)
+15. Ternary: `condition ? valueIfTrue : valueIfFalse`
+16. Parentheses for grouping: `(a + b) * c`
+- Strings use double quotes with backslash escaping
+
+## Component Signatures
+
+Arguments marked with ? are optional. Sub-components can be inline or referenced; prefer references for better streaming.
+Props marked `$binding<type>` accept a `$variable` reference for two-way binding.
+
+### base/charts
+AreaChart(title: string, labels: string[], series: Series[], options?: {height?: number, legend?: boolean, animate?: boolean, grid?: boolean, condensed?: boolean, showYAxis?: boolean, xAxisLabel?: string, yAxisLabel?: string, tickVariant?: "singleLine" | "multiLine" | "angled", variant?: "linear" | "natural" | "step", stacked?: boolean, crosshair?: boolean, highlight?: boolean}) — Multi-series area chart, including stacked and signed values.
+BarChart(title: string, labels: string[], series: Series[], options?: {height?: number, legend?: boolean, animate?: boolean, grid?: boolean, condensed?: boolean, showYAxis?: boolean, xAxisLabel?: string, yAxisLabel?: string, tickVariant?: "singleLine" | "multiLine" | "angled", variant?: "grouped" | "stacked", orientation?: "vertical" | "horizontal", barRadius?: number}) — Grouped or stacked vertical/horizontal bar chart.
+HorizontalBarChart(title: string, labels: string[], series: Series[], options?: {height?: number, legend?: boolean, animate?: boolean, grid?: boolean, condensed?: boolean, showYAxis?: boolean, xAxisLabel?: string, yAxisLabel?: string, tickVariant?: "singleLine" | "multiLine" | "angled", variant?: "grouped" | "stacked", barRadius?: number}) — Horizontal orientation of the same upstream BarChart engine.
+LineChart(title: string, labels: string[], series: Series[], options?: {height?: number, legend?: boolean, animate?: boolean, grid?: boolean, condensed?: boolean, showYAxis?: boolean, xAxisLabel?: string, yAxisLabel?: string, tickVariant?: "singleLine" | "multiLine" | "angled", variant?: "linear" | "natural" | "step", showDots?: boolean, crosshair?: boolean, highlight?: boolean}) — Multi-series line chart with configurable interpolation and dots.
+HeatmapChart(title: string, labels: string[], series: Series[], options?: {height?: number, legend?: boolean, animate?: boolean, rampMode?: "sequential" | "diverging", showColorScale?: boolean, showCellLabels?: boolean, showYAxis?: boolean}) — Value heatmap with missing cells and signed diverging color scales.
+RadarChart(title: string, labels: string[], series: Series[], options?: {height?: number, legend?: boolean, animate?: boolean, grid?: boolean, gridShape?: "circle" | "polygon", gridLevels?: number, variant?: "line" | "area", showDots?: boolean}) — Multi-series radar chart with polygon or circular grids.
+PieChart(title: string, slices: Slice[], options?: {height?: number, legend?: boolean, animate?: boolean, variant?: "pie" | "donut", appearance?: "circular" | "semiCircular", format?: "percentage" | "number", legendVariant?: "default" | "stacked"}) — Pie or donut chart with a keyboard-accessible interactive legend.
+RadialChart(title: string, slices: Slice[], options?: {height?: number, legend?: boolean, animate?: boolean, variant?: "circular" | "semiCircular", format?: "percentage" | "number", legendVariant?: "default" | "stacked", grid?: boolean}) — Circular or semicircular radial magnitude chart.
+FunnelChart(title: string, slices: Slice[], options?: {height?: number, legend?: boolean, animate?: boolean, orientation?: "horizontal" | "vertical", edges?: "curved" | "straight", layers?: number, showLabels?: boolean, showValues?: boolean, showPercentage?: boolean}) — Actual curved/straight multi-stage funnel with upstream geometry.
+SegmentedBar(title: string, slices: Slice[], options?: {legend?: boolean, animate?: boolean, legendVariant?: "default" | "stacked"}) — Proportional segmented bar with interactive legend.
+SingleStackedBar(title: string, slices: Slice[], options?: {legend?: boolean, animate?: boolean, legendVariant?: "default" | "stacked"}) — Compatibility name for the same upstream SegmentedBar core.
+ScatterChart(title: string, datasets: ScatterSeries[], options?: {height?: number, legend?: boolean, animate?: boolean, grid?: boolean, verticalGrid?: boolean, showYAxis?: boolean, xAxisLabel?: string, yAxisLabel?: string, dotRadius?: number}) — Multiple named scatter datasets with finite signed coordinates.
+CalendarHeatmap(title: string, days: CalendarDay[], options?: {height?: number, animate?: boolean, range?: "6m" | "12m" | any, thresholds?: any, layout?: "fluid" | "fill", weekStartDay?: number, showMonthLabels?: boolean, weekdayTickFilter?: "all" | "odd" | "even", weekdayLabelFormat?: "full" | "initial", legendVariant?: "swatches" | "gradient" | "none", valueLabel?: string, patterns?: "diagonal" | "dots" | "cross" | "horizontal" | "vertical"[]}) — Contribution calendar with real date geometry, sparse days and level patterns.
+MiniAreaChart(title: string, values: number[], options?: {size?: number, animate?: boolean, variant?: "linear" | "natural" | "step", useGradient?: boolean, opacity?: number}) — Compact upstream area sparkline with signed values.
+MiniBarChart(title: string, values: number[], options?: {size?: number, animate?: boolean, radius?: number}) — Compact upstream bar sparkline with signed values.
+MiniLineChart(title: string, values: number[], options?: {size?: number, animate?: boolean, variant?: "linear" | "natural" | "step"}) — Compact upstream line sparkline with signed values.
+
+## Built-in Functions
+
+Data functions prefixed with `@` to distinguish from components. These are the ONLY functions available — do NOT invent new ones.
+Use @-prefixed built-in functions (@Count, @Sum, @Avg, @Min, @Max, @Round) on data. Do NOT hardcode computed values.
+
+@Count(array: any[]) → number — Returns array length
+@First(array: any[]) → any — Returns first element of array
+@Last(array: any[]) → any — Returns last element of array
+@Sum(numbers: number[]) → number — Sum of numeric array
+@Avg(numbers: number[]) → number — Average of numeric array
+@Min(numbers: number[]) → number — Minimum value in array
+@Max(numbers: number[]) → number — Maximum value in array
+@Sort(array: any[], field: string, direction?: "asc" | "desc") → any[] — Sort array by field. Direction: "asc" (default) or "desc"
+@Filter(array: any[], field: string, operator: "==" | "!=" | ">" | "<" | ">=" | "<=" | "contains", value: any) → any[] — Filter array by field value
+@Round(number: number, decimals?: number) → number — Round to N decimal places (default 0)
+@Abs(number: number) → number — Absolute value
+@Floor(number: number) → number — Round down to nearest integer
+@Ceil(number: number) → number — Round up to nearest integer
+@Each(array: any[], varName: string, template: any) — Evaluate template for each element. varName is the loop variable — use it ONLY inside the template expression (inline). Do NOT create a separate statement for the template.
+
+Builtins compose — output of one is input to the next:
+`@Count(@Filter(data.rows, "field", "==", "val"))` for KPIs/chart values, `@Round(@Avg(data.rows.score), 1)`, `@Each(data.rows, "item", Comp(item.field))` for per-item rendering.
+Array pluck: `data.rows.field` extracts a field from every row → use with @Sum, @Avg, charts, tables.
+
+IMPORTANT @Each rule: The loop variable (e.g. "item") is ONLY available inside the @Each template expression. Always inline the template — do NOT extract it to a separate statement.
+CORRECT: `list = @Each(rows, "t", Comp(t.name))`
+WRONG: `item = Comp(t.name)` then `list = @Each(rows, "t", item)`, because t is undefined in item.
+
+## Hoisting & Streaming (CRITICAL)
+
+openui-lang supports hoisting: a reference can be used BEFORE it is defined. The parser resolves all references after the full input is parsed.
+
+During streaming, the output is re-parsed on every chunk. Undefined references are temporarily unresolved and appear once their definitions stream in. This creates a progressive top-down reveal — structure first, then data fills in.
+
+**Recommended statement order for optimal streaming:**
+1. `root = AreaChart(...)` — UI shell appears immediately
+2. $variable declarations — state ready for bindings
+3. Component definitions — fill in with data already available
+4. Data values — leaf content last
+
+Always write the root = AreaChart(...) statement first so the UI shell appears immediately, even before child data has streamed in.
+
+## Examples
+
+root = AreaChart("Quarterly revenue", ["Q1", "Q2", "Q3", "Q4"], [Series("Revenue", [24,38,30,47]), Series("Plan", [20,30,35,40])])
+
+## Important Rules
+- Choose components that best represent the content (tables for comparisons, charts for trends, forms for input, etc.)
+
+## Final Verification
+Before finishing, walk your output and verify:
+1. root = AreaChart(...) is the FIRST line (for optimal streaming).
+2. Every referenced name is defined. Every defined name (other than root) is reachable from root.
+3. Every $binding appears in at least one component or expression.
+
+- Component means any available UI component in this profile. Data constructors are not UI children.
+- The positional parameter order is an ABI. Never emit named arguments, unknown props, callback functions, raw HTML, arbitrary CSS, imports, Query, Mutation, @Run, @OpenUrl or @ToAssistant.
+- All mutable variables must be explicitly declared. Use direct declared $variables for ordinary writable bindings. $value is reserved for assignment-binding input; it is not standalone state. Arbitrary callbacks or JavaScript functions are forbidden.
+- Only @Set, @Reset and Action([...]) are local action syntax. Actions have no authority to call external services.
+- Output must be complete. Partial streaming is preview-only. Invalid values or unknown components reject the document, rather than silently dropping content.
+- Numbers are finite. Division and remainder by zero are errors. Do not depend on implicit numeric coercion or unsafe object keys.
+- Inform semantics: == and != compare scalar values strictly; logical operators require booleans. Sort uses deterministic lexicographic string order and rejects mixed number/string keys. Filter relational operators require numbers. @Each uses an inline template with a named item, no index parameter or JavaScript lambda.
+- Display supplied facts accurately. Domain modules do not fetch, verify or transact on data.
+- AreaChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- AreaChart: Legend visibility is local presentation state, not a second DSL state store.
+- AreaChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- BarChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- BarChart: Legend visibility is local presentation state, not a second DSL state store.
+- BarChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- HorizontalBarChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- HorizontalBarChart: Legend visibility is local presentation state, not a second DSL state store.
+- HorizontalBarChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- LineChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- LineChart: Legend visibility is local presentation state, not a second DSL state store.
+- LineChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- HeatmapChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- HeatmapChart: Legend visibility is local presentation state, not a second DSL state store.
+- HeatmapChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- RadarChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- RadarChart: Legend visibility is local presentation state, not a second DSL state store.
+- RadarChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- PieChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- PieChart: Legend visibility is local presentation state, not a second DSL state store.
+- PieChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- RadialChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- RadialChart: Legend visibility is local presentation state, not a second DSL state store.
+- RadialChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- FunnelChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- FunnelChart: Legend visibility is local presentation state, not a second DSL state store.
+- FunnelChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- SegmentedBar: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- SegmentedBar: Legend visibility is local presentation state, not a second DSL state store.
+- SegmentedBar: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- SingleStackedBar: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- SingleStackedBar: Legend visibility is local presentation state, not a second DSL state store.
+- SingleStackedBar: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- ScatterChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- ScatterChart: Legend visibility is local presentation state, not a second DSL state store.
+- ScatterChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- CalendarHeatmap: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- CalendarHeatmap: Legend visibility is local presentation state, not a second DSL state store.
+- CalendarHeatmap: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- MiniAreaChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- MiniAreaChart: Legend visibility is local presentation state, not a second DSL state store.
+- MiniAreaChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- MiniBarChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- MiniBarChart: Legend visibility is local presentation state, not a second DSL state store.
+- MiniBarChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- MiniLineChart: Hover tooltips are pointer-only; the data table exposes the same values to keyboard and assistive-technology users.
+- MiniLineChart: Legend visibility is local presentation state, not a second DSL state store.
+- MiniLineChart: Arbitrary colors, JavaScript callbacks, remote data, detached legend stores and export APIs are not exposed by this DSL.
+- Data constructors (not renderers):
+Series(name: string, values: number[]): Named finite series; null is supported only by HeatmapChart as a missing cell.
+Slice(label: string, value: number): Named non-negative magnitude for pie, radial, funnel or segmented charts.
+Point(x: number, y: number): A finite scatter coordinate. Negative and zero values are supported.
+ScatterSeries(name: string, points: {x: number, y: number}[]): Named scatter dataset containing finite Point values.
+CalendarDay(date: string, value: number): ISO calendar day and non-negative magnitude. Duplicate dates are summed by the upstream calendar.

@@ -1,0 +1,32 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "animate",
+      "label": "A small entrance animation",
+      "effect": "rise",
+      "duration": 800,
+      "children": [
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "An idea comes into view"
+            },
+            {
+              "type": "text",
+              "value": "Click Preview motion to see this card rise and fade in. Replay it, or stop it while it is moving."
+            },
+            {
+              "type": "caption",
+              "value": "With Reduce motion enabled, the content stays visible and movement is skipped."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
