@@ -12,3 +12,6 @@ This development branch preserves the new no-build DSL architecture and the comp
 The first concentrated Chromium pass found horizontal overflow for HorizontalBarChart at 390px. The 1440px traversal crashed at WeatherCard; the cause has not been established. The run stops at its first failing assertion, so it does not establish full browser coverage. Three Skill answer browser tests have not yet run.
 
 Build with npm ci, npm run build:next and npm run showcase:next. The self-contained showcase is generated into output/next/Inform-UI-Next-All-Components.html. Legacy main and its CDN artifacts remain unchanged by this checkpoint.
+
+## Layout follow-up — 14:11 UTC
+Shared chart typography now uses foundation caption/small/base roles and waits for the actual host theme before chart geometry mounts. Long component titles wrap without forcing a flex min-content overflow. The showcase selects only catalog modules and View schemas needed by the current DSL, reducing unnecessary full-profile allocation. Seven focused Node checks pass. The two recorded browser failures are still awaiting the concentrated rerun; their causes are not all established.
