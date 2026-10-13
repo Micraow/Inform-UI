@@ -1,0 +1,57 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "carousel",
+      "label": "Three small experiments",
+      "controls": true,
+      "children": [
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "Observe"
+            },
+            {
+              "type": "text",
+              "value": "Write down something you noticed."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "Sketch"
+            },
+            {
+              "type": "text",
+              "value": "Give the idea a visible shape."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "Share"
+            },
+            {
+              "type": "text",
+              "value": "Ask someone what they see."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$ref": "#/$defs/Node",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:c59d34b171ee7cc54e278a857688d834363bbd6ff064f9ff503abfb74bdd0c92:node:base",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:e3a09eafb30b1332b1014757ab69e7891492e7f18a7343867ceb35de4caa9eaa:node:base",
   "title": "Inform UI node subset: base",
   "description": "Node structural subset for field lookup, not a Document schema. Use the corresponding Document bundle or a union for authored pages.",
   "$defs": {
@@ -11130,6 +11130,9 @@
         },
         {
           "$ref": "#/$defs/QuestionnaireNode"
+        },
+        {
+          "$ref": "#/$defs/RatingSummaryNode"
         }
       ]
     },
@@ -14722,6 +14725,54 @@
         "type",
         "label",
         "bind"
+      ],
+      "additionalProperties": false
+    },
+    "RatingSummaryNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "rating-summary"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "ratingLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviewCountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "provider": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "ratingLabel"
       ],
       "additionalProperties": false
     },

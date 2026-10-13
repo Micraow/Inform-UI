@@ -83,6 +83,7 @@ import {inspectEntityReviews} from './entity-reviews.js';
 import {inspectPersonProfile} from './person-profile.js';
 import {inspectAgenda} from './agenda.js';
 import {ratingValueIssue} from './rating.js';
+import {inspectRatingSummary} from './rating-summary.js';
 import {inspectVocabCard} from './vocab.js';
 import {inspectConverters} from './converters.js';
 import {inspectClock} from './time.js';
@@ -493,6 +494,7 @@ function semanticIssues(document: IUIDocument, state: Record<string, Scalar>): I
     }
     if (node.type === 'favicon' && node.src!==undefined && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Favicon requires an explicitly supplied allowed image URL.'));
     if (node.type === 'image' && !isSafeURL(node.src, 'image')) add(issue('UNSAFE_URL', `${path}/src`, 'Images must use HTTP(S) or base64 PNG, JPEG, GIF or WebP.'));
+    if (node.type === 'rating-summary') inspectRatingSummary(node, path, add, isSafeURL);
     if (node.type === 'svg') inspectSvg(node, path, add);
     if (node.type === 'table') try { tableLayout(node); } catch (error) { if (error instanceof TableLayoutError) add(issue(error.code, path + error.path, error.message)); else throw error; }
     if (node.type === 'topology') {

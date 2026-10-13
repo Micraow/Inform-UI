@@ -1,0 +1,28 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "flow",
+      "gap": "md",
+      "align": "center",
+      "children": [
+        {
+          "type": "badge",
+          "value": "Research"
+        },
+        {
+          "type": "badge",
+          "value": "Design"
+        },
+        {
+          "type": "badge",
+          "value": "Build"
+        },
+        {
+          "type": "badge",
+          "value": "Reflect"
+        }
+      ]
+    }
+  ]
+}

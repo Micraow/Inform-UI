@@ -1,0 +1,24 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "box",
+      "padding": 4,
+      "gap": 3,
+      "border": true,
+      "radius": "lg",
+      "background": "surface-secondary",
+      "children": [
+        {
+          "type": "title",
+          "level": 3,
+          "value": "A little space for an idea"
+        },
+        {
+          "type": "text",
+          "value": "A box groups content with explicit padding, spacing, a border, and a surface."
+        }
+      ]
+    }
+  ]
+}

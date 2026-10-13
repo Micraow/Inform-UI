@@ -16,3 +16,9 @@
 ## Component studio
 
 `component-studio.png` is a real Chromium capture of the studio at a 1440px viewport, light theme. It shows the live preview and exact JSON panes for [`showcase/examples/chart.json`](../../showcase/examples/chart.json). The screenshot is captured by `tests/showcase-browser/studio.spec.mjs`; it uses original fictional reading data and contains no private reference material.
+
+## Three-page component gallery
+
+`gallery-create.png`, `gallery-explore.png`, and `gallery-compose.png` are actual Chromium captures at 2160 × 1440, rendered from the original supplied examples in [`showcase/gallery-data.js`](../../showcase/gallery-data.js). `gallery-panorama.png` captures the same three pages horizontally at 6480 × 1440.
+
+The neutral showcase frame does not override renderer colors, typography, spacing, or zoom. The first page uses the read-only `rating-summary`; the editable `rating` remains a separate project extension. These captures show selected compositions, not acceptance of every component's original visual appearance. No captured third-party reference code, images, or user data is included.

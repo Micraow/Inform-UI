@@ -13,7 +13,20 @@ npm run showcase
 
 Open **http://127.0.0.1:4175**. Use search or a category to choose a component. Press `/` to focus search and Escape to clear it. Each component has a shareable URL fragment, light/dark preview, Reset, and an activity inspector. Reset and theme changes restore the original sample state.
 
-The gallery includes all **218 canonical schema nodes**: **217 renderable examples** and the deliberately rejected `native` compatibility boundary. The catalog contains **90 source modules**, including shared definition-only modules. These are protocol/catalog counts, not a claim of clinical validation, connected services, or pixel equivalence with any third-party product.
+The gallery includes all **219 canonical schema nodes**: **218 renderable examples** and the deliberately rejected `native` compatibility boundary. The catalog contains **91 source modules**, including shared definition-only modules. These are protocol/catalog counts, not a claim of clinical validation, connected services, or pixel equivalence with any third-party product.
+
+## Browse compositions
+
+Open **http://127.0.0.1:4175/gallery.html** for a three-page horizontal masonry gallery. The 24 original compositions use 32 node types from the same runtime, including charts, form controls, learning, weather, converters, travel and planning. All examples use fictional, supplied data and local-only interactions. Use Create, Explore and Compose to change pages, or scroll horizontally. The layout becomes two columns on tablets and one on phones. Each tile’s download arrow saves the complete JSON document.
+
+The capture script produces local browser screenshots at 2160 × 1440, plus a 6480 × 1440 three-page panorama, from these live pages. Screenshots are optional outputs; the complete gallery works directly from source. To capture after starting the studio:
+
+```sh
+npx playwright install chromium
+node scripts/capture-gallery.mjs
+```
+
+Set `GALLERY_URL` for another local server address or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` for an installed Chromium. Captures use the same original compositions as the interactive gallery; the script refuses to crop a page that no longer fits the landscape frame.
 
 ## Use an example
 
@@ -52,3 +65,7 @@ npm run test:showcase
 ```
 
 The catalog test compares every entry against the canonical schema and source catalog, checks structural and semantic validation, required hosts, dependency closure and the explicit rejection. Browser tests mount every entry at 390 and 1440 pixels, compare displayed JSON with its source, test search/copy/download/reset/history, and capture light/dark views at 390, 768 and 1440 pixels. The tests live in the repository; results must be attributed to the exact version actually run.
+
+## Single-file offline delivery
+
+After building, run `node scripts/export-showcase-html.mjs`. Open `output/showcase-standalone.html` directly, with no local server. The file includes the complete current component catalog, full JSON examples, renderer, styles and licenses. Its bundled gallery is a separate composition view; counts describe protocol coverage, not completed visual equivalence. See [current alignment scope](control-alignment.md).

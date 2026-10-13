@@ -42,7 +42,7 @@ test('candidate installers preserve every maintained definition and finance owne
   for(const[name,definition]of Object.entries(registry.defs))if(name!=='Node')assert.equal(JSON.stringify(definition),JSON.stringify(full.schema.$defs[name]),name);
   assert.equal(registry.nodes.length,12);
   for(const[type,owner]of Object.entries(registry.owners)){assert.equal(owner,'finance');assert.equal(owner,full.owners[type]);}
-  assert.equal(full.nodes.length,218);
+  assert.equal(full.nodes.length,219);
 });
 test('selected source closures validate independent examples without unrelated node inflation',()=>{
   for(const [index,id] of ['finance/snapshots','finance/ledger-lists','finance/ledger-records','finance/ledger-correction','finance/ledger-income','finance/ledger-spend','finance/ledger-upcoming'].entries()){

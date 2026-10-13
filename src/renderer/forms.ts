@@ -181,6 +181,8 @@ export function createForms(c: RendererContext) {
     };
 
     if (choice) {
+      const optionsHost = n.type === 'segmented' ? e('div', 'iui-segmented-options') : group!;
+      if (optionsHost !== group) group!.append(optionsHost);
       n.options.forEach((option, i) => {
         const optionLabel = e('label', 'iui-choice');
         const input = e('input');
@@ -190,7 +192,7 @@ export function createForms(c: RendererContext) {
         input.value = String(i);
         setupInput(input);
         optionLabel.append(input, e('span', 'iui-choice-text', option.label));
-        group!.append(optionLabel);
+        optionsHost.append(optionLabel);
         on(input, 'change', () => {
           if (disabled(input)) { refresh(); return; }
           if (!input.checked) return;

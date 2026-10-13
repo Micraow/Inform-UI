@@ -2,12 +2,12 @@
 
 # Inform UI
 
-### 让结构化内容，成为真正可交互的界面。
+### Small JSON. Real interfaces.
 
-用一份 JSON 表达文字、图表、公式、表单与领域卡片。
-在浏览器中嵌入，也能生成独立 HTML。
+用 JSON 构建清晰、可交互的内容。
+图表、公式、表单与领域卡片，组合成可以直接交付的界面。
 
-[组件展示](docs/showcase.md) · [快速开始](#快速开始) · [浏览器接入](docs/cdn-218.md) · [API 文档](docs/api.md) · [配套 Skill](https://github.com/Micraow/Inform-UI-skill/tree/recovery/consumers-126-20261011)
+[组件展示](docs/showcase.md) · [快速开始](#快速开始) · [浏览器接入](docs/cdn-218.md) · [API 文档](docs/api.md) · [配套 Skill](https://github.com/Micraow/Inform-UI-skill)
 
 **JavaScript / TypeScript · iui/1 · MIT · 无需账号或 API**
 
@@ -16,7 +16,14 @@
 ---
 
 <p align="center">
-  <img src="docs/assets/component-studio.png" alt="Inform UI 组件展示：真实可交互的阅读折线图与对应 JSON" width="1040">
+  <a href="docs/assets/gallery-panorama.png"><img src="docs/assets/gallery-create.png" alt="Inform UI 真实组件瀑布流：折线图、环形图、表单、滑块、词汇卡片、只读评分摘要和表格" width="1200"></a>
+</p>
+<p align="center">
+  <a href="docs/assets/gallery-explore.png"><img src="docs/assets/gallery-explore.png" alt="第二页：图表、天气、指标、单位转换与数学公式" width="49%"></a>
+  <a href="docs/assets/gallery-compose.png"><img src="docs/assets/gallery-compose.png" alt="第三页：日程、航班、选项卡、问答、菜单和代码" width="49%"></a>
+</p>
+<p align="center">
+  真实运行库渲染 · 原创合成数据 · <a href="docs/assets/gallery-panorama.png">查看横向三页全景 →</a>
 </p>
 
 ## 从内容到界面
@@ -28,26 +35,30 @@
 
 ## 组件展示
 
-按分类或名称浏览全部 **218 个协议节点**，试用 **217 个可渲染示例**，查看并复制实际挂载的完整 JSON。`native` 作为明确的拒绝边界单独展示。
+三页横向画廊展示 **24 组原创组合、32 种节点**，包括阅读与表单、数据与工具、日程与旅行。每块内容都由同一运行库实时渲染，支持下载原始 JSON。启动后打开 **http://127.0.0.1:4175/gallery.html**。
 
-支持浅色 / 深色、小屏布局、状态重置、依赖关系与本地事件查看。[打开使用指南 →](docs/showcase.md)
+按分类或名称浏览全部 **219 个协议节点**，试用 **218 个可渲染示例**，查看并复制实际挂载的完整 JSON。`native` 作为明确的拒绝边界单独展示。
 
-## 验证状态
+布局主例单独展示纵向堆叠、横向排列、响应式网格，以及带上下文的分隔和留白。支持浅色 / 深色、小屏布局、状态重置、依赖关系与本地事件查看。[打开使用指南 →](docs/showcase.md)
 
-`main` / PR 检查实际提交的完整 Node、组件展示、合成浏览器用例，以及 Linux / Windows / macOS 可移植性。冻结的 prepared 115 历史批次从未完成验收，保留为独立手动复现工作流；其失败记录不计作当前源码通过。[覆盖范围与历史结果](docs/ci-validation.md)。
+## 验证与外观范围
+
+`main` / PR 检查真实提交的完整 Node、展示页、合成浏览器用例，以及三平台可移植性。[CI 与历史复现](docs/ci-validation.md)。
+
+展示页使用真实 renderer；当前控件修正涵盖只读评分摘要、分段选择及连续滑块。交互评分输入与 toggle 是本项目扩展，其余组件的原始外观对应仍在逐项审查，不宣称全库像素级复刻。[对齐范围](docs/control-alignment.md)。
 
 ## 快速开始
 
 需要 **Node.js 22+**。当前为源码开发预览，尚未发布 npm 包。
 
 ```sh
-git clone --branch recovery/portable-124-20261011 https://github.com/Micraow/Inform-UI.git
+git clone https://github.com/Micraow/Inform-UI.git
 cd Inform-UI
 npm ci --ignore-scripts
 npm run showcase
 ```
 
-浏览器打开 **http://127.0.0.1:4175**，即可试用组件并获取 JSON。
+浏览器打开 **http://127.0.0.1:4175/gallery.html** 看组合画廊，或打开 **http://127.0.0.1:4175** 逐个试用全部组件。
 
 只需编译一份独立页面：
 
@@ -91,7 +102,7 @@ const controller = mount(document.querySelector('#app'), result.document);
 - [组件展示与静态构建](docs/showcase.md)：搜索、试用、JSON 下载与运行方法
 - [浏览器接入](docs/cdn-218.md)：固定资源、完整性与版本边界
 - [API 与 CLI](docs/api.md)：校验、挂载、状态更新与 HTML 编译
-- [Schema 模块](docs/schema-source-modules.md)：90 个源模块及真实依赖关系
+- [Schema 模块](docs/schema-source-modules.md)：91 个源模块及真实依赖关系
 - [安全边界](docs/security.md)：受限表达式、URL 与内容校验
 - [开发指南](docs/development.md)：构建、测试与贡献
 

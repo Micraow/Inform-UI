@@ -1,0 +1,12 @@
+import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+const catalog=JSON.parse(await readFile('output/showcase/catalog.json','utf8'));
+for(const width of [390,1440])test(`single-file showcase works offline across all entries at ${width}px`,async({page,context})=>{
+ const errors=[],external=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(!/^(http:\/\/127\.0\.0\.1:4176\/standalone\.html|data:|blob:)/.test(r.url()))external.push(r.url());});
+ await page.setViewportSize({width,height:1000});await page.goto('/standalone.html');await expect(page.locator('html')).toHaveAttribute('data-ready','true');await context.setOffline(true);
+ for(const entry of catalog.entries){await page.evaluate(type=>{location.hash=type;},entry.type);await expect(page.locator('#preview')).toHaveAttribute('data-component',entry.type);await expect(page.locator('#preview')).toHaveAttribute('data-status',entry.type==='native'?'rejected':'mounted');expect(JSON.parse(await page.locator('#json-code').textContent())).toEqual({...entry.document,theme:'light'});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
+ await page.locator('#open-standalone-gallery').click();const dialog=page.getByRole('dialog',{name:'Inform UI · Gallery'});await expect(dialog).toBeVisible();const gallery=page.frameLocator('#standalone-gallery-frame');await expect(gallery.locator('.tile[data-status=mounted]')).toHaveCount(24);await page.locator('#close-standalone-gallery').click();await expect(dialog).not.toBeVisible();await expect(page.locator('#open-standalone-gallery')).toBeFocused();
+ await page.locator('#open-standalone-gallery').click();await expect(gallery.locator('.tile[data-status=mounted]')).toHaveCount(24);await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await expect(page.locator('#open-standalone-gallery')).toBeFocused();
+ await page.evaluate(()=>{location.hash='rating-summary';});await expect(page.locator('#preview')).toHaveAttribute('data-component','rating-summary');const downloadPromise=page.waitForEvent('download');await page.locator('#download-json').click();const download=await downloadPromise;expect(JSON.parse(await readFile(await download.path(),'utf8'))).toEqual({...catalog.entries.find(e=>e.type==='rating-summary').document,theme:'light'});
+ expect(errors).toEqual([]);expect(external).toEqual([]);await page.screenshot({path:`test-results/standalone-${width}.png`,fullPage:true});
+});

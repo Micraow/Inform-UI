@@ -1,0 +1,16 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "text",
+      "value": "A first thought."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "text",
+      "value": "Room for the next thought."
+    }
+  ]
+}

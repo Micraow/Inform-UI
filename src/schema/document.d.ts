@@ -248,7 +248,8 @@ export type Node =
   | CalculatorGlasgowComaScaleGcsNode
   | CalculatorRoxIndexForHighFlowNasalCannulaNode
   | CalculatorQsofaScoreNode
-  | QuestionnaireNode;
+  | QuestionnaireNode
+  | RatingSummaryNode;
 export type TextNode = {
   type: "text";
   id?: string;
@@ -7377,4 +7378,14 @@ export interface QuestionnaireSource {
   title: string;
   url?: string;
   version?: string;
+}
+export interface RatingSummaryNode {
+  type: "rating-summary";
+  id?: string;
+  ratingLabel: string;
+  reviewCountLabel?: string;
+  provider?: {
+    label: string;
+    url: string;
+  };
 }

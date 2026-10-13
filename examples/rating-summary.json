@@ -1,0 +1,11 @@
+{
+  "version": "iui/1",
+  "title": "Supplied rating summaries",
+  "description": "Original synthetic display examples. Labels and source links are supplied by the author; no online ratings are fetched or verified.",
+  "body": [
+    {"type": "rating-summary", "ratingLabel": "4.8", "reviewCountLabel": "(120 reviews)"},
+    {"type": "rating-summary", "ratingLabel": "4.6 out of 5", "reviewCountLabel": "(28 reviews)", "provider": {"label": "Example reviews", "url": "https://example.com/reviews"}},
+    {"type": "rating-summary", "ratingLabel": "Not rated", "reviewCountLabel": "Review count unavailable"},
+    {"type": "rating-summary", "ratingLabel": "Rating unavailable"}
+  ]
+}

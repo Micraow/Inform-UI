@@ -22,7 +22,8 @@ test('Finance subset closes the new node and Base does not silently acquire it',
  // Whitespace title is structurally valid but semantic validation must reject it.
  const blank=input(n=>n.data.title=' ');assert.equal(finance(blank),true);assert.equal(validateDocument(blank).ok,false);
 });
-test('both build entry lists name the family CSS without changing global stylesheet',async()=>{
+test('both build entry lists name the family CSS and global styles match the reviewed controls baseline',async()=>{
  for(const script of ['scripts/build.mjs','scripts/build-cdn.mjs'])assert.match(await readFile(script,'utf8'),/src\/renderer\/finance-status\.css/);
- const baseline=JSON.parse(await readFile('tests/finance-status-baseline-118.json'));assert.equal(createHash('sha256').update(await readFile('src/renderer/style.css')).digest('hex'),baseline.globalStyleSha256);
+ // The frozen 118 baseline remains unchanged; this later control batch explicitly changes shared styles.
+ const baseline=JSON.parse(await readFile('tests/controls-presentation-baseline.json'));assert.equal(createHash('sha256').update(await readFile('src/renderer/style.css')).digest('hex'),baseline.globalStyleSha256);
 });

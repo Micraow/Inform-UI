@@ -1,0 +1,22 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "details",
+      "summary": "Open the session notes",
+      "children": [
+        {
+          "type": "text",
+          "value": "The simplest starting point is often enough."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Keep the scope small",
+            "Leave a note for tomorrow"
+          ]
+        }
+      ]
+    }
+  ]
+}

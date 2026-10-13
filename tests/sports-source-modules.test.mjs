@@ -63,7 +63,7 @@ test('sports source registrations declare exact original providers and output gr
  assert.equal(SPORTS_SOURCE_MODULES.flatMap(m=>m.nodeTypes).length,14);
 });
 
-test('proposed canonical replacements retain the exact 218-node full serialized schema',async()=>{
+test('proposed canonical replacements retain the exact 219-node full serialized schema',async()=>{
  const canonicalURL=new URL('../scripts/schema-source/canonical.mjs',import.meta.url);
  let source=await readFile(canonicalURL,'utf8');
  for(const m of SPORTS_SOURCE_MODULES){
@@ -78,7 +78,7 @@ test('proposed canonical replacements retain the exact 218-node full serialized 
  source=`import {TEST_MODULES} from ${JSON.stringify(new URL('./sports-source-fixture.mjs',import.meta.url).href)};\n`+source;
  const {buildCanonicalSchema:proposed}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
  const actual=await proposed();
- assert.equal(actual.nodes.length,218);assert.equal(Object.keys(actual.owners).length,218);
+ assert.equal(actual.nodes.length,219);assert.equal(Object.keys(actual.owners).length,219);
  assert.equal(JSON.stringify(actual.schema,null,2)+'\n',await read('src/schema/iui.schema.json'));
 });
 

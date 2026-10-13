@@ -1,7 +1,7 @@
 import { mount, validateDocument } from './runtime/iui.min.js';
 
 const $ = id => document.getElementById(id);
-const repo = 'https://github.com/Micraow/Inform-UI/blob/recovery/portable-124-20261011/';
+const repo = 'https://github.com/Micraow/Inform-UI/blob/main/';
 let catalog, selected, controller, mountedDocument, theme = 'light', activity = [], toastTimer;
 const node = (tag, text, className) => { const element = document.createElement(tag); if (text !== undefined) element.textContent = text; if (className) element.className = className; return element; };
 function toast(message) {

@@ -7,7 +7,7 @@ const select = async (page, type) => {
   await expect(page.locator('#preview')).toHaveAttribute('data-status', type === 'native' ? 'rejected' : 'mounted');
 };
 const ready = async page => { await page.goto('/'); await expect(page.locator('html')).toHaveAttribute('data-ready', 'true'); };
-for (const width of [390, 1440]) test(`all 218 entries mount or deliberately reject at ${width}px, without overflow or third-party requests`, async ({ page }) => {
+for (const width of [390, 1440]) test(`all 219 entries mount or deliberately reject at ${width}px, without overflow or third-party requests`, async ({ page }) => {
   await page.setViewportSize({ width, height: 1000 });
   const errors = [], remote = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -25,14 +25,14 @@ for (const width of [390, 1440]) test(`all 218 entries mount or deliberately rej
 });
 test('search, categories, empty results and keyboard recovery', async ({ page }) => {
   await ready(page);
-  await expect(page.locator('.component-link')).toHaveCount(218);
+  await expect(page.locator('.component-link')).toHaveCount(219);
   await page.keyboard.press('/'); await expect(page.locator('#search')).toBeFocused();
   await page.locator('#search').fill('questionnaire'); await expect(page.locator('.component-link')).toHaveCount(1);
   await page.locator('#search').fill('no-such-component'); await expect(page.locator('.no-results')).toBeVisible();
-  await page.keyboard.press('Escape'); await expect(page.locator('.component-link')).toHaveCount(218);
+  await page.keyboard.press('Escape'); await expect(page.locator('.component-link')).toHaveCount(219);
   await page.locator('#category').selectOption('finance');
   await expect(page.locator('.component-link')).toHaveCount(catalog.entries.filter(entry => entry.group === 'finance').length);
-  await page.locator('#clear-filters').click(); await expect(page.locator('.component-link')).toHaveCount(218);
+  await page.locator('#clear-filters').click(); await expect(page.locator('.component-link')).toHaveCount(219);
 });
 test('controls update locally, reset, switch safely and preserve back/forward navigation', async ({ page }) => {
   await ready(page); await select(page, 'slider');
@@ -97,4 +97,37 @@ test('supplied media loads locally, opens its real viewer and emits a bounded vi
   await expect(page.locator('#event-log')).toContainText('iui:video-open');
   expect(page.context().pages()).toHaveLength(1);
   expect(errors).toEqual([]); expect(remote).toEqual([]);
+});
+
+for (const width of [390, 1440]) test(`layout demonstrations show direction, spacing and responsive spans at ${width}px`, async ({ page }, testInfo) => {
+  await page.setViewportSize({ width, height: 1100 }); await ready(page);
+  await select(page, 'col');
+  const col = page.locator('#preview .iui-col').first();
+  expect(await col.locator(':scope > *').count()).toBe(3);
+  const column = await col.evaluate(node => {
+    const r = node.getBoundingClientRect();
+    return {direction:getComputedStyle(node).flexDirection,gap:getComputedStyle(node).gap,align:getComputedStyle(node).alignItems,width:r.width,items:[...node.children].map(x=>{const b=x.getBoundingClientRect();return {x:b.x,y:b.y,width:b.width,height:b.height};})};
+  });
+  expect(column.direction).toBe('column'); expect(column.gap).toBe('16px'); expect(column.align).toBe('stretch');
+  for (let i=0;i<3;i++) {
+    expect(Math.abs(column.items[i].width-column.width)).toBeLessThan(1);
+    if (i) expect(Math.abs(column.items[i].y-column.items[i-1].y-column.items[i-1].height-16)).toBeLessThan(1);
+  }
+  const data = JSON.parse(await page.locator('#json-code').textContent());
+  expect(data.body[0].children).toHaveLength(3); expect(data.body[0].gap).toBe(4);
+  await page.locator('.example-grid').screenshot({path:testInfo.outputPath(`col-${width}.png`)});
+  await select(page, 'row');
+  const row = await page.locator('#preview .iui-row').first().evaluate(node=>[...node.children].map(x=>{const b=x.getBoundingClientRect();return{x:b.x,y:b.y,width:b.width};}));
+  expect(row).toHaveLength(3);
+  expect(row[1].x).toBeGreaterThan(row[0].x); expect(Math.abs(row[1].y-row[0].y)).toBeLessThan(1);
+  await select(page, 'grid');
+  const grid = await page.locator('#preview .iui-grid').first().evaluate(node=>({columns:getComputedStyle(node).gridTemplateColumns.split(' ').length,items:[...node.children].map(x=>({span:getComputedStyle(x).gridColumn,width:x.getBoundingClientRect().width,y:x.getBoundingClientRect().y}))}));
+  expect(grid.columns).toBe(width===390?1:3);
+  if(width===1440) expect(grid.items[0].width).toBeGreaterThan(grid.items[1].width*1.8);
+  else expect(grid.items[1].y).toBeGreaterThan(grid.items[0].y);
+  for(const type of ['box','card','section','figure','details','carousel','flow','divider','spacer']) {
+    await select(page,type);
+    expect(await page.locator('#preview').textContent()).not.toContain('</script>');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width+1);
+  }
 });

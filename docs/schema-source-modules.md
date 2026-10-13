@@ -47,7 +47,7 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 ## charts and learning
 
-`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog reports 218 migrated nodes and zero legacy nodes; this does not change the 218-node wire union.
+`charts/basic` provides the existing chart node. `learning/basic` provides quiz, flashcards, fill-blank, sentence-builder and vocabulary cards. Their [chart](charts.md) and [learning](learning.md) contracts remain authoritative. Both depend on shared values and can be selected with form or text modules for a cross-family document. The catalog now reports 219 source-owned nodes and zero legacy nodes: the previous 218-node union plus the additive, read-only `rating-summary` node. Existing node contracts are unchanged.
 
 ## content
 
@@ -137,4 +137,4 @@ Maintained modules now own existing request bars, finite checklist/status cards,
 
 ## Complete maintained-source coverage
 
-All 218 existing wire node definitions now resolve through the source registry. Activity, citation, vocabulary, converter, media collection and remaining reader families use their original declarations or original maintained definition JSON. Full-schema output remains byte-for-byte compatible. This is schema-source coverage, not an increase in runtime functionality or clinical validation. Structural compatibility-only native nodes still fail full semantic validation. The full WebChat schema and selective closure share the same providers.
+All 219 current wire node definitions resolve through the source registry. Activity, citation, vocabulary, converter, media collection and remaining reader families use their original declarations or original maintained definition JSON. Existing node definitions remain compatible; the full schema additionally includes `rating-summary`. This is schema-source coverage, not an increase in runtime functionality or clinical validation. Structural compatibility-only native nodes still fail full semantic validation. The full WebChat schema and selective closure share the same providers.

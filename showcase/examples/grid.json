@@ -1,0 +1,97 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "grid",
+      "columns": 3,
+      "mobileColumns": 1,
+      "gap": 3,
+      "children": [
+        {
+          "type": "grid-item",
+          "colSpan": 2,
+          "mobileColSpan": 1,
+          "children": [
+            {
+              "type": "card",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 3,
+                  "value": "A wide idea"
+                },
+                {
+                  "type": "text",
+                  "value": "This item spans two desktop columns and one on a narrow screen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "grid-item",
+          "children": [
+            {
+              "type": "card",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 3,
+                  "value": "A small note"
+                },
+                {
+                  "type": "text",
+                  "value": "One column."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "grid-item",
+          "children": [
+            {
+              "type": "card",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 3,
+                  "value": "Observe"
+                },
+                {
+                  "type": "text",
+                  "value": "Look closely."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "grid-item",
+          "colSpan": 2,
+          "mobileColSpan": 1,
+          "children": [
+            {
+              "type": "card",
+              "gap": 2,
+              "children": [
+                {
+                  "type": "title",
+                  "level": 3,
+                  "value": "Try it"
+                },
+                {
+                  "type": "text",
+                  "value": "Make a small first version."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

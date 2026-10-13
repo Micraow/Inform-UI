@@ -1,0 +1,35 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "figure",
+      "caption": "A supplied reading log: three short sessions.",
+      "children": [
+        {
+          "type": "row",
+          "gap": 3,
+          "children": [
+            {
+              "type": "metric",
+              "label": "Monday",
+              "value": 20,
+              "unit": "min"
+            },
+            {
+              "type": "metric",
+              "label": "Tuesday",
+              "value": 30,
+              "unit": "min"
+            },
+            {
+              "type": "metric",
+              "label": "Wednesday",
+              "value": 25,
+              "unit": "min"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

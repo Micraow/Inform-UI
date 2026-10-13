@@ -201,3 +201,5 @@ import './entity-facts-types-consumer.mjs';
 import './transaction-detail-types-consumer.mjs';
 
 import "./finance-status-types-consumer.mjs";
+
+import './rating-summary-types-consumer.mjs';

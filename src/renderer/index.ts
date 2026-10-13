@@ -156,6 +156,7 @@ import {renderButton} from './button.js';
 import {renderAgenda} from './agenda.js';
 import {renderFavicon} from './favicon.js';
 import {renderRating} from './rating.js';
+import {renderRatingSummary} from './rating-summary.js';
 import {renderVocabCard} from './vocab.js';
 import {renderMarkdown} from './markdown.js';
 import {renderTabs} from './tabs.js';
@@ -515,7 +516,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'metric-grid': out=element('div','iui-layout iui-metric-grid');out.style.setProperty('--iui-columns',String(n.columns??2));out.style.setProperty('--iui-mobile-columns',String(Math.min(2,n.columns??2)));children(out,n.children);break;
       case 'steps': out=element('ol','iui-steps');for(const item of n.items){const li=element('li');li.append(element('strong','',item.title));if(item.detail)li.append(element('p','',item.detail));if(item.latex)li.append(formula(item.latex));out.append(li);}break;
       case 'callout': out=element('aside','iui-callout',n.value);out.dataset.tone=n.tone??'neutral';break;
-      case 'slider': {out=element('div','iui-control');const id=allocateInternalId('control'),head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;const refresh=()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;};bind(refresh);on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);forms.nativeControl(out,[input],n.bind,refresh);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
+      case 'slider': {out=element('div','iui-control iui-slider');const id=allocateInternalId('control'),head=element('div','iui-control-header'),label=element('label','',n.label),output=element('output');label.htmlFor=id;output.htmlFor=id;head.append(label,output);const input=element('input');input.type='range';input.id=id;input.min=String(n.min);input.max=String(n.max);input.step=String(n.step);input.dataset.bind=n.bind;const refresh=()=>{input.value=text(state[n.bind]);output.value=`${display(state[n.bind])}${n.unit??''}`;};bind(refresh);on(input,'input',()=>fromControl({[n.bind]:input.valueAsNumber}));out.append(head,input);forms.nativeControl(out,[input],n.bind,refresh);if(n.marks){const marks=element('div','iui-marks');for(const m of n.marks){const label=element('span','',m.label),ratio=(m.value-n.min)/(n.max-n.min);label.dataset.value=String(m.value);label.style.left=`${ratio*100}%`;label.style.transform=`translateX(-${ratio*100}%)`;marks.append(label);}out.append(marks);}break;}
       case 'toggle': {out=element('label','iui-control iui-toggle');const input=element('input');input.type='checkbox';input.dataset.bind=n.bind;const refresh=()=>{input.checked=state[n.bind]===true;};bind(refresh);on(input,'change',()=>fromControl({[n.bind]:input.checked}));out.append(input,doc.createTextNode(n.label));forms.nativeControl(out,[input],n.bind,refresh);break;}
       case 'select': {out=element('label','iui-control');out.append(element('span','',n.label));const input=element('select');input.dataset.bind=n.bind;for(const [i,o] of n.options.entries()){const opt=element('option','',o.label);opt.value=String(i);input.append(opt);}const refresh=()=>{input.value=String(n.options.findIndex(o=>o.value===state[n.bind]));};bind(refresh);on(input,'change',()=>fromControl({[n.bind]:n.options[Number(input.value)].value}));out.append(input);forms.nativeControl(out,[input],n.bind,refresh);break;}
       case 'button': out=renderButton(context,n,labels.buttonUI,current.state??{});break;
@@ -541,6 +542,7 @@ export function mount(container: HTMLElement, input: unknown, options: MountOpti
       case 'reddit-thread-card':out=renderThread(context,n,labels.threadUI);break;
       case 'agenda': out=renderAgenda(context,n,labels.agendaUI); break;
       case 'rating': out=renderRating(context,n,labels.ratingUI); break;
+      case 'rating-summary': out=renderRatingSummary(context,n); break;
       case 'vocab-card': out=renderVocabCard(context,n,labels.vocabUI); break;
       case 'checklist': out=renderChecklist(context,n,labels.checklistUI); break;
       case 'fill-blank': out=renderFillBlank(context,n); break;

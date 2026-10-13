@@ -1,0 +1,57 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "row",
+      "gap": 3,
+      "align": "stretch",
+      "children": [
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "Read"
+            },
+            {
+              "type": "text",
+              "value": "20 min"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "Think"
+            },
+            {
+              "type": "text",
+              "value": "10 min"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "Make"
+            },
+            {
+              "type": "text",
+              "value": "30 min"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

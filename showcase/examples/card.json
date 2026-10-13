@@ -1,0 +1,20 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "card",
+      "gap": 2,
+      "children": [
+        {
+          "type": "title",
+          "level": 3,
+          "value": "The reading room"
+        },
+        {
+          "type": "text",
+          "value": "A title and a short note, grouped in one bordered card."
+        }
+      ]
+    }
+  ]
+}

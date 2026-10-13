@@ -105,6 +105,7 @@ registry.use('calculators/rox');
 registry.use('calculators/qsofa');
 registry.use('forms/questionnaire');
 
+registry.use('content/rating-summary');
 registry.finalize();
 const schema = createDocumentSchema({...defs});
 return {schema,owners,nodes};

@@ -89,6 +89,20 @@ logos, stock assets, screenshot pixels, or reference-image derivatives. Their
 base64 image data is original project media. The constrained SVG examples are
 also original geometric descriptions.
 
+## Public component gallery
+
+`showcase/gallery-data.js` contains original, fictional compositions authored for
+this project. Reading logs, people, products, travel plans, prices and weather
+are synthetic. The page performs no external service lookup or transaction.
+
+The optional local `gallery-create.png`, `gallery-explore.png`,
+`gallery-compose.png` and `gallery-panorama.png` outputs are direct Chromium
+renders of those compositions using this repository’s own runtime. The layout is in `showcase/gallery.css`
+and the reproducible capture script is `scripts/capture-gallery.mjs`. These
+images contain no captured private UI, reference screenshots, external
+photography, copied logos or model-generated UI mockups. No additional font
+files or third-party visual assets are bundled for the gallery.
+
 ## Dependency and distribution boundaries
 
 Ajv provides JSON Schema validation; KaTeX provides formula parsing, visual HTML, accessible MathML and official MIT fonts

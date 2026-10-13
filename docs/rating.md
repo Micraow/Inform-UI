@@ -1,6 +1,6 @@
-# Rating: finite standalone controlled input
+# Rating: project-local controlled input extension
 
-`rating` implements the single canonical Rating component using project-owned MIT-licensed code. This is a local candidate; real-browser acceptance is pending. It is not a supplied average, online review service, verified grade, or persisted preference.
+`rating` is a project-local controlled rating INPUT extension using independently authored MIT-licensed code. Its editable radio-group behavior is not a reconstruction of the read-only rating-summary display. Use [`rating-summary`](rating-summary.md) for a supplied rating label, review-count label and optional source link. This input's existing contract is preserved. Verification results are tied to the exact tested commit; see the CI record for current coverage. It is not a supplied average, online review service, verified grade, or persisted preference.
 
 ## Contract
 

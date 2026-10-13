@@ -18,6 +18,11 @@ export const groups = [
   { id: 'utilities', title: 'Time & calculators', categories: ['time', 'calculators'] },
   { id: 'compatibility', title: 'Compatibility boundary', categories: ['compatibility'] },
 ];
+// Curated compositions explain each layout's purpose; shortest test fixtures do not.
+export const curatedExamples = Object.freeze(Object.fromEntries(
+  ['chart', 'col', 'row', 'grid', 'box', 'card', 'section', 'figure', 'details', 'carousel', 'flow', 'divider', 'spacer']
+    .map(type => [type, `showcase/examples/${type}.json`]).concat([['grid-item', 'showcase/examples/grid.json']])
+));
 const known = new Set(SCHEMA_MODULES.flatMap(module => module.nodeTypes));
 export function nodeTypes(value, out = new Set()) {
   if (value && typeof value === 'object') {
@@ -61,6 +66,8 @@ function notes(type, category, host, includes) {
   if (category === 'calculators') result.push('Software demonstration only. These bounded calculations are not clinically validated and must not guide diagnosis or treatment.');
   if (['requests', 'tasks', 'automation', 'onboarding', 'launchers', 'context', 'reservations'].includes(category)) result.push('Actions produce local intent events. This demo does not send messages, schedule work, book services or grant permissions.');
   if (category === 'media' || includes.some(t => ['youtube', 'search-image'].includes(t))) result.push('Supplied media stays local. Third-party playback is intercepted in this gallery; no video, image-generation or speech service is connected.');
+  if (['rating', 'toggle'].includes(type)) result.push('Project-local input extension; no claim of matching an original read-only rating display or source toggle mapping.');
+  if (type === 'rating-summary') result.push('Read-only supplied rating label and review count. This is not an editable rating input or a verified review service.');
   if (type === 'markdown') result.push('Bounded Markdown subset. Unsupported syntax remains literal; this is not a complete CommonMark renderer.');
   if (['divider', 'spacer', 'loading', 'loading-block', 'pulse-indicator'].includes(type)) result.push('A visual or layout primitive. It has no action of its own.');
   result.push('Changes live in this preview only. Reset restores the supplied JSON.');
@@ -98,8 +105,11 @@ export async function createShowcaseCatalog() {
       const all = candidates.get(type)?.sort((a, b) => score(a) - score(b) || a.path.localeCompare(b.path));
       if (!all?.length) throw Error(`No semantically valid example for ${type}`);
       chosen = all[0];
-      // Keep the authored chart composition as the visual starting point.
-      if (type === 'chart') chosen = { path: 'showcase/examples/chart.json', document: await readJSON('showcase/examples/chart.json') };
+      // Preserve the complete authored composition, including sibling context.
+      if (curatedExamples[type]) {
+        chosen = { path: curatedExamples[type], document: await readJSON(curatedExamples[type]) };
+        if (!validateDocument(chosen.document).ok || !nodeTypes(chosen.document).has(type)) throw Error(`Invalid curated example for ${type}`);
+      }
     }
     const includes = [...nodeTypes(chosen.document)].sort();
     const requestedModules = SCHEMA_MODULES.filter(m => m.nodeTypes.some(t => includes.includes(t))).map(m => m.id);

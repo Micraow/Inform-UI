@@ -1,0 +1,57 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "col",
+      "gap": 4,
+      "align": "stretch",
+      "children": [
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "1 · Collect"
+            },
+            {
+              "type": "text",
+              "value": "Save a question worth exploring."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "2 · Connect"
+            },
+            {
+              "type": "text",
+              "value": "Put related ideas next to each other."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "gap": 2,
+          "children": [
+            {
+              "type": "title",
+              "level": 3,
+              "value": "3 · Create"
+            },
+            {
+              "type": "text",
+              "value": "Turn a useful connection into a small experiment."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

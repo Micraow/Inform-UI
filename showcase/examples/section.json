@@ -1,0 +1,23 @@
+{
+  "version": "iui/1",
+  "body": [
+    {
+      "type": "section",
+      "heading": "A quieter morning",
+      "children": [
+        {
+          "type": "text",
+          "value": "Start with one meaningful task."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Read a few pages",
+            "Write one observation",
+            "Choose a small next step"
+          ]
+        }
+      ]
+    }
+  ]
+}

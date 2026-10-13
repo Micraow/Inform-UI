@@ -64,7 +64,7 @@ test('fourteen supplied source declarations preserve exact providers, ownership 
  assert.equal(SUPPLIED_SOURCE_MODULES.flatMap(m=>m.nodeTypes).length,14);
 });
 
-test('proposed source-block replacements preserve the complete 218-node schema byte for byte',async()=>{
+test('proposed source-block replacements preserve the complete 219-node schema byte for byte',async()=>{
  const url=new URL('../scripts/schema-source/canonical.mjs',import.meta.url);let source=await readFile(url,'utf8');
  for(const {id,start,end} of LEGACY_BLOCKS){
   const a=source.indexOf(start);if(a<0){assert.ok(source.includes(`registry.use('${id}')`),'missing block or registration '+id);continue;}
@@ -75,7 +75,7 @@ test('proposed source-block replacements preserve the complete 218-node schema b
  source=source.replace(/from (['"])(\.\.?\/[^'"]+)\1/g,(_,quote,path)=>'from '+JSON.stringify(new URL(path,url).href));
  source=`import {TEST_MODULES} from ${JSON.stringify(new URL('./supplied-source-fixture.mjs',import.meta.url).href)};\n`+source;
  const {buildCanonicalSchema:proposed}=await import(dataURL(source)),actual=await proposed();
- assert.equal(actual.nodes.length,218);assert.equal(Object.keys(actual.owners).length,218);
+ assert.equal(actual.nodes.length,219);assert.equal(Object.keys(actual.owners).length,219);
  assert.equal(JSON.stringify(actual.schema,null,2)+'\n',await read('src/schema/iui.schema.json'));
 });
 

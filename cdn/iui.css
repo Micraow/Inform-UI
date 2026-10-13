@@ -159,24 +159,50 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 }
 .iui-root .iui-choice-text { min-width: 0; overflow-wrap: anywhere; }
 .iui-root .iui-choice:has(input:disabled) { color: var(--iui-muted); cursor: not-allowed; }
-.iui-root .iui-segmented { display: flex; flex-wrap: wrap; gap: 6px; }
+/* Original ghost/pill presentation; native radios retain selection and keyboard semantics. */
 .iui-root .iui-segmented > legend { width: 100%; margin-block-end: 4px; }
+.iui-root .iui-segmented-options { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; padding-block: 2px; min-width: 0; }
 .iui-root .iui-segmented .iui-choice {
-  position: relative;
-  flex: 1 1 100px;
-  align-items: center;
-  min-height: 44px;
-  border: 1px solid var(--iui-line);
-  border-radius: 8px;
-  padding: 10px 12px;
-  background: var(--iui-bg);
+  position: relative; flex: 0 1 auto; align-items: center; justify-content: center;
+  min-width: 0; min-height: 44px; padding: 6px 16px; border: 0; border-radius: 999px;
+  color: var(--iui-tertiary); background: transparent; font-weight: 500; line-height: 1.4;
 }
-.iui-root .iui-segmented .iui-choice:has(input:checked) {
-  border-color: var(--iui-selection);
-  background: var(--iui-info-soft);color: var(--iui-info-soft-text);
-}
-.iui-root .iui-segmented .iui-choice:has(input:focus-visible) { outline: 2px solid var(--iui-focus); outline-offset: 3px; }
+.iui-root .iui-segmented .iui-choice::before { content: ''; position: absolute; inset: 6px 0; border-radius: inherit; background: transparent; }
+.iui-root .iui-segmented .iui-choice-text { position: relative; pointer-events: none; }
+.iui-root .iui-segmented .iui-choice input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; }
+.iui-root .iui-segmented .iui-choice:has(input:checked) { color: var(--iui-ink); }
+.iui-root .iui-segmented .iui-choice:has(input:checked)::before { background: var(--iui-surface-tertiary); }
+.iui-root .iui-segmented .iui-choice:has(input:focus-visible)::before { outline: 2px solid var(--iui-focus); outline-offset: -2px; }
+.iui-root .iui-segmented .iui-choice:has(input:disabled) { color: var(--iui-disabled-text); cursor: not-allowed; }
 .iui-root .iui-segmented input:focus-visible { outline: none; }
+/* Continuous slider: neutral 24px capsule and 20px thumb, no invented progress fill. */
+.iui-root .iui-slider { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.iui-root .iui-slider input[type=range] { appearance: none; display: block; width: 100%; height: 44px; margin: 0; padding: 0; background: transparent; cursor: pointer; }
+.iui-root .iui-slider input[type=range]::-webkit-slider-runnable-track { height: 24px; border-radius: 999px; background: rgb(0 0 0 / 4%); }
+.iui-root .iui-slider input[type=range]::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; margin-top: 2px; border: 1px solid var(--iui-line); border-radius: 50%; background: var(--iui-surface-primary); box-shadow: 0 1px 2px rgb(0 0 0 / 12%); }
+.iui-root .iui-slider input[type=range]::-moz-range-track { height: 24px; border-radius: 999px; background: rgb(0 0 0 / 4%); }
+.iui-root .iui-slider input[type=range]::-moz-range-progress { background: transparent; }
+.iui-root .iui-slider input[type=range]::-moz-range-thumb { box-sizing: border-box; width: 20px; height: 20px; border: 1px solid var(--iui-line); border-radius: 50%; background: var(--iui-surface-primary); box-shadow: 0 1px 2px rgb(0 0 0 / 12%); }
+.iui-root[data-theme=dark] .iui-slider input[type=range]::-webkit-slider-runnable-track { background: rgb(255 255 255 / 6%); }
+.iui-root[data-theme=dark] .iui-slider input[type=range]::-moz-range-track { background: rgb(255 255 255 / 6%); }
+@media(prefers-color-scheme:dark) {
+  .iui-root[data-theme=auto] .iui-slider input[type=range]::-webkit-slider-runnable-track { background: rgb(255 255 255 / 6%); }
+  .iui-root[data-theme=auto] .iui-slider input[type=range]::-moz-range-track { background: rgb(255 255 255 / 6%); }
+}
+.iui-root .iui-slider input[type=range]:disabled { cursor: not-allowed; opacity: .5; }
+.iui-root .iui-rating-summary { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; white-space: nowrap; line-height: 1.35; vertical-align: middle; }
+.iui-root a.iui-rating-summary { color: inherit; text-decoration: none; }
+.iui-root .iui-rating-summary-star { flex: 0 0 14px; width: 14px; height: 14px; }
+.iui-root .iui-rating-summary > bdi { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.iui-root .iui-rating-summary-count, .iui-root .iui-rating-summary-provider { color: var(--iui-muted); }
+.iui-root a.iui-rating-summary:hover { text-decoration: underline; }
+.iui-root a.iui-rating-summary:focus-visible { outline: 2px solid var(--iui-focus); outline-offset: 3px; border-radius: 2px; }
+@media(forced-colors:active) {
+  .iui-root .iui-slider input[type=range] { appearance: auto; }
+  .iui-root .iui-slider input[type=range]::-webkit-slider-thumb { appearance: auto; }
+  .iui-root .iui-slider input[type=range]::-webkit-slider-runnable-track { border: 1px solid CanvasText; }
+  .iui-root .iui-slider input[type=range]::-moz-range-track { border: 1px solid CanvasText; }
+}
 .iui-root :is(.iui-field input, .iui-field textarea):disabled {
   color: var(--iui-disabled-text);
   background: var(--iui-disabled-bg);

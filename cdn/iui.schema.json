@@ -32028,6 +32028,54 @@
       ],
       "additionalProperties": false
     },
+    "RatingSummaryNode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "rating-summary"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "ratingLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reviewCountLabel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "provider": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "label",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "ratingLabel"
+      ],
+      "additionalProperties": false
+    },
     "Node": {
       "oneOf": [
         {
@@ -32683,6 +32731,9 @@
         },
         {
           "$ref": "#/$defs/QuestionnaireNode"
+        },
+        {
+          "$ref": "#/$defs/RatingSummaryNode"
         }
       ]
     }

@@ -1,0 +1,10 @@
+{
+  "format": "inform-ui-reviewed-controls-style/1",
+  "globalStyleSha256": "eba31226b05ddb92653732940fd4fee3a42c269a24f6018378047795687f58f2",
+  "changes": [
+    "continuous slider neutral track and thumb",
+    "segmented native radios with ghost pill presentation",
+    "read-only rating-summary row"
+  ],
+  "historicalBaselinePreserved": "tests/finance-status-baseline-118.json"
+}
