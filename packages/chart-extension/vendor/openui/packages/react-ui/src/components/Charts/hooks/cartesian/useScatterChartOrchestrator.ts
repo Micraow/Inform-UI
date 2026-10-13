@@ -8,7 +8,7 @@ import type { LegendItem } from "../../types";
 import { buildContainerStyle } from "../../utils/buildContainerStyle";
 import { CHART_MARGIN_TOP, DEFAULT_CHART_HEIGHT } from "../../utils/constants";
 import { useChartPalette } from "../../utils/paletteUtils";
-import { measureYAxisWidth } from "../../utils/styleUtils";
+import { measureYAxisWidth, numberTickFormatter } from "../../utils/styleUtils";
 import { useCanvasContextForLabelSize } from "../core/useCanvasContextForLabelSize";
 import { useChartShell } from "../core/useChartShell";
 import { useSeriesVisibility } from "../core/useSeriesVisibility";
@@ -23,6 +23,7 @@ export interface VisibleDataset {
 
 export interface UseScatterChartOrchestratorParams {
   data: ScatterChartData;
+  dotRadius?: number;
   themePaletteName: keyof ChartColorPalette;
   customPalette?: string[];
   showLegend: boolean;
@@ -42,6 +43,7 @@ export interface UseScatterChartOrchestratorParams {
 
 export function useScatterChartOrchestrator({
   data,
+  dotRadius = 4,
   themePaletteName,
   customPalette,
   showLegend,
@@ -147,15 +149,22 @@ export function useScatterChartOrchestrator({
   const totalSvgWidth = containerWidth || 0;
   const totalSvgHeight = CHART_MARGIN_TOP + Math.max(0, chartInnerHeight) + X_AXIS_HEIGHT;
 
+  // Keep the largest hover marker and edge tick text inside the scroll viewport.
+  // Padding changes pixel ranges only; authored numeric domains stay unchanged.
+  const markerInset = Math.max(2, dotRadius * 1.5 + 2);
+  const niceXDomain = scaleLinear().domain([xMin, xMax]).nice().domain();
+  const edgeLabelHalf = Math.max(...niceXDomain.map(value => (context?.measureText(numberTickFormatter(value)).width ?? 24) / 2));
+  const xInset = Math.min(chartAreaWidth / 2, Math.max(markerInset, edgeLabelHalf + 2));
+  const yInset = Math.min(Math.max(0, chartInnerHeight) / 2, markerInset);
   // --- Scales ---
   const xScale = useMemo(
-    () => scaleLinear().domain([xMin, xMax]).range([0, chartAreaWidth]).nice(),
-    [xMin, xMax, chartAreaWidth],
+    () => scaleLinear().domain([xMin, xMax]).range([xInset, Math.max(xInset, chartAreaWidth - xInset)]).nice(),
+    [xMin, xMax, chartAreaWidth, xInset],
   );
 
   const yScale = useMemo(
-    () => scaleLinear().domain([yMin, yMax]).range([chartInnerHeight, 0]).nice(),
-    [yMin, yMax, chartInnerHeight],
+    () => scaleLinear().domain([yMin, yMax]).range([Math.max(yInset, chartInnerHeight - yInset), yInset]).nice(),
+    [yMin, yMax, chartInnerHeight, yInset],
   );
 
   // --- Hover (2D nearest-point) ---

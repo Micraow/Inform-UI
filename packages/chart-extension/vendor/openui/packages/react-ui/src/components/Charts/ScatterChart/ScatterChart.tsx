@@ -51,6 +51,7 @@ export function ScatterChart(props: ScatterChartProps) {
 
   const orch = useScatterChartOrchestrator({
     data: points,
+    dotRadius,
     themePaletteName: "defaultChartPalette",
     customPalette,
     showLegend,
@@ -149,6 +150,7 @@ export function ScatterChart(props: ScatterChartProps) {
             <g transform={`translate(${effectiveYAxisWidth}, ${chartInnerHeight + marginTop})`}>
               <NumericXAxis
                 scale={xScale}
+                edgeAlign
                 chartWidth={chartAreaWidth}
                 height={xAxisHeight}
                 className={`${CHART_CLASS_PREFIX}-scatter-chart-x-axis`}
