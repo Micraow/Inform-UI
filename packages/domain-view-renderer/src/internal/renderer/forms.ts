@@ -6,7 +6,7 @@ import type { StateValue } from '../core/index.js';
 import { validInputDate, type FieldNode } from '../core/extensions.js';
 import type { RendererContext } from './context.js';
 
-interface FieldHandle { validate: () => boolean; reset: () => void; overwrite: () => void; focus: () => void }
+interface FieldHandle { element: HTMLElement; validate: () => boolean; reset: () => void; overwrite: () => void; focus: () => void }
 interface FormScope { fields: FieldHandle[]; deferPointerBlur: (next: EventTarget | null, refresh: () => void) => boolean }
 type Control = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
@@ -335,6 +335,7 @@ export function createForms(c: RendererContext) {
     }
 
     const handle: FieldHandle = {
+      element: out,
       validate: () => { touched = true; refresh(); return !problem(); },
       reset: () => { touched = false; localError = ''; last = undefined; refresh(); },
       overwrite: () => { localError = ''; last = undefined; refresh(); },
@@ -382,7 +383,7 @@ export function createForms(c: RendererContext) {
     return out;
   }
 
-  function form(n: Extract<Node, { type: 'form' }>): HTMLElement {
+  function form(n: Extract<Node, { type: 'form' }>, registerUpdate?: (update: () => void) => void): HTMLElement {
     const out = e('form', 'iui-form');
     const fieldset = e('fieldset', 'iui-form-fields');
     const status = e('p', 'iui-form-status');
@@ -429,8 +430,12 @@ export function createForms(c: RendererContext) {
     submit.type = 'submit';
     cancel.type = 'button';
     cancel.textContent = n.cancelLabel ?? c.labels().cancel;
-    fieldset.append(e('legend', 'iui-form-title', n.label));
+    const legend = e('legend', 'iui-form-title', n.label);
+    fieldset.append(legend);
     const paint = () => {
+      out.setAttribute('aria-label', n.label);
+      legend.textContent = n.label;
+      cancel.textContent = n.cancelLabel ?? c.labels().cancel;
       const off = n.disabled !== undefined && c.value(n.disabled) === true;
       fieldset.disabled = busy || off;
       submit.disabled = busy || off;
@@ -475,9 +480,9 @@ export function createForms(c: RendererContext) {
     if (c.doc.defaultView) on(c.doc.defaultView, 'blur', () => flushPointerBlur());
     on(c.doc, 'visibilitychange', () => { if (c.doc.hidden) flushPointerBlur(); });
     // Includes the established slider/toggle/select controls as well as new fields.
-    const controls = [...fieldset.querySelectorAll<Control>('input[data-bind], textarea[data-bind], select[data-bind]')];
-    const bindings = [...new Set(controls.map(control => control.dataset.bind!))];
-    const initial = Object.fromEntries(bindings.map(key => [key, c.getState()[key]]));
+    let controls = [...fieldset.querySelectorAll<Control>('input[data-bind], textarea[data-bind], select[data-bind]')];
+    let bindings = [...new Set(controls.map(control => control.dataset.bind!))];
+    let initial = Object.fromEntries(bindings.map(key => [key, c.getState()[key]]));
     const setStatus = (state: string, text: string) => {
       out.dataset.status = state;
       status.textContent = text;
@@ -566,6 +571,34 @@ export function createForms(c: RendererContext) {
     on(out, 'reset', (event: Event) => { event.preventDefault(); if (alive && !cancel.matches(':disabled')) reset(); });
     c.cleanup(() => { alive = false; generation++; abort?.abort(); abort = undefined; flushPointerBlur(false); });
     out.dataset.status = 'idle';
+    registerUpdate?.(() => {
+      if (!alive) return;
+      const previous = scope; scope = local;
+      let children: Array<HTMLElement | SVGElement>;
+      try { children = n.children.map(child => c.render(child)); }
+      finally { scope = previous; }
+      // Do not detach retained editors: this preserves focus, composition,
+      // selection, native gestures and the in-flight submit state.
+      children.forEach((child, index) => {
+        const old = fieldset.children[index + 1];
+        if (old !== child) fieldset.insertBefore(child, old ?? null);
+      });
+      while (fieldset.children.length > children.length + 1) fieldset.lastElementChild!.remove();
+      local.fields = local.fields.filter(field => fieldset.contains(field.element));
+      const nextControls = [...fieldset.querySelectorAll<Control>('input[data-bind], textarea[data-bind], select[data-bind]')];
+      if (nextControls.length !== controls.length || nextControls.some((control, index) => control !== controls[index])) {
+        generation++;
+        const pending = abort; abort = undefined; busy = false; pending?.abort();
+        if (!alive) return;
+        flushPointerBlur(false);
+        controls = nextControls;
+        bindings = [...new Set(controls.map(control => control.dataset.bind!))];
+        initial = Object.fromEntries(bindings.map(key => [key, c.getState()[key]]));
+        observed = { ...initial };
+        setStatus('idle', '');
+      }
+      paint();
+    });
     return out;
   }
   const syncDrafts = (bindings: Iterable<string>, reset = false) => {

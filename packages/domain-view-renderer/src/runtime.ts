@@ -132,6 +132,7 @@ const shorten=(s:string,limit:number)=>Array.from(s).length>limit?Array.from(s).
 export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,unknown>,external:DomainContext,options:DomainOptions):DomainHandle {
  const doc=external.document;
  if(external.partial||external.signal?.aborted){const element=doc.createElement('p');element.className='if-status';element.textContent=descriptor.name+' · Preview';return{element,dispose(){element.remove();}};}
+ let currentProps=props;
  const data=props.data;
  if(!data||typeof data!=='object'||Array.isArray(data))throw new TypeError(descriptor.name+' requires its validated data object');
  if(Object.hasOwn(data,'type')||Object.hasOwn(data,'id'))throw new TypeError('View data cannot contain old protocol type or id');
@@ -149,7 +150,8 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  const showValue=(target:HTMLElement,value:unknown)=>{during(()=>{target.textContent=display(value);});if(typeof value==='number')target.dataset.rawValue=String(value);};
  const childrenHandles=new Set<DomainHandle>();let nextChildren:Set<DomainHandle>|null=null;
  lifetime.own(()=>{for(const handle of childrenHandles)handle.dispose();childrenHandles.clear();});
- const child=(name:string,p:Record<string,unknown>)=>{lifetime.check();const handle=external.renderChild({type:'element',typeName:name,props:p,partial:false});if(!lifetime.current()){handle.dispose();lifetime.check();}childrenHandles.add(handle);nextChildren?.add(handle);return handle.element;};
+ const ownChild=(node:any)=>{lifetime.check();const handle=external.renderChild(node);if(!lifetime.current()){handle.dispose();lifetime.check();}childrenHandles.add(handle);nextChildren?.add(handle);return handle;};
+ const child=(name:string,p:Record<string,unknown>)=>ownChild({type:'element',typeName:name,props:p,partial:false}).element;
  const element=<K extends keyof HTMLElementTagNameMap>(tag:K,cls='',value?:unknown):HTMLElementTagNameMap[K]=>{
   lifetime.check();external.budget.consume();const out=options.createElement?options.createElement(doc,tag,cls,value):doc.createElement(tag);
   if(!options.createElement){if(cls)out.className=cls;if(value!==undefined)out.textContent=text(value);}
@@ -165,8 +167,11 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  for(const spec of bindingSpecs){const source=spec.dataProp??spec.prop;const next=Object.hasOwn(props,spec.prop)?props[spec.prop]:node[source];if(next!==undefined){node[source]=next;state[spec.prop]=next;initialState[spec.prop]=next;}mapped.set(spec.prop,spec.prop);}
  if(bindingSpecs.length&&['rating','input','textarea','radio','segmented','slider','toggle','select'].includes(descriptor.oldType))node.bind=bindingSpecs[0].prop;
  for(const[key,val]of Object.entries(props))if(key!=='data'&&!bindingSpecs.some(x=>x.prop===key)&&!descriptor.actionProps?.includes(key))node[key]=val;
- if(descriptor.oldType==='form'&&props.onSubmit){node.action='local-submit';}
- if(descriptor.oldType==='tab-group'){node.children=(node.children??[]).map((child:any,index:number)=>({...child,id:'panel-'+index,label:child.props?.data?.label??'Tab '+(index+1),disabled:child.props?.data?.disabled===true}));if(node.initialIndex!==undefined)node.initial='panel-'+node.initialIndex;else delete node.initial;}
+ const mapSlottedNode=()=>{
+  if(descriptor.oldType==='form'){if(currentProps.onSubmit)node.action='local-submit';else delete node.action;}
+  if(descriptor.oldType==='tab-group'){node.children=(node.children??[]).map((child:any,index:number)=>({...child,id:'panel-'+index,label:child.props?.data?.label??'Tab '+(index+1),disabled:child.props?.data?.disabled===true}));if(node.initialIndex!==undefined)node.initial='panel-'+node.initialIndex;else delete node.initial;}
+ };
+ mapSlottedNode();
  if(descriptor.oldType==='list')node.items=[...(node.items??[]),...(props.children as any[]??[])];
  if(descriptor.oldType==='checklist')node.items=(node.items??[]).map((item:any,index:number)=>{const bind='local-check-'+index;state[bind]=item.checked??false;mapped.set(bind,bind);return{...item,bind};});
  const refreshers:Array<()=>void>=[];
@@ -179,12 +184,30 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  let hasHeading=false;
  const current={state:initialState};
  const actions:Record<string,any>=Object.create(null);
- if(props.onSubmit)actions['local-submit']=()=>{const result=external.dispatchLocal?.(props.onSubmit);if(!result?.ok)throw new Error(result?.issues?.[0]?.message??'Local action rejected');};
+ if(descriptor.oldType==='form')actions['local-submit']=()=>{const result=external.dispatchLocal?.(currentProps.onSubmit);if(!result?.ok)throw new Error(result?.issues?.[0]?.message??'Local action rejected');};
  let context:RendererContext;
  let forms:ReturnType<typeof createForms>;
  let fieldLabels:ReturnType<typeof createLabels>;
  const children=(parent:HTMLElement,nodes:readonly Node[])=>{for(const n of nodes)parent.append(render(n));};
  function formula(latex:string,block=true){const target=element(block?'div':'span','iui-math');try{target.innerHTML=katex.renderToString(latex,{output:'htmlAndMathml',displayMode:block,throwOnError:true,trust:false,strict:'error',maxExpand:200,maxSize:20});}catch{target.textContent=latex;target.classList.add('iui-math-error');}return target;}
+ // A replaceable scope owns only the form/tab shell, never sibling Views.
+ // Slot children still reconcile through the host on every evaluated revision.
+ let slottedLife:ReturnType<typeof renderGeneration>|undefined,refreshSlotted:(()=>void)|undefined;
+ const slottedContext=():RendererContext=>{
+  const life=lifetime.fork();slottedLife=life;
+  return{...context,lifecycle:life,on:life.listen,cleanup:life.own,bind:fn=>life.own(bind(life.guard(fn)))};
+ };
+ const registerSlotted=(refresh:()=>void)=>{refreshSlotted=refresh;};
+ // Opaque capabilities are deliberately excluded from topology comparison;
+ // their real, newly evaluated objects are always reconciled below.
+ const slotShape=(value:any):any=>{
+  if(Array.isArray(value))return value.map(slotShape);
+  if(!value||typeof value!=='object')return null;
+  if(value.type==='element')return[value.typeName,Object.entries(value.bindings??{}).map(([prop,binding]:[string,any])=>[prop,binding.name]),slotShape(value.props)];
+  const slots=Object.entries(value).flatMap(([key,item])=>{const shape=slotShape(item);return shape===null?[]:[[key,shape]];});
+  return slots.length?slots:null;
+ };
+ let slottedShape=JSON.stringify(slotShape(props.children));
  let retainedDetails:{element:HTMLDetailsElement;summary:HTMLElement;body:HTMLElement}|undefined;
  function renderFoundationNode(n:any):HTMLElement|SVGElement|null {
   if(n.type==='element')return null;
@@ -215,7 +238,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
 
   function render(n: Node): HTMLElement | SVGElement {
     lifetime.check();
-    if ((n as any).type === 'element') { const child = external.renderChild(n as any); lifetime.own(() => child.dispose()); if((n as any).id)child.element.id=prefix+(n as any).id;return child.element; }
+    if ((n as any).type === 'element') { const child = ownChild(n); if((n as any).id)child.element.id=prefix+(n as any).id;return child.element; }
     const composed = renderFoundationNode(n as any); if (composed) return composed;
     let out: HTMLElement | SVGElement;
     switch(n.type) {
@@ -398,7 +421,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
       case 'details': {out=element('details');out.append(element('summary','',n.summary));const inner=element('div','iui-layout iui-details-body');children(inner,n.children);out.append(inner);break;}
       case 'animate':case 'celebration':out=renderMotion(context,n,labels.motionUI);break;
       case 'carousel': out=renderCarousel(context,n,labels.carouselUI);break;
-      case 'tab-group': out=renderTabs(context,n);break;
+      case 'tab-group': out=renderTabs(slottedContext(),n,registerSlotted);break;
       case 'tab-panel': out=element('div','iui-tab-panel iui-layout');children(out,n.children);break;
       case 'list': out=element(n.ordered?'ol':'ul','iui-list');for(const item of n.items){const li=element('li');if(item&&typeof item==='object'&&'type'in item)li.append(render(item as Node));else bind(()=>showValue(li,value(item as Value)));out.append(li);}break;
       case 'table': out=renderTable(context,n);break;
@@ -412,7 +435,7 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
       case 'button': out=renderButton(context,n,labels.buttonUI,current.state??{});break;
       case 'input': case 'textarea': case 'radio': case 'segmented': out=forms.field(n);break;
       case 'field': out=forms.group(n);break;
-      case 'form': out=forms.form(n);break;
+      case 'form': out=createForms(slottedContext()).form(n,registerSlotted);break;
       case 'topology': out=topology(n);break;
       case 'chart': out=n.kind==='pie'?renderPie(context,n,labels.pieUI):renderChart(context,n);break;
       case 'weather': out=renderWeather(context,n);break;
@@ -475,11 +498,23 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
 
   if(descriptor.oldType==='pressable'&&props.onPress){lifetime.listen(container,'inform:view-press',event=>{queueMicrotask(lifetime.guard(()=>{if(!event.defaultPrevented)external.dispatchLocal?.(props.onPress);}));});}
   const structural=['details','section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);
-  const update=structural?(next:Record<string,unknown>)=>{
+  const slotted=descriptor.oldType==='form'||descriptor.oldType==='tab-group';
+  const update=structural||slotted?(next:Record<string,unknown>)=>{
    if(disposed||external.signal?.aborted)return;nextChildren=new Set();
    for(const key of Object.keys(node))if(key!=='type')delete node[key];
    Object.assign(node,next.data);for(const[key,value]of Object.entries(next))if(key!=='data')node[key]=value;
-   const content=renderFoundationNode(node);if(content&&root.firstChild!==content)root.replaceChildren(content);
+   currentProps=next;
+   let content:HTMLElement|SVGElement|null=null;
+   if(slotted){
+    mapSlottedNode();const shape=JSON.stringify(slotShape(next.children));
+    if(shape===slottedShape&&refreshSlotted)refreshSlotted();
+    else{
+     slottedLife?.dispose();refreshSlotted=undefined;
+     for(const handle of childrenHandles)handle.dispose();childrenHandles.clear();
+     content=render(node);slottedShape=shape;
+    }
+   }else content=renderFoundationNode(node);
+   if(content&&root.firstChild!==content)root.replaceChildren(content);
    for(const handle of childrenHandles)if(!nextChildren.has(handle)){handle.dispose();childrenHandles.delete(handle);}nextChildren=null;
   }:undefined;
   const retainUnchanged=localOnly?(next:Record<string,unknown>)=>!disposed&&!external.signal?.aborted&&JSON.stringify(next)===retainedProps:undefined;

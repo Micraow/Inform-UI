@@ -4,15 +4,15 @@ import {logicalOffset, physicalOffset} from './source-geometry.js';
 import type {RTLScrollModel} from './source-geometry.js';
 let serial = 0;
 /** Local automatic-activation tabs; all child state and DOM remains mounted. */
-export function renderTabs(c:RendererContext,n:TabGroupNode):HTMLElement {
+export function renderTabs(c:RendererContext,n:TabGroupNode,registerUpdate?:(update:()=>void)=>void):HTMLElement {
   const out=c.element('div','iui-tab-group'),list=c.element('div','iui-tab-list');
   list.setAttribute('role','tablist');list.setAttribute('aria-label',n.label);list.setAttribute('aria-orientation','horizontal');out.append(list);
-  const base=`iui-tabs-internal-${c.prefix}${++serial}`,enabled=n.children.flatMap((child,i)=>child.disabled?[]:[i]);
+  const base=`iui-tabs-internal-${c.prefix}${++serial}`;let enabled=n.children.flatMap((child,i)=>child.disabled?[]:[i]);
   if(!enabled.length)throw new Error('Tabs require an enabled panel.');
   let selected=n.initial===undefined?enabled[0]:n.children.findIndex(child=>child.id===n.initial&&!child.disabled),disposed=false,initialRevealed=false;
   if(selected<0)throw new Error('Initial tab must be enabled.');
   const buttons=n.children.map((child,i)=>{const button=c.element('button','iui-tab',child.label);button.type='button';button.disabled=!!child.disabled;button.id=`${base}-tab-${i}`;button.setAttribute('role','tab');list.append(button);return button;});
-  const panels=n.children.map((child,i)=>{const panel=c.render(child) as HTMLElement;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',buttons[i].id);panel.tabIndex=0;buttons[i].setAttribute('aria-controls',panel.id);out.append(panel);return panel;});
+  let panels=n.children.map((child,i)=>{const panel=c.render(child) as HTMLElement;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',buttons[i].id);panel.tabIndex=0;buttons[i].setAttribute('aria-controls',panel.id);out.append(panel);return panel;});
   const rtl=()=>c.doc.defaultView?.getComputedStyle(list).direction==='rtl';
   const model=():RTLScrollModel=>{
     const before=list.scrollLeft;if(before<0)return 'negative';list.scrollLeft=-1;const negative=list.scrollLeft<0;list.scrollLeft=before;if(negative)return 'negative';
@@ -41,5 +41,23 @@ export function renderTabs(c:RendererContext,n:TabGroupNode):HTMLElement {
   c.bind(initialReveal);
   const Observer=c.doc.defaultView?.ResizeObserver;
   const observer=Observer?new Observer(initialReveal):undefined;observer?.observe(list);
-  c.cleanup(()=>{disposed=true;observer?.disconnect();});paint();return out;
+  c.cleanup(()=>{disposed=true;observer?.disconnect();});
+  let initial=n.initial;
+  registerUpdate?.(()=>{
+    if(disposed)return;
+    list.setAttribute('aria-label',n.label);
+    enabled=n.children.flatMap((child,i)=>child.disabled?[]:[i]);
+    if(!enabled.length)throw new Error('Tabs require an enabled panel.');
+    if(n.initial!==initial){selected=n.initial===undefined?enabled[0]:n.children.findIndex(child=>child.id===n.initial&&!child.disabled);initial=n.initial;}
+    else if(!enabled.includes(selected))selected=enabled[0];
+    if(selected<0)throw new Error('Initial tab must be enabled.');
+    panels=n.children.map((child,i)=>{
+      const button=buttons[i];button.textContent=child.label;button.disabled=!!child.disabled;
+      const panel=c.render(child) as HTMLElement;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);panel.tabIndex=0;button.setAttribute('aria-controls',panel.id);
+      const old=out.children[i+1];if(old!==panel)out.insertBefore(panel,old??null);return panel;
+    });
+    while(out.children.length>panels.length+1)out.lastElementChild!.remove();
+    paint();
+  });
+  paint();return out;
 }
