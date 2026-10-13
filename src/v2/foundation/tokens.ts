@@ -13,6 +13,7 @@ const projectTheme=(v:typeof colorTokens.light)=>Object.freeze({
  buttonHover:v['button-solid-hover'],buttonPressed:v['button-solid-active'],selection:v.selection,
  focus:v.focus,error:v.danger,success:v.success,warning:v.warning,
  disabledBackground:v['disabled-bg'],disabledBorder:v['disabled-border'],disabledText:v['disabled-text'],
+ domainSeriesBlue:v['series-blue'],domainSeriesGreen:v['series-green'],domainSeriesPurple:v['series-purple'],domainSeriesOrange:v['series-orange'],domainSeriesRed:v['series-red'],domainSeriesGray:v['series-gray'],
  chart1:v['series-blue'],chart2:v['series-green'],chart3:v['series-purple'],chart4:v['series-orange'],chart5:v['series-red'],chart6:v['series-gray'],
  shadow:'0 2px 8px rgb(0 0 0 / .12)'
 });

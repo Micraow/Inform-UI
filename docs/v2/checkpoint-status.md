@@ -22,3 +22,10 @@ Shared chart typography now uses foundation caption/small/base roles and waits f
 - Three original design/composition examples are included without changing the 233 runtime-component count or 755 official-icon count.
 - Earlier real HTTP pointer evidence showed 16–35 trusted input events per gesture with retained DOM. The final integrated HTTP chart/state probe and full 233-component browser visual/interaction batch are pending. Do not treat this checkpoint as full visual acceptance.
 - The aggregate Next tests have two known stale assertions (prompt deny-list text and showcase script count), still under review.
+
+## Browser and example follow-up — 15:20 UTC
+The integrated single-file artifact passed all four real HTTP Slider/Answer pointer cases at 390px and 1440px, including derived chart data matching, trusted continuous input, original DOM/focus retention and keyboard checks. A broad browser pass reached 697 of 944 planned sample/theme/width cases (233 components plus three compositions); it recorded no page-width overflow or JavaScript errors before later renderer crashes. Some interaction probes incorrectly selected aria-disabled controls and must be repeated. This is not a complete visual/interaction acceptance result.
+
+Inspection of the rendered contact sheets found missing migrated chart-series CSS aliases, producing black FinanceHeatmap tiles. Shared foundation palette aliases now cover all six series. The CodeView gallery sample now demonstrates real multiline JavaScript, syntax tokens and exact-source copying rather than a long placeholder string. Integrated Next build and type checking pass; focused browser follow-up is still pending.
+
+The separately pinned WebChat runtime remains commit 675c6659b40becce1b1ed2d6383d2dee852e8a14. Its HTTP status, JavaScript MIME type, CORS and downloaded byte hash are verified. An attempted direct external-script browser pass timed out or crashed before recording a CDN response, so external-script browser execution is not yet accepted.

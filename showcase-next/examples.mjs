@@ -1,5 +1,6 @@
 // User-facing, authored examples demonstrate the component's purpose, not test payloads.
 export const samples={
+ CodeView:"root=Stack([Heading(\"Readable code, ready to copy\",2),Text(\"Syntax colors help you scan. Long lines scroll inside the code block, and copying preserves the exact source.\",\"muted\"),CodeView({\"value\":\"// Keep the original indentation and line breaks.\\nfunction mean(values) {\\n  const total = values.reduce((sum, value) => sum + value, 0);\\n  return total / values.length;\\n}\\n\\nconst values = [4, 6, 8, 12];\\nconsole.log(mean(values)); // 7.5\",\"language\":\"javascript\",\"highlight\":true,\"copy\":true})])",
  Text:'root=Stack([Text("Your itinerary, ready to explore."),Text("Supplied information. No reservation has been made.","muted")])',
  Heading:'root=Stack([Heading("Plan a little escape",1),Heading("Start with the essentials",2),Heading("Make it your own",3)])',
  Stack:'root=Stack([Badge("DAY ONE"),Heading("A day by the water",2),Text("A slow morning, a short walk, and dinner together."),Button("Mark ready",@Set($ready,true)),Text($ready ? "Ready to go" : "Still planning")],"lg")\n$ready=false',

@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{foundationCSS,themeTokens}from'../../dist/v2/node.mjs';
+test('migrated SVG series aliases share the six foundation palette roles in both themes',()=>{for(const theme of ['light','dark']){for(const [index,name]of ['Blue','Green','Purple','Orange','Red','Gray'].entries()){assert.equal(themeTokens[theme]['domainSeries'+name],themeTokens[theme]['chart'+(index+1)]);assert.ok(foundationCSS.includes('--if-domain-series-'+name.toLowerCase()+':'));}}});
