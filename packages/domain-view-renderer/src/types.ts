@@ -1,5 +1,5 @@
 /** Structural subset of the authoritative component-contract RenderContext. */
-export interface DomainHandle {element:HTMLElement|SVGElement;dispose():void}
+export interface DomainHandle {element:HTMLElement|SVGElement;dispose():void;update?(props:Record<string,unknown>):void}
 export interface DomainContext {
  document:Document;partial?:boolean;signal?:AbortSignal;bindings?:Readonly<Record<string,unknown>>;
  budget:{consume(units?:number):void;readonly remaining?:number};

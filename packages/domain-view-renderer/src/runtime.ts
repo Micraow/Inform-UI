@@ -142,8 +142,8 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  const text=(value:unknown)=>value==null?'':String(value);
  const display=(value:unknown)=>typeof value==='number'?formatNumber(value):text(value);
  const showValue=(target:HTMLElement,value:unknown)=>{during(()=>{target.textContent=display(value);});if(typeof value==='number')target.dataset.rawValue=String(value);};
- const childrenHandles:DomainHandle[]=[];
- const child=(name:string,p:Record<string,unknown>)=>{const handle=external.renderChild({type:'element',typeName:name,props:p,partial:false});childrenHandles.push(handle);lifetime.own(()=>handle.dispose());return handle.element;};
+ const childrenHandles=new Set<DomainHandle>();
+ const child=(name:string,p:Record<string,unknown>)=>{const handle=external.renderChild({type:'element',typeName:name,props:p,partial:false});if(!childrenHandles.has(handle)){childrenHandles.add(handle);lifetime.own(()=>handle.dispose());}return handle.element;};
  const element=<K extends keyof HTMLElementTagNameMap>(tag:K,cls='',value?:unknown):HTMLElementTagNameMap[K]=>{
   lifetime.check();external.budget.consume();const out=options.createElement?options.createElement(doc,tag,cls,value):doc.createElement(tag);
   if(!options.createElement){if(cls)out.className=cls;if(value!==undefined)out.textContent=text(value);}
@@ -466,6 +466,12 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
   for(const checkbox of container.querySelectorAll<HTMLInputElement>('input[type=checkbox]')){const parent=checkbox.parentElement;if(!parent||parent.querySelector(':scope > .if-domain-choice-check'))continue;parent.classList.add('if-domain-choice-owner');const glyph=(context as any).officialIcon('Check',{size:16,className:'if-domain-choice-check'});checkbox.after(glyph);}
 
   if(descriptor.oldType==='pressable'&&props.onPress){lifetime.listen(container,'inform:view-press',event=>{queueMicrotask(lifetime.guard(()=>{if(!event.defaultPrevented)external.dispatchLocal?.(props.onPress);}));});}
-  return{element:container,dispose};
+  const structural=['section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);
+  const update=structural?(next:Record<string,unknown>)=>{
+   for(const key of Object.keys(node))if(key!=='type')delete node[key];
+   Object.assign(node,next.data);for(const[key,value]of Object.entries(next))if(key!=='data')node[key]=value;
+   const content=renderFoundationNode(node);if(content&&root.firstChild!==content)root.replaceChildren(content);
+  }:undefined;
+  return{element:container,dispose,...(update?{update}:{})};
  }catch(error){dispose();throw error;}
 }
