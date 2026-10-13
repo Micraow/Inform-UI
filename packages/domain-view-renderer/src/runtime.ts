@@ -142,8 +142,9 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  const text=(value:unknown)=>value==null?'':String(value);
  const display=(value:unknown)=>typeof value==='number'?formatNumber(value):text(value);
  const showValue=(target:HTMLElement,value:unknown)=>{during(()=>{target.textContent=display(value);});if(typeof value==='number')target.dataset.rawValue=String(value);};
- const childrenHandles=new Set<DomainHandle>();
- const child=(name:string,p:Record<string,unknown>)=>{const handle=external.renderChild({type:'element',typeName:name,props:p,partial:false});if(!childrenHandles.has(handle)){childrenHandles.add(handle);lifetime.own(()=>handle.dispose());}return handle.element;};
+ const childrenHandles=new Set<DomainHandle>();let nextChildren:Set<DomainHandle>|null=null;
+ lifetime.own(()=>{for(const handle of childrenHandles)handle.dispose();childrenHandles.clear();});
+ const child=(name:string,p:Record<string,unknown>)=>{lifetime.check();const handle=external.renderChild({type:'element',typeName:name,props:p,partial:false});if(!lifetime.current()){handle.dispose();lifetime.check();}childrenHandles.add(handle);nextChildren?.add(handle);return handle.element;};
  const element=<K extends keyof HTMLElementTagNameMap>(tag:K,cls='',value?:unknown):HTMLElementTagNameMap[K]=>{
   lifetime.check();external.budget.consume();const out=options.createElement?options.createElement(doc,tag,cls,value):doc.createElement(tag);
   if(!options.createElement){if(cls)out.className=cls;if(value!==undefined)out.textContent=text(value);}
@@ -192,8 +193,8 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
    if(n.type==='metric'){const contents=[textNode(n.label,'muted'),baseNode('Heading',{content:typeof n.value==='number'&&n.precision!==undefined?n.value.toFixed(n.precision):display(n.value),level:3})];if(n.unit)contents.push(textNode(n.unit,'muted'));if(n.hint)contents.push(textNode(n.hint,'muted'));return child('Card',{children:contents});}
    if(n.type==='metric-grid')return child('Grid',{children:n.children??[],columns:n.columns??2,gap:'md'});
    if(n.type==='list'){const list=element(n.ordered?'ol':'ul','if-domain-list');for(const item of n.items??[]){const li=element('li');li.append(item&&typeof item==='object'&&item.type==='element'?render(item):child('Text',{content:display(item)}));list.append(li);}return list;}
-   const contents=[...(n.children??[])];if(n.type==='section'&&n.heading)contents.unshift(baseNode('Heading',{content:n.heading,level:2}));if(n.type==='figure'&&n.caption)contents.push(textNode(n.caption,'muted'));
-   const out=child('Stack',{children:contents,gap:'sm'});if(n.type==='figure'){out.setAttribute('role','figure');if(n.caption)out.setAttribute('aria-label',n.caption);else out.removeAttribute('aria-label');}if(n.type==='spacer'){out.style.height=String(n.height??16)+'px';out.setAttribute('aria-hidden','true');}if(n.type==='grid-item'){out.style.gridColumn='span '+(n.colSpan??1);out.style.gridRow='span '+(n.rowSpan??1);}return out;
+   const contents=[...(n.children??[])];if(n.type==='section')contents.unshift(baseNode('Heading',{content:n.heading??'',level:2}));if(n.type==='figure'&&n.caption)contents.push(textNode(n.caption,'muted'));
+   const out=child('Stack',{children:contents,gap:'sm'});if(n.type==='section'&&out.firstElementChild)(out.firstElementChild as HTMLElement).hidden=!n.heading;if(n.type==='figure'){out.setAttribute('role','figure');if(n.caption)out.setAttribute('aria-label',n.caption);else out.removeAttribute('aria-label');}if(n.type==='spacer'){out.style.height=String(n.height??16)+'px';out.setAttribute('aria-hidden','true');}if(n.type==='grid-item'){out.style.gridColumn='span '+(n.colSpan??1);out.style.gridRow='span '+(n.rowSpan??1);}return out;
   }
   if(n.type==='image')return child('Image',{src:n.src,alt:n.alt??''});
   if(n.type==='icon'){
@@ -470,9 +471,11 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
   if(descriptor.oldType==='pressable'&&props.onPress){lifetime.listen(container,'inform:view-press',event=>{queueMicrotask(lifetime.guard(()=>{if(!event.defaultPrevented)external.dispatchLocal?.(props.onPress);}));});}
   const structural=['details','section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);
   const update=structural?(next:Record<string,unknown>)=>{
+   if(disposed||external.signal?.aborted)return;nextChildren=new Set();
    for(const key of Object.keys(node))if(key!=='type')delete node[key];
    Object.assign(node,next.data);for(const[key,value]of Object.entries(next))if(key!=='data')node[key]=value;
    const content=renderFoundationNode(node);if(content&&root.firstChild!==content)root.replaceChildren(content);
+   for(const handle of childrenHandles)if(!nextChildren.has(handle)){handle.dispose();childrenHandles.delete(handle);}nextChildren=null;
   }:undefined;
   return{element:container,dispose,...(update?{update}:{})};
  }catch(error){dispose();throw error;}
