@@ -1,15 +1,27 @@
-# ADR 001: one independent, vendor-neutral core library
+# Architecture
 
-Status: accepted for the initial development milestone, 2026-10-08.
+Inform UI is an independent, vendor-neutral JavaScript / TypeScript library. Browser rendering requires no OpenAI account, API, service or private runtime.
 
-Use a single unpublished JS/TS package with internal layers rather than introducing empty workspace packages. Preserve the project-defined `iui/1` data contract while adding semantic rejection for unsafe/unsupported input. Generate schema, types, and CSP-safe structural validation together.
+## Inform UI 2
 
-The DOM renderer owns CSS tokens, layout, controls, SVG, and MathML. The compiler packages this same runtime into deterministic inline or shared-asset HTML. CLI commands call the same core functions. Standalone HTML and embedded DOM are delivery methods of one library, not different product editions.
+The DSL implementation separates five responsibilities:
 
-Independent, vendor-neutral operation is the permanent product direction. No OpenAI account, API, service, or runtime is required. The existing `portable` backend name remains an API implementation identifier; it does not imply a transitional or restricted product. Future visual capabilities belong in this publicly usable implementation. Historical private-runtime bridge experiments are outside the product roadmap; the `native` schema node remains only to reject old input clearly.
+1. `component-contract` defines strict ordered props, metadata, schema, generated prompts and renderer contracts.
+2. `parser-runtime` parses the OpenUI-derived language and owns bounded local evaluation, state transactions, bindings and actions.
+3. `src/v2/foundation` supplies theme tokens, shared controls and layout primitives.
+4. `chart-extension`, `view-contracts` and `domain-view-renderer` provide charts and composed domain views.
+5. `src/v2/host.ts` owns DOM lifecycle, revision-safe events and the mount / update / dispose boundary.
 
-A general JS extension API is not exposed. Any future extension must define its security contract and remain independent of proprietary site internals. Optional application data and tool integrations are provider-neutral and do not become prerequisites for the core renderer.
+The browser entry assembles a trusted profile. Authored DSL cannot provide renderers, JavaScript callbacks or automatic service permissions. See the [language contract](v2/dsl-compatibility.md).
 
-Keep the authoring skill in its separate repository. It must call this validator and lock the tested core revision, rather than fork the schema or validation implementation. No npm package or release is assumed to exist.
+## iui/1 compatibility
 
-Compatibility is explicitly documented by node and user-visible capability. Recognizing a schema node, observing a component in a screenshot, and providing a working service are different claims.
+The original JSON contract remains available through `src/core`, `src/renderer`, the generated schema, HTML compiler and CLI. It is a separate input format; JSON nodes are not DSL component calls.
+
+The DOM renderer owns layout, CSS tokens, controls, SVG and MathML. The compiler packages the same implementation into standalone or shared-resource HTML. Schema recognition alone is not a claim of working rendering or connected services.
+
+## Authoring and integrations
+
+The [authoring Skill](https://github.com/Micraow/Inform-UI-skill) is a separate repository. It consumes a matching generated contract and runtime instead of duplicating the language implementation. Host applications own external data and actions; the core library renders supplied data and performs bounded local interactions.
+
+MIT-licensed public dependencies and assets retain their source and license notices. Private captures, credentials and unknown-license runtime code are excluded from the project.

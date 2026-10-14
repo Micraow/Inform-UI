@@ -1,6 +1,6 @@
 # 调用方提供的加载状态与占位
 
-这四项加载/占位/引用/链接卡已通过66节点同版批次验收，固定CDN为d370。338项Node、241项Chromium及42+18消费者视图通过，实际亮暗窄宽原图已复核。[证据与有限范围](verification-66.md)。
+这四项加载/占位/引用/链接卡已通过66节点同版批次验收，固定CDN为d370。338项Node、241项Chromium及42+18消费者视图通过，实际亮暗窄宽原图已复核。[证据与有限范围](https://github.com/Micraow/Inform-UI/blob/14d9092ea22526e0612921b98830abcd0c38bfa8/docs/verification-66.md)。
 
 ## loading
 

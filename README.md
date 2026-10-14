@@ -2,118 +2,91 @@
 
 # Inform UI
 
-### Small JSON. Real interfaces.
+**把文字与数据，变成可交互的界面。**
 
-用 JSON 构建清晰、可交互的内容。
-图表、公式、表单与领域卡片，组合成可以直接交付的界面。
+独立的 JavaScript / TypeScript 可视化组件库。
+用紧凑的 DSL 组合图表、表单、卡片与本地交互。
 
-[组件展示](docs/showcase.md) · [快速开始](#快速开始) · [浏览器接入](docs/cdn-218.md) · [API 文档](docs/api.md) · [配套 Skill](https://github.com/Micraow/Inform-UI-skill)
+[![MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Preview](https://img.shields.io/badge/version-2.0.0--alpha.1-orange?style=flat-square)](package.json)
+[![Node](https://img.shields.io/badge/Node.js-22%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
+[![Stars](https://img.shields.io/github/stars/Micraow/Inform-UI?style=flat-square)](https://github.com/Micraow/Inform-UI/stargazers)
 
-**JavaScript / TypeScript · iui/1 · MIT · 无需账号或 API**
+[快速开始](#-快速开始) · [文档](docs/README.md) · [组件展示](docs/showcase.md) · [配套 Skill](https://github.com/Micraow/Inform-UI-skill) · [反馈问题](https://github.com/Micraow/Inform-UI/issues)
 
 </div>
 
----
-
 <p align="center">
-  <a href="docs/assets/gallery-panorama.png"><img src="docs/assets/gallery-create.png" alt="Inform UI 真实组件瀑布流：折线图、环形图、表单、滑块、词汇卡片、只读评分摘要和表格" width="1200"></a>
+  <a href="docs/assets/gallery-panorama.png"><img src="docs/assets/gallery-create.png" alt="Inform UI 原创组件组合：图表、表单、阅读滑块与词汇卡片" width="1200"></a>
 </p>
 <p align="center">
-  <a href="docs/assets/gallery-explore.png"><img src="docs/assets/gallery-explore.png" alt="第二页：图表、天气、指标、单位转换与数学公式" width="49%"></a>
-  <a href="docs/assets/gallery-compose.png"><img src="docs/assets/gallery-compose.png" alt="第三页：日程、航班、选项卡、问答、菜单和代码" width="49%"></a>
+  <a href="docs/assets/gallery-explore.png"><img src="docs/assets/gallery-explore.png" alt="数据与工具组合示例" width="49%"></a>
+  <a href="docs/assets/gallery-compose.png"><img src="docs/assets/gallery-compose.png" alt="日程、旅行与内容组合示例" width="49%"></a>
 </p>
-<p align="center">
-  真实运行库渲染 · 原创合成数据 · <a href="docs/assets/gallery-panorama.png">查看横向三页全景 →</a>
-</p>
+<p align="center"><sub>真实运行截图 · 原创合成数据 · iui/1 组件画廊</sub></p>
 
-## 从内容到界面
+## ✨ 特性
 
-- **清晰表达**：一致的排版、卡片、表格、数学公式与 SVG 图形
-- **真实交互**：表单校验、滑块联动、标签页、图表探索与本地练习
-- **灵活交付**：嵌入已有页面，或导出带资源的独立 HTML
-- **有据可查**：JSON Schema、TypeScript 类型、运行时语义校验，以及逐组件使用契约
+- 🧩 **组合式界面**：233 个注册组件，涵盖基础布局、控件、图表与领域视图
+- ⚡ **本地交互**：状态绑定、筛选、排序与联动，无需服务端执行
+- 🎨 **统一设计**：浅色 / 深色主题、语义色与 755 个 MIT 授权图标
+- 🛡️ **严格契约**：Schema、参数校验与生成提示词共享组件定义
+- 📦 **灵活交付**：浏览器嵌入、独立 HTML，以及帮助智能体编写界面的 [Skill](https://github.com/Micraow/Inform-UI-skill)
 
-## 组件展示
+## 🚀 快速开始
 
-三页横向画廊展示 **24 组原创组合、32 种节点**，包括阅读与表单、数据与工具、日程与旅行。每块内容都由同一运行库实时渲染，支持下载原始 JSON。启动后打开 **http://127.0.0.1:4175/gallery.html**。
-
-按分类或名称浏览全部 **219 个协议节点**，试用 **218 个可渲染示例**，查看并复制实际挂载的完整 JSON。`native` 作为明确的拒绝边界单独展示。
-
-布局主例单独展示纵向堆叠、横向排列、响应式网格，以及带上下文的分隔和留白。支持浅色 / 深色、小屏布局、状态重置、依赖关系与本地事件查看。[打开使用指南 →](docs/showcase.md)
-
-## 验证与外观范围
-
-`main` / PR 检查真实提交的完整 Node、展示页、合成浏览器用例，以及三平台可移植性。[CI 与历史复现](docs/ci-validation.md)。
-
-展示页使用真实 renderer；当前控件修正涵盖只读评分摘要、分段选择及连续滑块。交互评分输入与 toggle 是本项目扩展，其余组件的原始外观对应仍在逐项审查，不宣称全库像素级复刻。[对齐范围](docs/control-alignment.md)。
-
-## 快速开始
-
-需要 **Node.js 22+**。当前为源码开发预览，尚未发布 npm 包。
+需要 Node.js 22+。当前为源码预览，尚未发布 npm 包。
 
 ```sh
 git clone https://github.com/Micraow/Inform-UI.git
 cd Inform-UI
 npm ci --ignore-scripts
-npm run showcase
+npm run showcase:next
 ```
 
-浏览器打开 **http://127.0.0.1:4175/gallery.html** 看组合画廊，或打开 **http://127.0.0.1:4175** 逐个试用全部组件。
+直接打开生成的 `output/next/Inform-UI-Next-All-Components.html`，浏览组件、编辑 DSL、切换主题。
 
-只需编译一份独立页面：
+## 🔨 一个交互示例
 
-```sh
-npm run build
-node bin/iui.mjs build examples/hpcc.json --out output/hpcc.html --lang zh-CN
+```text
+$pages = 20
+root = Stack([
+  Heading("每天读一点", 1),
+  Text("拖动滑块，调整今天的阅读目标。", "muted"),
+  Slider("每日页数", $pages, 5, 80, 5),
+  Badge("今日目标：" + $pages + " 页", "info")
+])
 ```
 
-生成后直接打开 `output/hpcc.html`。也可使用[固定版本的浏览器资源](docs/cdn-218.md)，无需本地构建。
-
-## 一份最小 JSON
-
-滑块改变本地状态，指标随之更新：
-
-```json
-{
-  "version": "iui/1",
-  "state": { "count": 3 },
-  "body": [
-    { "type": "title", "value": "阅读计划" },
-    { "type": "slider", "label": "每日篇数", "bind": "count", "min": 1, "max": 10, "step": 1 },
-    { "type": "metric", "label": "今日目标", "value": { "$": "count" }, "unit": "篇" }
-  ]
-}
-```
-
-在自己的页面中调用浏览器入口：
+嵌入已有页面：
 
 ```js
-import { mount, validateDocument } from './dist/browser.js';
+import { mount } from './dist/v2/inform-ui.js';
 
-const result = validateDocument(documentJson);
-if (!result.ok) throw new Error(JSON.stringify(result.issues));
+const view = mount(document.querySelector('#app'), {
+  source: dsl,
+  theme: 'light',
+});
 
-const controller = mount(document.querySelector('#app'), result.document);
-// 不再使用时：controller.dispose();
+// 页面卸载时释放实例
+view.dispose();
 ```
 
-## 按需深入
+完整 HTML 壳、API 与交付方式见[接入指南](docs/v2/quick-start.md)。原有 `iui/1` JSON API、CLI 和画廊继续保留，见[兼容入口](docs/api.md)。
 
-- [组件展示与静态构建](docs/showcase.md)：搜索、试用、JSON 下载与运行方法
-- [浏览器接入](docs/cdn-218.md)：固定资源、完整性与版本边界
-- [API 与 CLI](docs/api.md)：校验、挂载、状态更新与 HTML 编译
-- [Schema 模块](docs/schema-source-modules.md)：91 个源模块及真实依赖关系
-- [安全边界](docs/security.md)：受限表达式、URL 与内容校验
-- [开发指南](docs/development.md)：构建、测试与贡献
+## 📚 文档
 
-## 使用边界
+- [接入与运行](docs/v2/quick-start.md) · [DSL 语法边界](docs/v2/dsl-compatibility.md)
+- [主题与组合](docs/v2/design-foundations.md) · [图标](docs/icons.md)
+- [组件画廊](docs/showcase.md) · [开发指南](docs/development.md)
+- [安全边界](docs/security.md) · [更新日志](CHANGELOG.md)
 
-界面展示你提供的数据。金融、天气、出行等示例不连接实际服务；业务按钮默认发出本地请求事件，由宿主应用决定如何处理。医疗相关计算仅为有范围限制的软件演示，未经临床验证。协议节点数量不代表外部服务、临床能力或第三方产品的完整覆盖。
+## 🤝 参与
 
-## 许可与独立声明
+欢迎通过 [Issues](https://github.com/Micraow/Inform-UI/issues) 报告问题，或提交改进。组件数量是注册目录规模；示例使用给定数据，外部服务由宿主应用接入。医疗相关示例未经临床验证。
 
-项目代码采用 [MIT](LICENSE)；依赖及素材遵守各自许可，见[第三方声明](THIRD_PARTY_NOTICES.md)与[来源说明](docs/provenance.md)。
+## 📄 许可
 
-Inform UI 是独立、非官方的社区实现，以 OpenAI Intelligent UI 的视觉与交互体验为参考；不由 OpenAI 开发、维护、赞助或认可。相关名称仅说明参考对象，不表示官方关联，也不授予第三方素材或代码的使用权。
+[MIT](LICENSE) · [第三方许可](THIRD_PARTY_NOTICES.md) · [素材来源](docs/provenance.md)
 
-Inform UI is an independent, unofficial community implementation inspired by the visual and interactive experience of OpenAI Intelligent UI. It is not developed, maintained, sponsored, or endorsed by OpenAI. Reference names imply no affiliation or third-party authorization.
+Inform UI 是独立、非官方项目，不由 OpenAI 开发、维护或认可；运行无需 OpenAI 账号、API 或服务。

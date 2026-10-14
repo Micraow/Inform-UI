@@ -1,6 +1,6 @@
 # Inform v2 与固定 OpenUI DSL 的兼容矩阵
 
-日期：2026-10-13。适用实现：`inform-local-runtime-20261013-1`，入口 `src/index.ts`，交付清单 `DELIVERY.json`。对照上游：`thesysdev/openui@cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7`。
+适用实现：[`packages/parser-runtime`](../../packages/parser-runtime/README.md)，浏览器入口为 [`src/v2/browser.ts`](../../src/v2/browser.ts)。对照上游：`thesysdev/openui@cf615ae1401d78eee1a4dcc1ef0e2e6d61f373d7`。
 
 结论：Inform 复用 OpenUI 的词法、Pratt 表达式 parser、AST、statement 语法，以及 component/library/prompt 生成机制；采用新的严格本地解释器和事务状态语义。它是有明确边界的 OpenUI 派生方言，不是完整 OpenUI runtime 或语言行为的等价替换。
 
@@ -123,13 +123,11 @@
 
 **尚缺上游完整接口**：自定义 `defineFunction`执行注册、自定义 `defineAction`网关、工具provider/MCP/query缓存/重试、persisted/pristine store合并、`createStreamingParser`增量缓存、jsonToOpenUI/mergeStatements等序列化工具、statementId传播与稳定节点身份。本包preview每次重解析文本，不宣传增量性能等价。
 
-**当前包外的整合项**：DOM/React mount-update-dispose、14源码图表的真实registry+渲染、完整Inform领域组件迁移、浏览器CSP/视觉/可访问性/静态file运行测试、Worker硬终止、CDN发布。它们不能因为语言单测通过就被算完成。
+**整合范围**：解释器本身不拥有浏览器 DOM。集成入口提供 foundation、图表与领域视图，挂载方式见 [快速开始](quick-start.md)。语言支持、浏览器交互、可访问性与分发验证是各自独立的范围。
 
-## 7. 验证证据与宣传边界
+## 7. 性能与验证边界
 
-冻结包通过TypeScript严格检查、34/34 Node tests，以及相同34条在 `--disallow-code-generation-from-strings` 下的检查。其中5条连接真实生成的component contract，28条解释器/安全/交互测试，1条在import前阻断Function/eval/fetch并断言零尝试。真实contract联测中的renderer挂载为明确mock，未验证浏览器布局。
-
-已交付两个可运行DSL例：`examples/local-form.openui`、`examples/derived-chart.openui`。后者实际覆盖Filter+Sort+Each+Slider+Select+BarChart/Series及空筛选分支。另有 `each-capture.integration.test.mjs` 三条真实contract补充回归通过（排序/筛选后的Card按钮、嵌套捕获、同名变量遮蔽），无需修改冻结解释器源码。不是每个矩阵格都拥有独立测试；表中未被具体用例覆盖的边界来自上述冻结实现及固定上游源码核对。
+解释器、真实组件契约和浏览器宿主均有独立回归测试；测试结果只适用于实际运行的提交与场景。源码位置与运行方式见 [开发指南](../development.md)。
 
 尚未运行模型token或生成质量对照。可描述“更紧凑的语法设计”，不可给未测节省比例或“必然省token”。正式对照应固定组件/数据/交互任务、所选Skill模块和HTML壳、模型/tokenizer版本，分别计prompt、输出、修复重试及有效通过率；另外测真实最终bundle min/gzip、解析/求值/渲染延迟。字节数不等于token数。
 

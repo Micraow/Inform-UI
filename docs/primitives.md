@@ -1,6 +1,6 @@
 # 流式布局、有限图标与显式状态
 
-这是62节点协议的base增强，已通过源码、固定CDN与消费者整批验收。按canonical合同计入flow/icon/pulse-indicator三项；[验收证据与范围](verification-62.md)。
+这是62节点协议的base增强，已通过源码、固定CDN与消费者整批验收。按canonical合同计入flow/icon/pulse-indicator三项；[验收证据与范围](https://github.com/Micraow/Inform-UI/blob/14d9092ea22526e0612921b98830abcd0c38bfa8/docs/verification-62.md)。
 
 ## Flow
 
