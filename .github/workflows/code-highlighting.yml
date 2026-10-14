@@ -39,6 +39,7 @@ jobs:
           (cd ../ui-runtime && npm ci --ignore-scripts)
           ln -s ../ui-runtime/node_modules node_modules
           npm run build:next
+          npm run typecheck:next
           node --test --test-concurrency=1 tests/code-highlight.test.mjs tests/code-languages.test.mjs tests/code-isolated.test.mjs
       - name: Install lock-pinned Chromium
         run: node node_modules/@playwright/test/cli.js install --with-deps chromium
