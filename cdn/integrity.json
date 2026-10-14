@@ -4,9 +4,9 @@
   "fonts": "Source Code Pro: pinned official unmodified OFL 1.1 WOFF2 assets embedded in this CSS (normal 400/600). KaTeX 0.18.2: official MIT WOFF2 assets, relative to this CSS. HTML visual output and accessible MathML.",
   "files": {
     "iui.min.js": {
-      "bytes": 7414662,
-      "sha256": "ae8ee75d43d04cda96cf81549441f4873c1b44e4bb7963993ed2f43486490138",
-      "integrity": "sha384-qN91ID23Kkb5N6UF8PoqJ8qGGYd0MHzZVaT2OpDPhlqP7cF3ik1t8sNlhEhI6rDM"
+      "bytes": 7414680,
+      "sha256": "a3c7c0a8681322f49e7ed252c8b1242e0cea9de1a5a1bfb60a2c91657c447f15",
+      "integrity": "sha384-vAwX5vP1HleykoKYgfyocA1MvgD6VfMQdwh6+3vZpDUUw70+snHaQfmfnSGivIbn"
     },
     "iui.min.js.map": {
       "bytes": 6819649,
@@ -14,9 +14,9 @@
       "integrity": "sha384-HRFce3dDWaJB1Jk0If8OSyjYNOfuEr+2qfDmWw5yS7iGPl0TbqthM1JNkQQmYNlp"
     },
     "iui.global.min.js": {
-      "bytes": 7414833,
-      "sha256": "d514ea51db07396f40b131e953af1ea69df4a77ccd3ed83b457a6e060e157fa9",
-      "integrity": "sha384-Y5CkYKgjAWF92yjZ3IBXSq4m0DEnI6GiqcIf/NtEMEwLVwzJ7s1Aj/0uCEtIEDi9"
+      "bytes": 7414851,
+      "sha256": "01e968992647b5769182f52a683cbca2b9ffb8570d149ae7b5c6656ee05944a8",
+      "integrity": "sha384-uzGBELy4jsqW3VpKhXoH+957k0zE8OmEAG8yt6GLZtaCtEIZYb2PGiagxyenjqHD"
     },
     "iui.global.min.js.map": {
       "bytes": 6820180,
@@ -24,9 +24,9 @@
       "integrity": "sha384-p2bOqJjumH6mufQOJzW9aLxCAgbTIIVttjEiQVO9bp2knagMHp1XasyhNrcljVfq"
     },
     "iui.css": {
-      "bytes": 587039,
-      "sha256": "b0f261796d53dd03b02765f649d054161ec5710419797db7145d6a1e7ffcfa77",
-      "integrity": "sha384-ODQzoOsMDIUD2fXkgjlPco7C2YJDn5KMZ8AtiN7eqt/h+1Slb1/dpWFinKW9+ejX"
+      "bytes": 587057,
+      "sha256": "6041e15d4bdf4c68cac062724eeb056829e6f12567ca4b03d724cb3314b85981",
+      "integrity": "sha384-yw8OaJFRDFI7x8hXr+1zKZh5n5N94kMC/Ecf4P7O0TDteAhxz1JuYk3zDmgGkbiH"
     },
     "iui.schema.json": {
       "bytes": 752609,

@@ -70,3 +70,13 @@ test('public compiler offline hydration preserves exact code without code-relate
  // output avoids loading a second complete runtime into the browser worker.
  const html=await readFile(new URL('../../output/code.html',import.meta.url),'utf8'),requests=[];page.on('request',r=>requests.push(r.url()));await page.context().setOffline(true);await page.setContent(html);expect(await byId(page,'main-code').locator('code').textContent()).toBe(source);expect(requests).toEqual([]);await expect(byId(page,'unknown-code').locator('img,script')).toHaveCount(0);
 });
+
+for(const width of [390,1100])test(`offscreen code helpers stay inside the carousel at ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:900});await mount(page,{version:'iui/1',body:[{type:'carousel',label:'Code samples',children:[...Array.from({length:4},(_,i)=>({type:'text',value:'Original item '+i})),{type:'code',id:'main-code',value:source,language:'bash'}]}]});
+ const out=byId(page,'main-code');expect(await out.boundingBox()).not.toBeNull();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ for(const cls of ['.iui-code-sr-only','.iui-code-status'])expect(await out.locator(cls).evaluate(e=>e.offsetParent===e.closest('.iui-code-block'))).toBe(true);
+ await stub(page);await out.getByRole('button',{name:'Copy code'}).click();await finish(page);
+ await expect(out.getByRole('status')).toHaveText('Code copied.');expect(await page.evaluate(()=>window.codeWrites)).toEqual([source]);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});
