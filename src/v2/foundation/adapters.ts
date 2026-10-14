@@ -39,9 +39,30 @@ export function createFoundationAdapters(options:FoundationOptions):Record<strin
   const labels=/^zh\b/i.test(c.document.documentElement.lang)?codeChinese:codeEnglish;
   return renderCode({doc:c.document,element:h.el,on:h.listen,cleanup:h.cleanup},p.data as unknown as CodeOptions,{code:labels===codeChinese?'代码':'code',codeUI:labels});
  });
- adapter('Text',(p,c,h)=>{const e=h.el('p','if-text');const update=(props:Record<string,unknown>)=>{if(e.textContent!==text(props.content))e.textContent=text(props.content);e.dataset.tone=text(props.tone??'default');};update(p);h.update(update);return e;});
+ adapter('Text',(p,c,h)=>{const e=h.el('p','if-text');const update=(props:Record<string,unknown>)=>{if(e.textContent!==text(props.content))e.textContent=text(props.content);e.dataset.tone=text(props.tone??'default');e.dataset.align=text(props.align??'inherit');e.dataset.size=text(props.size??'inherit');e.dataset.weight=text(props.weight??'inherit');};update(p);h.update(update);return e;});
  adapter('Heading',(p,c,h)=>{const level=Math.max(1,Math.min(6,number(p.level,2)));const e=h.el(('h'+level) as 'h2','if-heading',p.content);e.dataset.level=String(level);return e;});
- for(const name of ['Stack','Row','Grid','Card'])adapter(name,(p,c,h)=>{const e=h.el('div','if-'+name.toLowerCase()),title=name==='Card'?h.el('h3','if-card-title'):null;if(title)e.append(title);const update=(props:Record<string,unknown>)=>{e.style.setProperty('--if-gap',gap(props.gap)+'px');if(name==='Grid')e.style.setProperty('--if-columns',String(Math.max(1,Math.min(6,number(props.columns,2)))));if(name==='Row')e.style.alignItems=({start:'flex-start',center:'center',end:'flex-end',stretch:'stretch'} as Record<string,string>)[text(props.align)]??'center';if(title){title.textContent=text(props.title);title.hidden=!props.title;}h.children(e,props.children as FoundationNode[],title?1:0);};update(p);h.update(update);return e;});
+ for(const name of ['Stack','Row','Grid','Card','Box'])adapter(name,(p,c,h)=>{
+  const e=h.el('div','if-'+name.toLowerCase()),title=name==='Card'?h.el('h3','if-card-title'):null;
+  if(title)e.append(title);
+  const update=(props:Record<string,unknown>)=>{
+   const opts=(props.options??{}) as Record<string,unknown>;
+   e.style.setProperty('--if-gap',gap(name==='Box'?opts.gap:props.gap)+'px');
+   if(name==='Grid'){e.style.setProperty('--if-columns',String(Math.max(1,Math.min(8,number(props.columns,2)))));e.dataset.responsive=text(props.responsive??'stack');}
+   if(name==='Row'){
+    e.style.alignItems=({start:'flex-start',center:'center',end:'flex-end',stretch:'stretch'} as Record<string,string>)[text(props.align)]??'center';
+    e.dataset.wrap=text(opts.wrap??'wrap');e.dataset.distribution=text(opts.distribution??'natural');
+    e.style.justifyContent=({start:'flex-start',center:'center',end:'flex-end',between:'space-between'} as Record<string,string>)[text(opts.justify)]??'flex-start';
+   }
+   if(name==='Box'){
+    e.dataset.background=text(opts.background??'transparent');e.dataset.radius=text(opts.radius??'none');
+    e.dataset.width=text(opts.width??'auto');e.dataset.minHeight=text(opts.minHeight??'none');
+    e.style.setProperty('--if-padding',opts.padding===undefined?'0px':gap(opts.padding)+'px');
+   }
+   if(title){title.textContent=text(props.title);title.hidden=!props.title;}
+   h.children(e,props.children as FoundationNode[],title?1:0);
+  };
+  update(p);h.update(update);return e;
+ });
  adapter('Icon',(p,c)=>{const e=createIcon(c.document,options.resolveIcon(text(p.name)),{size:number(p.size,20),className:'if-icon',...(p.label?{label:text(p.label)}:{})});if(p.tone)e.dataset.tone=text(p.tone);return e;});
  adapter('Image',(p,c,h)=>{const fig=h.el('figure','if-image'),src=text(p.src);if(raster.test(src)||(!c.partial&&src.startsWith('https://')&&c.allowImageURL?.(src))){const img=h.el('img');img.alt=text(p.alt);img.src=src;img.loading='lazy';img.referrerPolicy='no-referrer';fig.append(img);h.listen(img,'error',()=>{img.hidden=true;fig.append(h.el('p','if-status','Image unavailable: '+text(p.alt)));});}else{const fallback=h.el('p','if-status',text(p.alt)+' · Image source is not enabled');fallback.setAttribute('role','img');fallback.setAttribute('aria-label',text(p.alt));fig.append(fallback);}if(p.caption)fig.append(h.el('figcaption','if-muted',p.caption));return fig;});
  adapter('Video',(p,c,h)=>{const figure=h.el('figure','if-video'),title=h.el('figcaption','if-card-title',p.title),video=h.el('video');video.controls=true;video.playsInline=true;video.preload='metadata';video.setAttribute('aria-label',text(p.title));video.style.width='100%';video.style.maxHeight='480px';figure.append(title);const src=text(p.src),allowed=/^data:video\/(?:mp4|webm|ogg);base64,/.test(src)||(!c.partial&&src.startsWith('https://')&&c.allowMediaURL?.(src)===true);if(!allowed){figure.append(h.el('p','if-status','Remote video is disabled by the host policy.'));return figure;}video.src=src;const poster=text(p.poster);if(raster.test(poster)||(!c.partial&&poster.startsWith('https://')&&c.allowImageURL?.(poster)===true))video.poster=poster;for(const [i,item]of ((p.captions??[]) as Array<{src:string;label:string;language:string}>).entries()){if(!/^data:text\/vtt(?:;charset=utf-8)?(?:;base64)?,/.test(item.src)&&!(item.src.startsWith('https://')&&c.allowMediaURL?.(item.src)===true))continue;const track=h.el('track');track.kind='captions';track.label=item.label;track.srclang=item.language;track.default=i===0;track.src=item.src;video.append(track);}const status=h.el('p','if-status','Use the player to play, pause, seek, and choose captions.');status.setAttribute('role','status');h.listen(video,'error',()=>{status.textContent='This video cannot be played in this browser. The supplied source may be unavailable or use an unsupported codec.';});figure.append(video,status);return figure;});

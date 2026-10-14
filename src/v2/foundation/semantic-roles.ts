@@ -19,6 +19,9 @@ const declarations = (theme: keyof typeof semanticThemeTokens) => Object.entries
   `--if-${name}-soft:${value.background}`,
   `--if-${name}-soft-text:${value.softForeground}`,
 ]).join(';');
+const boxSelectors = semanticRoleNames.map(name => `
+.if-root .if-box[data-background=${name}]{color:var(--if-${name}-soft-text);background:var(--if-${name}-soft)}
+`).join('');
 const selectors = semanticRoleNames.map(name => `
 .if-root [data-tone=${name}]{color:var(--if-${name})}
 .if-root :is(.if-badge,.if-alert)[data-tone=${name}]{color:var(--if-${name}-soft-text);background:var(--if-${name}-soft);border-color:color-mix(in srgb,var(--if-${name}-soft-text) 24%,transparent)}
@@ -27,6 +30,7 @@ export const semanticCSS = `
 .if-root{${declarations('light')}}
 .if-root[data-theme=dark]{${declarations('dark')}}
 ${selectors}
+${boxSelectors}
 .if-root .if-badge{border:1px solid transparent;max-width:100%;overflow-wrap:anywhere;line-height:1.4}
 .if-root .if-alert{border-color:var(--if-border);background:var(--if-surface);line-height:1.5}
 .if-root .if-icon[data-tone]{overflow:visible}

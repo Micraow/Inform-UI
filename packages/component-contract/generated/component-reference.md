@@ -29,11 +29,11 @@ root = BarChart("Quarterly", ["Q1", "Q2"], [Series("Revenue", [20, 30])])
 
 Layer: base. Renderer: dom/Text.
 
-Plain text with a semantic tone. HTML is displayed literally.
+Plain text with semantic tone and finite typography tokens. HTML is displayed literally.
 
-Use for prose. Newlines remain text; markup and code are not executed.
+Use for prose or labels. Newlines remain text; markup and code are not executed. Optional align: start, center, end. Size: xs=12, sm=14, md=16, lg=18 CSS pixels. Weight: regular=400, medium=500, semibold=600. Omitted typography inherits its context. Existing content and tone positions are unchanged.
 
-Parameter order: content, tone.
+Parameter order: content, tone, align, size, weight.
 
 
 ### text

@@ -25,6 +25,14 @@ for(const component of Object.values(profile.components)){
 }
 const designExamples=createDesignExamples(curatedSamples.Image.match(/data:image\/png;base64,[A-Za-z0-9+/=]+/)[0]);
 for(const example of designExamples)samples[example.id]=example.source;
+designExamples.push({id:"LayeredWork",title:"Build with basic parts",layer:"composition",description:"Equal partitions, aligned labels and a summary made only from general foundation components.",source:await readFile("examples/v2/layered-work.openui","utf8")});
+samples.LayeredWork=designExamples.at(-1).source;
+for(const [id,title,file,description]of [
+ ['ArrayOverview','Read an array','array-overview','A static array with a supplied minimum highlighted.'],
+ ['ArraySteps','Step through local state','array-steps','Previous and Next update a bounded local index, highlights and explanations.'],
+ ['VerticalSteps','A vertical explanation','vertical-steps','Three ordinary text sections connected by text arrows.'],
+ ['DocumentComparison','Compare document approaches','document-comparison','Original schematic document blocks and two responsive comparison cards.']
+]){const source=await readFile('examples/v2/'+file+'.openui','utf8');designExamples.push({id,title,layer:'composition',description,source});samples[id]=source;}
 const colorTokens=JSON.parse(await readFile('docs/color-tokens.json','utf8'));
 for(const [name,source]of Object.entries({Answer:answer,...samples})){const runtime=createRuntime(profile);const result=runtime.commit(source);runtime.dispose();if(!result.ok)throw Error(name+': '+JSON.stringify(result.issues));}
 const manifest=profile.manifest();

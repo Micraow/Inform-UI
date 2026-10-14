@@ -1,0 +1,21 @@
+layers = [
+  {level: 0, values: [8]},
+  {level: 1, values: [4, 4]},
+  {level: 2, values: [2, 2, 2, 2]},
+  {level: 3, values: [1, 1, 1, 1, 1, 1, 1, 1]}
+]
+root = Stack([Card([
+  @Each(layers, "layer", Row([
+    Box([Text("第 " + layer.level + " 层", "muted", "start", "xs")], {width: "xs"}),
+    Box([Grid(
+      @Each(layer.values, "value", Box([
+        Text("" + value, "default", "center", "xs", "medium")
+      ], {background: layer.level == 3 ? "surface" : "info", radius: "sm", minHeight: "sm"})),
+      @Count(layer.values), "xs", "preserve"
+    )], {width: "grow"}),
+    Box([Text(@Count(layer.values) + "×" + layer.values[0] + "=8", "default", "end", "xs")], {width: "xs"})
+  ], "xs", "center", {wrap: "nowrap"})),
+  Divider(),
+  Row([Text("4 层 × 每层 8 次工作量", "default", "start", "sm", "semibold"), Text("32", "default", "end", "md", "semibold")], "sm", "center", {wrap: "nowrap", justify: "between"}),
+  Text("示意：每项基本操作计为 1，包含规模为 1 的基本情况。", "muted", "start", "sm")
+], "归并排序：每层工作量")])

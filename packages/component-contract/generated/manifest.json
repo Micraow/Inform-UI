@@ -18,9 +18,50 @@
     "inform/foundation",
     "inform/charts"
   ],
+  "moduleDefinitions": [
+    {
+      "id": "base/chart-data",
+      "layer": "chart",
+      "dependsOn": [],
+      "runtimeRequires": [],
+      "components": [],
+      "dataShapes": [
+        "Series",
+        "Slice",
+        "Point"
+      ]
+    },
+    {
+      "id": "base/charts",
+      "layer": "chart",
+      "dependsOn": [
+        "base/chart-data"
+      ],
+      "runtimeRequires": [
+        "inform/charts"
+      ],
+      "components": [
+        "BarChart"
+      ],
+      "dataShapes": []
+    },
+    {
+      "id": "base/text",
+      "layer": "base",
+      "dependsOn": [],
+      "runtimeRequires": [
+        "inform/foundation"
+      ],
+      "components": [
+        "Text"
+      ],
+      "dataShapes": []
+    }
+  ],
   "components": [
     {
       "name": "BarChart",
+      "moduleId": "base/charts",
       "layer": "chart",
       "orderedProps": [
         "title",
@@ -36,6 +77,16 @@
       },
       "capabilities": [
         "display"
+      ],
+      "runtimeRules": [
+        {
+          "id": "series-alignment",
+          "paths": [
+            "labels",
+            "series"
+          ],
+          "rule": "Series names must be unique; each values array has exactly one finite value per label."
+        }
       ],
       "limitations": [
         "This profile only declares the chart kinds with an actual bound renderer. Other OpenUI chart exports are not implied."
@@ -67,10 +118,14 @@
     },
     {
       "name": "Text",
+      "moduleId": "base/text",
       "layer": "base",
       "orderedProps": [
         "content",
-        "tone"
+        "tone",
+        "align",
+        "size",
+        "weight"
       ],
       "slots": {},
       "bindingProps": [],
@@ -82,8 +137,9 @@
       "capabilities": [
         "display"
       ],
+      "runtimeRules": [],
       "limitations": [],
-      "docs": "Use for prose. Newlines remain text; markup and code are not executed.",
+      "docs": "Use for prose or labels. Newlines remain text; markup and code are not executed. Optional align: start, center, end. Size: xs=12, sm=14, md=16, lg=18 CSS pixels. Weight: regular=400, medium=500, semibold=600. Omitted typography inherits its context. Existing content and tone positions are unchanged.",
       "examples": [
         {
           "id": "text",
@@ -99,6 +155,7 @@
   "dataShapes": [
     {
       "name": "Series",
+      "moduleId": "base/chart-data",
       "orderedProps": [
         "name",
         "values"
@@ -107,6 +164,7 @@
     },
     {
       "name": "Slice",
+      "moduleId": "base/chart-data",
       "orderedProps": [
         "label",
         "value"
@@ -115,6 +173,7 @@
     },
     {
       "name": "Point",
+      "moduleId": "base/chart-data",
       "orderedProps": [
         "x",
         "y"
@@ -123,8 +182,8 @@
     }
   ],
   "externalServices": [],
-  "schemaSha256": "9ad12929a86c31f6985c7c306c191a1fdd0f5969f61d6fef1889fc0aec6d6d9b",
-  "promptSha256": "5d02d46170490275cecf1e4954f3bd98aaddddd3a9448893fb669f1ab9a90553",
-  "signatureSha256": "84b1038dc602f6026002a6880e88f05e4d901afe84f96b04c54681db476143c7",
-  "docsSha256": "f7434b78595737cfd6c93bb88f99c0f6fee6a71bc107697094ea6efacd84bb5b"
+  "schemaSha256": "bb8e9bb2f1a9f866e3cbc5f92c8cb88446bb62e3c21c696fb75d6fabf6f981f3",
+  "promptSha256": "a3b30c5d57e221781e1b7157c38f08843c123598f85ccb8c4b8162f7853d2591",
+  "signatureSha256": "09fc979098c2e7fffa2c9753b3dbeeb287aa4ea097ec7c316dff2e7b69bec587",
+  "docsSha256": "06217458c1c9c252e40e147c303e05fd12b98c6e7933f14add92ba36a5328a77"
 }

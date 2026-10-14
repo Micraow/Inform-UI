@@ -4,6 +4,12 @@ function handle(element: HTMLElement | SVGElement): RenderHandle { return { elem
 export const textAdapter: RendererAdapter = Object.freeze({ kind: 'dom', key: 'Text', create(props: Record<string, unknown>, ctx: RenderContext) {
   ctx.budget.consume(); const node = ctx.document.createElement('p'); node.className = 'inform-v2-text'; node.textContent = props.content as string;
   if (props.tone) node.dataset.tone = props.tone as string;
+  const align = ({start:'start',center:'center',end:'end'} as Record<string,string>)[String(props.align)];
+  const size = ({xs:12,sm:14,md:16,lg:18} as Record<string,number>)[String(props.size)];
+  const weight = ({regular:400,medium:500,semibold:600} as Record<string,number>)[String(props.weight)];
+  if (align) node.style.textAlign = align;
+  if (size) node.style.fontSize = size + 'px';
+  if (weight) node.style.fontWeight = String(weight);
   return handle(node);
 } });
 export const barChartAdapter: RendererAdapter = Object.freeze({ kind: 'dom', key: 'BarChart', create(props: Record<string, unknown>, ctx: RenderContext) {

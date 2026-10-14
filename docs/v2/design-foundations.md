@@ -4,7 +4,7 @@ Inform UI exposes semantic color and the bundled official glyph catalog as base 
 
 ## Real DSL contract
 
-- `Text(content, tone?)`
+- `Text(content, tone?, align?, size?, weight?)`
 - `Badge(label, tone?)`
 - `Alert(title, description, tone?)`
 - `Icon(name, label?, tone?, size?)`
@@ -73,3 +73,102 @@ The images are supplied through an explicit embedded raster argument. The showca
 ## Verification boundaries
 
 The isolated implementation passes parser/schema checks, DOM mounting in both themes, local state interaction checks, icon compatibility/rejection tests, panel callbacks, and numeric contrast checks. Browser visual checks, 320px layout, keyboard focus, and integrated showcase regression tests must run after integration. The panel is a discovery index; it must open the actual DSL composition rather than replacing runtime capability with unrelated static markup.
+
+## Composable surfaces, partitions, and aligned labels
+
+Use the foundation layout primitives for diagrams made of ordinary text and
+surfaces. They do not imply a specialized algorithm renderer. The original
+[layered-work example](../../examples/v2/layered-work.openui) builds rows of
+1, 2, 4, and 8 blocks, a level label, a right-aligned equation, and a summary.
+It works with both `inform-core` and the full renderer. The component studio's
+**Build with basic parts** example mounts this same DSL.
+
+All extensions are trailing optional parameters. Old calls keep their defaults:
+
+- `Text(content, tone?, align?, size?, weight?)`: alignment `start/center/end`;
+  size `xs/sm/md/lg` = 12/14/16/18px; weight `regular/medium/semibold` = 400/500/600.
+  Omitted typography inherits the surrounding context. Plain text remains literal.
+- `Row(children, gap?, align?, options?)`: `options.wrap` is `wrap` (default) or
+  `nowrap`; `distribution` is `natural` (default) or `equal`; `justify` is
+  `start` (default), `center`, `end`, or `between`. Equal distribution overrides
+  a child's preferred Box width. No-wrap keeps a single row, while a label may
+  wrap within its allotted width.
+- `Grid(children, columns?, gap?, responsive?)`: 1–8 equal tracks, default 2.
+  `stack` (default) becomes one column at a root-container width of 480px or
+  less. `preserve` retains the requested tracks. It never silently shrinks fonts.
+- `Box(children, options?)`: a generic vertical-flow container, with a transparent
+  background, no padding/radius/minimum height, automatic width, and `md` gap by
+  default. Its options use only the tokens below.
+
+| Box option | Values |
+| --- | --- |
+| `background` | `transparent`, `surface`, `info`, `success`, `warning`, `error` |
+| `padding`, `gap` | `none/xs/sm/md/lg/xl` = 0/4/8/12/16/24px |
+| `radius` | `none/sm/md/lg` = 0/6/10/16px |
+| `width` | `auto`, `full`, `grow`, `xs/sm/md` = 48/64/96px |
+| `minHeight` | `none/sm/md/lg` = 0/24/32/48px |
+
+`grow` fills the remaining space of a Row. Fixed width tokens do not shrink or
+grow in a naturally distributed Row; their max-width is the parent width.
+`minHeight` is a lower bound, not clipping. Semantic backgrounds reuse existing
+paired soft-surface foregrounds in both themes; neutral surfaces use normal text.
+Transparent boxes inherit the surrounding foreground. Avoid overriding these
+pairs with unrelated child text tones without checking their contrast.
+
+For a compact partition row:
+
+```text
+root=Stack([Row([
+  Box([Text("Level 1","muted","start","xs")],{width:"xs"}),
+  Box([Grid([
+    Box([Text("4","default","center","xs")],{background:"info",minHeight:"sm"}),
+    Box([Text("4","default","center","xs")],{background:"info",minHeight:"sm"})
+  ],2,"xs","preserve")],{width:"grow"}),
+  Box([Text("2×4=8","default","end","xs")],{width:"xs"})
+],"xs","center",{wrap:"nowrap"})])
+```
+
+Use short labels, low gaps, and unpadded cells when retaining eight tracks on a
+small screen. Content-heavy comparisons should normally use the default
+stacking Grid. A preserved grid or no-wrap row can still exceed its available
+space if authored with many fixed-width children, large padding, long unbreakable
+widgets, or an excessively narrow host; these options are deliberate layout
+constraints, not a promise that arbitrary compositions fit. There is no free-form
+HTML, CSS, color, selector, URL, absolute positioning, or arbitrary pixel input.
+The 320/390/760px browser fixture checks equal block widths and shared edges,
+readable unclipped labels, light/dark surfaces, and no page-level overflow.
+
+Additional original, foundation-only compositions are available in the studio:
+
+- [Static array](../../examples/v2/array-overview.openui): equal cells with a supplied minimum.
+- [Local stepping](../../examples/v2/array-steps.openui): Previous/Next actions,
+  bounded local state, active and visited colors, and changing explanations.
+- [Vertical reasoning](../../examples/v2/vertical-steps.openui): aligned text and
+  ordinary Unicode arrows, without a new flowchart component.
+- [Document comparison](../../examples/v2/document-comparison.openui): a schematic
+  thumbnail built from empty colored Boxes and a responsive two-card comparison.
+  Its visual blocks are illustrative, not extracted PDF content.
+
+### Boundaries for later extensions
+
+These examples do not introduce raw SVG/path execution or a general vector
+scene/connector API. Icons remain the trusted bundled SVG registry, and Image
+continues to reject SVG data URLs. A raster screenshot cannot identify whether
+its source UI used SVG, canvas, or ordinary DOM/CSS.
+
+The foundation-only entry still has no general safe Link/download component,
+inline mathematical typesetting component, or arbitrary-size monospaced text
+layout. Code provides literal monospaced code; it is not a substitute for a
+proportional math or digit-layout primitive. Some full-profile content views
+have separately declared capabilities, but their availability must not be
+assumed for the core entry. Keep new link, math, typography, and vector work
+separate from these additive layout tokens.
+
+The layered-work example uses two nested, existing `@Each` expressions over
+supplied layer data. Its readable source is 990 characters and 16 component
+constructor calls, compared with 2,806 characters and 65 calls when every cell
+is written out (64.7% fewer characters). Both expand to the same 65-component
+tree; an exact tree-equality regression test protects this. `@Each` has a named
+item scope and an inline template, but no index argument, lambda, or arbitrary
+JavaScript execution. Include needed indices in the data. No new loop syntax is
+required for these compositions.
