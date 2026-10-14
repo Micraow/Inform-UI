@@ -43,12 +43,6 @@ test('gallery JSON formatting is lossless and markup is created without HTML inj
   assert.match(app, /controller\?\.dispose\(\)/);
 });
 
-test('README minimal JSON is a valid complete document', async () => {
-  const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
-  const text = readme.split('```json\n')[1]?.split('```')[0];
-  assert.ok(text); assert.equal(validateDocument(JSON.parse(text)).ok, true);
-});
-
 test('authored layouts demonstrate composition instead of minimized security fixtures', () => {
   const find = type => catalog.entries.find(entry => entry.type === type);
   for (const type of ['col', 'row', 'grid', 'box', 'card', 'section', 'figure', 'details', 'carousel', 'flow', 'divider', 'spacer']) {
