@@ -44,10 +44,10 @@ test('unrelated local state preserves CodeView DOM, scroll, selection and pendin
  const dom=new JSDOM('<main></main>',{url:'https://example.test'}),doc=dom.window.document;
  const h=core.mount(doc.querySelector('main'),{source:'$x=""\nroot=Stack([CodeView({value:"echo hello",language:"bash"}),Input("Draft",$x)])'});
  try{
-  const before=doc.querySelector('[data-component=CodeView]'),pre=before.querySelector('pre'),button=before.querySelector('button');pre.scrollLeft=30;
+  const before=doc.querySelector('[data-component=CodeView]'),pre=before.querySelector('pre'),button=before.querySelector('.iui-code-copy');pre.scrollLeft=30;
   const range=doc.createRange();range.selectNodeContents(pre.querySelector('code'));doc.getSelection().addRange(range);
   const input=doc.querySelector('input');input.value='typed';input.dispatchEvent(new dom.window.Event('input',{bubbles:true}));
-  assert.equal(doc.querySelector('[data-component=CodeView]'),before);assert.equal(pre.scrollLeft,30);assert.equal(doc.getSelection().toString(),'echo hello');assert.equal(before.querySelector('button'),button);
+  assert.equal(doc.querySelector('[data-component=CodeView]'),before);assert.equal(pre.scrollLeft,30);assert.equal(doc.getSelection().toString(),'echo hello');assert.equal(before.querySelector('.iui-code-copy'),button);
   h.commit('root=Stack([Code({value:"replacement"})])');assert.equal(before.isConnected,false);assert.equal(doc.querySelector('code').textContent,'replacement');
  }finally{h.dispose();dom.window.close();}
 });

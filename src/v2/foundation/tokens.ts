@@ -6,6 +6,7 @@ export const typography=Object.freeze({family:'system-ui,-apple-system,BlinkMacS
 /** Public SDK roles and observed host-role values are shared with the original renderer. */
 import colorTokens from '../../../docs/color-tokens.json';
 import codeFontCSS from '../../renderer/code-font.css';
+import codeBlockCSS from '../../renderer/code-block.css';
 import {semanticCSS} from './semantic-roles';
 const projectTheme=(v:typeof colorTokens.light)=>Object.freeze({
  background:v.bg,surface:v['surface-secondary'],text:v.ink,muted:v.muted,border:v.line,
@@ -32,18 +33,6 @@ export const foundationCSS=codeFontCSS+`
 @container(max-width:480px){.if-grid{grid-template-columns:1fr}.if-card{padding:16px}.if-row{row-gap:12px}}
 @media(prefers-reduced-motion:reduce){.if-root *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
-.if-root .iui-code-block{min-width:0;max-width:100%;align-self:stretch}
-.if-root .iui-code{font:400 13px/1.6 var(--if-mono);background:var(--if-surface);color:var(--if-text);border:1px solid var(--if-border);border-radius:12px;padding:16px;max-width:100%;margin:0;overflow:auto;white-space:pre;direction:ltr;unicode-bidi:isolate;user-select:text}
 .if-root .iui-inline-code{white-space:break-spaces;overflow-wrap:anywhere;font:400 .9em var(--if-mono);background:var(--if-surface);border-radius:4px;padding:2px 4px}
-.if-root .iui-code-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;min-width:0}
-.if-root .iui-code-language{font-size:12px;color:var(--if-muted);overflow-wrap:anywhere;min-width:0;unicode-bidi:plaintext}
-.if-root .iui-code-copy{margin-inline-start:auto;flex:none;min-height:36px;padding:6px 12px;border:1px solid var(--if-border);border-radius:6px;color:var(--if-text);background:var(--if-background);cursor:pointer}
-.if-root .iui-code-copy:hover{background:var(--if-hover)}.if-root .iui-code-copy[aria-disabled=true]{cursor:wait}
-.if-root .iui-code:focus-visible{outline:2px solid var(--if-focus);outline-offset:3px}
-.if-root .iui-code-status{display:block;font-size:12px;color:var(--if-muted);overflow-wrap:anywhere;min-height:1.4em;margin-top:4px}
-.if-root .iui-code-token-comment{color:var(--if-muted);font-style:normal}
-.if-root :is(.iui-code-token-string,.iui-code-token-regexp){color:var(--if-success)}
-.if-root :is(.iui-code-token-number,.iui-code-token-literal,.iui-code-token-keyword,.iui-code-token-built_in,.iui-code-token-title-function_,.iui-code-token-attr,.iui-code-token-name,.iui-code-token-variable){color:var(--if-domain-series-blue)}
-.if-root .iui-code-token-keyword{font-weight:600}
-@media(forced-colors:active){.if-root .iui-code-copy{color:ButtonText;background:ButtonFace;border-color:ButtonText}.if-root .iui-code{border-color:CanvasText}.if-root [class*=iui-code-token-]{color:CanvasText}}
-`+semanticCSS;
+
+`+semanticCSS+codeBlockCSS;

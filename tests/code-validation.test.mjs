@@ -24,13 +24,13 @@ test('literal value/string and original language/code bounds stay unchanged',()=
  for(const field of ['execute','theme','clipboard','html','lexer'])assert.equal(validateDocument(doc([code({[field]:true})])).ok,false);
 });
 test('public mount preserves exact code and selector contract; state updates keep DOM/focus',()=>{
- const el=host(),c=mount(el,fixture),node=fixture.body.find(n=>n.id==='main-code'),out=el.querySelector('[id$="-main-code"]'),pre=out.querySelector('pre'),b=out.querySelector('button');
+ const el=host(),c=mount(el,fixture),node=fixture.body.find(n=>n.id==='main-code'),out=el.querySelector('[id$="-main-code"]'),pre=out.querySelector('pre'),b=out.querySelector('.iui-code-copy');
  assert.equal(out.dataset.iui,'code');assert.equal(out.className,'iui-code-block');assert.equal(pre.className,'iui-code');assert.equal(pre.querySelector('code').textContent,node.value);
  b.focus();c.setState({count:1});assert.equal(out.querySelector('pre'),pre);assert.equal(el.ownerDocument.activeElement,b);
  assert.equal(out.querySelector('[role=status]').textContent,'');assert.equal(el.querySelectorAll('script,img').length,0);c.dispose();
 });
 test('invalid public update is atomic; valid update/dispose retire the old DOM',()=>{
- const el=host(),c=mount(el,fixture),old=el.firstElementChild,b=el.querySelector('button');b.focus();
+ const el=host(),c=mount(el,fixture),old=el.firstElementChild,b=el.querySelector('.iui-code-copy');b.focus();
  assert.throws(()=>c.update(doc([code({inline:true,copy:true})])));assert.equal(el.firstElementChild,old);assert.equal(el.ownerDocument.activeElement,b);
  c.update(doc([code({value:'replacement',copy:true})]));assert.equal(old.isConnected,false);assert.equal(el.querySelector('code').textContent,'replacement');
  c.dispose();c.dispose();assert.equal(el.childElementCount,0);

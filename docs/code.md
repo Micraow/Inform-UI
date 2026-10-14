@@ -26,7 +26,7 @@ Only safe span scopes from highlight.js are converted into DOM text nodes. Sourc
 
 Copy runs only after a trusted native pointer or keyboard button activation, on the owner document's secure-context Clipboard API. It submits the original string. It does not read clipboard contents, request permissions or copy automatically. Success appears only when `writeText` resolves; missing, insecure or denied APIs show a manual selection/copy fallback. Clipboard/OS line-ending normalization is outside the component's control.
 
-The button retains focus while a single request is pending. Another explicit activation can retry. A stale promise after replacement, detachment or disposal cannot modify old or new UI. Synthetic `.click()` and `dispatchEvent()` do not copy.
+The integrated header uses accessible icon-only controls. Its wrap toggle switches between horizontal scrolling and visual wrapping, exposes aria-pressed, and leaves the source and copied text unchanged. Wrapping is local display state and survives unrelated local edits; a new code value resets it. The copy button retains focus while a single request is pending. Another explicit activation can retry. A stale promise after replacement, detachment or disposal cannot modify old or new UI. Synthetic `.click()` and `dispatchEvent()` do not copy.
 
 The actual scroll/selection surface keeps `.iui-code`; enhanced blocks use `.iui-code-block`. Authors' legacy id/data-iui attributes stay on the returned root. Foundation code does not pull in the domain renderer, KaTeX, Lottie, or the full highlight.js language set.
 

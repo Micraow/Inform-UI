@@ -1,12 +1,14 @@
 {
   "format": "inform-ui-reviewed-controls-style/1",
-  "globalStyleSha256": "e472060d629c4a6ac08a99a315dc13a69331a5695377265bd1ea0d9e5e1b6175",
+  "globalStyleSha256": "647f21693b2c9c119752d7357156ca80c278f31485148df57120a1d7870d0dc6",
   "changes": [
     "continuous slider neutral track and thumb",
     "segmented native radios with ghost pill presentation",
     "read-only rating-summary row",
     "upright Consolas / embedded Source Code Pro for code and citations",
-    "highlight.js grammar scopes use existing code theme colors"
+    "highlight.js grammar scopes use existing code theme colors",
+    "shared rounded code panel, compact icon-only controls and local word wrapping"
   ],
-  "historicalBaselinePreserved": "tests/finance-status-baseline-118.json"
+  "historicalBaselinePreserved": "tests/finance-status-baseline-118.json",
+  "codePanelStyleSha256": "b228833fdcda2f21facb7ba1a88798847b62f7dbcbaa63a7653a4ce80fe9fbbb"
 }

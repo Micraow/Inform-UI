@@ -1,3 +1,8 @@
+import {createIcon} from '../icons/create-icon.js';
+import CodeIcon from '../icons/definitions/Code.js';
+import CopyIcon from '../icons/definitions/Copy.js';
+import WrapIcon from '../icons/definitions/ArrowCurvedLeft.js';
+import CheckIcon from '../icons/definitions/Check.js';
 import {highlightCode} from './code-highlight.js';
 import type {CodeLabels} from '../renderer/code-labels.js';
 export interface CodeOptions {value:string;language?:string;inline?:boolean;copy?:boolean;highlight?:boolean;showLanguage?:boolean}
@@ -29,22 +34,28 @@ export function renderCode(c:CodeContext,n:CodeOptions,labels:{code:string;codeU
   else code.append(c.element('span',`iui-code-token-${token.kind}`,token.text));
  } else code.textContent=value;
  pre.append(code);
- const header=c.element('div','iui-code-header');
- if(showLanguage)header.append(c.element('span','iui-code-language',n.language??labels.codeUI.plainText));
+ const header=c.element('div','iui-code-header'),actions=c.element('div','iui-code-actions');
+ if(showLanguage){const title=c.element('span','iui-code-title');title.append(createIcon(c.doc,CodeIcon,{size:18}),c.element('span','iui-code-language',n.language??labels.codeUI.plainText));header.append(title);}
+ let disposed=false;
+ c.cleanup(()=>{disposed=true;});
+ const wrap=c.element('button','iui-code-wrap');wrap.type='button';wrap.setAttribute('aria-label',labels.codeUI.wrap);wrap.title=labels.codeUI.wrap;wrap.setAttribute('aria-pressed','false');wrap.append(createIcon(c.doc,WrapIcon,{size:18}));
+ c.on(wrap,'click',()=>{if(disposed||!out.isConnected)return;const wrapped=wrap.getAttribute('aria-pressed')!=='true';wrap.setAttribute('aria-pressed',String(wrapped));wrap.title=wrapped?labels.codeUI.unwrap:labels.codeUI.wrap;out.dataset.wrap=String(wrapped);});
+ header.append(actions);out.append(header,pre);
+
  if(copy) {
-  const button=c.element('button','iui-code-copy',labels.codeUI.copy);button.type='button';button.setAttribute('aria-disabled','false');
+  const button=c.element('button','iui-code-copy');button.type='button';button.setAttribute('aria-disabled','false');button.setAttribute('aria-label',labels.codeUI.copy);button.title=labels.codeUI.copy;button.append(createIcon(c.doc,CopyIcon,{size:18}),c.element('span','iui-code-sr-only',labels.codeUI.copy));
   const status=c.element('span','iui-code-status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.setAttribute('aria-atomic','true');
-  header.append(button);out.append(header,pre,status);
-  let disposed=false,busy=false,generation=0;
+  actions.append(button);out.append(status);
+  let busy=false,generation=0;
   c.cleanup(()=>{disposed=true;generation++;});
   c.on(button,'click',event=>{
    // Native pointer/keyboard activation only. HTMLElement.click()/dispatchEvent cannot copy.
    if(!event.isTrusted||disposed||busy||!out.isConnected)return;
    busy=true;const current=++generation;
-   button.setAttribute('aria-disabled','true');status.textContent=labels.codeUI.copying;
+   button.setAttribute('aria-disabled','true');button.title=labels.codeUI.copy;button.querySelector('svg')?.replaceWith(createIcon(c.doc,CopyIcon,{size:18}));status.textContent=labels.codeUI.copying;
    const settle=(success:boolean)=>{
     if(disposed||generation!==current||!out.isConnected)return;
-    busy=false;button.setAttribute('aria-disabled','false');status.textContent=success?labels.codeUI.copied:labels.codeUI.failed;
+    busy=false;button.setAttribute('aria-disabled','false');status.textContent=success?labels.codeUI.copied:labels.codeUI.failed;button.title=success?labels.codeUI.copied:labels.codeUI.copy;button.querySelector('svg')?.replaceWith(createIcon(c.doc,success?CheckIcon:CopyIcon,{size:18}));
    };
    try {
     const win=button.ownerDocument.defaultView;
@@ -55,9 +66,7 @@ export function renderCode(c:CodeContext,n:CodeOptions,labels:{code:string;codeU
     Promise.resolve(clipboard.writeText(value)).then(()=>settle(true),()=>settle(false));
    } catch { settle(false); }
   });
- } else {
-  if(header.childNodes.length)out.append(header);
-  out.append(pre);
  }
+ actions.prepend(wrap);
  return out;
 }
