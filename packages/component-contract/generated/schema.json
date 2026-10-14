@@ -71,7 +71,17 @@
       ],
       "additionalProperties": false,
       "id": "BarChart",
-      "description": "Categorical supplied-data bar chart with named finite series."
+      "description": "Categorical supplied-data bar chart with named finite series.",
+      "x-inform-runtime-rules": [
+        {
+          "id": "series-alignment",
+          "paths": [
+            "labels",
+            "series"
+          ],
+          "rule": "Series names must be unique; each values array has exactly one finite value per label."
+        }
+      ]
     },
     "Text": {
       "type": "object",
@@ -85,9 +95,35 @@
           "enum": [
             "default",
             "muted",
+            "info",
             "success",
             "warning",
             "error"
+          ]
+        },
+        "align": {
+          "type": "string",
+          "enum": [
+            "start",
+            "center",
+            "end"
+          ]
+        },
+        "size": {
+          "type": "string",
+          "enum": [
+            "xs",
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "weight": {
+          "type": "string",
+          "enum": [
+            "regular",
+            "medium",
+            "semibold"
           ]
         }
       },
@@ -96,7 +132,7 @@
       ],
       "additionalProperties": false,
       "id": "Text",
-      "description": "Plain text with a semantic tone. HTML is displayed literally."
+      "description": "Plain text with semantic tone and finite typography tokens. HTML is displayed literally."
     },
     "Series": {
       "type": "object",

@@ -4,7 +4,7 @@ import { JSDOM } from 'jsdom';
 import { z } from 'zod/v4';
 import { createCatalog, buildProfile, resources, createBudget, inspectData, barChartAdapter, textAdapter } from '../dist/index.mjs';
 
-const names = ['Text','Heading','Badge','Divider','Alert','Table','Stack','Row','Grid','Card','Button','Input','Textarea','Select','RadioGroup','Checkbox','Switch','Slider','BarChart','WeatherCard','Icon','Image'];
+const names = ['Text','Heading','Badge','Divider','Alert','Table','Stack','Row','Grid','Card','Box','Button','Input','Textarea','Select','RadioGroup','Checkbox','Switch','Slider','BarChart','WeatherCard','Icon','Image','Video','Code','CodeView'];
 // Registration-only fixtures. These do not count as renderer implementation coverage.
 const fixtures = Object.fromEntries(names.map(name => [name, { kind: 'dom', key: name, create() { throw Error('Registration-only test fixture: do not render.'); } }]));
 const catalog = () => createCatalog({ adapters: fixtures, iconNames: ['check', 'info'] });
@@ -18,7 +18,7 @@ test('one definition generates strict schema, positional signature, bindings and
   assert.equal(profile.schema.$defs.Input.additionalProperties, false);
   assert.deepEqual(profile.componentRules.Input.bindingProps, ['value']);
   assert.deepEqual(profile.componentRules.Button.actionProps, ['onPress']);
-  assert.match(profile.prompt(), /Input\(label: string, value: \$binding<string>/);
+  assert.ok(profile.prompt().includes('Input(label: string{minLength=1,maxLength=512}, value: $binding<string{maxLength=4096}>'));
   assert.equal(profile.manifest().components.find(item => item.name === 'Input').renderer.key, 'Input');
 });
 test('schema and runtime dependency closures are separate and complete', () => {
@@ -104,9 +104,9 @@ test('icon schema only exposes bundled canonical IDs; media excludes executable 
 });
 test('prompt teaches bindings without enabling service tools and uses correct root examples', () => {
   const p = make(), prompt=p.prompt();
-  assert.match(prompt,/\$binding<string>/); assert.match(prompt,/Undeclared \$variables are errors/);
+  assert.ok(prompt.includes('$binding<string{maxLength=4096}>')); assert.match(prompt,/Undeclared \$variables are errors/);
   assert.doesNotMatch(prompt,/Query\(toolName/); assert.doesNotMatch(prompt,/root = (Text|Input|BarChart|WeatherCard)\(/);
-  assert.match(prompt,/root = Stack\(\[BarChart\(/); assert.match(prompt,/Series\(name: string, values: number\[\]\)/);
+  assert.match(prompt,/root = Stack\(\[BarChart\(/); assert.ok(prompt.includes('Series(name: string{minLength=1,maxLength=512}, values: number[-1e100,1e100][]{minItems=1,maxItems=128})'));
   assert.deepEqual(p.manifest().externalServices,[]);
 });
 test('representative Text renderer treats HTML as inert text', () => {
@@ -163,4 +163,11 @@ test('weather-only profile includes the layout components used by its foundation
   const p=buildProfile({id:'i/weather',root:'WeatherCard',modules:catalog(),resources,select:['domain/weather']});
   assert.deepEqual(p.modules,['base/text','base/layout','domain/weather']);
   for(const name of ['Card','Row','Heading','Text']) assert.ok(p.components[name]);
+});
+
+test('representative Text renders the finite optional typography contract',()=>{
+ const dom=new JSDOM('<main></main>');
+ const result=textAdapter.create({content:'Aligned label',align:'end',size:'sm',weight:'semibold'},{document:dom.window.document,budget:{consume(){}}});
+ assert.equal(result.element.style.textAlign,'end');assert.equal(result.element.style.fontSize,'14px');assert.equal(result.element.style.fontWeight,'600');
+ result.dispose();dom.window.close();
 });

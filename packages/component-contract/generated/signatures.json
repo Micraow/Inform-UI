@@ -13,7 +13,10 @@
   "Text": {
     "orderedProps": [
       "content",
-      "tone"
+      "tone",
+      "align",
+      "size",
+      "weight"
     ],
     "childSlots": [],
     "slots": {},

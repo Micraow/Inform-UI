@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createRuntime} from '../../packages/parser-runtime/dist/index.js';
-import {createCatalog,resources,buildProfile} from '../../packages/component-contract/dist/index.mjs';
+import {createRuntime,createCatalog,resources,buildProfile} from '../../dist/v2/core-node.mjs';
 const descriptors=createCatalog({adapters:{}});
 const adapters=Object.fromEntries(descriptors.flatMap(m=>m.components.map(c=>[c.name,{kind:'dom',key:c.name,create(){throw Error('This is not a renderer test')}}])));
 const modules=createCatalog({adapters});

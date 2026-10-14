@@ -163,3 +163,12 @@ proportional math or digit-layout primitive. Some full-profile content views
 have separately declared capabilities, but their availability must not be
 assumed for the core entry. Keep new link, math, typography, and vector work
 separate from these additive layout tokens.
+
+The layered-work example uses two nested, existing `@Each` expressions over
+supplied layer data. Its readable source is 990 characters and 16 component
+constructor calls, compared with 2,806 characters and 65 calls when every cell
+is written out (64.7% fewer characters). Both expand to the same 65-component
+tree; an exact tree-equality regression test protects this. `@Each` has a named
+item scope and an inline template, but no index argument, lambda, or arbitrary
+JavaScript execution. Include needed indices in the data. No new loop syntax is
+required for these compositions.
