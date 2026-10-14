@@ -1,0 +1,1 @@
+root=Stack([Card([Text("Establish the property before the first step.","default","center","md","semibold"),Text("↓","muted","center","lg"),Text("Show that each step preserves the property.","default","center","md","semibold"),Text("↓","muted","center","lg"),Text("Use the property when the process finishes.","default","center","md","semibold")],"Three reasoning steps")])
