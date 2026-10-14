@@ -1,0 +1,41 @@
+{
+  "format": "inform-ui-original-screenshots/v1",
+  "license": "MIT",
+  "assets": [
+    {
+      "file": "code-light.png",
+      "width": 744,
+      "height": 416,
+      "bytes": 23711,
+      "sha256": "05636a520817b54edb4a20326916fcc24efe30bbdf3c89b99bfb1217c4addf9a"
+    },
+    {
+      "file": "code-dark.png",
+      "width": 744,
+      "height": 416,
+      "bytes": 23849,
+      "sha256": "4307ccbfd00776a35e6f92b36f1d21a32216ae0cf8b185237c7b46d18a9de450"
+    },
+    {
+      "file": "layered-work-light.png",
+      "width": 760,
+      "height": 500,
+      "bytes": 21084,
+      "sha256": "e9cbed8f69bffa7ef30127f316ea72659d076776c045c1889005c67c7d3151df"
+    },
+    {
+      "file": "array-steps-light.png",
+      "width": 390,
+      "height": 850,
+      "bytes": 18633,
+      "sha256": "ed2dc6e562dc9d7171abe4b07c56aa0bce0373d7af59c0a552c84ea9b6b0949a"
+    },
+    {
+      "file": "document-comparison-dark.png",
+      "width": 390,
+      "height": 850,
+      "bytes": 26676,
+      "sha256": "7b7820552ea54f93913c6bca2fde69710e99fdbb6dc9b170d4a8ba0bb2fd10e9"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+root = Stack([
+  Heading("Code · Bash", 2),
+  Code({
+    value: "#!/usr/bin/env bash\n\nfor file in *.md; do\n  printf '%s\\n' \"$file\"\ndone\n",
+    language: "bash"
+  })
+])
