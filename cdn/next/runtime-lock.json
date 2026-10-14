@@ -1,12 +1,12 @@
 {
   "format": "inform-v2-cdn/1",
   "version": "2.0.0-alpha.1",
-  "sourceCommit": "48afebf37ad1548f70e959349ce4866f7c5359c2",
+  "sourceCommit": "ea194b046921b731753f36f0014b856cbb654dfe",
   "runtimeURL": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@main/cdn/next/inform-ui.global.js",
   "bundles": {
     "inform-ui.global.js": {
-      "bytes": 5713453,
-      "sha256": "dd7d40be9cdbef90f3ad89e583c62edc8c3180d6666f953c745c1b58a479914d"
+      "bytes": 5713704,
+      "sha256": "c433f265a4e0fb704075404845fdf319c80f0d9148657bacbf0524fa4ced6822"
     },
     "THIRD_PARTY_NOTICES.txt": {
       "bytes": 62017,
