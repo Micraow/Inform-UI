@@ -17,7 +17,7 @@ test('CI verifies current source and keeps the historical 115-node lock immutabl
  assert.match(historical, /ref: 4e13fae4bf6416865bb93aa92056df6917d231b9/);
  assert.ok(historical.indexOf('run: npm run check') < historical.indexOf('run: node scripts/batch-browser-plan.mjs'));
  assert.equal(createHash('sha256').update(await readFile('tests/consumer/batch-lock-115.json')).digest('hex'), '8c25b5988c0a40cf5fe9e2cecd6e17919acbba7a5f8db8ff9670a79a87267f3d');
- assert.match(current, /branches: \[main, recovery\/portable-124-20261011\]/);
+ assert.match(current, /branches: \[main\]/);
  assert.match(current, /  pull_request:/);
  assert.doesNotMatch(current, /\n          ref:/);
  for (const command of ['npm run check', 'node scripts/check-generated.mjs', 'npm run test:showcase', 'test --config playwright.recovery.config.mjs']) assert.ok(current.includes(command), command);
