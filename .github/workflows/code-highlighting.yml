@@ -1,0 +1,53 @@
+name: Code language regression
+on:
+  push:
+    paths:
+      - 'src/shared/code*'
+      - 'src/renderer/code*'
+      - 'src/v2/**'
+      - 'tests/code*.mjs'
+      - 'tests/fixtures/code-language-samples.json'
+      - 'tests/browser/code*.spec.mjs'
+      - 'playwright.code.config.mjs'
+      - 'scripts/build-v2.mjs'
+      - 'scripts/prepare-foundation-tests.mjs'
+      - 'scripts/serve-tests.mjs'
+      - 'package*.json'
+      - '.github/workflows/code-highlighting.yml'
+permissions:
+  contents: read
+jobs:
+  code-languages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: library
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: library
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Build V2 and check original language samples
+        run: |
+          mkdir -p ../ui-runtime
+          cp package.json package-lock.json ../ui-runtime/
+          (cd ../ui-runtime && npm ci --ignore-scripts)
+          ln -s ../ui-runtime/node_modules node_modules
+          npm run build:next
+          node --test --test-concurrency=1 tests/code-highlight.test.mjs tests/code-languages.test.mjs tests/code-isolated.test.mjs
+      - name: Install lock-pinned Chromium
+        run: node node_modules/@playwright/test/cli.js install --with-deps chromium
+      - name: Verify actual colors and trusted copy serially
+        run: node node_modules/@playwright/test/cli.js test --config playwright.code.config.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: code-languages-${{ github.sha }}
+          path: library/test-results/code-focused/
+          retention-days: 7
+          if-no-files-found: warn
