@@ -10,6 +10,9 @@ class Budget {
   node(): void { if (++this.nodes > MARKDOWN_LIMITS.nodes) throw new Exhausted(); }
 }
 const escapeChars = '\\`*_[]()!#>+-.';
+function blocksEmphasis(character: string, marker: string): boolean {
+  return /[\p{L}\p{N}]/u.test(character) && !(marker === '*' && /\p{Script=Han}/u.test(character));
+}
 function inline(s: string, b: Budget): Inline[] {
   if (s.startsWith('<') || s.startsWith('|')) { b.node(); return [{ kind: 'text', text: s }]; }
   const out: Inline[] = []; let start = 0, i = 0;
@@ -46,9 +49,11 @@ function inline(s: string, b: Budget): Inline[] {
       }
       const mark = c.repeat(run), end = find(mark, i + run, c !== '`');
       if (end >= 0) {
-        const inside = s.slice(i + run, end), after = s[end + run];
-        // Delimiter nesting and intraword emphasis are deliberately unsupported.
-        const valid = inside.length > 0 && after !== c && (c === '`' || (!/[`*_\[\]\\]/.test(inside) && !/^\s|\s$/.test(inside) && !/[\p{L}\p{N}]/u.test(s[i - 1] ?? '') && !/[\p{L}\p{N}]/u.test(after ?? '')));
+        const inside = s.slice(i + run, end);
+        // Read complete adjacent code points with bounded, two-code-unit slices.
+        const before = [...s.slice(Math.max(0, i - 2), i)].pop() ?? '', after = [...s.slice(end + run, end + run + 2)][0] ?? '';
+        // Only asterisks beside Han allow intraword emphasis; nesting stays literal.
+        const valid = inside.length > 0 && after !== c && (c === '`' || (before !== c && !/[`*_\[\]\\]/.test(inside) && !/^\s|\s$/.test(inside) && !blocksEmphasis(before, c) && !blocksEmphasis(after, c)));
         flush(i); add({ kind: valid ? (c === '`' ? 'code' : run === 2 ? 'strong' : 'em') : 'text', text: valid ? inside : s.slice(i, end + run) });
         i = end + run; start = i; continue;
       }
