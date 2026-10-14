@@ -23,3 +23,15 @@ test('CI verifies current source and keeps the historical 115-node lock immutabl
  for (const command of ['npm run check', 'node scripts/check-generated.mjs', 'npm run test:showcase', 'test --config playwright.recovery.config.mjs']) assert.ok(current.includes(command), command);
  assert.doesNotMatch(historical + current + portability, /continue-on-error:\s*true/);
 });
+
+test('automatic current-source checks do not launch browsers', async () => {
+ const current = await readFile('.github/workflows/recovery-validation.yml', 'utf8');
+ assert.match(current, /workflow_dispatch:\n    inputs:\n      browsers:/);
+ assert.match(current, /type: boolean\n        default: false/);
+ const optIn = "if: ${{ github.event_name == 'workflow_dispatch' && inputs.browsers }}";
+ for (const name of ['Install the lock-pinned Playwright Chromium build', 'Install the exact licensed test font', 'Build and verify the complete component studio', 'Run synthetic browsers against this checkout']) {
+  assert.ok(current.includes('- name: ' + name + '\n        ' + optIn), name);
+ }
+ assert.ok(current.includes('run: npm run check'));
+ assert.ok(current.includes('node scripts/check-generated.mjs'));
+});
