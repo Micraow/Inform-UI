@@ -1,0 +1,17 @@
+{
+  "format": "inform-v2-cdn/1",
+  "version": "2.0.0-alpha.1",
+  "sourceCommit": "44623e368e00911238852f5bf62c440762bee9ff",
+  "runtimeURL": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@web-chat-latest/cdn/next/inform-ui.global.js",
+  "bundles": {
+    "inform-ui.global.js": {
+      "bytes": 5661712,
+      "sha256": "46706afbbba7da9e76a8e249bcdafa5f2a61082f8b01ab4802fa15434866be9d"
+    },
+    "THIRD_PARTY_NOTICES.txt": {
+      "bytes": 62017,
+      "sha256": "83536fb188d63c53d131bb509a7bac87b94825316ffa57ffb85724f74079f674"
+    }
+  },
+  "publication": "Git artifact record; CDN availability and matching bytes must be verified separately."
+}
