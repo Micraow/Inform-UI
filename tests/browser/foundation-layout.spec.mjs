@@ -62,15 +62,24 @@ for(const theme of ['light','dark'])test(`original foundation compositions and r
  }
 });
 
-test('pinned CJK text retains indentation and fits narrow boxes',async({page})=>{
+test('pinned CJK text preserves whitespace without hanging beyond narrow boxes',async({page})=>{
  const font=await readFile(new URL('../assets/fonts/noto-cjk-sc/NotoSansCJKsc-Regular.otf',import.meta.url));
  await page.route('**/inform-foundation-font.otf',route=>route.fulfill({contentType:'font/otf',body:font}));
  await page.setViewportSize({width:320,height:500});await mount(page,source);
- await page.addStyleTag({content:'@font-face{font-family:"Inform Layout Regression CJK";src:url("/inform-foundation-font.otf") format("opentype");font-display:block}.if-root{--if-font:"Inform Layout Regression CJK",sans-serif}'});
+ await page.addStyleTag({content:'@font-face{font-family:"Inform Layout Regression CJK";src:url("/inform-foundation-font.otf") format("opentype");font-display:block}.if-root[data-theme]{--if-font:"Inform Layout Regression CJK",sans-serif}'});
  await page.evaluate(()=>document.fonts.load('14px "Inform Layout Regression CJK"'));
  expect(await page.evaluate(()=>document.fonts.check('14px "Inform Layout Regression CJK"'))).toBe(true);
- const measure=()=>page.locator('.if-text').last().evaluate(e=>{const r=e.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(e);const t=range.getBoundingClientRect();return{label:e.textContent,rect:r.toJSON(),text:t.toJSON(),lines:[...range.getClientRects()].map(x=>x.toJSON()),whiteSpace:getComputedStyle(e).whiteSpace,inside:t.left>=r.left-1&&t.right<=r.right+1&&t.top>=r.top-1&&t.bottom<=r.bottom+1,clipped:e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1};});
- const actual=await measure();console.log('CJK default geometry',JSON.stringify(actual));
- for(const css of ['.if-text{line-height:1.7}','.if-text{white-space:break-spaces}']){const style=await page.addStyleTag({content:css});console.log('CJK candidate geometry',css,JSON.stringify(await measure()));await style.evaluate(e=>e.remove());}
- expect(actual.inside,JSON.stringify(actual)).toBe(true);expect(actual.clipped).toBe(false);
+ const measure=()=>page.locator('.if-text').last().evaluate(e=>{const r=e.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(e);const t=range.getBoundingClientRect(),style=getComputedStyle(e);return{label:e.textContent,rect:r.toJSON(),text:t.toJSON(),lines:[...range.getClientRects()].map(x=>x.toJSON()),whiteSpace:style.whiteSpace,fontFamily:style.fontFamily,inside:t.left>=r.left-1&&t.right<=r.right+1&&t.top>=r.top-1&&t.bottom<=r.bottom+1,clipped:e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1};});
+ const paragraph=await measure();expect(paragraph.fontFamily).toContain('Inform Layout Regression CJK');expect(paragraph.inside,JSON.stringify(paragraph)).toBe(true);expect(paragraph.clipped).toBe(false);
+ const literal='MMMM   MMMM\n  缩进保持';
+ await page.evaluate(literal=>{const result=window.layoutApp.commit('root=Stack([Text('+JSON.stringify(literal)+',"default","start","sm")])');if(!result.ok)throw Error(JSON.stringify(result));},literal);
+ // Derive a width from the real loaded glyphs, just too narrow for the first
+ // word plus a space. This reproduces hanging whitespace without OS font luck.
+ await page.locator('.if-text').evaluate(e=>{const range=document.createRange(),text=e.firstChild;range.setStart(text,0);range.setEnd(text,4);const word=range.getBoundingClientRect().width;range.setStart(text,4);range.setEnd(text,5);const space=range.getBoundingClientRect().width;e.style.width=(word+space/2)+'px';});
+ const wrapped=await measure();expect(wrapped.label).toBe(literal);expect(wrapped.whiteSpace).toBe('break-spaces');expect(wrapped.lines.length).toBeGreaterThan(2);expect(wrapped.inside,JSON.stringify(wrapped)).toBe(true);expect(wrapped.clipped).toBe(false);
+ // Negative control: the old rule really exceeds the same box. Never weaken
+ // the normal containment assertion to ignore preserved whitespace fragments.
+ const legacyStyle=await page.addStyleTag({content:'.if-root .if-text{white-space:pre-wrap}'});
+ const legacy=await measure();expect(legacy.whiteSpace).toBe('pre-wrap');expect(legacy.text.right).toBeGreaterThan(legacy.rect.right+1);expect(legacy.inside).toBe(false);
+ await legacyStyle.evaluate(e=>e.remove());expect((await measure()).inside).toBe(true);
 });

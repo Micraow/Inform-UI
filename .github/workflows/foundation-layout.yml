@@ -7,6 +7,7 @@ on:
       - 'packages/parser-runtime/**'
       - 'examples/v2/**'
       - 'tests/browser/foundation-layout.spec.mjs'
+      - 'tests/foundation-layout.test.mjs'
       - 'tests/assets/fonts/**'
       - 'scripts/build-v2.mjs'
       - 'scripts/prepare-foundation-tests.mjs'
@@ -23,6 +24,7 @@ on:
       - 'packages/parser-runtime/**'
       - 'examples/v2/**'
       - 'tests/browser/foundation-layout.spec.mjs'
+      - 'tests/foundation-layout.test.mjs'
       - 'tests/assets/fonts/**'
       - 'scripts/build-v2.mjs'
       - 'scripts/prepare-foundation-tests.mjs'
@@ -56,6 +58,7 @@ jobs:
           (cd ../ui-runtime && npm ci --ignore-scripts)
           ln -s ../ui-runtime/node_modules node_modules
           npm run build:next
+          node --test --test-concurrency=1 tests/foundation-layout.test.mjs
       - name: Install the lock-pinned browser and licensed CJK font
         run: |
           node node_modules/@playwright/test/cli.js install --with-deps chromium

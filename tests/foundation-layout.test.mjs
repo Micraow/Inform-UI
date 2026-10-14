@@ -73,3 +73,8 @@ test('nested Each authoring is shorter while producing the exact expanded compon
   assert.equal(expandedSource.length,2806);assert.equal(count(expandedSource),65);assert.ok(source.length<1400);assert.equal(count(source),16);
  }finally{a.dispose();b.dispose();}
 });
+
+test('foundation Text preserves literal whitespace with non-hanging wrapping',()=>{
+ const literal='  Lead\nMMMM   MMMM\n  缩进保持';const h=mount('root=Stack([Text('+JSON.stringify(literal)+')])');
+ try{const text=h.doc.querySelector('.if-text');assert.equal(text.textContent,literal);assert.equal(h.doc.defaultView.getComputedStyle(text).whiteSpace,'break-spaces');assert.equal(h.doc.defaultView.getComputedStyle(text).overflowWrap,'anywhere');}finally{h.close();}
+});
