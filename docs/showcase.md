@@ -1,79 +1,42 @@
-# Component studio
+# DSL component showcase
 
-Browse every current `iui/1` node, interact with a live example, and copy or download the complete JSON used to mount it.
+Browse the registered DSL components, try original compositions, edit their source and download `.openui` examples.
 
 ## Run locally
 
-Node.js 22 or newer is required to build the studio.
+Node.js 22 or newer is required:
 
 ```sh
 npm ci --ignore-scripts
-npm run showcase
+npm run showcase:next
 ```
 
-Open **http://127.0.0.1:4175**. Use search or a category to choose a component. Press `/` to focus search and Escape to clear it. Each component has a shareable URL fragment, light/dark preview, Reset, and an activity inspector. Reset and theme changes restore the original sample state.
+Open `output/next/Inform-UI-Next-All-Components.html` directly. This generated file embeds the runtime, styles, sample data and license notices; it does not need a local server or a moving CDN URL.
 
-The gallery includes all **219 canonical schema nodes**: **218 renderable examples** and the deliberately rejected `native` compatibility boundary. The catalog contains **91 source modules**, including shared definition-only modules. These are protocol/catalog counts, not a claim of clinical validation, connected services, or pixel equivalence with any third-party product.
+## Explore and edit
 
-## Browse compositions
+1. Search for a component or select a composition from the sidebar.
+2. Choose **Show DSL** to inspect and edit the source.
+3. Choose **Run** to commit the complete source, or **Preview** for a passive partial preview with interactions disabled.
+4. Choose **Reset** to restore that example's original source and state.
+5. Use **Download DSL** to save the source as an `.openui` file.
 
-Open **http://127.0.0.1:4175/gallery.html** for a three-page horizontal masonry gallery. The 24 original compositions use 32 node types from the same runtime, including charts, form controls, learning, weather, converters, travel and planning. All examples use fictional, supplied data and local-only interactions. Use Create, Explore and Compose to change pages, or scroll horizontally. The layout becomes two columns on tablets and one on phones. Each tile’s download arrow saves the complete JSON document.
+The light/dark control switches the current theme. The **Icons** panel searches the bundled glyph catalog and copies an `Icon(...)` snippet. **Agent prompt** displays authoring instructions generated from the same component definitions used by the runtime.
 
-The capture script produces local browser screenshots at 2160 × 1440, plus a 6480 × 1440 three-page panorama, from these live pages. Screenshots are optional outputs; the complete gallery works directly from source. To capture after starting the studio:
-
-```sh
-npx playwright install chromium
-node scripts/capture-gallery.mjs
-```
-
-Set `GALLERY_URL` for another local server address or `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` for an installed Chromium. Captures use the same original compositions as the interactive gallery; the script refuses to crop a page that no longer fits the landscape frame.
-
-## Use an example
-
-1. Select a component and try its local controls.
-2. Choose **Copy JSON** or the download button. The full mounted document includes its `version`, required state, theme and surrounding composition.
-3. Validate it with `validateDocument`, then call `mount` in your app or compile it with the CLI. See the [API guide](api.md).
-
-“Mounted JSON” shows the initial document supplied to the renderer. Live control values appear separately under **Local activity**. No schema fields are silently added by an invisible demo wrapper. Contextual nodes keep their necessary host in the displayed JSON: `grid-item` inside `grid`, `tab-panel` inside `tab-group`, and `label` alongside its target control.
-
-**Composition** lists the owner module, declared dependencies, the actual resolved module closure for the example, and every included node type. Component contracts and schema-field lists are available beside the preview.
+The evaluated tree and downloadable Schema JSON are inspection aids, not alternative public input formats. Use the DSL source for new interfaces. Check or build a downloaded file with the [CLI](api.md), or embed it using [the browser API](v2/quick-start.md).
 
 ## Boundaries
 
-- Samples are original, fictional demonstration content. Sample links are captured locally; the gallery does not navigate to them.
-- Buttons can update local state or emit visible intent events. They do not book, pay, send messages, connect accounts or execute tasks.
-- YouTube uses a fictional ID to show the on-demand control. Its load action is intercepted in the gallery; it does not attempt third-party playback. Production integration follows the [media contract](media-readers.md).
-- Supplied images and audio use original repository fixtures. No private reference images, captured runtime or externally licensed photography are included.
-- Calculators are bounded software demonstrations. They are not clinically validated and must not guide diagnosis or treatment.
-- `native` is structurally recognized but semantically rejected. Its page displays the actual validator error rather than claiming a successful preview.
+- Component and icon counts describe registered catalogs; they are not a promise that every combination has passed browser acceptance.
+- Examples use original, illustrative content and supplied data. Their local actions do not book, pay, send messages, connect accounts or execute tasks.
+- The bundled native video is original repository media. Service-reference components do not grant third-party playback or account access.
+- Medical and scientific examples are bounded software demonstrations and must not guide diagnosis or treatment.
+- Downloaded source does not include a live session's current state unless that state was explicitly written into the DSL.
 
-## Static build
+The historical studio and JSON fixtures elsewhere in the repository are retained for internal renderer regressions. They are not the public authoring workflow.
 
-```sh
-npm run build
-npm run build:showcase
-```
+## Checks and source
 
-`output/showcase/` is a self-contained static directory. Serve or copy that whole directory, including `runtime/` and its license notices, using your existing static hosting. No account setup or deployment is performed by these commands. The browser bundle is built from the same local runtime used for validation; it does not depend on a moving CDN URL.
+`showcase-next/` owns the showcase UI and compositions. `scripts/build-v2-showcase.mjs` validates the example DSL with the selected profile before writing the standalone file. Integration tests live under `tests/v2/`; see [development](development.md) for the full check commands.
 
-## Checks
-
-```sh
-node --test tests/showcase.test.mjs
-npx playwright install chromium
-npm run test:showcase
-```
-
-The catalog test compares every entry against the canonical schema and source catalog, checks structural and semantic validation, required hosts, dependency closure and the explicit rejection. Browser tests mount every entry at 390 and 1440 pixels, compare displayed JSON with its source, test search/copy/download/reset/history, and capture light/dark views at 390, 768 and 1440 pixels. The tests live in the repository; results must be attributed to the exact version actually run.
-
-## Single-file offline delivery
-
-After building, run `node scripts/export-showcase-html.mjs`. Open `output/showcase-standalone.html` directly, with no local server. The file includes the complete current component catalog, full JSON examples, renderer, styles and licenses. Its bundled gallery is a separate composition view; counts describe protocol coverage, not completed visual equivalence. See [current alignment scope](control-alignment.md).
-
-## Purposeful demos and local media
-
-Layout entries use authored compositions: `col` has three vertically stacked cards, `row` places siblings horizontally, and `grid` demonstrates desktop spans with a one-column mobile layout. Divider and spacer samples retain surrounding content. The animate sample contains a visible card, explicit playback and stop controls; reduced-motion preferences keep content visible without movement.
-
-The supplementary **video · native playback** entry (`#video`) plays an original eight-second clip using the existing `html-view` node and native HTML video controls. Its video, poster, captions and transcript are embedded; it needs no account, cookie, remote embed or external request. It is an additional demonstration, not a new protocol node. The `youtube` entry is retained for compatibility and points to the working local demonstration.
-
-Code blocks, code citations and the displayed JSON use upright Consolas / Source Code Pro. The original Adobe WOFF2 files and complete SIL Open Font License are bundled so the exported HTML works without downloading a font.
+Parser, Node and DOM checks do not replace actual browser interaction, accessibility or visual review. Attribute verification results to the exact commit and scenarios that were run. Original public screenshot provenance is recorded in [the asset notes](assets/v2/README.md).

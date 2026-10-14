@@ -100,7 +100,7 @@ root = Stack([
 
 ### 嵌入网页，读取用户输入
 
-构建后，将前面的 DSL 保存为字符串 `dsl`，在通过 HTTP 提供的网页中挂载：
+先运行 `npm run build`，将前面的 DSL 保存为字符串 `dsl`，在通过 HTTP 提供的网页中挂载：
 
 ```js
 import { mount } from './dist/v2/inform-core.js';
@@ -137,25 +137,25 @@ window.addEventListener('pagehide', () => {
 
 数量表示注册目录规模，不表示每个组合都经过完整验收。复杂排版仍需结合目标屏幕检查；数据、媒体授权及外部服务由宿主应用提供。
 
+### 检查与构建自己的 DSL
+
+将界面保存为 `answer.openui`，从仓库根目录运行：
+
+```sh
+npm run build
+node bin/iui.mjs check answer.openui
+node bin/iui.mjs inspect answer.openui
+node bin/iui.mjs build answer.openui --out output/answer.html
+```
+
+`build` 默认在输出目录复制所需运行库与许可文件；交付时保留它们与 HTML 的相对路径。更多命令与包入口见 [API 与 CLI](docs/api.md)。
+
 ## 文档与更多示例
 
 - [接入与运行](docs/v2/quick-start.md) · [DSL 语法边界](docs/v2/dsl-compatibility.md)
 - [主题与组合](docs/v2/design-foundations.md) · [图标](docs/icons.md)
 - [文档索引](docs/README.md) · [开发指南](docs/development.md)
 - [安全边界](docs/security.md) · [更新日志](CHANGELOG.md)
-
-<details>
-<summary><strong>原有 iui/1 JSON API 与组件画廊</strong></summary>
-
-`iui/1` JSON API、CLI 和画廊继续保留，与上面的 V2 DSL 使用不同输入语法。
-
-[API / CLI](docs/api.md) · [画廊说明](docs/showcase.md)
-
-<p>
-  <a href="docs/assets/gallery-panorama.png"><img src="docs/assets/gallery-create.png" alt="iui/1 原创组件画廊：图表、表单与阅读工具" width="100%"></a>
-</p>
-
-</details>
 
 ## 一起改进
 

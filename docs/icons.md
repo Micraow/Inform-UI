@@ -1,8 +1,18 @@
 # Official icon catalog
 
-Inform UI vendors all **755** SVG component sources in [OpenAI Apps SDK UI](https://github.com/openai/apps-sdk-ui/tree/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg), pinned to commit `0f00143c7a639906f1621fe58e1b6be7b5bea46d`. These are static, native SVG definitions, with no React dependency. The catalog is separate from the iui/1 node catalog; 755 icons do not mean 755 new schema components.
+Inform UI vendors all **755** SVG component sources in [OpenAI Apps SDK UI](https://github.com/openai/apps-sdk-ui/tree/0f00143c7a639906f1621fe58e1b6be7b5bea46d/src/components/Icon/svg), pinned to commit `0f00143c7a639906f1621fe58e1b6be7b5bea46d`. These are static, native SVG definitions, with no React dependency. The glyph catalog is separate from the DSL component registry; 755 icons do not mean 755 UI components.
 
 The public entry points below are available from a built repository/package. This documentation does not imply that a new npm release has been published.
+
+## Use a glyph in DSL
+
+```text
+root = Stack([
+  Icon("Check", "Complete", "success", 24)
+])
+```
+
+Use the exact canonical name or a documented alias from the catalog. The label can be `null` for decorative icons. See [design foundations](v2/design-foundations.md) for tones, sizes and composition. The native SVG APIs below are host utilities; they do not introduce a separate interface authoring format.
 
 ## Small, per-icon imports
 

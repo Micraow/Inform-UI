@@ -12,5 +12,5 @@ export default defineConfig({
     headless: true,
     launchOptions: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {},
   },
-  webServer: { command: 'node scripts/serve-showcase.mjs', env: { PORT: '4176' }, url: 'http://127.0.0.1:4176', reuseExistingServer: false, timeout: 30000 },
+  webServer: { command: 'node scripts/serve-showcase.mjs output/showcase index.html', env: { PORT: '4176' }, url: 'http://127.0.0.1:4176', reuseExistingServer: false, timeout: 30000 },
 });

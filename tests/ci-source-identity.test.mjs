@@ -35,3 +35,16 @@ test('automatic current-source checks do not launch browsers', async () => {
  assert.ok(current.includes('run: npm run check'));
  assert.ok(current.includes('node scripts/check-generated.mjs'));
 });
+
+test('focused foundation and code workflows also require explicit browser opt-in',async()=>{
+ const optIn="if: ${{ github.event_name == 'workflow_dispatch' && inputs.browsers }}";
+ for(const [file,names] of [
+  ['foundation-layout.yml',['Install the lock-pinned browser and licensed CJK font','Check foundation layout serially']],
+  ['code-highlighting.yml',['Install lock-pinned Chromium','Verify actual colors and trusted copy serially']]
+ ]){
+  const text=await readFile('.github/workflows/'+file,'utf8');
+  assert.match(text,/workflow_dispatch:\n    inputs:\n      browsers:/);assert.match(text,/type: boolean\n        default: false/);
+  for(const name of names)assert.ok(text.includes('- name: '+name+'\n        '+optIn),name);
+  assert.match(text,/node --test/);
+ }
+});

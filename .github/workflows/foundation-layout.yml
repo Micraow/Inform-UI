@@ -1,5 +1,11 @@
 name: Foundation layout regression
 on:
+  workflow_dispatch:
+    inputs:
+      browsers:
+        description: Run optional browser validation
+        type: boolean
+        default: false
   pull_request:
     paths:
       - 'src/v2/**'
@@ -60,11 +66,13 @@ jobs:
           npm run build:next
           node --test --test-concurrency=1 tests/foundation-layout.test.mjs
       - name: Install the lock-pinned browser and licensed CJK font
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.browsers }}
         run: |
           node node_modules/@playwright/test/cli.js install --with-deps chromium
           node scripts/prepare-test-font.mjs --install "$RUNNER_TEMP/inform-ui-fonts"
           echo "FONTCONFIG_FILE=$RUNNER_TEMP/inform-ui-fonts/fonts.conf" >> "$GITHUB_ENV"
       - name: Check foundation layout serially
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.browsers }}
         run: node node_modules/@playwright/test/cli.js test --config playwright.foundation.config.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: failure()

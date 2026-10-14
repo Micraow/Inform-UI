@@ -20,6 +20,7 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "src/v2"
+    "src/v2",
+    "src/public"
   ]
 }

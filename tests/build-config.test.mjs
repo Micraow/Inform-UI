@@ -11,7 +11,7 @@ function config(file) {
   return parsed;
 }
 
-test('legacy declarations keep their public layout without compiling the separate React source tree', () => {
+test('historical internal declarations retain their layout without compiling the DSL source tree', () => {
   const legacy = config('tsconfig.json');
   assert.equal(legacy.options.rootDir, path.resolve('src'));
   assert.ok(legacy.fileNames.includes(path.resolve('src/index.ts')));
@@ -19,11 +19,25 @@ test('legacy declarations keep their public layout without compiling the separat
   assert.ok(legacy.fileNames.every(file => !file.startsWith(path.resolve('src/v2') + path.sep)));
 });
 
-test('the React source tree retains strict checking with its own JSX and package aliases', () => {
+test('the DSL implementation retains strict checking with its own JSX and package aliases', () => {
   const next = config('tsconfig.v2.json');
   assert.equal(next.options.strict, true);
   assert.equal(next.options.jsx, ts.JsxEmit.ReactJSX);
   assert.ok(next.fileNames.includes(path.resolve('src/v2/browser.ts')));
   assert.ok(next.fileNames.includes(path.resolve('packages/chart-extension/src/renderers.tsx')));
   assert.ok(next.options.paths['@inform/component-contract']);
+});
+
+test('public declarations are isolated from the historical JSON authoring entry', () => {
+  const publicTypes = config('tsconfig.public.json');
+  assert.equal(publicTypes.options.rootDir, path.resolve('.'));
+  assert.equal(publicTypes.options.outDir, path.resolve('dist/public/types'));
+  assert.equal(publicTypes.options.declaration, true);
+  assert.equal(publicTypes.options.emitDeclarationOnly, true);
+  assert.equal(publicTypes.options.noEmit, false);
+  assert.equal(publicTypes.options.strict, true);
+  assert.ok(publicTypes.fileNames.includes(path.resolve('src/public/index.ts')));
+  assert.ok(publicTypes.fileNames.includes(path.resolve('src/public/core.ts')));
+  assert.ok(!publicTypes.fileNames.includes(path.resolve('src/index.ts')));
+  assert.ok(!publicTypes.fileNames.includes(path.resolve('src/browser.ts')));
 });

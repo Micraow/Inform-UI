@@ -1,6 +1,6 @@
 # Inform UI 2 · 快速开始
 
-Inform UI 将 DSL 解析为带严格契约的本地交互界面。浏览器运行不需要 OpenAI 账号、API 或服务。
+Inform UI 将 DSL 解析为带严格契约的本地交互界面。DSL 是唯一公开界面输入，源文件使用 `.openui`。当前为源码预览，尚未发布 npm 包；浏览器运行不需要 OpenAI 账号、API 或服务。
 
 ## 运行展示页
 
@@ -15,7 +15,7 @@ npm run showcase:next
 
 ## 嵌入网页
 
-先运行 `npm run build:next`，将 `dist/v2/` 作为静态资源目录提供。下面的页面假设该目录相对于 HTML 可访问：
+先运行 `npm run build`，将 `dist/v2/` 作为静态资源目录提供。下面的页面假设该目录相对于 HTML 可访问：
 
 ```html
 <!doctype html>
@@ -45,7 +45,7 @@ npm run showcase:next
 </html>
 ```
 
-通过 HTTP 提供模块页面；需要直接打开的单文件时，使用上面的展示页或配套 Skill 的离线交付工具。全量入口包含图表与领域视图，基础入口为 `dist/v2/inform-core.js`。
+通过 HTTP 提供模块页面；需要直接打开的单文件时，使用上面的展示页或配套 Skill 的离线交付工具。全量入口包含图表与领域视图，基础入口为 `dist/v2/inform-core.js`。源码包的对应导出为 `@micraow/inform-ui` / `@micraow/inform-ui/browser` 和 `@micraow/inform-ui/core`。
 
 ## 实例 API
 
@@ -57,8 +57,35 @@ npm run showcase:next
 
 状态由 `$name = initialValue` 声明，通过控件绑定或 `@Set` / `@Reset` 更新。DSL 中不执行任意 JavaScript，也不自动获得网络、预订、付款或消息权限。媒体 URL 由宿主的显式允许策略控制。详细规则见 [DSL 兼容矩阵](dsl-compatibility.md)。
 
+## 读取状态与接入宿主
+
+状态键保留 `$` 前缀。可读取快照，或订阅后续变化：
+
+```js
+console.log(view.getSnapshot()?.state.$pages);
+const unsubscribe = view.runtime.subscribe(({ state }) => {
+  console.log('新的阅读目标：', state.$pages);
+});
+// 不再监听时调用 unsubscribe()；移除界面时调用 view.dispose()。
+```
+
+界面状态只保存在当前页面。存储、服务端提交或消息回传由宿主自行实现并取得所需权限。
+
+## 检查与构建文件
+
+将 DSL 保存为 `answer.openui` 后运行：
+
+```sh
+npm run build
+node bin/iui.mjs check answer.openui
+node bin/iui.mjs inspect answer.openui
+node bin/iui.mjs build answer.openui --out output/answer.html
+```
+
+默认构建会把 `inform-ui.global.js` 与 `THIRD_PARTY_NOTICES.txt` 复制到 HTML 同目录；交付整个输出目录，保留相对路径。更多选项、组件目录与生成提示词见 [API 与 CLI](../api.md)。
+
 ## 编写界面
 
 从实际 profile 的生成提示词获取组件签名，按 [设计基础](design-foundations.md) 组合布局、语义色和图标。需要智能体辅助时，使用 [Inform-UI-skill](https://github.com/Micraow/Inform-UI-skill)，并保持 Skill 契约与运行库版本对应。
 
-源码仍保留 `iui/1` JSON 入口；其 [API、CLI](../api.md) 和 [画廊](../showcase.md) 单独使用。两种入口不共享输入语法。
+可在 [DSL 展示页](../showcase.md) 中编辑和下载示例。组件契约、内部求值树与 Schema 可用作检查资料，不是另一套创作输入。

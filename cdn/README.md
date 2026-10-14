@@ -1,17 +1,21 @@
-# Inform-UI browser assets
+# Inform UI DSL browser assets
 
-This snapshot contains 214 registered protocol nodes and 209 implemented software components. Use all JavaScript, CSS, schema, fonts and integrity metadata from the same immutable commit. The corrected-age component is bounded date arithmetic, not a clinically validated assessment or treatment tool.
+The current prebuilt DSL runtime lives in `next/`:
 
-- `iui.min.js`: self-contained ES module.
-- `iui.global.min.js`: classic script exposing `window.IUI`.
-- `iui.css`: external styles, including relative bundled KaTeX fonts.
-- `iui.schema.json` and `schema/`: complete protocol and discovery subsets.
-- `integrity.json`: byte lengths, SHA-256 and SHA-384 SRI for all 52 assets.
+- `next/inform-ui.global.js`: classic script exposing `window.InformUI`.
+- `next/THIRD_PARTY_NOTICES.txt`: licenses to retain beside redistributed copies.
+- `next/runtime-lock.json`: metadata for the checked-in runtime snapshot.
 
-The browser API provides `validateDocument`, `mount`, update/dispose and state controls. `compileHtml` is a Node API. JSON documents are not uploaded by this library; optional supplied remote media may require explicit host permission. Initial delivery from a third-party CDN itself requires a network request.
+Use [the browser guide](../docs/cdn.md) for the current CDN URL and [the DSL quick start](../docs/v2/quick-start.md) for mounting, state and lifecycle APIs. `InformUI.mount(container, { source, theme })` accepts DSL text; the library does not automatically upload the source or state.
 
-Use a verified full commit SHA, for example `https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@<full-commit>/cdn/iui.global.min.js`. Never mix assets from different commits. Repository publication and third-party CDN cache availability are separate checks.
+The rolling URL is:
 
-Rebuild with the pinned lockfile: `npm ci && npm run generate && npm run build && npm run build:cdn`. JavaScript includes licensed dependencies identified in `THIRD_PARTY_NOTICES.md`; fonts and their license are bundled. The library requires no OpenAI account or service.
+```text
+https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@main/cdn/next/inform-ui.global.js
+```
 
-Validation records are version-scoped. This candidate follows the previously validated 933 snapshot and adds the two host-form reset repairs and bounded date arithmetic. For the exact 214 assets, independent validation passed all 52 byte/hash/SRI checks and 15 focused real-Chromium cases. Consumer validation passed 12 positive and 8 negative schema cases per ESM/global entry, 8 combined DOM flows, and a real standalone document. These are focused results; historical full-suite counts are not new runs.
+`next/` is the current asset directory, not an alternative public API. For reproducible delivery, use a full immutable commit SHA and matching license files. A moving branch is not a version lock, and CDN caches may delay updates. Repository publication, CDN byte verification and real-browser rendering checks are separate results.
+
+Build the DSL implementation locally with `npm ci --ignore-scripts` and `npm run build`. Generated browser files and matching notices are in `dist/v2/`. The [CLI](../docs/api.md) can build `.openui` source into HTML and copy its local runtime and notices for delivery. The package remains private and unpublished.
+
+Other historical assets in this directory support repository regression fixtures; they are not supported public entry points. Runtime use requires no OpenAI account or service. Any permitted remote media and initial third-party CDN loading require their own network requests.

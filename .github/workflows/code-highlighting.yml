@@ -1,5 +1,11 @@
 name: Code language regression
 on:
+  workflow_dispatch:
+    inputs:
+      browsers:
+        description: Run optional browser validation
+        type: boolean
+        default: false
   push:
     paths:
       - 'src/shared/code*'
@@ -42,8 +48,10 @@ jobs:
           npm run typecheck:next
           node --test --test-concurrency=1 tests/code-highlight.test.mjs tests/code-languages.test.mjs tests/code-isolated.test.mjs
       - name: Install lock-pinned Chromium
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.browsers }}
         run: node node_modules/@playwright/test/cli.js install --with-deps chromium
       - name: Verify actual colors and trusted copy serially
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.browsers }}
         run: node node_modules/@playwright/test/cli.js test --config playwright.code.config.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

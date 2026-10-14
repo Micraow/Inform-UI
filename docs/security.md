@@ -1,31 +1,29 @@
-# API and security model
+# DSL API and security model
 
-`iui/1` is data, never executable source. Content text is inserted through text nodes. The only HTML sink is KaTeX's generated visual HTML plus accessible MathML with `trust:false`, bounded expansion/size, and strict parsing; model HTML never enters that sink directly. Unsupported TeX falls back to visible source.
+Inform UI interprets a bounded DSL. It does not evaluate authored text as JavaScript. The public package, browser entry and CLI take DSL source; structured AST, IR, snapshots and schema metadata are internal representations or inspection output.
 
-## Validation
+## Parsing and evaluation
 
-The JSON Schema is generated from `scripts/generate-schema.mjs`. TypeScript declarations and the Ajv standalone validator are generated in the same step. CI rejects drift. Browser code imports the already generated validator, avoiding runtime `new Function` and allowing a script hash CSP without `unsafe-eval`.
+The parser accepts declarations, component calls, constrained expressions and the documented builtins. The runtime validates names, component parameters, references and state before accepting a complete program. Only parser-created AST nodes are executable: objects that resemble AST or action records remain data and do not acquire authority.
 
-`validateDocument(input)` returns `{ok:true,document}` or `{ok:false,issues}`. It accepts plain JSON values only; custom prototypes, accessors, cyclic objects, reserved keys, nonfinite numbers, and excessive values/text/depth are rejected before Ajv traversal. Semantics additionally reject unknown references, computed cycles, bad operator arities/types, numerical errors, duplicate IDs, unknown state bindings, broken topology endpoints, malformed table widths, invalid chart data, and unsafe resource declarations.
+Property access is limited to own properties. Dangerous prototype keys, non-finite results, invalid arithmetic, unknown references and declaration cycles are rejected. Parsing, evaluation, arrays, strings and rendered output have resource budgets. These limits reduce resource exhaustion; they do not promise fixed latency for every accepted program.
 
-`evaluateValue(value,state,computed)` evaluates a constrained expression and throws on invalid input. `evaluateState(document,override)` returns validated, frozen state/computed results or issues. Controller state updates use this checked path. Numeric operators do not coerce strings. `if` is lazy at evaluation but both branches are inspected for references and types; runtime arithmetic errors still reject the state transition.
+State updates are transactions. Failed updates do not replace the last accepted state. Bindings and local action handles belong to a specific runtime revision and become invalid when that revision is superseded or the runtime is disposed. See the [DSL contract](v2/dsl-compatibility.md) for exact syntax, limits and differences from upstream OpenUI.
 
-Limits include 64 JSON nesting levels, 2,000 node-like objects, 50,000 values, a two-million-UTF-16-code-unit text budget (including JSON keys, retained across merged state updates), and schema-specific row/series/child limits. These limits reduce resource exhaustion; they are not a promise of fixed latency for every valid document.
+## Browser and host boundary
 
-## Browser boundary
+The installed profile chooses the trusted component definitions and renderers. DSL cannot inject a renderer, validator or JavaScript callback, access arbitrary DOM objects, import modules, or call `fetch`. Query, mutation, external tool execution and message-sending instructions are not enabled merely because their names appear in authored text.
 
-No raw HTML, CSS, JS, callback, import, network action, form submission, or arbitrary AppBlock is accepted. SVG uses a fixed shape list and numeric/color/geometry attribute allowlists. `native` is recognized solely to report `UNSUPPORTED_NATIVE`. It does not load an adapter.
+Text and code content are displayed through the components' defined rendering paths, not executed as authored JavaScript. Components that render mathematics, SVG or media apply their own bounded contracts. The embedding application remains responsible for selecting an appropriate profile and reviewing its data and resource policy.
 
-Model URLs are limited to the documented link/image policy. Remote images require a reader action and use no-referrer. URLs still lead to third parties when a reader activates them; validation does not certify the destination's content or privacy. Callers handling confidential documents should avoid remote URLs altogether.
+The host may supply explicit image, animation and media URL allow callbacks. Allowing a URL can cause a request to that destination; it does not establish the destination's privacy or trustworthiness. Applications handling confidential content should avoid unnecessary remote resources. Loading a third-party CDN runtime also makes a network request to that CDN.
 
-Compiled inline HTML applies a CSP containing the exact SHA-256 of its runtime. It blocks network connections, objects, forms, base URL changes, and remote scripts/fonts; font-src data: permits the bundled official WOFF2 fonts. Styles allow inline rules because the renderer writes bounded, host-owned numeric/enum properties. The host browser's CSP remains authoritative for `mount`; pass `styles:false` and serve the stylesheet when embedding under a stricter host policy.
+The host browser's Content Security Policy remains authoritative. The DSL runtime includes trusted styles and may need host CSP configuration for those styles and allowed media. Do not assume the former JSON compiler's CSP, stylesheet options or controller methods apply to this API.
 
-`compileHtml(input,{assets:'inline',backend:'portable',lang})` emits one self-contained HTML file. `compileArtifact(input,{assets:'shared',assetBase:'./iui-assets/',lang})` also returns an asset map with safe relative file paths. Shared output is intended for a static HTTP server; no claim is made for every browser's file-origin shared-script policy. Both reject unsupported backends.
+## Delivery and lifecycle
 
-## Lifecycle and scope
+`mount(container, { source })` creates a local instance. `commit(source)` submits a complete program with new initial state; `preview(source)` displays a passive partial preview with interactions disabled. `dispose()` releases the instance's runtime and owned DOM resources and can be called repeatedly.
 
-Controllers isolate state. `update` validates the complete next document and resets state. `setState` merges a scalar patch, verifies all bindings and derived values, then updates existing nodes without replacing focused controls. `dispose` is idempotent and removes its owned elements, listeners, and resize observer. External DOM edits by the embedding host are outside this contract.
+The CLI builds `.openui` source into HTML. By default it copies the matching local runtime and license notices next to that HTML. Keep the generated files together, and verify any explicit runtime URL against the source contract used to create the page. Build output is not a hosted service or an automatic upload.
 
-The library does not authenticate users, persist documents, store credentials, run simulations as scientific truth, fetch sources, or verify model-generated facts. Applications remain responsible for provenance, permissions, and their host threat model.
-
-JSON Schema string `maxLength` and evaluated Value/state string maxima use Unicode code points. A Value string accepts at most 12,000 code points, including astral characters, while the independent whole-document resource budget still counts UTF-16 storage units. The resolved evaluation context (state, computed scalars and the evaluated Value) is checked against the same storage budget before DOM creation or refresh; accepted documents therefore do not defer that rejection until rendering. Native form minLength/maxLength constraints retain HTML UTF-16 semantics; they do not redefine the global string contract.
+The library does not authenticate users, persist documents, store credentials, send form values, verify model-generated facts or grant permission for external actions. Applications remain responsible for data provenance, user consent, server-side validation and their host threat model. Local software demonstrations and calculator outputs do not establish scientific or clinical validity.

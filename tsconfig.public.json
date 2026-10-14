@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.v2.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmitOnError": true,
+    "rootDir": ".",
+    "outDir": "dist/public/types"
+  },
+  "include": [
+    "src/public/**/*.ts",
+    "src/icons/**/*.ts",
+    "src/v2/assets.d.ts",
+    "packages/domain-view-renderer/src/assets.d.ts"
+  ]
+}

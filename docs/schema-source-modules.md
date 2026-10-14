@@ -25,6 +25,12 @@ Only fixed, trusted repository modules can be selected. IDs are not import paths
 
 `shared/value` provides the bounded scalar/reference/operator grammar shared by all trial families. It has no renderable node of its own.
 
+以下是历史渲染器与回归夹具使用的内部状态及表达式契约，不是公开 JSON API。新的界面应使用 DSL；下述数据树也不作为 DSL 程序执行。
+
+`state` 保存字符串、有限数值或布尔值。引用写作 `{ "$": "gain" }`，计算写作 `{ "op": "mul", "args": [12, { "$": "gain" }] }`。
+
+可用操作符：`add`、`sub`、`mul`、`div`、`max`、`min`、`round`、`abs`、`clamp`、`gt`、`lt`、`eq`、`if`、`format`。它们是受约束的数据树，不是 JavaScript 源码。未知引用、循环依赖、非法参数、除零及非有限结果会被拒绝。
+
 ## text
 
 `foundations/text` provides text, title and caption plus text runs. It depends on the shared expression grammar.
