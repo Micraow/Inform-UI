@@ -1,0 +1,214 @@
+[
+  {
+    "language": "bash",
+    "aliases": [
+      "sh",
+      "zsh"
+    ],
+    "value": "#!/usr/bin/env bash\nprintf '%s\\n' \"$HOME\"\n# Original shell sample\n"
+  },
+  {
+    "language": "javascript",
+    "aliases": [
+      "js",
+      "jsx",
+      "mjs",
+      "cjs"
+    ],
+    "value": "const title = \"demo\";\nconsole.log(title, 7);\n// Original JavaScript sample\n"
+  },
+  {
+    "language": "typescript",
+    "aliases": [
+      "ts",
+      "tsx",
+      "mts",
+      "cts"
+    ],
+    "value": "interface Item { title: string }\nconst count: number = 7;\n"
+  },
+  {
+    "language": "json",
+    "aliases": [
+      "jsonc",
+      "json5"
+    ],
+    "value": "{\"name\":\"demo\",\"active\":true,\"count\":7}"
+  },
+  {
+    "language": "python",
+    "aliases": [
+      "py",
+      "gyp",
+      "ipython"
+    ],
+    "value": "def label(count=7):\n    return \"demo\" # original sample\n"
+  },
+  {
+    "language": "css",
+    "aliases": [],
+    "value": ".notice { color: #123456; margin: 7px; }\n/* original sample */"
+  },
+  {
+    "language": "xml",
+    "aliases": [
+      "html",
+      "xhtml",
+      "rss",
+      "atom",
+      "xjb",
+      "xsd",
+      "xsl",
+      "plist",
+      "wsf",
+      "svg"
+    ],
+    "value": "<section data-count=\"7\">demo</section>\n<!-- original sample -->"
+  },
+  {
+    "language": "sql",
+    "aliases": [],
+    "value": "SELECT label, 7 AS count FROM entries WHERE active = TRUE;\n-- original sample\n"
+  },
+  {
+    "language": "yaml",
+    "aliases": [
+      "yml"
+    ],
+    "value": "name: demo\ncount: 7\nactive: true\n# original sample\n"
+  },
+  {
+    "language": "markdown",
+    "aliases": [
+      "md",
+      "mkdown",
+      "mkd"
+    ],
+    "value": "# Demo\n\n**strong** and `value`\n\n[link](https://example.invalid)\n"
+  },
+  {
+    "language": "c",
+    "aliases": [
+      "h"
+    ],
+    "value": "#include <stddef.h>\nint total = 7;\nconst char *name = \"demo\"; // original sample\n"
+  },
+  {
+    "language": "cpp",
+    "aliases": [
+      "cc",
+      "c++",
+      "h++",
+      "hpp",
+      "hh",
+      "hxx",
+      "cxx"
+    ],
+    "value": "#include <string>\nclass Item { public: int count = 7; };\nstd::string name = \"demo\"; // original sample\n"
+  },
+  {
+    "language": "java",
+    "aliases": [
+      "jsp"
+    ],
+    "value": "class Item { public static void main(String[] args) { int count = 7; System.out.println(\"demo\"); } }\n"
+  },
+  {
+    "language": "rust",
+    "aliases": [
+      "rs"
+    ],
+    "value": "fn main() { let count: u32 = 7; println!(\"demo {count}\"); }\n"
+  },
+  {
+    "language": "go",
+    "aliases": [
+      "golang"
+    ],
+    "value": "package main\nfunc main() { count := 7; println(\"demo\", count) }\n"
+  },
+  {
+    "language": "csharp",
+    "aliases": [
+      "cs",
+      "c#"
+    ],
+    "value": "class Item { static void Main() { int count = 7; System.Console.WriteLine(\"demo\"); } }\n"
+  },
+  {
+    "language": "kotlin",
+    "aliases": [
+      "kt",
+      "kts",
+      "ktm",
+      "ktx"
+    ],
+    "value": "fun main() { val count: Int = 7; println(\"demo $count\") }\n"
+  },
+  {
+    "language": "swift",
+    "aliases": [],
+    "value": "let count: Int = 7\nprint(\"demo \\(count)\")\n"
+  },
+  {
+    "language": "ruby",
+    "aliases": [
+      "rb",
+      "gemspec",
+      "podspec",
+      "thor",
+      "irb"
+    ],
+    "value": "count = 7\nputs \"demo #{count}\" # original sample\n"
+  },
+  {
+    "language": "php",
+    "aliases": [],
+    "value": "<?php\n$count = 7;\necho \"demo\", $count; // original sample\n"
+  },
+  {
+    "language": "dockerfile",
+    "aliases": [
+      "docker"
+    ],
+    "value": "FROM alpine:3\nENV MODE=demo\nRUN printf '%s\\n' \"$MODE\"\n"
+  },
+  {
+    "language": "powershell",
+    "aliases": [
+      "pwsh",
+      "ps",
+      "ps1"
+    ],
+    "value": "$count = 7\nWrite-Output \"demo $count\"\n# original sample\n"
+  },
+  {
+    "language": "shell",
+    "aliases": [
+      "console",
+      "shellsession"
+    ],
+    "value": "$ printf '%s\\n' \"demo\"\ndemo\n"
+  },
+  {
+    "language": "ini",
+    "aliases": [
+      "toml"
+    ],
+    "value": "[demo]\nname = \"sample\"\ncount = 7\n"
+  },
+  {
+    "language": "diff",
+    "aliases": [
+      "patch"
+    ],
+    "value": "--- a/demo.txt\n+++ b/demo.txt\n@@ -1 +1 @@\n-before\n+after\n"
+  },
+  {
+    "language": "graphql",
+    "aliases": [
+      "gql"
+    ],
+    "value": "query Demo($count: Int = 7) { entries(limit: $count) { name active } }\n"
+  }
+]

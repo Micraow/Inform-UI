@@ -16,7 +16,38 @@ Block code defaults to syntax highlighting, a visible language label, and one-cl
 
 ## Highlighting
 
-The implementation uses highlight.js 11.12.0 (BSD-3-Clause), a private core instance and only these bundled grammars: Bash, JavaScript, TypeScript, JSON, Python, CSS, XML/HTML, SQL, YAML and Markdown, including their upstream aliases. Bash supports `bash`, `sh` and `zsh`; JavaScript supports `js`; TypeScript supports `ts`. Language matching is case-insensitive but not whitespace-trimmed.
+The implementation uses highlight.js 11.12.0 (BSD-3-Clause) in a private core instance. These 26 grammars are bundled; the complete upstream language collection is not imported. Language matching is case-insensitive but not whitespace-trimmed. Every listed name and alias has an original exact-text regression sample.
+
+| Grammar name | Accepted aliases |
+| --- | --- |
+| `bash` | `sh`, `zsh` |
+| `javascript` | `js`, `jsx`, `mjs`, `cjs` |
+| `typescript` | `ts`, `tsx`, `mts`, `cts` |
+| `json` | `jsonc`, `json5` |
+| `python` | `py`, `gyp`, `ipython` |
+| `css` | — |
+| `xml` | `html`, `xhtml`, `rss`, `atom`, `xjb`, `xsd`, `xsl`, `plist`, `wsf`, `svg` |
+| `sql` | — |
+| `yaml` | `yml` |
+| `markdown` | `md`, `mkdown`, `mkd` |
+| `c` | `h` |
+| `cpp` | `cc`, `c++`, `h++`, `hpp`, `hh`, `hxx`, `cxx` |
+| `java` | `jsp` |
+| `rust` | `rs` |
+| `go` | `golang` |
+| `csharp` | `cs`, `c#` |
+| `kotlin` | `kt`, `kts`, `ktm`, `ktx` |
+| `swift` | — |
+| `ruby` | `rb`, `gemspec`, `podspec`, `thor`, `irb` |
+| `php` | — |
+| `dockerfile` | `docker` |
+| `powershell` | `pwsh`, `ps`, `ps1` |
+| `shell` | `console`, `shellsession` |
+| `ini` | `toml` |
+| `diff` | `patch` |
+| `graphql` | `gql` |
+
+Use `bash` / `sh` for shell scripts and `shell` / `console` / `shellsession` for terminal transcripts with prompts. `powershell` is separate. HTML is an alias of `xml`; `svg` means displayed source, never live SVG. `ini` also handles TOML. Embedded Bash in Dockerfile, Ruby in YAML, and GraphQL in JS/TS use the same bundled grammars. PHP source uses `php`; mixed PHP/HTML templates and languages outside this table are not promised. Highlighting does not execute code, and source text and copied text remain unchanged.
 
 There is no automatic detection or remote grammar loading. Missing language displays “Plain text” (or “纯文本” in Chinese) and stays unhighlighted. Unknown language displays the supplied label literally and stays unhighlighted. Highlighting is a display aid, not syntax validation.
 

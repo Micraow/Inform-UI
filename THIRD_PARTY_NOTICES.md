@@ -258,7 +258,7 @@ SOFTWARE.
 
 https://github.com/highlightjs/highlight.js/tree/11.12.0
 
-Bundled core and selected grammars: Bash, JavaScript, TypeScript, JSON, Python, CSS, XML/HTML, SQL, YAML, Markdown. No third-party theme is included.
+Bundled core and selected grammars: Bash, JavaScript, TypeScript, JSON, Python, CSS, XML/HTML, SQL, YAML, Markdown, C, C++, Java, Rust, Go, C#, Kotlin, Swift, Ruby, PHP, Dockerfile, PowerShell, Shell Session, INI/TOML, Diff, GraphQL. No third-party theme is included.
 
 BSD 3-Clause License
 

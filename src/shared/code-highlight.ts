@@ -9,9 +9,25 @@ import xml from 'highlight.js/lib/languages/xml';
 import sql from 'highlight.js/lib/languages/sql';
 import yaml from 'highlight.js/lib/languages/yaml';
 import markdown from 'highlight.js/lib/languages/markdown';
+import c from 'highlight.js/lib/languages/c';
+import cpp from 'highlight.js/lib/languages/cpp';
+import java from 'highlight.js/lib/languages/java';
+import rust from 'highlight.js/lib/languages/rust';
+import go from 'highlight.js/lib/languages/go';
+import csharp from 'highlight.js/lib/languages/csharp';
+import kotlin from 'highlight.js/lib/languages/kotlin';
+import swift from 'highlight.js/lib/languages/swift';
+import ruby from 'highlight.js/lib/languages/ruby';
+import php from 'highlight.js/lib/languages/php';
+import dockerfile from 'highlight.js/lib/languages/dockerfile';
+import powershell from 'highlight.js/lib/languages/powershell';
+import shell from 'highlight.js/lib/languages/shell';
+import ini from 'highlight.js/lib/languages/ini';
+import diff from 'highlight.js/lib/languages/diff';
+import graphql from 'highlight.js/lib/languages/graphql';
 /** A private instance: no auto-detection, plugins, network, or global DOM scanning. */
 const highlighter=core.newInstance();
-for(const [name,grammar] of Object.entries({bash,javascript,typescript,json,python,css,xml,sql,yaml,markdown}))highlighter.registerLanguage(name,grammar);
+for(const [name,grammar] of Object.entries({bash,javascript,typescript,json,python,css,xml,sql,yaml,markdown,c,cpp,java,rust,go,csharp,kotlin,swift,ruby,php,dockerfile,powershell,shell,ini,diff,graphql}))highlighter.registerLanguage(name,grammar);
 highlighter.safeMode();
 export interface CodeToken {kind:string;text:string}
 const raw=(value:string):CodeToken[]=>value?[{kind:'text',text:value}]:[];
