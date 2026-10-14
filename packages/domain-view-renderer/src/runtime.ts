@@ -513,7 +513,8 @@ export function renderDomainView(descriptor:ViewDescriptor,props:Record<string,u
  const dispose=()=>{if(disposed)return;disposed=true;try{lifetime.dispose();}finally{container.remove();}};
  if(external.signal){external.signal.addEventListener('abort',dispose,{once:true});lifetime.own(()=>external.signal?.removeEventListener('abort',dispose));}
  try {root.append(render(node));
-  for(const checkbox of container.querySelectorAll<HTMLInputElement>('input[type=checkbox]')){const parent=checkbox.parentElement;if(!parent||parent.querySelector(':scope > .if-domain-choice-check'))continue;parent.classList.add('if-domain-choice-owner');const glyph=(context as any).officialIcon('Check',{size:16,className:'if-domain-choice-check'});checkbox.after(glyph);}
+  // Decorate only migrated native inputs. Foundation children own their glyphs and switches.
+  for(const checkbox of container.querySelectorAll<HTMLInputElement>('input.if-control[type=checkbox]')){const parent=checkbox.parentElement;if(!parent||parent.querySelector(':scope > .if-domain-choice-check'))continue;parent.classList.add('if-domain-choice-owner');const glyph=(context as any).officialIcon('Check',{size:16,className:'if-domain-choice-check'});checkbox.after(glyph);}
 
   if(descriptor.oldType==='pressable'&&props.onPress){lifetime.listen(container,'inform:view-press',event=>{queueMicrotask(lifetime.guard(()=>{if(!event.defaultPrevented)external.dispatchLocal?.(props.onPress);}));});}
   const structural=['details','section','figure','grid-item','metric-grid','metric','tab-panel','spacer'].includes(descriptor.oldType);

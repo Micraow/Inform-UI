@@ -37,16 +37,18 @@ export const migratedControlCSS=`
 
 .if-root .if-domain .if-control:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=hidden]){font:14px/1.5 var(--if-font);color:var(--if-text);background:var(--if-background);border:1px solid var(--if-border);border-radius:999px;min-height:40px;padding:8px 12px;min-width:0;max-width:100%}
 .if-root .if-domain :is(select,textarea,button),.if-root .if-domain .if-button{font:14px/1.5 var(--if-font)}
-.if-root .if-domain label:has(>input:is([type=checkbox],[type=radio])){display:flex;align-items:center;gap:10px;min-height:44px}
-.if-root .if-domain input:is([type=checkbox],[type=radio]){appearance:none;flex:none;width:20px;height:20px;min-width:20px;min-height:20px;margin:0;padding:0;border:1.5px solid var(--if-border);border-radius:50%;background:var(--if-background);cursor:pointer}
+.if-root .if-domain label:has(>input.if-control:is([type=checkbox],[type=radio])){display:flex;align-items:center;gap:10px;min-height:44px}
+.if-root .if-domain input.if-control:is([type=checkbox],[type=radio]){appearance:none;flex:none;width:20px;height:20px;min-width:20px;min-height:20px;margin:0;padding:0;border:1.5px solid var(--if-border);border-radius:50%;background:var(--if-background);cursor:pointer}
+/* Migrated selects have no foundation icon wrapper: keep the native arrow. */
+.if-root .if-domain select.if-select:not(.if-select-wrap>select){appearance:auto;padding-inline-end:12px}
 .if-root .if-domain .iui-checklist-items{padding-inline-start:0}
 .if-root .if-domain .iui-field-checkbox{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:10px;row-gap:4px;align-items:center}
-.if-root .if-domain .iui-field-checkbox>input[type=checkbox]{grid-area:1/1;align-self:center;justify-self:center}
+.if-root .if-domain .iui-field-checkbox>input.if-control[type=checkbox]{grid-area:1/1;align-self:center;justify-self:center}
 .if-root .if-domain .iui-field-checkbox>.iui-field-label{grid-area:1/2;display:flex;align-items:center;min-height:44px;margin:0;text-align:start}
 .if-root .if-domain .iui-field-checkbox>:is(.iui-field-hint,.iui-field-error){grid-column:2;margin:0;text-align:start}
 .if-root .if-domain .iui-field-checkbox>.if-domain-choice-check{position:static;grid-area:1/1;transform:none;align-self:center;justify-self:center}
-.if-root .if-domain input[type=checkbox]:checked{background:var(--if-accent);border-color:var(--if-accent)}
-.if-root .if-domain input[type=radio]:checked{background:var(--if-accent);border-color:var(--if-accent);box-shadow:inset 0 0 0 4px var(--if-background)}
+.if-root .if-domain input.if-control[type=checkbox]:checked{background:var(--if-accent);border-color:var(--if-accent)}
+.if-root .if-domain input.if-control[type=radio]:checked{background:var(--if-accent);border-color:var(--if-accent);box-shadow:inset 0 0 0 4px var(--if-background)}
 .if-root .if-domain :is(input,textarea,select,button):focus-visible{outline:2px solid var(--if-focus);outline-offset:3px}
 .if-root .if-domain :is(input,textarea,select,button):disabled{cursor:not-allowed;color:var(--if-disabled-text);border-color:var(--if-disabled-border)}
 .if-root .if-domain :is(input,textarea,select)[aria-invalid=true]{border-color:var(--if-error)}
