@@ -7,8 +7,10 @@
     "read-only rating-summary row",
     "upright Consolas / embedded Source Code Pro for code and citations",
     "highlight.js grammar scopes use existing code theme colors",
-    "shared rounded code panel, compact icon-only controls and local word wrapping"
+    "shared rounded code panel, compact icon-only controls and local word wrapping",
+    "additional language grammar scopes stay within iui-code-token selectors; finance styles are unchanged"
   ],
   "historicalBaselinePreserved": "tests/finance-status-baseline-118.json",
-  "codePanelStyleSha256": "740265632e6320d136ed46456ba53c7a6fc5726982f83c7f1b03b08effa17032"
+  "codePanelStyleSha256": "f353a2df973db29ad3768285d774223df08cf92f604ff659c8710fa1d6de0cda",
+  "financeStatusStyleSha256": "220a642901f19775aa88435b5e843afb9d183c33bb8c2bafb33f07f29ed80fd0"
 }
