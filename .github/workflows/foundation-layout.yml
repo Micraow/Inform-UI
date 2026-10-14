@@ -17,7 +17,7 @@ on:
       - 'package*.json'
       - '.github/workflows/foundation-layout.yml'
   push:
-    branches: [main, fix/foundation-text-wrap-20261014]
+    branches: [main]
     paths:
       - 'src/v2/**'
       - 'packages/component-contract/**'
