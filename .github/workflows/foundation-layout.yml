@@ -1,0 +1,72 @@
+name: Foundation layout regression
+on:
+  pull_request:
+    paths:
+      - 'src/v2/**'
+      - 'packages/component-contract/**'
+      - 'packages/parser-runtime/**'
+      - 'examples/v2/**'
+      - 'tests/browser/foundation-layout.spec.mjs'
+      - 'tests/assets/fonts/**'
+      - 'scripts/build-v2.mjs'
+      - 'scripts/prepare-foundation-tests.mjs'
+      - 'scripts/prepare-test-font.mjs'
+      - 'scripts/serve-tests.mjs'
+      - 'playwright.foundation.config.mjs'
+      - 'package*.json'
+      - '.github/workflows/foundation-layout.yml'
+  push:
+    branches: [main, fix/foundation-text-wrap-20261014]
+    paths:
+      - 'src/v2/**'
+      - 'packages/component-contract/**'
+      - 'packages/parser-runtime/**'
+      - 'examples/v2/**'
+      - 'tests/browser/foundation-layout.spec.mjs'
+      - 'tests/assets/fonts/**'
+      - 'scripts/build-v2.mjs'
+      - 'scripts/prepare-foundation-tests.mjs'
+      - 'scripts/prepare-test-font.mjs'
+      - 'scripts/serve-tests.mjs'
+      - 'playwright.foundation.config.mjs'
+      - 'package*.json'
+      - '.github/workflows/foundation-layout.yml'
+permissions:
+  contents: read
+jobs:
+  foundation-layout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: library
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: library
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Install locked dependencies and build only V2
+        run: |
+          mkdir -p ../ui-runtime
+          cp package.json package-lock.json ../ui-runtime/
+          (cd ../ui-runtime && npm ci --ignore-scripts)
+          ln -s ../ui-runtime/node_modules node_modules
+          npm run build:next
+      - name: Install the lock-pinned browser and licensed CJK font
+        run: |
+          node node_modules/@playwright/test/cli.js install --with-deps chromium
+          node scripts/prepare-test-font.mjs --install "$RUNNER_TEMP/inform-ui-fonts"
+          echo "FONTCONFIG_FILE=$RUNNER_TEMP/inform-ui-fonts/fonts.conf" >> "$GITHUB_ENV"
+      - name: Check foundation layout serially
+        run: node node_modules/@playwright/test/cli.js test --config playwright.foundation.config.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: failure()
+        with:
+          name: foundation-layout-${{ github.sha }}
+          path: library/test-results/
+          retention-days: 7
+          if-no-files-found: warn

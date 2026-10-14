@@ -18,8 +18,8 @@ for(const entry of ['inform-core','inform-ui'])for(const theme of ['light','dark
   if(edge){expect(Math.abs(geometry.grid.left-edge.left)).toBeLessThan(1);expect(Math.abs(geometry.grid.right-edge.right)).toBeLessThan(1);}else edge=geometry.grid;
  }
  await expect(page.locator('.if-card')).toContainText('4 层 × 每层 8 次工作量');await expect(page.locator('.if-card')).toContainText('32');
- const textChecks=await page.locator('.if-text').evaluateAll(nodes=>nodes.map(e=>{const rect=e.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(e);const text=range.getBoundingClientRect(),style=getComputedStyle(e);return{label:e.textContent,fontSize:parseFloat(style.fontSize),inside:text.left>=rect.left-1&&text.right<=rect.right+1&&text.top>=rect.top-1&&text.bottom<=rect.bottom+1,clipped:e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1};}));
- for(const item of textChecks){expect(item.fontSize,item.label).toBeGreaterThanOrEqual(12);expect(item.inside,item.label).toBe(true);expect(item.clipped,item.label).toBe(false);}
+ const textChecks=await page.locator('.if-text').evaluateAll(nodes=>nodes.map(e=>{const rect=e.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(e);const text=range.getBoundingClientRect(),style=getComputedStyle(e);return{label:e.textContent,rect:rect.toJSON(),text:text.toJSON(),lineRects:[...range.getClientRects()].map(r=>r.toJSON()),whiteSpace:style.whiteSpace,fontSize:parseFloat(style.fontSize),inside:text.left>=rect.left-1&&text.right<=rect.right+1&&text.top>=rect.top-1&&text.bottom<=rect.bottom+1,clipped:e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1};}));
+ for(const item of textChecks){expect(item.fontSize,item.label).toBeGreaterThanOrEqual(12);expect(item.inside,JSON.stringify(item)).toBe(true);expect(item.clipped,item.label).toBe(false);}
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);expect(errors).toEqual([]);
  if(entry==='inform-core')await page.screenshot({path:`test-results/foundation-layout-${theme}-${width}.png`,fullPage:true});
 });
@@ -60,4 +60,17 @@ for(const theme of ['light','dark'])test(`original foundation compositions and r
   }
   await page.screenshot({path:`test-results/foundation-${file}-${theme}-390.png`,fullPage:true});
  }
+});
+
+test('pinned CJK text retains indentation and fits narrow boxes',async({page})=>{
+ const font=await readFile(new URL('../assets/fonts/noto-cjk-sc/NotoSansCJKsc-Regular.otf',import.meta.url));
+ await page.route('**/inform-foundation-font.otf',route=>route.fulfill({contentType:'font/otf',body:font}));
+ await page.setViewportSize({width:320,height:500});await mount(page,source);
+ await page.addStyleTag({content:'@font-face{font-family:"Inform Layout Regression CJK";src:url("/inform-foundation-font.otf") format("opentype");font-display:block}.if-root{--if-font:"Inform Layout Regression CJK",sans-serif}'});
+ await page.evaluate(()=>document.fonts.load('14px "Inform Layout Regression CJK"'));
+ expect(await page.evaluate(()=>document.fonts.check('14px "Inform Layout Regression CJK"'))).toBe(true);
+ const measure=()=>page.locator('.if-text').last().evaluate(e=>{const r=e.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(e);const t=range.getBoundingClientRect();return{label:e.textContent,rect:r.toJSON(),text:t.toJSON(),lines:[...range.getClientRects()].map(x=>x.toJSON()),whiteSpace:getComputedStyle(e).whiteSpace,inside:t.left>=r.left-1&&t.right<=r.right+1&&t.top>=r.top-1&&t.bottom<=r.bottom+1,clipped:e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1};});
+ const actual=await measure();console.log('CJK default geometry',JSON.stringify(actual));
+ for(const css of ['.if-text{line-height:1.7}','.if-text{white-space:break-spaces}']){const style=await page.addStyleTag({content:css});console.log('CJK candidate geometry',css,JSON.stringify(await measure()));await style.evaluate(e=>e.remove());}
+ expect(actual.inside,JSON.stringify(actual)).toBe(true);expect(actual.clipped).toBe(false);
 });
