@@ -28,7 +28,7 @@ for (const path of ['/', '/standalone.html']) for (const width of [390, 1440]) {
     await context.setOffline(true);
     const meta = await video.evaluate(node => ({controls: node.controls, paused: node.paused, width: node.videoWidth, height: node.videoHeight, source: node.currentSrc, error: node.error}));
     expect(meta).toMatchObject({controls: true, paused: true, width: 320, height: 180, error: null});
-    expect(meta.source).toMatch(/^data:video\/mp4;base64,/);
+    expect(meta.source).toMatch(/^data:video\/webm;base64,/);
     // Exercise a real native player key activation, then verify decoded time moves.
     await video.focus(); await video.press('Space');
     await expect.poll(() => video.evaluate(node => !node.paused && node.currentTime > 0)).toBe(true);
@@ -67,7 +67,7 @@ test('video failure is explicit and reset restores playback without a provider r
   page.on('request', request => {if (!/^(http:\/\/127\.0\.0\.1:4176\/|data:|blob:|about:)/.test(request.url())) external.push(request.url());});
   const video = await openVideo(page, '/standalone.html'), child = childOf(page);
   await context.setOffline(true);
-  await video.evaluate(node => {node.querySelector('source').src = 'data:video/mp4;base64,AA=='; node.load();});
+  await video.evaluate(node => {node.querySelector('source').src = 'data:video/webm;base64,AA=='; node.load();});
   await expect(child.locator('#video-error')).toBeVisible();
   await expect(child.locator('#video-status')).toHaveText('Video unavailable');
   await child.locator('summary').click(); await expect(child.locator('details p')).toBeVisible();

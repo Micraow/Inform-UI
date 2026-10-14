@@ -54,10 +54,11 @@ function png(pixels) {
   return Buffer.concat([Buffer.from('89504e470d0a1a0a', 'hex'), chunk('IHDR', header), chunk('IDAT', deflateSync(scanlines)), chunk('IEND', Buffer.alloc(0))]);
 }
 
-export function createVideoExample(videoBytes, posterBytes, captions = captionText) {
-  if (!Buffer.isBuffer(videoBytes) || !videoBytes.length || videoBytes.length > 100000) throw Error('Use the bounded supplied MP4 asset.');
+export function createVideoExample(videoBytes, posterBytes, captions = captionText, mime = 'video/mp4') {
+  if (!['video/mp4', 'video/webm'].includes(mime)) throw Error('Use a supported local video MIME type.');
+  if (!Buffer.isBuffer(videoBytes) || !videoBytes.length || videoBytes.length > 100000) throw Error('Use the bounded supplied video asset.');
   if (!Buffer.isBuffer(posterBytes) || !posterBytes.length || posterBytes.length > 10000) throw Error('Use the bounded supplied PNG poster.');
-  const videoURI = `data:video/mp4;base64,${videoBytes.toString('base64')}`;
+  const videoURI = `data:${mime};base64,${videoBytes.toString('base64')}`;
   const posterURI = `data:image/png;base64,${posterBytes.toString('base64')}`;
   const captionsURI = `data:text/vtt;base64,${Buffer.from(captions).toString('base64')}`;
   // html-view's existing media policy permits data sources. This example adds no
@@ -67,13 +68,13 @@ export function createVideoExample(videoBytes, posterBytes, captions = captionTe
 </style>
 <h2>Motion study · 8 seconds</h2>
 <video id="local-video" controls playsinline preload="metadata" crossorigin="anonymous" poster="${posterURI}" aria-label="Original geometric motion study" aria-describedby="video-description" tabindex="0">
-  <source src="${videoURI}" type="video/mp4">
+  <source src="${videoURI}" type="${mime}">
   <track id="video-captions" kind="captions" label="English" srclang="en" src="${captionsURI}" default>
   Your browser does not support native video playback.
 </video>
 <p id="video-description">Original silent clip. Use the player to play, pause, seek, or toggle captions.</p>
 <p id="video-status" role="status" aria-live="polite">Loading local video…</p>
-<p id="video-error" role="alert" hidden>This browser could not play the embedded MP4. The transcript remains available below.</p>
+<p id="video-error" role="alert" hidden>This browser could not play the embedded video. The transcript remains available below.</p>
 <details><summary>Read transcript</summary><p>A blue dot moves across three rising bars. The bars gently change height as the dot travels. The dot returns to its starting point.</p></details>
 <script>
 (() => {
@@ -100,11 +101,17 @@ export async function generateShowcaseVideo() {
   const result = spawnSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pixel_format', 'rgb24', '-video_size', `${width}x${height}`, '-framerate', String(fps), '-i', 'pipe:0', '-an', '-c:v', 'libx264', '-threads', '1', '-preset', 'veryfast', '-crf', '27', '-pix_fmt', 'yuv420p', '-profile:v', 'baseline', '-movflags', '+faststart', '-map_metadata', '-1', '-fflags', '+bitexact', '-flags:v', '+bitexact', output], {input: frames, maxBuffer: 1024 * 1024, timeout: 30000});
   if (result.error || result.status !== 0) throw result.error ?? Error(result.stderr.toString());
   const media = await readFile(output), poster = png(frame(0));
-  const document = createVideoExample(media, poster);
+  // VP9 is supported by the lock-pinned open-source Chromium build, which does
+  // not include the proprietary H.264 decoder. Preserve MP4 for other consumers.
+  const webmOutput = `${mediaDirectory}/motion-study.webm`;
+  const webmResult = spawnSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pixel_format', 'rgb24', '-video_size', `${width}x${height}`, '-framerate', String(fps), '-i', 'pipe:0', '-an', '-c:v', 'libvpx-vp9', '-threads', '1', '-crf', '32', '-b:v', '0', '-pix_fmt', 'yuv420p', '-map_metadata', '-1', '-fflags', '+bitexact', '-flags:v', '+bitexact', webmOutput], {input: frames, maxBuffer: 1024 * 1024, timeout: 30000});
+  if (webmResult.error || webmResult.status !== 0) throw webmResult.error ?? Error(webmResult.stderr.toString());
+  const webm = await readFile(webmOutput);
+  const document = createVideoExample(webm, poster, captionText, 'video/webm');
   await writeFile(`${mediaDirectory}/motion-study.png`, poster);
   await writeFile(`${mediaDirectory}/motion-study.vtt`, captionText);
   await writeFile('showcase/examples/video.json', JSON.stringify(document, null, 2) + '\n');
-  const manifest = {format: 'inform-ui-original-media/1', origin: 'Original generated geometric animation; no captured or third-party imagery', license: 'MIT', generator: 'scripts/generate-showcase-video.mjs', codec: 'H.264 Constrained Baseline', width, height, fps, seconds, audio: false, bytes: media.length, sha256: createHash('sha256').update(media).digest('hex')};
+  const manifest = {format: 'inform-ui-original-media/1', origin: 'Original generated geometric animation; no captured or third-party imagery', license: 'MIT', generator: 'scripts/generate-showcase-video.mjs', codec: 'H.264 Constrained Baseline', width, height, fps, seconds, audio: false, bytes: media.length, sha256: createHash('sha256').update(media).digest('hex'), webm: {file: 'motion-study.webm', codec: 'VP9', bytes: webm.length, sha256: createHash('sha256').update(webm).digest('hex')}};
   await writeFile(`${mediaDirectory}/manifest.json`, JSON.stringify(manifest, null, 2) + '\n');
   return manifest;
 }

@@ -10,5 +10,11 @@
   "seconds": 8,
   "audio": false,
   "bytes": 11033,
-  "sha256": "e0195a2a53ca6eae2c63b836a5e77a570802ed0f8e590e21e2723b0e3fd5b776"
+  "sha256": "e0195a2a53ca6eae2c63b836a5e77a570802ed0f8e590e21e2723b0e3fd5b776",
+  "webm": {
+    "file": "motion-study.webm",
+    "codec": "VP9",
+    "bytes": 6651,
+    "sha256": "59110b3e9a558c650949ff0585df277e798c4a8587bdd2eac90ca84020bc8a45"
+  }
 }

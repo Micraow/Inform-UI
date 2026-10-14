@@ -8,6 +8,7 @@ import {createVideoExample} from '../scripts/generate-showcase-video.mjs';
 
 const example = JSON.parse(await readFile('showcase/examples/video.json', 'utf8'));
 const media = await readFile('showcase/assets/video/motion-study.mp4');
+const webm = await readFile('showcase/assets/video/motion-study.webm');
 const poster = await readFile('showcase/assets/video/motion-study.png');
 const captions = await readFile('showcase/assets/video/motion-study.vtt', 'utf8');
 const manifest = JSON.parse(await readFile('showcase/assets/video/manifest.json', 'utf8'));
@@ -23,20 +24,20 @@ test('video composition reuses html-view without adding a wire type or changing 
   assert.equal(result.ok, true, JSON.stringify(result.issues));
   assert.equal(example.body.length, 1); assert.equal(example.body[0].type, 'html-view');
   assert.equal(example.body[0].title, 'Local video playback');
-  assert.deepEqual(example, createVideoExample(media, poster, captions));
+  assert.deepEqual(example, createVideoExample(webm, poster, captions, 'video/webm'));
   assert.ok(example.body[0].html.length < 200000);
   assert.equal(validateDocument({version: 'iui/1', body: [{type: 'youtube', label: 'Supplied synthetic video ID', videoId: 'abcdefghijk', loadMode: 'on-demand'}]}).ok, true);
   assert.equal(validateDocument({version: 'iui/1', body: [{type: 'video', src: 'data:video/mp4;base64,AA=='}]}).ok, false);
 });
 
-test('native controls and bounded embedded MP4, PNG and WebVTT bytes match their source assets', () => {
+test('native controls and bounded embedded WebM, PNG and WebVTT bytes match their source assets', () => {
   const dom = supplied(), doc = dom.window.document, video = doc.querySelector('video');
   try {
     assert.equal(doc.querySelectorAll('video').length, 1);
     assert.ok(video.hasAttribute('controls')); assert.ok(video.hasAttribute('playsinline'));
     assert.equal(video.getAttribute('preload'), 'metadata'); assert.equal(video.hasAttribute('autoplay'), false);
     assert.equal(video.getAttribute('aria-label'), 'Original geometric motion study');
-    assert.deepEqual(dataBytes(video.querySelector('source').src, 'video/mp4'), media);
+    assert.deepEqual(dataBytes(video.querySelector('source').src, 'video/webm'), webm);
     assert.deepEqual(dataBytes(video.poster, 'image/png'), poster);
     const track = video.querySelector('track');
     assert.equal(track.kind, 'captions'); assert.equal(track.srclang, 'en'); assert.equal(track.default, true);
@@ -69,6 +70,16 @@ test('supplied video is a tiny self-contained MP4 with complete metadata and a p
   assert.throws(() => createVideoExample(Buffer.alloc(0), poster), /bounded/);
   assert.throws(() => createVideoExample(Buffer.alloc(100001), poster), /bounded/);
   assert.throws(() => createVideoExample(media, Buffer.alloc(10001)), /bounded/);
+});
+
+test('the open-codec VP9 asset is original, bounded, and pinned alongside the MP4', () => {
+  assert.equal(webm.subarray(0, 4).toString('hex'), '1a45dfa3');
+  assert.equal(manifest.webm.codec, 'VP9');
+  assert.equal(manifest.webm.file, 'motion-study.webm');
+  assert.equal(webm.length, manifest.webm.bytes);
+  assert.ok(webm.length < 50000);
+  assert.equal(createHash('sha256').update(webm).digest('hex'), manifest.webm.sha256);
+  assert.throws(() => createVideoExample(webm, poster, captions, 'video/unknown'), /supported/);
 });
 
 test('local status and failure fallback track native media events', () => {
