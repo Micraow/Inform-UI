@@ -2,7 +2,7 @@
   "format": "inform-v2-cdn/1",
   "version": "2.0.0-alpha.1",
   "sourceCommit": "44623e368e00911238852f5bf62c440762bee9ff",
-  "runtimeURL": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@web-chat-latest/cdn/next/inform-ui.global.js",
+  "runtimeURL": "https://cdn.jsdelivr.net/gh/Micraow/Inform-UI@main/cdn/next/inform-ui.global.js",
   "bundles": {
     "inform-ui.global.js": {
       "bytes": 5661712,
