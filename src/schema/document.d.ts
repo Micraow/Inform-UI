@@ -409,6 +409,7 @@ export type CodeNode = {
   inline?: boolean;
   copy?: boolean;
   highlight?: boolean;
+  showLanguage?: boolean;
 } & CodeNode1;
 export type CodeNode1 =
   | {
@@ -419,6 +420,7 @@ export type CodeNode1 =
       inline: true;
       copy?: false;
       highlight?: false;
+      showLanguage?: false;
     }
   | {
       type?: "code";
@@ -428,6 +430,7 @@ export type CodeNode1 =
       inline?: false;
       copy?: boolean;
       highlight?: boolean;
+      showLanguage?: boolean;
     };
 export type LinkNode = LinkNode1 & {
   type: "link";

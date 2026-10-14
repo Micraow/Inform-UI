@@ -9,7 +9,18 @@ export const projectHistorical130=refs=>refs.filter(ref=>!added.has(ref.$ref));
 const approvedLink=JSON.parse(readFileSync(new URL('./approved-link156-definition.json',import.meta.url),'utf8'));
 const approvedWeather=JSON.parse(readFileSync(new URL('./approved-weather178-definition.json',import.meta.url),'utf8'));
 const linkAdditions=['url','title','status','fallback','disabled','source','snippet','faviconSrc','imageSrc','mobile','hostLink','copyLabel','loadImageLabel','children'];
+const approvedCode=JSON.parse(readFileSync(new URL('./approved-code-foundation-definition.json',import.meta.url),'utf8'));
+// Only the reviewed showLanguage addition is removed; every previous Code field
+// and every unrelated definition still compares against its immutable baseline.
+export function projectCodeFoundationDefinition(name,definition){
+ if(name!=='CodeNode')return definition;
+ assert.deepEqual(definition,approvedCode,'Code foundation extension must equal its reviewed definition before historical projection');
+ const old=structuredClone(definition);delete old.properties.showLanguage;
+ for(const branch of old.oneOf)delete branch.properties.showLanguage;
+ return old;
+}
 export function projectHistoricalDefinition(name, definition){
+ definition=projectCodeFoundationDefinition(name,definition);
  if(name==='WeatherNode'){
   assert.deepEqual(definition,approvedWeather,'Weather178 optional extension must equal its reviewed definition before historical projection');
   const copy=structuredClone(definition),p=copy.properties;

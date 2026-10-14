@@ -1,15 +1,33 @@
-# 代码块增强：后批候选
+# Code: foundation code display
 
-增强已有 `code`，不增加协议节点。可选 `copy` 与 `highlight` 均默认false，旧代码/行内代码保持原结构。`inline:true` 不允许任一增强为true。当前仍待真实浏览器和分发验收。
+Use a matching source build or newly generated distributable for these defaults; older CDN pins keep their original behavior. This change does not promote the rolling CDN branch.
 
-```json
-{"type":"code","language":"javascript","value":"const sample = 7;\n","copy":true,"highlight":true}
+V2 uses `Code(data)` from `base/code`, included in the core and full bundles. `CodeView(data)` remains a compatibility alias and `CodeData(...)` remains available. Pre-migration full-profile selections of `views/content` or `viewNames: ['CodeView']` also include the new base module. New profiles should select `base/code` directly.
+
+```text
+root = Stack([Code({value: "echo hello", language: "bash"})])
 ```
 
-`value` 必须是字面字符串，最多12000 Unicode码点（例如12000个emoji）；language为1–200码点。独立的整份文档资源预算仍为2,000,000个UTF-16存储单元，合并state更新也必须满足，未被此修复放宽。高亮只识别大小写不敏感的精确别名js/javascript、ts/typescript、json、py/python。缺失/未知语言保留纯文本。原创有限词法着色不是语法验证器；不解析完整正则、模板插值、JSX、装饰器或f-string等语法。文本、换行、CRLF、tab和Unicode保持原样，无执行/网络功能。
+Block code defaults to syntax highlighting, a visible language label, and one-click copy. `copy: false`, `highlight: false`, and `showLanguage: false` independently disable those features. Set all three false for the plain `<pre><code>` structure. Existing explicit `copy: false` and `highlight: false` continue to disable copying and highlighting. Omitted block options now enable the defaults, so the block root may be a wrapper rather than the old `<pre>`.
 
-复制只由明确的原生可信按钮激活触发，向当前ownerDocument的Clipboard API提交原始字符串；浏览器/OS决定最终系统剪贴板编码。不读剪贴板，不申请权限，也不自动复制。缺失/不安全/拒绝/失败时显示手动选择复制提示。忙态保持按钮焦点、只允许一个请求；下一次明确点击可重试。卸载/更新后的旧promise不会改动旧或新UI。
+`inline: true` retains literal inline `<code>` with no header or controls. Omitted/false enhancement options are valid; true for any of the three options is rejected. The legacy `iui/1` code node supports the same options and defaults without adding a node type.
 
-增强块使用无名 `.iui-code-block` 外壳；作者id/data-iui在此壳，实际可原生滚动和选择的pre仍为 `.iui-code`。默认代码仍直接返回pre，行内仍为code。颜色来自共享主题tokens，无外部资源；同时进入DOM注入与离线compiler样式。
+`value` is a literal string, at most 12,000 Unicode code points; `language` is 1–200 code points. Code is never executed, fetched or independently verified. Other document/parser budgets still apply.
 
-[完整原创示例](../examples/code.json)与[窄容器组合](../examples/code-contained.json)均只需base分域。JSDOM中的clipboard测试明确使用stub，不代表真实系统剪贴板已写入；真实浏览器套件不请求权限，也不读取已有剪贴板。
+## Highlighting
+
+The implementation uses highlight.js 11.12.0 (BSD-3-Clause), a private core instance and only these bundled grammars: Bash, JavaScript, TypeScript, JSON, Python, CSS, XML/HTML, SQL, YAML and Markdown, including their upstream aliases. Bash supports `bash`, `sh` and `zsh`; JavaScript supports `js`; TypeScript supports `ts`. Language matching is case-insensitive but not whitespace-trimmed.
+
+There is no automatic detection or remote grammar loading. Missing language displays “Plain text” (or “纯文本” in Chinese) and stays unhighlighted. Unknown language displays the supplied label literally and stays unhighlighted. Highlighting is a display aid, not syntax validation.
+
+Only safe span scopes from highlight.js are converted into DOM text nodes. Source HTML never enters `innerHTML`. A round-trip check falls back to plain text if highlighting changes the original text. CRLF, tabs, Unicode, NUL and lone surrogates are preserved. Input is bounded; the regex-based highlighter is not described as linear-time. Bundled scopes use shared theme colors and include forced-colors support.
+
+## Copy and lifecycle
+
+Copy runs only after a trusted native pointer or keyboard button activation, on the owner document's secure-context Clipboard API. It submits the original string. It does not read clipboard contents, request permissions or copy automatically. Success appears only when `writeText` resolves; missing, insecure or denied APIs show a manual selection/copy fallback. Clipboard/OS line-ending normalization is outside the component's control.
+
+The button retains focus while a single request is pending. Another explicit activation can retry. A stale promise after replacement, detachment or disposal cannot modify old or new UI. Synthetic `.click()` and `dispatchEvent()` do not copy.
+
+The actual scroll/selection surface keeps `.iui-code`; enhanced blocks use `.iui-code-block`. Authors' legacy id/data-iui attributes stay on the returned root. Foundation code does not pull in the domain renderer, KaTeX, Lottie, or the full highlight.js language set.
+
+[Legacy example](../examples/code.json) and [narrow composition](../examples/code-contained.json) remain available. Clipboard stub tests are labelled as such; they do not claim to verify writes to the operating system clipboard.

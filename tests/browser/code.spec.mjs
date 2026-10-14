@@ -3,7 +3,6 @@
 // No permissions are requested, no clipboard reads, and no real clipboard success is assumed.
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
-import {compileHtml} from '../../dist/index.js';
 const fixture=JSON.parse(await readFile(new URL('../../examples/code.json',import.meta.url),'utf8'));
 const contained=JSON.parse(await readFile(new URL('../../examples/code-contained.json',import.meta.url),'utf8'));
 const byId=(page,id)=>page.locator(`[data-iui][id$="-${id}"]`);
@@ -49,7 +48,7 @@ test('STUB: synthetic click rejected, no startup access, two per-instance reques
 });
 for(const action of ['update','dispose'])for(const result of ['resolve','reject'])test(`STUB: ${action} while pending ${result} has no late DOM writes`,async({page})=>{
  await mount(page);await stub(page);const b=byId(page,'main-code').getByRole('button');await pointer(page,b);
- await page.evaluate(action=>{window.oldCode=document.querySelector('.iui-code-block');window.oldCodeHTML=window.oldCode.outerHTML;if(action==='update')window.codeController.update(window.codeInput);else window.codeController.dispose();},action);
+ await page.evaluate(action=>{window.oldCode=document.querySelector('[id$="-main-code"]');window.oldCodeHTML=window.oldCode.outerHTML;if(action==='update')window.codeController.update(window.codeInput);else window.codeController.dispose();},action);
  await finish(page,result);expect(await page.evaluate(()=>!window.oldCode.isConnected&&window.oldCode.outerHTML===window.oldCodeHTML)).toBe(true);
  if(action==='update')await expect(byId(page,'main-code').getByRole('status')).toHaveText('');
 });
@@ -67,5 +66,7 @@ test('real clipboard API smoke: report permission outcome without requesting per
  info.annotations.push({type:'native clipboard outcome',description:await out.getByRole('status').textContent()});expect(await out.locator('code').textContent()).toBe(source);await expect(out.getByRole('button')).toBeFocused();
 });
 test('public compiler offline hydration preserves exact code without code-related requests',async({page})=>{
- const html=await compileHtml(fixture),requests=[];page.on('request',r=>requests.push(r.url()));await page.context().setOffline(true);await page.setContent(html);expect(await byId(page,'main-code').locator('code').textContent()).toBe(source);expect(requests).toEqual([]);await expect(byId(page,'unknown-code').locator('img,script')).toHaveCount(0);
+ // build-examples compiles this fixture before browser startup; reading its
+ // output avoids loading a second complete runtime into the browser worker.
+ const html=await readFile(new URL('../../output/code.html',import.meta.url),'utf8'),requests=[];page.on('request',r=>requests.push(r.url()));await page.context().setOffline(true);await page.setContent(html);expect(await byId(page,'main-code').locator('code').textContent()).toBe(source);expect(requests).toEqual([]);await expect(byId(page,'unknown-code').locator('img,script')).toHaveCount(0);
 });

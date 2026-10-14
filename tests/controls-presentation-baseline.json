@@ -1,11 +1,12 @@
 {
   "format": "inform-ui-reviewed-controls-style/1",
-  "globalStyleSha256": "c051050933e5b49da6210ace841c7c522c230eb87bb18b68fc5894d56ef5741a",
+  "globalStyleSha256": "e472060d629c4a6ac08a99a315dc13a69331a5695377265bd1ea0d9e5e1b6175",
   "changes": [
     "continuous slider neutral track and thumb",
     "segmented native radios with ghost pill presentation",
     "read-only rating-summary row",
-    "upright Consolas / embedded Source Code Pro for code and citations"
+    "upright Consolas / embedded Source Code Pro for code and citations",
+    "highlight.js grammar scopes use existing code theme colors"
   ],
   "historicalBaselinePreserved": "tests/finance-status-baseline-118.json"
 }

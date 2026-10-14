@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:micraow:inform-ui:schema:iui:1:e3a09eafb30b1332b1014757ab69e7891492e7f18a7343867ceb35de4caa9eaa:document:base",
+  "$id": "urn:micraow:inform-ui:schema:iui:1:bb1e48e8804e743bc235dd0dcb2652576f367875dd9c285e233af0eec2ecc01c:document:base",
   "title": "Inform UI document subset: base",
   "description": "Document structural subset. Other node types are intentionally excluded. Always run the full validateDocument for semantic validation.",
   "type": "object",
@@ -4369,6 +4369,9 @@
         },
         "highlight": {
           "type": "boolean"
+        },
+        "showLanguage": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -4405,6 +4408,9 @@
             },
             "highlight": {
               "const": false
+            },
+            "showLanguage": {
+              "const": false
             }
           },
           "required": [
@@ -4439,6 +4445,9 @@
               "type": "boolean"
             },
             "highlight": {
+              "type": "boolean"
+            },
+            "showLanguage": {
               "type": "boolean"
             }
           },

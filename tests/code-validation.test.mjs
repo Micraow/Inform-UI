@@ -13,7 +13,7 @@ test('existing code flags validate only literal optional booleans; inline cannot
   const n=code({...(inline===undefined?{}:{inline}),...(copy===undefined?{}:{copy}),...(highlight===undefined?{}:{highlight})});
   assert.equal(validateDocument(doc([n])).ok,!(inline===true&&(copy===true||highlight===true)),JSON.stringify(n));
  }
- for(const key of ['copy','highlight'])for(const value of ['true',1,null,{$:'count'}])assert.equal(validateDocument(doc([code({[key]:value})])).ok,false);
+ for(const key of ['copy','highlight','showLanguage'])for(const value of ['true',1,null,{$:'count'}])assert.equal(validateDocument(doc([code({[key]:value})])).ok,false);
  assert.equal(validateDocument(fixture).ok,true);
 });
 test('literal value/string and original language/code bounds stay unchanged',()=>{
@@ -41,5 +41,5 @@ test('public compiler emits self-contained escaped literal script-looking code',
 });
 
 test('code RTL scenario supplies actual Arabic leading content; header and LTR pre remain separate surfaces',()=>{
- const d={...fixture,description:'مثال برمجي أصلي للاختبار.'};assert.equal(validateDocument(d).ok,true);const el=host(),c=mount(el,d),root=el.querySelector('.iui-root');assert.equal(root.dir,'auto');assert.match(root.querySelector('.iui-description').textContent,/^\p{Script=Arabic}/u);assert.ok(root.querySelector('.iui-code-header'));assert.equal(root.querySelector('.iui-code-block pre code').textContent,fixture.body.find(n=>n.id==='main-code').value);c.dispose();
+ const d={...fixture,description:'مثال برمجي أصلي للاختبار.'};assert.equal(validateDocument(d).ok,true);const el=host(),c=mount(el,d),root=el.querySelector('.iui-root');assert.equal(root.dir,'auto');assert.match(root.querySelector('.iui-description').textContent,/^\p{Script=Arabic}/u);assert.ok(root.querySelector('.iui-code-header'));assert.equal(root.querySelector('[id$="-main-code"] pre code').textContent,fixture.body.find(n=>n.id==='main-code').value);c.dispose();
 });

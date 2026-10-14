@@ -9,6 +9,22 @@
     "bindingProps": [],
     "actionProps": []
   },
+  "Code": {
+    "orderedProps": [
+      "data"
+    ],
+    "slots": {},
+    "bindingProps": [],
+    "actionProps": []
+  },
+  "CodeView": {
+    "orderedProps": [
+      "data"
+    ],
+    "slots": {},
+    "bindingProps": [],
+    "actionProps": []
+  },
   "Text": {
     "orderedProps": [
       "content",
@@ -170,7 +186,9 @@
   "Icon": {
     "orderedProps": [
       "name",
-      "label"
+      "label",
+      "tone",
+      "size"
     ],
     "slots": {},
     "bindingProps": [],
@@ -243,6 +261,17 @@
       "src",
       "alt",
       "caption"
+    ],
+    "slots": {},
+    "bindingProps": [],
+    "actionProps": []
+  },
+  "Video": {
+    "orderedProps": [
+      "src",
+      "title",
+      "poster",
+      "captions"
     ],
     "slots": {},
     "bindingProps": [],
@@ -563,14 +592,6 @@
     "actionProps": []
   },
   "EmailDraftView": {
-    "orderedProps": [
-      "data"
-    ],
-    "slots": {},
-    "bindingProps": [],
-    "actionProps": []
-  },
-  "CodeView": {
     "orderedProps": [
       "data"
     ],

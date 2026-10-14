@@ -1,3 +1,5 @@
+import {renderCode,type CodeOptions} from '../../shared/code.js';
+import {codeEnglish,codeChinese} from '../../renderer/code-labels.js';
 import {createIcon} from '../../icons/create-icon.js';
 import Check from '../../icons/definitions/Check.js';
 import ChevronDown from '../../icons/definitions/ChevronDown.js';
@@ -13,8 +15,10 @@ export function createFoundationAdapters(options:FoundationOptions):Record<strin
  const adapters:Record<string,FoundationAdapter>={};
  function adapter(name:string,build:(p:Record<string,unknown>,c:FoundationContext,h:Helpers)=>HTMLElement|SVGElement){
   adapters[name]={kind:'dom',key:'foundation.'+name,create(p,c){
-   const cleanup:Array<()=>void>=[],childLists=new Map<HTMLElement,FoundationHandle[]>();let disposed=false,update:((props:Record<string,unknown>)=>void)|undefined;
+   const cleanup:Array<()=>void>=[],childLists=new Map<HTMLElement,FoundationHandle[]>();let disposed=false,retainUnchanged:((props:Record<string,unknown>)=>boolean)|undefined,update:((props:Record<string,unknown>)=>void)|undefined;
    const h:Helpers={
+    cleanup(fn){cleanup.push(fn);},
+    retainUnchanged(fn){retainUnchanged=fn;},
     update(fn){update=fn;},
     children(parent,nodes,offset=0){const previous=childLists.get(parent)??[],next=nodes.map(node=>c.renderChild(node) as FoundationHandle);if(!childLists.has(parent))cleanup.push(()=>{for(const child of childLists.get(parent)??[])child.dispose();childLists.delete(parent);});for(const child of previous)if(!next.includes(child)){child.dispose();child.element.remove();}let cursor:ChildNode|null=parent.childNodes[offset]??null;for(const child of next){if(child.element!==cursor)parent.insertBefore(child.element,cursor);cursor=child.element.nextSibling;}childLists.set(parent,next);},
     el(tag,cls='',value){c.budget.consume();const e=c.document.createElement(tag);e.className=cls;if(value!==undefined)e.textContent=text(value);return e;},
@@ -27,9 +31,14 @@ export function createFoundationAdapters(options:FoundationOptions):Record<strin
    const element=build(p,c,h);element.dataset.component=name;
    const dispose=()=>{if(disposed)return;disposed=true;for(const fn of cleanup.splice(0).reverse())fn();};
    if(c.signal){c.signal.addEventListener('abort',dispose,{once:true});cleanup.push(()=>c.signal?.removeEventListener('abort',dispose));}
-   return {element,dispose,...(update?{update:(props:Record<string,unknown>)=>{if(!disposed)update!(props);}}:{})};
+   return {element,dispose,...(retainUnchanged?{retainUnchanged:(props:Record<string,unknown>)=>!disposed&&retainUnchanged!(props)}:{}),...(update?{update:(props:Record<string,unknown>)=>{if(!disposed)update!(props);}}:{})};
   }};
  }
+ for(const name of ['Code','CodeView'])adapter(name,(p,c,h)=>{
+  const signature=JSON.stringify(p);h.retainUnchanged(next=>JSON.stringify(next)===signature);
+  const labels=/^zh\b/i.test(c.document.documentElement.lang)?codeChinese:codeEnglish;
+  return renderCode({doc:c.document,element:h.el,on:h.listen,cleanup:h.cleanup},p.data as unknown as CodeOptions,{code:labels===codeChinese?'代码':'code',codeUI:labels});
+ });
  adapter('Text',(p,c,h)=>{const e=h.el('p','if-text');const update=(props:Record<string,unknown>)=>{if(e.textContent!==text(props.content))e.textContent=text(props.content);e.dataset.tone=text(props.tone??'default');};update(p);h.update(update);return e;});
  adapter('Heading',(p,c,h)=>{const level=Math.max(1,Math.min(6,number(p.level,2)));const e=h.el(('h'+level) as 'h2','if-heading',p.content);e.dataset.level=String(level);return e;});
  for(const name of ['Stack','Row','Grid','Card'])adapter(name,(p,c,h)=>{const e=h.el('div','if-'+name.toLowerCase()),title=name==='Card'?h.el('h3','if-card-title'):null;if(title)e.append(title);const update=(props:Record<string,unknown>)=>{e.style.setProperty('--if-gap',gap(props.gap)+'px');if(name==='Grid')e.style.setProperty('--if-columns',String(Math.max(1,Math.min(6,number(props.columns,2)))));if(name==='Row')e.style.alignItems=({start:'flex-start',center:'center',end:'flex-end',stretch:'stretch'} as Record<string,string>)[text(props.align)]??'center';if(title){title.textContent=text(props.title);title.hidden=!props.title;}h.children(e,props.children as FoundationNode[],title?1:0);};update(p);h.update(update);return e;});
@@ -64,6 +73,8 @@ export function createFoundationAdapters(options:FoundationOptions):Record<strin
  return adapters;
 }
 interface Helpers {
+ retainUnchanged(fn:(props:Record<string,unknown>)=>boolean):void;
+ cleanup(fn:()=>void):void;
  update(fn:(props:Record<string,unknown>)=>void):void;
  children(parent:HTMLElement,nodes:FoundationNode[],offset?:number):void;
  el<K extends keyof HTMLElementTagNameMap>(tag:K,cls?:string,value?:unknown):HTMLElementTagNameMap[K];

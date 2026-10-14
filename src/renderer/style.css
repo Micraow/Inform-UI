@@ -1352,3 +1352,6 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 
 /* Explicit, upright code typography, independent of surrounding prose. */
 .iui-root :is(pre,code,kbd,samp,.iui-code,.iui-code-citation-line code),.iui-root :is(pre,code,.iui-code) *{font-family:Consolas,"Source Code Pro",ui-monospace,monospace;font-style:normal}
+
+.iui-code-token-literal,.iui-code-token-built_in,.iui-code-token-title-function_,.iui-code-token-attr,.iui-code-token-name,.iui-code-token-variable{color:var(--iui-info)}
+.iui-code-token-regexp{color:var(--iui-success)}
