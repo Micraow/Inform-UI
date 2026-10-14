@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 const fromSource=async name=>{const output=await build({entryPoints:[fileURLToPath(new URL('../src/renderer/'+name,import.meta.url))],bundle:true,write:false,format:'esm',platform:'node',target:'es2022'});return import('data:text/javascript;base64,'+Buffer.from(output.outputFiles[0].text).toString('base64'));};
 const {renderCode}=await fromSource('code.ts');
 const {codeEnglish,codeChinese}=await fromSource('code-labels.ts');
-export const {scanCode}=await fromSource('code-lexer.ts');
+export const {highlightCode}=await fromSource('../shared/code-highlight.ts');
 export function setup({lang='en',dom=new JSDOM('<!doctype html><body></body>',{url:'https://example.test/',pretendToBeVisual:true})}={}) {
  const win=dom.window,doc=win.document,host=doc.createElement('div');doc.body.append(host);
  const labels={code:lang==='zh'?'代码':'code',codeUI:lang==='zh'?codeChinese:codeEnglish};

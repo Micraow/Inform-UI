@@ -1,9 +1,9 @@
 {
   "summary": {
-    "views": 195,
-    "actualAdapters": 195,
+    "views": 194,
+    "actualAdapters": 194,
     "publicBaseComposed": 8,
-    "sharedPrimitiveDomain": 187,
+    "sharedPrimitiveDomain": 186,
     "viewsWithDataGraphicsInFixture": 11,
     "hostBoundaryViews": [
       "HtmlViewView"
@@ -576,22 +576,6 @@
       "disposed": true
     },
     {
-      "name": "CodeView",
-      "oldType": "code",
-      "classification": "view",
-      "actualAdapter": true,
-      "publicBaseComposed": false,
-      "sharedFoundationBridge": true,
-      "sharedTheme": true,
-      "elements": 3,
-      "officialIcons": 0,
-      "dataGraphics": 0,
-      "hostBoundary": null,
-      "jsdomWarnings": [],
-      "rendered": true,
-      "disposed": true
-    },
-    {
       "name": "MathView",
       "oldType": "math",
       "classification": "view",
@@ -727,7 +711,7 @@
       "publicBaseComposed": false,
       "sharedFoundationBridge": true,
       "sharedTheme": true,
-      "elements": 5,
+      "elements": 6,
       "officialIcons": 0,
       "dataGraphics": 0,
       "hostBoundary": null,
@@ -983,7 +967,7 @@
       "publicBaseComposed": true,
       "sharedFoundationBridge": true,
       "sharedTheme": true,
-      "elements": 4,
+      "elements": 5,
       "officialIcons": 0,
       "dataGraphics": 0,
       "hostBoundary": null,

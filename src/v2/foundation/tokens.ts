@@ -6,6 +6,7 @@ export const typography=Object.freeze({family:'system-ui,-apple-system,BlinkMacS
 /** Public SDK roles and observed host-role values are shared with the original renderer. */
 import colorTokens from '../../../docs/color-tokens.json';
 import codeFontCSS from '../../renderer/code-font.css';
+import codeBlockCSS from '../../renderer/code-block.css';
 import {semanticCSS} from './semantic-roles';
 const projectTheme=(v:typeof colorTokens.light)=>Object.freeze({
  background:v.bg,surface:v['surface-secondary'],text:v.ink,muted:v.muted,border:v.line,
@@ -31,4 +32,7 @@ export const foundationCSS=codeFontCSS+`
 .if-range{appearance:none;width:100%;height:44px;margin:0;padding:0;background:transparent;cursor:pointer}.if-range::-webkit-slider-runnable-track{height:24px;border-radius:999px;background:rgb(0 0 0 / 4%)}.if-range::-webkit-slider-thumb{appearance:none;width:20px;height:20px;margin-top:2px;border:1px solid var(--if-border);border-radius:50%;background:var(--if-background);box-shadow:0 1px 2px rgb(0 0 0 / 12%)}.if-range::-moz-range-track{height:24px;border-radius:999px;background:rgb(0 0 0 / 4%)}.if-range::-moz-range-thumb{width:20px;height:20px;border:1px solid var(--if-border);border-radius:50%;background:var(--if-background)}.if-root[data-theme=dark] .if-range::-webkit-slider-runnable-track{background:rgb(255 255 255 / 6%)}.if-root[data-theme=dark] .if-range::-moz-range-track{background:rgb(255 255 255 / 6%)}.if-range-output{font-variant-numeric:tabular-nums;color:var(--if-muted)}.if-divider{height:1px;width:100%;margin:4px 0;border:0;background:var(--if-border)}.if-badge{display:inline-flex;align-self:flex-start;padding:3px 9px;min-height:24px;border-radius:99px;background:var(--if-surface);font-size:12px;font-weight:500}.if-alert{padding:16px;border:1px solid currentColor;border-radius:12px;display:grid;gap:4px}.if-alert-title{font-weight:600}.if-image,.if-video{display:grid;gap:8px}.if-video video{display:block;border-radius:var(--if-radius,12px);background:var(--if-surface)}.if-image img{display:block;max-width:100%;height:auto;border-radius:12px}.if-table-wrap{max-width:100%;overflow:auto;border:1px solid var(--if-border);border-radius:12px}.if-table{border-collapse:collapse;width:100%;font-size:13px}.if-table caption{text-align:left;font-weight:600;padding:12px}.if-table th,.if-table td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--if-border)}.if-table th{font-weight:600;background:var(--if-surface)}.if-table tr:last-child td{border:0}.if-icon{flex:none;vertical-align:middle}.if-chart{display:grid;gap:12px}.if-chart svg{display:block;width:100%;height:auto}.if-status{font-size:12px;color:var(--if-muted)}.if-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @container(max-width:480px){.if-grid{grid-template-columns:1fr}.if-card{padding:16px}.if-row{row-gap:12px}}
 @media(prefers-reduced-motion:reduce){.if-root *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-`+semanticCSS;
+
+.if-root .iui-inline-code{white-space:break-spaces;overflow-wrap:anywhere;font:400 .9em var(--if-mono);background:var(--if-surface);border-radius:4px;padding:2px 4px}
+
+`+semanticCSS+codeBlockCSS;

@@ -7,9 +7,9 @@ const profile=contractProfile();const copy=name=>structuredClone(viewExamples[na
 const valid=(name,props)=>profile.componentRules[name].validateProps(props);
 function reject(name,props,code){const result=valid(name,props);assert.equal(result.ok,false,name+' must reject');if(code)assert.ok(result.issues.some(x=>x.code===code),JSON.stringify(result.issues));return result;}
 
-test('all 219 old types have exactly one explicit destination and 195 independent strict data records',()=>{
- assert.equal(migrationMap.entries.length,219);assert.equal(new Set(migrationMap.entries.map(x=>x.oldType)).size,219);assert.equal(viewSpecs.length,195);assert.equal(new Set(viewSpecs.map(x=>x.name)).size,195);
- assert.deepEqual(migrationMap.entries.reduce((a,x)=>(a[x.classification]=(a[x.classification]??0)+1,a),{}),{base:23,view:174,refusal:1,host:21});
+test('all 219 old types have exactly one explicit destination and 194 independent strict data records',()=>{
+ assert.equal(migrationMap.entries.length,219);assert.equal(new Set(migrationMap.entries.map(x=>x.oldType)).size,219);assert.equal(viewSpecs.length,194);assert.equal(new Set(viewSpecs.map(x=>x.name)).size,194);
+ assert.deepEqual(migrationMap.entries.reduce((a,x)=>(a[x.classification]=(a[x.classification]??0)+1,a),{}),{base:24,view:173,refusal:1,host:21});
  for(const spec of viewSpecs){assert.equal(profile.schema.$defs[spec.name].additionalProperties,false);assert.equal(profile.schema.$defs[spec.dataName].additionalProperties,false);assert.equal(profile.data[spec.dataName].name,spec.dataName);assert.equal(profile.components[spec.dataName],undefined);}
 });
 test('coverage never treats schema fixtures, source dispatcher cases, or planned composition as migration completion',()=>{
@@ -17,7 +17,7 @@ test('coverage never treats schema fixtures, source dispatcher cases, or planned
  const e=createMigrationCoverage({AgendaView:{actualAdapterBound:true,sources:['verified-test']}});assert.equal(e.actualAdapterBound,1);assert.equal(e.publicBaseComposed,0);
  assert.throws(()=>fixtures.AgendaView.create(),/not a renderer/);
 });
-test('all 195 supplied examples pass full schema, pure domain semantics, and new DSL runtime commit',()=>{
+test('all 194 supplied examples pass full schema, pure domain semantics, and new DSL runtime commit',()=>{
  for(const spec of viewSpecs){const runtime=createRuntime(profile);try{const result=runtime.commit(viewExamples[spec.name].source);assert.equal(result.ok,true,spec.name+': '+JSON.stringify(result));assert.equal(runtime.getSnapshot().tree.typeName,'Stack');}finally{runtime.dispose();}}
 });
 test('contracts retain explicit bounded slots and only adapters with a proven binding protocol expose bindings',()=>{
@@ -71,7 +71,7 @@ test('prototype injection, cycles, getters, non-finite numbers and bounded valid
 test('unknown View selections reject and missing adapters remain visibly unbound',()=>{
  assert.throws(()=>createViewModules({adapters:{},names:['NotAView']}),/Unknown/);
  const modules=createViewModules({adapters:{},names:['AgendaView']});assert.equal(modules[0].components[0].renderer.kind,'unbound');
- assert.equal(createViewModules({adapters:{},includeHost:false}).flatMap(x=>x.components).length,174);
+ assert.equal(createViewModules({adapters:{},includeHost:false}).flatMap(x=>x.components).length,173);
 });
 test('gallery sources contain ordinary samples and a verified public video identifier',()=>{
  for(const e of Object.values(viewExamples))assert.doesNotMatch(e.source,/<script|onerror=|javascript:/i);

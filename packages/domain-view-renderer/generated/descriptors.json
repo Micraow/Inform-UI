@@ -315,15 +315,6 @@
     "actionProps": []
   },
   {
-    "name": "CodeView",
-    "oldType": "code",
-    "classification": "view",
-    "slots": {},
-    "bindings": [],
-    "actions": [],
-    "actionProps": []
-  },
-  {
     "name": "MathView",
     "oldType": "math",
     "classification": "view",

@@ -11,7 +11,7 @@ export function createBaseProfile(){
  const modules=createCatalog({adapters,iconNames});
  // Native chart reference reuses the registered accessible Table.
  const resolved=modules.map(module=>module.id==='base/charts'?{...module,dependsOn:[...module.dependsOn,'base/text']}:module);
- return buildProfile({id:'inform/base-v2',root:'Stack',modules:resolved,select:['base/text','base/icon','base/media','base/layout','base/controls','base/charts','domain/weather'],resources});
+ return buildProfile({id:'inform/base-v2',root:'Stack',modules:resolved,select:['base/code','base/text','base/icon','base/media','base/layout','base/controls','base/charts','domain/weather'],resources});
 }
 export function mount(container:HTMLElement,options:MountOptions){
  if(!container||container.nodeType!==1)throw new TypeError('mount requires an HTML element');

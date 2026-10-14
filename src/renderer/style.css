@@ -612,20 +612,8 @@ body.iui-page[data-theme=dark]{background:#212121}@media(prefers-color-scheme:da
 .iui-root .iui-carousel :is(pre,.iui-table){max-inline-size:100%;min-inline-size:0;overflow-x:auto}
 @media(forced-colors:active){.iui-root .iui-carousel-controls button[aria-disabled=true]{color:GrayText}.iui-root .iui-carousel:focus-visible,.iui-root .iui-carousel :focus-visible,.iui-root .iui-carousel-controls button:focus-visible{outline-color:Highlight}}
 
-/* Original theme-token styles. Append after the existing base .iui-code rule. */
-.iui-code-block{min-inline-size:0;max-inline-size:100%;align-self:stretch}
-.iui-code-block>.iui-code{box-sizing:border-box;inline-size:100%;min-inline-size:0;max-inline-size:100%;margin-block:0;overflow:auto;white-space:pre;direction:ltr;unicode-bidi:isolate;user-select:text}
-.iui-code-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-inline-size:0;margin-block-end:6px}
-.iui-code-language{font-size:.8rem;color:var(--iui-muted);overflow-wrap:anywhere;min-inline-size:0;unicode-bidi:plaintext}
-.iui-code-copy{margin-inline-start:auto;flex:none;font:inherit;font-size:.85rem;min-block-size:36px;padding:6px 12px;border:1px solid var(--iui-line);border-radius:6px;color:var(--iui-ink);background:var(--iui-surface);cursor:pointer}
-.iui-code-copy[aria-disabled=true]{cursor:wait}
-.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline:2px solid var(--iui-focus);outline-offset:3px}
-.iui-code-status{display:block;font-size:.82rem;color:var(--iui-muted);overflow-wrap:anywhere;margin-block-start:4px;min-block-size:1.4em}
-.iui-code-token-comment{color:var(--iui-muted);font-style:italic}
-.iui-code-token-string{color:var(--iui-success)}
-.iui-code-token-number{color:var(--iui-info)}
-.iui-code-token-keyword{color:var(--iui-info);font-weight:600}
-@media(forced-colors:active){.iui-code-copy{color:ButtonText;background:ButtonFace;border-color:ButtonText}.iui-code-block>.iui-code{border-color:CanvasText}.iui-code-block [class*=iui-code-token-]{color:CanvasText}.iui-code-copy:focus-visible,.iui-code-block>.iui-code:focus-visible{outline-color:Highlight}}
+/* Code panel styles are shared with the foundation in code-block.css. */
+
 /* No animation, transitions, fonts, assets, network or motion to reduce. */
 
 /* Append to renderer/style.css; both runtime mount and compiler already consume it. */

@@ -3,7 +3,6 @@
 // No permissions are requested, no clipboard reads, and no real clipboard success is assumed.
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
-import {compileHtml} from '../../dist/index.js';
 const fixture=JSON.parse(await readFile(new URL('../../examples/code.json',import.meta.url),'utf8'));
 const contained=JSON.parse(await readFile(new URL('../../examples/code-contained.json',import.meta.url),'utf8'));
 const byId=(page,id)=>page.locator(`[data-iui][id$="-${id}"]`);
@@ -32,7 +31,7 @@ for(const theme of ['light','dark'])for(const width of [390,768,1100])test(`code
 });
 test('contained cards/grid never create body overflow; reduced motion and forced colors',async({page})=>{
  await page.setViewportSize({width:390,height:900});await page.emulateMedia({forcedColors:'active',reducedMotion:'reduce'});await mount(page,contained);
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const b=byId(page,'main-code').getByRole('button');await b.focus();await page.keyboard.press('Tab');await expect(byId(page,'main-code').locator('pre')).toBeFocused();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const b=byId(page,'main-code').getByRole('button',{name:/^(Copy code|复制代码)$/});await b.focus();await page.keyboard.press('Tab');await expect(byId(page,'main-code').locator('pre')).toBeFocused();
  expect(await byId(page,'main-code').locator('pre').evaluate(el=>getComputedStyle(el).outlineStyle)).toBe('solid');
 });
 test('STUB: real pointer, Enter, Space; repeated busy activation does not duplicate; explicit retries',async({page})=>{
@@ -43,29 +42,41 @@ test('STUB: real pointer, Enter, Space; repeated busy activation does not duplic
 });
 test('STUB: synthetic click rejected, no startup access, two per-instance requests',async({page})=>{
  await mount(page);await stub(page);const first=byId(page,'main-code'),second=byId(page,'python-code');
- await first.getByRole('button').evaluate(el=>el.click());expect(await page.evaluate(()=>window.codeWrites)).toEqual([]);
- await pointer(page,first.getByRole('button'));await pointer(page,second.getByRole('button'));expect(await page.evaluate(()=>window.codeWrites.length)).toBe(2);
+ await first.getByRole('button',{name:/^(Copy code|复制代码)$/}).evaluate(el=>el.click());expect(await page.evaluate(()=>window.codeWrites)).toEqual([]);
+ await pointer(page,first.getByRole('button',{name:/^(Copy code|复制代码)$/}));await pointer(page,second.getByRole('button',{name:/^(Copy code|复制代码)$/}));expect(await page.evaluate(()=>window.codeWrites.length)).toBe(2);
  await finish(page);await expect(first.getByRole('status')).toHaveText('Code copied.');await expect(second.getByRole('status')).toHaveText('Copying…');await finish(page,'reject',1);await expect(second.getByRole('status')).toContainText('Could not copy');
 });
 for(const action of ['update','dispose'])for(const result of ['resolve','reject'])test(`STUB: ${action} while pending ${result} has no late DOM writes`,async({page})=>{
- await mount(page);await stub(page);const b=byId(page,'main-code').getByRole('button');await pointer(page,b);
- await page.evaluate(action=>{window.oldCode=document.querySelector('.iui-code-block');window.oldCodeHTML=window.oldCode.outerHTML;if(action==='update')window.codeController.update(window.codeInput);else window.codeController.dispose();},action);
+ await mount(page);await stub(page);const b=byId(page,'main-code').getByRole('button',{name:/^(Copy code|复制代码)$/});await pointer(page,b);
+ await page.evaluate(action=>{window.oldCode=document.querySelector('[id$="-main-code"]');window.oldCodeHTML=window.oldCode.outerHTML;if(action==='update')window.codeController.update(window.codeInput);else window.codeController.dispose();},action);
  await finish(page,result);expect(await page.evaluate(()=>!window.oldCode.isConnected&&window.oldCode.outerHTML===window.oldCodeHTML)).toBe(true);
  if(action==='update')await expect(byId(page,'main-code').getByRole('status')).toHaveText('');
 });
 test('Chinese/RTL labels stay literal and header follows surrounding direction',async({page})=>{
- await mount(page,{...fixture,description:'مثال برمجي أصلي للاختبار.'},'zh-CN');const out=byId(page,'main-code');await expect(out.getByRole('button')).toHaveText('复制代码');
+ await mount(page,{...fixture,description:'مثال برمجي أصلي للاختبار.'},'zh-CN');const out=byId(page,'main-code');await expect(out.getByRole('button',{name:/^(Copy code|复制代码)$/})).toHaveText('复制代码');
  expect(await out.locator('.iui-code-header').evaluate(el=>getComputedStyle(el).direction)).toBe('rtl');expect(await out.locator('pre').evaluate(el=>getComputedStyle(el).direction)).toBe('ltr');
  const unknown=byId(page,'unknown-code');await expect(unknown.locator('.iui-code-language')).toHaveText('<unknown>');expect(await unknown.locator('code').textContent()).toBe(fixture.body.find(n=>n.id==='unknown-code').value);await expect(unknown.locator('script,img')).toHaveCount(0);
 });
 test('STUB: owner iframe clipboard is used, parent clipboard is untouched',async({page})=>{
  await mount(page);await page.evaluate(()=>{window.parentWrites=0;Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText(){window.parentWrites++;return Promise.reject(Error('Wrong owner'));}}});const frame=document.createElement('iframe');frame.id='code-frame';document.body.append(frame);const doc=frame.contentDocument,host=doc.createElement('div');doc.body.append(host);frame.contentWindow.frameWrites=[];Object.defineProperty(frame.contentWindow.navigator,'clipboard',{configurable:true,value:{writeText(value){frame.contentWindow.frameWrites.push(value);return Promise.resolve();}}});window.frameCodeController=window.iui.mount(host,window.codeInput);});
- const b=page.frameLocator('#code-frame').locator('[id$="-main-code"] button');await b.click();await expect(page.frameLocator('#code-frame').locator('[id$="-main-code"] [role=status]')).toHaveText('Code copied.');expect(await page.evaluate(()=>window.parentWrites)).toBe(0);expect(await page.evaluate(()=>document.getElementById('code-frame').contentWindow.frameWrites)).toEqual([source]);
+ const b=page.frameLocator('#code-frame').locator('[id$="-main-code"] .iui-code-copy');await b.click();await expect(page.frameLocator('#code-frame').locator('[id$="-main-code"] [role=status]')).toHaveText('Code copied.');expect(await page.evaluate(()=>window.parentWrites)).toBe(0);expect(await page.evaluate(()=>document.getElementById('code-frame').contentWindow.frameWrites)).toEqual([source]);
 });
 test('real clipboard API smoke: report permission outcome without requesting permission',async({page},info)=>{
- await mount(page);const out=byId(page,'main-code');await pointer(page,out.getByRole('button'));await expect(out.getByRole('status')).toHaveText(/^(Code copied\.|Could not copy\. Select the code and copy it manually\.)$/);
- info.annotations.push({type:'native clipboard outcome',description:await out.getByRole('status').textContent()});expect(await out.locator('code').textContent()).toBe(source);await expect(out.getByRole('button')).toBeFocused();
+ await mount(page);const out=byId(page,'main-code');await pointer(page,out.getByRole('button',{name:/^(Copy code|复制代码)$/}));await expect(out.getByRole('status')).toHaveText(/^(Code copied\.|Could not copy\. Select the code and copy it manually\.)$/);
+ info.annotations.push({type:'native clipboard outcome',description:await out.getByRole('status').textContent()});expect(await out.locator('code').textContent()).toBe(source);await expect(out.getByRole('button',{name:/^(Copy code|复制代码)$/})).toBeFocused();
 });
 test('public compiler offline hydration preserves exact code without code-related requests',async({page})=>{
- const html=await compileHtml(fixture),requests=[];page.on('request',r=>requests.push(r.url()));await page.context().setOffline(true);await page.setContent(html);expect(await byId(page,'main-code').locator('code').textContent()).toBe(source);expect(requests).toEqual([]);await expect(byId(page,'unknown-code').locator('img,script')).toHaveCount(0);
+ // build-examples compiles this fixture before browser startup; reading its
+ // output avoids loading a second complete runtime into the browser worker.
+ const html=await readFile(new URL('../../output/code.html',import.meta.url),'utf8'),requests=[];page.on('request',r=>requests.push(r.url()));await page.context().setOffline(true);await page.setContent(html);expect(await byId(page,'main-code').locator('code').textContent()).toBe(source);expect(requests).toEqual([]);await expect(byId(page,'unknown-code').locator('img,script')).toHaveCount(0);
+});
+
+for(const width of [390,1100])test(`offscreen code helpers stay inside the carousel at ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:900});await mount(page,{version:'iui/1',body:[{type:'carousel',label:'Code samples',children:[...Array.from({length:4},(_,i)=>({type:'text',value:'Original item '+i})),{type:'code',id:'main-code',value:source,language:'bash'}]}]});
+ const out=byId(page,'main-code');expect(await out.boundingBox()).not.toBeNull();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ for(const cls of ['.iui-code-sr-only','.iui-code-status'])expect(await out.locator(cls).evaluate(e=>e.offsetParent===e.closest('.iui-code-block'))).toBe(true);
+ await stub(page);await out.getByRole('button',{name:'Copy code'}).click();await finish(page);
+ await expect(out.getByRole('status')).toHaveText('Code copied.');expect(await page.evaluate(()=>window.codeWrites)).toEqual([source]);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });

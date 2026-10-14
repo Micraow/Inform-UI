@@ -4406,6 +4406,9 @@
         },
         "highlight": {
           "type": "boolean"
+        },
+        "showLanguage": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -4442,6 +4445,9 @@
             },
             "highlight": {
               "const": false
+            },
+            "showLanguage": {
+              "const": false
             }
           },
           "required": [
@@ -4476,6 +4482,9 @@
               "type": "boolean"
             },
             "highlight": {
+              "type": "boolean"
+            },
+            "showLanguage": {
               "type": "boolean"
             }
           },

@@ -2696,21 +2696,6 @@
     "source": "root = Stack([TaskExpansionCardView({\"title\":\"Review the supplied outline\",\"summary\":\"These are supplied plan details for local reading. Nothing here performs a task.\",\"disabled\":false,\"steps\":[{\"id\":\"read\",\"title\":\"Read the outline\",\"description\":\"Read the supplied outline before deciding what to do.\",\"details\":\"Compare the stated aim with the listed sections.\\nWrite down any questions separately.\",\"reviewed\":true},{\"id\":\"consider\",\"title\":\"Consider the examples\",\"description\":\"Look at whether the supplied examples are useful.\",\"details\":\"This disclosure contains additional supplied text. Opening it does not run anything.\"},{\"id\":\"decide\",\"title\":\"Review the next step\",\"description\":\"Decide outside this example whether any real action is needed.\"}]})])",
     "provenance": "Public synthetic example: examples/component-collection.json"
   },
-  "CodeView": {
-    "name": "CodeView",
-    "oldType": "code",
-    "data": {
-      "value": "original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_"
-    },
-    "props": {
-      "data": {
-        "value": "original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_"
-      }
-    },
-    "actionExpressions": {},
-    "source": "root = Stack([CodeView({\"value\":\"original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_original_example_\"})])",
-    "provenance": "Public synthetic example: examples/carousel.json"
-  },
   "MathView": {
     "name": "MathView",
     "oldType": "math",

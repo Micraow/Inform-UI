@@ -25,5 +25,5 @@ test('Finance subset closes the new node and Base does not silently acquire it',
 test('both build entry lists name the family CSS and global styles match the reviewed controls baseline',async()=>{
  for(const script of ['scripts/build.mjs','scripts/build-cdn.mjs'])assert.match(await readFile(script,'utf8'),/src\/renderer\/finance-status\.css/);
  // The frozen 118 baseline remains unchanged; this later control batch explicitly changes shared styles.
- const baseline=JSON.parse(await readFile('tests/controls-presentation-baseline.json'));assert.equal(createHash('sha256').update(await readFile('src/renderer/style.css')).digest('hex'),baseline.globalStyleSha256);
+ const baseline=JSON.parse(await readFile('tests/controls-presentation-baseline.json'));assert.equal(createHash('sha256').update(await readFile('src/renderer/style.css')).digest('hex'),baseline.globalStyleSha256);assert.equal(createHash('sha256').update(await readFile('src/renderer/code-block.css')).digest('hex'),baseline.codePanelStyleSha256);
 });

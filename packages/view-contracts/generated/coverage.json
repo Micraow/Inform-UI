@@ -1,6 +1,6 @@
 {
   "total": 219,
-  "contractViews": 195,
+  "contractViews": 194,
   "actualAdapterBound": 0,
   "publicBaseComposed": 0,
   "browserVerified": 0,
@@ -718,19 +718,14 @@
     {
       "oldType": "code",
       "name": "CodeView",
-      "classification": "view",
+      "classification": "base",
       "contractDefined": true,
       "oldRendererPresent": true,
       "actualAdapterBound": false,
       "browserVerified": false,
       "publicBaseComposed": false,
       "requiredPublicBases": [
-        "Card",
-        "Heading",
-        "Text",
-        "Stack",
-        "Row",
-        "Button"
+        "Code"
       ],
       "evidence": []
     },

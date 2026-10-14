@@ -42,7 +42,7 @@ This package provides contracts only. Runtime and decomposition coverage must be
 | writing-block | WritingBlockView | view | yes | no | no | Card, Heading, Text, Stack, Row, Button |
 | email-draft | EmailDraftView | view | yes | no | no | Card, Heading, Text, Stack, Row, Button |
 | task-expansion-card | TaskExpansionCardView | view | yes | no | no | Card, Heading, Text, Stack, Button, Icon |
-| code | CodeView | view | yes | no | no | Card, Heading, Text, Stack, Row, Button |
+| code | CodeView | base | yes | no | no | Code |
 | math | MathView | view | yes | no | no | Card, Heading, Text, Stack, Row, Button |
 | badge | Badge | base | yes | no | no | Badge |
 | divider | Divider | base | yes | no | no | Divider |

@@ -6232,10 +6232,10 @@
       "oldType": "code",
       "oldDefinition": "CodeNode",
       "name": "CodeView",
-      "classification": "view",
-      "family": "content",
+      "classification": "base",
+      "family": "code",
       "dataName": "CodeData",
-      "moduleId": "views/content",
+      "moduleId": "base/code",
       "rendererKey": "CodeView",
       "orderedProps": [
         "data"
@@ -6262,6 +6262,9 @@
             "type": "boolean"
           },
           "highlight": {
+            "type": "boolean"
+          },
+          "showLanguage": {
             "type": "boolean"
           }
         },
@@ -6290,6 +6293,9 @@
               },
               "highlight": {
                 "const": false
+              },
+              "showLanguage": {
+                "const": false
               }
             },
             "required": [
@@ -6317,6 +6323,9 @@
               },
               "highlight": {
                 "type": "boolean"
+              },
+              "showLanguage": {
+                "type": "boolean"
               }
             },
             "required": [],
@@ -6326,15 +6335,13 @@
       },
       "composition": {
         "requiredPublicBases": [
-          "Card",
-          "Heading",
-          "Text",
-          "Stack",
-          "Row",
-          "Button"
+          "Code"
         ],
-        "status": "not-yet-decomposed",
-        "evidence": []
+        "status": "foundation-component",
+        "evidence": [
+          "src/v2/foundation/adapters.ts",
+          "src/shared/code.ts"
+        ]
       },
       "renderer": {
         "oldSource": "src/renderer/index.ts",
@@ -6346,9 +6353,8 @@
         "evidence": []
       },
       "limitations": [
-        "Supplied source data is not independently fetched or verified.",
-        "Legacy state references, expression objects, type/id envelope and executable action strings are not accepted.",
-        "Base composition is a target until adapter evidence confirms extraction."
+        "Literal display only; no execution or automatic language detection.",
+        "Copy requires trusted activation and available secure-context Clipboard API."
       ]
     },
     {
